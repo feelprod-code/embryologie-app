@@ -49,11 +49,11 @@ const SYSTEM_PROMPT = `Tu es "Embryo-Bot", un assistant virtuel expert en embryo
 Ton rôle est d'aider les étudiants ou praticiens en répondant à leurs questions de façon précise et clinique.
 
 RÈGLE ABSOLUE NUMÉRO 1 : Tu dois D'ABORD chercher la réponse dans le contexte de Marc Damoiseaux fourni ci-dessous. Si tu la trouves, utilise-la et cite le stade (ex: "Source: J28 - Plis Céphalique").
-RÈGLE ABSOLUE NUMÉRO 2 : Si la réponse n'est PAS dans le contexte de Marc Damoiseaux, tu es AUTORISÉ à utiliser tes connaissances générales externes sur l'embryologie (notamment biodynamique). Dans ce cas, tu DOIS obligatoirement préciser que cette information est "Hors du cours de Damoiseaux" et tu DOIS citer tes sources externes (ex: nom d'un livre d'Erich Blechschmidt, de James Jealous, ou un site/article de référence).
-NOTE SPÉCIALE EXPERTISE JEALOUS : Pour toute question complexe sur l'approche de James Jealous (Biodynamique), tu peux te référer implicitement ou explicitement à la documentation et aux principes énoncés dans ses travaux (et conseiller de consulter le NotebookLM Jealous Odyssey : https://notebooklm.google.com/notebook/78f39b55-d0a6-416e-811e-21d04bc93e3e).
+RÈGLE ABSOLUE NUMÉRO 2 : Si la réponse n'est PAS dans le contexte de Marc Damoiseaux, tu es AUTORISÉ à utiliser tes connaissances générales externes sur l'embryologie (notamment biodynamique). Dans ce cas, tu DOIS obligatoirement préciser que cette information est "Hors du cours de Damoiseaux" et tu DOIS citer tes sources externes.
+NOTE SPÉCIALE EXPERTISE JEALOUS : Pour toute question complexe sur l'approche de James Jealous (Biodynamique), tu peux te référer implicitement ou explicitement à la documentation et aux principes énoncés dans ses travaux.
 RÈGLE ABSOLUE NUMÉRO 3 : Adopte un ton professionnel, encourageant, et précis.
-RÈGLE ABSOLUE NUMÉRO 4 : Rédige tes réponses avec le plus grand soin visuel (comme un article soigné) : aère le texte avec des paragraphes, mets les concepts et mots-clés importants en **gras** (utilise la syntaxe markdown **mot**), et ajoute des sous-titres (##) si la réponse est longue. N'utilise pas de symboles markdown bruts ou de fioritures qui rendraient la lecture confuse (ne mets pas de balises XML ou de structures compliquées). Soit structuré et lisible.
-RÈGLE ABSOLUE NUMÉRO 5 : Lorsque tu cites ou fais référence à un cours vidéo, tu DOIS ABSOLUMENT formater ton texte sous forme de lien markdown avec le protocole "video://" suivi de "l'ID_VIDEO". Exemple parfait: Si c'est une vidéo de l'Endoderme, écrit exactement ceci pour citer la source : [L'Endoderme - 01 - Introduction](video://endoderme-01).
+RÈGLE ABSOLUE NUMÉRO 4 : Rédige tes réponses avec le plus grand soin visuel : aère le texte avec des paragraphes et mets les mots-clés en **gras**.
+RÈGLE ABSOLUE NUMÉRO 5 : Lorsque tu cites ou fais référence à un cours vidéo, tu DOIS ABSOLUMENT formater la source exacte sous forme de lien markdown avec le protocole "video://" suivi STRICTEMENT de "l'ID_VIDEO". Ne mets JAMAIS d'url classique du type "https://". Exemple parfait: Si c'est une vidéo de l'Endoderme, écrit exactement ceci : [Source exacte](video://endoderme-01).
 
 CONTEXTE DU COURS DE MARC DAMOISEAUX :
 ${getCourseContext()}
@@ -229,18 +229,26 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                                                             const isMeso = course.categoryId === 'mesoderme';
                                                             const isEndo = course.categoryId === 'endoderme';
                                                             const isOeil = course.categoryId === 'oeil';
+
                                                             const colorClass = isEcto ? "bg-[#5A9C51]/10 text-[#5A9C51] hover:bg-[#5A9C51]/20 border-[#5A9C51]/30" :
                                                                 isMeso ? "bg-[#F27D33]/10 text-[#F27D33] hover:bg-[#F27D33]/20 border-[#F27D33]/30" :
                                                                     isEndo ? "bg-[#4171B5]/10 text-[#4171B5] hover:bg-[#4171B5]/20 border-[#4171B5]/30" :
                                                                         isOeil ? "bg-[#F2B729]/10 text-[#F2B729] hover:bg-[#F2B729]/20 border-[#F2B729]/30" :
                                                                             "bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300";
+
+                                                            const categoryName = isEcto ? "L'Ectoderme" : isMeso ? "Le Mésoderme" : isEndo ? "L'Endoderme" : isOeil ? "L'Œil" : course.categoryId;
+                                                            const numMatch = course.title.match(/^(\d+)/);
+                                                            const numStr = numMatch ? `${numMatch[1].padStart(2, '0')} - ` : '';
+                                                            const cleanTitle = course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ');
+                                                            const displayLabel = `${categoryName} • ${numStr}${cleanTitle}`;
+
                                                             return (
                                                                 <button
                                                                     onClick={() => onNavigateToVideo(course)}
-                                                                    className={cn("inline-flex flex-wrap items-center gap-1.5 px-3 pt-1 pb-0.5 rounded-lg text-sm md:text-base font-bold transition-colors border mx-1 break-all", colorClass)}
+                                                                    className={cn("inline-flex items-center gap-1.5 px-4 pt-1.5 pb-1 rounded-[1.2rem] text-sm md:text-base font-bold transition-all duration-300 border shadow-sm hover:shadow-md hover:-translate-y-0.5 mx-1 mb-1 max-w-full", colorClass)}
                                                                 >
-                                                                    <PlayCircle size={16} className="-mt-0.5 shrink-0" />
-                                                                    <span className="truncate max-w-[250px] sm:max-w-none">{children}</span>
+                                                                    <PlayCircle size={18} className="shrink-0" />
+                                                                    <span className="truncate">{displayLabel}</span>
                                                                 </button>
                                                             );
                                                         }
