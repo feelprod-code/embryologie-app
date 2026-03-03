@@ -72,48 +72,56 @@ function App() {
             onClick={() => setCurrentView('home')}
             onTouchStart={(e) => { e.preventDefault(); setCurrentView('home'); }}
             className={cn(
-              "flex flex-1 flex-col items-center justify-center pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95",
-              currentView === 'home' ? "text-[#F27D33]" : "text-slate-400 hover:text-slate-600"
+              "flex flex-1 flex-col items-center justify-center pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group",
+              currentView === 'home' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <HomeIcon size={24} />
-            <span className="text-[10px] font-medium tracking-wide">Accueil</span>
+            <div className={cn("transition-transform duration-200", currentView === 'home' ? "scale-110" : "group-hover:scale-105")}>
+              <HomeIcon size={24} className={currentView === 'home' ? "fill-slate-800" : ""} />
+            </div>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'home' ? "font-bold" : "font-medium")}>Accueil</span>
           </button>
 
           <button
             onClick={() => setCurrentView('timeline')}
             onTouchStart={(e) => { e.preventDefault(); setCurrentView('timeline'); }}
             className={cn(
-              "flex flex-1 flex-col items-center justify-center pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95",
-              currentView === 'timeline' ? "text-[#F27D33]" : "text-slate-400 hover:text-slate-600"
+              "flex flex-1 flex-col items-center justify-center pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group",
+              currentView === 'timeline' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <Clock size={24} />
-            <span className="text-[10px] font-medium tracking-wide">Timeline</span>
+            <div className={cn("transition-transform duration-200", currentView === 'timeline' ? "scale-110" : "group-hover:scale-105")}>
+              <Clock size={24} className={currentView === 'timeline' ? "fill-slate-800 text-slate-800" : ""} />
+            </div>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'timeline' ? "font-bold" : "font-medium")}>Timeline</span>
           </button>
 
           <button
             onClick={() => setCurrentView('video-library')}
             onTouchStart={(e) => { e.preventDefault(); setCurrentView('video-library'); }}
             className={cn(
-              "flex flex-1 flex-col items-center justify-center pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95",
-              currentView === 'video-library' || currentView === 'video-player' ? "text-[#F27D33]" : "text-slate-400 hover:text-slate-600"
+              "flex flex-1 flex-col items-center justify-center pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group",
+              currentView === 'video-library' || currentView === 'video-player' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <Video size={24} />
-            <span className="text-[10px] font-medium tracking-wide">Vidéos</span>
+            <div className={cn("transition-transform duration-200", currentView === 'video-library' || currentView === 'video-player' ? "scale-110" : "group-hover:scale-105")}>
+              <Video size={24} className={currentView === 'video-library' || currentView === 'video-player' ? "fill-slate-800 text-slate-800" : ""} />
+            </div>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'video-library' || currentView === 'video-player' ? "font-bold" : "font-medium")}>Vidéos</span>
           </button>
 
           <button
             onClick={() => setCurrentView('embryo-ai')}
             onTouchStart={(e) => { e.preventDefault(); setCurrentView('embryo-ai'); }}
             className={cn(
-              "flex flex-1 flex-col items-center justify-center pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95",
-              currentView === 'embryo-ai' ? "text-[#F27D33]" : "text-slate-400 hover:text-slate-600"
+              "flex flex-1 flex-col items-center justify-center pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group",
+              currentView === 'embryo-ai' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <Brain size={24} />
-            <span className="text-[10px] font-medium tracking-wide">Cerveau IA</span>
+            <div className={cn("transition-transform duration-200", currentView === 'embryo-ai' ? "scale-110" : "group-hover:scale-105")}>
+              <Brain size={24} className={currentView === 'embryo-ai' ? "fill-slate-800 text-slate-800" : ""} />
+            </div>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-bold" : "font-medium")}>Cerveau IA</span>
           </button>
         </nav>
       )}

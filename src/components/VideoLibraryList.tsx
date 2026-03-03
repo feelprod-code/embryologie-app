@@ -112,7 +112,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
             </div>
 
             {/* Video List */}
-            < motion.div
+            <motion.div
                 key={selectedLayer}
                 className="flex flex-col gap-3 sm:gap-4 w-full max-w-4xl mx-auto"
                 variants={containerVariants}
@@ -121,53 +121,62 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
             >
                 {
                     filteredCourses.length > 0 ? (
-                        filteredCourses.map((course) => (
-                            <motion.div
-                                key={course.id}
-                                variants={itemVariants}
-                                className="w-full"
-                            >
-                                <div
-                                    role="button"
-                                    tabIndex={0}
-                                    onClick={() => onSelectVideo(course)}
-                                    className="group relative w-full text-left flex flex-row items-center py-4 sm:py-5 border-b border-slate-200/60 last:border-0 active:scale-[0.99] transition-all duration-300 cursor-pointer overflow-hidden touch-manipulation hover:bg-black/[0.02] px-2 sm:px-4 rounded-xl sm:rounded-2xl"
+                        filteredCourses.map((course) => {
+                            const activeListStyle = {
+                                "L'Ectoderme": { textHover: "group-hover:text-[#5A9C51]", bgHover: "group-hover:bg-[#5A9C51]/10" },
+                                "Le Mésoderme": { textHover: "group-hover:text-[#F27D33]", bgHover: "group-hover:bg-[#F27D33]/10" },
+                                "L'Endoderme": { textHover: "group-hover:text-[#4171B5]", bgHover: "group-hover:bg-[#4171B5]/10" },
+                                "L'Oeil": { textHover: "group-hover:text-[#F2B729]", bgHover: "group-hover:bg-[#F2B729]/10" },
+                            }[selectedLayer] || { textHover: "group-hover:text-[#8B1111]", bgHover: "group-hover:bg-red-50" };
+
+                            return (
+                                <motion.div
+                                    key={course.id}
+                                    variants={itemVariants}
+                                    className="w-full"
                                 >
-                                    {/* Effet de tap natif pour mobile */}
-                                    <div className="absolute inset-0 bg-slate-900 opacity-0 active:opacity-[0.03] transition-opacity duration-[50ms]"></div>
+                                    <div
+                                        role="button"
+                                        tabIndex={0}
+                                        onClick={() => onSelectVideo(course)}
+                                        className="group relative w-full text-left flex flex-row items-center py-4 sm:py-5 border-b border-slate-200/60 last:border-0 active:scale-[0.99] transition-all duration-300 cursor-pointer overflow-hidden touch-manipulation hover:bg-black/[0.02] px-2 sm:px-4 rounded-xl sm:rounded-2xl"
+                                    >
+                                        {/* Effet de tap natif pour mobile */}
+                                        <div className="absolute inset-0 bg-slate-900 opacity-0 active:opacity-[0.03] transition-opacity duration-[50ms]"></div>
 
-                                    {/* Minimalist Play Icon */}
-                                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mr-3 sm:mr-5">
-                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center group-hover:bg-red-50 shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] bg-slate-100/50 transition-colors duration-300">
-                                            <Play className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300 group-hover:text-[#8B1111] transition-colors translate-x-[1px]" fill="currentColor" strokeWidth={1} />
+                                        {/* Minimalist Play Icon */}
+                                        <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mr-3 sm:mr-5">
+                                            <div className={cn("w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] bg-slate-100/50 transition-colors duration-300", activeListStyle.bgHover)}>
+                                                <Play className={cn("w-4 h-4 sm:w-5 sm:h-5 text-slate-300 transition-colors translate-x-[1px]", activeListStyle.textHover)} fill="currentColor" strokeWidth={1} />
+                                            </div>
                                         </div>
+
+                                        {/* Minimalist Info */}
+                                        <div className="flex-1 min-w-0 pr-4">
+                                            <h3 className={cn(
+                                                "text-sm sm:text-lg lg:text-xl font-sans font-medium tracking-wide truncate transition-colors uppercase",
+                                                "text-slate-700", activeListStyle.textHover
+                                            )}>
+                                                {(course.title.match(/^(\d+)/)?.[1] ? `${course.title.match(/^(\d+)/)?.[1]}- ` : '') + course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
+                                            </h3>
+                                            <div className="flex items-center gap-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-0 group-hover:h-auto overflow-hidden">
+                                                <span className="text-[10px] sm:text-xs text-slate-400 font-medium font-sans flex items-center gap-1">
+                                                    <BookOpen size={10} />
+                                                    Retranscription incluse
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* Sleek Duration */}
+                                        {course.duration && (
+                                            <div className={cn("flex-shrink-0 flex flex-col items-end justify-center text-slate-400 transition-colors duration-300", activeListStyle.textHover)}>
+                                                <span className="font-bebas text-lg sm:text-xl tracking-wider pt-1">{course.duration}</span>
+                                            </div>
+                                        )}
                                     </div>
-
-                                    {/* Minimalist Info */}
-                                    <div className="flex-1 min-w-0 pr-4">
-                                        <h3 className={cn(
-                                            "text-sm sm:text-lg lg:text-xl font-sans font-medium tracking-wide truncate transition-colors uppercase",
-                                            "text-slate-700 group-hover:text-[#8B1111]"
-                                        )}>
-                                            {(course.title.match(/^(\d+)/)?.[1] ? `${course.title.match(/^(\d+)/)?.[1]}- ` : '') + course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
-                                        </h3>
-                                        <div className="flex items-center gap-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-0 group-hover:h-auto overflow-hidden">
-                                            <span className="text-[10px] sm:text-xs text-slate-400 font-medium font-sans flex items-center gap-1">
-                                                <BookOpen size={10} />
-                                                Retranscription incluse
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    {/* Sleek Duration */}
-                                    {course.duration && (
-                                        <div className="flex-shrink-0 flex flex-col items-end justify-center text-slate-400 group-hover:text-[#8B1111] transition-colors duration-300">
-                                            <span className="font-bebas text-lg sm:text-xl tracking-wider pt-1">{course.duration}</span>
-                                        </div>
-                                    )}
-                                </div>
-                            </motion.div>
-                        ))
+                                </motion.div>
+                            );
+                        })
                     ) : (
                         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm py-20 px-6 text-center mt-4 flex flex-col items-center justify-center">
                             <p className="text-slate-700 text-lg sm:text-xl font-medium">Aucune vidéo disponible pour ce feuillet pour le moment.</p>
