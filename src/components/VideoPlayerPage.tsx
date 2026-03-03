@@ -62,21 +62,21 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
                 key={layer}
                 onClick={handleLayerClick}
                 className={cn(
-                  "relative flex flex-col items-center justify-center py-2 sm:py-3 px-2 rounded-[1.2rem] min-w-[110px] sm:min-w-[130px] border shrink-0 snap-center transition-all duration-300",
+                  "relative flex flex-col items-center justify-center py-3 px-2 rounded-[1.2rem] min-w-[120px] sm:min-w-[140px] border shrink-0 snap-center transition-all duration-300",
                   isSelected
                     ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white`
                     : `bg-white border-slate-200 text-slate-600 shadow-sm ${style.hover}`
                 )}
               >
                 <span className={cn(
-                  "font-bebas text-[15px] sm:text-lg tracking-wider leading-none mb-1 whitespace-nowrap",
+                  "font-bebas text-lg sm:text-xl tracking-wider leading-none mb-1 whitespace-nowrap",
                   isSelected ? "text-white" : "text-slate-800"
                 )}>
                   {layer}
                 </span>
 
                 <span className={cn(
-                  "text-[9px] sm:text-[10px] uppercase font-bold truncate w-full px-2 opacity-80 text-center",
+                  "text-[10px] uppercase font-bold truncate w-full px-2 opacity-80 text-center",
                   isSelected ? "text-white/80" : "text-slate-500"
                 )}>
                   <Clock size={10} className="inline mr-1 mb-[1px]" />
@@ -109,13 +109,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
                     key={speed}
                     onClick={() => handleSpeedChange(speed)}
                     className={cn(
-                      "px-2 py-1 rounded-md text-[13px] font-bold transition-colors min-w-[32px] text-center",
+                      "flex items-center justify-center px-4 py-2 sm:px-5 sm:py-3 rounded-[1.2rem] text-sm sm:text-base font-bold transition-all min-w-[44px] sm:min-w-[50px] shadow-sm border",
                       currentSpeed === speed
-                        ? (course.categoryId === 'ectoderme' ? "text-[#5A9C51]" :
-                          course.categoryId === 'endoderme' ? "text-[#4171B5]" :
-                            course.categoryId === 'mesoderme' ? "text-[#F27D33]" :
-                              course.categoryId === 'oeil' ? "text-[#F2B729]" : "text-[#8B1111]")
-                        : "text-slate-400 hover:text-slate-700"
+                        ? (course.categoryId === 'ectoderme' ? "bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20" :
+                          course.categoryId === 'endoderme' ? "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/20" :
+                            course.categoryId === 'mesoderme' ? "bg-[#F27D33]/10 text-[#F27D33] border-[#F27D33]/20" :
+                              course.categoryId === 'oeil' ? "bg-[#F2B729]/10 text-[#F2B729] border-[#F2B729]/20" : "bg-red-50 text-[#8B1111] border-red-200")
+                        : "bg-white border-slate-200 text-slate-500 hover:text-slate-700 hover:bg-slate-50"
                     )}
                   >
                     x{speed}
@@ -128,18 +128,18 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
                 <button
                   onClick={() => prevVideo && onSelectVideo(prevVideo)}
                   disabled={!prevVideo}
-                  className="flex items-center justify-center px-8 py-1 sm:px-10 sm:py-1 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-lg transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+                  className="flex items-center justify-center px-6 py-2 sm:px-8 sm:py-3 bg-white hover:bg-slate-50 text-slate-600 rounded-[1.2rem] shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
                   title="Précédent"
                 >
-                  <ChevronLeft size={18} />
+                  <ChevronLeft size={20} />
                 </button>
                 <button
                   onClick={() => nextVideo && onSelectVideo(nextVideo)}
                   disabled={!nextVideo}
-                  className="flex items-center justify-center px-8 py-1 sm:px-10 sm:py-1 bg-dark hover:bg-black text-white rounded-lg transition-all disabled:opacity-20 disabled:cursor-not-allowed shadow-sm border border-dark"
+                  className="flex items-center justify-center px-6 py-2 sm:px-8 sm:py-3 bg-white hover:bg-slate-50 text-slate-600 rounded-[1.2rem] shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
                   title="Suivant"
                 >
-                  <ChevronRight size={18} />
+                  <ChevronRight size={20} />
                 </button>
               </div>
 
@@ -151,10 +151,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
                     href={`https://customer-6i2z59dst7q6iswv.cloudflarestream.com/${course.cloudflareId}/downloads/default.mp4`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex justify-center items-center p-1.5 bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors rounded-lg border border-slate-200"
+                    className="flex justify-center items-center px-4 py-2 sm:px-5 sm:py-3 bg-white hover:bg-slate-50 text-slate-500 hover:text-slate-900 transition-colors rounded-[1.2rem] shadow-sm border border-slate-200"
                     title="Télécharger"
                   >
-                    <DownloadCloud size={16} strokeWidth={2.5} />
+                    <DownloadCloud size={20} strokeWidth={2.5} />
                   </a>
                 )}
               </div>
@@ -175,19 +175,18 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
                     course.categoryId === 'mesoderme' ? "text-[#F27D33]" :
                       course.categoryId === 'oeil' ? "text-[#F2B729]" : "text-slate-800"
               )}>
-                {(course.title.match(/^(\d+)/)?.[1] ? `${course.title.match(/^(\d+)/)?.[1]}- ` : '') + course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
+                {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}- ` : '') + course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
               </h3>
             </div>
 
             <div className="flex items-center shrink-0 ml-1">
               <span className={cn(
-                "flex items-center gap-1 text-[10px] md:text-[11px] font-bold px-2 py-1 md:py-1.5 rounded-lg border",
-                course.categoryId === 'ectoderme' ? "bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20" :
-                  course.categoryId === 'endoderme' ? "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/20" :
-                    course.categoryId === 'mesoderme' ? "bg-[#F27D33]/10 text-[#F27D33] border-[#F27D33]/20" :
-                      course.categoryId === 'oeil' ? "bg-[#F2B729]/10 text-[#F2B729] border-[#F2B729]/20" : "bg-slate-50 text-slate-500 border-slate-200"
+                "font-bebas text-lg sm:text-xl tracking-wider pt-1 shrink-0 ml-2 transition-colors",
+                course.categoryId === 'ectoderme' ? "text-[#5A9C51]" :
+                  course.categoryId === 'endoderme' ? "text-[#4171B5]" :
+                    course.categoryId === 'mesoderme' ? "text-[#F27D33]" :
+                      course.categoryId === 'oeil' ? "text-[#F2B729]" : "text-slate-400"
               )}>
-                <Clock size={12} strokeWidth={2.5} />
                 {course.duration || '00:00'}
               </span>
             </div>

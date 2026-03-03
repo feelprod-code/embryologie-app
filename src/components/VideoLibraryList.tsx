@@ -157,7 +157,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                 "text-sm sm:text-lg lg:text-xl font-sans font-medium tracking-wide truncate transition-colors uppercase",
                                                 "text-slate-700", activeListStyle.textHover
                                             )}>
-                                                {(course.title.match(/^(\d+)/)?.[1] ? `${course.title.match(/^(\d+)/)?.[1]}- ` : '') + course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
+                                                {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}- ` : '') + course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
                                             </h3>
                                             <div className="flex items-center gap-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-0 group-hover:h-auto overflow-hidden">
                                                 <span className="text-[10px] sm:text-xs text-slate-400 font-medium font-sans flex items-center gap-1">
