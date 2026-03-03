@@ -76,10 +76,10 @@ function App() {
               currentView === 'home' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <div className={cn("transition-transform duration-200", currentView === 'home' ? "scale-110" : "group-hover:scale-105")}>
-              <HomeIcon size={24} className={currentView === 'home' ? "fill-slate-800" : ""} />
+            <div className={cn("transition-transform duration-200", currentView === 'home' ? "scale-105" : "group-hover:scale-105")}>
+              <HomeIcon size={24} strokeWidth={currentView === 'home' ? 2.5 : 2} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'home' ? "font-bold" : "font-medium")}>Accueil</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'home' ? "font-semibold" : "font-medium")}>Accueil</span>
           </button>
 
           <button
@@ -90,10 +90,10 @@ function App() {
               currentView === 'timeline' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <div className={cn("transition-transform duration-200", currentView === 'timeline' ? "scale-110" : "group-hover:scale-105")}>
-              <Clock size={24} className={currentView === 'timeline' ? "fill-slate-800 text-slate-800" : ""} />
+            <div className={cn("transition-transform duration-200", currentView === 'timeline' ? "scale-105" : "group-hover:scale-105")}>
+              <Clock size={24} strokeWidth={currentView === 'timeline' ? 2.5 : 2} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'timeline' ? "font-bold" : "font-medium")}>Timeline</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'timeline' ? "font-semibold" : "font-medium")}>Timeline</span>
           </button>
 
           <button
@@ -104,10 +104,10 @@ function App() {
               currentView === 'video-library' || currentView === 'video-player' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <div className={cn("transition-transform duration-200", currentView === 'video-library' || currentView === 'video-player' ? "scale-110" : "group-hover:scale-105")}>
-              <Video size={24} className={currentView === 'video-library' || currentView === 'video-player' ? "fill-slate-800 text-slate-800" : ""} />
+            <div className={cn("transition-transform duration-200", currentView === 'video-library' || currentView === 'video-player' ? "scale-105" : "group-hover:scale-105")}>
+              <Video size={24} strokeWidth={currentView === 'video-library' || currentView === 'video-player' ? 2.5 : 2} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'video-library' || currentView === 'video-player' ? "font-bold" : "font-medium")}>Vidéos</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'video-library' || currentView === 'video-player' ? "font-semibold" : "font-medium")}>Vidéos</span>
           </button>
 
           <button
@@ -118,10 +118,10 @@ function App() {
               currentView === 'embryo-ai' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <div className={cn("transition-transform duration-200", currentView === 'embryo-ai' ? "scale-110" : "group-hover:scale-105")}>
-              <Brain size={24} className={currentView === 'embryo-ai' ? "fill-slate-800 text-slate-800" : ""} />
+            <div className={cn("transition-transform duration-200", currentView === 'embryo-ai' ? "scale-105" : "group-hover:scale-105")}>
+              <Brain size={24} strokeWidth={currentView === 'embryo-ai' ? 2.5 : 2} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-bold" : "font-medium")}>Cerveau IA</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-semibold" : "font-medium")}>Cerveau IA</span>
           </button>
         </nav>
       )}
