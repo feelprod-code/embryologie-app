@@ -146,7 +146,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                                         {/* Minimalist Play Icon */}
                                         <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mr-3 sm:mr-5">
-                                            <div className={cn("w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] bg-slate-100/50 transition-colors duration-300", activeListStyle.bgHover)}>
+                                            <div className={cn("w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] bg-slate-100/50 transition-all duration-300 group-hover:scale-110", activeListStyle.bgHover)}>
                                                 <Play className={cn("w-4 h-4 sm:w-5 sm:h-5 text-slate-300 transition-colors translate-x-[1px]", activeListStyle.textHover)} fill="currentColor" strokeWidth={1} />
                                             </div>
                                         </div>
@@ -154,7 +154,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         {/* Minimalist Info */}
                                         <div className="flex-1 min-w-0 pr-4">
                                             <h3 className={cn(
-                                                "text-sm sm:text-lg lg:text-xl font-sans font-medium tracking-wide truncate transition-colors uppercase",
+                                                "text-sm sm:text-lg lg:text-xl font-sans font-medium tracking-wide truncate transition-all duration-300 uppercase group-hover:translate-x-1",
                                                 "text-slate-700", activeListStyle.textHover
                                             )}>
                                                 {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}- ` : '') + course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
@@ -169,7 +169,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                                         {/* Sleek Duration */}
                                         {course.duration && (
-                                            <div className={cn("flex-shrink-0 flex flex-col items-end justify-center text-slate-400 transition-colors duration-300", activeListStyle.textHover)}>
+                                            <div className={cn("flex-shrink-0 flex flex-col items-end justify-center text-slate-400 transition-all duration-300 group-hover:-translate-x-1 group-hover:scale-105", activeListStyle.textHover)}>
                                                 <span className="font-bebas text-lg sm:text-xl tracking-wider pt-1">{course.duration}</span>
                                             </div>
                                         )}
