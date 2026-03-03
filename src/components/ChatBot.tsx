@@ -53,7 +53,7 @@ RÈGLE ABSOLUE NUMÉRO 2 : Si la réponse n'est PAS dans le contexte de Marc Dam
 NOTE SPÉCIALE EXPERTISE JEALOUS : Pour toute question complexe sur l'approche de James Jealous (Biodynamique), tu peux te référer implicitement ou explicitement à la documentation et aux principes énoncés dans ses travaux.
 RÈGLE ABSOLUE NUMÉRO 3 : Adopte un ton professionnel, encourageant, et précis.
 RÈGLE ABSOLUE NUMÉRO 4 : Rédige tes réponses avec le plus grand soin visuel : aère le texte avec des paragraphes et mets les mots-clés en **gras**.
-RÈGLE ABSOLUE NUMÉRO 5 : Lorsque tu cites ou fais référence à un cours vidéo, tu DOIS ABSOLUMENT formater la source exacte sous forme de lien markdown avec le protocole "video://" suivi STRICTEMENT de "l'ID_VIDEO". Ne mets JAMAIS d'url classique du type "https://". Exemple parfait: Si c'est une vidéo de l'Endoderme, écrit exactement ceci : [Source exacte](video://endoderme-01).
+RÈGLE ABSOLUE NUMÉRO 5 : Lorsque tu cites ou fais référence à un cours vidéo, tu DOIS ABSOLUMENT formater la source exacte sous forme de lien markdown avec une ancre commençant STRICTEMENT par "#video-ID_VIDEO". Ne mets JAMAIS d'url classique du type "https://" ni de protocole inventé. Exemple parfait: Si c'est une vidéo de l'Endoderme, écrit exactement ceci : [Source exacte](#video-endoderme-01).
 
 CONTEXTE DU COURS DE MARC DAMOISEAUX :
 ${getCourseContext()}
@@ -221,8 +221,8 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                                             rehypePlugins={[rehypeRaw]}
                                             components={{
                                                 a: ({ node, href, children, ...props }) => {
-                                                    if (href && href.startsWith('video://')) {
-                                                        const videoId = href.replace('video://', '');
+                                                    if (href && href.startsWith('#video-')) {
+                                                        const videoId = href.replace('#video-', '');
                                                         const course = videoCourses.find(v => v.id === videoId);
                                                         if (course && onNavigateToVideo) {
                                                             const isEcto = course.categoryId === 'ectoderme';
@@ -245,10 +245,10 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                                                             return (
                                                                 <button
                                                                     onClick={() => onNavigateToVideo(course)}
-                                                                    className={cn("inline-flex items-center gap-1.5 px-4 pt-1.5 pb-1 rounded-[1.2rem] text-sm md:text-base font-bold transition-all duration-300 border shadow-sm hover:shadow-md hover:-translate-y-0.5 mx-1 mb-1 max-w-full", colorClass)}
+                                                                    className={cn("inline-flex items-center text-left gap-1.5 px-4 pt-1.5 pb-1 rounded-[1.2rem] text-sm md:text-base font-bold transition-all duration-300 border shadow-sm hover:shadow-md hover:-translate-y-0.5 mx-1 my-1 max-w-full", colorClass)}
                                                                 >
                                                                     <PlayCircle size={18} className="shrink-0" />
-                                                                    <span className="truncate">{displayLabel}</span>
+                                                                    <span className="truncate whitespace-normal leading-tight">{displayLabel}</span>
                                                                 </button>
                                                             );
                                                         }

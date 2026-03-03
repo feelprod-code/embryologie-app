@@ -35,9 +35,9 @@ function Activity({ className, size }: { className?: string; size?: number }) {
 }
 
 const layerColors: Record<EmbryoLayer, string> = {
-  "Ectoderme": "bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/40",
-  "Endoderme": "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/40",
-  "Mésoderme": "bg-[#F27D33]/10 text-[#F27D33] border-[#F27D33]/40",
+  "L'Ectoderme": "bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/40",
+  "L'Endoderme": "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/40",
+  "Le Mésoderme": "bg-[#F27D33]/10 text-[#F27D33] border-[#F27D33]/40",
   "L'Oeil": "bg-[#F2B729]/10 text-[#F2B729] border-[#F2B729]/40",
   "Global": "bg-slate-100 text-slate-700 border-slate-200",
   "N/A": "bg-transparent text-slate-400 border-transparent",
@@ -425,13 +425,10 @@ function App() {
 
                                   <div className="w-full sm:w-1/4 mb-4 sm:mb-0 sm:pr-6">
                                     <span className={cn(
-                                      "inline-flex items-center px-4 py-1.5 rounded-lg text-xs font-bold border uppercase tracking-wider",
+                                      "inline-flex items-center px-4 py-1.5 rounded-[1.2rem] text-xs font-bold border uppercase tracking-wider",
                                       layerColors[event.layer]
                                     )}>
-                                      {event.layer === 'Ectoderme' ? "L'Ectoderme" :
-                                        event.layer === 'Endoderme' ? "L'Endoderme" :
-                                          event.layer === 'Mésoderme' ? "Le Mésoderme" :
-                                            event.layer}
+                                      {event.layer}
                                     </span>
                                   </div>
 

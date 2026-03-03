@@ -1,4 +1,4 @@
-export type EmbryoLayer = "Ectoderme" | "Mésoderme" | "Endoderme" | "L'Oeil" | "Global" | "N/A";
+export type EmbryoLayer = "L'Ectoderme" | "Le Mésoderme" | "L'Endoderme" | "L'Oeil" | "Global" | "N/A";
 
 export interface EventDetail {
     order?: number; // Ordre précis de la cascade
@@ -101,7 +101,7 @@ export const detailedStages: StageDataV2[] = [
             },
             {
                 order: 2,
-                layer: "Endoderme",
+                layer: "L'Endoderme",
                 movement: "Création du Blastocèle (Endoderme Précoce)",
                 description: "Une petite perte d'eau (exsudat) se produit à chaque clivage. L'accumulation de cet exsudat liquidien repousse les cellules et forme la toute première cavité liquidienne de l'embryon : le blastocèle. Ce blastocèle excentré est la toute première image du système digestif (l'endoderme très précoce) et l'ébauche de la future vésicule vitelline."
             },
@@ -145,13 +145,13 @@ export const detailedStages: StageDataV2[] = [
             },
             {
                 order: 2,
-                layer: "Ectoderme",
+                layer: "L'Ectoderme",
                 movement: "Différenciation Topographique",
                 description: "Le bouton embryonnaire se sépare en disque didermique. Les cellules du dessus forment l'Épiblaste (futur système nerveux)."
             },
             {
                 order: 3,
-                layer: "Endoderme",
+                layer: "L'Endoderme",
                 movement: "Différenciation Topographique",
                 description: "Les cellules tournées vers le bas (vers le blastocèle) forment l'Hypoblaste (futur système digestif direct)."
             },
@@ -174,8 +174,8 @@ export const detailedStages: StageDataV2[] = [
             fulcrums: "La Zone B (champ énergétique autour du corps physique, trace de la cavité amniotique originelle) et le pédicule embryonnaire.",
             generalPalpation: "Mouvement d'infusion et de perméation. Intégration des fluides de la périphérie (mère) vers le centre. Apparition d'une pression bilatérale de l'exsudat.",
             layerPerceptions: [
-                { layer: "Ectoderme", perception: "Orientation vers le haut, vers le fluide amniotique clair et protecteur, précurseur du LCR." },
-                { layer: "Endoderme", perception: "Orientation vers le bas, tissu cherchant la nutrition (vésicule vitelline), densité liquidienne différente." }
+                { layer: "L'Ectoderme", perception: "Orientation vers le haut, vers le fluide amniotique clair et protecteur, précurseur du LCR." },
+                { layer: "L'Endoderme", perception: "Orientation vers le bas, tissu cherchant la nutrition (vésicule vitelline), densité liquidienne différente." }
             ],
             therapistPosture: "Écoute de l'enveloppe large (Zone B). Perception de l'espace liquidien entourant le corps et l'utérus.",
             psychosomatic: "Verdict = L'incarnation dans le réceptacle et la chaleur. Enjeu profond si fausse couche ou non-accueil. Nettoyage de la muqueuse (libération gastrine pelvienne) pour apaiser le nid intra-utérin."
@@ -196,7 +196,7 @@ export const detailedStages: StageDataV2[] = [
             },
             {
                 order: 2,
-                layer: "Mésoderme",
+                layer: "Le Mésoderme",
                 movement: "Création de la 3e Chambre",
                 description: "Le réseau arachnoïdien cède sous la traction, créant le vaste exsudat du Cœlome externe. L'ancien blastocèle devient la vésicule vitelline primaire."
             }
@@ -213,13 +213,13 @@ export const detailedStages: StageDataV2[] = [
         events: [
             {
                 order: 1,
-                layer: "Ectoderme",
+                layer: "L'Ectoderme",
                 movement: "Vague Notochordale",
                 description: "L'épiblaste forme un S sous l'effet des flux nourriciers. Apparition de la ligne primitive (nœud de Hensen) et de la Notochorde."
             },
             {
                 order: 2,
-                layer: "Mésoderme",
+                layer: "Le Mésoderme",
                 movement: "Aspiration et Invagination",
                 description: "Un champ d'aspiration sur la ligne primitive aspire des cellules épithéliales (bottle cells) qui s'invaginent pour combler l'espace entre Ecto et Endo : c'est la naissance propre du Mésoderme intra-embryonnaire."
             },
@@ -236,8 +236,8 @@ export const detailedStages: StageDataV2[] = [
             fulcrums: "Axe crânio-sacré embryologique primitif (Notochorde). Tension entre deux pôles : Le Point Zéro (Fulcrum fixe, Symphyse Sphéno-Basilaire / SSB) et le Point Sacrum (Fulcrum mobile, Nœud de Hensen, vestige à S2/Coccyx).",
             generalPalpation: "La 'Hola' (puissante vague de croissance notochordale descendante) couplée à la 'Montée du point zéro' (force de télencéphalisation ascendante et de redressement du crâne).",
             layerPerceptions: [
-                { layer: "Ectoderme", perception: "Poussée directionnelle rectiligne et rigide (notochorde) tractant le pôle central crânien immobile." },
-                { layer: "Mésoderme", perception: "Perçu comme un champ de succion et d'aspiration ('loosing field'). Les cellules plongent violemment dans la fosse primitive." }
+                { layer: "L'Ectoderme", perception: "Poussée directionnelle rectiligne et rigide (notochorde) tractant le pôle central crânien immobile." },
+                { layer: "Le Mésoderme", perception: "Perçu comme un champ de succion et d'aspiration ('loosing field'). Les cellules plongent violemment dans la fosse primitive." }
             ],
             therapistPosture: "Le Rayon Laser : Main sous l'Occiput en contact avec la SSB (Point Zéro), main sous le Sacrum (Point Sacrum / Ligne primitive). Pas de manipulation mécanique : recherche du silence ('Wu Wei'), du 'Meeting Point' et de l'immobilité dynamique de la SSB.",
             psychosomatic: "Verdict = L'Axe de Santé et le Transgénérationnel. Les déviations ou blocages gèlent les images ancestrales le long de la notochorde. En reconnectant le point mobile (sacrum) à son fulcrum fixe de référence (Point Zéro), le thérapeute perçoit la relance de la fluctuation et permet au corps de se désengager de ses lésions acquises et de se réorganiser."
@@ -258,7 +258,7 @@ export const detailedStages: StageDataV2[] = [
             },
             {
                 order: 2,
-                layer: "Mésoderme",
+                layer: "Le Mésoderme",
                 movement: "Cardiogenèse Précoce",
                 description: "Le cœur commence à se former (émergence des aortes primitives et des veines cardinales dans la zone apicale). Il va commencer à battre au J21/J22."
             }
@@ -269,8 +269,8 @@ export const detailedStages: StageDataV2[] = [
             fulcrums: "Symphyse Sphéno-Basilaire (SSB, Point Zéro), l'Insula (hitch point de la bascule cérébrale), le Neuropore Antérieur, et LE CŒUR.",
             generalPalpation: "Le 'Tai-Chi du Cerveau'. Perception d'une expansion foudroyante, suivie d'une première flexion céphalique d'enroulement paroxystique sur le point fixe central du cœur.",
             layerPerceptions: [
-                { layer: "Ectoderme", perception: "Explosivité, fuite et immense expansion volumétrique latérale et dorsale (céphalisation). Sensation de coulée migratoire de la Crête Neurale vers la face et les plexus." },
-                { layer: "Mésoderme", perception: "Frein rigide. Les deux aortes latérales agissent comme des amarrages (le tissu a du mal à suivre la croissance neurale). La cardialisation tracte violemment tout le système vers le centre." }
+                { layer: "L'Ectoderme", perception: "Explosivité, fuite et immense expansion volumétrique latérale et dorsale (céphalisation). Sensation de coulée migratoire de la Crête Neurale vers la face et les plexus." },
+                { layer: "Le Mésoderme", perception: "Frein rigide. Les deux aortes latérales agissent comme des amarrages (le tissu a du mal à suivre la croissance neurale). La cardialisation tracte violemment tout le système vers le centre." }
             ],
             therapistPosture: "Neutralité absolue ('Meeting point'). Prise crânienne englobante 'comme un bol d'eau rempli à ras bord'. Accompagnement de la technique CV4 (compression du 4ème ventricule) pour rééquilibrer les LCR intra et extra crâniens (Zone B).",
             psychosomatic: "Verdict = Le Cœur Informateur. La grande plicature dépose littéralement le cerveau, l'ébauche des membres supérieurs (les mains), les yeux (placodes optiques) et la bouche/voix (arc branchial) **directement sur le tissu cardiaque en battement**. La psychosomatique est majeure : on regarde, on touche et on parle avec l'in-formation de son propre cœur."
@@ -285,43 +285,43 @@ export const detailedStages: StageDataV2[] = [
         events: [
             {
                 order: 1,
-                layer: "Ectoderme",
+                layer: "L'Ectoderme",
                 movement: "Céphalisation Centrale",
                 description: "L'ectoderme épiblastique (futur cerveau central) se met à grandir à une vitesse explosive vers le pôle apical."
             },
             {
                 order: 2,
-                layer: "Mésoderme",
+                layer: "Le Mésoderme",
                 movement: "Cardialisation (Frein vasculaire)",
                 description: "Le tissu mésodermique vasculaire (aortes) grandit beaucoup moins vite. Poussé par la cavité amniotique et freiné mécaniquement par ce système, le cerveau s'enroule vers l'avant. La puissante flexion fait se rencontrer les deux tubes endocardiques écartés, forçant la disparition du tissu médian par un champ de corrosion (fusion endocardique)."
             },
             {
                 order: 3,
-                layer: "Mésoderme",
+                layer: "Le Mésoderme",
                 movement: "Looping Cardiaque & Diaphragmatisation",
                 description: "Le cœur fusionné n'a plus d'espace: il effectue un saut volumétrique tridimensionnel (Looping, le système ventriculaire bascule sous les oreillettes). La croissance continue du cerveau dépose littéralement la tête sur le cœur, qui écrase la partie supérieure de la vésicule vitelline. Ces cellules mésenchymateuses comprimées forment le septum transversum (ébauche du diaphragme)."
             },
             {
                 order: 4,
-                layer: "Endoderme",
+                layer: "L'Endoderme",
                 movement: "Désassimilation & Hépatisation",
                 description: "Le diaphragme tout juste créé fait barrière. En dessous, le puissant torrent des veines vitellines s'accumule et congestionne le mésoderme. L'allongement local crée un vide d'aspiration postérieur (loosing field) à la jonction des intestins. L'épithélium de l'endoderme digestif est aspiré dans la congestion et bourgeonne/fractalise : c'est la naissance du Foie (qui sert d'abord à capter l'exsudat des déchets embryonnaires)."
             },
             {
                 order: 5,
-                layer: "Endoderme",
+                layer: "L'Endoderme",
                 movement: "Moteur Péritonéal Hépatique",
                 description: "Organisé par le flux, le Foie explose d'une croissance spatiale massive exclusivement vers la droite (sans pivoter). Cette énorme poussée devient le moteur mécanique abdominal : elle bouscule l'estomac sur la gauche (lui imprimant une rotation) et aide à creuser l'arrière-cavité des épiplons."
             },
             {
                 order: 6,
-                layer: "Endoderme",
+                layer: "L'Endoderme",
                 movement: "Pneumatisation & Dynamique d'Aspiration",
                 description: "Le redressement de l'embryon crée un puissant vide ('loosing field' thoracique). L'épithélium endodermique s'effondre à l'intérieur du mésoderme (invagination), diverge (bronches souches) puis effectue une bascule rotatoire spirale au niveau du futur hile pulmonaire (haut vers l'arrière, bas vers l'avant, rotation externe)."
             },
             {
                 order: 7,
-                layer: "Mésoderme",
+                layer: "Le Mésoderme",
                 movement: "Gonadisation / Rénalisation",
                 description: "L'énorme croissance spatiale hépatique (couplée à la l'ascension surrénalienne) force la crête génitale vers le bas et détermine les canaux de Wolff et Müller formants reins et gonades."
             }
@@ -332,9 +332,9 @@ export const detailedStages: StageDataV2[] = [
             fulcrums: "Le Septum Transversum (futur diaphragme/péricarde), le Centre de gravité hépatobiliaire (Foie), l'Hiatus de Winslow (Entrée cavité épiploon) et le Hile Pulmonaire (centre d'articulation asymétrique).",
             generalPalpation: "Palpation en cascade. Suivi du glissement spiralé de l'estomac dans l'arceau péritonéal, de la congestion hépatobiliaire, puis 'bulle d'air' des poumons en suivant leur bascule (rotation externe avec haut vers l'arrière et bas vers l'avant).",
             layerPerceptions: [
-                { layer: "Endoderme", perception: "[Thorax/Poumon] : L'Aspiration au niveau pulmonaire. Le thérapeute perçoit 'un ballon d'air' avec une pression partielle constante, un échange oxydatif tissulaire entre la fréquence bronchique/aérienne et l'espace liquidien environnant." },
-                { layer: "Endoderme", perception: "[Abdomen/Digestif] : Aspiration (succion, loosing field digestif), phénomène de bourgeonnement fractal qui demande énormément d'espace à tout l'abdomen." },
-                { layer: "Mésoderme", perception: "Masse vasculaire congestionnée et lourdement densifiée sous le diaphragme qui stoppe sa progression (Veines vitellines)." }
+                { layer: "L'Endoderme", perception: "[Thorax/Poumon] : L'Aspiration au niveau pulmonaire. Le thérapeute perçoit 'un ballon d'air' avec une pression partielle constante, un échange oxydatif tissulaire entre la fréquence bronchique/aérienne et l'espace liquidien environnant." },
+                { layer: "L'Endoderme", perception: "[Abdomen/Digestif] : Aspiration (succion, loosing field digestif), phénomène de bourgeonnement fractal qui demande énormément d'espace à tout l'abdomen." },
+                { layer: "Le Mésoderme", perception: "Masse vasculaire congestionnée et lourdement densifiée sous le diaphragme qui stoppe sa progression (Veines vitellines)." }
             ],
             therapistPosture: "Libération par le Vide : englober les basses côtes pour le tube digestif. Pour le Poumon (fulcrum) : main postérieure légèrement plus basse que la main antérieure pour suivre parfaitement l'axe incliné de la bascule d'aspiration pulmonaire.",
             psychosomatic: "Verdict = L'Épuration et le Non-dit. Le Foie naïf capte la toxicité (colère non exprimée/frustration tissulaire portal). Les Poumons (bulle d'air) deviennent la réserve d'une vieille tristesse protégée, perceptible sous les mains par des densités spécifiques. L'Estomac absorbe l'environnement immédiat par spasme. Libérer cette cascade, c'est libérer la chimie de l'hypothalamus."
@@ -349,13 +349,13 @@ export const detailedStages: StageDataV2[] = [
         events: [
             {
                 order: 1,
-                layer: "Ectoderme",
+                layer: "L'Ectoderme",
                 movement: "Fermeture Marginale",
                 description: "Fermeture complète du tube neural (Neuropore Postérieur)."
             },
             {
                 order: 2,
-                layer: "Mésoderme",
+                layer: "Le Mésoderme",
                 movement: "Intégration Péritonéale",
                 description: "EXACTEMENT en même temps, le cœlome externe est définitivement intégré et fermé en cœlome interne (cavité péritonéale primitive)."
             }
@@ -372,13 +372,13 @@ export const detailedStages: StageDataV2[] = [
         events: [
             {
                 order: 1,
-                layer: "Mésoderme",
+                layer: "Le Mésoderme",
                 movement: "Côtes et Médiastin",
                 description: "Densification des cellules mésodermiques entre les vaisseaux pour former les côtes qui s'allongent et se rejoignent au J45 (angle sternal de Louis, fermeture du médiastin)."
             },
             {
                 order: 2,
-                layer: "Ectoderme",
+                layer: "L'Ectoderme",
                 movement: "Télencéphalisation",
                 description: "L'étirement des membranes dure-mériennes (cerveau qui se dresse) forme la voûte du crâne conjonctive précoce (desmocrâne)."
             }
@@ -395,19 +395,19 @@ export const detailedStages: StageDataV2[] = [
         events: [
             {
                 order: 1,
-                layer: "Ectoderme",
+                layer: "L'Ectoderme",
                 movement: "Croissance Cérébrale Externe (0-6 mois)",
                 description: "Le volume neural double encore dans les 6 premiers mois, modulant continuellement les membranes réciproques."
             },
             {
                 order: 2,
-                layer: "Ectoderme",
+                layer: "L'Ectoderme",
                 movement: "Capteur Dentaire et Posture (6-10 mois)",
                 description: "Les premières dents agissent comme un point de pivot/fulcrum mécanique fixe, permettant à l'enfant le redressement dynamique de son axe neuro-vertébral."
             },
             {
                 order: 3,
-                layer: "Endoderme",
+                layer: "L'Endoderme",
                 movement: "Pneumatisation Maxillaire (3 ans)",
                 description: "Les sinus maxillaires s'aèrent, les surrénales et l'appendice s'engagent pleinement dans leur physiologie."
             },
