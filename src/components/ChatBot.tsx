@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, Loader2, PlayCircle, X } from 'lucide-react';
+import { ArrowRight, Loader2, PlayCircle, X, Download } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
+import html2pdf from 'html2pdf.js';
 import { detailedStages } from '../data/embryologie';
 import { videoCourses, type VideoCourse } from '../data/videoCourses';
 import { podcastsData } from '../data/podcasts';
@@ -101,6 +102,59 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
+
+    const handleExportPDF = (idx: number) => {
+        const questionNode = document.getElementById(`msg-${idx - 1}`);
+        const answerNode = document.getElementById(`msg-${idx}`);
+
+        if (!answerNode) return;
+
+        const container = document.createElement('div');
+        // Styling for PDF context
+        container.style.padding = '40px';
+        container.style.fontFamily = 'system-ui, -apple-system, sans-serif';
+        container.style.color = '#334155';
+        container.style.background = '#ffffff';
+
+        // Custom Header for PDF
+        const headerHTML = `
+            <div style="margin-bottom: 30px; text-align: center;">
+                <h1 style="color: #8B1111; font-size: 28px; font-weight: bold; margin: 0; font-family: 'Bebas Neue', 'Helvetica Neue', sans-serif; letter-spacing: 2px;">EMBRYO AI</h1>
+                <p style="color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">DOCUMENT RÉCAPITULATIF</p>
+                <div style="border-bottom: 2px solid #e2e8f0; margin-top: 20px;"></div>
+            </div>
+        `;
+
+        const questionContent = messages[idx - 1]?.role === 'user' ? messages[idx - 1].content : questionNode?.innerText;
+        const questionHTML = questionContent ? `
+            <div style="background-color: #f8fafc; border-left: 4px solid #8B1111; padding: 16px; margin-bottom: 24px; border-radius: 0 8px 8px 0; page-break-inside: avoid;">
+                <div style="font-size: 12px; font-weight: bold; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Question</div>
+                <div style="font-size: 16px; font-weight: 600; color: #0f172a; white-space: pre-wrap; line-height: 1.5;">${questionContent}</div>
+            </div>
+        ` : '';
+
+        const answerHeaderHTML = `
+            <div style="font-size: 12px; font-weight: bold; color: #8B1111; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Réponse Détaillée</div>
+        `;
+
+        container.innerHTML = headerHTML + questionHTML + answerHeaderHTML;
+
+        const clonedAnswer = answerNode.cloneNode(true) as HTMLElement;
+        clonedAnswer.style.fontSize = '14px';
+        clonedAnswer.style.lineHeight = '1.6';
+
+        container.appendChild(clonedAnswer);
+
+        const opt = {
+            margin: 15,
+            filename: 'embryo-ai-reponse.pdf',
+            image: { type: 'jpeg' as const, quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
+        };
+
+        html2pdf().set(opt).from(container).save();
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -202,14 +256,15 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                                 "max-w-[90%] md:max-w-[85%] rounded-2xl p-4 md:p-6 shadow-sm",
                                 msg.role === 'user'
                                     ? "bg-slate-900 text-white rounded-br-md"
-                                    : "bg-white border border-slate-200 text-slate-800 rounded-bl-md"
+                                    : "bg-white border border-slate-200 text-slate-800 rounded-bl-md relative group"
                             )}>
                                 {msg.role === 'user' ? (
-                                    <p className="text-base md:text-lg font-medium whitespace-pre-wrap leading-relaxed">
+                                    <p id={`msg-${idx}`} className="text-base md:text-lg font-medium whitespace-pre-wrap leading-relaxed">
                                         {msg.content}
                                     </p>
                                 ) : (
-                                    <div className="prose prose-slate max-w-none text-base 
+                                    <>
+                                        <div id={`msg-${idx}`} className="prose prose-slate max-w-none text-base 
                                         prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-slate-900 prose-headings:mb-3 prose-headings:mt-6 first:prose-headings:mt-0
                                         prose-h2:text-2xl md:prose-h2:text-3xl 
                                         prose-h3:text-xl md:prose-h3:text-2xl prose-h3:text-slate-800 prose-h3:font-montserrat prose-h3:font-bold
@@ -217,49 +272,60 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                                         prose-strong:text-slate-900 prose-strong:font-bold
                                         prose-ul:text-slate-700 prose-ul:my-4 prose-li:my-1
                                         prose-a:text-emerald-600 hover:prose-a:text-emerald-700 font-medium">
-                                        <ReactMarkdown
-                                            rehypePlugins={[rehypeRaw]}
-                                            components={{
-                                                a: ({ node, href, children, ...props }) => {
-                                                    if (href && href.startsWith('#video-')) {
-                                                        const videoId = href.replace('#video-', '');
-                                                        const course = videoCourses.find(v => v.id === videoId);
-                                                        if (course && onNavigateToVideo) {
-                                                            const isEcto = course.categoryId === 'ectoderme';
-                                                            const isMeso = course.categoryId === 'mesoderme';
-                                                            const isEndo = course.categoryId === 'endoderme';
-                                                            const isOeil = course.categoryId === 'oeil';
+                                            <ReactMarkdown
+                                                rehypePlugins={[rehypeRaw]}
+                                                components={{
+                                                    a: ({ node, href, children, ...props }) => {
+                                                        if (href && href.startsWith('#video-')) {
+                                                            const videoId = href.replace('#video-', '');
+                                                            const course = videoCourses.find(v => v.id === videoId);
+                                                            if (course && onNavigateToVideo) {
+                                                                const isEcto = course.categoryId === 'ectoderme';
+                                                                const isMeso = course.categoryId === 'mesoderme';
+                                                                const isEndo = course.categoryId === 'endoderme';
+                                                                const isOeil = course.categoryId === 'oeil';
 
-                                                            const colorClass = isEcto ? "bg-[#5A9C51]/10 text-[#5A9C51] hover:bg-[#5A9C51]/20 border-[#5A9C51]/30" :
-                                                                isMeso ? "bg-[#F27D33]/10 text-[#F27D33] hover:bg-[#F27D33]/20 border-[#F27D33]/30" :
-                                                                    isEndo ? "bg-[#4171B5]/10 text-[#4171B5] hover:bg-[#4171B5]/20 border-[#4171B5]/30" :
-                                                                        isOeil ? "bg-[#F2B729]/10 text-[#F2B729] hover:bg-[#F2B729]/20 border-[#F2B729]/30" :
-                                                                            "bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300";
+                                                                const colorClass = isEcto ? "bg-[#5A9C51]/10 text-[#5A9C51] hover:bg-[#5A9C51]/20 border-[#5A9C51]/30" :
+                                                                    isMeso ? "bg-[#F27D33]/10 text-[#F27D33] hover:bg-[#F27D33]/20 border-[#F27D33]/30" :
+                                                                        isEndo ? "bg-[#4171B5]/10 text-[#4171B5] hover:bg-[#4171B5]/20 border-[#4171B5]/30" :
+                                                                            isOeil ? "bg-[#F2B729]/10 text-[#F2B729] hover:bg-[#F2B729]/20 border-[#F2B729]/30" :
+                                                                                "bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300";
 
-                                                            const categoryName = isEcto ? "L'Ectoderme" : isMeso ? "Le Mésoderme" : isEndo ? "L'Endoderme" : isOeil ? "L'Œil" : course.categoryId;
-                                                            const numMatch = course.title.match(/^(\d+)/);
-                                                            const numStr = numMatch ? `${numMatch[1].padStart(2, '0')} - ` : '';
-                                                            const cleanTitle = course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ');
-                                                            const displayLabel = `${categoryName} • ${numStr}${cleanTitle}`;
+                                                                const categoryName = isEcto ? "L'Ectoderme" : isMeso ? "Le Mésoderme" : isEndo ? "L'Endoderme" : isOeil ? "L'Œil" : course.categoryId;
+                                                                const numMatch = course.title.match(/^(\d+)/);
+                                                                const numStr = numMatch ? `${numMatch[1].padStart(2, '0')} - ` : '';
+                                                                const cleanTitle = course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ');
+                                                                const displayLabel = `${categoryName} • ${numStr}${cleanTitle}`;
 
-                                                            return (
-                                                                <button
-                                                                    onClick={() => onNavigateToVideo(course)}
-                                                                    className={cn("inline-flex items-center text-left gap-1.5 px-4 pt-1.5 pb-1 rounded-[1.2rem] text-sm md:text-base font-bold transition-all duration-300 border shadow-sm hover:shadow-md hover:-translate-y-0.5 mx-1 my-1 max-w-full", colorClass)}
-                                                                >
-                                                                    <PlayCircle size={18} className="shrink-0" />
-                                                                    <span className="truncate whitespace-normal leading-tight">{displayLabel}</span>
-                                                                </button>
-                                                            );
+                                                                return (
+                                                                    <button
+                                                                        onClick={() => onNavigateToVideo(course)}
+                                                                        className={cn("inline-flex items-center text-left gap-1.5 px-4 pt-1.5 pb-1 rounded-[1.2rem] text-sm md:text-base font-bold transition-all duration-300 border shadow-sm hover:shadow-md hover:-translate-y-0.5 mx-1 my-1 max-w-full", colorClass)}
+                                                                    >
+                                                                        <PlayCircle size={18} className="shrink-0" />
+                                                                        <span className="truncate whitespace-normal leading-tight">{displayLabel}</span>
+                                                                    </button>
+                                                                );
+                                                            }
                                                         }
+                                                        return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
                                                     }
-                                                    return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
-                                                }
-                                            }}
-                                        >
-                                            {msg.content}
-                                        </ReactMarkdown>
-                                    </div>
+                                                }}
+                                            >
+                                                {msg.content}
+                                            </ReactMarkdown>
+                                        </div>
+                                        <div className="mt-5 pt-4 border-t border-slate-100 flex justify-end">
+                                            <button
+                                                onClick={() => handleExportPDF(idx)}
+                                                className="flex items-center gap-2 text-[11px] text-slate-500 hover:text-primary border border-slate-200 hover:border-primary/40 px-3.5 py-1.5 rounded-full transition-all bg-slate-50 hover:bg-primary/5 shadow-sm hover:shadow active:scale-95"
+                                                title="Exporter cette réponse en PDF"
+                                            >
+                                                <Download size={14} />
+                                                <span className="font-bold uppercase tracking-widest pt-0.5 mt-px text-xs">Export PDF A4</span>
+                                            </button>
+                                        </div>
+                                    </>
                                 )}
                             </div>
                         </div>
