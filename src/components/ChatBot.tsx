@@ -143,6 +143,26 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
         clonedAnswer.style.fontSize = '14px';
         clonedAnswer.style.lineHeight = '1.6';
 
+        // Clean up video buttons for PDF rendering (html2pdf has bugs with complex Tailwind buttons)
+        const buttons = clonedAnswer.querySelectorAll('button');
+        buttons.forEach(btn => {
+            const span = document.createElement('span');
+            const textContent = btn.textContent || 'Source Vidéo';
+            span.innerHTML = `<strong>[Référence : ${textContent.trim()}]</strong>`;
+            span.style.color = '#8B1111';
+            span.style.display = 'inline-block';
+            span.style.margin = '6px 0';
+            span.style.fontSize = '13px';
+            btn.parentNode?.replaceChild(span, btn);
+        });
+
+        // Ensure headings have decent margins in PDF
+        const headings = clonedAnswer.querySelectorAll('h2, h3, h4');
+        headings.forEach(h => {
+            (h as HTMLElement).style.marginTop = '16px';
+            (h as HTMLElement).style.marginBottom = '8px';
+        });
+
         container.appendChild(clonedAnswer);
 
         const opt = {
@@ -315,16 +335,18 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                                                 {msg.content}
                                             </ReactMarkdown>
                                         </div>
-                                        <div className="mt-5 pt-4 border-t border-slate-100 flex justify-end">
-                                            <button
-                                                onClick={() => handleExportPDF(idx)}
-                                                className="flex items-center gap-2 text-[11px] text-slate-500 hover:text-primary border border-slate-200 hover:border-primary/40 px-3.5 py-1.5 rounded-full transition-all bg-slate-50 hover:bg-primary/5 shadow-sm hover:shadow active:scale-95"
-                                                title="Exporter cette réponse en PDF"
-                                            >
-                                                <Download size={14} />
-                                                <span className="font-bold uppercase tracking-widest pt-0.5 mt-px text-xs">Export PDF A4</span>
-                                            </button>
-                                        </div>
+                                        {idx > 0 && (
+                                            <div className="mt-4 pt-3 flex justify-end">
+                                                <button
+                                                    onClick={() => handleExportPDF(idx)}
+                                                    className="flex items-center justify-center gap-1.5 text-xs text-slate-400 hover:text-slate-600 hover:bg-slate-200/50 px-3 py-1.5 rounded-md transition-all active:scale-95"
+                                                    title="Exporter cette réponse en PDF"
+                                                >
+                                                    <Download size={14} />
+                                                    <span className="font-bold tracking-widest pt-[1px]">PDF</span>
+                                                </button>
+                                            </div>
+                                        )}
                                     </>
                                 )}
                             </div>
