@@ -77,9 +77,9 @@ function App() {
             )}
           >
             <div className={cn("transition-transform duration-200", currentView === 'home' ? "scale-105" : "group-hover:scale-105")}>
-              <HomeIcon size={24} strokeWidth={currentView === 'home' ? 2.5 : 2} />
+              <HomeIcon size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'home' ? "font-semibold" : "font-medium")}>Accueil</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'home' ? "font-medium" : "font-normal")}>Accueil</span>
           </button>
 
           <button
@@ -91,9 +91,9 @@ function App() {
             )}
           >
             <div className={cn("transition-transform duration-200", currentView === 'timeline' ? "scale-105" : "group-hover:scale-105")}>
-              <Clock size={24} strokeWidth={currentView === 'timeline' ? 2.5 : 2} />
+              <Clock size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'timeline' ? "font-semibold" : "font-medium")}>Timeline</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'timeline' ? "font-medium" : "font-normal")}>Timeline</span>
           </button>
 
           <button
@@ -105,9 +105,9 @@ function App() {
             )}
           >
             <div className={cn("transition-transform duration-200", currentView === 'video-library' || currentView === 'video-player' ? "scale-105" : "group-hover:scale-105")}>
-              <Video size={24} strokeWidth={currentView === 'video-library' || currentView === 'video-player' ? 2.5 : 2} />
+              <Video size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'video-library' || currentView === 'video-player' ? "font-semibold" : "font-medium")}>Vidéos</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'video-library' || currentView === 'video-player' ? "font-medium" : "font-normal")}>Vidéos</span>
           </button>
 
           <button
@@ -119,9 +119,9 @@ function App() {
             )}
           >
             <div className={cn("transition-transform duration-200", currentView === 'embryo-ai' ? "scale-105" : "group-hover:scale-105")}>
-              <Brain size={24} strokeWidth={currentView === 'embryo-ai' ? 2.5 : 2} />
+              <Brain size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-semibold" : "font-medium")}>Cerveau IA</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>Cerveau IA</span>
           </button>
         </nav>
       )}
