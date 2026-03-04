@@ -103,8 +103,8 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
             {isOpen && (
                 <div
                     className={cn(
-                        "absolute right-1/2 translate-x-1/2 md:translate-x-0 md:right-0 flex flex-col bg-white/95 backdrop-blur-xl border border-slate-200/60 shadow-xl rounded-xl overflow-hidden min-w-[130px] z-50 animate-in fade-in zoom-in-95 duration-100",
-                        variant === 'bottom-nav' ? "bottom-full mb-2" : "top-full mt-2 origin-top-right"
+                        "absolute right-0 flex flex-col bg-white/95 backdrop-blur-xl border border-slate-200/60 shadow-xl rounded-xl overflow-hidden min-w-[130px] z-50 animate-in fade-in zoom-in-95 duration-100",
+                        variant === 'bottom-nav' ? "bottom-full mb-2 origin-bottom-right" : "top-full mt-2 origin-top-right"
                     )}
                 >
                     {languages.map((lang) => (
