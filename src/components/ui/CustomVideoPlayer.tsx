@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { Stream } from '@cloudflare/stream-react';
+import React from 'react';
+import ReactPlayer from 'react-player';
 
 interface CustomVideoPlayerProps {
     youtubeId?: string;
@@ -7,7 +7,6 @@ interface CustomVideoPlayerProps {
     speed?: number;
     className?: string;
     categoryId?: string; // Appliqué pour coloriser les sous-titres (::cue)
-    // Cloudflare Stream gère magnifiquement le callback de fin de vidéo !
     onEnded?: () => void;
 }
 
@@ -19,29 +18,22 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     categoryId,
     onEnded
 }) => {
-    const streamRef = useRef<any>(null);
-
-    // Appliquer la vitesse en direct si elle change
-    useEffect(() => {
-        if (streamRef.current && streamRef.current.playbackRate !== undefined) {
-            streamRef.current.playbackRate = speed;
-        }
-    }, [speed]);
-
     const vttThemeClass = categoryId ? `vtt-theme-${categoryId}` : '';
 
-    // 1. PRIORITÉ ABSOLUE : Lecteur Premium Cloudflare
+    // 1. PRIORITÉ ABSOLUE : Lecteur ReactPlayer avec M3U8 Cloudflare (HLS)
     if (cloudflareId && cloudflareId !== "") {
+        const streamUrl = `https://customer-6i2z59dst7q6iswv.cloudflarestream.com/${cloudflareId}/manifest/video.m3u8`;
         return (
-            <div className={`w-full aspect-video bg-black overflow-hidden rounded-xl shadow-2xl ${vttThemeClass} ${className}`}>
-                <Stream
-                    streamRef={streamRef}
-                    className="w-full h-full"
-                    controls
-                    src={cloudflareId}
+            <div className={`w-full aspect-video bg-black overflow-hidden rounded-xl shadow-2xl relative ${vttThemeClass} ${className}`}>
+                <ReactPlayer
+                    src={streamUrl}
+                    controls={true}
+                    width="100%"
+                    height="100%"
+                    crossOrigin="anonymous"
+                    playbackRate={speed}
                     onEnded={onEnded}
-                    responsive={true}
-                    preload="auto"
+                    style={{ position: 'absolute', top: 0, left: 0 }}
                 />
             </div>
         );
