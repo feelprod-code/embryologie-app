@@ -4,15 +4,15 @@ import { cn } from '../utils';
 import { useTranslation } from 'react-i18next';
 
 interface HamburgerMenuProps {
-    currentView: 'home' | 'timeline' | 'podcasts' | 'video-library' | 'video-player' | 'podcast-player';
-    onNavigate: (view: 'home' | 'timeline' | 'podcasts' | 'video-library' | 'video-player' | 'podcast-player') => void;
+    currentView: 'home' | 'timeline' | 'embryo-ai' | 'podcasts' | 'video-library' | 'video-player' | 'podcast-player';
+    onNavigate: (view: 'home' | 'timeline' | 'embryo-ai' | 'podcasts' | 'video-library' | 'video-player' | 'podcast-player') => void;
 }
 
 export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentView, onNavigate }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { t, i18n } = useTranslation();
 
-    const handleNavigate = (view: 'home' | 'timeline' | 'podcasts' | 'video-library' | 'video-player' | 'podcast-player') => {
+    const handleNavigate = (view: 'home' | 'timeline' | 'embryo-ai' | 'podcasts' | 'video-library' | 'video-player' | 'podcast-player') => {
         onNavigate(view);
         setIsOpen(false);
     };

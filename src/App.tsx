@@ -11,6 +11,7 @@ import { VideoPlayerPage } from './components/VideoPlayerPage';
 // import { PodcastLibraryList } from './components/PodcastLibraryList';
 // import { PodcastPlayerPage } from './components/PodcastPlayerPage';
 import { type VideoCourse } from './data/videoCourses';
+import { HamburgerMenu } from './components/HamburgerMenu';
 import { cn } from './utils';
 import { useTranslation } from 'react-i18next';
 
@@ -57,7 +58,7 @@ function App() {
 
   const [activeStageId, setActiveStageId] = useState<string>(detailedStages[0].id);
 
-  type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'podcast-player';
+  type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'podcast-player' | 'podcasts';
   const [currentView, setCurrentView] = useState<View>('home');
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
 
@@ -139,6 +140,9 @@ function App() {
 
       {/* INNER SCROLLABLE CANVAS - Scroll contained to let Safari rest */}
       <div className="flex-1 w-full h-full flex flex-col items-center overflow-y-auto overflow-x-hidden relative z-10 overscroll-y-none no-scrollbar" id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
+
+        {/* Global Hamburger Menu for Mobile (Positioned fixed inside) */}
+        <HamburgerMenu currentView={currentView} onNavigate={setCurrentView} />
 
         {/* Desktop Top Navigation Bar */}
         {currentView !== 'video-player' && (
