@@ -11,9 +11,9 @@ import { VideoPlayerPage } from './components/VideoPlayerPage';
 // import { PodcastLibraryList } from './components/PodcastLibraryList';
 // import { PodcastPlayerPage } from './components/PodcastPlayerPage';
 import { type VideoCourse } from './data/videoCourses';
-import { HamburgerMenu } from './components/HamburgerMenu';
 import { cn } from './utils';
 import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from './components/ui/LanguageSwitcher';
 
 const iconMap: Record<string, React.ReactNode> = {
   "j-0": <CircleDot size={20} className="text-blue-400" />,
@@ -141,8 +141,8 @@ function App() {
       {/* INNER SCROLLABLE CANVAS - Scroll contained to let Safari rest */}
       <div className="flex-1 w-full h-full flex flex-col items-center overflow-y-auto overflow-x-hidden relative z-10 overscroll-y-none no-scrollbar" id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
 
-        {/* Global Hamburger Menu for Mobile (Positioned fixed inside) */}
-        <HamburgerMenu currentView={currentView} onNavigate={setCurrentView} />
+        {/* Global Floating Language Switcher (Flags) for both Desktop & Mobile */}
+        <LanguageSwitcher />
 
         {/* Desktop Top Navigation Bar */}
         {currentView !== 'video-player' && (
