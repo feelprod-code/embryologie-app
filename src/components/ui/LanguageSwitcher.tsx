@@ -1,59 +1,76 @@
 import { useTranslation } from 'react-i18next';
 import { cn } from '../../utils';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const languages = [
-    { code: 'fr', flag: '🇫🇷', label: 'FR' },
-    { code: 'en', flag: '🇬🇧', label: 'EN' },
-    { code: 'es', flag: '🇪🇸', label: 'ES' },
+    { code: 'fr', flag: '🇫🇷', label: 'Français' },
+    { code: 'en', flag: '🇬🇧', label: 'English' },
+    { code: 'es', flag: '🇪🇸', label: 'Español' },
 ];
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'desktop-nav' | 'bottom-nav' }) {
     const { i18n } = useTranslation();
-    const currentLang = i18n.language || 'fr';
     const [isOpen, setIsOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
 
+    const currentLang = typeof i18n.language === 'string' ? i18n.language : 'fr';
     const activeLang = languages.find(l => currentLang.startsWith(l.code)) || languages[0];
 
-    return (
-        <div className="fixed top-4 right-4 md:top-6 md:right-6 z-[60]">
-            <div
-                className={cn(
-                    "flex flex-col items-center bg-white/80 backdrop-blur-xl border border-slate-200/60 shadow-lg rounded-full overflow-hidden transition-all duration-300",
-                    isOpen ? "h-auto py-2" : "h-[42px] cursor-pointer"
-                )}
-                onMouseEnter={() => setIsOpen(true)}
-                onMouseLeave={() => setIsOpen(false)}
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                {/* Active/Top Item */}
-                <div className="w-[42px] h-[42px] flex items-center justify-center shrink-0 transition-transform">
-                    <span className="text-xl drop-shadow-sm">{activeLang.flag}</span>
-                </div>
+    // Close when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
-                {/* Dropdown Items */}
+    return (
+        <div className="relative" ref={menuRef}>
+            {/* Trigger Button - A circle containing the flag */}
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className={cn(
+                    "flex items-center justify-center rounded-full transition-all duration-200 border",
+                    variant === 'bottom-nav'
+                        ? "w-8 h-8 bg-white shadow-sm border-slate-200/80 active:scale-95"
+                        : "w-10 h-10 bg-white/80 border-slate-200 shadow-sm hover:bg-white hover:shadow"
+                )}
+                aria-label="Changer de langue"
+            >
+                <span className={cn("drop-shadow-sm transition-transform", isOpen && "scale-110", variant === 'bottom-nav' ? "text-base" : "text-xl")}>
+                    {activeLang.flag}
+                </span>
+            </button>
+
+            {/* Dropdown Menu */}
+            {isOpen && (
                 <div
                     className={cn(
-                        "flex flex-col items-center gap-2 overflow-hidden transition-all duration-300 w-[42px]",
-                        isOpen ? "opacity-100 max-h-40 mt-1" : "opacity-0 max-h-0"
+                        "absolute right-0 flex flex-col bg-white/95 backdrop-blur-xl border border-slate-200/60 shadow-xl rounded-xl overflow-hidden min-w-[130px] z-50 animate-in fade-in zoom-in-95 duration-100",
+                        variant === 'bottom-nav' ? "bottom-full mb-3 origin-bottom-right" : "top-full mt-3 origin-top-right"
                     )}
                 >
-                    {languages.filter(l => l.code !== activeLang.code).map((lang) => (
+                    {languages.map((lang) => (
                         <button
                             key={lang.code}
-                            onClick={(e) => {
-                                e.stopPropagation();
+                            onClick={() => {
                                 i18n.changeLanguage(lang.code);
                                 setIsOpen(false);
                             }}
-                            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors"
-                            aria-label={`Change language to ${lang.label}`}
+                            className={cn(
+                                "flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors hover:bg-slate-50 active:bg-slate-100",
+                                activeLang.code === lang.code ? "text-[#F27D33] bg-orange-50/50" : "text-slate-700"
+                            )}
                         >
-                            <span className="text-xl drop-shadow-sm opacity-80 hover:opacity-100 transition-opacity">{lang.flag}</span>
+                            <span className="text-xl drop-shadow-sm">{lang.flag}</span>
+                            <span>{lang.label}</span>
                         </button>
                     ))}
                 </div>
-            </div>
+            )}
         </div>
     );
 }

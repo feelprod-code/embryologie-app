@@ -135,14 +135,16 @@ function App() {
             </div>
             <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('home.ai_assistant')}</span>
           </button>
+
+          {/* Mobile bottom nav Language Switcher */}
+          <div className="flex flex-1 items-center justify-center pb-2 pt-3">
+            <LanguageSwitcher variant="bottom-nav" />
+          </div>
         </nav>
       )}
 
       {/* INNER SCROLLABLE CANVAS - Scroll contained to let Safari rest */}
       <div className="flex-1 w-full h-full flex flex-col items-center overflow-y-auto overflow-x-hidden relative z-10 overscroll-y-none no-scrollbar" id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
-
-        {/* Global Floating Language Switcher (Flags) for both Desktop & Mobile */}
-        <LanguageSwitcher />
 
         {/* Desktop Top Navigation Bar */}
         {currentView !== 'video-player' && (
@@ -194,6 +196,10 @@ function App() {
             >
               {t('home.ai_assistant')}
             </button>
+            <div className="flex-1"></div>
+
+            {/* Desktop Nav Language Switcher */}
+            <LanguageSwitcher variant="desktop-nav" />
           </nav>
         )}
 
