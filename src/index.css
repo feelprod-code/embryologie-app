@@ -52,6 +52,38 @@
   .glow-endoderm {
     box-shadow: 0 10px 40px -10px rgba(16, 185, 129, 0.3);
   }
+
+  /* Cloudflare Stream / WebVTT Subtitle Overrides */
+  ::cue {
+    background-color: rgba(255, 255, 255, 0.85);
+    /* Fond blanc semi-transparent */
+    color: #1e293b;
+    /* Couleur de base slate-800 */
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    text-shadow: none;
+    /* Enlève l'ombre portée classique des sous-titres */
+    padding: 0.4em 0.8em;
+    border-radius: 0.5rem;
+    line-height: 1.4;
+  }
+
+  /* Couleurs de sous-titres par catégorie (doivent être injectées sur le conteneur du player) */
+  .vtt-theme-ectoderme ::cue {
+    color: #5A9C51;
+  }
+
+  .vtt-theme-endoderme ::cue {
+    color: #4171B5;
+  }
+
+  .vtt-theme-mesoderme ::cue {
+    color: #F27D33;
+  }
+
+  .vtt-theme-oeil ::cue {
+    color: #F2B729;
+  }
 }
 
 @layer utilities {

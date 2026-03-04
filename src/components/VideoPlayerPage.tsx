@@ -108,6 +108,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           <CustomVideoPlayer
             youtubeId={course.youtubeId}
             cloudflareId={course.cloudflareId}
+            categoryId={course.categoryId}
             speed={currentSpeed}
             className="rounded-2xl md:rounded-3xl shadow-xl aspect-video border border-slate-800"
           />

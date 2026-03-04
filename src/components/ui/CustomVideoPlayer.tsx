@@ -6,6 +6,7 @@ interface CustomVideoPlayerProps {
     cloudflareId?: string;
     speed?: number;
     className?: string;
+    categoryId?: string; // Appliqué pour coloriser les sous-titres (::cue)
     // Cloudflare Stream gère magnifiquement le callback de fin de vidéo !
     onEnded?: () => void;
 }
@@ -15,6 +16,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     cloudflareId,
     speed = 1,
     className = '',
+    categoryId,
     onEnded
 }) => {
     const streamRef = useRef<any>(null);
@@ -26,10 +28,12 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         }
     }, [speed]);
 
+    const vttThemeClass = categoryId ? `vtt-theme-${categoryId}` : '';
+
     // 1. PRIORITÉ ABSOLUE : Lecteur Premium Cloudflare
     if (cloudflareId && cloudflareId !== "") {
         return (
-            <div className={`w-full aspect-video bg-black overflow-hidden rounded-xl shadow-2xl ${className}`}>
+            <div className={`w-full aspect-video bg-black overflow-hidden rounded-xl shadow-2xl ${vttThemeClass} ${className}`}>
                 <Stream
                     streamRef={streamRef}
                     className="w-full h-full"
