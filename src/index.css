@@ -58,32 +58,32 @@
 ::cue {
   background-color: rgba(255, 255, 255, 0.85);
   /* Fond blanc semi-transparent */
-  color: #1e293b;
-  /* Couleur de base slate-800 */
+  color: var(--vtt-color, #1e293b);
+  /* Utilisation d'une variable CSS pour hériter depuis le wrapper parent */
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   text-shadow: none;
-  /* Enlève l'ombre portée classique des sous-titres */
+  /* Enlève l'ombre portée de base */
   padding: 0.4em 0.8em;
   border-radius: 0.5rem;
   line-height: 1.4;
 }
 
-/* Couleurs de sous-titres par catégorie (doivent être injectées sur le conteneur du player) */
-.vtt-theme-ectoderme ::cue {
-  color: #5A9C51;
+/* Couleurs de sous-titres par catégorie définies via CSS Variables pour passer le Shadow DOM */
+.vtt-theme-ectoderme {
+  --vtt-color: #5A9C51;
 }
 
-.vtt-theme-endoderme ::cue {
-  color: #4171B5;
+.vtt-theme-endoderme {
+  --vtt-color: #4171B5;
 }
 
-.vtt-theme-mesoderme ::cue {
-  color: #F27D33;
+.vtt-theme-mesoderme {
+  --vtt-color: #F27D33;
 }
 
-.vtt-theme-oeil ::cue {
-  color: #F2B729;
+.vtt-theme-oeil {
+  --vtt-color: #F2B729;
 }
 
 @layer utilities {
