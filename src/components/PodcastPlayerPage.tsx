@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, BookOpen, Headphones, X, Info } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import { type PodcastItem, podcastsData as podcastsDataFr } from '../data/podcasts';
 import { podcastsData as podcastsDataEn } from '../data/podcasts_en';
 import { podcastsData as podcastsDataEs } from '../data/podcasts_es';
@@ -98,27 +100,18 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
                     <div className="flex-1 overflow-y-auto no-scrollbar relative">
                         <div className="p-6 md:p-10 lg:p-14 pb-32">
                             {podcast.transcript ? (
-                                <div className="prose prose-slate bg-transparent lg:prose-lg max-w-none text-slate-700 leading-relaxed
-                                    prose-h1:font-anton prose-h1:text-dark prose-h1:uppercase prose-h1:tracking-wide
-                                    prose-h2:font-bebas prose-h2:text-primary prose-h2:text-3xl prose-h2:mb-4
-                                    prose-h3:font-bold prose-h3:text-slate-800
-                                    prose-p:mb-6
+                                <div className="prose prose-slate bg-transparent lg:prose-lg max-w-none text-slate-700 leading-loose text-[15px] md:text-lg
+                                    prose-h1:font-anton prose-h1:text-dark prose-h1:uppercase prose-h1:tracking-wide prose-h1:text-4xl prose-h1:mb-8
+                                    prose-h2:font-bebas prose-h2:text-primary prose-h2:text-3xl prose-h2:mt-10 prose-h2:mb-5
+                                    prose-h3:font-montserrat prose-h3:font-bold prose-h3:text-xl prose-h3:text-slate-800
+                                    prose-p:mb-6 md:prose-p:mb-8
                                     prose-strong:text-dark prose-strong:font-bold
-                                    prose-blockquote:border-l-4 prose-blockquote:border-primary/50 prose-blockquote:bg-slate-50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:italic
-                                    prose-ul:my-6 prose-li:my-2
+                                    prose-blockquote:border-l-4 prose-blockquote:border-primary/50 prose-blockquote:bg-primary/5 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-2xl prose-blockquote:shadow-sm prose-blockquote:italic prose-blockquote:my-8
+                                    prose-ul:my-6 prose-li:my-2 prose-li:leading-relaxed
                                 ">
-                                    {podcast.transcript.split('\n\n').map((paragraph, index) => {
-                                        if (paragraph.startsWith('### ')) {
-                                            return <h3 key={index}>{paragraph.replace('### ', '')}</h3>;
-                                        } else if (paragraph.startsWith('## ')) {
-                                            return <h2 key={index}>{paragraph.replace('## ', '')}</h2>;
-                                        } else if (paragraph.startsWith('# ')) {
-                                            return <h1 key={index}>{paragraph.replace('# ', '')}</h1>;
-                                        } else if (paragraph.startsWith('> ')) {
-                                            return <blockquote key={index}><p>{paragraph.replace('> ', '')}</p></blockquote>;
-                                        }
-                                        return <p key={index}>{paragraph}</p>;
-                                    })}
+                                    <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                                        {podcast.transcript.replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
+                                    </ReactMarkdown>
                                 </div>
                             ) : (
                                 <div className="flex flex-col items-center justify-center text-slate-400 gap-4 mt-8">

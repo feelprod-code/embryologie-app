@@ -207,24 +207,24 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
 
           <div className={cn(
-            "px-4 pt-2 pb-4 md:px-8 md:pt-4 md:pb-8 lg:px-10 lg:pb-10 overflow-y-auto flex-1 no-scrollbar prose prose-slate max-w-none text-sm",
+            "px-4 pt-2 pb-16 md:px-8 md:pt-4 md:pb-12 lg:px-10 lg:pb-12 overflow-y-auto flex-1 no-scrollbar prose prose-slate max-w-none",
             "prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-dark",
             "prose-h1:hidden",
-            "prose-h2:text-lg md:prose-h2:text-2xl prose-h2:mt-6 md:prose-h2:mt-10 prose-h2:mb-3 md:prose-h2:mb-5",
-            "prose-h3:text-base md:prose-h3:text-xl prose-h3:text-slate-800 prose-h3:font-montserrat prose-h3:font-bold",
-            "prose-p:text-slate-600 prose-p:leading-relaxed prose-p:text-sm md:prose-p:text-base prose-p:mb-3 md:prose-p:mb-5",
-            "prose-strong:text-slate-600 prose-strong:font-bold",
-            "prose-ul:text-slate-600 prose-ul:text-sm md:prose-ul:text-base prose-ul:my-3 md:prose-ul:my-5",
-            "prose-li:my-1",
-            "prose-blockquote:border-l-4 prose-blockquote:bg-slate-50 prose-blockquote:py-2 prose-blockquote:px-4 md:prose-blockquote:px-5 prose-blockquote:rounded-r-xl prose-blockquote:text-slate-700 prose-blockquote:italic prose-blockquote:my-3 md:prose-blockquote:my-6",
-            course.categoryId === 'ectoderme' ? "prose-a:text-[#5A9C51] hover:prose-a:text-[#4a8243] prose-blockquote:border-[#5A9C51]" :
-              course.categoryId === 'endoderme' ? "prose-a:text-[#4171B5] hover:prose-a:text-[#33598f] prose-blockquote:border-[#4171B5]" :
-                course.categoryId === 'mesoderme' ? "prose-a:text-[#F27D33] hover:prose-a:text-[#d46522] prose-blockquote:border-[#F27D33]" :
-                  course.categoryId === 'oeil' ? "prose-a:text-[#F2B729] hover:prose-a:text-[#d49d1e] prose-blockquote:border-[#F2B729]" :
-                    "prose-a:text-slate-800 hover:prose-a:text-slate-900 prose-blockquote:border-slate-800"
+            "prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-8 md:prose-h2:mt-12 prose-h2:mb-4 md:prose-h2:mb-6",
+            "prose-h3:text-xl md:prose-h3:text-2xl prose-h3:text-slate-800 prose-h3:font-montserrat prose-h3:font-bold",
+            "prose-p:text-slate-600 prose-p:leading-loose prose-p:text-[15px] md:prose-p:text-lg prose-p:mb-6 md:prose-p:mb-8",
+            "prose-strong:text-slate-800 prose-strong:font-bold",
+            "prose-ul:text-slate-600 prose-ul:text-[15px] md:prose-ul:text-lg prose-ul:my-6 md:prose-ul:my-8 prose-ul:space-y-3",
+            "prose-li:leading-relaxed",
+            "prose-blockquote:border-l-4 prose-blockquote:bg-slate-50 prose-blockquote:py-4 prose-blockquote:px-5 md:prose-blockquote:px-6 prose-blockquote:rounded-r-2xl prose-blockquote:text-slate-700 prose-blockquote:italic prose-blockquote:my-8 md:prose-blockquote:my-10 prose-blockquote:shadow-sm",
+            course.categoryId === 'ectoderme' ? "prose-a:text-[#5A9C51] hover:prose-a:text-[#4a8243] prose-blockquote:border-[#5A9C51] prose-blockquote:bg-[#5A9C51]/5" :
+              course.categoryId === 'endoderme' ? "prose-a:text-[#4171B5] hover:prose-a:text-[#33598f] prose-blockquote:border-[#4171B5] prose-blockquote:bg-[#4171B5]/5" :
+                course.categoryId === 'mesoderme' ? "prose-a:text-[#F27D33] hover:prose-a:text-[#d46522] prose-blockquote:border-[#F27D33] prose-blockquote:bg-[#F27D33]/5" :
+                  course.categoryId === 'oeil' ? "prose-a:text-[#F2B729] hover:prose-a:text-[#d49d1e] prose-blockquote:border-[#F2B729] prose-blockquote:bg-[#F2B729]/5" :
+                    "prose-a:text-slate-800 hover:prose-a:text-slate-900 prose-blockquote:border-slate-800 prose-blockquote:bg-slate-100"
           )}>
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-              {course.transcriptMarkdown.replace(/\n/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
+              {course.transcriptMarkdown.replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
             </ReactMarkdown>
           </div>
         </div>
