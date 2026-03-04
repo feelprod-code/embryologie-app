@@ -3,13 +3,26 @@ import { ArrowRight, Loader2, PlayCircle, X, Download } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import html2pdf from 'html2pdf.js';
-import { detailedStages } from '../data/embryologie';
-import { videoCourses, type VideoCourse } from '../data/videoCourses';
-import { podcastsData } from '../data/podcasts';
+import { detailedStages as detailedStagesFr } from '../data/embryologie';
+import { detailedStages as detailedStagesEn } from '../data/embryologie_en';
+import { detailedStages as detailedStagesEs } from '../data/embryologie_es';
+import { videoCourses as videoCoursesFr, type VideoCourse } from '../data/videoCourses';
+import { videoCourses as videoCoursesEn } from '../data/videoCourses_en';
+import { videoCourses as videoCoursesEs } from '../data/videoCourses_es';
+import { podcastsData as podcastsDataFr } from '../data/podcasts';
+import { podcastsData as podcastsDataEn } from '../data/podcasts_en';
+import { podcastsData as podcastsDataEs } from '../data/podcasts_es';
 import { cn } from '../utils';
+import { useTranslation } from 'react-i18next';
 
 // Helper to stringify context
-const getCourseContext = () => {
+const getCourseContext = (lang: string) => {
+    const detailedStages = lang.startsWith('en')
+        ? detailedStagesEn
+        : lang.startsWith('es')
+            ? detailedStagesEs
+            : detailedStagesFr;
+
     let text = detailedStages.map(stage => {
         let t = `--- STADE: ${stage.title} (${stage.dayLabel} - ${stage.period}) ---\n`;
         t += `Description globale: ${stage.generalDescription}\n`;
@@ -26,6 +39,9 @@ const getCourseContext = () => {
         }
         return t;
     }).join('\n\n');
+
+    const videoCourses = lang.startsWith('en') ? videoCoursesEn : lang.startsWith('es') ? videoCoursesEs : videoCoursesFr;
+    const podcastsData = lang.startsWith('en') ? podcastsDataEn : lang.startsWith('es') ? podcastsDataEs : podcastsDataFr;
 
     text += "\n\n=== TRANSCRIPTIONS DES COURS VIDÉOS (Mise en pratique et Théorie) ===\n";
     videoCourses.forEach(c => {
@@ -46,7 +62,7 @@ const getCourseContext = () => {
     return text;
 };
 
-const SYSTEM_PROMPT = `Tu es "Embryo-Bot", un assistant virtuel expert en embryologie biodynamique, basé prioritairement sur les enseignements de Marc Damoiseaux, mais disposant d'une vaste connaissance externe sur le domaine (Blechschmidt, Jealous, Freeman, etc.).
+const getSystemPrompt = (lang: string) => `Tu es "Embryo-Bot", un assistant virtuel expert en embryologie biodynamique, basé prioritairement sur les enseignements de Marc Damoiseaux, mais disposant d'une vaste connaissance externe sur le domaine (Blechschmidt, Jealous, Freeman, etc.).
 Ton rôle est d'aider les étudiants ou praticiens en répondant à leurs questions de façon précise et clinique.
 
 RÈGLE ABSOLUE NUMÉRO 1 : Tu dois D'ABORD chercher la réponse dans le contexte de Marc Damoiseaux fourni ci-dessous. Si tu la trouves, utilise-la et cite le stade (ex: "Source: J28 - Plis Céphalique").
@@ -55,9 +71,10 @@ NOTE SPÉCIALE EXPERTISE JEALOUS : Pour toute question complexe sur l'approche d
 RÈGLE ABSOLUE NUMÉRO 3 : Adopte un ton professionnel, encourageant, et précis.
 RÈGLE ABSOLUE NUMÉRO 4 : Rédige tes réponses avec le plus grand soin visuel : aère le texte avec des paragraphes et mets les mots-clés en **gras**.
 RÈGLE ABSOLUE NUMÉRO 5 : Lorsque tu cites ou fais référence à un cours vidéo, tu DOIS ABSOLUMENT formater la source exacte sous forme de lien markdown avec une ancre commençant STRICTEMENT par "#video-ID_VIDEO". Ne mets JAMAIS d'url classique du type "https://" ni de protocole inventé. Exemple parfait: Si c'est une vidéo de l'Endoderme, écrit exactement ceci : [Source exacte](#video-endoderme-01).
+RÈGLE ABSOLUE NUMÉRO 6 : Tu réponds IMPÉRATIVEMENT dans la langue de l'utilisateur. Langue actuelle: ${lang}.
 
-CONTEXTE DU COURS DE MARC DAMOISEAUX :
-${getCourseContext()}
+CONTEXTE DU COURS :
+${getCourseContext(lang)}
 `;
 
 type Message = {
@@ -66,6 +83,9 @@ type Message = {
 };
 
 export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (video: VideoCourse) => void }> = ({ onClose, onNavigateToVideo }) => {
+    const { t, i18n } = useTranslation();
+    const videoCourses = i18n.language.startsWith('en') ? videoCoursesEn : i18n.language.startsWith('es') ? videoCoursesEs : videoCoursesFr;
+
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState<Message[]>(() => {
         const saved = localStorage.getItem('embryo_chat_history');
@@ -77,7 +97,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
             }
         }
         return [
-            { role: 'assistant', content: "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**." }
+            { role: 'assistant', content: t('chatbot.welcomeMessage', { defaultValue: "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**." }) }
         ];
     });
     const [isLoading, setIsLoading] = useState(false);
@@ -90,7 +110,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
 
     const handleClearChat = () => {
         setMessages([
-            { role: 'assistant', content: "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**." }
+            { role: 'assistant', content: t('chatbot.welcomeMessage') }
         ]);
         localStorage.removeItem('embryo_chat_history');
     };
@@ -120,7 +140,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
         const headerHTML = `
             <div style="margin-bottom: 30px; text-align: center;">
                 <h1 style="color: #8B1111; font-size: 28px; font-weight: bold; margin: 0; font-family: 'Bebas Neue', 'Helvetica Neue', sans-serif; letter-spacing: 2px;">EMBRYO AI</h1>
-                <p style="color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">DOCUMENT RÉCAPITULATIF</p>
+                <p style="color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">${t('chatbot.summaryDocument')}</p>
                 <div style="border-bottom: 2px solid #e2e8f0; margin-top: 20px;"></div>
             </div>
         `;
@@ -128,13 +148,13 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
         const questionContent = messages[idx - 1]?.role === 'user' ? messages[idx - 1].content : questionNode?.innerText;
         const questionHTML = questionContent ? `
             <div style="background-color: #f8fafc; border-left: 4px solid #8B1111; padding: 16px; margin-bottom: 24px; border-radius: 0 8px 8px 0; page-break-inside: avoid;">
-                <div style="font-size: 12px; font-weight: bold; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Question</div>
+                <div style="font-size: 12px; font-weight: bold; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">${t('chatbot.question')}</div>
                 <div style="font-size: 16px; font-weight: 600; color: #0f172a; white-space: pre-wrap; line-height: 1.5;">${questionContent}</div>
             </div>
         ` : '';
 
         const answerHeaderHTML = `
-            <div style="font-size: 12px; font-weight: bold; color: #8B1111; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Réponse Détaillée</div>
+            <div style="font-size: 12px; font-weight: bold; color: #8B1111; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">${t('chatbot.detailedAnswer')}</div>
         `;
 
         container.innerHTML = headerHTML + questionHTML + answerHeaderHTML;
@@ -189,14 +209,14 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
         const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
 
         if (!apiKey) {
-            setError("Clé API OpenRouter manquante. Veuillez configurer VITE_OPENROUTER_API_KEY dans votre fichier .env.local.");
+            setError(t('chatbot.apiKeyMissing'));
             setIsLoading(false);
             return;
         }
 
         try {
             const apiMessages = [
-                { role: 'system', content: SYSTEM_PROMPT },
+                { role: 'system', content: getSystemPrompt(i18n.language) },
                 ...messages.filter(m => m.role !== 'system'),
                 { role: 'user', content: userMessage }
             ];
@@ -216,7 +236,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
             });
 
             if (!response.ok) {
-                throw new Error(`Erreur réseau: ${response.status}`);
+                throw new Error(`${t('chatbot.networkError')}${response.status}`);
             }
 
             const data = await response.json();
@@ -225,7 +245,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
             setMessages(prev => [...prev, { role: 'assistant', content: assistantMessage }]);
         } catch (err: any) {
             console.error("ChatBot Error:", err);
-            setError("Désolé, une erreur est survenue lors de la communication avec l'IA. Vérifiez votre clé d'API ou votre connexion.");
+            setError(t('chatbot.generalError'));
         } finally {
             setIsLoading(false);
         }
@@ -241,9 +261,9 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                         <button
                             onClick={onClose}
                             className="hidden md:flex md:absolute md:left-4 items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 px-6 py-2 rounded-full font-bebas tracking-widest transition-colors shadow-sm active:scale-95 text-base shrink-0"
-                            title="Retour Accueil"
+                            title={t('chatbot.backToHome')}
                         >
-                            ← Retour Accueil
+                            ← {t('chatbot.backToHome')}
                         </button>
                     )}
                     <div className="inline-flex flex-col items-center justify-center px-6 sm:px-10 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[80vw] md:max-w-full overflow-hidden">
@@ -251,17 +271,17 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                             EMBRYO AI
                         </span>
                         <p className="text-[10px] md:text-[12px] text-slate-500 uppercase tracking-widest font-bold mt-1">
-                            ASSISTANT INTELLIGENT
+                            {t('chatbot.assistantRole')}
                         </p>
                     </div>
                     {messages.length > 1 && (
                         <button
                             onClick={handleClearChat}
                             className="absolute right-4 text-slate-400 hover:text-slate-600 transition-colors p-2 md:bg-white md:border md:border-slate-200 md:rounded-full md:shadow-sm hover:bg-slate-50 active:scale-95 flex items-center justify-center shrink-0"
-                            title="Effacer la conversation"
+                            title={t('chatbot.clearConversationTitle')}
                         >
                             <X size={18} />
-                            <span className="hidden md:inline ml-2 text-sm font-bold uppercase tracking-widest pt-0.5">Effacer</span>
+                            <span className="hidden md:inline ml-2 text-sm font-bold uppercase tracking-widest pt-0.5">{t('chatbot.clear')}</span>
                         </button>
                     )}
                 </div>
@@ -340,10 +360,10 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                                                 <button
                                                     onClick={() => handleExportPDF(idx)}
                                                     className="flex items-center justify-center gap-1.5 text-xs text-slate-400 hover:text-slate-600 hover:bg-slate-200/50 px-3 py-1.5 rounded-md transition-all active:scale-95"
-                                                    title="Exporter cette réponse en PDF"
+                                                    title={t('chatbot.exportPdfTitle')}
                                                 >
                                                     <Download size={14} />
-                                                    <span className="font-bold tracking-widest pt-[1px]">PDF</span>
+                                                    <span className="font-bold tracking-widest pt-[1px]">{t('chatbot.pdf')}</span>
                                                 </button>
                                             </div>
                                         )}
@@ -356,7 +376,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                         <div className="flex justify-start">
                             <div className="bg-white border border-slate-200 rounded-2xl rounded-bl-md p-4 md:p-6 shadow-sm flex items-center gap-3">
                                 <Loader2 size={20} className="animate-spin text-slate-400" />
-                                <span className="text-sm text-slate-500 font-bold uppercase tracking-wider pt-0.5">Recherche dans les cours de Marc Damoiseaux...</span>
+                                <span className="text-sm text-slate-500 font-bold uppercase tracking-wider pt-0.5">{t('chatbot.searching')}</span>
                             </div>
                         </div>
                     )}
@@ -377,7 +397,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
-                            placeholder="Posez votre question à Embryo AI..."
+                            placeholder={t('chatbot.inputPlaceholder')}
                             className="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-6 py-5 md:py-6 pr-16 md:pr-20 text-base md:text-lg text-slate-800 focus:outline-none focus:ring-0 focus:border-slate-400 font-medium placeholder:text-slate-400 shadow-inner transition-colors"
                             disabled={isLoading}
                         />

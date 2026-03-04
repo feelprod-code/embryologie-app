@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X, Home, Clock, MonitorPlay, BookOpen } from 'lucide-react';
+import { Menu, X, Home, Clock, MonitorPlay, BookOpen, Globe } from 'lucide-react';
 import { cn } from '../utils';
+import { useTranslation } from 'react-i18next';
 
 interface HamburgerMenuProps {
     currentView: 'home' | 'timeline' | 'podcasts' | 'video-library' | 'video-player' | 'podcast-player';
@@ -9,10 +10,15 @@ interface HamburgerMenuProps {
 
 export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentView, onNavigate }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const { t, i18n } = useTranslation();
 
     const handleNavigate = (view: 'home' | 'timeline' | 'podcasts' | 'video-library' | 'video-player' | 'podcast-player') => {
         onNavigate(view);
         setIsOpen(false);
+    };
+
+    const changeLanguage = (lng: string) => {
+        i18n.changeLanguage(lng);
     };
 
     return (
@@ -20,7 +26,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentView, onNav
             <button
                 onClick={() => setIsOpen(true)}
                 className="fixed top-4 right-4 md:top-6 md:right-6 z-50 p-3 bg-white rounded-full shadow-md border border-slate-200 text-slate-700 hover:text-primary hover:border-primary transition-all hover:scale-105"
-                aria-label="Menu principal"
+                aria-label={t('nav.menu')}
             >
                 <Menu size={24} />
             </button>
@@ -41,7 +47,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentView, onNav
                 )}
             >
                 <div className="p-6 flex justify-between items-center border-b border-slate-100">
-                    <span className="font-anton text-2xl uppercase tracking-wide text-dark">Menu</span>
+                    <span className="font-anton text-2xl uppercase tracking-wide text-dark">{t('nav.menu')}</span>
                     <button
                         onClick={() => setIsOpen(false)}
                         className="p-2 text-slate-400 hover:text-primary hover:bg-slate-50 rounded-full transition-colors"
@@ -61,7 +67,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentView, onNav
                         )}
                     >
                         <Home size={24} />
-                        Accueil
+                        {t('nav.home')}
                     </button>
 
                     <button
@@ -74,7 +80,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentView, onNav
                         )}
                     >
                         <Clock size={24} />
-                        Chronologie
+                        {t('nav.timeline')}
                     </button>
 
                     <button
@@ -87,7 +93,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentView, onNav
                         )}
                     >
                         <MonitorPlay size={24} className={currentView === 'video-library' || currentView === 'video-player' ? "text-primary" : ""} />
-                        Cours Vidéos
+                        {t('nav.videos')}
                     </button>
 
                     <button
@@ -100,13 +106,38 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentView, onNav
                         )}
                     >
                         <BookOpen size={24} />
-                        Ressources
+                        {t('nav.podcasts')}
                     </button>
                 </nav>
 
-                <div className="p-6 border-t border-slate-100 bg-slate-50">
+                <div className="p-6 border-t border-slate-100 bg-slate-50 flex flex-col gap-4">
+                    {/* LANUGAGE SWITCHER */}
+                    <div className="flex items-center justify-center gap-3">
+                        <Globe size={18} className="text-slate-400" />
+                        <button
+                            onClick={() => changeLanguage('fr')}
+                            className={cn("text-sm font-bold transition-all", i18n.language.startsWith('fr') ? "text-primary" : "text-slate-400 hover:text-slate-600")}
+                        >
+                            FR
+                        </button>
+                        <span className="text-slate-300">|</span>
+                        <button
+                            onClick={() => changeLanguage('en')}
+                            className={cn("text-sm font-bold transition-all", i18n.language.startsWith('en') ? "text-primary" : "text-slate-400 hover:text-slate-600")}
+                        >
+                            EN
+                        </button>
+                        <span className="text-slate-300">|</span>
+                        <button
+                            onClick={() => changeLanguage('es')}
+                            className={cn("text-sm font-bold transition-all", i18n.language.startsWith('es') ? "text-primary" : "text-slate-400 hover:text-slate-600")}
+                        >
+                            ES
+                        </button>
+                    </div>
+
                     <p className="text-center text-sm text-slate-400 font-medium">
-                        Embryologie Biodynamique © 2024
+                        {t('nav.footer')}
                     </p>
                 </div>
             </div>

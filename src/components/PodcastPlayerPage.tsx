@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 import { ArrowLeft, BookOpen, Headphones, X, Info } from 'lucide-react';
-import { type PodcastItem } from '../data/podcasts';
+import { type PodcastItem, podcastsData as podcastsDataFr } from '../data/podcasts';
+import { podcastsData as podcastsDataEn } from '../data/podcasts_en';
+import { podcastsData as podcastsDataEs } from '../data/podcasts_es';
+import { useTranslation } from 'react-i18next';
 
 interface PodcastPlayerPageProps {
     podcast: PodcastItem;
     onBack: () => void;
 }
 
-export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast, onBack }) => {
+export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: initialPodcast, onBack }) => {
+    const { t, i18n } = useTranslation();
+
+    const podcastsData = i18n.language.startsWith('en')
+        ? podcastsDataEn
+        : i18n.language.startsWith('es')
+            ? podcastsDataEs
+            : podcastsDataFr;
+
+    const podcast = podcastsData.find(p => p.id === initialPodcast.id) || initialPodcast;
+
     const [isSummaryModalOpen, setSummaryModalOpen] = useState(false);
 
     return (
@@ -16,7 +29,8 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast, o
             <button
                 onClick={onBack}
                 className="absolute top-4 left-4 md:top-6 md:left-6 z-50 w-12 h-12 flex items-center justify-center bg-white/90 backdrop-blur-md text-slate-700 hover:text-primary rounded-full shadow-lg border border-slate-200 hover:scale-105 transition-all"
-                aria-label="Retour à la bibliothèque"
+                aria-label={t('podcasts.backToLibrary')}
+                title={t('podcasts.backToLibrary')}
             >
                 <ArrowLeft size={24} />
             </button>
@@ -30,7 +44,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast, o
                     <div
                         className="relative group cursor-pointer"
                         onClick={() => setSummaryModalOpen(true)}
-                        title="Cliquez pour lire le résumé complet"
+                        title={t('podcasts.clickToReadSummary')}
                     >
                         {podcast.thumbnailUrl ? (
                             <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl transition-transform duration-300 group-hover:scale-[1.03] border-4 border-white">
@@ -41,13 +55,13 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast, o
                                 />
                                 <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                     <Info size={36} className="text-white mb-2" />
-                                    <span className="font-bebas tracking-wide text-white text-xl uppercase">Lire le résumé</span>
+                                    <span className="font-bebas tracking-wide text-white text-xl uppercase">{t('podcasts.readSummary')}</span>
                                 </div>
                             </div>
                         ) : (
                             <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl shadow-2xl bg-slate-800 flex flex-col items-center justify-center text-slate-400 border-4 border-white transition-transform duration-300 group-hover:scale-105">
                                 <Headphones size={48} className="opacity-50" />
-                                <span className="mt-4 font-bebas text-xl tracking-widest uppercase">Podcast</span>
+                                <span className="mt-4 font-bebas text-xl tracking-widest uppercase">{t('podcasts.podcastType')}</span>
                             </div>
                         )}
                     </div>
@@ -61,13 +75,13 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast, o
                                 src={podcast.audioUrl}
                                 controlsList="nodownload"
                             >
-                                Votre navigateur ne supporte pas l'élément audio.
+                                {t('podcasts.browserNoAudioSupport')}
                             </audio>
                         </div>
                     ) : (
                         <div className="w-full max-w-lg mt-4 bg-slate-50 rounded-2xl p-6 text-center border border-slate-100 flex flex-col items-center gap-3 z-40">
                             <Headphones size={32} className="text-slate-300" />
-                            <p className="text-slate-500 font-medium">Fichier audio non configuré.</p>
+                            <p className="text-slate-500 font-medium">{t('podcasts.audioNotConfigured')}</p>
                         </div>
                     )}
                 </div>
@@ -77,7 +91,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast, o
                     <div className="shrink-0 w-full px-6 py-4 border-b border-slate-100 bg-slate-50/90 backdrop-blur-sm flex justify-center sticky top-0 z-20">
                         <div className="inline-flex items-center gap-2 px-5 py-2 bg-white text-slate-700 rounded-full text-sm font-bold uppercase tracking-widest shadow-sm border border-slate-200">
                             <BookOpen size={18} className="text-primary" />
-                            Retranscription
+                            {t('podcasts.transcript')}
                         </div>
                     </div>
 
@@ -109,7 +123,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast, o
                             ) : (
                                 <div className="flex flex-col items-center justify-center text-slate-400 gap-4 mt-8">
                                     <BookOpen size={48} className="opacity-20" />
-                                    <p className="text-xl font-medium text-center">La retranscription de ce podcast<br />n'est pas encore disponible.</p>
+                                    <p className="text-xl font-medium text-center" dangerouslySetInnerHTML={{ __html: t('podcasts.transcriptNotAvailable') }}></p>
                                 </div>
                             )}
                         </div>
@@ -131,7 +145,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast, o
                         <div className="flex flex-shrink-0 items-center justify-between p-6 border-b border-slate-100 bg-slate-50 relative z-10">
                             <div>
                                 <span className="text-primary text-xs font-bold uppercase tracking-widest mb-1 block">
-                                    Résumé de l'épisode
+                                    {t('podcasts.episodeSummary')}
                                 </span>
                                 <h3 className="font-bebas text-2xl md:text-3xl tracking-wide text-dark uppercase leading-none">
                                     {podcast.title}
@@ -140,7 +154,8 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast, o
                             <button
                                 onClick={() => setSummaryModalOpen(false)}
                                 className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-500 hover:text-red-500 hover:bg-red-50 hover:border-red-200 flex items-center justify-center transition-all shadow-sm shrink-0 ml-4"
-                                aria-label="Fermer le résumé"
+                                aria-label={t('podcasts.closeSummary')}
+                                title={t('podcasts.closeSummary')}
                             >
                                 <X size={20} />
                             </button>
@@ -161,7 +176,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast, o
                                 onClick={() => setSummaryModalOpen(false)}
                                 className="px-6 py-2 bg-dark hover:bg-primary text-white font-bebas text-xl tracking-wider uppercase rounded-xl transition-colors shadow-md"
                             >
-                                Fermer
+                                {t('podcasts.close')}
                             </button>
                         </div>
                     </div>

@@ -1,0 +1,118 @@
+{
+    "nav": {
+        "menu": "Menú",
+        "home": "Inicio",
+        "timeline": "Cronología",
+        "videos": "Cursos en Video",
+        "podcasts": "Recursos",
+        "footer": "Embriología Biodinámica © 2024"
+    },
+    "home": {
+        "training_by": "Un curso de",
+        "title_part1": "EMBRIOLOGÍA",
+        "title_part2": "BIODINÁMICA",
+        "start": "Para empezar...",
+        "credits": "Realización FeelProd",
+        "listen_podcast": "Escucha el episodio completo sobre Movimiento del Desarrollo",
+        "ai_assistant": "Asistente IA"
+    },
+    "app": {
+        "title_embryology": "Embriología",
+        "title_biodynamic": "Biodinámica",
+        "directed_by": "Formación dirigida por",
+        "osteopath": "Osteópata D.O.",
+        "back_to_home": "← Volver al Inicio",
+        "developmental_movement": "Movimiento del Desarrollo",
+        "timeline_processes": "Procesos, Movimientos y Capas",
+        "timeline_cine_dynamic": "Cine-Dinámica del Día",
+        "timeline_practical": "Práctica Biodinámica y Psicosomática",
+        "timeline_fulcrums": "Fulcros Precisos",
+        "timeline_palpation": "Palpación Global",
+        "timeline_therapist_posture": "Postura del Terapeuta",
+        "timeline_psychosomatic": "Psicosomática y Simbólica",
+        "timeline_layer_perceptions": "Percepciones Tisulares por Capa",
+        "timeline_no_data": "No hay datos para esta etapa temporal."
+    },
+    "videoLibrary": {
+        "backToHome": "← Volver al Inicio",
+        "completeFormation": "Formación Completa",
+        "layers": {
+            "ectoderm": "El Ectodermo",
+            "mesoderm": "El Mesodermo",
+            "endoderm": "El Endodermo",
+            "eye": "El Ojo"
+        },
+        "includedTranscript": "Transcripción incluida",
+        "noVideoTitle": "No hay videos disponibles para esta capa en este momento.",
+        "noVideoSub": "Pronto se añadirán más cursos y transcripciones.",
+        "previous": "Anterior",
+        "next": "Siguiente",
+        "download": "Descargar"
+    },
+    "podcasts": {
+        "listenAndLearn": "Escuchar y Profundizar",
+        "resourcesAndPodcasts": "Recursos y Podcasts",
+        "backToHome": "Volver al Inicio",
+        "allResources": "Todos los Recursos",
+        "highlight": "Destacado",
+        "backToLibrary": "Volver a la Biblioteca",
+        "clickToReadSummary": "Haz clic para leer el resumen completo",
+        "readSummary": "Leer Resumen",
+        "podcastType": "Podcast",
+        "browserNoAudioSupport": "Tu navegador no soporta el elemento de audio.",
+        "audioNotConfigured": "Archivo de audio no configurado.",
+        "transcript": "Transcripción",
+        "transcriptNotAvailable": "La transcripción de este podcast<br />aún no está disponible.",
+        "episodeSummary": "Resumen del Episodio",
+        "closeSummary": "Cerrar Resumen",
+        "close": "Cerrar"
+    },
+    "videoLibrary": {
+        "backToHome": "Volver al inicio",
+        "completeFormation": "Formación Completa",
+        "watch": "Ver vídeo",
+        "previous": "Vídeo anterior",
+        "next": "Siguiente vídeo",
+        "download": "Descargar vídeo",
+        "layers": {
+            "ectoderm": "El Ectodermo",
+            "endoderm": "El Endodermo",
+            "mesoderm": "El Mesodermo",
+            "eye": "El Ojo"
+        }
+    },
+    "podcasts": {
+        "listenAndLearn": "Escucha y Aprende",
+        "resourcesAndPodcasts": "Recursos y Podcasts",
+        "backToHome": "Volver al inicio",
+        "allResources": "Todos los recursos",
+        "highlight": "Nuevo",
+        "backToLibrary": "Volver a la biblioteca",
+        "clickToReadSummary": "Haz clic para leer el resumen",
+        "readSummary": "Leer resumen",
+        "podcastType": "Podcast",
+        "browserNoAudioSupport": "Tu navegador no soporta el elemento de audio.",
+        "audioNotConfigured": "Audio no configurado para este episodio.",
+        "transcript": "Transcripción Completa",
+        "transcriptNotAvailable": "Transcripción no disponible por el momento.<br/>Por favor, escucha el audio.",
+        "episodeSummary": "Resumen del Episodio",
+        "closeSummary": "Cerrar resumen"
+    },
+    "chatbot": {
+        "welcomeMessage": "¡Hola! Soy Embryo AI, tu asistente dedicado al curso de embriología de Marc Damoiseaux.\n\nPregúntame sobre **cascadas cinéticas**, **capas** o la **práctica biodinámica**.",
+        "summaryDocument": "DOCUMENTO RESUMEN",
+        "question": "Pregunta",
+        "detailedAnswer": "Respuesta Detallada",
+        "apiKeyMissing": "Falta la clave API de OpenRouter. Por favor, configure VITE_OPENROUTER_API_KEY en su archivo .env.local.",
+        "networkError": "Error de red: ",
+        "generalError": "Lo siento, ocurrió un error al comunicarse con la IA. Verifique su clave de API o conexión.",
+        "backToHome": "Volver al Inicio",
+        "assistantRole": "ASISTENTE INTELIGENTE",
+        "clearConversationTitle": "Borrar conversación",
+        "clear": "Borrar",
+        "exportPdfTitle": "Exportar esta respuesta a PDF",
+        "pdf": "PDF",
+        "searching": "Buscando en los cursos de Marc Damoiseaux...",
+        "inputPlaceholder": "Haz tu pregunta a Embryo AI..."
+    }
+}

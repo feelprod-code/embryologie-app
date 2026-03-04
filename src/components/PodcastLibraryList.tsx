@@ -1,5 +1,8 @@
 import { ArrowLeft, Headphones, ExternalLink } from 'lucide-react';
-import { podcastsData, type PodcastItem } from '../data/podcasts';
+import { podcastsData as podcastsDataFr, type PodcastItem } from '../data/podcasts';
+import { podcastsData as podcastsDataEn } from '../data/podcasts_en';
+import { podcastsData as podcastsDataEs } from '../data/podcasts_es';
+import { useTranslation } from 'react-i18next';
 
 interface PodcastLibraryListProps {
     onNavigate: (view: 'timeline' | 'home' | 'video-library') => void;
@@ -7,6 +10,14 @@ interface PodcastLibraryListProps {
 }
 
 export function PodcastLibraryList({ onNavigate, onSelectPodcast }: PodcastLibraryListProps) {
+    const { t, i18n } = useTranslation();
+
+    const podcastsData = i18n.language.startsWith('en')
+        ? podcastsDataEn
+        : i18n.language.startsWith('es')
+            ? podcastsDataEs
+            : podcastsDataFr;
+
     return (
         <div className="w-full max-w-7xl mx-auto animate-fade-in pb-16 px-4">
 
@@ -15,11 +26,10 @@ export function PodcastLibraryList({ onNavigate, onSelectPodcast }: PodcastLibra
                 <div className="flex flex-col items-center sm:items-start">
                     <div className="inline-flex items-center justify-center border border-primary/20 bg-primary/5 px-4 py-1.5 rounded-full shadow-sm mb-3 sm:mb-4">
                         <span className="text-xs md:text-sm font-bold text-primary uppercase tracking-widest text-center flex items-center gap-2">
-                            <Headphones size={16} /> Écouter & Approfondir
+                            <Headphones size={16} /> {t('podcasts.listenAndLearn')}
                         </span>
                     </div>
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-anton text-dark uppercase tracking-widest text-center sm:text-left drop-shadow-sm">
-                        Ressources <span className="text-primary">&</span> Podcasts
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-anton text-dark uppercase tracking-widest text-center sm:text-left drop-shadow-sm" dangerouslySetInnerHTML={{ __html: t('podcasts.resourcesAndPodcasts').replace('&', '<span class="text-primary">&</span>') }}>
                     </h1>
                 </div>
 
@@ -30,14 +40,14 @@ export function PodcastLibraryList({ onNavigate, onSelectPodcast }: PodcastLibra
                     >
                         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
                         <ArrowLeft size={20} className="mr-2 sm:mr-3 group-hover:-translate-x-1 transition-transform" />
-                        Retour Accueil
+                        {t('podcasts.backToHome')}
                     </button>
                 </div>
             </div>
 
             {/* Grille des Ressources (Podcasts & Liens) */}
             <h2 className="text-2xl font-anton text-slate-800 uppercase tracking-widest pl-2 mb-6 border-l-4 border-primary">
-                Toutes les Ressources
+                {t('podcasts.allResources')}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -76,7 +86,7 @@ export function PodcastLibraryList({ onNavigate, onSelectPodcast }: PodcastLibra
                                 {/* Badge "Nouveau" ou "Highlight" */}
                                 {item.isHighlight && (
                                     <div className="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded shadow-md z-10">
-                                        À la une
+                                        {t('podcasts.highlight')}
                                     </div>
                                 )}
                             </div>

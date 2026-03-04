@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { videoCourses, type VideoCourse, getCategoryTotalDuration } from '../data/videoCourses';
+import { videoCourses as videoCoursesFr, type VideoCourse, getCategoryTotalDuration } from '../data/videoCourses';
+import { videoCourses as videoCoursesEn } from '../data/videoCourses_en';
+import { videoCourses as videoCoursesEs } from '../data/videoCourses_es';
 import { cn } from '../utils';
 import { Clock, ChevronLeft, ChevronRight, DownloadCloud } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { CustomVideoPlayer } from './ui/CustomVideoPlayer';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -14,10 +17,20 @@ interface VideoPlayerPageProps {
   onSelectVideo: (video: VideoCourse) => void;
 }
 
-export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSelectVideo }) => {
+export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initialCourse, onSelectVideo }) => {
+  const { t, i18n } = useTranslation();
+
+  const videoCourses = i18n.language.startsWith('en')
+    ? videoCoursesEn
+    : i18n.language.startsWith('es')
+      ? videoCoursesEs
+      : videoCoursesFr;
+
   const [currentSpeed, setCurrentSpeed] = useState<number>(1);
-  const categoryVideos = videoCourses.filter(v => v.categoryId === course.categoryId);
-  const currentIndex = categoryVideos.findIndex(v => v.id === course.id);
+  const course = videoCourses.find((v: VideoCourse) => v.id === initialCourse.id) || initialCourse;
+
+  const categoryVideos = videoCourses.filter((v: VideoCourse) => v.categoryId === course.categoryId);
+  const currentIndex = categoryVideos.findIndex((v: VideoCourse) => v.id === course.id);
   const prevVideo = currentIndex > 0 ? categoryVideos[currentIndex - 1] : null;
   const nextVideo = currentIndex < categoryVideos.length - 1 ? categoryVideos[currentIndex + 1] : null;
 
@@ -41,10 +54,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
             let lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
             const cId = lmap[layer as keyof typeof lmap];
             const isSelected = course.categoryId === cId;
+            const tKeys: Record<string, string> = { "L'Ectoderme": "ectoderm", "L'Endoderme": "endoderm", "Le Mésoderme": "mesoderm", "L'Oeil": "eye" };
 
             const handleLayerClick = () => {
               if (isSelected) return;
-              const firstCourse = videoCourses.find(v => v.categoryId === cId);
+              const firstCourse = videoCourses.find((v: VideoCourse) => v.categoryId === cId);
               if (firstCourse) onSelectVideo(firstCourse);
             };
 
@@ -72,7 +86,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
                   "font-bebas text-lg sm:text-xl tracking-wider leading-none mb-1 whitespace-nowrap",
                   isSelected ? "text-white" : "text-slate-800"
                 )}>
-                  {layer}
+                  {t(`videoLibrary.layers.${tKeys[layer.replace("'", "")] || tKeys[layer]}`)}
                 </span>
 
                 <span className={cn(
@@ -80,7 +94,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
                   isSelected ? "text-white/80" : "text-slate-500"
                 )}>
                   <Clock size={10} className="inline mr-1 mb-[1px]" />
-                  {getCategoryTotalDuration(cId)}
+                  {getCategoryTotalDuration(cId as any)}
                 </span>
               </button>
             );
@@ -129,7 +143,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
                   onClick={() => prevVideo && onSelectVideo(prevVideo)}
                   disabled={!prevVideo}
                   className="flex items-center justify-center px-6 py-2 sm:px-8 sm:py-3 bg-white hover:bg-slate-50 text-slate-600 rounded-[1.2rem] shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
-                  title="Précédent"
+                  title={t('videoLibrary.previous')}
                 >
                   <ChevronLeft size={20} />
                 </button>
@@ -137,7 +151,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
                   onClick={() => nextVideo && onSelectVideo(nextVideo)}
                   disabled={!nextVideo}
                   className="flex items-center justify-center px-6 py-2 sm:px-8 sm:py-3 bg-white hover:bg-slate-50 text-slate-600 rounded-[1.2rem] shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
-                  title="Suivant"
+                  title={t('videoLibrary.next')}
                 >
                   <ChevronRight size={20} />
                 </button>
@@ -152,7 +166,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course, onSele
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex justify-center items-center px-4 py-2 sm:px-5 sm:py-3 bg-white hover:bg-slate-50 text-slate-500 hover:text-slate-900 transition-colors rounded-[1.2rem] shadow-sm border border-slate-200"
-                    title="Télécharger"
+                    title={t('videoLibrary.download')}
                   >
                     <DownloadCloud size={20} strokeWidth={2.5} />
                   </a>

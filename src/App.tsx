@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video } from 'lucide-react';
-import { detailedStages, type StageDataV2, type EmbryoLayer } from './data/embryologie';
+import { detailedStages as detailedStagesFr, type StageDataV2, type EmbryoLayer } from './data/embryologie';
+import { detailedStages as detailedStagesEn } from './data/embryologie_en';
+import { detailedStages as detailedStagesEs } from './data/embryologie_es';
 import { Mermaid } from './components/Mermaid';
 import { ChatBot } from './components/ChatBot';
 import { Home } from './components/Home';
@@ -10,6 +12,7 @@ import { VideoPlayerPage } from './components/VideoPlayerPage';
 // import { PodcastPlayerPage } from './components/PodcastPlayerPage';
 import { type VideoCourse } from './data/videoCourses';
 import { cn } from './utils';
+import { useTranslation } from 'react-i18next';
 
 const iconMap: Record<string, React.ReactNode> = {
   "j-0": <CircleDot size={20} className="text-blue-400" />,
@@ -44,13 +47,21 @@ const layerColors: Record<EmbryoLayer, string> = {
 };
 
 function App() {
+  const { t, i18n } = useTranslation();
+
+  const detailedStages = i18n.language.startsWith('en')
+    ? detailedStagesEn
+    : i18n.language.startsWith('es')
+      ? detailedStagesEs
+      : detailedStagesFr;
+
   const [activeStageId, setActiveStageId] = useState<string>(detailedStages[0].id);
 
   type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'podcast-player';
   const [currentView, setCurrentView] = useState<View>('home');
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
 
-  const activeStage = detailedStages.find(s => s.id === activeStageId) as StageDataV2;
+  const activeStage = detailedStages.find(s => s.id === activeStageId) as StageDataV2 || detailedStages[0];
   // Use original index for timeline visual order
   const getOriginalIndex = (id: string) => detailedStages.findIndex(s => s.id === id);
   const activeIndex = getOriginalIndex(activeStageId);
@@ -79,7 +90,7 @@ function App() {
             <div className={cn("transition-transform duration-200", currentView === 'home' ? "scale-105" : "group-hover:scale-105")}>
               <HomeIcon size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'home' ? "font-medium" : "font-normal")}>Accueil</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'home' ? "font-medium" : "font-normal")}>{t('nav.home')}</span>
           </button>
 
           <button
@@ -93,7 +104,7 @@ function App() {
             <div className={cn("transition-transform duration-200", currentView === 'timeline' ? "scale-105" : "group-hover:scale-105")}>
               <Clock size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'timeline' ? "font-medium" : "font-normal")}>Timeline</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'timeline' ? "font-medium" : "font-normal")}>{t('nav.timeline')}</span>
           </button>
 
           <button
@@ -107,7 +118,7 @@ function App() {
             <div className={cn("transition-transform duration-200", currentView === 'video-library' || currentView === 'video-player' ? "scale-105" : "group-hover:scale-105")}>
               <Video size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'video-library' || currentView === 'video-player' ? "font-medium" : "font-normal")}>Vidéos</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'video-library' || currentView === 'video-player' ? "font-medium" : "font-normal")}>{t('nav.videos')}</span>
           </button>
 
           <button
@@ -121,7 +132,7 @@ function App() {
             <div className={cn("transition-transform duration-200", currentView === 'embryo-ai' ? "scale-105" : "group-hover:scale-105")}>
               <Brain size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>Cerveau IA</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('home.ai_assistant')}</span>
           </button>
         </nav>
       )}
@@ -141,7 +152,7 @@ function App() {
                   : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
               )}
             >
-              Accueil
+              {t('nav.home')}
             </button>
 
             <button
@@ -153,7 +164,7 @@ function App() {
                   : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
               )}
             >
-              Chronologie
+              {t('nav.timeline')}
             </button>
 
             <button
@@ -165,7 +176,7 @@ function App() {
                   : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
               )}
             >
-              Cours Vidéos
+              {t('nav.videos')}
             </button>
 
             <button
@@ -177,7 +188,7 @@ function App() {
                   : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
               )}
             >
-              EMBRYO AI
+              {t('home.ai_assistant')}
             </button>
           </nav>
         )}
@@ -197,16 +208,16 @@ function App() {
           {currentView !== 'home' && currentView !== 'video-player' && currentView !== 'podcast-player' && (
             <header className="hidden md:block text-center mt-4 mb-4 animate-slide-up w-full max-w-7xl pt-[env(safe-area-inset-top,0px)]">
               <h1 className="text-4xl md:text-6xl font-anton tracking-wide text-dark mb-2 uppercase">
-                Embryologie <span className="text-amber-500">Biodynamique</span>
+                {t('app.title_embryology')} <span className="text-amber-500">{t('app.title_biodynamic')}</span>
               </h1>
               <div className="flex flex-col items-center justify-center gap-1 mt-2">
                 <div className="flex items-center justify-center gap-2 text-sm md:text-base text-slate-500 font-medium">
                   <span className="w-6 h-px bg-slate-300 hidden sm:block"></span>
-                  <span>Formation dirigée par</span>
+                  <span>{t('app.directed_by')}</span>
                   <span className="font-bold text-slate-700">Marc Damoiseaux</span>
                   <span className="w-6 h-px bg-slate-300 hidden sm:block"></span>
                 </div>
-                <span className="text-xs md:text-sm text-slate-400 font-bebas tracking-widest uppercase">Ostéopathe D.O.</span>
+                <span className="text-xs md:text-sm text-slate-400 font-bebas tracking-widest uppercase">{t('app.osteopath')}</span>
               </div>
             </header>
           )}
@@ -265,11 +276,11 @@ function App() {
                     onClick={() => setCurrentView('home')}
                     className="hidden md:flex md:absolute md:left-4 items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 px-6 py-2 rounded-full font-bebas tracking-widest transition-colors shadow-sm active:scale-95 text-base shrink-0"
                   >
-                    ← Retour Accueil
+                    {t('app.back_to_home')}
                   </button>
                   <div className="inline-flex items-center justify-center px-4 sm:px-8 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
                     <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
-                      Mouvement Développemental
+                      {t('app.developmental_movement')}
                     </span>
                   </div>
                 </div>
@@ -406,7 +417,7 @@ function App() {
                         <div className="space-y-6 md:space-y-8">
                           <h3 className="flex items-center text-xl md:text-2xl text-dark font-bebas tracking-wide mb-6 md:mb-8 uppercase">
                             <Heart className="mr-3 text-primary animate-pulse-slow shrink-0" size={24} />
-                            Processus, Mouvements et Feuillets
+                            {t('app.timeline_processes')}
                           </h3>
 
                           <div className="grid gap-5">
@@ -450,10 +461,12 @@ function App() {
                             <div className="mt-16 pt-10 border-t border-slate-200 animate-fade-in">
                               <h3 className="flex items-center text-2xl text-dark font-bebas tracking-wide mb-8 uppercase">
                                 <GitCommitHorizontal className="mr-3 text-primary" size={28} />
-                                Ciné-Dynamique du Jour
+                                {t('app.timeline_cine_dynamic')}
                               </h3>
-                              <div className="bg-slate-50 p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-hidden flex justify-center w-full max-w-full">
-                                <Mermaid chart={activeStage.mermaidCode} />
+                              <div className="bg-slate-50 p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-x-auto w-full">
+                                <div className="min-w-[600px] flex justify-center mx-auto">
+                                  <Mermaid chart={activeStage.mermaidCode} />
+                                </div>
                               </div>
                             </div>
                           )}
@@ -463,28 +476,28 @@ function App() {
                             <div className="mt-16 pt-10 border-t border-slate-200 animate-fade-in">
                               <h3 className="flex items-center text-2xl text-dark font-bebas tracking-wide mb-8 uppercase">
                                 <Sparkles className="mr-3 text-primary" size={28} />
-                                Pratique Biodynamique & Psychosomatique
+                                {t('app.timeline_practical')}
                               </h3>
                               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 {/* Fulcrums & Palpation */}
                                 <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
                                   <div>
                                     <h4 className="flex items-center text-dark font-bold text-lg mb-3 uppercase tracking-wide">
-                                      <Eye size={20} className="mr-2 text-primary" /> Fulcrums Précis
+                                      <Eye size={20} className="mr-2 text-primary" /> {t('app.timeline_fulcrums')}
                                     </h4>
                                     <p className="text-slate-600 text-base leading-relaxed font-medium">{activeStage.practicalIntegration.fulcrums}</p>
                                   </div>
                                   <div>
                                     <h4 className="flex items-center text-dark font-bold text-lg mb-3 uppercase tracking-wide">
                                       <Stethoscope size={20} className="mr-2 text-primary" />
-                                      Palpation Globale
+                                      {t('app.timeline_palpation')}
                                     </h4>
                                     <p className="text-slate-600 text-base leading-relaxed font-medium">{activeStage.practicalIntegration.generalPalpation}</p>
                                   </div>
                                   <div>
                                     <h4 className="flex items-center text-dark font-bold text-lg mb-3 uppercase tracking-wide">
                                       <HeartHandshake size={20} className="mr-2 text-primary" />
-                                      Posture du Thérapeute
+                                      {t('app.timeline_therapist_posture')}
                                     </h4>
                                     <p className="text-slate-600 text-base leading-relaxed font-medium">{activeStage.practicalIntegration.therapistPosture}</p>
                                   </div>
@@ -494,7 +507,7 @@ function App() {
                                   {/* Psychosomatic */}
                                   <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
                                     <h4 className="flex items-center text-dark font-bold text-lg mb-3 uppercase tracking-wide">
-                                      <Brain size={20} className="mr-2 text-primary" /> Psychosomatique & Symbolique
+                                      <Brain size={20} className="mr-2 text-primary" /> {t('app.timeline_psychosomatic')}
                                     </h4>
                                     <p className="text-slate-600 text-base leading-relaxed font-medium">{activeStage.practicalIntegration.psychosomatic}</p>
                                   </div>
@@ -502,7 +515,7 @@ function App() {
                                   {/* Layer Perceptions (if any) */}
                                   {activeStage.practicalIntegration.layerPerceptions && activeStage.practicalIntegration.layerPerceptions.length > 0 && (
                                     <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-                                      <h4 className="text-dark font-bold text-lg mb-5 uppercase tracking-wide">Perceptions Tissulaires par Feuillet</h4>
+                                      <h4 className="text-dark font-bold text-lg mb-5 uppercase tracking-wide">{t('app.timeline_layer_perceptions')}</h4>
                                       <div className="space-y-5">
                                         {activeStage.practicalIntegration.layerPerceptions.map((lp, idx) => (
                                           <div key={idx} className="flex flex-col">
@@ -523,7 +536,7 @@ function App() {
                     </div>
                   ) : (
                     <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-16 flex items-center justify-center h-full">
-                      <p className="text-slate-400 font-medium text-lg">Aucune donnée pour ce feuillet temporel.</p>
+                      <p className="text-slate-400 font-medium text-lg">{t('app.timeline_no_data')}</p>
                     </div>
                   )}
                 </div>

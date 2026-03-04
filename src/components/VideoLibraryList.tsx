@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { type VideoCourse, videoCourses, getCategoryTotalDuration } from '../data/videoCourses';
+import { type VideoCourse, videoCourses as videoCoursesFr, getCategoryTotalDuration } from '../data/videoCourses';
+import { videoCourses as videoCoursesEn } from '../data/videoCourses_en';
+import { videoCourses as videoCoursesEs } from '../data/videoCourses_es';
 import { Play, Clock, BookOpen } from 'lucide-react';
 import { cn } from '../utils';
 import { motion, type Variants } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -12,10 +15,18 @@ interface VideoLibraryListProps {
 }
 
 export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVideo, onClose }) => {
+    const { t, i18n } = useTranslation();
+
+    const videoCourses = i18n.language.startsWith('en')
+        ? videoCoursesEn
+        : i18n.language.startsWith('es')
+            ? videoCoursesEs
+            : videoCoursesFr;
+
     // Default state to L'Ectoderme to skip 'Tous'
     const [selectedLayer, setSelectedLayer] = useState<string>("L'Ectoderme");
 
-    const filteredCourses = videoCourses.filter(v => {
+    const filteredCourses = videoCourses.filter((v: VideoCourse) => {
         let mappedCategory: string = v.categoryId;
         if (v.categoryId === 'ectoderme') mappedCategory = "L'Ectoderme";
         if (v.categoryId === 'endoderme') mappedCategory = "L'Endoderme";
@@ -40,6 +51,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
     };
 
     const tabs = ["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"];
+    const tKeys: Record<string, string> = { "L'Ectoderme": "ectoderm", "L'Endoderme": "endoderm", "Le Mésoderme": "mesoderm", "L'Oeil": "eye" };
 
     return (
         <div className="w-full flex-1 flex flex-col pt-0 pb-16">
@@ -51,12 +63,12 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                             onClick={onClose}
                             className="hidden md:flex md:absolute md:left-4 items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 px-6 py-2 rounded-full font-bebas tracking-widest transition-colors shadow-sm active:scale-95 text-base shrink-0"
                         >
-                            ← Retour Accueil
+                            {t('videoLibrary.backToHome')}
                         </button>
                     )}
                     <div className="inline-flex items-center justify-center px-4 sm:px-8 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
                         <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
-                            Formation Complète
+                            {t('videoLibrary.completeFormation')}
                         </span>
                     </div>
                 </div>
@@ -106,7 +118,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         "font-bebas text-lg sm:text-xl tracking-wider leading-none mb-1 whitespace-nowrap",
                                         isSelected ? "text-white" : style.unselectedText
                                     )}>
-                                        {layer}
+                                        {t(`videoLibrary.layers.${tKeys[layer as keyof typeof tKeys]}`)}
                                     </span>
 
                                     <span className={cn(
@@ -177,7 +189,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                             <div className="flex items-center gap-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-0 group-hover:h-auto overflow-hidden">
                                                 <span className="text-[10px] sm:text-xs text-slate-400 font-medium font-sans flex items-center gap-1">
                                                     <BookOpen size={10} />
-                                                    Retranscription incluse
+                                                    {t('videoLibrary.includedTranscript')}
                                                 </span>
                                             </div>
                                         </div>
@@ -194,8 +206,8 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                         })
                     ) : (
                         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm py-20 px-6 text-center mt-4 flex flex-col items-center justify-center">
-                            <p className="text-slate-700 text-lg sm:text-xl font-medium">Aucune vidéo disponible pour ce feuillet pour le moment.</p>
-                            <p className="text-slate-400 text-sm mt-3">D'autres cours et retranscriptions seront ajoutés prochainement.</p>
+                            <p className="text-slate-700 text-lg sm:text-xl font-medium">{t('videoLibrary.noVideoTitle')}</p>
+                            <p className="text-slate-400 text-sm mt-3">{t('videoLibrary.noVideoSub')}</p>
                         </div>
                     )
                 }

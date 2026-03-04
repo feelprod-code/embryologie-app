@@ -33,101 +33,135 @@ export interface StageDataV2 {
 }
 
 const colors = `
-classDef ecto fill:#1e3a8a,stroke:#3b82f6,color:#bfdbfe,stroke-width:2px;
-classDef meso fill:#14532d,stroke:#22c55e,color:#bbf7d0,stroke-width:2px;
-classDef endo fill:#7f1d1d,stroke:#ef4444,color:#fecaca,stroke-width:2px;
-classDef global fill:#1f2937,stroke:#4b5563,color:#d1d5db,stroke-width:2px;
+classDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;
+classDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;
+classDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;
+classDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;
 `;
 
 export const detailedStages: StageDataV2[] = [
     {
         id: "j-0",
         dayLabel: "Avant Jour 1",
-        period: "Période Pré-conceptuelle",
-        title: "Polarité et Préparation",
-        generalDescription: "L'ovocyte possède une polarité dictée par les cellules folliculaires et nourricières.",
+        period: "Période Pré-conceptuelle & Maturation",
+        title: "Polarité, Préparation et Informations",
+        generalDescription: "L'ovocyte n'est pas neutre. Dès sa maturation dans les follicules, il est baigné dans les fluides systémiques de la mère, s'imprégnant de l'environnement biochimique et émotionnel.",
         events: [
             {
                 order: 1,
                 layer: "N/A",
-                movement: "Drapeau de Wolpert",
-                description: "Mise en place des concentrations moléculaires dans l'ovocyte, déterminant le pôle assimilateur (métabolique) et un noyau excentré."
+                movement: "Maturation & Empreinte Transgénérationnelle",
+                description: "Le stock d'ovocytes est constitué in utero. Les chocs émotionnels et la qualité de la circulation sanguine maternelle imprègnent déjà ces cellules. L'ovocyte intègre les stress de la mère mais aussi de la grand-mère."
+            },
+            {
+                order: 2,
+                layer: "N/A",
+                movement: "Drapeau de Wolpert (Concentration)",
+                description: "Mise en place de l'axe métabolique asymétrique. Les protéines et l'ARN messager maternels se polarisent, déplaçant le noyau vers le pôle animal. C'est l'apparition de l'axe crânio-caudal de référence, bien avant la fécondation."
+            },
+            {
+                order: 3,
+                layer: "N/A",
+                movement: "Pôle Assimilateur",
+                description: "Ségrégation entre le vitellus (réserves énergétiques) et les gradients morphogènes. Le cytosquelette s'organise et met l'ovocyte sous tension pour la réception."
             }
         ],
         themeColor: "bg-blue-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Ovocyte]:::global -->|Influence Folliculaire| B(Drapeau de Wolpert<br/>Polarité Moléculaire):::global\n  B --> C[Pôle Assimilateur]:::global`
+        mermaidCode: `graph TD\n${colors}\n  A[Ovocyte en Maturation]:::global -->|Empreinte Maternelle| B(Fluides et Sécrétions Folliculaires):::global\n  B --> C[Drapeau de Wolpert]:::global\n  C --> D(Axe Crânio-Caudal Originel):::global\n  D --> E[Pôle Synthétique/Noyau]:::global`
     },
     {
         id: "j-1",
         dayLabel: "Jour 1",
         period: "Fécondation",
-        title: "Fécondation et Vague Calcique",
-        generalDescription: "Le spermatozoïde traverse la zone pellucide par reconnaissance de la protéine ZP3.",
+        title: "La Rencontre & La Vague Calcique",
+        generalDescription: "A l'ampoule tubaire, un seul spermatozoïde va pénétrer. C'est une explosion énergétique et le moment absolu de l'incarnation.",
         events: [
             {
                 order: 1,
                 layer: "Global",
-                movement: "Vague Calcique",
-                description: "Réorganisation totale du cytosquelette et de l'axe crânio-caudal de l'ovule suite à la pénétration. Un champ électromagnétique primitif s'installe."
+                movement: "Reconnaissance de Clé (ZP3)",
+                description: "L'ovocyte 'choisit' activement par reconnaissance enzymatique via la protéine ZP3 de sa zone pellucide. Un non-accueil ou court-circuit de cette phase (ex. FIV) ne crée pas la cicatrice électrique naturelle de J1."
             },
             {
                 order: 2,
+                layer: "Global",
+                movement: "Choc Électromagnétique",
+                description: "Dès l'entrée, inversion électrique immédiate (blocage de la polyspermie) et libération explosive du zinc. L'ovocyte termine sa méiose."
+            },
+            {
+                order: 3,
+                layer: "Global",
+                movement: "La Vague Calcique Massive",
+                description: "Réorganisation totale et foudroyante du cytosquelette dictée par un déferlement de calcium. C'est l'étincelle de vie qui fige l'axe crânio-caudal (vestige projeté plus tard vers S2/Coccyx, et relié au Cœur)."
+            },
+            {
+                order: 4,
                 layer: "L'Oeil",
-                movement: "Ancrage Énergétique et Polarité",
-                description: "L'organisation temporelle du premier jour induit un champ métabolique et une polarité. L'Oeil y trouve sa première assise dans le schéma organisationnel global."
+                movement: "Assise de l'Information Sensorielle",
+                description: "Bien que l'œil physique n'existe pas, la polarité du système nerveux central et diencéphalique trouve sa fondation dans le champ électrique produit à cet instant."
             }
         ],
         themeColor: "bg-purple-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Fécondation]:::global -->|Pénétration Sp.| B(Vague Calcique Massive):::global\n  B --> C[Champ Électromagnétique Primitif]:::global\n  B --> D[Réorganisation Crânio-Caudale]:::global`,
+        mermaidCode: `graph TD\n${colors}\n  A[Fécondation]:::global -->|Reconnaissance ZP3| B(Inversion Électrique):::global\n  B --> C[Libération du Zinc]:::global\n  C --> D{Vague Calcique Explosive}:::global\n  D --> E(Réorganisation Cytosquelette):::global\n  D --> F(Cristallisation de l'Axe Central):::global`,
         practicalIntegration: {
             fulcrums: "Origine Épigénétique du Cœur : vestige énergétique de la fécondation descendant jusqu'à S2/Coccyx. L'axe Cœur-Coccyx relie le cœur actuel à sa source conceptionnelle.",
             generalPalpation: "Diagnostic de motilité tissulaire cardiaque dans l'espace facial : Systole faciale (verticalisation, sur-action, épuisement) vs Diastole faciale (horizontalisation, prostration, recherche d'énergie originelle vers le coccyx).",
+            layerPerceptions: [
+                { layer: "Global", perception: "Onde primitive, fluctuation d'amplitude très longue orientée selon l'axe longitudinal originel." }
+            ],
             therapistPosture: "Main inférieure sous le bassin (S2/Coccyx, lieu originel de l'axe) et main supérieure sur l'axe du Cœur (angle de Louis). Le but est de reconnecter le tissu cardiaque à son 'blueprint' coccygien.",
-            psychosomatic: "Verdict = La Rencontre et l'Information Transgénérationnelle. L'ovocyte reconnaît la clé ZP3. Les FIV/ICSI (sans reconnaissance enzymatique) créent une 'fausse cicatrice' à J1. C'est l'omission de cette étape qui crée un manque de reconnaissance. Le thérapeute répare cette lésion en regardant et en touchant littéralement 'avec l'in-formation de son propre cœur'."
+            psychosomatic: "Verdict = La Rencontre et l'Information Transgénérationnelle. L'ovocyte reconnaît la clé ZP3. C'est le moment de la 'cicatrice originelle'. Traitement par et avec le champ du cœur."
         }
     },
     {
         id: "j-1-4",
         dayLabel: "Jours 1 à 4",
         period: "1ère Semaine",
-        title: "Le Clivage et l'Endoderme Primitif",
-        generalDescription: "Le zygote subit le processus de clivage. Une explosion métabolique a lieu dans un espace confiné (membrane pellucide) sans croissance volumétrique globale.",
+        title: "Stagnation Radicale et Clivage",
+        generalDescription: "Le zygote effectue une cascade de multiplications en se serrant, sans aucune croissance de volume total.",
         events: [
             {
                 order: 1,
                 layer: "Global",
-                movement: "Stagnation Volumétrique & Explosion Métabolique",
-                description: "L'embryon se multiplie en de nombreux blastomères mais ne grandit pas en volume. Chaque division augmente exponentiellement la surface membranaire par rapport au volume, générant une énorme concentration d'énergie."
+                movement: "Prison de la Zone Pellucide",
+                description: "Le système est enfermé dans cette coque. Le zygote se clive en 2, puis 4, 8, et 16 cellules (la Morula). L'absence d'espace de croissance génère une immense pression énergétique latente."
             },
             {
                 order: 2,
-                layer: "L'Endoderme",
-                movement: "Création du Blastocèle (Endoderme Précoce)",
-                description: "Une petite perte d'eau (exsudat) se produit à chaque clivage. L'accumulation de cet exsudat liquidien repousse les cellules et forme la toute première cavité liquidienne de l'embryon : le blastocèle. Ce blastocèle excentré est la toute première image du système digestif (l'endoderme très précoce) et l'ébauche de la future vésicule vitelline."
+                layer: "Global",
+                movement: "Explosion Métabolique (Augmentation Surfaces)",
+                description: "À volume égal, la surface membranaire est multipliée exponentiellement. Cette concentration extrême de membrane démultiplie l'activité et la respiration cellulaires."
             },
             {
                 order: 3,
-                layer: "Global",
-                movement: "L'Éclosion",
-                description: "Vers J3-J4, la puissance métabolique, la multiplication et la pression liquidienne font céder la zone pellucide. L'embryon se retrouve libre, avec un pôle embryonnaire dense prêt pour la nidation."
+                layer: "L'Endoderme",
+                movement: "Naissance du Blastocèle (Moteur Digestif Précoce)",
+                description: "Pendant ce clivage sous pression, les cellules rejettent un exsudat liquidien (premiers déchets). Ce fluide repousse les blastomères vers l'extérieur (le trophoblaste) et forme le blastocèle. Cette cavité est la toute première amorce asymétrique du système digestif et de l'absorption."
             },
             {
                 order: 4,
-                layer: "L'Oeil",
-                movement: "Concentration Métabolique",
-                description: "Dans cette masse en division (stade morula), l'énergie métabolique s'affine. L'organisation topographique commence à esquisser la future ligne médiane et le pôle céphalique (dont dérivera l'Oeil)."
+                layer: "L'Ectoderme",
+                movement: "Pôle Embryonnaire et Centralisation",
+                description: "Les cellules massées d'un côté (Bouton Embryonnaire) préparent secrètement le terrain du fameux disque qui deviendra le système nerveux et la peau."
+            },
+            {
+                order: 5,
+                layer: "Global",
+                movement: "Rupture et Éclosion (J4)",
+                description: "La pression intra-luminale du liquide et la multiplication rendent la situation intenable. L'embryon brise la zone pellucide pour s'en extraire, prêt à s'arrimer à la mère."
             }
         ],
         themeColor: "bg-indigo-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Zygote]:::global --> B(Divisions sans Croissance<br/>Blastomères):::global\n  B -->|Stagnation spatiale| C[Explosion Métabolique Membranaire]:::global\n  C -->|Pression & Exsudats| D(Blastocèle<br/>Endoderme Précoce):::endo\n  D --> E{Éclosion de la Zone Pellucide<br/>J3-J4}:::global\n  E --> F[Prêt pour Nidation]:::global`,
+        mermaidCode: `graph TD\n${colors}\n  A[Zygote]:::global --> B(Divisions sans Croissance Volumétrique):::global\n  B -->|Augmentation Surface Membranaire| C[Pression Métabolique & Energétique]:::global\n  C -->|Rejet d'Exsudat Liquidien| D(Blastocèle<br/>Apparition Endoderme):::endo\n  D --> E[Concentration du Bouton Embryonnaire]:::ecto\n  E --> F{Éclosion Radicale J4/J5}:::global`,
         practicalIntegration: {
-            fulcrums: "Axe crânio-caudal primitif (projeté entre Cœur et Coccyx) et l'Ombilic (pédicule originel).",
-            generalPalpation: "Densification métabolique sans croissance spatiale. Fluctuation longitudinale primitive et l'exsudat liquidien excentré du blastocèle.",
+            fulcrums: "Axe crânio-caudal primitif et les 'enveloppes de pression'. Le Blastocèle précoce comme origine des tensions viscérales.",
+            generalPalpation: "Densification métabolique sans expansion des tissus. Perception d'une fluctuation longitudinale entravée, et recherche de « relâchement/éclosion » aux niveaux tissulaires profonds.",
             layerPerceptions: [
-                { layer: "Global", perception: "Travail purement membranaire (pellucide) et liquidien autocrine (champs de pression)." }
+                { layer: "Global", perception: "Travail purement membranaire (pellucide) et liquidien autocrine (champs de pression)." },
+                { layer: "L'Endoderme", perception: "Dynamique d'accumulation et d'épanchement liquidien (le début de la physiologie d'absorption et d'élimination endodermique)." }
             ],
-            therapistPosture: "Position de présence asymétrique, main globale captant l'ensemble du volume (non encore différencié).",
-            psychosomatic: "Verdict = La reconnaissance. L'ovocyte reconnaît la clé ZP3 du spermatozoïde. En cas de FIV/ICSI (absence de reconnaissance naturelle menant à une « fausse cicatrice »), le traitement passe par le Cœur pour restaurer cette étape originelle d'acceptation de l'incarnation."
+            therapistPosture: "Position de présence asymétrique, main globale captant l'ensemble du volume encore indiscernable.",
+            psychosomatic: "Verdict = L'enfermement, l'attente et l'accumulation. Dynamique de retenue avant la grande 'libération'."
         }
     },
     {
