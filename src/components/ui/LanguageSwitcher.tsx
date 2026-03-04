@@ -3,9 +3,57 @@ import { cn } from '../../utils';
 import { useState, useRef, useEffect } from 'react';
 
 const languages = [
-    { code: 'fr', flag: '🇫🇷', label: 'Français' },
-    { code: 'en', flag: '🇬🇧', label: 'English' },
-    { code: 'es', flag: '🇪🇸', label: 'Español' },
+    {
+        code: 'fr',
+        label: 'Français',
+        flag: (
+            <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                <mask id="mask_fr" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+                    <circle cx="256" cy="256" r="256" fill="white" />
+                </mask>
+                <g mask="url(#mask_fr)">
+                    <rect width="170.6" height="512" fill="#002395" />
+                    <rect x="170.6" width="170.6" height="512" fill="#FFFFFF" />
+                    <rect x="341.3" width="171.4" height="512" fill="#ED2939" />
+                </g>
+            </svg>
+        )
+    },
+    {
+        code: 'en',
+        label: 'English',
+        flag: (
+            <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                <mask id="mask_en" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+                    <circle cx="256" cy="256" r="256" fill="white" />
+                </mask>
+                <g mask="url(#mask_en)">
+                    <rect width="512" height="512" fill="#012169" />
+                    <path d="M0 0 L512 512 M512 0 L0 512" stroke="#FFFFFF" strokeWidth="60" />
+                    <path d="M0 0 L512 512 M512 0 L0 512" stroke="#C8102E" strokeWidth="40" />
+                    <path d="M256 0 V512 M0 256 H512" stroke="#FFFFFF" strokeWidth="100" />
+                    <path d="M256 0 V512 M0 256 H512" stroke="#C8102E" strokeWidth="60" />
+                </g>
+            </svg>
+        )
+    },
+    {
+        code: 'es',
+        label: 'Español',
+        flag: (
+            <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                <mask id="mask_es" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+                    <circle cx="256" cy="256" r="256" fill="white" />
+                </mask>
+                <g mask="url(#mask_es)">
+                    <rect width="512" height="128" fill="#AA151B" />
+                    <rect y="128" width="512" height="256" fill="#F1BF00" />
+                    <rect y="384" width="512" height="128" fill="#AA151B" />
+                    <circle cx="160" cy="256" r="50" fill="#AA151B" opacity="0.8" />
+                </g>
+            </svg>
+        )
+    },
 ];
 
 export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'desktop-nav' | 'bottom-nav' }) {
@@ -29,28 +77,34 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
 
     return (
         <div className="relative" ref={menuRef}>
-            {/* Trigger Button - A circle containing the flag */}
+            {/* Trigger Button - A circle containing the flag exactly the size of other icons (e.g. 24px inner for mobile) */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={cn(
-                    "flex items-center justify-center rounded-full transition-all duration-200 border",
-                    variant === 'bottom-nav'
-                        ? "w-8 h-8 bg-white shadow-sm border-slate-200/80 active:scale-95"
-                        : "w-10 h-10 bg-white/80 border-slate-200 shadow-sm hover:bg-white hover:shadow"
+                    "flex flex-col items-center justify-center transition-all duration-200 group active:scale-95",
+                    variant === 'bottom-nav' ? "pt-3 pb-2 gap-1 w-full" : "w-10 h-10 rounded-full hover:bg-slate-100"
                 )}
                 aria-label="Changer de langue"
             >
-                <span className={cn("drop-shadow-sm transition-transform", isOpen && "scale-110", variant === 'bottom-nav' ? "text-base" : "text-xl")}>
+                <div className={cn(
+                    "transition-transform duration-200 overflow-hidden flex items-center justify-center rounded-full shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-slate-50",
+                    variant === 'bottom-nav' ? "w-6 h-6" : "w-7 h-7"
+                )}>
                     {activeLang.flag}
-                </span>
+                </div>
+                {variant === 'bottom-nav' && (
+                    <span className={cn("text-[10px] tracking-wide transition-all font-normal text-slate-400 group-hover:text-slate-600")}>
+                        {activeLang.code.toUpperCase()}
+                    </span>
+                )}
             </button>
 
             {/* Dropdown Menu */}
             {isOpen && (
                 <div
                     className={cn(
-                        "absolute right-0 flex flex-col bg-white/95 backdrop-blur-xl border border-slate-200/60 shadow-xl rounded-xl overflow-hidden min-w-[130px] z-50 animate-in fade-in zoom-in-95 duration-100",
-                        variant === 'bottom-nav' ? "bottom-full mb-3 origin-bottom-right" : "top-full mt-3 origin-top-right"
+                        "absolute right-1/2 translate-x-1/2 md:translate-x-0 md:right-0 flex flex-col bg-white/95 backdrop-blur-xl border border-slate-200/60 shadow-xl rounded-xl overflow-hidden min-w-[130px] z-50 animate-in fade-in zoom-in-95 duration-100",
+                        variant === 'bottom-nav' ? "bottom-full mb-2" : "top-full mt-2 origin-top-right"
                     )}
                 >
                     {languages.map((lang) => (
@@ -65,7 +119,9 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
                                 activeLang.code === lang.code ? "text-[#F27D33] bg-orange-50/50" : "text-slate-700"
                             )}
                         >
-                            <span className="text-xl drop-shadow-sm">{lang.flag}</span>
+                            <div className="w-5 h-5 rounded-full overflow-hidden shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-slate-50 flex-shrink-0">
+                                {lang.flag}
+                            </div>
                             <span>{lang.label}</span>
                         </button>
                     ))}
