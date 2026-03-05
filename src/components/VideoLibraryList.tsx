@@ -79,7 +79,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                         {tabs.map(layer => {
                             const isSelected = selectedLayer === layer;
 
-                            let lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
+                            const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
                             const cId = lmap[layer as keyof typeof lmap];
 
                             const layerStyles: Record<string, { activeBg: string; activeBorder: string; activeText: string; dot: string; hover: string; unselectedBg?: string; unselectedText?: string; unselectedBorder?: string }> = {
@@ -107,7 +107,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     key={layer}
                                     onClick={() => setSelectedLayer(layer)}
                                     className={cn(
-                                        "relative flex flex-col items-center justify-center py-3 px-2 rounded-[1.2rem] min-w-[120px] sm:min-w-[140px] border shrink-0 snap-center transition-all duration-300",
+                                        "relative flex flex-col items-center justify-center py-3 px-2 rounded-[1.2rem] min-w-[120px] sm:min-w-[140px] border shrink-0 snap-center transition-all duration-300 cursor-pointer touch-manipulation active:scale-95",
                                         isSelected
                                             ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white`
                                             : `${style.unselectedBg} ${style.unselectedBorder} ${style.unselectedText} shadow-sm ${style.hover}`
@@ -125,7 +125,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         isSelected ? "text-white/80" : style.unselectedText
                                     )}>
                                         <Clock size={10} className="inline mr-1 mb-[1px]" />
-                                        {getCategoryTotalDuration(cId as any)}
+                                        {getCategoryTotalDuration(cId as "ectoderme" | "endoderme" | "mesoderme" | "oeil")}
                                     </span>
                                 </button>
                             );
@@ -183,7 +183,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                 "text-sm sm:text-lg lg:text-xl font-sans font-medium tracking-wide truncate transition-transform duration-300 uppercase sm:group-hover:translate-x-1",
                                                 "text-slate-700", activeListStyle.textHover
                                             )}>
-                                                {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}- ` : '') + course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
+                                                {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}- ` : '') + course.title.replace(/^\d+[.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
                                             </h3>
                                             <div className="flex items-center gap-2 mt-1 opacity-70 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                                                 <span className="text-[10px] sm:text-xs text-slate-400 font-medium font-sans flex items-center gap-1">

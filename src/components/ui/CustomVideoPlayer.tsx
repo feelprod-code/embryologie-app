@@ -34,8 +34,6 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
     // Isolated Subtitle State to prevent parent re-renders
     const [activeSubtitle, setActiveSubtitle] = useState<string | null>(null);
-    const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
-    const [hasSubtitles, setHasSubtitles] = useState(false);
     const cuesRef = useRef<{ start: number, end: number, text: string }[]>([]);
 
     const parseVttTime = (timeStr: string) => {
@@ -59,7 +57,6 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
         const fetchVtt = async () => {
             setActiveSubtitle(null);
-            setHasSubtitles(false);
             try {
                 const langCode = getCloudflareLangCode(i18n.language);
                 let vttText = '';
@@ -157,9 +154,6 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     }
                 }
                 cuesRef.current = parsedCues;
-                if (parsedCues.length > 0) {
-                    setHasSubtitles(true);
-                }
             } catch (error: unknown) {
                 console.error('[VTT] Parsing Error:', error);
             }
@@ -207,29 +201,10 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     }}
                 />
 
-                {/* --- CC TOGGLE BUTTON --- */}
-                {hasSubtitles && (
-                    <button
-                        onClick={() => setSubtitlesEnabled(!subtitlesEnabled)}
-                        className={`absolute top-3 right-3 z-[2147483648] p-1.5 rounded-lg backdrop-blur-md transition-all shadow-md border ${subtitlesEnabled
-                            ? 'bg-white/90 text-slate-800 border-white/50'
-                            : 'bg-black/60 text-white/90 border-white/20'
-                            }`}
-                        aria-label="Toggle Subtitles"
-                        style={{ pointerEvents: 'auto' }}
-                    >
-                        {subtitlesEnabled ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="14" x="3" y="5" rx="2" ry="2" /><path d="M7 15h4M15 15h2M7 11h2M13 11h4" /></svg>
-                        ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="14" x="3" y="5" rx="2" ry="2" /><path d="M7 15h4M15 15h2M7 11h2M13 11h4" /><line x1="3" x2="21" y1="3" y2="21" /></svg>
-                        )}
-                    </button>
-                )}
-
                 {/* --- CUSTOM SUBTITLE OVERLAY --- */}
-                {subtitlesEnabled && activeSubtitle && (
+                {activeSubtitle && (
                     <div
-                        className="absolute bottom-[10%] left-0 right-0 flex justify-center items-end"
+                        className="absolute bottom-2 left-0 right-0 flex justify-center items-end"
                         style={{ zIndex: 2147483647, transform: 'translate3d(0, 0, 100px)', pointerEvents: 'none' }}
                     >
                         <div
