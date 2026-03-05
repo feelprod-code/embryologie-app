@@ -72,19 +72,27 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
         // 1. Tenter le chargement depuis les fichiers locaux D'ABORD (dans public/vtt/)
         try {
+          console.log(`[VTT] Attempting to load local file: /vtt/${course.cloudflareId}_${lang}.vtt`);
           const localVttRes = await fetch(`/vtt/${course.cloudflareId}_${lang}.vtt`);
           if (localVttRes.ok) {
             vttText = await localVttRes.text();
+            console.log(`[VTT] Local file loaded successfully! (${vttText.length} bytes)`);
+          } else {
+            console.log(`[VTT] Local file NOT FOUND (HTTP ${localVttRes.status})`);
           }
         } catch (e) {
-          console.log('Local VTT not found, falling back to Cloudflare...');
+          console.log('[VTT] Error fetching local VTT:', e);
         }
 
         // 2. FALLBACK : Aller chercher sur Cloudflare si pas en local
         if (!vttText || !vttText.includes('WEBVTT')) {
+          console.log(`[VTT] Invalid or missing local VTT. Falling back to Cloudflare Stream API...`);
           const baseUrl = 'https://customer-6i2z59dst7q6iswv.cloudflarestream.com';
           const manifestRes = await fetch(`${baseUrl}/${course.cloudflareId}/manifest/video.m3u8`);
-          if (!manifestRes.ok) return;
+          if (!manifestRes.ok) {
+            console.log(`[VTT] Cloudflare manifest fetch failed: HTTP ${manifestRes.status}`);
+            return;
+          }
           const manifestText = await manifestRes.text();
 
           const lines = manifestText.split('\n');
@@ -92,26 +100,45 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           if (!subtitleUri) {
             subtitleUri = lines.find(l => l.includes('TYPE=SUBTITLES'));
           }
-          if (!subtitleUri) return;
+          if (!subtitleUri) {
+            console.log(`[VTT] No SUBTITLES found in Cloudflare manifest for ${course.cloudflareId}`);
+            return;
+          }
 
           const uriMatch = subtitleUri.match(/URI="([^"]+)"/);
-          if (!uriMatch || !uriMatch[1]) return;
+          if (!uriMatch || !uriMatch[1]) {
+            console.log(`[VTT] Subtitle URI missing match in manifest`);
+            return;
+          }
 
           const subManifestFile = uriMatch[1];
           const subManifestRes = await fetch(`${baseUrl}/${course.cloudflareId}/manifest/${subManifestFile}`);
-          if (!subManifestRes.ok) return;
+          if (!subManifestRes.ok) {
+            console.log(`[VTT] Sub manifest fetch failed HTTP ${subManifestRes.status}`);
+            return;
+          }
           const subManifestText = await subManifestRes.text();
 
           const vttPathLine = subManifestText.split('\n').find(l => l.includes('.vtt'));
-          if (!vttPathLine) return;
+          if (!vttPathLine) {
+            console.log(`[VTT] No .vtt path in sub manifest`);
+            return;
+          }
 
           const actualVttPath = vttPathLine.replace(/^(\.\.\/)+/, '');
           const vttRes = await fetch(`${baseUrl}/${actualVttPath}`);
-          if (!vttRes.ok) return;
+          if (!vttRes.ok) {
+            console.log(`[VTT] Final VTT fetch failed HTTP ${vttRes.status}`);
+            return;
+          }
           vttText = await vttRes.text();
+          console.log(`[VTT] Successfully fetched Cloudflare VTT (${vttText.length} bytes)`);
         }
 
-        if (!vttText || !vttText.includes('WEBVTT')) return;
+        if (!vttText || !vttText.includes('WEBVTT')) {
+          console.log(`[VTT] Final failure: no WEBVTT signature in loaded text`);
+          return;
+        }
 
         // 6. Parse VTT and break down huge blocks
         const vttLines = vttText.split('\n');
@@ -197,10 +224,19 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         return prev;
       }
     });
+
+    // temporary debug for iOS testing
+    const debugEl = document.getElementById('vtt-debug-info');
+    if (debugEl) {
+      debugEl.innerHTML = `VTT<br/>Cues: ${cuesRef.current.length}<br/>Time: ${currentTime.toFixed(1)}s<br/>Active: ${active ? 'YES' : 'NO'}<br/>Sub: ${active?.text ? active.text.substring(0, 15) : 'none'}`;
+    }
   };
   return (
     <div className="w-full max-w-7xl mx-auto flex flex-col h-[100dvh] overflow-hidden bg-slate-50/50">
-
+      {/* GLOBAL DEBUG OVERLAY */}
+      <div id="vtt-debug-info" className="fixed top-24 left-4 z-[99999] bg-black/90 text-lime-400 text-[10px] sm:text-xs font-mono p-2 sm:p-4 rounded-xl pointer-events-none shadow-2xl border-2 border-lime-400">
+        WAITING FOR VIDEO...
+      </div>
       <div className="w-[100vw] sm:w-full overflow-x-auto no-scrollbar -mx-2 sm:-mx-0 pb-3 pt-2 mb-2 border-b border-slate-100 snap-x">
         <div className="flex flex-nowrap items-stretch gap-2 px-4 sm:px-0 w-max mx-auto md:mx-0">
           {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {

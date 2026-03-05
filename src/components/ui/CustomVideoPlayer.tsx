@@ -48,29 +48,20 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     onEnded={onEnded}
                     style={{ position: 'absolute', top: 0, left: 0 }}
                     onReady={() => {
-                        // The user will handle subtitle removal at the Cloudflare HLS source.
-                        // We rely entirely on the custom VTT parser.
+                        // iOS/Safari strict inline enforcement directly on the deeply nested <video> tag
+                        const videoElement = playerRef.current?.getInternalPlayer() as HTMLVideoElement;
+                        if (videoElement) {
+                            videoElement.setAttribute('playsinline', 'true');
+                            videoElement.setAttribute('webkit-playsinline', 'true');
+                            videoElement.disablePictureInPicture = true;
+                        }
                     }}
                     config={{
                         file: {
                             attributes: {
                                 playsInline: true,
-                                webkitPlaysInline: true,
-                                'webkit-playsinline': true,
-                                disablePictureInPicture: true,
                                 controlsList: "nodownload noremoteplayback"
-                            },
-                            hlsOptions: {
-                                autoStartLoad: true,
-                                startPosition: -1,
-                                capLevelToPlayerSize: true,
-                                enableWorker: true,
-                                // EXTREME TextTrack Prevention for Hls.js
-                                subtitleDisplay: false,
-                                renderTextTracksNatively: false,
-                                enableWebVTT: false,
-                            },
-                            tracks: []
+                            }
                         }
                     } as any}
                 />
