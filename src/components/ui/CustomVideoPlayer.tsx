@@ -54,7 +54,9 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     config={{
                         file: {
                             attributes: {
-                                playsinline: true,
+                                playsInline: true,
+                                webkitPlaysInline: true,
+                                'webkit-playsinline': true,
                                 disablePictureInPicture: true,
                                 controlsList: "nodownload noremoteplayback"
                             },
