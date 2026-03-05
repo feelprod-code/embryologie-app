@@ -34,11 +34,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
     // Isolated Subtitle State to prevent parent re-renders
     const [activeSubtitle, setActiveSubtitle] = useState<string | null>(null);
-    const cuesRef = useRef<any[]>([]);
-
-    // Detailed debug state
-    const [debugLog, setDebugLog] = useState<string>("Init...");
-    const [debugTime, setDebugTime] = useState<number>(0);
+    const cuesRef = useRef<{ start: number, end: number, text: string }[]>([]);
 
     const parseVttTime = (timeStr: string) => {
         const parts = timeStr.replace(',', '.').split(':');
@@ -54,60 +50,47 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
     useEffect(() => {
         if (!cloudflareId) {
-            setDebugLog("No CF ID");
             return;
         }
 
         cuesRef.current = [];
-        setActiveSubtitle(null);
-        setDebugLog("Starting fetch...");
-
         const fetchVtt = async () => {
+            setActiveSubtitle(null);
             try {
                 const langCode = getCloudflareLangCode(i18n.language);
                 let vttText = '';
 
                 // Try fetching directly from Cloudflare downloads first
                 const vttUrl = `https://customer-6i2z59dst7q6iswv.cloudflarestream.com/${cloudflareId}/downloads/default.vtt?lang=${langCode}`;
-                setDebugLog(`Fetching CF in ${langCode}`);
 
                 try {
                     const response = await fetch(vttUrl);
                     if (response.ok) {
                         vttText = await response.text();
-                        setDebugLog(`Fetched CF ok. len:${vttText.length}`);
                     } else {
-                        setDebugLog(`CF HTTP Err: ${response.status}`);
                         // Fallback
                         const localVttRes = await fetch(`/vtt/${cloudflareId}_${langCode}.vtt`);
                         if (localVttRes.ok) {
                             vttText = await localVttRes.text();
-                            setDebugLog(`Fetched Local ok. len:${vttText.length}`);
                         } else {
-                            setDebugLog(`Local HTTP Err: ${localVttRes.status}`);
                             return;
                         }
                     }
-                } catch (fetchErr: any) {
-                    setDebugLog(`Fetch Exc: ${fetchErr.message || fetchErr}`);
+                } catch {
                     // Fallback on exception
                     try {
                         const localVttRes = await fetch(`/vtt/${cloudflareId}_${langCode}.vtt`);
                         if (localVttRes.ok) {
                             vttText = await localVttRes.text();
-                            setDebugLog(`Fetched Local after exc ok.`);
                         } else {
-                            setDebugLog(`Local exc HTTP: ${localVttRes.status}`);
                             return;
                         }
-                    } catch (e: any) {
-                        setDebugLog(`Local exc: ${e.message}`);
+                    } catch {
                         return;
                     }
                 }
 
                 if (!vttText) {
-                    setDebugLog("vttText is empty");
                     return;
                 }
 
@@ -119,11 +102,25 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     if (lines[i].includes('-->')) {
                         const [startStr, endStr] = lines[i].split(' --> ');
                         const start = parseVttTime(startStr.trim());
-                        const end = parseVttTime(endStr.trim());
+                        // Clean endStr which might contain "00:10.000 align:center position:50%"
+                        const cleanEndStr = endStr.trim().split(/[\s]/)[0];
+                        const end = parseVttTime(cleanEndStr);
                         i++;
                         let textAcc = '';
                         while (i < lines.length && lines[i].trim() !== '') {
-                            textAcc += lines[i].replace(/<[^>]+>/g, '') + ' ';
+                            let lineText = lines[i];
+                            // Strip VTT positioning like <v Speaker> or <c.color> tags
+                            lineText = lineText.replace(/<[^>]+>/g, '');
+                            // Replace common HTML entities that appear in auto-generated captions
+                            lineText = lineText
+                                .replace(/&nbsp;/g, ' ')
+                                .replace(/&amp;/g, '&')
+                                .replace(/&lt;/g, '<')
+                                .replace(/&gt;/g, '>')
+                                .replace(/&quot;/g, '"')
+                                .replace(/&#39;/g, "'");
+
+                            textAcc += lineText + ' ';
                             i++;
                         }
                         if (textAcc.trim() && !textAcc.includes('WEBVTT')) {
@@ -149,10 +146,8 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     }
                 }
                 cuesRef.current = parsedCues;
-                setDebugLog(`Parsed ok! cues: ${parsedCues.length}`);
-            } catch (error: any) {
+            } catch (error: unknown) {
                 console.error('[VTT] Parsing Error:', error);
-                setDebugLog(`Total Catch: ${error.message}`);
             }
         };
 
@@ -175,7 +170,6 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     onEnded={onEnded}
                     onTimeUpdate={() => {
                         const time = playerRef.current?.currentTime || 0;
-                        setDebugTime(time);
                         if (onTimeUpdate) onTimeUpdate(time);
 
                         let active = null;
@@ -195,34 +189,24 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                         }
                     }}
                     onCanPlay={() => {
-                        setDebugLog("CF Stream canplay fired!");
+                        // playback ready
                     }}
                 />
-
-                {/* --- DEBUG TELEMETRY (Temporary) --- */}
-                <div
-                    className="absolute top-2 left-2 bg-black/80 text-green-400 text-[10px] p-2 rounded pointer-events-none max-w-[90%] break-all"
-                    style={{ zIndex: 2147483647, transform: 'translate3d(0, 0, 100px)' }}
-                >
-                    Log: {debugLog} <br />
-                    VTT: {cuesRef.current.length} cues <br />
-                    Time: {debugTime.toFixed(1)}s <br />
-                    Sub: {activeSubtitle ? activeSubtitle.substring(0, 40) : 'none'}
-                </div>
 
                 {/* --- CUSTOM SUBTITLE OVERLAY --- */}
                 {activeSubtitle && (
                     <div
-                        className="absolute bottom-[10%] left-0 right-0 flex justify-center items-end pointer-events-none px-4"
-                        style={{ zIndex: 2147483647, transform: 'translate3d(0, 0, 100px)' }}
+                        className="absolute bottom-[15%] left-0 right-0 flex justify-center items-end"
+                        style={{ zIndex: 2147483647, transform: 'translate3d(0, 0, 100px)', pointerEvents: 'none' }}
                     >
                         <div
-                            className="bg-black/70 backdrop-blur-sm text-white px-5 py-2 max-w-2xl text-center rounded-xl shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-white/20 whitespace-pre-wrap break-words"
+                            className="bg-black/60 backdrop-blur-md text-white/95 px-4 py-2 sm:px-6 sm:py-2.5 mx-4 max-w-[90%] md:max-w-3xl text-center rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)] border border-white/10 whitespace-pre-wrap break-words"
                             style={{
-                                textShadow: '1px 1px 2px rgba(0,0,0,0.8), -1px -1px 2px rgba(0,0,0,0.8)',
-                                fontSize: 'clamp(1rem, 2.5vw, 1.4rem)',
-                                letterSpacing: '0.01em',
-                                lineHeight: '1.4'
+                                textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.6)',
+                                fontSize: 'clamp(1.1rem, 3vw, 1.6rem)',
+                                letterSpacing: '0.02em',
+                                lineHeight: '1.4',
+                                fontWeight: '600'
                             }}
                             dangerouslySetInnerHTML={{ __html: activeSubtitle }}
                         />
