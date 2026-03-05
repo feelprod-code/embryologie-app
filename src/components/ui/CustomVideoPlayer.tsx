@@ -165,6 +165,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             <div className={`w-full aspect-video bg-black overflow-hidden rounded-xl shadow-2xl relative ${className}`}>
                 <Stream
                     streamRef={playerRef}
+                    className="absolute top-0 left-0 w-full h-full"
                     src={cloudflareId}
                     controls={true}
                     width="100%"
@@ -172,8 +173,8 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     playbackRate={speed}
                     responsive={false} // Since we control width/height with container constraints
                     onEnded={onEnded}
-                    onTimeUpdate={(e: any) => {
-                        const time = e.currentTarget.currentTime || 0;
+                    onTimeUpdate={() => {
+                        const time = playerRef.current?.currentTime || 0;
                         setDebugTime(time);
                         if (onTimeUpdate) onTimeUpdate(time);
 
