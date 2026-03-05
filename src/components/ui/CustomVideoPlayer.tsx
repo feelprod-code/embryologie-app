@@ -71,6 +71,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                         file: {
                             attributes: {
                                 playsInline: true,
+                                crossOrigin: "anonymous",
                                 controlsList: "nodownload noremoteplayback"
                             },
                             tracks: dynamicSubtitlesUrl ? [
