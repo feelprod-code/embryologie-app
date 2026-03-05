@@ -84,19 +84,19 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                             const layerStyles: Record<string, { activeBg: string; activeBorder: string; activeText: string; dot: string; hover: string; unselectedBg?: string; unselectedText?: string; unselectedBorder?: string }> = {
                                 "L'Ectoderme": {
-                                    activeBg: "bg-[#5A9C51]", activeBorder: "border-[#5A9C51]", activeText: "text-white", dot: "bg-[#5A9C51]", hover: "hover:bg-[#5A9C51]/20",
+                                    activeBg: "bg-[#5A9C51]", activeBorder: "border-[#5A9C51]", activeText: "text-white", dot: "bg-[#5A9C51]", hover: "md:hover:bg-[#5A9C51]/20",
                                     unselectedBg: "bg-[#5A9C51]/10", unselectedText: "text-[#5A9C51]", unselectedBorder: "border-[#5A9C51]/30"
                                 },
                                 "Le Mésoderme": {
-                                    activeBg: "bg-[#F27D33]", activeBorder: "border-[#F27D33]", activeText: "text-white", dot: "bg-[#F27D33]", hover: "hover:bg-[#F27D33]/20",
+                                    activeBg: "bg-[#F27D33]", activeBorder: "border-[#F27D33]", activeText: "text-white", dot: "bg-[#F27D33]", hover: "md:hover:bg-[#F27D33]/20",
                                     unselectedBg: "bg-[#F27D33]/10", unselectedText: "text-[#F27D33]", unselectedBorder: "border-[#F27D33]/30"
                                 },
                                 "L'Endoderme": {
-                                    activeBg: "bg-[#4171B5]", activeBorder: "border-[#4171B5]", activeText: "text-white", dot: "bg-[#4171B5]", hover: "hover:bg-[#4171B5]/20",
+                                    activeBg: "bg-[#4171B5]", activeBorder: "border-[#4171B5]", activeText: "text-white", dot: "bg-[#4171B5]", hover: "md:hover:bg-[#4171B5]/20",
                                     unselectedBg: "bg-[#4171B5]/10", unselectedText: "text-[#4171B5]", unselectedBorder: "border-[#4171B5]/30"
                                 },
                                 "L'Oeil": {
-                                    activeBg: "bg-[#F2B729]", activeBorder: "border-[#F2B729]", activeText: "text-white", dot: "bg-[#F2B729]", hover: "hover:bg-[#F2B729]/20",
+                                    activeBg: "bg-[#F2B729]", activeBorder: "border-[#F2B729]", activeText: "text-white", dot: "bg-[#F2B729]", hover: "md:hover:bg-[#F2B729]/20",
                                     unselectedBg: "bg-[#F2B729]/10", unselectedText: "text-[#F2B729]", unselectedBorder: "border-[#F2B729]/30"
                                 }
                             };
@@ -106,7 +106,6 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 <button
                                     key={layer}
                                     onClick={() => setSelectedLayer(layer)}
-                                    onTouchStart={(e) => { e.preventDefault(); setSelectedLayer(layer); }}
                                     className={cn(
                                         "relative flex flex-col items-center justify-center py-3 px-2 rounded-[1.2rem] min-w-[120px] sm:min-w-[140px] border shrink-0 snap-center transition-all duration-300",
                                         isSelected
@@ -181,12 +180,12 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         {/* Minimalist Info */}
                                         <div className="flex-1 min-w-0 pr-4">
                                             <h3 className={cn(
-                                                "text-sm sm:text-lg lg:text-xl font-sans font-medium tracking-wide truncate transition-all duration-300 uppercase group-hover:translate-x-1",
+                                                "text-sm sm:text-lg lg:text-xl font-sans font-medium tracking-wide truncate transition-transform duration-300 uppercase sm:group-hover:translate-x-1",
                                                 "text-slate-700", activeListStyle.textHover
                                             )}>
                                                 {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}- ` : '') + course.title.replace(/^\d+[\.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
                                             </h3>
-                                            <div className="flex items-center gap-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-0 group-hover:h-auto overflow-hidden">
+                                            <div className="flex items-center gap-2 mt-1 opacity-70 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                                                 <span className="text-[10px] sm:text-xs text-slate-400 font-medium font-sans flex items-center gap-1">
                                                     <BookOpen size={10} />
                                                     {t('videoLibrary.includedTranscript')}
@@ -196,7 +195,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                                         {/* Sleek Duration */}
                                         {course.duration && (
-                                            <div className={cn("flex-shrink-0 flex flex-col items-end justify-center text-slate-400 transition-all duration-300 group-hover:-translate-x-1 group-hover:scale-105", activeListStyle.textHover)}>
+                                            <div className={cn("flex-shrink-0 flex flex-col items-end justify-center text-slate-400 transition-transform duration-300 sm:group-hover:-translate-x-1", activeListStyle.textHover)}>
                                                 <span className="font-bebas text-lg sm:text-xl tracking-wider pt-1">{course.duration}</span>
                                             </div>
                                         )}
