@@ -33,6 +33,8 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     const { i18n } = useTranslation();
 
     // Isolated Subtitle State to prevent parent re-renders
+    const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
+    const [hasSubtitles, setHasSubtitles] = useState(false);
     const [activeSubtitle, setActiveSubtitle] = useState<string | null>(null);
     const cuesRef = useRef<{ start: number, end: number, text: string }[]>([]);
 
@@ -120,15 +122,32 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                                 .replace(/&gt;/g, '>')
                                 .replace(/&quot;/g, '"')
                                 .replace(/&#39;/g, "'")
-                                .replace(/@/gi, '')
-                                .replace(/¿/g, '?')
-                                .replace(/¡/g, '!')
+                                // Mojibake/Encoding glitch fixes
+                                .replace(/Ã©/g, 'é')
+                                .replace(/Ã¨/g, 'è')
+                                .replace(/Ã /g, 'à')
+                                .replace(/Ã¢/g, 'â')
+                                .replace(/Ãª/g, 'ê')
+                                .replace(/Ã®/g, 'î')
+                                .replace(/Ã´/g, 'ô')
+                                .replace(/Ã»/g, 'û')
+                                .replace(/Ã§/g, 'ç')
+                                .replace(/Ãe/g, 'ée')
+                                .replace(/Ãd/g, 'éd')
+                                .replace(/cÃdule/g, 'cellule')
+                                .replace(/Ã/g, 'à')
                                 // Remove odd formatting characters often randomly found in VTT errors
-                                .replace(/[|~_^*]/g, '')
+                                .replace(/[|~_^*@¿¡]/g, '')
+                                .replace(/^-?\s*\d+\s*-?\s*/, '') // Remove "- 1 -" or "-1-" line prefixes
+                                // Fix weird spaces around apostrophes and dashes
+                                .replace(/\s+'\s+/g, "'")
+                                .replace(/\s+'/g, "'")
+                                .replace(/'\s+/g, "'")
+                                .replace(/(\w)\s+-\s+(\w)/g, "$1-$2") // "auto -crime" -> "auto-crime"
                                 // Remove emojis and unknown specific icons
                                 .replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '');
 
-                            textAcc += lineText + ' ';
+                            textAcc += lineText.trim() + ' ';
                             i++;
                         }
                         if (textAcc.trim() && !textAcc.includes('WEBVTT')) {
@@ -154,6 +173,9 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     }
                 }
                 cuesRef.current = parsedCues;
+                if (parsedCues.length > 0) {
+                    setHasSubtitles(true);
+                }
             } catch (error: unknown) {
                 console.error('[VTT] Parsing Error:', error);
             }
@@ -201,18 +223,39 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     }}
                 />
 
+                {/* --- CUSTOM SUBTITLE TOGGLE --- */}
+                {hasSubtitles && (
+                    <div className="absolute top-[8px] right-[8px] sm:top-4 sm:right-4 z-50 pointer-events-auto">
+                        <button
+                            onClick={() => setSubtitlesEnabled(!subtitlesEnabled)}
+                            className={`flex items-center justify-center p-1.5 sm:p-2 rounded-lg sm:rounded-full backdrop-blur-md transition-all border shadow-lg touch-manipulation cursor-pointer active:scale-95 ${subtitlesEnabled
+                                    ? "bg-white/90 text-slate-800 border-white/50"
+                                    : "bg-black/40 text-white/80 border-white/10 hover:bg-black/60"
+                                }`}
+                            title={subtitlesEnabled ? "Désactiver les sous-titres" : "Activer les sous-titres"}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="sm:w-5 sm:h-5">
+                                <rect x="2" y="7" width="20" height="10" rx="2" ry="2"></rect>
+                                <path d="M10 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
+                                <path d="M17 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
+                                {!subtitlesEnabled && <line x1="2" y1="2" x2="22" y2="22" strokeWidth="2.5" stroke="currentColor" />}
+                            </svg>
+                        </button>
+                    </div>
+                )}
+
                 {/* --- CUSTOM SUBTITLE OVERLAY --- */}
-                {activeSubtitle && (
+                {activeSubtitle && subtitlesEnabled && (
                     <div
-                        className="absolute bottom-2 left-0 right-0 flex justify-center items-end"
+                        className="absolute bottom-1 left-0 right-0 flex justify-center items-end"
                         style={{ zIndex: 2147483647, transform: 'translate3d(0, 0, 100px)', pointerEvents: 'none' }}
                     >
                         <div
-                            className="bg-white/90 backdrop-blur-md text-slate-800 px-3 py-1.5 sm:px-4 sm:py-2 mx-4 max-w-[85%] md:max-w-2xl text-center rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.2)] border border-slate-200/50 whitespace-pre-wrap break-words"
+                            className="bg-white/90 backdrop-blur-md text-slate-800 px-3 py-1 mx-4 max-w-[85%] md:max-w-2xl text-center rounded-lg shadow-md border border-slate-200/50 whitespace-pre-wrap break-words"
                             style={{
-                                fontSize: 'clamp(0.9rem, 2vw, 1.25rem)',
+                                fontSize: 'clamp(0.85rem, 2vw, 1.15rem)',
                                 letterSpacing: '0.01em',
-                                lineHeight: '1.3',
+                                lineHeight: '1.25',
                                 fontWeight: '600'
                             }}
                             dangerouslySetInnerHTML={{ __html: activeSubtitle }}
