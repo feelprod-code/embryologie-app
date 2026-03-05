@@ -34,6 +34,8 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
     // Isolated Subtitle State to prevent parent re-renders
     const [activeSubtitle, setActiveSubtitle] = useState<string | null>(null);
+    const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
+    const [hasSubtitles, setHasSubtitles] = useState(false);
     const cuesRef = useRef<{ start: number, end: number, text: string }[]>([]);
 
     const parseVttTime = (timeStr: string) => {
@@ -54,8 +56,10 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         }
 
         cuesRef.current = [];
+
         const fetchVtt = async () => {
             setActiveSubtitle(null);
+            setHasSubtitles(false);
             try {
                 const langCode = getCloudflareLangCode(i18n.language);
                 let vttText = '';
@@ -118,7 +122,10 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                                 .replace(/&lt;/g, '<')
                                 .replace(/&gt;/g, '>')
                                 .replace(/&quot;/g, '"')
-                                .replace(/&#39;/g, "'");
+                                .replace(/&#39;/g, "'")
+                                .replace(/@/gi, '')
+                                .replace(/¿/g, '?')
+                                .replace(/¡/g, '!');
 
                             textAcc += lineText + ' ';
                             i++;
@@ -146,6 +153,9 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     }
                 }
                 cuesRef.current = parsedCues;
+                if (parsedCues.length > 0) {
+                    setHasSubtitles(true);
+                }
             } catch (error: unknown) {
                 console.error('[VTT] Parsing Error:', error);
             }
@@ -193,20 +203,38 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     }}
                 />
 
+                {/* --- CC TOGGLE BUTTON --- */}
+                {hasSubtitles && (
+                    <button
+                        onClick={() => setSubtitlesEnabled(!subtitlesEnabled)}
+                        className={`absolute top-4 right-4 z-[2147483648] p-2 rounded-xl backdrop-blur-md transition-all shadow-lg border ${subtitlesEnabled
+                            ? 'bg-white/90 text-slate-800 border-white/50'
+                            : 'bg-black/60 text-white/90 border-white/20'
+                            }`}
+                        aria-label="Toggle Subtitles"
+                        style={{ pointerEvents: 'auto' }}
+                    >
+                        {subtitlesEnabled ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="14" x="3" y="5" rx="2" ry="2" /><path d="M7 15h4M15 15h2M7 11h2M13 11h4" /></svg>
+                        ) : (
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="14" x="3" y="5" rx="2" ry="2" /><path d="M7 15h4M15 15h2M7 11h2M13 11h4" /><line x1="3" x2="21" y1="3" y2="21" /></svg>
+                        )}
+                    </button>
+                )}
+
                 {/* --- CUSTOM SUBTITLE OVERLAY --- */}
-                {activeSubtitle && (
+                {subtitlesEnabled && activeSubtitle && (
                     <div
-                        className="absolute bottom-[15%] left-0 right-0 flex justify-center items-end"
+                        className="absolute bottom-[10%] left-0 right-0 flex justify-center items-end"
                         style={{ zIndex: 2147483647, transform: 'translate3d(0, 0, 100px)', pointerEvents: 'none' }}
                     >
                         <div
-                            className="bg-black/60 backdrop-blur-md text-white/95 px-4 py-2 sm:px-6 sm:py-2.5 mx-4 max-w-[90%] md:max-w-3xl text-center rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)] border border-white/10 whitespace-pre-wrap break-words"
+                            className="bg-white/90 backdrop-blur-md text-slate-800 px-4 py-2 sm:px-6 sm:py-2.5 mx-4 max-w-[90%] md:max-w-3xl text-center rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.3)] border border-slate-200/50 whitespace-pre-wrap break-words"
                             style={{
-                                textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.6)',
                                 fontSize: 'clamp(1.1rem, 3vw, 1.6rem)',
-                                letterSpacing: '0.02em',
+                                letterSpacing: '0.01em',
                                 lineHeight: '1.4',
-                                fontWeight: '600'
+                                fontWeight: '700'
                             }}
                             dangerouslySetInnerHTML={{ __html: activeSubtitle }}
                         />
