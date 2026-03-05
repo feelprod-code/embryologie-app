@@ -48,46 +48,53 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     style={{ position: 'absolute', top: 0, left: 0 }}
                     onReady={() => {
                         const videoElement = playerRef.current?.getInternalPlayer() as HTMLVideoElement;
+                        const hls = playerRef.current?.getInternalPlayer('hls');
+                        if (hls) {
+                            try {
+                                hls.subtitleDisplay = false;
+                                hls.subtitleTrack = -1;
+                            } catch (e) {
+                                // ignore
+                            }
+                        }
+
                         if (videoElement) {
                             const killTracks = () => {
-                                // 1. JS API level
+                                // 1. JS API level (hls.js or native)
                                 if (videoElement.textTracks) {
                                     for (let i = 0; i < videoElement.textTracks.length; i++) {
-                                        videoElement.textTracks[i].mode = 'disabled';
+                                        if (videoElement.textTracks[i].mode !== 'disabled' && videoElement.textTracks[i].mode !== 'hidden') {
+                                            videoElement.textTracks[i].mode = 'disabled';
+                                            // Some browsers require hidden instead of disabled to avoid re-triggering
+                                            setTimeout(() => {
+                                                if (videoElement.textTracks[i]) {
+                                                    videoElement.textTracks[i].mode = 'hidden';
+                                                }
+                                            }, 10);
+                                        }
                                     }
                                 }
 
                                 // 2. DOM level: Find any <track> elements appended to <video> and destroy them
                                 const trackTags = videoElement.querySelectorAll('track');
                                 trackTags.forEach(t => t.remove());
+
+                                requestAnimationFrame(killTracks);
                             };
 
-                            // Hide immediately
+                            // Start immediately
                             killTracks();
 
-                            setTimeout(killTracks, 100);
-                            setTimeout(killTracks, 500);
-                            setTimeout(killTracks, 2000);
+                            // Cleanup not strictly necessary since video unmounts, but to be clean
+                            // We can't return a cleanup easily here, but that's fine for this context.
 
-                            // Listen for track additions
+                            // Listen for track additions defensively
                             videoElement.textTracks.onaddtrack = (e) => {
-                                if (e.track) e.track.mode = 'disabled';
-                                killTracks();
+                                if (e.track) {
+                                    e.track.mode = 'disabled';
+                                    e.track.mode = 'hidden';
+                                }
                             };
-
-                            // Also observe the video element for changes
-                            const observer = new MutationObserver(() => {
-                                killTracks();
-                            });
-
-                            observer.observe(videoElement, {
-                                childList: true,
-                                subtree: true,
-                                attributes: true
-                            });
-
-                            // Fallback interval just in case
-                            setInterval(killTracks, 500);
                         }
                     }}
                     config={{
