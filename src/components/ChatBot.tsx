@@ -104,6 +104,31 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
     const [error, setError] = useState<string | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
+    // Prevent body vertical bounce on iOS devices
+    useEffect(() => {
+        if (window.innerWidth < 768) {
+            document.body.style.overflow = 'hidden';
+            const canvas = document.getElementById('main-scroll-canvas');
+            if (canvas) canvas.style.overflowY = 'hidden';
+            return () => {
+                document.body.style.overflow = '';
+                if (canvas) canvas.style.overflowY = 'auto';
+            };
+        }
+    }, []);
+
+    // Sync welcome message language when user switches language
+    useEffect(() => {
+        setMessages(prev => {
+            if (prev.length > 0 && prev[0].role === 'assistant') {
+                const newMessages = [...prev];
+                newMessages[0] = { ...newMessages[0], content: t('chatbot.welcomeMessage') };
+                return newMessages;
+            }
+            return prev;
+        });
+    }, [i18n.language, t]);
+
     useEffect(() => {
         localStorage.setItem('embryo_chat_history', JSON.stringify(messages));
     }, [messages]);
@@ -252,10 +277,9 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
     };
 
     return (
-        <div className="w-full bg-white flex flex-col pb-[env(safe-area-inset-bottom,16px)] min-h-[calc(100vh-80px)]">
-            {/* Header Sticky */}
-            {/* Header Sticky - Capsule Style */}
-            <div className="sticky top-0 z-50 w-full bg-[#FAF9F6] pt-[env(safe-area-inset-top,4px)] md:pt-2 flex flex-col items-center shadow-sm md:shadow-none pb-2 md:pb-0 mb-4 px-2">
+        <div className="fixed inset-0 md:relative md:inset-auto z-40 md:z-10 w-full h-[100dvh] md:h-[86vh] md:max-h-[880px] bg-white flex flex-col md:rounded-3xl overflow-hidden md:border md:border-slate-200 md:shadow-2xl">
+            {/* Header Fixed - Capsule Style */}
+            <div className="flex-none z-30 w-full bg-[#FAF9F6] pt-[env(safe-area-inset-top,10px)] md:pt-4 flex flex-col items-center shadow-sm pb-2 md:pb-3 px-2 border-b border-slate-100">
                 <div className="flex items-center justify-center gap-3 sm:gap-4 relative w-full text-center animate-fade-in-up pb-1 max-w-4xl mx-auto">
                     {onClose && (
                         <button
@@ -288,7 +312,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
             </div>
 
             {/* Messages */}
-            <div className="flex-1 p-4 md:p-6 space-y-6 bg-slate-50/50">
+            <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 bg-slate-50/50" id="chatbot-messages" style={{ WebkitOverflowScrolling: 'touch' }}>
                 <div className="max-w-4xl mx-auto w-full space-y-6">
                     {messages.map((msg, idx) => (
                         <div key={idx} className={cn("flex", msg.role === 'user' ? "justify-end" : "justify-start")}>
@@ -390,7 +414,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
             </div>
 
             {/* Input Form */}
-            <div className="p-4 md:p-6 bg-white border-t border-slate-200 sticky bottom-0 z-40 pb-[calc(1rem+env(safe-area-inset-bottom,16px)+80px)] md:pb-6">
+            <div className="flex-none p-4 md:p-6 bg-white border-t border-slate-200 z-40 pb-[calc(1rem+env(safe-area-inset-bottom,0px)+80px)] md:pb-6">
                 <div className="max-w-4xl mx-auto w-full">
                     <form onSubmit={handleSubmit} className="relative flex items-center">
                         <input
