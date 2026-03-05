@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { videoCourses as videoCoursesFr, type VideoCourse, getCategoryTotalDuration } from '../data/videoCourses';
 import { videoCourses as videoCoursesEn } from '../data/videoCourses_en';
 import { videoCourses as videoCoursesEs } from '../data/videoCourses_es';
@@ -27,8 +27,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       : videoCoursesFr;
 
   const [currentSpeed, setCurrentSpeed] = useState<number>(1);
-  const [activeSubtitle, setActiveSubtitle] = useState<string | null>(null);
-  const cuesRef = useRef<any[]>([]);
 
   const course = videoCourses.find((v: VideoCourse) => v.id === initialCourse.id) || initialCourse;
 
@@ -39,7 +37,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   useEffect(() => {
     const t = setTimeout(() => setCurrentSpeed(1), 0);
-    setActiveSubtitle(null);
     return () => clearTimeout(t);
   }, [course.id, course.cloudflareId]);
 
@@ -47,196 +44,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     setCurrentSpeed(speed);
   };
 
-  const parseVttTime = (timeStr: string) => {
-    const parts = timeStr.replace(',', '.').split(':');
-    if (parts.length === 3) {
-      const [hours, minutes, seconds] = parts;
-      return parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseFloat(seconds);
-    } else if (parts.length === 2) {
-      const [minutes, seconds] = parts;
-      return parseInt(minutes) * 60 + parseFloat(seconds);
-    }
-    return 0;
-  };
-
-  useEffect(() => {
-    cuesRef.current = [];
-    setActiveSubtitle(null);
-    if (!course.cloudflareId) return;
-
-    const fetchVtt = async () => {
-      try {
-        const lang = i18n.language.startsWith('en') ? 'en' : i18n.language.startsWith('es') ? 'es' : 'fr';
-
-        let vttText = '';
-
-        // 1. Tenter le chargement depuis les fichiers locaux D'ABORD (dans public/vtt/)
-        try {
-          console.log(`[VTT] Attempting to load local file: /vtt/${course.cloudflareId}_${lang}.vtt`);
-          const localVttRes = await fetch(`/vtt/${course.cloudflareId}_${lang}.vtt`);
-          if (localVttRes.ok) {
-            vttText = await localVttRes.text();
-            console.log(`[VTT] Local file loaded successfully! (${vttText.length} bytes)`);
-          } else {
-            console.log(`[VTT] Local file NOT FOUND (HTTP ${localVttRes.status})`);
-          }
-        } catch (e) {
-          console.log('[VTT] Error fetching local VTT:', e);
-        }
-
-        // 2. FALLBACK : Aller chercher sur Cloudflare si pas en local
-        if (!vttText || !vttText.includes('WEBVTT')) {
-          console.log(`[VTT] Invalid or missing local VTT. Falling back to Cloudflare Stream API...`);
-          const baseUrl = 'https://customer-6i2z59dst7q6iswv.cloudflarestream.com';
-          const manifestRes = await fetch(`${baseUrl}/${course.cloudflareId}/manifest/video.m3u8`);
-          if (!manifestRes.ok) {
-            console.log(`[VTT] Cloudflare manifest fetch failed: HTTP ${manifestRes.status}`);
-            return;
-          }
-          const manifestText = await manifestRes.text();
-
-          const lines = manifestText.split('\n');
-          let subtitleUri = lines.find(l => l.includes('TYPE=SUBTITLES') && l.includes(`LANGUAGE="${lang}"`));
-          if (!subtitleUri) {
-            subtitleUri = lines.find(l => l.includes('TYPE=SUBTITLES'));
-          }
-          if (!subtitleUri) {
-            console.log(`[VTT] No SUBTITLES found in Cloudflare manifest for ${course.cloudflareId}`);
-            return;
-          }
-
-          const uriMatch = subtitleUri.match(/URI="([^"]+)"/);
-          if (!uriMatch || !uriMatch[1]) {
-            console.log(`[VTT] Subtitle URI missing match in manifest`);
-            return;
-          }
-
-          const subManifestFile = uriMatch[1];
-          const subManifestRes = await fetch(`${baseUrl}/${course.cloudflareId}/manifest/${subManifestFile}`);
-          if (!subManifestRes.ok) {
-            console.log(`[VTT] Sub manifest fetch failed HTTP ${subManifestRes.status}`);
-            return;
-          }
-          const subManifestText = await subManifestRes.text();
-
-          const vttPathLine = subManifestText.split('\n').find(l => l.includes('.vtt'));
-          if (!vttPathLine) {
-            console.log(`[VTT] No .vtt path in sub manifest`);
-            return;
-          }
-
-          const actualVttPath = vttPathLine.replace(/^(\.\.\/)+/, '');
-          const vttRes = await fetch(`${baseUrl}/${actualVttPath}`);
-          if (!vttRes.ok) {
-            console.log(`[VTT] Final VTT fetch failed HTTP ${vttRes.status}`);
-            return;
-          }
-          vttText = await vttRes.text();
-          console.log(`[VTT] Successfully fetched Cloudflare VTT (${vttText.length} bytes)`);
-        }
-
-        if (!vttText || !vttText.includes('WEBVTT')) {
-          console.log(`[VTT] Final failure: no WEBVTT signature in loaded text`);
-          return;
-        }
-
-        // 6. Parse VTT and break down huge blocks
-        const vttLines = vttText.split('\n');
-        const parsedCues: any[] = [];
-        let i = 0;
-        while (i < vttLines.length) {
-          if (vttLines[i].includes('-->')) {
-            const [startStr, endStr] = vttLines[i].split(' --> ');
-            const startTime = parseVttTime(startStr.trim());
-            const endTime = parseVttTime(endStr.trim());
-            let textAcc = '';
-            i++;
-
-            // Read until empty line or next block
-            while (i < vttLines.length && vttLines[i].trim() !== '' && !vttLines[i].includes('-->') && !/^\d+$/.test(vttLines[i].trim())) {
-              textAcc += vttLines[i].replace(/<[^>]+>/g, '').trim() + ' ';
-              i++;
-            }
-
-            textAcc = textAcc.trim();
-            const totalDuration = endTime - startTime;
-
-            // Heuristic: If cue is longer than 10 seconds AND has multiple sentences, split it!
-            if (totalDuration > 10 && /[.!?]/.test(textAcc)) {
-              // Split by sentence, keeping punctuation
-              const sentences = textAcc.match(/[^.!?]+[.!?]+/g) || [textAcc];
-              const totalLength = textAcc.length;
-              let currentStart = startTime;
-
-              sentences.forEach(sentence => {
-                const s = sentence.trim();
-                if (!s) return;
-
-                const fraction = s.length / totalLength;
-                const sentenceDuration = fraction * totalDuration;
-
-                parsedCues.push({
-                  start: currentStart,
-                  end: currentStart + sentenceDuration,
-                  text: s
-                });
-
-                currentStart += sentenceDuration;
-              });
-            } else {
-              parsedCues.push({
-                start: startTime,
-                end: endTime,
-                text: textAcc
-              });
-            }
-          } else {
-            i++;
-          }
-        }
-
-        cuesRef.current = parsedCues;
-      } catch (error: any) {
-        console.error('Failed to load dynamic VTT subtitles:', error);
-      }
-    };
-
-    fetchVtt();
-  }, [course.cloudflareId, i18n.language]);
-
-  const handleTimeUpdate = (currentTime: number) => {
-    let active = null;
-    // Finding the currently active cue
-    for (let i = 0; i < cuesRef.current.length; i++) {
-      const c = cuesRef.current[i];
-      if (currentTime >= c.start && currentTime <= c.end) {
-        active = c;
-        break;
-      }
-    }
-
-    setActiveSubtitle(prev => {
-      if (active) {
-        if (active.text !== prev) return active.text;
-        return prev;
-      } else {
-        if (prev !== null) return null;
-        return prev;
-      }
-    });
-
-    // temporary debug for iOS testing
-    const debugEl = document.getElementById('vtt-debug-info-v2');
-    if (debugEl) {
-      debugEl.innerHTML = `iOS TEST V2<br/>Cues: ${cuesRef.current.length}<br/>Time: ${currentTime.toFixed(1)}s<br/>Active: ${active ? 'YES' : 'NO'}`;
-    }
+  const handleTimeUpdate = (_: number) => {
+    // Keep stub for backwards compatibility with CustomVideoPlayer prop
   };
   return (
     <>
-      {/* GLOBAL DEBUG OVERLAY V2 */}
-      <div id="vtt-debug-info-v2" className="fixed top-2 left-2 z-[999999] bg-pink-600 text-white text-lg font-bold p-4 rounded-xl shadow-2xl border-4 border-white pointer-events-none">
-        AWAITING V2 DATA...
-      </div>
       <div className="w-full max-w-7xl mx-auto flex flex-col h-[100dvh] overflow-hidden bg-slate-50/50 relative">
 
         <div className="w-[100vw] sm:w-full overflow-x-auto no-scrollbar -mx-2 sm:-mx-0 pb-3 pt-2 mb-2 border-b border-slate-100 snap-x">
@@ -302,7 +114,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               categoryId={course.categoryId}
               speed={currentSpeed}
               onTimeUpdate={handleTimeUpdate}
-              activeSubtitle={activeSubtitle}
               className="rounded-2xl md:rounded-3xl shadow-xl aspect-video border border-slate-800"
             />
 

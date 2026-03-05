@@ -1,5 +1,13 @@
 import React, { useRef } from 'react';
 import ReactPlayer from 'react-player';
+import { useTranslation } from 'react-i18next';
+
+// Mapping local language names to Cloudflare language codes if needed
+const getCloudflareLangCode = (appLang: string) => {
+    if (appLang === 'en') return 'en';
+    if (appLang === 'es') return 'es';
+    return 'fr'; // default to French if not listed
+};
 
 interface CustomVideoPlayerProps {
     youtubeId?: string;
@@ -9,7 +17,6 @@ interface CustomVideoPlayerProps {
     categoryId?: string;
     onEnded?: () => void;
     onTimeUpdate?: (currentTime: number) => void;
-    activeSubtitle?: string | null;
 }
 
 export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
@@ -19,15 +26,19 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     className = '',
     onEnded,
     onTimeUpdate,
-    activeSubtitle
 }) => {
     // any is used here due to ReactPlayer's complex internal typings making generic refs difficult
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
+    const { i18n } = useTranslation();
 
     // 1. PRIORITÉ ABSOLUE : Lecteur ReactPlayer avec M3U8 Cloudflare (HLS)
     if (cloudflareId && cloudflareId !== "") {
         const streamUrl = `https://customer-6i2z59dst7q6iswv.cloudflarestream.com/${cloudflareId}/manifest/video.m3u8`;
+
+        // Dynamically compute the VTT URL depending on language
+        const cfLangCode = getCloudflareLangCode(i18n.language);
+        const dynamicSubtitlesUrl = `https://customer-6i2z59dst7q6iswv.cloudflarestream.com/${cloudflareId}/downloads/default.vtt?lang=${cfLangCode}`;
 
         return (
             <div className={`w-full aspect-video bg-black overflow-hidden rounded-xl shadow-2xl relative ${className}`}>
@@ -61,29 +72,23 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                             attributes: {
                                 playsInline: true,
                                 controlsList: "nodownload noremoteplayback"
-                            }
+                            },
+                            tracks: dynamicSubtitlesUrl ? [
+                                {
+                                    kind: 'subtitles',
+                                    src: dynamicSubtitlesUrl,
+                                    srcLang: i18n.language === 'en' ? 'en'
+                                        : i18n.language === 'es' ? 'es'
+                                            : 'fr',
+                                    label: i18n.language === 'en' ? 'English'
+                                        : i18n.language === 'es' ? 'Español'
+                                            : 'Français',
+                                    default: true
+                                }
+                            ] : []
                         }
                     } as any}
                 />
-
-                {/* 
-                  OVERLAY PERSONNALISÉ POUR LES SOUS-TITRES (NATIVE OVERRIDE).
-                  Rendu par-dessus la vidéo, totalement contrôlé par notre propre parser VTT.
-                */}
-                {activeSubtitle && (
-                    <div
-                        className="absolute bottom-16 sm:bottom-20 left-0 w-full flex justify-center pointer-events-none z-50 px-4"
-                    >
-                        <div
-                            className="bg-black/70 backdrop-blur-md text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl max-w-3xl text-center shadow-lg border border-white/10"
-                        >
-                            <p
-                                className="font-medium text-[16px] sm:text-[18px] md:text-xl leading-snug sm:leading-relaxed m-0"
-                                dangerouslySetInnerHTML={{ __html: activeSubtitle }}
-                            />
-                        </div>
-                    </div>
-                )}
             </div>
         );
     }
