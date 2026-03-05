@@ -55,64 +55,46 @@
 }
 
 /* Cloudflare Stream / WebVTT Subtitle Overrides */
-video::cue {
-  background: rgba(255, 255, 255, 0.90) !important;
-  background-color: rgba(255, 255, 255, 0.90) !important;
-  color: #1e293b !important;
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 700 !important;
-  text-shadow: none !important;
-  border-radius: 0.5rem !important;
-}
-
-/* Fallback for older Webkit/Safari */
-video::-webkit-media-text-track-display {
-  background: rgba(255, 255, 255, 0.90) !important;
-  background-color: rgba(255, 255, 255, 0.90) !important;
-  color: #1e293b !important;
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 700 !important;
-  text-shadow: none !important;
-  padding: 0.4em 0.8em !important;
-  border-radius: 0.5rem !important;
-}
-
+/* EXTREME HIDING of native subtitles for Safari/iOS that ignore display: none */
 video::-webkit-media-text-track-container {
-  /* Some webkit needs the container to have NO background so only the text highlight shows */
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+video::-webkit-media-text-track-display {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+video::cue {
+  color: transparent !important;
+  background-color: transparent !important;
   background: transparent !important;
+  text-shadow: none !important;
+  opacity: 0 !important;
+  font-size: 0px !important;
+  line-height: 0 !important;
+  height: 0 !important;
 }
 
 /* Couleurs de sous-titres par catégorie (ciblées via les div parents) */
+/* (We no longer style native cues since we hide them, keeping these around just in case) */
 .vtt-theme-ectoderme video::cue {
-  color: #5A9C51 !important;
-}
-
-.vtt-theme-ectoderme video::-webkit-media-text-track-display {
-  color: #5A9C51 !important;
+  /* hidden */
 }
 
 .vtt-theme-endoderme video::cue {
-  color: #4171B5 !important;
-}
-
-.vtt-theme-endoderme video::-webkit-media-text-track-display {
-  color: #4171B5 !important;
+  /* hidden */
 }
 
 .vtt-theme-mesoderme video::cue {
-  color: #F27D33 !important;
-}
-
-.vtt-theme-mesoderme video::-webkit-media-text-track-display {
-  color: #F27D33 !important;
+  /* hidden */
 }
 
 .vtt-theme-oeil video::cue {
-  color: #F2B729 !important;
-}
-
-.vtt-theme-oeil video::-webkit-media-text-track-display {
-  color: #F2B729 !important;
+  /* hidden */
 }
 
 @layer utilities {
