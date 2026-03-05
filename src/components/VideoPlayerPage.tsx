@@ -37,6 +37,15 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const nextVideo = currentIndex < categoryVideos.length - 1 ? categoryVideos[currentIndex + 1] : null;
 
   useEffect(() => {
+    // Attempt to strictly lock screen orientation to portrait
+    if (typeof screen !== 'undefined' && screen.orientation && ('lock' in screen.orientation)) {
+      (screen.orientation as any).lock('portrait').catch((err: unknown) => {
+        console.log('Orientation lock failed or not supported:', err);
+      });
+    }
+  }, []);
+
+  useEffect(() => {
     const t = setTimeout(() => setCurrentSpeed(1), 0);
     return () => clearTimeout(t);
   }, [course.id, course.cloudflareId]);
