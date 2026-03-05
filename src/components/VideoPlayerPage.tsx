@@ -27,6 +27,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       : videoCoursesFr;
 
   const [currentSpeed, setCurrentSpeed] = useState<number>(1);
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
   const course = videoCourses.find((v: VideoCourse) => v.id === initialCourse.id) || initialCourse;
 
@@ -47,11 +48,22 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const handleTimeUpdate = () => {
     // Keep stub for backwards compatibility with CustomVideoPlayer prop
   };
+
+  const handleFullscreenChange = (isFs: boolean) => {
+    setIsFullscreen(isFs);
+  };
+
   return (
     <>
-      <div className="w-full max-w-7xl mx-auto flex flex-col h-[100dvh] overflow-hidden bg-slate-50/50 relative">
+      <div className={cn(
+        "w-full mx-auto flex flex-col bg-slate-50/50",
+        isFullscreen ? "h-screen" : "max-w-7xl h-[100dvh] overflow-hidden relative"
+      )}>
 
-        <div className="w-[100vw] sm:w-full overflow-x-auto no-scrollbar -mx-2 sm:-mx-0 pb-3 pt-2 mb-2 border-b border-slate-100 snap-x">
+        <div className={cn(
+          "w-[100vw] sm:w-full overflow-x-auto no-scrollbar -mx-2 sm:-mx-0 pb-3 pt-2 mb-2 border-b border-slate-100 snap-x",
+          isFullscreen ? "hidden" : ""
+        )}>
           <div className="flex flex-nowrap items-stretch gap-2 px-4 sm:px-0 w-max mx-auto md:mx-0">
             {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
               const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
@@ -105,19 +117,31 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-2 lg:gap-8 flex-1 min-h-0 px-2 sm:px-0">
+        <div className={cn(
+          "flex flex-col flex-1",
+          isFullscreen ? "w-full h-full" : "lg:flex-row gap-2 lg:gap-8 min-h-0 px-2 sm:px-0"
+        )}>
           {/* Left Column: Video & Controls */}
-          <div className="w-full lg:w-5/12 flex flex-col gap-2 shrink-0 z-20">
+          <div className={cn(
+            "w-full flex flex-col",
+            isFullscreen ? "" : "lg:w-5/12 gap-2 shrink-0 z-20"
+          )}>
             <CustomVideoPlayer
               youtubeId={course.youtubeId}
               cloudflareId={course.cloudflareId}
               categoryId={course.categoryId}
               speed={currentSpeed}
               onTimeUpdate={handleTimeUpdate}
-              className="rounded-2xl md:rounded-3xl shadow-xl aspect-video border border-slate-800"
+              onFullscreenChange={handleFullscreenChange}
+              className={cn(
+                isFullscreen ? "" : "rounded-2xl md:rounded-3xl shadow-xl aspect-video border border-slate-800"
+              )}
             />
 
-            <div className="bg-white p-2 md:p-3 rounded-xl md:rounded-2xl shadow-sm border border-slate-200 flex-shrink-0">
+            <div className={cn(
+              "bg-white p-2 md:p-3 rounded-xl md:rounded-2xl shadow-sm border border-slate-200 flex-shrink-0",
+              isFullscreen ? "hidden" : ""
+            )}>
               {/* COMPACT SINGLE-LINE CONTROLS */}
               <div className="flex items-center justify-between w-full gap-2 overflow-x-auto hide-scrollbar">
 
@@ -183,7 +207,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
 
           {/* Right Column: Transcript (Scrollable Independent Area) */}
-          <div className="w-full lg:w-7/12 bg-white rounded-t-2xl md:rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col flex-1 min-h-0 mx-0 pb-8 lg:pb-0 z-10 pt-0 relative">
+          <div className={cn(
+            "w-full lg:w-7/12 bg-white rounded-t-2xl md:rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col flex-1 min-h-0 mx-0 pb-8 lg:pb-0 z-10 pt-0 relative",
+            isFullscreen ? "hidden" : ""
+          )}>
 
             {/* STICKY TRANSCRIPT HEADER */}
             <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 p-3 md:p-4 shadow-sm w-full flex items-center justify-between">

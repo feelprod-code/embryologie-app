@@ -26,6 +26,7 @@ interface CustomVideoPlayerProps {
     categoryId?: string;
     onEnded?: () => void;
     onTimeUpdate?: (currentTime: number) => void;
+    onFullscreenChange?: (isFullscreen: boolean) => void;
 }
 
 export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
@@ -35,6 +36,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     className = '',
     onEnded,
     onTimeUpdate,
+    onFullscreenChange,
 }) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
@@ -118,6 +120,11 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 rootElement.style.removeProperty('transform');
             }
         }
+
+        if (onFullscreenChange) {
+            onFullscreenChange(isFullscreen);
+        }
+
         return () => {
             document.body.style.overflow = '';
             document.body.classList.remove('video-fullscreen-active');
@@ -125,7 +132,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 rootElement.style.removeProperty('transform');
             }
         };
-    }, [isFullscreen]);
+    }, [isFullscreen, onFullscreenChange]);
 
     // --- VTT Logic ---
     const parseVttTime = (timeStr: string) => {
@@ -261,22 +268,9 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         return (
             <div
                 className={`relative flex justify-center items-center bg-black transition-all duration-0 select-none group ${isFullscreen
-                        ? 'fixed top-0 left-0 right-0 bottom-0 z-[99999] w-screen h-screen m-0 p-0 transform-none select-none'
-                        : `w-full aspect-video rounded-xl shadow-2xl overflow-hidden ${className}`
+                    ? 'video-player-fullscreen-active'
+                    : `w-full aspect-video rounded-xl shadow-2xl overflow-hidden ${className}`
                     }`}
-                style={isFullscreen ? {
-                    // Aggressive inline styles to override ANY parent constraints on iOS
-                    position: 'fixed',
-                    inset: 0,
-                    width: '100vw',
-                    height: '100dvh',
-                    zIndex: 99999,
-                    margin: 0,
-                    padding: 0,
-                    maxWidth: '100vw',
-                    maxHeight: '100dvh',
-                    borderRadius: 0,
-                } : {}}
                 onMouseMove={triggerControls}
                 onClick={triggerControls}
                 onTouchStart={triggerControls}
@@ -339,7 +333,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     >
                         <button
                             onClick={toggleFullscreen}
-                            className="bg-black/50 text-white p-2 md:p-3 rounded-full backdrop-blur-md border border-white/20 shadow-lg active:scale-90 touch-manipulation cursor-pointer"
+                            className="bg-black/50 text-white p-3 sm:p-4 rounded-full backdrop-blur-md border border-white/20 shadow-lg active:scale-90 touch-manipulation cursor-pointer"
                             aria-label="Quitter le plein écran"
                         >
                             <X size={24} />
@@ -350,12 +344,12 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 {/* 3. LAYER 2: Subtitle Overlay */}
                 {activeSubtitle && subtitlesEnabled && (
                     <div
-                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-24 md:bottom-28' : 'bottom-6 md:bottom-8'
+                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-20 md:bottom-24' : 'bottom-6 md:bottom-8'
                             }`}
                         style={{ zIndex: 20, paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <div
-                            className="bg-black/60 backdrop-blur-sm text-white px-4 py-1.5 mx-4 max-w-[90%] md:max-w-2xl text-center rounded-lg whitespace-pre-wrap break-words drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"
+                            className="bg-black/40 backdrop-blur-sm text-white px-4 py-1.5 mx-4 max-w-[90%] md:max-w-2xl text-center rounded-lg whitespace-pre-wrap break-words drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
                             style={{
                                 fontSize: isFullscreen ? 'clamp(1.1rem, 2.5vw, 2rem)' : 'clamp(0.85rem, 2vw, 1.15rem)',
                                 letterSpacing: '0.01em',
