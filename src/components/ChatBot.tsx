@@ -390,7 +390,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
             </div>
 
             {/* Input Form */}
-            <div className="p-4 md:p-6 bg-white border-t border-slate-200 sticky bottom-0 z-20">
+            <div className="p-4 md:p-6 bg-white border-t border-slate-200 sticky bottom-0 z-40 pb-[calc(1rem+env(safe-area-inset-bottom,16px)+80px)] md:pb-6">
                 <div className="max-w-4xl mx-auto w-full">
                     <form onSubmit={handleSubmit} className="relative flex items-center">
                         <input

@@ -5,17 +5,27 @@
 @layer base {
 
   html,
-  body {
+  body,
+  #root {
     @apply w-full m-0 p-0 overflow-hidden;
     height: 100%;
-    /* The core iOS Safari lock */
+    /* The core iOS Safari lock for rubber-banding and bounce */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     overscroll-behavior: none;
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: auto;
     -webkit-text-size-adjust: 100%;
+    touch-action: none;
+  }
+
+  /* Re-enable scrolling specifically on the content areas that need it */
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
   }
 
   body {

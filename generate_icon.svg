@@ -1,0 +1,50 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: TDT Off-White -->
+  <rect width="1024" height="1024" fill="#FAF9F6"/>
+
+  <defs>
+    <!-- Beautiful minimal gradients for the germ layers -->
+    <!-- Ectoderm: Green -->
+    <linearGradient id="ectoglow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    
+    <!-- Endoderm: Blue -->
+    <linearGradient id="endoglow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    
+    <!-- Mesoderm: Orange -->
+    <linearGradient id="mesoglow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FBBD23"/> <!-- Lighter orange -->
+      <stop offset="100%" stop-color="#EA580C"/> <!-- Deeper orange -->
+    </linearGradient>
+
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="15" stdDeviation="25" flood-color="#1E293B" flood-opacity="0.15"/>
+    </filter>
+    <filter id="hard-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="15" flood-color="#1E293B" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#soft-shadow)">
+    <!-- Chorionic Cavity (Outer Circle Frame) - very thin and elegant -->
+    <!-- taking max space: r=440 -->
+    <circle cx="512" cy="512" r="440" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="4"/>
+    
+    <!-- The Embryo inside the chorionic cavity -->
+    <!-- Ectoderm (Amniotic Cavity - Top) -->
+    <!-- Placed at top so that it overlaps slightly with mesoderm -->
+    <circle cx="512" cy="380" r="160" fill="url(#ectoglow)" filter="url(#hard-shadow)"/>
+    
+    <!-- Endoderm (Yolk Sac - Bottom) -->
+    <circle cx="512" cy="740" r="160" fill="url(#endoglow)" filter="url(#hard-shadow)"/>
+
+    <!-- Mesoderm (Middle layer expanding) -->
+    <!-- It grows between the two layers in early embryogenesis -->
+    <rect x="332" y="502" width="360" height="120" rx="60" fill="url(#mesoglow)" filter="url(#hard-shadow)"/>
+  </g>
+</svg>
