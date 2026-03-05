@@ -10,34 +10,37 @@ export function Home({ onNavigate }: HomeProps) {
     const { t } = useTranslation();
 
     return (
-        <div className="w-full h-full flex flex-col items-center relative overflow-x-hidden overflow-y-auto no-scrollbar px-4 sm:px-6 z-10 bg-[#FAF9F6]">
+        <div className="w-full h-full relative overflow-x-hidden overflow-y-auto no-scrollbar bg-[#FAF9F6]">
+            {/* Inner responsive layout container */}
+            <div className="min-h-full w-full flex flex-col items-center justify-between px-4 sm:px-6 pt-[env(safe-area-inset-top,2rem)] md:pt-12 pb-[120px] md:pb-8">
 
-            {/* Top Section: Credits & Title */}
-            <div className="flex flex-col items-center justify-center w-full shrink-0 flex-1 py-6 md:py-8">
-                {/* Top Poster Credits - Moved Higher */}
-                <div className="relative z-10 w-full text-center animate-fade-in-up mt-0 sm:mt-1">
-                    <span className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
-                        {t('home.training_by')}
-                    </span>
-                    <div className="text-sm md:text-base font-bold tracking-[0.2em] text-slate-800 mt-1 uppercase">
-                        Marc Damoiseaux <span className="opacity-70 text-xs font-normal">Ostéopathe D.O.</span>
+                {/* Top Section: Credits & Title */}
+                <div className="flex-none flex flex-col items-center w-full pt-4 md:pt-8">
+                    {/* Top Poster Credits */}
+                    <div className="relative z-10 w-full text-center animate-fade-in-up">
+                        <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
+                            {t('home.training_by')}
+                        </div>
+                        <div className="text-sm md:text-base font-bold tracking-[0.2em] text-slate-800 mt-2 uppercase">
+                            Marc Damoiseaux <span className="opacity-70 text-xs font-normal">Ostéopathe D.O.</span>
+                        </div>
+                    </div>
+
+                    {/* Main Cinematic Title */}
+                    <div className="relative z-10 w-full text-center flex flex-col items-center mt-10 sm:mt-12 md:mt-16">
+                        <h1 className="text-[13vw] sm:text-7xl md:text-8xl lg:text-9xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
+                            {t('home.title_part1')}
+                        </h1>
+                        <h2 className="text-[10vw] sm:text-5xl md:text-6xl lg:text-7xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-4 sm:mt-6 pr-2">
+                            {t('home.title_part2')}
+                        </h2>
                     </div>
                 </div>
 
-                {/* Main Cinematic Title */}
-                <div className="relative z-10 w-full text-center flex flex-col items-center mt-6 sm:mt-8 md:mt-12 mb-2">
-                    <h1 className="text-[13vw] sm:text-7xl md:text-8xl lg:text-9xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
-                        {t('home.title_part1')}
-                    </h1>
-                    <h2 className="text-[10vw] sm:text-5xl md:text-6xl lg:text-7xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-4 sm:mt-8 md:mt-10 pr-2">
-                        {t('home.title_part2')}
-                    </h2>
-                </div>
-
                 {/* Center - Vignette & Player */}
-                <div className="relative z-10 w-full flex flex-col items-center justify-center shrink-0 mt-6 sm:mt-8 md:mt-12 mb-2">
-                    {/* Podcast Thumbnail/Vignette HUGE with sharp corners for poster look */}
-                    <div className="relative w-[55vw] max-w-[260px] sm:max-w-none sm:w-[22rem] md:w-[26rem] lg:w-[30rem] aspect-square shrink-0 mb-4 sm:mb-6 rounded-sm border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                <div className="flex-1 flex flex-col items-center justify-center w-full shrink-0 py-8 sm:py-12">
+                    {/* Podcast Thumbnail/Vignette */}
+                    <div className="relative w-[55vw] max-w-[260px] sm:max-w-none sm:w-[22rem] md:w-[26rem] lg:w-[30rem] aspect-square shrink-0 mb-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
@@ -51,14 +54,14 @@ export function Home({ onNavigate }: HomeProps) {
                             src="https://audio.ausha.co/6r2X8f6LVNAp.mp3"
                             className="w-full"
                         />
-                        <span className="font-handwriting text-3xl lg:text-4xl text-slate-600 mt-5 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                        <span className="font-handwriting text-3xl lg:text-4xl text-slate-600 mt-6 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                             {t('home.start')}
                         </span>
                     </div>
                 </div>
 
                 {/* Desktop Only Navigation (Hidden on Mobile because of App.tsx Tab Bar) */}
-                <div className="hidden md:flex relative z-20 shrink-0 flex-nowrap items-stretch justify-center w-full max-w-4xl gap-4 mt-6 mb-6">
+                <div className="hidden md:flex relative z-20 flex-none flex-nowrap items-stretch justify-center w-full max-w-4xl gap-4 mb-10">
                     <button
                         onClick={() => onNavigate('timeline')}
                         className="flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-sm font-bold font-bebas tracking-widest text-lg lg:text-xl transition-all bg-transparent text-slate-700 border border-slate-300 hover:border-slate-500 shadow-sm active:scale-95 px-4 leading-tight text-center"
@@ -83,12 +86,12 @@ export function Home({ onNavigate }: HomeProps) {
                         <span className="truncate w-full">{t('home.ai_assistant')}</span>
                     </button>
                 </div>
-            </div>
 
-            {/* Credits FeelProd */}
-            <div className="w-full shrink-0 flex items-center justify-center pt-2 pb-24 md:pb-8">
-                <div className="text-[11px] sm:text-sm text-slate-400 font-bold uppercase tracking-widest pt-2">
-                    {t('home.credits')}
+                {/* Credits FeelProd */}
+                <div className="flex-none w-full flex items-center justify-center">
+                    <span className="text-[11px] sm:text-sm text-slate-400 font-bold uppercase tracking-widest text-center relative z-20">
+                        {t('home.credits')}
+                    </span>
                 </div>
             </div>
         </div>
