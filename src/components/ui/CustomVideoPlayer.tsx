@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Stream } from '@cloudflare/stream-react';
 import { useTranslation } from 'react-i18next';
-import { Play, Pause, Maximize, Minimize } from 'lucide-react';
+import { Play, Pause, Maximize, Minimize, X } from 'lucide-react';
 
 // Mapping local language names to Cloudflare language codes if needed
 const getCloudflareLangCode = (appLang: string) => {
@@ -55,7 +55,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     // --- Media Controls Logic ---
-    const togglePlay = (e?: React.MouseEvent) => {
+    const togglePlay = (e?: React.MouseEvent | React.TouchEvent) => {
         if (e) e.stopPropagation();
         if (playerRef.current) {
             if (isPlaying) {
@@ -68,7 +68,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         }
     };
 
-    const toggleFullscreen = (e?: React.MouseEvent) => {
+    const toggleFullscreen = (e?: React.MouseEvent | React.TouchEvent) => {
         if (e) e.stopPropagation();
         setIsFullscreen(!isFullscreen);
     };
@@ -89,7 +89,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             if (isPlaying) {
                 setShowControls(false);
             }
-        }, 3000);
+        }, 3500); // slightly longer to be sure users have time to see them
     };
 
     useEffect(() => {
@@ -100,16 +100,30 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying]);
 
+    // Force strict fullscreen behaviors to escape iOS DOM traps
     useEffect(() => {
+        const rootElement = document.getElementById('root');
         if (isFullscreen) {
-            // Lock body scroll when in our "fake" fullscreen
             document.body.style.overflow = 'hidden';
-            window.scrollTo(0, 0); // Reset scroll position to top
+            document.body.classList.add('video-fullscreen-active');
+            if (rootElement) {
+                // Ensure no transform constraint clips the fixed child
+                rootElement.style.setProperty('transform', 'none', 'important');
+            }
+            window.scrollTo(0, 0);
         } else {
             document.body.style.overflow = '';
+            document.body.classList.remove('video-fullscreen-active');
+            if (rootElement) {
+                rootElement.style.removeProperty('transform');
+            }
         }
         return () => {
             document.body.style.overflow = '';
+            document.body.classList.remove('video-fullscreen-active');
+            if (rootElement) {
+                rootElement.style.removeProperty('transform');
+            }
         };
     }, [isFullscreen]);
 
@@ -246,10 +260,23 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     if (cloudflareId && cloudflareId !== "") {
         return (
             <div
-                className={`relative flex justify-center items-center bg-black transition-all duration-300 select-none group ${isFullscreen
-                    ? 'fixed inset-0 z-[1000] w-screen h-[100dvh]'
-                    : `w-full aspect-video rounded-xl shadow-2xl overflow-hidden ${className}`
+                className={`relative flex justify-center items-center bg-black transition-all duration-0 select-none group ${isFullscreen
+                        ? 'fixed top-0 left-0 right-0 bottom-0 z-[99999] w-screen h-screen m-0 p-0 transform-none select-none'
+                        : `w-full aspect-video rounded-xl shadow-2xl overflow-hidden ${className}`
                     }`}
+                style={isFullscreen ? {
+                    // Aggressive inline styles to override ANY parent constraints on iOS
+                    position: 'fixed',
+                    inset: 0,
+                    width: '100vw',
+                    height: '100dvh',
+                    zIndex: 99999,
+                    margin: 0,
+                    padding: 0,
+                    maxWidth: '100vw',
+                    maxHeight: '100dvh',
+                    borderRadius: 0,
+                } : {}}
                 onMouseMove={triggerControls}
                 onClick={triggerControls}
                 onTouchStart={triggerControls}
@@ -304,15 +331,31 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     onClick={togglePlay}
                 />
 
+                {/* EXTRA LAYER: iOS specific exit fullscreen button at top right */}
+                {isFullscreen && (
+                    <div
+                        className={`absolute top-0 right-0 z-[60] transition-opacity duration-300 ${showControls || !isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                        style={{ padding: 'max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))' }}
+                    >
+                        <button
+                            onClick={toggleFullscreen}
+                            className="bg-black/50 text-white p-2 md:p-3 rounded-full backdrop-blur-md border border-white/20 shadow-lg active:scale-90 touch-manipulation cursor-pointer"
+                            aria-label="Quitter le plein écran"
+                        >
+                            <X size={24} />
+                        </button>
+                    </div>
+                )}
+
                 {/* 3. LAYER 2: Subtitle Overlay */}
                 {activeSubtitle && subtitlesEnabled && (
                     <div
-                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-20 md:bottom-24' : 'bottom-6 md:bottom-8'
+                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-24 md:bottom-28' : 'bottom-6 md:bottom-8'
                             }`}
-                        style={{ zIndex: 20 }}
+                        style={{ zIndex: 20, paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <div
-                            className="bg-black/60 backdrop-blur-sm text-white px-4 py-1 mx-4 max-w-[90%] md:max-w-2xl text-center rounded-lg whitespace-pre-wrap break-words drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"
+                            className="bg-black/60 backdrop-blur-sm text-white px-4 py-1.5 mx-4 max-w-[90%] md:max-w-2xl text-center rounded-lg whitespace-pre-wrap break-words drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"
                             style={{
                                 fontSize: isFullscreen ? 'clamp(1.1rem, 2.5vw, 2rem)' : 'clamp(0.85rem, 2vw, 1.15rem)',
                                 letterSpacing: '0.01em',
@@ -326,33 +369,54 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
                 {/* 4. LAYER 3: Bottom Custom Controls Bar */}
                 <div
-                    className={`absolute bottom-0 left-0 right-0 px-4 pb-4 pt-16 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-30 transition-opacity duration-300 flex flex-col gap-2 ${showControls || !isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    className={`absolute bottom-0 left-0 right-0 pt-16 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-30 transition-opacity duration-300 flex flex-col gap-2 ${showControls || !isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'
                         }`}
+                    style={{
+                        paddingBottom: 'max(1rem, env(safe-area-inset-bottom))',
+                        paddingLeft: 'max(1rem, env(safe-area-inset-left))',
+                        paddingRight: 'max(1rem, env(safe-area-inset-right))',
+                    }}
                     onClick={(e) => e.stopPropagation()} // Prevent bubble to play/pause wrapper
                 >
                     {/* Scrubber */}
                     <div className="flex items-center gap-3 w-full">
                         <span className="text-white/90 text-xs font-medium tabular-nums min-w-[36px] text-left">{formatTime(currentTime)}</span>
-                        <input
-                            type="range"
-                            min="0"
-                            max={duration || 100}
-                            value={currentTime}
-                            onChange={handleSeek}
-                            className="flex-1 h-1.5 bg-white/30 rounded-lg appearance-none cursor-pointer accent-blue-500 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-blue-500 [&::-webkit-slider-thumb]:rounded-full hover:accent-blue-400 touch-manipulation"
-                        />
+                        <div className="relative flex-1 h-3 flex items-center group cursor-pointer touch-manipulation">
+                            <input
+                                type="range"
+                                min="0"
+                                max={duration || 100}
+                                value={currentTime}
+                                onChange={handleSeek}
+                                onTouchStart={triggerControls}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
+                            />
+                            {/* Visual Progress Track */}
+                            <div className="w-full h-1.5 bg-white/30 rounded-full overflow-hidden pointer-events-none">
+                                <div
+                                    className="h-full bg-blue-500"
+                                    style={{ width: `${(currentTime / (duration || 100)) * 100}%` }}
+                                />
+                            </div>
+                            {/* Custom Thumb */}
+                            <div
+                                className="absolute h-3.5 w-3.5 bg-white rounded-full shadow border-2 border-blue-500 pointer-events-none transform -translate-x-1/2"
+                                style={{ left: `${(currentTime / (duration || 100)) * 100}%` }}
+                            />
+                        </div>
                         <span className="text-white/90 text-xs font-medium tabular-nums min-w-[36px] text-right">{formatTime(duration)}</span>
                     </div>
 
                     {/* Bottom Bar Tools */}
-                    <div className="flex items-center justify-between mt-1 px-1">
+                    <div className="flex items-center justify-between mt-2 px-1">
                         <div className="flex items-center gap-4">
                             <button
                                 onClick={togglePlay}
-                                className="text-white hover:text-blue-400 transition-colors p-1 cursor-pointer touch-manipulation active:scale-90"
+                                onTouchEnd={(e) => { e.preventDefault(); togglePlay(e); }}
+                                className="text-white hover:text-blue-400 transition-colors p-2 -ml-2 cursor-pointer touch-manipulation active:scale-90"
                                 aria-label={isPlaying ? "Pause" : "Play"}
                             >
-                                {isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" />}
+                                {isPlaying ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" />}
                             </button>
                         </div>
 
@@ -360,27 +424,29 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                             {/* CC Toggle */}
                             {hasSubtitles && (
                                 <button
-                                    onClick={() => setSubtitlesEnabled(!subtitlesEnabled)}
-                                    className={`relative flex items-center justify-center p-1 rounded transition-colors cursor-pointer touch-manipulation active:scale-90 ${subtitlesEnabled ? 'text-white' : 'text-white/40 hover:text-white/70'}`}
+                                    onClick={(e) => { e.stopPropagation(); setSubtitlesEnabled(!subtitlesEnabled); }}
+                                    onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setSubtitlesEnabled(!subtitlesEnabled); }}
+                                    className={`relative flex items-center justify-center p-2 rounded transition-colors cursor-pointer touch-manipulation active:scale-90 ${subtitlesEnabled ? 'text-white' : 'text-white/40 hover:text-white/70'}`}
                                     title={subtitlesEnabled ? "Désactiver les sous-titres" : "Activer les sous-titres"}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                         <rect x="2" y="7" width="20" height="10" rx="2" ry="2"></rect>
                                         <path d="M10 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
                                         <path d="M17 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
                                         {!subtitlesEnabled && <line x1="2" y1="2" x2="22" y2="22" strokeWidth="2.5" stroke="currentColor" />}
                                     </svg>
-                                    {subtitlesEnabled && <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-500" />}
+                                    {subtitlesEnabled && <div className="absolute 1/2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-blue-500" style={{ bottom: '2px' }} />}
                                 </button>
                             )}
 
                             {/* Fullscreen Toggle */}
                             <button
                                 onClick={toggleFullscreen}
-                                className="text-white hover:text-blue-400 transition-colors p-1 cursor-pointer touch-manipulation active:scale-90"
+                                onTouchEnd={(e) => { e.preventDefault(); toggleFullscreen(e); }}
+                                className="text-white hover:text-blue-400 transition-colors p-2 -mr-2 cursor-pointer touch-manipulation active:scale-90"
                                 aria-label={isFullscreen ? "Quitter le plein écran" : "Plein écran"}
                             >
-                                {isFullscreen ? <Minimize size={24} /> : <Maximize size={24} />}
+                                {isFullscreen ? <Minimize size={26} /> : <Maximize size={26} />}
                             </button>
                         </div>
                     </div>
@@ -412,3 +478,4 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         </div>
     );
 };
+

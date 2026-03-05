@@ -22,6 +22,17 @@
     touch-action: none;
   }
 
+  /* Fullscreen specific overrides */
+  body.video-fullscreen-active,
+  body.video-fullscreen-active #root {
+    position: static !important;
+    /* Release the fixed lock to allow inner fixed to work relative to viewport */
+    transform: none !important;
+    filter: none !important;
+    max-height: 100dvh;
+    height: 100dvh;
+  }
+
   /* Re-enable scrolling specifically on the content areas that need it */
   .overflow-y-auto {
     -webkit-overflow-scrolling: touch;
