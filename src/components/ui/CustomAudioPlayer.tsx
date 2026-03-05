@@ -101,11 +101,11 @@ export const CustomAudioPlayer: React.FC<CustomAudioPlayerProps> = ({
                         max={duration || 100}
                         value={currentTime}
                         onChange={handleSeek}
-                        className="w-full h-1 bg-slate-200 appearance-none rounded-full cursor-pointer outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-[#F27D33] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-sm focus-visible:ring-1 focus-visible:ring-[#F27D33]"
+                        className="w-full h-1.5 touch-none bg-slate-200 appearance-none rounded-full cursor-pointer outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-[#F27D33] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md focus-visible:ring-1 focus-visible:ring-[#F27D33]"
                     />
                 </div>
 
-                <div className="text-[10px] tabular-nums text-[#F27D33] font-bold tracking-wide shrink-0 min-w-[32px] text-right">
+                <div className="text-[10px] tabular-nums text-[#F27D33] font-bold tracking-wide shrink-0 min-w-[36px] text-right">
                     {formatTime(currentTime)}
                 </div>
             </div>

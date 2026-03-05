@@ -15,7 +15,7 @@ export function Home({ onNavigate }: HomeProps) {
             <div className="min-h-full w-full flex flex-col items-center justify-between px-4 sm:px-6 pt-[env(safe-area-inset-top,2rem)] md:pt-12 pb-[120px] md:pb-8">
 
                 {/* Top Section: Credits & Title */}
-                <div className="flex-none flex flex-col items-center w-full pt-4 md:pt-8">
+                <div className="flex-none flex flex-col items-center w-full pt-10 sm:pt-12 md:pt-16">
                     {/* Top Poster Credits */}
                     <div className="relative z-10 w-full text-center animate-fade-in-up">
                         <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
@@ -38,23 +38,23 @@ export function Home({ onNavigate }: HomeProps) {
                 </div>
 
                 {/* Center - Vignette & Player */}
-                <div className="flex-1 flex flex-col items-center justify-center w-full shrink-0 py-8 sm:py-12">
+                <div className="flex-1 flex flex-col items-center justify-center w-full shrink-0 py-10 sm:py-12">
                     {/* Podcast Thumbnail/Vignette */}
-                    <div className="relative w-[55vw] max-w-[260px] sm:max-w-none sm:w-[22rem] md:w-[26rem] lg:w-[30rem] aspect-square shrink-0 mb-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                    <div className="relative w-[65vw] max-w-[320px] sm:max-w-none sm:w-[24rem] md:w-[28rem] lg:w-[32rem] aspect-square shrink-0 mb-8 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover shadow-inner"
                         />
                     </div>
 
                     {/* Minimalist Player */}
-                    <div className="w-[85%] sm:w-2/3 max-w-[280px] z-20 mt-2 flex flex-col items-center">
+                    <div className="w-[85%] sm:w-2/3 max-w-[300px] z-20 mt-4 flex flex-col items-center">
                         <CustomAudioPlayer
                             src="https://audio.ausha.co/6r2X8f6LVNAp.mp3"
                             className="w-full"
                         />
-                        <span className="font-handwriting text-3xl lg:text-4xl text-slate-600 mt-6 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                        <span className="font-handwriting text-3xl lg:text-4xl text-slate-600 mt-8 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                             {t('home.start')}
                         </span>
                     </div>
