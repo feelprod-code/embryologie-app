@@ -125,7 +125,11 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                                 .replace(/&#39;/g, "'")
                                 .replace(/@/gi, '')
                                 .replace(/¿/g, '?')
-                                .replace(/¡/g, '!');
+                                .replace(/¡/g, '!')
+                                // Remove odd formatting characters often randomly found in VTT errors
+                                .replace(/[|~_^*]/g, '')
+                                // Remove emojis and unknown specific icons
+                                .replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '');
 
                             textAcc += lineText + ' ';
                             i++;
@@ -207,7 +211,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 {hasSubtitles && (
                     <button
                         onClick={() => setSubtitlesEnabled(!subtitlesEnabled)}
-                        className={`absolute top-4 right-4 z-[2147483648] p-2 rounded-xl backdrop-blur-md transition-all shadow-lg border ${subtitlesEnabled
+                        className={`absolute top-3 right-3 z-[2147483648] p-1.5 rounded-lg backdrop-blur-md transition-all shadow-md border ${subtitlesEnabled
                             ? 'bg-white/90 text-slate-800 border-white/50'
                             : 'bg-black/60 text-white/90 border-white/20'
                             }`}
@@ -215,9 +219,9 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                         style={{ pointerEvents: 'auto' }}
                     >
                         {subtitlesEnabled ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="14" x="3" y="5" rx="2" ry="2" /><path d="M7 15h4M15 15h2M7 11h2M13 11h4" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="14" x="3" y="5" rx="2" ry="2" /><path d="M7 15h4M15 15h2M7 11h2M13 11h4" /></svg>
                         ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="14" x="3" y="5" rx="2" ry="2" /><path d="M7 15h4M15 15h2M7 11h2M13 11h4" /><line x1="3" x2="21" y1="3" y2="21" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="14" x="3" y="5" rx="2" ry="2" /><path d="M7 15h4M15 15h2M7 11h2M13 11h4" /><line x1="3" x2="21" y1="3" y2="21" /></svg>
                         )}
                     </button>
                 )}
@@ -229,12 +233,12 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                         style={{ zIndex: 2147483647, transform: 'translate3d(0, 0, 100px)', pointerEvents: 'none' }}
                     >
                         <div
-                            className="bg-white/90 backdrop-blur-md text-slate-800 px-4 py-2 sm:px-6 sm:py-2.5 mx-4 max-w-[90%] md:max-w-3xl text-center rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.3)] border border-slate-200/50 whitespace-pre-wrap break-words"
+                            className="bg-white/90 backdrop-blur-md text-slate-800 px-3 py-1.5 sm:px-4 sm:py-2 mx-4 max-w-[85%] md:max-w-2xl text-center rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.2)] border border-slate-200/50 whitespace-pre-wrap break-words"
                             style={{
-                                fontSize: 'clamp(1.1rem, 3vw, 1.6rem)',
+                                fontSize: 'clamp(0.9rem, 2vw, 1.25rem)',
                                 letterSpacing: '0.01em',
-                                lineHeight: '1.4',
-                                fontWeight: '700'
+                                lineHeight: '1.3',
+                                fontWeight: '600'
                             }}
                             dangerouslySetInnerHTML={{ __html: activeSubtitle }}
                         />
