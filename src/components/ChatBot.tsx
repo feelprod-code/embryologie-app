@@ -319,7 +319,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                             <div className={cn(
                                 "max-w-[90%] md:max-w-[85%] rounded-2xl p-4 md:p-6 shadow-sm",
                                 msg.role === 'user'
-                                    ? "bg-slate-900 text-white rounded-br-md"
+                                    ? "bg-slate-200 text-slate-800 rounded-br-md"
                                     : "bg-white border border-slate-200 text-slate-800 rounded-bl-md relative group"
                             )}>
                                 {msg.role === 'user' ? (
@@ -428,7 +428,7 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
                         <button
                             type="submit"
                             disabled={!input.trim() || isLoading}
-                            className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center hover:bg-black transition-colors disabled:opacity-50 shadow-md active:scale-95"
+                            className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center hover:bg-slate-300 transition-colors disabled:opacity-50 shadow-sm active:scale-95"
                         >
                             <ArrowRight size={20} className="md:w-6 md:h-6" />
                         </button>
