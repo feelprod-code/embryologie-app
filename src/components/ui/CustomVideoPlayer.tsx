@@ -49,25 +49,35 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     onReady={() => {
                         const videoElement = playerRef.current?.getInternalPlayer() as HTMLVideoElement;
                         if (videoElement) {
-                            const hideTracks = () => {
+                            const killTracks = () => {
+                                // 1. JS API level
                                 if (videoElement.textTracks) {
                                     for (let i = 0; i < videoElement.textTracks.length; i++) {
-                                        videoElement.textTracks[i].mode = 'hidden';
+                                        videoElement.textTracks[i].mode = 'disabled';
                                     }
                                 }
+
+                                // 2. DOM level: Find any <track> elements appended to <video> and destroy them
+                                const trackTags = videoElement.querySelectorAll('track');
+                                trackTags.forEach(t => t.remove());
                             };
 
                             // Hide immediately
-                            hideTracks();
+                            killTracks();
+
+                            setTimeout(killTracks, 100);
+                            setTimeout(killTracks, 500);
+                            setTimeout(killTracks, 2000);
 
                             // Listen for track additions
-                            videoElement.textTracks.onaddtrack = () => {
-                                hideTracks();
+                            videoElement.textTracks.onaddtrack = (e) => {
+                                if (e.track) e.track.mode = 'disabled';
+                                killTracks();
                             };
 
                             // Also observe the video element for changes
                             const observer = new MutationObserver(() => {
-                                hideTracks();
+                                killTracks();
                             });
 
                             observer.observe(videoElement, {
@@ -77,10 +87,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                             });
 
                             // Fallback interval just in case
-                            const interval = setInterval(hideTracks, 500);
-
-                            // Try to disable subtitles directly on track level configuration if possible
-                            // Cleanup on unmount (approximate, since we don't have useEffect here easily, but it's okay for this component's lifespan)
+                            setInterval(killTracks, 500);
                         }
                     }}
                     config={{
@@ -94,9 +101,10 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                                 startPosition: -1,
                                 capLevelToPlayerSize: true,
                                 enableWorker: true,
-                                // Advanced try to squash WebVTT in HLS.js
+                                // EXTREME TextTrack Prevention for Hls.js
                                 subtitleDisplay: false,
-                                renderTextTracksNatively: false
+                                renderTextTracksNatively: false,
+                                enableWebVTT: false,
                             },
                             tracks: []
                         }
