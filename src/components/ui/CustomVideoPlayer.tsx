@@ -151,10 +151,16 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         };
     }, [isFullscreen, onFullscreenChange]);
 
+    const getVideoElement = (): HTMLVideoElement | null => {
+        const streamEl = document.querySelector(`stream[src="${cloudflareId}"]`) || document.querySelector('stream');
+        if (!streamEl) return document.querySelector('video');
+        return streamEl.shadowRoot?.querySelector('video') || streamEl.querySelector('video') || document.querySelector('video');
+    };
+
     const toggleFullscreen = (e?: React.MouseEvent | React.TouchEvent) => {
         if (e) e.stopPropagation();
 
-        const videoEl = document.querySelector(`stream[src="${cloudflareId}"] video`) as HTMLVideoElement || document.querySelector('video');
+        const videoEl = getVideoElement();
 
         // 1. iOS Native Fullscreen
         if (videoEl && (videoEl as any).webkitEnterFullscreen) {
@@ -184,8 +190,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     };
 
     const requestPiP = async () => {
-        const streamEl = document.querySelector(`stream[src="${cloudflareId}"]`);
-        const video = (streamEl?.shadowRoot?.querySelector('video') || document.querySelector('video')) as HTMLVideoElement;
+        const video = getVideoElement();
         if (!video || typeof document === 'undefined') return;
 
         try {
@@ -206,8 +211,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     };
 
     const requestAirPlay = () => {
-        const streamEl = document.querySelector(`stream[src="${cloudflareId}"]`);
-        const video = (streamEl?.shadowRoot?.querySelector('video') || document.querySelector('video')) as HTMLVideoElement;
+        const video = getVideoElement();
         // @ts-ignore
         if (video && typeof window !== 'undefined' && window.WebKitPlaybackTargetAvailabilityEvent && video.webkitShowPlaybackTargetPicker) {
             // @ts-ignore
@@ -456,7 +460,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 {/* 3. LAYER 2: Subtitle Overlay */}
                 {activeSubtitle && subtitlesEnabled && (
                     <div
-                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-20 md:bottom-24' : 'bottom-6 md:bottom-8'
+                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-20 md:bottom-24' : 'bottom-1 md:bottom-2'
                             }`}
                         style={{ zIndex: 20, paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
