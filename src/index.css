@@ -226,6 +226,11 @@ video::cue {
   }
 }
 
+/* Hide App Navigation Bars when custom CSS Fullscreen is active */
+body.video-fullscreen-active nav {
+  display: none !important;
+}
+
 @layer utilities {
 
   /* Hide scrollbar for Chrome, Safari and Opera */

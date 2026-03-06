@@ -462,7 +462,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     <div
                         className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-[4.5rem] md:bottom-20' : 'bottom-0'
                             }`}
-                        style={{ zIndex: 20, paddingBottom: 'env(safe-area-inset-bottom)' }}
+                        style={{ zIndex: 20, paddingBottom: isFullscreen ? 'env(safe-area-inset-bottom)' : '0px' }}
                     >
                         <span
                             className="text-slate-700 bg-white/95 px-3 py-1.5 rounded-xl mx-4 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans shadow-md"
