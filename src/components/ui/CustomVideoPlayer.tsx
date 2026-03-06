@@ -58,8 +58,6 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
     const [hasSubtitles, setHasSubtitles] = useState(false);
     const [activeSubtitle, setActiveSubtitle] = useState<string | null>(null);
-    const [subtitleLang, setSubtitleLang] = useState<string>(i18n.language || 'fr');
-    const [showSubtitleMenu, setShowSubtitleMenu] = useState(false);
     const cuesRef = useRef<{ start: number, end: number, text: string }[]>([]);
 
     // Custom Controls State
@@ -249,7 +247,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         const fetchVtt = async () => {
             setActiveSubtitle(null);
             try {
-                const langCode = getCloudflareLangCode(subtitleLang);
+                const langCode = getCloudflareLangCode(i18n.language || 'fr');
                 let vttText = '';
 
                 // Try fetching directly from Cloudflare downloads first
@@ -355,13 +353,14 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         };
 
         fetchVtt();
-    }, [cloudflareId, subtitleLang]);
+    }, [cloudflareId, i18n.language]);
 
     // 1. PRIORITÉ ABSOLUE : Lecteur Stream Officiel customisé
     if (cloudflareId && cloudflareId !== "") {
         return (
             <div
-                className={`relative w-full aspect-video bg-black overflow-hidden rounded-xl shadow-2xl group ${className}`}
+                className={`relative w-full bg-black overflow-hidden group ${className} ${isFullscreen ? 'video-player-fullscreen-active' : 'aspect-video rounded-xl shadow-2xl'
+                    }`}
                 onMouseMove={() => {
                     // Only trigger mouse move if we are inside the window!
                     triggerControls();
@@ -426,9 +425,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     onClick={(e) => {
                         e.stopPropagation();
                         if (showControls) {
-                            if (showSubtitleMenu) {
-                                setShowSubtitleMenu(false);
-                            } else if (isPlaying) {
+                            if (isPlaying) {
                                 setShowControls(false); // Hide immediately if playing and controls are tapped
                             }
                             if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
@@ -459,7 +456,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 {/* 3. LAYER 2: Subtitle Overlay */}
                 {activeSubtitle && subtitlesEnabled && (
                     <div
-                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-16 md:bottom-20' : 'bottom-1 md:bottom-2'
+                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-20 md:bottom-24' : 'bottom-6 md:bottom-8'
                             }`}
                         style={{ zIndex: 20, paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
@@ -553,52 +550,22 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                                 </button>
                             )}
 
-                            {/* CC Toggle & Menu */}
+                            {/* CC Toggle */}
                             {hasSubtitles && (
-                                <div className="relative flex items-center justify-center pointer-events-auto">
-                                    {showSubtitleMenu && (
-                                        <div
-                                            className="absolute bottom-full right-0 mb-2 bg-black/80 backdrop-blur-md rounded-xl border border-white/10 shadow-2xl p-2 min-w-[140px] z-50 flex flex-col gap-1 origin-bottom-right"
-                                            onClick={(e) => e.stopPropagation()}
-                                            onTouchEnd={(e) => e.stopPropagation()}
-                                        >
-                                            <div className="px-3 py-1.5 text-white/50 text-xs font-semibold uppercase tracking-wider mb-1">Sous-titres</div>
-
-                                            <button
-                                                className={`text-left px-3 py-2 rounded-lg text-sm transition-colors ${!subtitlesEnabled ? 'bg-white/20 text-white font-medium' : 'text-white/80 hover:bg-white/10'}`}
-                                                onClick={(e) => { e.stopPropagation(); setSubtitlesEnabled(false); setShowSubtitleMenu(false); }}
-                                                onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setSubtitlesEnabled(false); setShowSubtitleMenu(false); }}
-                                            >
-                                                Désactiver
-                                            </button>
-
-                                            {SUBTITLE_LANGS.map((lang) => (
-                                                <button
-                                                    key={lang.code}
-                                                    className={`text-left px-3 py-2 rounded-lg text-sm transition-colors ${subtitlesEnabled && subtitleLang === lang.code ? 'bg-white/20 text-white font-medium' : 'text-white/80 hover:bg-white/10'}`}
-                                                    onClick={(e) => { e.stopPropagation(); setSubtitlesEnabled(true); setSubtitleLang(lang.code); setShowSubtitleMenu(false); }}
-                                                    onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setSubtitlesEnabled(true); setSubtitleLang(lang.code); setShowSubtitleMenu(false); }}
-                                                >
-                                                    {lang.label}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    )}
-                                    <button
-                                        onClick={(e) => { e.stopPropagation(); setShowSubtitleMenu(!showSubtitleMenu); }}
-                                        onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setShowSubtitleMenu(!showSubtitleMenu); }}
-                                        className={`relative flex items-center justify-center p-2 rounded transition-colors cursor-pointer touch-manipulation active:scale-90 ${subtitlesEnabled ? 'text-white' : 'text-white/40 hover:text-white/70'} ${showSubtitleMenu ? 'bg-white/20' : ''}`}
-                                        title={"Sous-titres"}
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <rect x="2" y="7" width="20" height="10" rx="2" ry="2"></rect>
-                                            <path d="M10 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
-                                            <path d="M17 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
-                                            {!subtitlesEnabled && <line x1="2" y1="2" x2="22" y2="22" strokeWidth="2.5" stroke="currentColor" />}
-                                        </svg>
-                                        {subtitlesEnabled && <div className="absolute 1/2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ bottom: '2px', backgroundColor: progressColor }} />}
-                                    </button>
-                                </div>
+                                <button
+                                    onClick={(e) => { e.stopPropagation(); setSubtitlesEnabled(!subtitlesEnabled); }}
+                                    onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setSubtitlesEnabled(!subtitlesEnabled); }}
+                                    className={`relative flex items-center justify-center p-2 rounded transition-colors cursor-pointer touch-manipulation active:scale-90 ${subtitlesEnabled ? 'text-white' : 'text-white/40 hover:text-white/70'}`}
+                                    title={"Sous-titres"}
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <rect x="2" y="7" width="20" height="10" rx="2" ry="2"></rect>
+                                        <path d="M10 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
+                                        <path d="M17 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
+                                        {!subtitlesEnabled && <line x1="2" y1="2" x2="22" y2="22" strokeWidth="2.5" stroke="currentColor" />}
+                                    </svg>
+                                    {subtitlesEnabled && <div className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ bottom: '2px', backgroundColor: progressColor }} />}
+                                </button>
                             )}
 
                             {/* Fullscreen Toggle */}
