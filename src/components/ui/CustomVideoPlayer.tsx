@@ -348,14 +348,14 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                             }`}
                         style={{ zIndex: 20, paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
-                        <div
-                            className="text-white px-2 py-1 mx-4 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans"
+                        <span
+                            className="text-slate-700 bg-white/95 px-3 py-1.5 rounded-lg mx-4 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans shadow-sm"
                             style={{
+                                display: 'inline-block',
                                 fontSize: isFullscreen ? 'clamp(1.2rem, 3vw, 2.5rem)' : 'clamp(0.9rem, 2vw, 1.25rem)',
-                                letterSpacing: '0.02em',
-                                lineHeight: '1.25',
-                                fontWeight: '600',
-                                textShadow: '0 0.5px 1px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,1)'
+                                letterSpacing: '0.01em',
+                                lineHeight: '1.3',
+                                fontWeight: '500',
                             }}
                             dangerouslySetInnerHTML={{ __html: activeSubtitle }}
                         />
