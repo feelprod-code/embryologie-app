@@ -158,7 +158,7 @@ function App() {
 
         {/* Desktop Top Navigation Bar */}
         <nav className={cn(
-          "sticky top-0 z-40 w-full h-[60px] bg-white/80 backdrop-blur-md border-b border-slate-200 hidden md:flex items-center justify-center gap-2 px-6 shadow-sm",
+          "sticky top-0 z-40 w-full h-[60px] bg-[#FAF9F6] border-b border-slate-200 hidden md:flex items-center justify-center gap-2 px-6 shadow-sm",
           currentView === 'video-player' ? "mb-4 lg:mb-6" : ""
         )}>
           <button
