@@ -271,7 +271,7 @@ function App() {
             <div className="w-full max-w-5xl flex flex-col animate-fade-in relative z-10 mx-auto">
 
               {/* STICKY HEADER CONTAINER FOR TIMELINE */}
-              <div className="sticky top-[0px] md:top-[50px] lg:top-[50px] z-20 w-[100vw] lg:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-[26px] lg:pt-[26px] flex flex-col items-center pb-[16px] md:pb-[16px] px-2 transition-all border-b border-transparent md:border-slate-100 shadow-sm md:shadow-none">
+              <div className="sticky top-[0px] md:top-[20px] lg:top-[20px] z-20 w-[100vw] lg:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-[56px] lg:pt-[56px] flex flex-col items-center pb-[16px] md:pb-[16px] px-2 transition-all border-b border-transparent md:border-slate-100 shadow-sm md:shadow-none">
                 {/* TIMELINE BADGE */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center animate-fade-in-up pb-1 md:pb-0">
                   <div className="inline-flex items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] lg:max-w-full overflow-hidden">
