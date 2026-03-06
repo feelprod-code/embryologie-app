@@ -9,7 +9,9 @@
     },
     "nav": {
         "timeline": "Timeline",
-        "videos": "Video Courses"
+        "videos": "Video Courses",
+        "home": "Home",
+        "ai_assistant": "AI Assistant"
     },
     "chatbot": {
         "apiKeyMissing": "Missing API Key.",

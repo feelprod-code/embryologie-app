@@ -12,7 +12,9 @@
     },
     "nav": {
         "timeline": "Chronologie",
-        "videos": "Cours en Vidéo"
+        "videos": "Cours en Vidéo",
+        "home": "Accueil",
+        "ai_assistant": "Embryo AI"
     },
     "chatbot": {
         "apiKeyMissing": "Clé API manquante.",
