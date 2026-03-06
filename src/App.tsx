@@ -87,7 +87,8 @@ function App() {
         </>
       )}
 
-      {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
+      {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL (Supprimé) */}
+      {/*
       {currentView !== 'podcast-player' && (
         <nav className="fixed bottom-0 z-50 w-full bg-white/90 backdrop-blur-xl border-t border-slate-200 flex md:hidden pb-[env(safe-area-inset-bottom,16px)] shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none">
           <button
@@ -146,12 +147,12 @@ function App() {
             <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('home.ai_assistant')}</span>
           </button>
 
-          {/* Mobile bottom nav Language Switcher */}
           <div className="flex flex-1 items-center justify-center pb-2 pt-3">
             <LanguageSwitcher variant="bottom-nav" />
           </div>
         </nav>
       )}
+      */}
 
       {/* INNER SCROLLABLE CANVAS - Scroll contained to let Safari rest */}
       <div className="flex-1 w-full h-full flex flex-col items-center overflow-y-auto overflow-x-hidden relative z-10 overscroll-y-none no-scrollbar" id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
@@ -215,12 +216,12 @@ function App() {
 
         {/* Main Container Wrapper */}
         <div className={cn(
-          "flex flex-col items-center w-full flex-1",
+          "flex flex-col items-center w-full flex-1 p-0 m-0",
           currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai'
-            ? "p-0"
-            : "px-2 sm:px-6 lg:px-8 w-full pb-[100px]",
-          currentView === 'home' ? "overflow-hidden h-[calc(100vh-69px)]" : "",
-          currentView === 'video-player' ? "pt-0 md:pt-2 pb-[90px] md:pb-2 overflow-hidden h-[100dvh] md:h-[calc(100vh-60px)]" : "pt-0"
+            ? ""
+            : "w-full",
+          currentView === 'home' ? "overflow-hidden h-[100vh]" : "",
+          currentView === 'video-player' ? "overflow-hidden h-[100dvh]" : ""
         )}>
 
           {/* Desktop Top Navigation Bar */}
