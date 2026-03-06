@@ -3,9 +3,12 @@
         "training_by": "FORMATION PAR",
         "title_part1": "L'EMBRYOLOGIE",
         "title_part2": "BIODYNAMIQUE",
-        "start": "C'est parti !",
-        "ai_assistant": "Assistant AI",
-        "credits": "Une production FeelProd ©"
+        "heroSub": "L'application de référence pour les professionnels de santé",
+        "start": "Pour commencer !",
+        "credits": "Réalisation FeelProd 2026",
+        "legal": "Mentions Légales",
+        "privacy": "Politique de Confidentialité",
+        "videos": "Cours en Vidéo"
     },
     "nav": {
         "timeline": "Chronologie",

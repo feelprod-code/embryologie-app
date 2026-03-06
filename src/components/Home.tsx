@@ -54,7 +54,7 @@ export function Home({ onNavigate }: HomeProps) {
                             src="https://audio.ausha.co/6r2X8f6LVNAp.mp3"
                             className="w-full"
                         />
-                        <span className="font-handwriting text-3xl lg:text-4xl text-slate-600 mt-8 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                        <span className="font-handwriting text-3xl lg:text-4xl text-slate-600 mt-4 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                             {t('home.start')}
                         </span>
                     </div>

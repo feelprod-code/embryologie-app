@@ -3,11 +3,22 @@ import { Stream } from '@cloudflare/stream-react';
 import { useTranslation } from 'react-i18next';
 import { Play, Pause, Maximize, Minimize, X, Airplay, PictureInPicture } from 'lucide-react';
 
-// Mapping local language names to Cloudflare language codes if needed
+// Supported subtitle languages
+const SUBTITLE_LANGS = [
+    { code: 'fr', label: 'Français' },
+    { code: 'en', label: 'English' },
+    { code: 'es', label: 'Español' },
+    { code: 'pt', label: 'Português' },
+    { code: 'it', label: 'Italiano' },
+    { code: 'de', label: 'Deutsch' },
+    { code: 'ja', label: '日本語' },
+    { code: 'zh', label: '中文' },
+];
+
 const getCloudflareLangCode = (appLang: string) => {
-    if (appLang === 'en') return 'en';
-    if (appLang === 'es') return 'es';
-    return 'fr'; // default to French if not listed
+    // Return matching language code, or default to fr
+    if (SUBTITLE_LANGS.some(lang => lang.code === appLang)) return appLang;
+    return 'fr';
 };
 
 // Helper for formatting time (e.g. 65 -> "1:05")
@@ -47,6 +58,8 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
     const [hasSubtitles, setHasSubtitles] = useState(false);
     const [activeSubtitle, setActiveSubtitle] = useState<string | null>(null);
+    const [subtitleLang, setSubtitleLang] = useState<string>(i18n.language || 'fr');
+    const [showSubtitleMenu, setShowSubtitleMenu] = useState(false);
     const cuesRef = useRef<{ start: number, end: number, text: string }[]>([]);
 
     // Custom Controls State
@@ -69,11 +82,6 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 setIsPlaying(true);
             }
         }
-    };
-
-    const toggleFullscreen = (e?: React.MouseEvent | React.TouchEvent) => {
-        if (e) e.stopPropagation();
-        setIsFullscreen(!isFullscreen);
     };
 
     const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,9 +111,18 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying]);
 
-    // Force strict fullscreen behaviors to escape iOS DOM traps
+    // Force strict fullscreen behaviors to escape iOS DOM traps (For CSS fallback)
     useEffect(() => {
         const rootElement = document.getElementById('root');
+
+        // Listen to native fullscreen changes to sync our state if they exit via ESC or native controls
+        const handleFullscreenChange = () => {
+            if (!document.fullscreenElement && isFullscreen) {
+                setIsFullscreen(false);
+            }
+        };
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+
         if (isFullscreen) {
             document.body.style.overflow = 'hidden';
             document.body.classList.add('video-fullscreen-active');
@@ -127,6 +144,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         }
 
         return () => {
+            document.removeEventListener('fullscreenchange', handleFullscreenChange);
             document.body.style.overflow = '';
             document.body.classList.remove('video-fullscreen-active');
             if (rootElement) {
@@ -135,8 +153,41 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         };
     }, [isFullscreen, onFullscreenChange]);
 
+    const toggleFullscreen = (e?: React.MouseEvent | React.TouchEvent) => {
+        if (e) e.stopPropagation();
+
+        const videoEl = document.querySelector(`stream[src="${cloudflareId}"] video`) as HTMLVideoElement || document.querySelector('video');
+
+        // 1. iOS Native Fullscreen
+        if (videoEl && (videoEl as any).webkitEnterFullscreen) {
+            (videoEl as any).webkitEnterFullscreen();
+            return;
+        }
+
+        // 2. Standard Web Fullscreen API
+        const playerContainer = videoEl?.closest('.group');
+        if (playerContainer && document.fullscreenEnabled) {
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(console.error);
+                setIsFullscreen(false);
+            } else {
+                playerContainer.requestFullscreen().then(() => {
+                    setIsFullscreen(true);
+                }).catch(err => {
+                    console.error("Error attempting to enable fullscreen:", err);
+                    setIsFullscreen(!isFullscreen); // fallback
+                });
+            }
+            return;
+        }
+
+        // 3. Fallback CSS Fullscreen
+        setIsFullscreen(!isFullscreen);
+    };
+
     const requestPiP = async () => {
-        const video = document.querySelector(`stream[src="${cloudflareId}"] video`) as HTMLVideoElement || document.querySelector('video');
+        const streamEl = document.querySelector(`stream[src="${cloudflareId}"]`);
+        const video = (streamEl?.shadowRoot?.querySelector('video') || document.querySelector('video')) as HTMLVideoElement;
         if (!video || typeof document === 'undefined') return;
 
         try {
@@ -157,7 +208,8 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     };
 
     const requestAirPlay = () => {
-        const video = document.querySelector(`stream[src="${cloudflareId}"] video`) as HTMLVideoElement || document.querySelector('video');
+        const streamEl = document.querySelector(`stream[src="${cloudflareId}"]`);
+        const video = (streamEl?.shadowRoot?.querySelector('video') || document.querySelector('video')) as HTMLVideoElement;
         // @ts-ignore
         if (video && typeof window !== 'undefined' && window.WebKitPlaybackTargetAvailabilityEvent && video.webkitShowPlaybackTargetPicker) {
             // @ts-ignore
@@ -197,7 +249,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         const fetchVtt = async () => {
             setActiveSubtitle(null);
             try {
-                const langCode = getCloudflareLangCode(i18n.language);
+                const langCode = getCloudflareLangCode(subtitleLang);
                 let vttText = '';
 
                 // Try fetching directly from Cloudflare downloads first
@@ -213,23 +265,22 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                         if (localVttRes.ok) {
                             vttText = await localVttRes.text();
                         } else {
-                            return;
+                            throw new Error('Not found locally either');
                         }
                     }
                 } catch {
-                    // Fallback on exception
+                    // Try to fetch FR as a last resort just to see if we have ANY subtitles
                     try {
-                        const localVttRes = await fetch(`/vtt/${cloudflareId}_${langCode}.vtt`);
+                        const localVttRes = await fetch(`/vtt/${cloudflareId}_fr.vtt`);
                         if (localVttRes.ok) {
                             vttText = await localVttRes.text();
-                        } else {
-                            return;
                         }
                     } catch {
-                        return;
+                        // ignore
                     }
                 }
 
+                setHasSubtitles(!!vttText); // Always activate CC button if ANY text exists
                 if (!vttText) return;
 
                 const lines = vttText.split('\n');
@@ -296,25 +347,32 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 }
                 cuesRef.current = parsedCues;
                 if (parsedCues.length > 0) {
-                    setHasSubtitles(true);
+                    setHasSubtitles(cuesRef.current.length > 0); // Keep tracking it properly based on cues
                 }
-            } catch (error: unknown) {
-                console.error('[VTT] Parsing Error:', error);
+            } catch (err) {
+                console.error("VTT Parse err", err);
             }
         };
 
         fetchVtt();
-    }, [cloudflareId, i18n.language]);
+    }, [cloudflareId, subtitleLang]);
 
     // 1. PRIORITÉ ABSOLUE : Lecteur Stream Officiel customisé
     if (cloudflareId && cloudflareId !== "") {
         return (
             <div
-                className={`relative flex justify-center items-center bg-black transition-all duration-0 select-none group ${isFullscreen
-                    ? 'video-player-fullscreen-active'
-                    : `w-full aspect-video rounded-xl shadow-2xl overflow-hidden ${className}`
-                    }`}
-                onMouseMove={triggerControls}
+                className={`relative w-full aspect-video bg-black overflow-hidden rounded-xl shadow-2xl group ${className}`}
+                onMouseMove={() => {
+                    // Only trigger mouse move if we are inside the window!
+                    triggerControls();
+                }}
+                onMouseLeave={() => {
+                    if (isPlaying) {
+                        setShowControls(false); // Instantly hide controls on mouse leave
+                        if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+                    }
+                }}
+                onTouchStart={triggerControls}
             >
                 {/* 1. LAYER 0: The native stream player without controls */}
                 <div className="absolute inset-0 w-full h-full pointer-events-none">
@@ -362,13 +420,15 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     />
                 </div>
 
-                {/* 2. LAYER 1: Interactive Play/Pause zone */}
+                {/* 2. LAYER 1: Interactive Screen Tap Zone */}
                 <div
                     className="absolute inset-0 z-10 cursor-pointer flex items-center justify-center touch-manipulation"
                     onClick={(e) => {
                         e.stopPropagation();
                         if (showControls) {
-                            if (isPlaying) {
+                            if (showSubtitleMenu) {
+                                setShowSubtitleMenu(false);
+                            } else if (isPlaying) {
                                 setShowControls(false); // Hide immediately if playing and controls are tapped
                             }
                             if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
@@ -377,17 +437,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                         }
                     }}
                 >
-                    {/* Big centered play/pause button */}
-                    <div
-                        className={`transition-opacity duration-300 ${(showControls || !isPlaying) ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} bg-black/40 p-4 sm:p-5 rounded-full backdrop-blur-sm md:hover:bg-black/60 scale-75 sm:scale-100 flex items-center justify-center`}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            togglePlay();
-                            triggerControls();
-                        }}
-                    >
-                        {isPlaying ? <Pause size={48} className="text-white" fill="currentColor" /> : <Play size={48} className="text-white ml-2" fill="currentColor" />}
-                    </div>
+                    {/* The big center play button has been removed by request. Playback is managed by the bottom bar. */}
                 </div>
 
                 {/* EXTRA LAYER: iOS specific exit fullscreen button at top right */}
@@ -503,22 +553,52 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                                 </button>
                             )}
 
-                            {/* CC Toggle */}
+                            {/* CC Toggle & Menu */}
                             {hasSubtitles && (
-                                <button
-                                    onClick={(e) => { e.stopPropagation(); setSubtitlesEnabled(!subtitlesEnabled); }}
-                                    onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setSubtitlesEnabled(!subtitlesEnabled); }}
-                                    className={`relative flex items-center justify-center p-2 rounded transition-colors cursor-pointer touch-manipulation active:scale-90 ${subtitlesEnabled ? 'text-white' : 'text-white/40 hover:text-white/70'}`}
-                                    title={subtitlesEnabled ? "Désactiver les sous-titres" : "Activer les sous-titres"}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                        <rect x="2" y="7" width="20" height="10" rx="2" ry="2"></rect>
-                                        <path d="M10 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
-                                        <path d="M17 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
-                                        {!subtitlesEnabled && <line x1="2" y1="2" x2="22" y2="22" strokeWidth="2.5" stroke="currentColor" />}
-                                    </svg>
-                                    {subtitlesEnabled && <div className="absolute 1/2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ bottom: '2px', backgroundColor: progressColor }} />}
-                                </button>
+                                <div className="relative flex items-center justify-center pointer-events-auto">
+                                    {showSubtitleMenu && (
+                                        <div
+                                            className="absolute bottom-full right-0 mb-2 bg-black/80 backdrop-blur-md rounded-xl border border-white/10 shadow-2xl p-2 min-w-[140px] z-50 flex flex-col gap-1 origin-bottom-right"
+                                            onClick={(e) => e.stopPropagation()}
+                                            onTouchEnd={(e) => e.stopPropagation()}
+                                        >
+                                            <div className="px-3 py-1.5 text-white/50 text-xs font-semibold uppercase tracking-wider mb-1">Sous-titres</div>
+
+                                            <button
+                                                className={`text-left px-3 py-2 rounded-lg text-sm transition-colors ${!subtitlesEnabled ? 'bg-white/20 text-white font-medium' : 'text-white/80 hover:bg-white/10'}`}
+                                                onClick={(e) => { e.stopPropagation(); setSubtitlesEnabled(false); setShowSubtitleMenu(false); }}
+                                                onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setSubtitlesEnabled(false); setShowSubtitleMenu(false); }}
+                                            >
+                                                Désactiver
+                                            </button>
+
+                                            {SUBTITLE_LANGS.map((lang) => (
+                                                <button
+                                                    key={lang.code}
+                                                    className={`text-left px-3 py-2 rounded-lg text-sm transition-colors ${subtitlesEnabled && subtitleLang === lang.code ? 'bg-white/20 text-white font-medium' : 'text-white/80 hover:bg-white/10'}`}
+                                                    onClick={(e) => { e.stopPropagation(); setSubtitlesEnabled(true); setSubtitleLang(lang.code); setShowSubtitleMenu(false); }}
+                                                    onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setSubtitlesEnabled(true); setSubtitleLang(lang.code); setShowSubtitleMenu(false); }}
+                                                >
+                                                    {lang.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); setShowSubtitleMenu(!showSubtitleMenu); }}
+                                        onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setShowSubtitleMenu(!showSubtitleMenu); }}
+                                        className={`relative flex items-center justify-center p-2 rounded transition-colors cursor-pointer touch-manipulation active:scale-90 ${subtitlesEnabled ? 'text-white' : 'text-white/40 hover:text-white/70'} ${showSubtitleMenu ? 'bg-white/20' : ''}`}
+                                        title={"Sous-titres"}
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <rect x="2" y="7" width="20" height="10" rx="2" ry="2"></rect>
+                                            <path d="M10 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
+                                            <path d="M17 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
+                                            {!subtitlesEnabled && <line x1="2" y1="2" x2="22" y2="22" strokeWidth="2.5" stroke="currentColor" />}
+                                        </svg>
+                                        {subtitlesEnabled && <div className="absolute 1/2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ bottom: '2px', backgroundColor: progressColor }} />}
+                                    </button>
+                                </div>
                             )}
 
                             {/* Fullscreen Toggle */}

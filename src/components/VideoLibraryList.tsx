@@ -86,8 +86,8 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                 </div>
 
                 {/* Category Pills (identical spacing to Timeline) */}
-                <div className="w-[100vw] md:w-full overflow-x-auto no-scrollbar -mx-2 sm:-mx-6 lg:mx-0 pb-3 pt-3 mt-1 border-t border-slate-100 snap-x">
-                    <div className="flex flex-nowrap items-stretch gap-2 px-4 w-max mx-auto">
+                <div className="w-[100vw] md:w-full overflow-x-auto no-scrollbar -mx-2 sm:-mx-6 lg:mx-0 pb-4 pt-3 mt-1 border-t border-slate-100">
+                    <div className="flex flex-nowrap items-stretch gap-3 px-4 w-max mx-auto md:w-full md:justify-center">
                         {tabs.map(layer => {
                             const isSelected = selectedLayer === layer;
 
@@ -119,7 +119,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     key={layer}
                                     onClick={() => setSelectedLayer(layer)}
                                     className={cn(
-                                        "relative flex flex-col items-center justify-center py-3 px-2 rounded-[1.2rem] min-w-[120px] sm:min-w-[140px] border shrink-0 snap-center transition-all duration-300 cursor-pointer touch-manipulation active:scale-95",
+                                        "relative flex flex-col items-center justify-center py-4 px-3 rounded-[1.2rem] min-w-[130px] sm:min-w-[140px] min-h-[64px] border shrink-0 transition-transform duration-200 cursor-pointer touch-manipulation active:scale-[0.97]",
                                         isSelected
                                             ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white`
                                             : `${style.unselectedBg} ${style.unselectedBorder} ${style.unselectedText} shadow-sm ${style.hover}`
