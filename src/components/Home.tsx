@@ -7,7 +7,13 @@ interface HomeProps {
 }
 
 export function Home({ onNavigate }: HomeProps) {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+
+    // Determine which podcast audio to load based on language
+    const isEnglish = typeof i18n.language === 'string' && i18n.language.startsWith('en');
+    const podcastAudioSrc = isEnglish
+        ? `${import.meta.env.BASE_URL}podcast_embryology_english.mp3`
+        : "https://audio.ausha.co/6r2X8f6LVNAp.mp3";
 
     return (
         <div className="w-full h-full relative overflow-x-hidden overflow-y-auto no-scrollbar bg-[#FAF9F6]">
@@ -51,7 +57,7 @@ export function Home({ onNavigate }: HomeProps) {
                     {/* Minimalist Player */}
                     <div className="w-[85%] sm:w-2/3 max-w-[300px] z-20 mt-4 flex flex-col items-center">
                         <CustomAudioPlayer
-                            src="https://audio.ausha.co/6r2X8f6LVNAp.mp3"
+                            src={podcastAudioSrc}
                             className="w-full"
                         />
                         <span className="font-handwriting text-3xl lg:text-4xl text-slate-600 mt-4 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
@@ -89,7 +95,7 @@ export function Home({ onNavigate }: HomeProps) {
 
                 {/* Credits FeelProd */}
                 <div className="flex-none w-full flex items-center justify-center">
-                    <span className="text-[11px] sm:text-sm text-slate-400 font-bold uppercase tracking-widest text-center relative z-20">
+                    <span className="text-[10px] sm:text-[11px] text-slate-400/60 font-light uppercase tracking-[0.2em] text-center relative z-20">
                         {t('home.credits')}
                     </span>
                 </div>

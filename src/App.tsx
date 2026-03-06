@@ -289,24 +289,24 @@ function App() {
             <div className="w-full max-w-7xl flex flex-col animate-fade-in relative z-10">
 
               {/* STICKY HEADER CONTAINER FOR TIMELINE */}
-              <div className="sticky top-0 md:top-[68px] z-50 w-[100vw] md:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-2 flex flex-col items-center shadow-sm md:shadow-none pb-2 md:pb-0 mb-4 px-2">
+              <div className="sticky top-0 lg:top-[68px] z-50 w-[100vw] lg:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] lg:pt-2 flex flex-col items-center shadow-sm lg:shadow-none pb-2 lg:pb-0 mb-4 px-2">
                 {/* TIMELINE BADGE */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 relative w-full text-center animate-fade-in-up pb-1">
                   <button
                     onClick={() => setCurrentView('home')}
-                    className="hidden md:flex md:absolute md:left-4 items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 px-6 py-2 rounded-full font-bebas tracking-widest transition-colors shadow-sm active:scale-95 text-base shrink-0"
+                    className="hidden lg:flex lg:absolute lg:left-4 items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 px-6 py-2 rounded-full font-bebas tracking-widest transition-colors shadow-sm active:scale-95 text-base shrink-0"
                   >
                     {t('app.back_to_home')}
                   </button>
-                  <div className="inline-flex items-center justify-center px-4 sm:px-8 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
-                    <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
+                  <div className="inline-flex items-center justify-center px-4 sm:px-8 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[95vw] lg:max-w-full overflow-hidden">
+                    <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl lg:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
                       {t('app.developmental_movement')}
                     </span>
                   </div>
                 </div>
 
                 {/* MOBILE TIMELINE NAVIGATION (Horizontal chip selection) */}
-                <div className="w-[100vw] md:hidden overflow-x-auto no-scrollbar -mx-2 sm:-mx-6 lg:mx-0 pb-3 pt-3 mt-1 border-t border-slate-100 snap-x">
+                <div className="w-[100vw] lg:hidden overflow-x-auto no-scrollbar -mx-2 sm:-mx-6 lg:mx-0 pb-3 pt-3 mt-1 border-t border-slate-100 snap-x">
                   <div className="flex flex-nowrap items-stretch gap-2 px-4 w-max mx-auto">
                     {detailedStages.map((stage) => {
                       const isActive = stage.id === activeStageId;
@@ -349,10 +349,10 @@ function App() {
                 </div>
               </div>
 
-              <div className="w-full grid grid-cols-1 md:grid-cols-12 md:gap-10">
+              <div className="w-full grid grid-cols-1 lg:grid-cols-12 lg:gap-10">
 
                 {/* TIMELINE NAVIGATION (Vertical Left Column - Desktop Only) */}
-                <div className="hidden md:block md:col-span-4 relative max-h-[80vh] overflow-y-auto hide-scrollbar border-b-0 border-slate-200 mb-0 sticky top-0 z-10 bg-transparent p-0">
+                <div className="hidden lg:block lg:col-span-4 relative max-h-[80vh] overflow-y-auto hide-scrollbar border-b-0 border-slate-200 mb-0 sticky top-0 z-10 bg-transparent p-0">
                   <div className="absolute top-0 bottom-0 left-6 w-px bg-slate-200"></div>
                   <div className="space-y-6 relative pb-10 mt-6">
                     {detailedStages.map((stage) => {
@@ -406,7 +406,7 @@ function App() {
                 </div>
 
                 {/* STAGE DETAILS (Right Column) */}
-                <div className="md:col-span-8">
+                <div className="lg:col-span-8">
                   {activeStage ? (
                     <div className="bg-white rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden animate-fade-in flex flex-col h-full">
                       {/* Background Color Hint (Subtle for light theme) */}
@@ -561,8 +561,8 @@ function App() {
                   )}
                 </div>
               </div>
-              {/* Added spacer to clear tab bar on mobile */}
-              <div className="h-24 md:h-0 w-full shrink-0"></div>
+              {/* Added spacer to clear tab bar on mobile/tablet */}
+              <div className="h-24 lg:h-0 w-full shrink-0"></div>
             </div>
           )}
         </div>
