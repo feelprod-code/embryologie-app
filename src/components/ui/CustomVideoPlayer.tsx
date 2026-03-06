@@ -449,10 +449,10 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     >
                         <button
                             onClick={toggleFullscreen}
-                            className="bg-black/50 text-white p-3 sm:p-4 rounded-full backdrop-blur-md border border-white/20 shadow-lg active:scale-90 touch-manipulation cursor-pointer"
+                            className="bg-black/50 text-white p-2.5 sm:p-3 rounded-full backdrop-blur-md border border-white/20 shadow-lg active:scale-90 touch-manipulation cursor-pointer"
                             aria-label="Quitter le plein écran"
                         >
-                            <X size={24} />
+                            <X size={20} />
                         </button>
                     </div>
                 )}
@@ -465,12 +465,12 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                         style={{ zIndex: 20, paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <span
-                            className="text-slate-700 bg-white/95 px-3 py-1.5 rounded-lg mx-4 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans shadow-sm"
+                            className="text-slate-700 bg-white/95 px-3 py-1.5 rounded-xl mx-4 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans shadow-md"
                             style={{
                                 display: 'inline-block',
-                                fontSize: isFullscreen ? 'clamp(1.2rem, 3vw, 2.5rem)' : 'clamp(0.9rem, 2vw, 1.25rem)',
+                                fontSize: isFullscreen ? 'clamp(0.95rem, 2vw, 1.4rem)' : 'clamp(0.85rem, 2vw, 1.25rem)',
                                 letterSpacing: '0.01em',
-                                lineHeight: '1.3',
+                                lineHeight: '1.4',
                                 fontWeight: '500',
                             }}
                             dangerouslySetInnerHTML={{ __html: activeSubtitle }}
