@@ -1,464 +1,462 @@
-export type EmbryoLayer = "L'Ectoderme" | "Le Mésoderme" | "L'Endoderme" | "L'Oeil" | "Global" | "N/A";
+import type { StageDataV2 } from './embryologie';
 
-export interface EventDetail {
-    order?: number; // Ordre précis de la cascade
-    layer: EmbryoLayer;
-    movement: string; // ex: "Cardialisation", "Vague Calcique"
-    description: string;
-}
-
-export interface LayerPerception {
-    layer: EmbryoLayer;
-    perception: string;
-}
-
-export interface PracticalIntegration {
-    fulcrums: string;
-    generalPalpation: string;
-    layerPerceptions?: LayerPerception[]; // optionnel si pas de différenciation spécifique
-    therapistPosture: string;
-    psychosomatic: string;
-}
-
-export interface StageDataV2 {
-    id: string;
-    dayLabel: string; // Ex: "Jour 1", "Jours 22 à 28"
-    period: string; // Ex: "Période Pré-conceptuelle"
-    title: string;
-    generalDescription: string;
-    events: EventDetail[];
-    themeColor: string;
-    mermaidCode?: string;
-    practicalIntegration?: PracticalIntegration;
-}
-
-const colors = `
-classDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;
-classDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;
-classDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;
-classDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;
-`;
 
 export const detailedStages: StageDataV2[] = [
     {
-        id: "j-0",
-        dayLabel: "Avant Jour 1",
-        period: "Période Pré-conceptuelle & Maturation",
-        title: "Polarité, Préparation et Informations",
-        generalDescription: "L'ovocyte n'est pas neutre. Dès sa maturation dans les follicules, il est baigné dans les fluides systémiques de la mère, s'imprégnant de l'environnement biochimique et émotionnel.",
-        events: [
+        "id": "j-0",
+        "dayLabel": "Prima del Giorno 1",
+        "period": "Periodo Pre-concezionale & Maturazione",
+        "title": "Polarità, Preparazione e Informazioni",
+        "generalDescription": "L'ovocita non è neutro. Fin dalla sua maturazione nei follicoli, è immerso nei fluidi sistemici della madre, impregnandosi dell'ambiente biochimico ed emotivo.",
+        "events": [
             {
-                order: 1,
-                layer: "N/A",
-                movement: "Maturation & Empreinte Transgénérationnelle",
-                description: "Le stock d'ovocytes est constitué in utero. Les chocs émotionnels et la qualité de la circulation sanguine maternelle imprègnent déjà ces cellules. L'ovocyte intègre les stress de la mère mais aussi de la grand-mère."
+                "order": 1,
+                "layer": "N/A",
+                "movement": "Maturazione e Impronta Transgenerazionale",
+                "description": "La riserva di ovociti si forma in utero. Gli shock emotivi e la qualità della circolazione sanguigna materna impregnano già queste cellule. L'ovocita integra gli stress della madre ma anche della nonna."
             },
             {
-                order: 2,
-                layer: "N/A",
-                movement: "Drapeau de Wolpert (Concentration)",
-                description: "Mise en place de l'axe métabolique asymétrique. Les protéines et l'ARN messager maternels se polarisent, déplaçant le noyau vers le pôle animal. C'est l'apparition de l'axe crânio-caudal de référence, bien avant la fécondation."
+                "order": 2,
+                "layer": "N/A",
+                "movement": "Bandiera di Wolpert (Concentrazione)",
+                "description": "Instaurazione dell'asse metabolico asimmetrico. Le proteine e l'RNA messaggero materni si polarizzano, spostando il nucleo verso il polo animale. Questa è la comparsa dell'asse cranio-caudale di riferimento, ben prima della fecondazione."
             },
             {
-                order: 3,
-                layer: "N/A",
-                movement: "Pôle Assimilateur",
-                description: "Ségrégation entre le vitellus (réserves énergétiques) et les gradients morphogènes. Le cytosquelette s'organise et met l'ovocyte sous tension pour la réception."
+                "order": 3,
+                "layer": "N/A",
+                "movement": "Polo Assimilatore",
+                "description": "Segregazione tra il vitello (riserve energetiche) e i gradienti morfogenetici. Il citoscheletro si organizza e mette l'ovocita sotto tensione per la ricezione."
             }
         ],
-        themeColor: "bg-blue-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Ovocyte en Maturation]:::global -->|Empreinte Maternelle| B(Fluides et Sécrétions Folliculaires):::global\n  B --> C[Drapeau de Wolpert]:::global\n  C --> D(Axe Crânio-Caudal Originel):::global\n  D --> E[Pôle Synthétique/Noyau]:::global`
+        "themeColor": "bg-blue-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Ovocyte en Maturation]:::global -->|Empreinte Maternelle| B(Fluides et Sécrétions Folliculaires):::global\n  B --> C[Drapeau de Wolpert]:::global\n  C --> D(Axe Crânio-Caudal Originel):::global\n  D --> E[Pôle Synthétique/Noyau]:::global"
     },
     {
-        id: "j-1",
-        dayLabel: "Jour 1",
-        period: "Fécondation",
-        title: "La Rencontre & La Vague Calcique",
-        generalDescription: "A l'ampoule tubaire, un seul spermatozoïde va pénétrer. C'est une explosion énergétique et le moment absolu de l'incarnation.",
-        events: [
+        "id": "j-1",
+        "dayLabel": "Giorno 1",
+        "period": "Fecondazione",
+        "title": "L'Incontro & L'Onda Calcica",
+        "generalDescription": "Nell'ampolla tubarica, un solo spermatozoo penetrerà. È un'esplosione energetica e il momento assoluto dell'incarnazione.",
+        "events": [
             {
-                order: 1,
-                layer: "Global",
-                movement: "Reconnaissance de Clé (ZP3)",
-                description: "L'ovocyte 'choisit' activement par reconnaissance enzymatique via la protéine ZP3 de sa zone pellucide. Un non-accueil ou court-circuit de cette phase (ex. FIV) ne crée pas la cicatrice électrique naturelle de J1."
+                "order": 1,
+                "layer": "Global",
+                "movement": "Riconoscimento della Chiave (ZP3)",
+                "description": "L'ovocita 'sceglie' attivamente tramite riconoscimento enzimatico attraverso la proteina ZP3 della sua zona pellucida. Una mancata accoglienza o un cortocircuito di questa fase (es. FIV) non crea la cicatrice elettrica naturale del G1."
             },
             {
-                order: 2,
-                layer: "Global",
-                movement: "Choc Électromagnétique",
-                description: "Dès l'entrée, inversion électrique immédiate (blocage de la polyspermie) et libération explosive du zinc. L'ovocyte termine sa méiose."
+                "order": 2,
+                "layer": "Global",
+                "movement": "Shock Elettromagnetico",
+                "description": "All'ingresso, immediata inversione elettrica (blocco della polispermia) e rilascio esplosivo di zinco. L'ovocita completa la sua meiosi."
             },
             {
-                order: 3,
-                layer: "Global",
-                movement: "La Vague Calcique Massive",
-                description: "Réorganisation totale et foudroyante du cytosquelette dictée par un déferlement de calcium. C'est l'étincelle de vie qui fige l'axe crânio-caudal (vestige projeté plus tard vers S2/Coccyx, et relié au Cœur)."
+                "order": 3,
+                "layer": "Global",
+                "movement": "L'Onda Calcica Massiva",
+                "description": "Riorganizzazione totale e fulminante del citoscheletro dettata da un'ondata di calcio. È la scintilla di vita che fissa l'asse cranio-caudale (vestigio proiettato più tardi verso S2/Coccige, e collegato al Cuore)."
             },
             {
-                order: 4,
-                layer: "L'Oeil",
-                movement: "Assise de l'Information Sensorielle",
-                description: "Bien que l'œil physique n'existe pas, la polarité du système nerveux central et diencéphalique trouve sa fondation dans le champ électrique produit à cet instant."
+                "order": 4,
+                "layer": "L'Oeil",
+                "movement": "Sede dell'Informazione Sensoriale",
+                "description": "Sebbene l'occhio fisico non esista, la polarità del sistema nervoso centrale e diencefalico trova il suo fondamento nel campo elettrico prodotto in quell'istante."
             }
         ],
-        themeColor: "bg-purple-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Fécondation]:::global -->|Reconnaissance ZP3| B(Inversion Électrique):::global\n  B --> C[Libération du Zinc]:::global\n  C --> D{Vague Calcique Explosive}:::global\n  D --> E(Réorganisation Cytosquelette):::global\n  D --> F(Cristallisation de l'Axe Central):::global`,
-        practicalIntegration: {
-            fulcrums: "Origine Épigénétique du Cœur : vestige énergétique de la fécondation descendant jusqu'à S2/Coccyx. L'axe Cœur-Coccyx relie le cœur actuel à sa source conceptionnelle.",
-            generalPalpation: "Diagnostic de motilité tissulaire cardiaque dans l'espace facial : Systole faciale (verticalisation, sur-action, épuisement) vs Diastole faciale (horizontalisation, prostration, recherche d'énergie originelle vers le coccyx).",
-            layerPerceptions: [
-                { layer: "Global", perception: "Onde primitive, fluctuation d'amplitude très longue orientée selon l'axe longitudinal originel." }
+        "themeColor": "bg-purple-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Fécondation]:::global -->|Reconnaissance ZP3| B(Inversion Électrique):::global\n  B --> C[Libération du Zinc]:::global\n  C --> D{Vague Calcique Explosive}:::global\n  D --> E(Réorganisation Cytosquelette):::global\n  D --> F(Cristallisation de l'Axe Central):::global",
+        "practicalIntegration": {
+            "fulcrums": "Origine Epigenetica del Cuore: vestigia energetica della fecondazione che discende fino a S2/Coccige. L'asse Cuore-Coccige collega il cuore attuale alla sua sorgente concezionale.",
+            "generalPalpation": "Diagnosi di motilità tissutale cardiaca nello spazio fasciale: Sistole fasciale (verticalizzazione, sovra-azione, esaurimento) vs Diastole fasciale (orizzontalizzazione, prostrazione, ricerca di energia originaria verso il coccige).",
+            "layerPerceptions": [
+                {
+                    "layer": "Global",
+                    "perception": "Onda primitiva, fluttuazione di ampiezza molto lunga orientata lungo l'asse longitudinale originale."
+                }
             ],
-            therapistPosture: "Main inférieure sous le bassin (S2/Coccyx, lieu originel de l'axe) et main supérieure sur l'axe du Cœur (angle de Louis). Le but est de reconnecter le tissu cardiaque à son 'blueprint' coccygien.",
-            psychosomatic: "Verdict = La Rencontre et l'Information Transgénérationnelle. L'ovocyte reconnaît la clé ZP3. C'est le moment de la 'cicatrice originelle'. Traitement par et avec le champ du cœur."
+            "therapistPosture": "Mano inferiore sotto il bacino (S2/Coccige, luogo originale dell'asse) e mano superiore sull'asse del Cuore (angolo di Louis). Lo scopo è ricollegare il tessuto cardiaco al suo \"blueprint\" coccigeo.",
+            "psychosomatic": "Verdetto = L'Incontro e l'Informazione Transgenerazionale. L'ovocita riconosce la chiave ZP3. È il momento della \"cicatrice originale\". Trattamento attraverso e con il campo del cuore."
         }
     },
     {
-        id: "j-1-4",
-        dayLabel: "Jours 1 à 4",
-        period: "1ère Semaine",
-        title: "Stagnation Radicale et Clivage",
-        generalDescription: "Le zygote effectue une cascade de multiplications en se serrant, sans aucune croissance de volume total.",
-        events: [
+        "id": "j-1-4",
+        "dayLabel": "Giorni da 1 a 4",
+        "period": "1a Settimana",
+        "title": "Stagnazione Radicale e Scissione",
+        "generalDescription": "Lo zigote effettua una cascata di moltiplicazioni serrandosi, senza alcuna crescita del volume totale.",
+        "events": [
             {
-                order: 1,
-                layer: "Global",
-                movement: "Prison de la Zone Pellucide",
-                description: "Le système est enfermé dans cette coque. Le zygote se clive en 2, puis 4, 8, et 16 cellules (la Morula). L'absence d'espace de croissance génère une immense pression énergétique latente."
+                "order": 1,
+                "layer": "Global",
+                "movement": "Prigione della Zona Pellucida",
+                "description": "Il sistema è racchiuso in questo guscio. Lo zigote si divide in 2, poi 4, 8 e 16 cellule (la Morula). L'assenza di spazio di crescita genera un'immensa pressione energetica latente."
             },
             {
-                order: 2,
-                layer: "Global",
-                movement: "Explosion Métabolique (Augmentation Surfaces)",
-                description: "À volume égal, la surface membranaire est multipliée exponentiellement. Cette concentration extrême de membrane démultiplie l'activité et la respiration cellulaires."
+                "order": 2,
+                "layer": "Global",
+                "movement": "Esplosione Metabolica (Aumento delle Superfici)",
+                "description": "A parità di volume, la superficie della membrana si moltiplica esponenzialmente. Questa estrema concentrazione di membrana moltiplica l'attività e la respirazione cellulare."
             },
             {
-                order: 3,
-                layer: "L'Endoderme",
-                movement: "Naissance du Blastocèle (Moteur Digestif Précoce)",
-                description: "Pendant ce clivage sous pression, les cellules rejettent un exsudat liquidien (premiers déchets). Ce fluide repousse les blastomères vers l'extérieur (le trophoblaste) et forme le blastocèle. Cette cavité est la toute première amorce asymétrique du système digestif et de l'absorption."
+                "order": 3,
+                "layer": "L'Endoderme",
+                "movement": "Nascita del Blastocele (Motore Digestivo Precoce)",
+                "description": "Durante questa scissione sotto pressione, le cellule rilasciano un essudato liquido (i primi scarti). Questo fluido spinge i blastomeri verso l'esterno (il trofoblasto) e forma il blastocele. Questa cavità è il primissimo inizio asimmetrico del sistema digestivo e dell'assorbimento."
             },
             {
-                order: 4,
-                layer: "L'Ectoderme",
-                movement: "Pôle Embryonnaire et Centralisation",
-                description: "Les cellules massées d'un côté (Bouton Embryonnaire) préparent secrètement le terrain du fameux disque qui deviendra le système nerveux et la peau."
+                "order": 4,
+                "layer": "L'Ectoderme",
+                "movement": "Polo Embrionale e Centralizzazione",
+                "description": "Le gruppo di cellule da un lato (Bottone Embrionale) prepara segretamente il terreno per il famoso disco che diventerà il sistema nervoso e la pelle."
             },
             {
-                order: 5,
-                layer: "Global",
-                movement: "Rupture et Éclosion (J4)",
-                description: "La pression intra-luminale du liquide et la multiplication rendent la situation intenable. L'embryon brise la zone pellucide pour s'en extraire, prêt à s'arrimer à la mère."
+                "order": 5,
+                "layer": "Global",
+                "movement": "Rottura e Schiusa (G4)",
+                "description": "La pressione intraluminale del fluido e la moltiplicazione rendono la situazione insostenibile. L'embrione rompe la zona pellucida per estrarne, pronto ad ancorarsi alla madre."
             }
         ],
-        themeColor: "bg-indigo-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Zygote]:::global --> B(Divisions sans Croissance Volumétrique):::global\n  B -->|Augmentation Surface Membranaire| C[Pression Métabolique & Energétique]:::global\n  C -->|Rejet d'Exsudat Liquidien| D(Blastocèle<br/>Apparition Endoderme):::endo\n  D --> E[Concentration du Bouton Embryonnaire]:::ecto\n  E --> F{Éclosion Radicale J4/J5}:::global`,
-        practicalIntegration: {
-            fulcrums: "Axe crânio-caudal primitif et les 'enveloppes de pression'. Le Blastocèle précoce comme origine des tensions viscérales.",
-            generalPalpation: "Densification métabolique sans expansion des tissus. Perception d'une fluctuation longitudinale entravée, et recherche de « relâchement/éclosion » aux niveaux tissulaires profonds.",
-            layerPerceptions: [
-                { layer: "Global", perception: "Travail purement membranaire (pellucide) et liquidien autocrine (champs de pression)." },
-                { layer: "L'Endoderme", perception: "Dynamique d'accumulation et d'épanchement liquidien (le début de la physiologie d'absorption et d'élimination endodermique)." }
+        "themeColor": "bg-indigo-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Zygote]:::global --> B(Divisions sans Croissance Volumétrique):::global\n  B -->|Augmentation Surface Membranaire| C[Pression Métabolique & Energétique]:::global\n  C -->|Rejet d'Exsudat Liquidien| D(Blastocèle<br/>Apparition Endoderme):::endo\n  D --> E[Concentration du Bouton Embryonnaire]:::ecto\n  E --> F{Éclosion Radicale J4/J5}:::global",
+        "practicalIntegration": {
+            "fulcrums": "Asse cranio-caudale primitiva e gli \"involucri di pressione\". Il Blastocele precoce come origine delle tensioni viscerali.",
+            "generalPalpation": "Densificazione metabolica senza espansione dei tessuti. Percezione di una fluttuazione longitudinale ostacolata e ricerca di \"rilascio/schiusura\" a livelli tissutali profondi.",
+            "layerPerceptions": [
+                {
+                    "layer": "Global",
+                    "perception": "Lavoro puramente membranoso (pellucido) e liquido autocrino (campi di pressione)."
+                },
+                {
+                    "layer": "L'Endoderme",
+                    "perception": "Dinamica di accumulo e versamento liquido (l'inizio della fisiologia di assorbimento ed eliminazione endodermica)."
+                }
             ],
-            therapistPosture: "Position de présence asymétrique, main globale captant l'ensemble du volume encore indiscernable.",
-            psychosomatic: "Verdict = L'enfermement, l'attente et l'accumulation. Dynamique de retenue avant la grande 'libération'."
+            "therapistPosture": "Posizione di presenza asimmetrica, mano globale che capta l'intero volume ancora indistinguibile.",
+            "psychosomatic": "Verdetto = Il confinamento, l'attesa e l'accumulo. Dinamica di contenimento prima della grande \"liberazione\"."
         }
     },
     {
-        id: "j-5-8",
-        dayLabel: "Jours 5 à 8",
-        period: "Fin 1ère - Début 2e Semaine",
-        title: "L'Éclosion et la Nidation",
-        generalDescription: "L'embryon arrive dans l'utérus. Guidé par son pôle assimilateur, il libère un acide pour s'enfouir dans la muqueuse utérine (micro-saignements).",
-        events: [
+        "id": "j-5-8",
+        "dayLabel": "Giorni da 5 a 8",
+        "period": "Fine 1a - Inizio 2a Settimana",
+        "title": "L'Eclosione e l'Annidamento",
+        "generalDescription": "L'embrione arriva nell'utero. Guidato dal suo polo assimilatore, rilascia un acido per annidarsi nella mucosa uterina (micro-sanguinamenti).",
+        "events": [
             {
-                order: 1,
-                layer: "Global",
-                movement: "Nidation et Exsudat",
-                description: "Création soudaine par exsudat liquidien de la deuxième cavité : la cavité amniotique (précurseur du LCR et relation avec la mère)."
+                "order": 1,
+                "layer": "Global",
+                "movement": "Nidazione ed Essudato",
+                "description": "Creazione improvvisa per essudato liquido della seconda cavità: la cavità amniotica (precursore del liquor cerebrospinale e relazione con la madre)."
             },
             {
-                order: 2,
-                layer: "L'Ectoderme",
-                movement: "Différenciation Topographique",
-                description: "Le bouton embryonnaire se sépare en disque didermique. Les cellules du dessus forment l'Épiblaste (futur système nerveux)."
+                "order": 2,
+                "layer": "L'Ectoderme",
+                "movement": "Differenziazione Topografica",
+                "description": "Il bottone embrionale si separa in disco didermico. Le cellule superiori formano l'Epiblasto (futuro sistema nervoso)."
             },
             {
-                order: 3,
-                layer: "L'Endoderme",
-                movement: "Différenciation Topographique",
-                description: "Les cellules tournées vers le bas (vers le blastocèle) forment l'Hypoblaste (futur système digestif direct)."
+                "order": 3,
+                "layer": "L'Endoderme",
+                "movement": "Differenziazione Topografica",
+                "description": "Le cellule rivolte verso il basso (verso il blastocele) formano l'Ipoblasto (futuro sistema digerente diretto)."
             },
             {
-                order: 4,
-                layer: "L'Oeil",
-                movement: "J7 : LCR Primitif",
-                description: "Apparition de la cavité amniotique. Le liquide amniotique primitif formera le premier liquide céphalo-rachidien qui remplira le futur tube neural et le diencéphale (origine de l'Oeil)."
+                "order": 4,
+                "layer": "L'Oeil",
+                "movement": "G7: LCR Primitivo",
+                "description": "Comparsa della cavità amniotica. Il liquido amniotico primitivo formerà il primo liquido cerebrospinale che riempirà il futuro tubo neurale e il diencefalo (origine dell'occhio)."
             },
             {
-                order: 5,
-                layer: "L'Oeil",
-                movement: "J8 : Morphologie Symbolique",
-                description: "Lors de l'enfouissement dans la muqueuse et avec l'exsudat créant la poche des eaux, la forme de la structure évoque symboliquement celle d'un oeil."
+                "order": 5,
+                "layer": "L'Oeil",
+                "movement": "J8: Morfologia Simbolica",
+                "description": "Quando si annida nella mucosa e con l'essudato che crea la sacca amniotica, la forma della struttura evoca simbolicamente quella di un occhio."
             }
         ],
-        themeColor: "bg-rose-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Enfouissement Utérin]:::global --> B(Exsudat Cavité Amniotique):::global\n  A --> C{Séparation Didermique}:::global\n  C --> D[Épiblaste<br/>Ectoderme Primitif]:::ecto\n  C --> E[Hypoblaste<br/>Endoderme Primitif]:::endo`,
-        practicalIntegration: {
-            fulcrums: "La Zone B (champ énergétique autour du corps physique, trace de la cavité amniotique originelle) et le pédicule embryonnaire.",
-            generalPalpation: "Mouvement d'infusion et de perméation. Intégration des fluides de la périphérie (mère) vers le centre. Apparition d'une pression bilatérale de l'exsudat.",
-            layerPerceptions: [
-                { layer: "L'Ectoderme", perception: "Orientation vers le haut, vers le fluide amniotique clair et protecteur, précurseur du LCR." },
-                { layer: "L'Endoderme", perception: "Orientation vers le bas, tissu cherchant la nutrition (vésicule vitelline), densité liquidienne différente." }
+        "themeColor": "bg-rose-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Enfouissement Utérin]:::global --> B(Exsudat Cavité Amniotique):::global\n  A --> C{Séparation Didermique}:::global\n  C --> D[Épiblaste<br/>Ectoderme Primitif]:::ecto\n  C --> E[Hypoblaste<br/>Endoderme Primitif]:::endo",
+        "practicalIntegration": {
+            "fulcrums": "La Zona B (campo energetico attorno al corpo fisico, traccia della cavità amniotica originale) e il peduncolo embrionale.",
+            "generalPalpation": "Movimento di infusione e permeazione. Integrazione dei fluidi dalla periferia (madre) verso il centro. Comparsa di una pressione bilaterale dell'essudato.",
+            "layerPerceptions": [
+                {
+                    "layer": "L'Ectoderme",
+                    "perception": "Orientamento verso l'alto, verso il fluido amniotico chiaro e protettivo, precursore del liquor."
+                },
+                {
+                    "layer": "L'Endoderme",
+                    "perception": "Orientamento verso il basso, tessuto che cerca nutrimento (sacco vitellino), diversa densità del fluido."
+                }
             ],
-            therapistPosture: "Écoute de l'enveloppe large (Zone B). Perception de l'espace liquidien entourant le corps et l'utérus.",
-            psychosomatic: "Verdict = L'incarnation dans le réceptacle et la chaleur. Enjeu profond si fausse couche ou non-accueil. Nettoyage de la muqueuse (libération gastrine pelvienne) pour apaiser le nid intra-utérin."
+            "therapistPosture": "Ascolto dell'involucro ampio (Zona B). Percezione dello spazio liquido che circonda il corpo e l'utero.",
+            "psychosomatic": "Verdetto = L'incarnazione nel ricettacolo e il calore. Profonda posta in gioco in caso di aborto spontaneo o non accoglienza. Pulizia della mucosa (rilascio di gastrina pelvica) per placare il nido intrauterino."
         }
     },
     {
-        id: "j-7-14",
-        dayLabel: "Jours 7 à 14",
-        period: "2e Semaine",
-        title: "Réticulum et Cœlome Externe",
-        generalDescription: "La périphérie de l'embryon grandit extrêmement vite dans la muqueuse maternelle, provoquant un déchirement relatif avec le disque central qui grandit plus lentement.",
-        events: [
+        "id": "j-7-14",
+        "dayLabel": "Giorni da 7 a 14",
+        "period": "Seconda Settimana",
+        "title": "Reticolo e Celoma Esterno",
+        "generalDescription": "La periferia dell'embrione cresce estremamente velocemente nella mucosa materna, provocando una relativa lacerazione con il disco centrale che cresce più lentamente.",
+        "events": [
             {
-                order: 1,
-                layer: "Global",
-                movement: "Croissance Différentielle",
-                description: "Apparition de la membrane de Heuser et d'un espace fibreux comblé par le réticulum extra-embryonnaire en tension."
+                "order": 1,
+                "layer": "Global",
+                "movement": "Crescita Differenziale",
+                "description": "Apparizione della membrana di Heuser e di uno spazio fibroso riempito dal reticolo extraembrionale in tensione."
             },
             {
-                order: 2,
-                layer: "Le Mésoderme",
-                movement: "Création de la 3e Chambre",
-                description: "Le réseau arachnoïdien cède sous la traction, créant le vaste exsudat du Cœlome externe. L'ancien blastocèle devient la vésicule vitelline primaire."
+                "order": 2,
+                "layer": "Le Mésoderme",
+                "movement": "Creazione della 3a Camera",
+                "description": "La rete aracnoidea cede sotto la trazione, creando il vasto essudato del Celoma esterno. L'antica blastocisti diventa la vescicola vitellina primaria."
             }
         ],
-        themeColor: "bg-pink-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Croissance Périphérique Différentielle]:::global --> B(Traction Arachnoïdienne):::meso\n  B --> C[Déchirement du Réticulum]:::meso\n  C --> D(Création Cœlome Externe<br/>Mésoderme Extra-Embryonnaire):::meso`
+        "themeColor": "bg-pink-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Croissance Périphérique Différentielle]:::global --> B(Traction Arachnoïdienne):::meso\n  B --> C[Déchirement du Réticulum]:::meso\n  C --> D(Création Cœlome Externe<br/>Mésoderme Extra-Embryonnaire):::meso"
     },
     {
-        id: "j-14-21",
-        dayLabel: "Jours 14 à 21",
-        period: "3e Semaine",
-        title: "Gastrulation et Latéralité",
-        generalDescription: "Formation du pédicule embryonnaire focalisant l'apport trophique en un seul flux. L'embryon prend une forme de S.",
-        events: [
+        "id": "j-14-21",
+        "dayLabel": "Giorni da 14 a 21",
+        "period": "Terza Settimana",
+        "title": "Gastrulazione e Lateralità",
+        "generalDescription": "Formazione del peduncolo embrionale che focalizza l'apporto trofico in un unico flusso. L'embrione assume una forma a S.",
+        "events": [
             {
-                order: 1,
-                layer: "L'Ectoderme",
-                movement: "Vague Notochordale",
-                description: "L'épiblaste forme un S sous l'effet des flux nourriciers. Apparition de la ligne primitive (nœud de Hensen) et de la Notochorde."
+                "order": 1,
+                "layer": "L'Ectoderme",
+                "movement": "Vago Notochordale",
+                "description": "L'epiblasto forma una S sotto l'effetto dei flussi nutritivi. Apparizione della linea primitiva (nodo di Hensen) e della notocorda."
             },
             {
-                order: 2,
-                layer: "Le Mésoderme",
-                movement: "Aspiration et Invagination",
-                description: "Un champ d'aspiration sur la ligne primitive aspire des cellules épithéliales (bottle cells) qui s'invaginent pour combler l'espace entre Ecto et Endo : c'est la naissance propre du Mésoderme intra-embryonnaire."
+                "order": 2,
+                "layer": "Le Mésoderme",
+                "movement": "Aspirazione e Invaginazione",
+                "description": "Un campo di aspirazione sulla linea primitiva aspira le cellule epiteliali (bottle cells) che si invaginano per riempire lo spazio tra Ecto ed Endo: questa è la nascita propria del Mesoderma intra-embrionale."
             },
             {
-                order: 3,
-                layer: "Global",
-                movement: "Rotation Ciliaire",
-                description: "Au fond du nœud de Hensen, des cils tournent à 60° (flux nodal) poussant des signaux à gauche, determining la future asymétrie des organes."
+                "order": 3,
+                "layer": "Global",
+                "movement": "Rotazione Ciliare",
+                "description": "In fondo al nodo di Hensen, delle ciglia ruotano a 60° (flusso nodale) spingendo dei segnali a sinistra, determinando la futura asimmetria degli organi."
             }
         ],
-        themeColor: "bg-red-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Ligne Primitive]:::ecto --> B(Champ d'Aspiration):::ecto\n  B --> C[Invagination Bottle Cells]:::meso\n  C --> D(Naissance du Mésoderme 3ème Tissu):::meso\n  A --> E[Rotation Ciliaire 60°]:::global\n  E --> F(Asymétrie Gauche-Droite):::global`,
-        practicalIntegration: {
-            fulcrums: "Axe crânio-sacré embryologique primitif (Notochorde). Tension entre deux pôles : Le Point Zéro (Fulcrum fixe, Symphyse Sphéno-Basilaire / SSB) et le Point Sacrum (Fulcrum mobile, Nœud de Hensen, vestige à S2/Coccyx).",
-            generalPalpation: "La 'Hola' (puissante vague de croissance notochordale descendante) couplée à la 'Montée du point zéro' (force de télencéphalisation ascendante et de redressement du crâne).",
-            layerPerceptions: [
-                { layer: "L'Ectoderme", perception: "Poussée directionnelle rectiligne et rigide (notochorde) tractant le pôle central crânien immobile." },
-                { layer: "Le Mésoderme", perception: "Perçu comme un champ de succion et d'aspiration ('loosing field'). Les cellules plongent violemment dans la fosse primitive." }
+        "themeColor": "bg-red-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Ligne Primitive]:::ecto --> B(Champ d'Aspiration):::ecto\n  B --> C[Invagination Bottle Cells]:::meso\n  C --> D(Naissance du Mésoderme 3ème Tissu):::meso\n  A --> E[Rotation Ciliaire 60°]:::global\n  E --> F(Asymétrie Gauche-Droite):::global",
+        "practicalIntegration": {
+            "fulcrums": "Asse cranio-sacrale embriologico primitivo (Notocorda). Tensione tra due poli: Il Punto Zero (Fulcro fisso, Sinfisi Sfeno-Basilare / SSB) e il Punto Sacro (Fulcro mobile, Nodo di Hensen, vestigio a S2/Coccige).",
+            "generalPalpation": "La \"Hola\" (potente onda di crescita notocordale discendente) accoppiata alla \"Salita del punto zero\" (forza di telencefalizzazione ascendente e di raddrizzamento del cranio).",
+            "layerPerceptions": [
+                {
+                    "layer": "L'Ectoderme",
+                    "perception": "Spinta direzionale rettilinea e rigida (notocorda) che trascina il polo centrale cranico immobile."
+                },
+                {
+                    "layer": "Le Mésoderme",
+                    "perception": "Percepito come un campo di suzione e aspirazione (\"loosing field\"). Le cellule si immergono violentemente nella fossa primitiva."
+                }
             ],
-            therapistPosture: "Le Rayon Laser : Main sous l'Occiput en contact avec la SSB (Point Zéro), main sous le Sacrum (Point Sacrum / Ligne primitive). Pas de manipulation mécanique : recherche du silence ('Wu Wei'), du 'Meeting Point' et de l'immobilité dynamique de la SSB.",
-            psychosomatic: "Verdict = L'Axe de Santé et le Transgénérationnel. Les déviations ou blocages gèlent les images ancestrales le long de la notochorde. En reconnectant le point mobile (sacrum) à son fulcrum fixe de référence (Point Zéro), le thérapeute perçoit la relance de la fluctuation et permet au corps de se désengager de ses lésions acquises et de se réorganiser."
+            "therapistPosture": "Il Raggio Laser: Mano sotto l'Occipite a contatto con la SSB (Punto Zero), mano sotto il Sacro (Punto Sacro / Linea primitiva). Nessuna manipolazione meccanica: ricerca del silenzio ('Wu Wei'), del 'Meeting Point' e dell'immobilità dinamica della SSB.",
+            "psychosomatic": "Verdetto = L'Asse della Salute e il Transgenerazionale. Le deviazioni o i blocchi congelano le immagini ancestrali lungo la notocorda. Riconnettendo il punto mobile (sacro) al suo fulcro fisso di riferimento (Punto Zero), il terapeuta percepisce la ripresa della fluttuazione e permette al corpo di disimpegnarsi dalle lesioni acquisite e di riorganizzarsi."
         }
     },
     {
-        id: "j-21-22",
-        dayLabel: "Jours 21 à 22",
-        period: "Début 4e Semaine",
-        title: "Neurulation, Oeil et Cœur",
-        generalDescription: "La notochorde agit comme centre électrique ralentissant la croissance centrale, l'ectoderme se creusant en gouttière neurale. Le cœur commence à battre.",
-        events: [
+        "id": "j-21-22",
+        "dayLabel": "Giorni 21-22",
+        "period": "Inizio 4a Settimana",
+        "title": "Neurulazione, Occhio e Cuore",
+        "generalDescription": "La notocorda agisce come centro elettrico rallentando la crescita centrale, l'ectoderma si scava in doccia neurale. Il cuore inizia a battere.",
+        "events": [
             {
-                order: 1,
-                layer: "L'Oeil",
-                movement: "Expansion Diencéphalique",
-                description: "En synchronicité avec les battements cardiaques primitifs, le cerveau produit une expansion latérale créant la vésicule optique primaire."
+                "order": 1,
+                "layer": "L'Oeil",
+                "movement": "Espansione Diencefalica",
+                "description": "In sincronia con i battiti cardiaci primitivi, il cervello produce un'espansione laterale creando la vescicola ottica primaria."
             },
             {
-                order: 2,
-                layer: "Le Mésoderme",
-                movement: "Cardiogenèse Précoce",
-                description: "Le cœur commence à se former (émergence des aortes primitives et des veines cardinales dans la zone apicale). Il va commencer à battre au J21/J22."
+                "order": 2,
+                "layer": "Le Mésoderme",
+                "movement": "Cardiogenesi Precoce",
+                "description": "Il cuore inizia a formarsi (emergenza delle aorte primitive e delle vene cardinali nella zona apicale). Inizierà a battere al G21/G22."
             }
         ],
-        themeColor: "bg-purple-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Ralentissement Notochordal]:::global --> B(Gouttière Neurale):::ecto\n  B --> C[Expansion Diencéphalique<br/>Futurs Yeux]:::ecto\n  D[Zone Apicale Mésodermique]:::meso --> E(Aortes Primitives):::meso\n  E --> F[Début Battements J21/J22]:::meso`,
-        practicalIntegration: {
-            fulcrums: "Symphyse Sphéno-Basilaire (SSB, Point Zéro), l'Insula (hitch point de la bascule cérébrale), le Neuropore Antérieur, et LE CŒUR.",
-            generalPalpation: "Le 'Tai-Chi du Cerveau'. Perception d'une expansion foudroyante, suivie d'une première flexion céphalique d'enroulement paroxystique sur le point fixe central du cœur.",
-            layerPerceptions: [
-                { layer: "L'Ectoderme", perception: "Explosivité, fuite et immense expansion volumétrique latérale et dorsale (céphalisation). Sensation de coulée migratoire de la Crête Neurale vers la face et les plexus." },
-                { layer: "Le Mésoderme", perception: "Frein rigide. Les deux aortes latérales agissent comme des amarrages (le tissu a du mal à suivre la croissance neurale). La cardialisation tracte violemment tout le système vers le centre." }
+        "themeColor": "bg-purple-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Ralentissement Notochordal]:::global --> B(Gouttière Neurale):::ecto\n  B --> C[Expansion Diencéphalique<br/>Futurs Yeux]:::ecto\n  D[Zone Apicale Mésodermique]:::meso --> E(Aortes Primitives):::meso\n  E --> F[Début Battements J21/J22]:::meso",
+        "practicalIntegration": {
+            "fulcrums": "Sinfisi Sfeno-Basilare (SSB, Punto Zero), l'Insula (punto di aggancio della bascula cerebrale), il Neuroporo Anteriore, e IL CUORE.",
+            "generalPalpation": "Il \"Tai-Chi del Cervello\". Percezione di un'espansione fulminea, seguita da una prima flessione cefalica di avvolgimento parossistico sul punto fisso centrale del cuore.",
+            "layerPerceptions": [
+                {
+                    "layer": "L'Ectoderme",
+                    "perception": "Esplosività, fuga e immensa espansione volumetrica laterale e dorsale (cefalizzazione). Sensazione di scorrimento migratorio della Cresta Neurale verso il viso e i plessi."
+                },
+                {
+                    "layer": "Le Mésoderme",
+                    "perception": "Freno rigido. Le due aorte laterali agiscono come ormeggi (il tessuto ha difficoltà a seguire la crescita neurale). La cardializzazione trascina violentemente l'intero sistema verso il centro."
+                }
             ],
-            therapistPosture: "Neutralité absolue ('Meeting point'). Prise crânienne englobante 'comme un bol d'eau rempli à ras bord'. Accompagnement de la technique CV4 (compression du 4ème ventricule) pour rééquilibrer les LCR intra et extra crâniens (Zone B).",
-            psychosomatic: "Verdict = Le Cœur Informateur. La grande plicature dépose littéralement le cerveau, l'ébauche des membres supérieurs (les mains), les yeux (placodes optiques) et la bouche/voix (arc branchial) **directement sur le tissu cardiaque en battement**. La psychosomatique est majeure : on regarde, on touche et on parle avec l'in-formation de son propre cœur."
+            "therapistPosture": "Neutralità assoluta (\"Meeting point\"). Presa craniale avvolgente \"come una ciotola d'acqua riempita fino all'orlo\". Accompagnamento della tecnica CV4 (compressione del 4° ventricolo) per riequilibrare il LCR intra ed extra cranico (Zona B).",
+            "psychosomatic": "Verdetto = Il Cuore Informatore. La grande plicatura deposita letteralmente il cervello, l'abbozzo degli arti superiori (le mani), gli occhi (placodi ottici) e la bocca/voce (arco branchiale) **direttamente sul tessuto cardiaco pulsante**. La psicosomatica è fondamentale: si guarda, si tocca e si parla con l'in-formazione del proprio cuore."
         }
     },
     {
-        id: "j-22-28",
-        dayLabel: "Jours 22 à 28",
-        period: "4e Semaine",
-        title: "La Grande Cascade Cinétique",
-        generalDescription: "C'est l'ordre chronologique et mécanique de plicature (flexion) de l'embryon, causé par la résistance vasculaire face à l'explosive croissance neurale dorsale.",
-        events: [
+        "id": "j-22-28",
+        "dayLabel": "Giorni da 22 a 28",
+        "period": "Quarta Settimana",
+        "title": "La Grande Cascata Cinetica",
+        "generalDescription": "Questo è l'ordine cronologico e meccanico di plicatura (flessione) dell'embrione, causato dalla resistenza vascolare di fronte all'esplosiva crescita neurale dorsale.",
+        "events": [
             {
-                order: 1,
-                layer: "L'Ectoderme",
-                movement: "Céphalisation Centrale",
-                description: "L'ectoderme épiblastique (futur cerveau central) se met à grandir à une vitesse explosive vers le pôle apical."
+                "order": 1,
+                "layer": "L'Ectoderme",
+                "movement": "Cefalizzazione Centrale",
+                "description": "L'ectoderma epiblastico (futuro cervello centrale) inizia a crescere a una velocità esplosiva verso il polo apicale."
             },
             {
-                order: 2,
-                layer: "Le Mésoderme",
-                movement: "Cardialisation (Frein vasculaire)",
-                description: "Le tissu mésodermique vasculaire (aortes) grandit beaucoup moins vite. Poussé par la cavité amniotique et freiné mécaniquement par ce système, le cerveau s'enroule vers l'avant. La puissante flexion fait se rencontrer les deux tubes endocardiques écartés, forçant la disparition du tissu médian par un champ de corrosion (fusion endocardique)."
+                "order": 2,
+                "layer": "Le Mésoderme",
+                "movement": "Cardializzazione (Freno vascolare)",
+                "description": "Il tessuto mesodermico vascolare (aorte) cresce molto più lentamente. Spinto dalla cavità amniotica e frenato meccanicamente da questo sistema, il cervello si avvolge in avanti. La potente flessione fa incontrare i due tubi endocardici divaricati, forzando la scomparsa del tessuto mediano attraverso un campo di corrosione (fusione endocardica)."
             },
             {
-                order: 3,
-                layer: "Le Mésoderme",
-                movement: "Looping Cardiaque & Diaphragmatisation",
-                description: "Le cœur fusionné n'a plus d'espace: il effectue un saut volumétrique tridimensionnel (Looping, le système ventriculaire bascule sous les oreillettes). La croissance continue du cerveau dépose littéralement la tête sur le cœur, qui écrase la partie supérieure de la vésicule vitelline. Ces cellules mésenchymateuses comprimées forment le septum transversum (ébauche du diaphragme)."
+                "order": 3,
+                "layer": "Le Mésoderme",
+                "movement": "Looping Cardiaco & Diaframmatizzazione",
+                "description": "Il cuore fuso non ha più spazio: effettua un salto volumetrico tridimensionale (Looping, il sistema ventricolare si ribalta sotto gli atri). La crescita continua del cervello deposita letteralmente la testa sul cuore, che schiaccia la parte superiore della vescicola vitellina. Queste cellule mesenchimali compresse formano il setto trasverso (abbozzo del diaframma)."
             },
             {
-                order: 4,
-                layer: "L'Endoderme",
-                movement: "Désassimilation & Hépatisation",
-                description: "Le diaphragme tout juste créé fait barrière. En dessous, le puissant torrent des veines vitellines s'accumule et congestionne le mésoderme. L'allongement local crée un vide d'aspiration postérieur (loosing field) à la jonction des intestins. L'épithélium de l'endoderme digestif est aspiré dans la congestion et bourgeonne/fractalise : c'est la naissance du Foie (qui sert d'abord à capter l'exsudat des déchets embryonnaires)."
+                "order": 4,
+                "layer": "L'Endoderme",
+                "movement": "Deassimilazione ed Epatizzazione",
+                "description": "Il diaframma appena creato fa da barriera. Al di sotto, il potente torrente delle vene vitelline si accumula e congestiona il mesoderma. L'allungamento locale crea un vuoto di aspirazione posteriore (loosing field) alla giunzione degli intestini. L'epitelio dell'endoderma digestivo viene aspirato nella congestione e germoglia/frattalizza: è la nascita del Fegato (che serve prima di tutto a captare l'essudato dei rifiuti embrionari)."
             },
             {
-                order: 5,
-                layer: "L'Endoderme",
-                movement: "Moteur Péritonéal Hépatique",
-                description: "Organisé par le flux, le Foie explose d'une croissance spatiale massive exclusivement vers la droite (sans pivoter). Cette énorme poussée devient le moteur mécanique abdominal : elle bouscule l'estomac sur la gauche (lui imprimant une rotation) et aide à creuser l'arrière-cavité des épiplons."
+                "order": 5,
+                "layer": "L'Endoderme",
+                "movement": "Motore Peritoneale Epatico",
+                "description": "Organizzato dal flusso, il Fegato esplode con una massiccia crescita spaziale esclusivamente verso destra (senza ruotare). Questa enorme spinta diventa il motore meccanico addominale: sposta lo stomaco a sinistra (imprimendogli una rotazione) e aiuta a scavare la borsa omentale."
             },
             {
-                order: 6,
-                layer: "L'Endoderme",
-                movement: "Pneumatisation & Dynamique d'Aspiration",
-                description: "Le redressement de l'embryon crée un puissant vide ('loosing field' thoracique). L'épithélium endodermique s'effondre à l'intérieur du mésoderme (invagination), diverge (bronches souches) puis effectue une bascule rotatoire spirale au niveau du futur hile pulmonaire (haut vers l'arrière, bas vers l'avant, rotation externe)."
+                "order": 6,
+                "layer": "L'Endoderme",
+                "movement": "Pneumatizzazione e Dinamica di Aspirazione",
+                "description": "Il raddrizzamento dell'embrione crea un potente vuoto ('loosing field' toracico). L'epitelio endodermico collassa all'interno del mesoderma (invaginazione), diverge (bronchi principali) quindi effettua un'oscillazione rotatoria a spirale a livello del futuro ilo polmonare (alto verso dietro, basso verso avanti, rotazione esterna)."
             },
             {
-                order: 7,
-                layer: "Le Mésoderme",
-                movement: "Gonadisation / Rénalisation",
-                description: "L'énorme croissance spatiale hépatique (couplée à la l'ascension surrénalienne) force la crête génitale vers le bas et détermine les canaux de Wolff et Müller formants reins et gonades."
+                "order": 7,
+                "layer": "Le Mésoderme",
+                "movement": "Gonadizzazione / Renalizzazione",
+                "description": "L'enorme crescita spaziale epatica (accoppiata all'ascensione surrenale) spinge la cresta genitale verso il basso e determina i canali di Wolff e Müller che formano reni e gonadi."
             }
         ],
-        themeColor: "bg-orange-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Céphalisation Explosive Ectodermique]:::ecto -->|Frein des Aortes| B(Cardialisation et Fusion):::meso\n  B -->|Looping & Redressement| C{Compression de la masse et<br/>Diaphragmatisation}:::meso\n  C --> D[Congestion Veineuse Inférieure]:::meso\n  D -->|Loosing Field Aspiration| E(Fractalisation Endodermique<br/>Hépatisation):::endo\n  E -->|Croissance spatiale Droite| F[Basculement Estomac & Cavité Péritonéale]:::global\n  C -->|Nouveau Loosing Field| G(Pneumatisation Pulmonaire):::endo\n  F --> H[Poussée sur la Crête Génitale]:::meso`,
-        practicalIntegration: {
-            fulcrums: "Le Septum Transversum (futur diaphragme/péricarde), le Centre de gravité hépatobiliaire (Foie), l'Hiatus de Winslow (Entrée cavité épiploon) et le Hile Pulmonaire (centre d'articulation asymétrique).",
-            generalPalpation: "Palpation en cascade. Suivi du glissement spiralé de l'estomac dans l'arceau péritonéal, de la congestion hépatobiliaire, puis 'bulle d'air' des poumons en suivant leur bascule (rotation externe avec haut vers l'arrière et bas vers l'avant).",
-            layerPerceptions: [
-                { layer: "L'Endoderme", perception: "[Thorax/Poumon] : L'Aspiration au niveau pulmonaire. Le thérapeute perçoit 'un ballon d'air' avec une pression partielle constante, un échange oxydatif tissulaire entre la fréquence bronchique/aérienne et l'espace liquidien environnant." },
-                { layer: "L'Endoderme", perception: "[Abdomen/Digestif] : Aspiration (succion, loosing field digestif), phénomène de bourgeonnement fractal qui demande énormément d'espace à tout l'abdomen." },
-                { layer: "Le Mésoderme", perception: "Masse vasculaire congestionnée et lourdement densifiée sous le diaphragme qui stoppe sa progression (Veines vitellines)." }
+        "themeColor": "bg-orange-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Céphalisation Explosive Ectodermique]:::ecto -->|Frein des Aortes| B(Cardialisation et Fusion):::meso\n  B -->|Looping & Redressement| C{Compression de la masse et<br/>Diaphragmatisation}:::meso\n  C --> D[Congestion Veineuse Inférieure]:::meso\n  D -->|Loosing Field Aspiration| E(Fractalisation Endodermique<br/>Hépatisation):::endo\n  E -->|Croissance spatiale Droite| F[Basculement Estomac & Cavité Péritonéale]:::global\n  C -->|Nouveau Loosing Field| G(Pneumatisation Pulmonaire):::endo\n  F --> H[Poussée sur la Crête Génitale]:::meso",
+        "practicalIntegration": {
+            "fulcrums": "Il Setto Trasverso (futuro diaframma/pericardio), il Centro di gravità epatobiliare (Fegato), l'Hiatus di Winslow (Entrata della cavità omentale) e l'Ilo Polmonare (centro di articolazione asimmetrico).",
+            "generalPalpation": "Palpazione a cascata. Seguire lo scivolamento a spirale dello stomaco nell'arco peritoneale, la congestione epatobiliare, quindi la 'bolla d'aria' dei polmoni seguendo la loro rotazione (rotazione esterna con la parte superiore all'indietro e la parte inferiore in avanti).",
+            "layerPerceptions": [
+                {
+                    "layer": "L'Endoderme",
+                    "perception": "[Torace/Polmone]: L'Aspirazione a livello polmonare. Il terapeuta percepisce \"un pallone d'aria\" con una pressione parziale costante, uno scambio ossidativo tissutale tra la frequenza bronchiale/aerea e lo spazio liquido circostante."
+                },
+                {
+                    "layer": "L'Endoderme",
+                    "perception": "[Addome/Digerente]: Aspirazione (suzione, allentamento del campo digestivo), fenomeno di gemmazione frattale che richiede un enorme spazio a tutto l'addome."
+                },
+                {
+                    "layer": "Le Mésoderme",
+                    "perception": "Massa vascolare congestionata e pesantemente densificata sotto il diaframma che ne blocca la progressione (Vene vitelline)."
+                }
             ],
-            therapistPosture: "Libération par le Vide : englober les basses côtes pour le tube digestif. Pour le Poumon (fulcrum) : main postérieure légèrement plus basse que la main antérieure pour suivre parfaitement l'axe incliné de la bascule d'aspiration pulmonaire.",
-            psychosomatic: "Verdict = L'Épuration et le Non-dit. Le Foie naïf capte la toxicité (colère non exprimée/frustration tissulaire portal). Les Poumons (bulle d'air) deviennent la réserve d'une vieille tristesse protégée, perceptible sous les mains par des densités spécifiques. L'Estomac absorbe l'environnement immédiat par spasme. Libérer cette cascade, c'est libérer la chimie de l'hypothalamus."
+            "therapistPosture": "Rilascio tramite il Vuoto: inglobare le coste inferiori per il tubo digerente. Per il Polmone (fulcro): la mano posteriore leggermente più in basso rispetto alla mano anteriore per seguire perfettamente l'asse inclinato della bascula di aspirazione polmonare.",
+            "psychosomatic": "Verdetto = L'Epuration e il Non Detto. Il Fegato ingenuo capta la tossicità (rabbia inespressa/frustrazione tissutale portale). I Polmoni (bolla d'aria) diventano la riserva di una vecchia tristezza protetta, percepibile sotto le mani tramite densità specifiche. Lo Stomaco assorbe l'ambiente immediato tramite spasmo. Liberare questa cascata significa liberare la chimica dell'ipotalamo."
         }
     },
     {
-        id: "j-28",
-        dayLabel: "Jour 28",
-        period: "Fin du 1er Mois",
-        title: "La Merveilleuse Synchronicité",
-        generalDescription: "Le moment d'enclenchement mécanique global final de l'enroulement crânio-caudal de l'embryon.",
-        events: [
+        "id": "j-28",
+        "dayLabel": "Giorno 28",
+        "period": "Fine del 1° Mese",
+        "title": "La Meravigliosa Sincronicità",
+        "generalDescription": "Il momento di innesto meccanico globale finale dell'avvolgimento cranio-caudale dell'embrione.",
+        "events": [
             {
-                order: 1,
-                layer: "L'Ectoderme",
-                movement: "Fermeture Marginale",
-                description: "Fermeture complète du tube neural (Neuropore Postérieur)."
+                "order": 1,
+                "layer": "L'Ectoderme",
+                "movement": "Chiusura Marginale",
+                "description": "Chiusura completa del tubo neurale (Neuroporo Posteriore)."
             },
             {
-                order: 2,
-                layer: "Le Mésoderme",
-                movement: "Intégration Péritonéale",
-                description: "EXACTEMENT en même temps, le cœlome externe est définitivement intégré et fermé en cœlome interne (cavité péritonéale primitive)."
+                "order": 2,
+                "layer": "Le Mésoderme",
+                "movement": "Integrazione Peritoneale",
+                "description": "ESATTAMENTE nello stesso momento, il celoma esterno è definitivamente integrato e chiuso nel celoma interno (cavità peritoneale primitiva)."
             }
         ],
-        themeColor: "bg-yellow-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Enroulement Global Terminal]:::global --> B(Fermeture du Neuropore Postérieur):::ecto\n  A --> C(Intégration Finale du Cœlome Externe):::meso`
+        "themeColor": "bg-yellow-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Enroulement Global Terminal]:::global --> B(Fermeture du Neuropore Postérieur):::ecto\n  A --> C(Intégration Finale du Cœlome Externe):::meso"
     },
     {
-        id: "j-45",
-        dayLabel: "De Jour 35 à 2 Mois",
-        period: "2e Mois",
-        title: "Somites, Côtes et Voûte Crânienne",
-        generalDescription: "L'organisation musculo-squelettique se densifie autour de l'axe nerveux et cardiovasculaire.",
-        events: [
+        "id": "j-45",
+        "dayLabel": "Dal Giorno 35 a 2 Mesi",
+        "period": "Secondo Mese",
+        "title": "Somiti, Coste e Volta Cranica",
+        "generalDescription": "L'organizzazione muscolo-scheletrica si densifica attorno all'asse nervoso e cardiovascolare.",
+        "events": [
             {
-                order: 1,
-                layer: "Le Mésoderme",
-                movement: "Côtes et Médiastin",
-                description: "Densification des cellules mésodermiques entre les vaisseaux pour former les côtes qui s'allongent et se rejoignent au J45 (angle sternal de Louis, fermeture du médiastin)."
+                "order": 1,
+                "layer": "Le Mésoderme",
+                "movement": "Coste e Mediastino",
+                "description": "Densificazione delle cellule mesodermiche tra i vasi per formare le coste che si allungano e si uniscono al 45° giorno (angolo sternale di Louis, chiusura del mediastino)."
             },
             {
-                order: 2,
-                layer: "L'Ectoderme",
-                movement: "Télencéphalisation",
-                description: "L'étirement des membranes dure-mériennes (cerveau qui se dresse) forme la voûte du crâne conjonctive précoce (desmocrâne)."
+                "order": 2,
+                "layer": "L'Ectoderme",
+                "movement": "Telencefalizzazione",
+                "description": "Lo stiramento delle membrane durali (cervello che si erge) forma la volta cranica congiuntiva precoce (desmocranio)."
             }
         ],
-        themeColor: "bg-amber-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Rapprochement Côtes Mi-ligne]:::meso --> B(Suture de l'Angle de Louis J45):::meso\n  A --> C[Fermeture du Médiastin]:::meso\n  D[Redressement Axial]:::global --> E(Tension Dure-Mérienne):::ecto\n  E --> F[Modélisation du Desmocrâne]:::ecto`
+        "themeColor": "bg-amber-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Rapprochement Côtes Mi-ligne]:::meso --> B(Suture de l'Angle de Louis J45):::meso\n  A --> C[Fermeture du Médiastin]:::meso\n  D[Redressement Axial]:::global --> E(Tension Dure-Mérienne):::ecto\n  E --> F[Modélisation du Desmocrâne]:::ecto"
     },
     {
-        id: "maturation-12ans",
-        dayLabel: "Jusqu'à 12 ans",
-        period: "Maturation Post-Natale",
-        title: "Dentition et Maturation Végétative",
-        generalDescription: "L'embryologie continue à l'air libre. La posture et l'énergétique de l'enfant finalisent la dynamique tissulaire.",
-        events: [
+        "id": "maturation-12ans",
+        "dayLabel": "Fino a 12 anni",
+        "period": "Maturazione Post-Natale",
+        "title": "Dentizione e Maturazione Vegetativa",
+        "generalDescription": "L'embriologia continua all'aria aperta. La postura e l'energetica del bambino finalizzano la dinamica tissutale.",
+        "events": [
             {
-                order: 1,
-                layer: "L'Ectoderme",
-                movement: "Croissance Cérébrale Externe (0-6 mois)",
-                description: "Le volume neural double encore dans les 6 premiers mois, modulant continuellement les membranes réciproques."
+                "order": 1,
+                "layer": "L'Ectoderme",
+                "movement": "Crescita Cerebrale Esterna (0-6 mesi)",
+                "description": "Il volume neurale raddoppia ancora nei primi 6 mesi, modulando continuamente le membrane reciproche."
             },
             {
-                order: 2,
-                layer: "L'Ectoderme",
-                movement: "Capteur Dentaire et Posture (6-10 mois)",
-                description: "Les premières dents agissent comme un point de pivot/fulcrum mécanique fixe, permettant à l'enfant le redressement dynamique de son axe neuro-vertébral."
+                "order": 2,
+                "layer": "L'Ectoderme",
+                "movement": "Sensore Dentale e Postura (6-10 mesi)",
+                "description": "I primi denti agiscono come un punto di perno/fulcro meccanico fisso, consentendo al bambino il raddrizzamento dinamico del suo asse neuro-vertebrale."
             },
             {
-                order: 3,
-                layer: "L'Endoderme",
-                movement: "Pneumatisation Maxillaire (3 ans)",
-                description: "Les sinus maxillaires s'aèrent, les surrénales et l'appendice s'engagent pleinement dans leur physiologie."
+                "order": 3,
+                "layer": "L'Endoderme",
+                "movement": "Pneumatizzazione Mascellare (3 anni)",
+                "description": "I seni mascellari si aerano, le surrenali e l'appendice si impegnano pienamente nella loro fisiologia."
             },
             {
-                order: 4,
-                layer: "Global",
-                movement: "Activation Thyroïdienne (7 ans)",
-                description: "La thyroïde prend définitivement le relais radiateur de la chaleur parentale (véritable âge de raison thermogénique)."
+                "order": 4,
+                "layer": "Global",
+                "movement": "Attivazione Tiroidea (7 anni)",
+                "description": "La tiroide assume definitivamente il ruolo di radiatore del calore parentale (vera età della ragione termogenica)."
             },
             {
-                order: 5,
-                layer: "Global",
-                movement: "Activation Pubertaire (10-12 ans)",
-                description: "Hypophyse active, pneumatisation sphénoïdale de la base du crâne paravent pour intégrer les fonctions hormonales adultes."
+                "order": 5,
+                "layer": "Global",
+                "movement": "Attivazione Puberale (10-12 anni)",
+                "description": "Ipofisi attiva, pneumatizzazione sfenoidale della base del cranio come paravento per integrare le funzioni ormonali adulte."
             }
         ],
-        themeColor: "bg-emerald-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Dentition 6m]:::ecto --> B(Pivot de Redressement Neural):::ecto\n  C[Pneumatisation Maxillaire 3A]:::endo --> D(Engagement Appendice/Surrénales):::endo\n  E[Relais Thyroïdien 7A]:::global --> F(Autonomie Calorique):::global\n  G[Hypophyse Pubertaire 12A]:::global --> H(Pneumatisation Sphénoïdale):::global`
+        "themeColor": "bg-emerald-900",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Dentition 6m]:::ecto --> B(Pivot de Redressement Neural):::ecto\n  C[Pneumatisation Maxillaire 3A]:::endo --> D(Engagement Appendice/Surrénales):::endo\n  E[Relais Thyroïdien 7A]:::global --> F(Autonomie Calorique):::global\n  G[Hypophyse Pubertaire 12A]:::global --> H(Pneumatisation Sphénoïdale):::global"
     }
 ];
