@@ -157,90 +157,74 @@ function App() {
       <div className="flex-1 w-full h-full flex flex-col items-center overflow-y-auto overflow-x-hidden relative z-10 overscroll-y-none no-scrollbar" id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
 
         {/* Desktop Top Navigation Bar */}
-        {currentView !== 'video-player' && (
-          <nav className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 hidden md:flex items-center justify-center gap-2 py-3 px-6 shadow-sm">
-            <button
-              onClick={() => setCurrentView('home')}
-              className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-xl font-bebas text-lg tracking-wide transition-all",
-                currentView === 'home'
-                  ? "bg-[#F27D33] text-white shadow-md"
-                  : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-              )}
-            >
-              {t('nav.home')}
-            </button>
+        <nav className={cn(
+          "sticky top-0 z-40 w-full h-[60px] bg-white/80 backdrop-blur-md border-b border-slate-200 hidden md:flex items-center justify-center gap-2 px-6 shadow-sm",
+          currentView === 'video-player' ? "mb-4 lg:mb-6" : ""
+        )}>
+          <button
+            onClick={() => setCurrentView('home')}
+            className={cn(
+              "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-all",
+              currentView === 'home'
+                ? "bg-[#F27D33] text-white shadow-md"
+                : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+            )}
+          >
+            {t('nav.home')}
+          </button>
 
-            <button
-              onClick={() => setCurrentView('timeline')}
-              className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-xl font-bebas text-lg tracking-wide transition-all",
-                currentView === 'timeline'
-                  ? "bg-[#F27D33] text-white shadow-md"
-                  : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-              )}
-            >
-              {t('nav.timeline')}
-            </button>
+          <button
+            onClick={() => setCurrentView('timeline')}
+            className={cn(
+              "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-all",
+              currentView === 'timeline'
+                ? "bg-[#F27D33] text-white shadow-md"
+                : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+            )}
+          >
+            {t('nav.timeline')}
+          </button>
 
-            <button
-              onClick={() => setCurrentView('video-library')}
-              className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-xl font-bebas text-lg tracking-wide transition-all",
-                currentView === 'video-library'
-                  ? "bg-[#F27D33] text-white shadow-md"
-                  : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-              )}
-            >
-              {t('nav.videos')}
-            </button>
+          <button
+            onClick={() => setCurrentView('video-library')}
+            className={cn(
+              "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-all",
+              currentView === 'video-library'
+                ? "bg-[#F27D33] text-white shadow-md"
+                : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+            )}
+          >
+            {t('nav.videos')}
+          </button>
 
-            <button
-              onClick={() => setCurrentView('embryo-ai')}
-              className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-xl font-bebas text-lg tracking-wide transition-all",
-                currentView === 'embryo-ai' || currentView === 'podcast-player'
-                  ? "bg-[#F27D33] text-white shadow-md"
-                  : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-              )}
-            >
-              {t('home.ai_assistant')}
-            </button>
-            <div className="flex-1"></div>
+          <button
+            onClick={() => setCurrentView('embryo-ai')}
+            className={cn(
+              "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-all",
+              currentView === 'embryo-ai'
+                ? "bg-[#F27D33] text-white shadow-md"
+                : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+            )}
+          >
+            {t('home.ai_assistant')}
+          </button>
+          <div className="flex-1"></div>
 
-            {/* Desktop Nav Language Switcher */}
-            <LanguageSwitcher variant="desktop-nav" />
-          </nav>
-        )}
+          {/* Desktop Nav Language Switcher */}
+          <LanguageSwitcher variant="desktop-nav" />
+        </nav>
 
         {/* Main Container Wrapper */}
         <div className={cn(
           "flex flex-col items-center w-full flex-1",
-          currentView === 'home'
-            ? "p-0 h-full max-h-screen"
-            : "px-2 sm:px-6 lg:px-8",
-          currentView === 'video-player'
-            ? "pt-[env(safe-area-inset-top,8px)] md:pt-4 pb-20 md:pb-2 h-[100dvh] w-full"
-            : currentView !== 'home' ? "pt-0 md:pt-4 pb-10" : ""
+          currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai'
+            ? "p-0"
+            : "px-2 sm:px-6 lg:px-8 w-full pb-[100px]",
+          currentView === 'home' ? "overflow-hidden h-[calc(100vh-69px)]" : "",
+          currentView === 'video-player' ? "pt-0 md:pt-2 pb-[90px] md:pb-2 overflow-hidden h-[100dvh] md:h-[calc(100vh-60px)]" : "pt-0"
         )}>
 
-          {/* HEADER - Only visible when not on home and not on video-player or podcast-player */}
-          {currentView !== 'home' && currentView !== 'video-player' && currentView !== 'podcast-player' && (
-            <header className="hidden lg:block text-center mt-4 mb-4 animate-slide-up w-full max-w-5xl mx-auto pt-[env(safe-area-inset-top,0px)]">
-              <h1 className="text-4xl md:text-6xl font-anton tracking-wide text-dark mb-2 uppercase">
-                {t('app.title_embryology')} <span className="text-amber-500">{t('app.title_biodynamic')}</span>
-              </h1>
-              <div className="flex flex-col items-center justify-center gap-1 mt-2">
-                <div className="flex items-center justify-center gap-2 text-sm md:text-base text-slate-500 font-medium">
-                  <span className="w-6 h-px bg-slate-300 hidden sm:block"></span>
-                  <span>{t('app.directed_by')}</span>
-                  <span className="font-bold text-slate-700">Marc Damoiseaux</span>
-                  <span className="w-6 h-px bg-slate-300 hidden sm:block"></span>
-                </div>
-                <span className="text-xs md:text-sm text-slate-400 font-bebas tracking-widest uppercase">{t('app.osteopath')}</span>
-              </div>
-            </header>
-          )}
+          {/* Desktop Top Navigation Bar */}
 
           {currentView === 'home' && (
             <div className="w-full h-full flex items-center justify-center">
@@ -249,7 +233,7 @@ function App() {
           )}
 
           {currentView === 'embryo-ai' && (
-            <div className="w-full h-full flex flex-col items-center md:justify-center py-2 sm:py-6 px-2 sm:px-4">
+            <div className="w-full relative h-[calc(100vh-69px)] flex flex-col items-center md:items-stretch md:justify-start py-0 px-0 sm:px-4 md:px-0 pt-0">
               <ChatBot
                 onNavigateToVideo={(video) => {
                   setActiveVideo(video);
@@ -287,7 +271,7 @@ function App() {
             <div className="w-full max-w-5xl flex flex-col animate-fade-in relative z-10 mx-auto">
 
               {/* STICKY HEADER CONTAINER FOR TIMELINE */}
-              <div className="sticky top-0 lg:top-[68px] z-50 w-[100vw] lg:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] lg:pt-2 flex flex-col items-center shadow-sm lg:shadow-none pb-2 lg:pb-0 mb-4 px-2">
+              <div className="sticky top-0 md:top-[69px] z-50 w-[100vw] lg:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-0 flex flex-col items-center shadow-sm lg:shadow-none pb-2 lg:pb-0 mb-4 px-2">
                 {/* TIMELINE BADGE */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 relative w-full text-center animate-fade-in-up pb-1">
                   <div className="inline-flex items-center justify-center px-4 sm:px-8 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[95vw] lg:max-w-full overflow-hidden">
@@ -344,8 +328,8 @@ function App() {
               <div className="w-full grid grid-cols-1 lg:grid-cols-12 lg:gap-10">
 
                 {/* TIMELINE NAVIGATION (Vertical Left Column - Desktop Only) */}
-                <div className="hidden lg:block lg:col-span-4 relative max-h-[80vh] overflow-y-auto hide-scrollbar border-b-0 border-slate-200 mb-0 sticky top-0 z-10 bg-transparent p-0">
-                  <div className="absolute top-0 bottom-0 left-6 w-px bg-slate-200"></div>
+                <div className="hidden lg:block lg:col-span-4 relative max-h-[calc(100vh-140px)] overflow-y-auto hide-scrollbar border-b-0 border-slate-200 mb-0 sticky top-[90px] z-10 bg-transparent p-0 self-start">
+                  {/* Removed vertical lateral bar as requested */}
                   <div className="space-y-6 relative pb-10 mt-6">
                     {detailedStages.map((stage) => {
                       const isActive = stage.id === activeStageId;
@@ -408,7 +392,7 @@ function App() {
                       )}></div>
 
                       <div className="relative z-10 p-8 md:p-14 flex-1">
-                        <div className="flex flex-row flex-nowrap items-center w-full overflow-x-auto hide-scrollbar gap-2 mb-4 md:mb-6">
+                        <div className="flex flex-row flex-nowrap items-center w-full overflow-x-auto no-scrollbar gap-2 mb-4 md:mb-6">
                           <span className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest bg-slate-100/80 px-2.5 py-1 rounded-md whitespace-nowrap">
                             {activeStage.dayLabel}
                           </span>
@@ -418,17 +402,17 @@ function App() {
                           </span>
                         </div>
 
-                        <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-anton text-dark mb-4 md:mb-6 leading-tight tracking-wide uppercase break-words hyphens-auto">
+                        <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-anton text-dark mb-2 md:mb-4 leading-tight tracking-wide uppercase break-words hyphens-auto">
                           {activeStage.title}
                         </h2>
 
-                        <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-4xl mb-8 md:mb-14 font-medium border-l-4 border-slate-300 pl-4 md:pl-6">
+                        <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-4xl mb-6 md:mb-10 font-medium border-l-4 border-slate-300 pl-4 md:pl-6">
                           {activeStage.generalDescription}
                         </p>
 
                         <div className="space-y-6 md:space-y-8">
-                          <h3 className="flex items-center text-xl md:text-2xl text-dark font-bebas tracking-wide mb-6 md:mb-8 uppercase">
-                            <Heart className="mr-3 text-primary animate-pulse-slow shrink-0" size={24} />
+                          <h3 className="flex items-center text-lg md:text-xl text-dark font-bebas tracking-wide mb-6 md:mb-8 uppercase">
+                            <Heart className="mr-3 text-primary animate-pulse-slow shrink-0" size={20} />
                             {t('app.timeline_processes')}
                           </h3>
 
@@ -437,11 +421,11 @@ function App() {
                               .map((event, idx) => (
                                 <div
                                   key={idx}
-                                  className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:bg-white transition-all hover:shadow-md hover:border-slate-300"
+                                  className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-slate-50 rounded-[1.2rem] p-4 border border-slate-200 hover:bg-white transition-all hover:shadow-md hover:border-slate-300"
                                 >
                                   {/* Order Indicator (if exists) */}
                                   {event.order && (
-                                    <div className="absolute -left-4 -top-4 w-10 h-10 rounded-full bg-white border-2 border-slate-200 shadow-sm flex items-center justify-center text-sm font-bold text-slate-400 group-hover:text-primary group-hover:border-primary transition-colors z-10 font-anton">
+                                    <div className="absolute -left-3 -top-3 w-8 h-8 rounded-full bg-white border-2 border-slate-200 shadow-sm flex items-center justify-center text-xs font-bold text-slate-400 group-hover:text-primary group-hover:border-primary transition-colors z-10 font-anton">
                                       {event.order}
                                     </div>
                                   )}
@@ -451,7 +435,18 @@ function App() {
                                       "inline-flex items-center px-4 py-1.5 rounded-[1.2rem] text-xs font-bold border uppercase tracking-wider",
                                       layerColors[event.layer]
                                     )}>
-                                      {event.layer}
+                                      {(() => {
+                                        const l = event.layer;
+                                        const lang = i18n.language || 'fr';
+                                        const map: Record<string, Record<string, string>> = {
+                                          "L'Ectoderme": { en: "Ectoderm", es: "Ectodermo", de: "Ektoderm", it: "Ectoderma", ja: "外胚葉", zh: "外胚层" },
+                                          "Le Mésoderme": { en: "Mesoderm", es: "Mesodermo", de: "Mesoderm", it: "Mesoderma", ja: "中胚葉", zh: "中胚层" },
+                                          "L'Endoderme": { en: "Endoderm", es: "Endodermo", de: "Endoderm", it: "Endoderma", ja: "内胚葉", zh: "内胚层" },
+                                          "L'Oeil": { en: "Eye", es: "Ojo", de: "Auge", it: "Occhio", ja: "目", zh: "眼" },
+                                          "Général": { en: "General", es: "General", de: "Allgemein", it: "Generale", ja: "一般", zh: "概括" },
+                                        };
+                                        return map[l]?.[lang] || l;
+                                      })()}
                                     </span>
                                   </div>
 

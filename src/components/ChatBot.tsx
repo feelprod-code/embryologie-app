@@ -277,12 +277,12 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
     };
 
     return (
-        <div className="fixed inset-0 md:relative md:inset-auto z-40 md:z-10 w-full h-[100dvh] md:h-[86vh] md:max-h-[880px] bg-white flex flex-col md:rounded-3xl overflow-hidden md:border md:border-slate-200 md:shadow-2xl">
+        <div className="fixed inset-0 md:relative md:inset-auto z-40 md:z-10 w-full h-[100dvh] md:h-[calc(100vh-69px)] bg-white flex flex-col overflow-hidden md:border-x-0 md:border-b-0 md:border-slate-200">
             {/* Header Fixed - Capsule Style */}
-            <div className="flex-none z-30 w-full bg-[#FAF9F6] pt-[env(safe-area-inset-top,10px)] md:pt-4 flex flex-col items-center shadow-sm pb-2 md:pb-3 px-2 border-b border-slate-100">
+            <div className="flex-none z-30 w-full bg-[#FAF9F6] pt-[env(safe-area-inset-top,4px)] md:pt-0 flex flex-col items-center shadow-sm pb-2 md:pb-0 px-2 border-b border-slate-100">
                 <div className="flex items-center justify-center gap-3 sm:gap-4 relative w-full text-center animate-fade-in-up pb-1 max-w-4xl mx-auto">
-                    <div className="inline-flex flex-col items-center justify-center px-6 sm:px-10 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[80vw] md:max-w-full overflow-hidden">
-                        <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
+                    <div className="inline-flex flex-col items-center justify-center px-4 pt-4 sm:pt-6 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
+                        <span className="font-bebas font-normal text-2xl sm:text-3xl md:text-3xl lg:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
                             EMBRYO AI
                         </span>
                         <p className="text-[10px] md:text-[12px] text-slate-500 uppercase tracking-widest font-bold mt-1">
@@ -303,7 +303,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 bg-slate-50/50" id="chatbot-messages" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <div className="flex-1 overflow-y-auto overscroll-none p-4 md:p-8 space-y-6 bg-slate-50/50" id="chatbot-messages" style={{ WebkitOverflowScrolling: 'touch' }}>
                 <div className="max-w-4xl mx-auto w-full space-y-6">
                     {messages.map((msg, idx) => (
                         <div key={idx} className={cn("flex", msg.role === 'user' ? "justify-end" : "justify-start")}>

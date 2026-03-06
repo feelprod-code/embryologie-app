@@ -67,18 +67,18 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
     return (
         <div className="w-full flex-1 flex flex-col pt-0 pb-16">
             {/* STICKY HEADER CONTAINER FOR VIDEO LIBRARY */}
-            <div className="sticky top-0 md:top-[68px] z-50 w-[100vw] md:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-2 flex flex-col items-center shadow-sm md:shadow-none pb-2 md:pb-0 mb-4 px-2">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 relative w-full text-center animate-fade-in-up pb-1">
-                    <div className="inline-flex items-center justify-center px-4 sm:px-8 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
-                        <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
+            <div className="sticky top-[60px] z-50 w-[100vw] md:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-4 flex flex-col items-center shadow-sm md:shadow-none pb-2 md:pb-0 mb-2 sm:mb-4 px-2">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-2 relative w-full text-center animate-fade-in-up pb-1 md:pb-0 font-medium">
+                    <div className="inline-flex items-center justify-center px-4 pt-0 sm:pt-1 md:pt-0 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden flex-col items-center gap-0 md:gap-px">
+                        <span className="font-bebas font-normal text-xl sm:text-2xl md:text-xl lg:text-3xl uppercase tracking-widest truncate leading-[1.1] md:leading-[1.0] pt-1 md:pt-0 drop-shadow-sm text-slate-800">
                             {t('videoLibrary.completeFormation')}
                         </span>
                     </div>
                 </div>
 
                 {/* Category Pills (identical spacing to Timeline) */}
-                <div className="w-[100vw] md:w-full overflow-x-auto no-scrollbar -mx-2 sm:-mx-6 lg:mx-0 pb-4 pt-3 mt-1 border-t border-slate-100">
-                    <div className="flex flex-nowrap items-stretch gap-3 px-4 w-max mx-auto md:w-full md:justify-center">
+                <div className="w-full pb-2 mb-2 sm:mb-0 border-t border-slate-100 pt-2 sm:pt-3">
+                    <div className="flex flex-nowrap items-stretch justify-center gap-1 sm:gap-2 w-full max-w-4xl mx-auto px-2 md:px-0">
                         {tabs.map(layer => {
                             const isSelected = selectedLayer === layer;
 
@@ -110,24 +110,24 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     key={layer}
                                     onClick={() => setSelectedLayer(layer)}
                                     className={cn(
-                                        "relative flex flex-col items-center justify-center py-4 px-3 rounded-[1.2rem] min-w-[130px] sm:min-w-[140px] min-h-[64px] border shrink-0 transition-transform duration-200 cursor-pointer touch-manipulation active:scale-[0.97]",
+                                        "flex-1 relative flex flex-col items-center justify-center py-1 sm:py-2 md:py-1 lg:py-2 px-1 sm:px-2 rounded-xl sm:rounded-[1.2rem] md:rounded-[0.9rem] lg:rounded-2xl border transition-transform duration-200 cursor-pointer touch-manipulation active:scale-[0.98]",
                                         isSelected
-                                            ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white`
+                                            ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
                                             : `${style.unselectedBg} ${style.unselectedBorder} ${style.unselectedText} shadow-sm ${style.hover}`
                                     )}
                                 >
                                     <span className={cn(
-                                        "font-bebas text-lg sm:text-xl tracking-wider leading-none mb-1 whitespace-nowrap",
+                                        "font-bebas text-sm sm:text-base md:text-sm lg:text-base tracking-wider leading-none mb-[1px] md:mb-[1px] whitespace-nowrap",
                                         isSelected ? "text-white" : style.unselectedText
                                     )}>
                                         {t(`videoLibrary.layers.${tKeys[layer as keyof typeof tKeys]}`)}
                                     </span>
 
                                     <span className={cn(
-                                        "text-[10px] uppercase font-bold truncate w-full px-2 opacity-80 text-center",
+                                        "text-[8px] sm:text-[10px] md:text-[9px] uppercase font-bold truncate w-full px-1 opacity-80 text-center",
                                         isSelected ? "text-white/80" : style.unselectedText
                                     )}>
-                                        <Clock size={10} className="inline mr-1 mb-[1px]" />
+                                        <Clock size={8} className="hidden sm:inline md:hidden lg:inline mr-1 mb-[1px]" />
                                         {getCategoryTotalDuration(cId as "ectoderme" | "endoderme" | "mesoderme" | "oeil")}
                                     </span>
                                 </button>
@@ -140,7 +140,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
             {/* Video List */}
             <motion.div
                 key={selectedLayer}
-                className="flex flex-col gap-3 sm:gap-4 w-full max-w-4xl mx-auto"
+                className="flex flex-col gap-1 sm:gap-2 w-full max-w-4xl mx-auto px-4 lg:px-0"
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
@@ -166,7 +166,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         tabIndex={0}
                                         onClick={() => onSelectVideo(course)}
                                         className={cn(
-                                            "group relative w-full text-left flex flex-row items-center py-4 sm:py-5 border-b border-slate-200/60 last:border-0 active:scale-[0.99] transition-all duration-300 cursor-pointer overflow-hidden touch-manipulation px-2 sm:px-4 rounded-xl sm:rounded-2xl",
+                                            "group relative w-full text-left flex flex-row items-center py-4 md:py-2 lg:py-3 border-b border-slate-200/60 last:border-0 active:scale-[0.99] transition-all duration-300 cursor-pointer overflow-hidden touch-manipulation px-2 md:px-3 lg:px-4 rounded-xl md:rounded-xl lg:rounded-2xl",
                                             activeListStyle.rowBgHover
                                         )}
                                     >
@@ -174,23 +174,23 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         <div className="absolute inset-0 bg-slate-900 opacity-0 active:opacity-[0.03] transition-opacity duration-[50ms]"></div>
 
                                         {/* Minimalist Play Icon */}
-                                        <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mr-3 sm:mr-5">
-                                            <div className={cn("w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] bg-slate-100/50 transition-all duration-300 group-hover:scale-110", activeListStyle.bgHover)}>
-                                                <Play className={cn("w-4 h-4 sm:w-5 sm:h-5 text-slate-300 transition-colors translate-x-[1px]", activeListStyle.textHover)} fill="currentColor" strokeWidth={1} />
+                                        <div className="flex-shrink-0 w-10 h-10 md:w-8 md:h-8 flex items-center justify-center mr-4 md:mr-3">
+                                            <div className={cn("w-8 h-8 md:w-6 md:h-6 lg:w-7 lg:h-7 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] bg-slate-100/50 transition-all duration-300 group-hover:scale-110", activeListStyle.bgHover)}>
+                                                <Play className={cn("w-4 h-4 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 text-slate-300 transition-colors translate-x-[1px]", activeListStyle.textHover)} fill="currentColor" strokeWidth={1} />
                                             </div>
                                         </div>
 
                                         {/* Minimalist Info */}
                                         <div className="flex-1 min-w-0 pr-4">
                                             <h3 className={cn(
-                                                "text-sm sm:text-lg lg:text-xl font-sans font-medium tracking-wide truncate transition-transform duration-300 uppercase sm:group-hover:translate-x-1",
+                                                "text-base md:text-[13px] lg:text-[15px] font-sans font-medium tracking-wide truncate transition-transform duration-300 uppercase sm:group-hover:translate-x-1",
                                                 "text-slate-700", activeListStyle.textHover
                                             )}>
                                                 {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}- ` : '') + course.title.replace(/^\d+[.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
                                             </h3>
-                                            <div className="flex items-center gap-2 mt-1 opacity-70 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
-                                                <span className="text-[10px] sm:text-xs text-slate-400 font-medium font-sans flex items-center gap-1">
-                                                    <BookOpen size={10} />
+                                            <div className="flex items-center gap-2 mt-0.5 md:mt-0 lg:mt-1 opacity-70 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
+                                                <span className="text-[10px] md:text-[9px] lg:text-[11px] text-slate-400 font-medium font-sans flex items-center gap-1">
+                                                    <BookOpen size={10} className="md:w-2.5 md:h-2.5 lg:w-3 lg:h-3" />
                                                     {t('videoLibrary.includedTranscript')}
                                                 </span>
                                             </div>
@@ -199,7 +199,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         {/* Sleek Duration */}
                                         {course.duration && (
                                             <div className={cn("flex-shrink-0 flex flex-col items-end justify-center text-slate-400 transition-transform duration-300 sm:group-hover:-translate-x-1", activeListStyle.textHover)}>
-                                                <span className="font-bebas text-lg sm:text-xl tracking-wider pt-1">{course.duration}</span>
+                                                <span className="font-bebas text-lg md:text-[15px] lg:text-base tracking-wider pt-1">{course.duration}</span>
                                             </div>
                                         )}
                                     </div>

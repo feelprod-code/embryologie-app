@@ -216,7 +216,7 @@ video::cue {
   }
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (max-height: 500px) and (orientation: landscape) {
 
   /* Show the overlay only if we are NOT actively watching a fullscreen video */
   body:not(.video-fullscreen-active):not(:has(.video-player-fullscreen-active)) #portrait-lock-overlay {

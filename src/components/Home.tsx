@@ -15,12 +15,12 @@ export function Home(_props: HomeProps) {
         : "https://audio.ausha.co/6r2X8f6LVNAp.mp3";
 
     return (
-        <div className="w-full h-full relative overflow-x-hidden overflow-y-auto no-scrollbar bg-[#FAF9F6] flex flex-col items-center justify-center">
+        <div className="w-full flex-1 relative bg-[#FAF9F6] flex flex-col items-center justify-start overflow-hidden">
             {/* Inner responsive layout container */}
-            <div className="min-h-full w-full max-w-5xl flex flex-col items-center justify-between px-4 sm:px-6 pt-[env(safe-area-inset-top,2rem)] md:pt-8 pb-[100px] md:pb-4 mx-auto">
+            <div className="h-full w-full max-w-5xl flex flex-col items-center justify-between px-4 sm:px-6 pt-[env(safe-area-inset-top,2rem)] md:pt-4 pb-8 mx-auto overflow-hidden">
 
                 {/* Top Section: Credits & Title */}
-                <div className="flex-none flex flex-col items-center w-full pt-10 sm:pt-12 md:pt-16">
+                <div className="flex-none flex flex-col items-center w-full pt-4 sm:pt-6 md:pt-8">
                     {/* Top Poster Credits */}
                     <div className="relative z-10 w-full text-center animate-fade-in-up">
                         <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
@@ -32,11 +32,11 @@ export function Home(_props: HomeProps) {
                     </div>
 
                     {/* Main Cinematic Title */}
-                    <div className="relative z-10 w-full text-center flex flex-col items-center mt-10 sm:mt-12 md:mt-16">
-                        <h1 className="text-[13vw] sm:text-7xl md:text-8xl lg:text-9xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
+                    <div className="relative z-10 w-full text-center flex flex-col items-center mt-4 sm:mt-6 md:mt-8">
+                        <h1 className="text-[9vw] sm:text-5xl md:text-6xl lg:text-7xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
                             {t('home.title_part1')}
                         </h1>
-                        <h2 className="text-[10vw] sm:text-5xl md:text-6xl lg:text-7xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-4 sm:mt-6 pr-2">
+                        <h2 className="text-[6.5vw] sm:text-3xl md:text-4xl lg:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-2 sm:mt-4 pr-2">
                             {t('home.title_part2')}
                         </h2>
                     </div>
@@ -59,7 +59,7 @@ export function Home(_props: HomeProps) {
                             src={podcastAudioSrc}
                             className="w-full"
                         />
-                        <span className="font-handwriting text-3xl lg:text-4xl text-slate-600 mt-4 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                        <span className="font-handwriting text-2xl lg:text-3xl text-slate-600 mt-2 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                             {t('home.start')}
                         </span>
                     </div>
