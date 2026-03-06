@@ -5,6 +5,10 @@ import rehypeRaw from 'rehype-raw';
 import { type PodcastItem, podcastsData as podcastsDataFr } from '../data/podcasts';
 import { podcastsData as podcastsDataEn } from '../data/podcasts_en';
 import { podcastsData as podcastsDataEs } from '../data/podcasts_es';
+import { podcastsData as podcastsDataIt } from '../data/podcasts_it';
+import { podcastsData as podcastsDataDe } from '../data/podcasts_de';
+import { podcastsData as podcastsDataZh } from '../data/podcasts_zh';
+import { podcastsData as podcastsDataJa } from '../data/podcasts_ja';
 import { useTranslation } from 'react-i18next';
 
 interface PodcastPlayerPageProps {
@@ -19,7 +23,15 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
         ? podcastsDataEn
         : i18n.language.startsWith('es')
             ? podcastsDataEs
-            : podcastsDataFr;
+            : i18n.language.startsWith('it')
+                ? podcastsDataIt
+                : i18n.language.startsWith('de')
+                    ? podcastsDataDe
+                    : i18n.language.startsWith('zh')
+                        ? podcastsDataZh
+                        : i18n.language.startsWith('ja')
+                            ? podcastsDataJa
+                            : podcastsDataFr;
 
     const podcast = podcastsData.find(p => p.id === initialPodcast.id) || initialPodcast;
 

@@ -1,118 +1,67 @@
 {
-    "nav": {
-        "menu": "Menu",
-        "home": "Accueil",
-        "timeline": "Chronologie",
-        "videos": "Cours Vidéos",
-        "podcasts": "Ressources",
-        "footer": "Embryologie Biodynamique © 2024"
-    },
-    "home": {
-        "training_by": "Une formation de",
-        "title_part1": "L'EMBRYOLOGIE",
-        "title_part2": "BIODYNAMIQUE",
-        "start": "Pour commencer...",
-        "credits": "Réalisation FeelProd",
-        "listen_podcast": "Écouter l'épisode complet sur le Mouvement Développemental",
-        "ai_assistant": "Assistant IA"
-    },
-    "app": {
-        "title_embryology": "Embryologie",
-        "title_biodynamic": "Biodynamique",
-        "directed_by": "Formation dirigée par",
-        "osteopath": "Ostéopathe D.O.",
-        "back_to_home": "← Retour Accueil",
-        "developmental_movement": "Mouvement Développemental",
-        "timeline_processes": "Processus, Mouvements et Feuillets",
-        "timeline_cine_dynamic": "Ciné-Dynamique du Jour",
-        "timeline_practical": "Pratique Biodynamique & Psychosomatique",
-        "timeline_fulcrums": "Fulcrums Précis",
-        "timeline_palpation": "Palpation Globale",
-        "timeline_therapist_posture": "Posture du Thérapeute",
-        "timeline_psychosomatic": "Psychosomatique & Symbolique",
-        "timeline_layer_perceptions": "Perceptions Tissulaires par Feuillet",
-        "timeline_no_data": "Aucune donnée pour ce feuillet temporel."
-    },
-    "videoLibrary": {
-        "backToHome": "← Retour Accueil",
-        "completeFormation": "Formation Complète",
-        "layers": {
-            "ectoderm": "L'Ectoderme",
-            "mesoderm": "Le Mésoderme",
-            "endoderm": "L'Endoderme",
-            "eye": "L'Oeil"
+    "translation": {
+        "home": {
+            "training_by": "FORMATION PAR",
+            "title_part1": "L'EMBRYOLOGIE",
+            "title_part2": "BIODYNAMIQUE",
+            "start": "C'est parti !",
+            "ai_assistant": "Assistant AI",
+            "credits": "Une production FeelProd ©"
         },
-        "includedTranscript": "Retranscription incluse",
-        "noVideoTitle": "Aucune vidéo disponible pour ce feuillet pour le moment.",
-        "noVideoSub": "D'autres cours et retranscriptions seront ajoutés prochainement.",
-        "previous": "Précédent",
-        "next": "Suivant",
-        "download": "Télécharger"
-    },
-    "podcasts": {
-        "listenAndLearn": "Écouter & Approfondir",
-        "resourcesAndPodcasts": "Ressources & Podcasts",
-        "backToHome": "Retour Accueil",
-        "allResources": "Toutes les Ressources",
-        "highlight": "À la une",
-        "backToLibrary": "Retour à la bibliothèque",
-        "clickToReadSummary": "Cliquez pour lire le résumé complet",
-        "readSummary": "Lire le résumé",
-        "podcastType": "Podcast",
-        "browserNoAudioSupport": "Votre navigateur ne supporte pas l'élément audio.",
-        "audioNotConfigured": "Fichier audio non configuré.",
-        "transcript": "Retranscription",
-        "transcriptNotAvailable": "La retranscription de ce podcast<br />n'est pas encore disponible.",
-        "episodeSummary": "Résumé de l'épisode",
-        "closeSummary": "Fermer le résumé",
-        "close": "Fermer"
-    },
-    "videoLibrary": {
-        "backToHome": "Retour à l'accueil",
-        "completeFormation": "Formation Complète",
-        "watch": "Voir la vidéo",
-        "previous": "Vidéo précédente",
-        "next": "Vidéo suivante",
-        "download": "Télécharger la vidéo",
-        "layers": {
-            "ectoderm": "L'Ectoderme",
-            "endoderm": "L'Endoderme",
-            "mesoderm": "Le Mésoderme",
-            "eye": "L'Oeil"
+        "nav": {
+            "timeline": "Chronologie",
+            "videos": "Cours en Vidéo"
+        },
+        "chatbot": {
+            "apiKeyMissing": "Clé API manquante.",
+            "assistantRole": "Assistant",
+            "backToHome": "Retour à l'accueil",
+            "clear": "Effacer",
+            "clearConversationTitle": "Effacer la conversation",
+            "detailedAnswer": "Réponse détaillée",
+            "exportPdfTitle": "Exporter en PDF",
+            "generalError": "Une erreur est survenue.",
+            "inputPlaceholder": "Posez votre question sur l'embryologie...",
+            "networkError": "Erreur réseau : ",
+            "pdf": "PDF",
+            "question": "Question",
+            "searching": "Recherche en cours...",
+            "summaryDocument": "Document de synthèse",
+            "welcomeMessage": "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\\n\\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**."
+        },
+        "podcasts": {
+            "allResources": "Toutes les ressources",
+            "audioNotConfigured": "Audio non configuré",
+            "backToHome": "Retour à l'accueil",
+            "backToLibrary": "Retour à la bibliothèque",
+            "browserNoAudioSupport": "Votre navigateur ne supporte pas l'élément audio.",
+            "clickToReadSummary": "Cliquez pour lire le résumé complet",
+            "close": "Fermer",
+            "closeSummary": "Fermer le résumé",
+            "episodeSummary": "Résumé de l'épisode :",
+            "highlight": "À LA UNE",
+            "listenAndLearn": "Écouter & Apprendre",
+            "podcastType": "PODCAST",
+            "readSummary": "Lire le résumé",
+            "resourcesAndPodcasts": "Ressources & Podcasts",
+            "transcript": "Transcription",
+            "transcriptNotAvailable": "Transcription non disponible pour ce podcast."
+        },
+        "videoLibrary": {
+            "backToHome": "Retour à l'accueil",
+            "completeFormation": "Formation Complète",
+            "download": "Télécharger le VTT",
+            "includedTranscript": "Transcription incluse",
+            "next": "Suivant",
+            "noVideoSub": "Ce module n'est pas encore disponible.",
+            "noVideoTitle": "Vidéo non disponible",
+            "previous": "Précédent",
+            "layers": {
+                "ectoderm": "L'Ectoderme",
+                "endoderm": "L'Endoderme",
+                "mesoderm": "Le Mésoderme",
+                "eye": "L'Oeil"
+            }
         }
-    },
-    "podcasts": {
-        "listenAndLearn": "Écoutez & Apprenez",
-        "resourcesAndPodcasts": "Ressources & Podcasts",
-        "backToHome": "Retour à l'accueil",
-        "allResources": "Toutes les ressources",
-        "highlight": "Nouveau",
-        "backToLibrary": "Retour à la bibliothèque",
-        "clickToReadSummary": "Cliquez pour lire le résumé",
-        "readSummary": "Lire le résumé",
-        "podcastType": "Podcast",
-        "browserNoAudioSupport": "Votre navigateur ne supporte pas l'élément audio.",
-        "audioNotConfigured": "Audio non configuré pour cet épisode.",
-        "transcript": "Retranscription Intégrale",
-        "transcriptNotAvailable": "Retranscription non disponible pour le moment.<br/>Veuillez écouter l'audio.",
-        "episodeSummary": "Résumé de l'Épisode",
-        "closeSummary": "Fermer le résumé"
-    },
-    "chatbot": {
-        "welcomeMessage": "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**.",
-        "summaryDocument": "DOCUMENT RÉCAPITULATIF",
-        "question": "Question",
-        "detailedAnswer": "Réponse Détaillée",
-        "apiKeyMissing": "Clé API OpenRouter manquante. Veuillez configurer VITE_OPENROUTER_API_KEY dans votre fichier .env.local.",
-        "networkError": "Erreur réseau: ",
-        "generalError": "Désolé, une erreur est survenue lors de la communication avec l'IA. Vérifiez votre clé d'API ou votre connexion.",
-        "backToHome": "Retour Accueil",
-        "assistantRole": "ASSISTANT INTELLIGENT",
-        "clearConversationTitle": "Effacer la conversation",
-        "clear": "Effacer",
-        "exportPdfTitle": "Exporter cette réponse en PDF",
-        "pdf": "PDF",
-        "searching": "Recherche dans les cours de Marc Damoiseaux...",
-        "inputPlaceholder": "Posez votre question à Embryo AI..."
     }
 }

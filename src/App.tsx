@@ -3,13 +3,15 @@ import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, 
 import { detailedStages as detailedStagesFr, type StageDataV2, type EmbryoLayer } from './data/embryologie';
 import { detailedStages as detailedStagesEn } from './data/embryologie_en';
 import { detailedStages as detailedStagesEs } from './data/embryologie_es';
+import { detailedStages as detailedStagesIt } from './data/embryologie_it';
+import { detailedStages as detailedStagesDe } from './data/embryologie_de';
+import { detailedStages as detailedStagesZh } from './data/embryologie_zh';
+import { detailedStages as detailedStagesJa } from './data/embryologie_ja';
 import { Mermaid } from './components/Mermaid';
 import { ChatBot } from './components/ChatBot';
 import { Home } from './components/Home';
 import { VideoLibraryList } from './components/VideoLibraryList';
 import { VideoPlayerPage } from './components/VideoPlayerPage';
-// import { PodcastLibraryList } from './components/PodcastLibraryList';
-// import { PodcastPlayerPage } from './components/PodcastPlayerPage';
 import { type VideoCourse } from './data/videoCourses';
 import { cn } from './utils';
 import { useTranslation } from 'react-i18next';
@@ -54,7 +56,15 @@ function App() {
     ? detailedStagesEn
     : i18n.language.startsWith('es')
       ? detailedStagesEs
-      : detailedStagesFr;
+      : i18n.language.startsWith('it')
+        ? detailedStagesIt
+        : i18n.language.startsWith('de')
+          ? detailedStagesDe
+          : i18n.language.startsWith('zh')
+            ? detailedStagesZh
+            : i18n.language.startsWith('ja')
+              ? detailedStagesJa
+              : detailedStagesFr;
 
   const [activeStageId, setActiveStageId] = useState<string>(detailedStages[0].id);
 

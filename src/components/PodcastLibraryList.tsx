@@ -2,6 +2,10 @@ import { ArrowLeft, Headphones, ExternalLink } from 'lucide-react';
 import { podcastsData as podcastsDataFr, type PodcastItem } from '../data/podcasts';
 import { podcastsData as podcastsDataEn } from '../data/podcasts_en';
 import { podcastsData as podcastsDataEs } from '../data/podcasts_es';
+import { podcastsData as podcastsDataIt } from '../data/podcasts_it';
+import { podcastsData as podcastsDataDe } from '../data/podcasts_de';
+import { podcastsData as podcastsDataZh } from '../data/podcasts_zh';
+import { podcastsData as podcastsDataJa } from '../data/podcasts_ja';
 import { useTranslation } from 'react-i18next';
 
 interface PodcastLibraryListProps {
@@ -16,7 +20,15 @@ export function PodcastLibraryList({ onNavigate, onSelectPodcast }: PodcastLibra
         ? podcastsDataEn
         : i18n.language.startsWith('es')
             ? podcastsDataEs
-            : podcastsDataFr;
+            : i18n.language.startsWith('it')
+                ? podcastsDataIt
+                : i18n.language.startsWith('de')
+                    ? podcastsDataDe
+                    : i18n.language.startsWith('zh')
+                        ? podcastsDataZh
+                        : i18n.language.startsWith('ja')
+                            ? podcastsDataJa
+                            : podcastsDataFr;
 
     return (
         <div className="w-full max-w-7xl mx-auto animate-fade-in pb-16 px-4">

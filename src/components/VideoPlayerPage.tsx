@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { videoCourses as videoCoursesFr, type VideoCourse, getCategoryTotalDuration } from '../data/videoCourses';
 import { videoCourses as videoCoursesEn } from '../data/videoCourses_en';
 import { videoCourses as videoCoursesEs } from '../data/videoCourses_es';
+import { videoCourses as videoCoursesIt } from '../data/videoCourses_it';
+import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
+import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
+import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
 import { cn } from '../utils';
 import { Clock, ChevronLeft, ChevronRight, DownloadCloud } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -24,7 +28,15 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     ? videoCoursesEn
     : i18n.language.startsWith('es')
       ? videoCoursesEs
-      : videoCoursesFr;
+      : i18n.language.startsWith('it')
+        ? videoCoursesIt
+        : i18n.language.startsWith('de')
+          ? videoCoursesDe
+          : i18n.language.startsWith('zh')
+            ? videoCoursesZh
+            : i18n.language.startsWith('ja')
+              ? videoCoursesJa
+              : videoCoursesFr;
 
   const [currentSpeed, setCurrentSpeed] = useState<number>(1);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);

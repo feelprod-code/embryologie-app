@@ -8,10 +8,10 @@ import path from 'path';
 import { videoCourses } from '../src/data/videoCourses';
 import { podcastsData } from '../src/data/podcasts';
 
-const OPENROUTER_API_KEY = process.env.VITE_OPENROUTER_API_KEY;
+const OPENROUTER_API_KEY = process.env.VITE_OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
 
 if (!OPENROUTER_API_KEY) {
-    console.error("Missing VITE_OPENROUTER_API_KEY in environment");
+    console.error("Missing VITE_OPENROUTER_API_KEY or OPENROUTER_API_KEY in environment");
     process.exit(1);
 }
 
@@ -66,6 +66,10 @@ async function processPodcasts() {
 
     const enData = [];
     const esData = [];
+    const itData = [];
+    const deData = [];
+    const zhData = [];
+    const jaData = [];
 
     for (const p of podcastsData) {
         console.log(`Translating podcast: ${p.title}`);
@@ -73,48 +77,53 @@ async function processPodcasts() {
             // EN
             const enTitle = await translateText(p.title, 'English');
             const enDesc = await translateText(p.description, 'English');
-            let enTranscript = null;
-            if (p.transcript) {
-                enTranscript = await translateText(p.transcript, 'English');
-            }
-
-            enData.push({
-                ...p,
-                title: enTitle,
-                description: enDesc,
-                transcript: enTranscript || p.transcript
-            });
+            let enTranscript = p.transcript ? await translateText(p.transcript, 'English') : null;
+            enData.push({ ...p, title: enTitle, description: enDesc, transcript: enTranscript || p.transcript });
 
             // ES
             const esTitle = await translateText(p.title, 'Spanish');
             const esDesc = await translateText(p.description, 'Spanish');
-            let esTranscript = null;
-            if (p.transcript) {
-                esTranscript = await translateText(p.transcript, 'Spanish');
-            }
+            let esTranscript = p.transcript ? await translateText(p.transcript, 'Spanish') : null;
+            esData.push({ ...p, title: esTitle, description: esDesc, transcript: esTranscript || p.transcript });
 
-            esData.push({
-                ...p,
-                title: esTitle,
-                description: esDesc,
-                transcript: esTranscript || p.transcript
-            });
+            // IT
+            const itTitle = await translateText(p.title, 'Italian');
+            const itDesc = await translateText(p.description, 'Italian');
+            let itTranscript = p.transcript ? await translateText(p.transcript, 'Italian') : null;
+            itData.push({ ...p, title: itTitle, description: itDesc, transcript: itTranscript || p.transcript });
+
+            // DE
+            const deTitle = await translateText(p.title, 'German');
+            const deDesc = await translateText(p.description, 'German');
+            let deTranscript = p.transcript ? await translateText(p.transcript, 'German') : null;
+            deData.push({ ...p, title: deTitle, description: deDesc, transcript: deTranscript || p.transcript });
+
+            // ZH
+            const zhTitle = await translateText(p.title, 'Simplified Chinese');
+            const zhDesc = await translateText(p.description, 'Simplified Chinese');
+            let zhTranscript = p.transcript ? await translateText(p.transcript, 'Simplified Chinese') : null;
+            zhData.push({ ...p, title: zhTitle, description: zhDesc, transcript: zhTranscript || p.transcript });
+
+            // JA
+            const jaTitle = await translateText(p.title, 'Japanese');
+            const jaDesc = await translateText(p.description, 'Japanese');
+            let jaTranscript = p.transcript ? await translateText(p.transcript, 'Japanese') : null;
+            jaData.push({ ...p, title: jaTitle, description: jaDesc, transcript: jaTranscript || p.transcript });
 
         } catch (e) {
             console.error(`Failed to translate podcast ${p.title}:`, e);
             // Fallback to original
-            enData.push({ ...p });
-            esData.push({ ...p });
+            enData.push({ ...p }); esData.push({ ...p }); itData.push({ ...p }); deData.push({ ...p }); zhData.push({ ...p }); jaData.push({ ...p });
         }
     }
 
-    // Write EN
-    const enFileStr = `import type { PodcastItem } from './podcasts';\n\nexport const podcastsData: PodcastItem[] = ${JSON.stringify(enData, null, 4)};\n`;
-    fs.writeFileSync(path.resolve(__dirname, '../src/data/podcasts_en.ts'), enFileStr);
-
-    // Write ES
-    const esFileStr = `import type { PodcastItem } from './podcasts';\n\nexport const podcastsData: PodcastItem[] = ${JSON.stringify(esData, null, 4)};\n`;
-    fs.writeFileSync(path.resolve(__dirname, '../src/data/podcasts_es.ts'), esFileStr);
+    // Write all
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/podcasts_en.ts'), `import type { PodcastItem } from './podcasts';\n\nexport const podcastsData: PodcastItem[] = ${JSON.stringify(enData, null, 4)};\n`);
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/podcasts_es.ts'), `import type { PodcastItem } from './podcasts';\n\nexport const podcastsData: PodcastItem[] = ${JSON.stringify(esData, null, 4)};\n`);
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/podcasts_it.ts'), `import type { PodcastItem } from './podcasts';\n\nexport const podcastsData: PodcastItem[] = ${JSON.stringify(itData, null, 4)};\n`);
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/podcasts_de.ts'), `import type { PodcastItem } from './podcasts';\n\nexport const podcastsData: PodcastItem[] = ${JSON.stringify(deData, null, 4)};\n`);
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/podcasts_zh.ts'), `import type { PodcastItem } from './podcasts';\n\nexport const podcastsData: PodcastItem[] = ${JSON.stringify(zhData, null, 4)};\n`);
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/podcasts_ja.ts'), `import type { PodcastItem } from './podcasts';\n\nexport const podcastsData: PodcastItem[] = ${JSON.stringify(jaData, null, 4)};\n`);
 
     console.log("Podcasts translated!");
 }
@@ -125,6 +134,10 @@ async function processVideos() {
 
     const enData = [];
     const esData = [];
+    const itData = [];
+    const deData = [];
+    const zhData = [];
+    const jaData = [];
 
     for (let i = 0; i < videoCourses.length; i++) {
         const v = videoCourses[i];
@@ -134,38 +147,47 @@ async function processVideos() {
             // EN
             const enTitle = await translateText(v.title, 'English');
             const enTrans = await translateText(v.transcriptMarkdown, 'English');
-
-            enData.push({
-                ...v,
-                title: enTitle,
-                transcriptMarkdown: enTrans
-            });
+            enData.push({ ...v, title: enTitle, transcriptMarkdown: enTrans });
 
             // ES
             const esTitle = await translateText(v.title, 'Spanish');
             const esTrans = await translateText(v.transcriptMarkdown, 'Spanish');
+            esData.push({ ...v, title: esTitle, transcriptMarkdown: esTrans });
 
-            esData.push({
-                ...v,
-                title: esTitle,
-                transcriptMarkdown: esTrans
-            });
+            // IT
+            const itTitle = await translateText(v.title, 'Italian');
+            const itTrans = await translateText(v.transcriptMarkdown, 'Italian');
+            itData.push({ ...v, title: itTitle, transcriptMarkdown: itTrans });
+
+            // DE
+            const deTitle = await translateText(v.title, 'German');
+            const deTrans = await translateText(v.transcriptMarkdown, 'German');
+            deData.push({ ...v, title: deTitle, transcriptMarkdown: deTrans });
+
+            // ZH
+            const zhTitle = await translateText(v.title, 'Simplified Chinese');
+            const zhTrans = await translateText(v.transcriptMarkdown, 'Simplified Chinese');
+            zhData.push({ ...v, title: zhTitle, transcriptMarkdown: zhTrans });
+
+            // JA
+            const jaTitle = await translateText(v.title, 'Japanese');
+            const jaTrans = await translateText(v.transcriptMarkdown, 'Japanese');
+            jaData.push({ ...v, title: jaTitle, transcriptMarkdown: jaTrans });
 
         } catch (e) {
             console.error(`Failed to translate video ${v.title}:`, e);
             // Fallback
-            enData.push({ ...v });
-            esData.push({ ...v });
+            enData.push({ ...v }); esData.push({ ...v }); itData.push({ ...v }); deData.push({ ...v }); zhData.push({ ...v }); jaData.push({ ...v });
         }
     }
 
-    // Write EN
-    const enFileStr = `import type { VideoCourse } from './videoCourses';\n\nexport const videoCourses: VideoCourse[] = ${JSON.stringify(enData, null, 4)};\n`;
-    fs.writeFileSync(path.resolve(__dirname, '../src/data/videoCourses_en.ts'), enFileStr);
-
-    // Write ES
-    const esFileStr = `import type { VideoCourse } from './videoCourses';\n\nexport const videoCourses: VideoCourse[] = ${JSON.stringify(esData, null, 4)};\n`;
-    fs.writeFileSync(path.resolve(__dirname, '../src/data/videoCourses_es.ts'), esFileStr);
+    // Write all
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/videoCourses_en.ts'), `import type { VideoCourse } from './videoCourses';\n\nexport const videoCourses: VideoCourse[] = ${JSON.stringify(enData, null, 4)};\n`);
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/videoCourses_es.ts'), `import type { VideoCourse } from './videoCourses';\n\nexport const videoCourses: VideoCourse[] = ${JSON.stringify(esData, null, 4)};\n`);
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/videoCourses_it.ts'), `import type { VideoCourse } from './videoCourses';\n\nexport const videoCourses: VideoCourse[] = ${JSON.stringify(itData, null, 4)};\n`);
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/videoCourses_de.ts'), `import type { VideoCourse } from './videoCourses';\n\nexport const videoCourses: VideoCourse[] = ${JSON.stringify(deData, null, 4)};\n`);
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/videoCourses_zh.ts'), `import type { VideoCourse } from './videoCourses';\n\nexport const videoCourses: VideoCourse[] = ${JSON.stringify(zhData, null, 4)};\n`);
+    fs.writeFileSync(path.resolve(__dirname, '../src/data/videoCourses_ja.ts'), `import type { VideoCourse } from './videoCourses';\n\nexport const videoCourses: VideoCourse[] = ${JSON.stringify(jaData, null, 4)};\n`);
 
     console.log("Videos translated!");
 }

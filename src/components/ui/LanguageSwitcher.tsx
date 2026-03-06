@@ -3,57 +3,13 @@ import { cn } from '../../utils';
 import { useState, useRef, useEffect } from 'react';
 
 const languages = [
-    {
-        code: 'fr',
-        label: 'Français',
-        flag: (
-            <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <mask id="mask_fr" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
-                    <circle cx="256" cy="256" r="256" fill="white" />
-                </mask>
-                <g mask="url(#mask_fr)">
-                    <rect width="170.6" height="512" fill="#002395" />
-                    <rect x="170.6" width="170.6" height="512" fill="#FFFFFF" />
-                    <rect x="341.3" width="171.4" height="512" fill="#ED2939" />
-                </g>
-            </svg>
-        )
-    },
-    {
-        code: 'en',
-        label: 'English',
-        flag: (
-            <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <mask id="mask_en" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
-                    <circle cx="256" cy="256" r="256" fill="white" />
-                </mask>
-                <g mask="url(#mask_en)">
-                    <rect width="512" height="512" fill="#012169" />
-                    <path d="M0 0 L512 512 M512 0 L0 512" stroke="#FFFFFF" strokeWidth="60" />
-                    <path d="M0 0 L512 512 M512 0 L0 512" stroke="#C8102E" strokeWidth="40" />
-                    <path d="M256 0 V512 M0 256 H512" stroke="#FFFFFF" strokeWidth="100" />
-                    <path d="M256 0 V512 M0 256 H512" stroke="#C8102E" strokeWidth="60" />
-                </g>
-            </svg>
-        )
-    },
-    {
-        code: 'es',
-        label: 'Español',
-        flag: (
-            <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <mask id="mask_es" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
-                    <circle cx="256" cy="256" r="256" fill="white" />
-                </mask>
-                <g mask="url(#mask_es)">
-                    <rect width="512" height="128" fill="#AA151B" />
-                    <rect y="128" width="512" height="256" fill="#F1BF00" />
-                    <rect y="384" width="512" height="128" fill="#AA151B" />
-                    <circle cx="160" cy="256" r="50" fill="#AA151B" opacity="0.8" />
-                </g>
-            </svg>
-        )
-    },
+    { code: 'fr', label: 'Français', flag: <img src="/icons/flag-fr.svg" alt="FR" className="w-full h-full object-cover" /> },
+    { code: 'en', label: 'English', flag: <img src="/icons/flag-gb.svg" alt="EN" className="w-full h-full object-cover" /> },
+    { code: 'es', label: 'Español', flag: <img src="/icons/flag-es.svg" alt="ES" className="w-full h-full object-cover" /> },
+    { code: 'it', label: 'Italiano', flag: <img src="/icons/flag-it.svg" alt="IT" className="w-full h-full object-cover" /> },
+    { code: 'de', label: 'Deutsch', flag: <img src="/icons/flag-de.svg" alt="DE" className="w-full h-full object-cover" /> },
+    { code: 'zh', label: '中文', flag: <img src="/icons/flag-cn.svg" alt="ZH" className="w-full h-full object-cover" /> },
+    { code: 'ja', label: '日本語', flag: <img src="/icons/flag-jp.svg" alt="JA" className="w-full h-full object-cover" /> }
 ];
 
 export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'desktop-nav' | 'bottom-nav' }) {

@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { type VideoCourse, videoCourses as videoCoursesFr, getCategoryTotalDuration } from '../data/videoCourses';
 import { videoCourses as videoCoursesEn } from '../data/videoCourses_en';
 import { videoCourses as videoCoursesEs } from '../data/videoCourses_es';
+import { videoCourses as videoCoursesIt } from '../data/videoCourses_it';
+import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
+import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
+import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
 import { Play, Clock, BookOpen } from 'lucide-react';
 import { cn } from '../utils';
 import { motion, type Variants } from 'framer-motion';
@@ -21,7 +25,15 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
         ? videoCoursesEn
         : i18n.language.startsWith('es')
             ? videoCoursesEs
-            : videoCoursesFr;
+            : i18n.language.startsWith('it')
+                ? videoCoursesIt
+                : i18n.language.startsWith('de')
+                    ? videoCoursesDe
+                    : i18n.language.startsWith('zh')
+                        ? videoCoursesZh
+                        : i18n.language.startsWith('ja')
+                            ? videoCoursesJa
+                            : videoCoursesFr;
 
     // Default state to L'Ectoderme to skip 'Tous'
     const [selectedLayer, setSelectedLayer] = useState<string>("L'Ectoderme");
