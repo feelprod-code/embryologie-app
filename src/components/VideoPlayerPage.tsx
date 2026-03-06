@@ -173,7 +173,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                       key={speed}
                       onClick={() => handleSpeedChange(speed)}
                       className={cn(
-                        "flex items-center justify-center px-4 py-2 sm:px-5 sm:py-3 rounded-[1.2rem] text-sm sm:text-base font-bold transition-all min-w-[44px] sm:min-w-[50px] shadow-sm border cursor-pointer touch-manipulation active:scale-95",
+                        "flex items-center justify-center px-6 py-3 md:px-5 md:py-3 rounded-[1.2rem] text-base md:text-base font-bold transition-all min-w-[50px] shadow-sm border cursor-pointer touch-manipulation active:scale-95",
                         currentSpeed === speed
                           ? (course.categoryId === 'ectoderme' ? "bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20" :
                             course.categoryId === 'endoderme' ? "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/20" :
@@ -192,18 +192,18 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   <button
                     onClick={() => prevVideo && onSelectVideo(prevVideo)}
                     disabled={!prevVideo}
-                    className="flex items-center justify-center px-6 py-2 sm:px-8 sm:py-3 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-[1.2rem] shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+                    className="flex items-center justify-center px-8 py-3 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-[1.2rem] shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
                     title={t('videoLibrary.previous')}
                   >
-                    <ChevronLeft size={20} />
+                    <ChevronLeft size={22} />
                   </button>
                   <button
                     onClick={() => nextVideo && onSelectVideo(nextVideo)}
                     disabled={!nextVideo}
-                    className="flex items-center justify-center px-6 py-2 sm:px-8 sm:py-3 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-[1.2rem] shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+                    className="flex items-center justify-center px-8 py-3 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-[1.2rem] shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
                     title={t('videoLibrary.next')}
                   >
-                    <ChevronRight size={20} />
+                    <ChevronRight size={22} />
                   </button>
                 </div>
 
@@ -215,7 +215,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                       href={`https://customer-6i2z59dst7q6iswv.cloudflarestream.com/${course.cloudflareId}/downloads/default.mp4`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex justify-center items-center px-4 py-2 sm:px-5 sm:py-3 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-500 md:hover:text-slate-900 transition-colors rounded-[1.2rem] shadow-sm border border-slate-200"
+                      className="flex justify-center items-center px-6 py-3 md:px-5 md:py-3 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-500 md:hover:text-slate-900 transition-colors rounded-[1.2rem] shadow-sm border border-slate-200"
                       title={t('videoLibrary.download')}
                     >
                       <DownloadCloud size={20} strokeWidth={2.5} />
