@@ -217,11 +217,11 @@ video::cue {
 @media screen and (orientation: landscape) {
 
   /* Show the overlay only if we are NOT actively watching a fullscreen video */
-  body:not(.video-fullscreen-active) #portrait-lock-overlay {
+  body:not(.video-fullscreen-active):not(:has(.video-player-fullscreen-active)) #portrait-lock-overlay {
     display: flex;
   }
 
-  body:not(.video-fullscreen-active) #root {
+  body:not(.video-fullscreen-active):not(:has(.video-player-fullscreen-active)) #root {
     display: none;
   }
 }
