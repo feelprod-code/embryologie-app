@@ -162,7 +162,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
         const videoEl = getVideoElement();
 
-        // 1. iOS Native Fullscreen
+        // 1. iOS Native Fullscreen (Won't trigger if controls=false in CF iframe, but keeping if we ever switch to native video)
         if (videoEl && (videoEl as any).webkitEnterFullscreen) {
             (videoEl as any).webkitEnterFullscreen();
             return;
@@ -188,6 +188,18 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         // 3. Fallback CSS Fullscreen
         setIsFullscreen(!isFullscreen);
     };
+
+    // Dynamically allow zoom in fullscreen
+    useEffect(() => {
+        const viewportMeta = document.querySelector('meta[name="viewport"]');
+        if (!viewportMeta) return;
+
+        if (isFullscreen) {
+            viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, viewport-fit=cover');
+        } else {
+            viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover');
+        }
+    }, [isFullscreen]);
 
     const requestPiP = async () => {
         const video = getVideoElement();
