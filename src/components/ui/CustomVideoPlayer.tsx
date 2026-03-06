@@ -137,16 +137,22 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
     const requestPiP = async () => {
         const video = document.querySelector(`stream[src="${cloudflareId}"] video`) as HTMLVideoElement || document.querySelector('video');
-        if (video && typeof document !== 'undefined' && document.pictureInPictureEnabled) {
-            try {
+        if (!video || typeof document === 'undefined') return;
+
+        try {
+            if (document.pictureInPictureEnabled && video.requestPictureInPicture) {
                 if (document.pictureInPictureElement) {
                     await document.exitPictureInPicture();
                 } else {
                     await video.requestPictureInPicture();
                 }
-            } catch (err) {
-                console.error('[PiP Error]', err);
+            } else if ((video as any).webkitSupportsPresentationMode && typeof (video as any).webkitSetPresentationMode === 'function') {
+                const currentMode = (video as any).webkitPresentationMode;
+                const newMode = currentMode === 'picture-in-picture' ? 'inline' : 'picture-in-picture';
+                (video as any).webkitSetPresentationMode(newMode);
             }
+        } catch (err) {
+            console.error('[PiP Error]', err);
         }
     };
 
@@ -309,8 +315,6 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     : `w-full aspect-video rounded-xl shadow-2xl overflow-hidden ${className}`
                     }`}
                 onMouseMove={triggerControls}
-                onClick={triggerControls}
-                onTouchStart={triggerControls}
             >
                 {/* 1. LAYER 0: The native stream player without controls */}
                 <div className="absolute inset-0 w-full h-full pointer-events-none">
@@ -340,6 +344,8 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                                 setDuration(player.duration);
                             }
 
+                            // Trigger controls on unpause or active scrubbing not required here continuously
+
                             if (onTimeUpdate) onTimeUpdate(time);
 
                             let active = null;
@@ -358,12 +364,12 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
                 {/* 2. LAYER 1: Interactive Play/Pause zone */}
                 <div
-                    className="absolute inset-0 z-10 cursor-pointer flex items-center justify-center"
+                    className="absolute inset-0 z-10 cursor-pointer flex items-center justify-center touch-manipulation"
                     onClick={(e) => {
                         e.stopPropagation();
                         if (showControls) {
                             if (isPlaying) {
-                                setShowControls(false);
+                                setShowControls(false); // Hide immediately if playing and controls are tapped
                             }
                             if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
                         } else {
@@ -403,7 +409,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 {/* 3. LAYER 2: Subtitle Overlay */}
                 {activeSubtitle && subtitlesEnabled && (
                     <div
-                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-20 md:bottom-24' : 'bottom-6 md:bottom-8'
+                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-16 md:bottom-20' : 'bottom-1 md:bottom-2'
                             }`}
                         style={{ zIndex: 20, paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
@@ -486,11 +492,11 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                             </button>
 
                             {/* Picture in Picture */}
-                            {typeof document !== 'undefined' && document.pictureInPictureEnabled && (
+                            {typeof document !== 'undefined' && (document.pictureInPictureEnabled || 'webkitSupportsPresentationMode' in document.createElement('video')) && (
                                 <button
                                     onClick={(e) => { e.stopPropagation(); requestPiP(); }}
                                     onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); requestPiP(); }}
-                                    className="text-white/90 hover:text-white transition-colors p-2 cursor-pointer touch-manipulation active:scale-90 hidden sm:block"
+                                    className="text-white/90 hover:text-white transition-colors p-2 cursor-pointer touch-manipulation active:scale-90"
                                     title="Picture in Picture"
                                 >
                                     <PictureInPicture size={20} />
