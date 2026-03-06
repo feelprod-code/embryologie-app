@@ -67,7 +67,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
     return (
         <div className="w-full flex-1 flex flex-col pt-0 pb-16">
             {/* STICKY HEADER CONTAINER FOR VIDEO LIBRARY */}
-            <div className="sticky top-0 md:top-[60px] z-50 w-[100vw] md:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-1 flex flex-col items-center shadow-sm md:shadow-none pb-2 md:pb-0 mb-2 sm:mb-2 px-2 border-b border-transparent md:border-slate-100/50">
+            <div className="sticky top-0 md:top-[60px] z-50 w-[100vw] md:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-0 flex flex-col items-center shadow-sm md:shadow-none pb-2 md:pb-0 mb-2 sm:mb-2 px-2 border-b border-transparent md:border-slate-100/50">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-1 relative w-full text-center animate-fade-in-up pb-1 md:pb-0 font-medium">
                     <div className="inline-flex items-center justify-center px-4 pt-0 sm:pt-1 md:pt-0 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden flex-col items-center gap-0 md:gap-px">
                         <span className="font-bebas font-normal text-xl sm:text-2xl md:text-xl lg:text-xl uppercase tracking-widest truncate leading-[1.1] md:leading-none pt-1 md:pt-0 drop-shadow-sm text-slate-800">
@@ -77,7 +77,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                 </div>
 
                 {/* Category Pills (identical spacing to Timeline) */}
-                <div className="w-full pb-2 mb-2 sm:mb-0 border-t border-slate-100 pt-2 sm:pt-2 md:pt-1">
+                <div className="w-full pb-2 mb-2 sm:mb-0 border-t border-slate-100 pt-2 sm:pt-2 md:pt-0">
                     <div className="flex flex-nowrap items-stretch justify-center gap-1 sm:gap-2 md:gap-1.5 w-full max-w-4xl mx-auto px-2 md:px-0">
                         {tabs.map(layer => {
                             const isSelected = selectedLayer === layer;
