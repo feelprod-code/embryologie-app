@@ -67,7 +67,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
     return (
         <div className="w-full flex-1 flex flex-col pt-0 pb-16">
             {/* STICKY HEADER CONTAINER FOR VIDEO LIBRARY */}
-            <div className="sticky top-[50px] md:top-[63px] lg:top-[63px] z-40 w-[100vw] md:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-2 md:pt-4 flex flex-col items-center pb-4 md:pb-4 px-2 border-b border-transparent md:border-slate-100 shadow-sm md:shadow-none">
+            <div className="sticky top-[50px] md:top-[83px] lg:top-[83px] z-40 w-[100vw] md:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-2 md:pt-4 flex flex-col items-center pb-4 md:pb-4 px-2 border-b border-transparent md:border-slate-100 shadow-sm md:shadow-none">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center pb-1 md:pb-0">
                     <div className="inline-flex items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
                         <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-2xl lg:text-xl uppercase tracking-widest truncate leading-none md:leading-[1.1] pt-1 md:pt-0 drop-shadow-sm text-slate-800">
