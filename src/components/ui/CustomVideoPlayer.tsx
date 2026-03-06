@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Stream } from '@cloudflare/stream-react';
 import { useTranslation } from 'react-i18next';
-import { Play, Pause, Maximize, Minimize, X } from 'lucide-react';
+import { Play, Pause, Maximize, Minimize, X, RotateCcw, RotateCw } from 'lucide-react';
 
 // Supported subtitle languages
 const SUBTITLE_LANGS = [
@@ -87,6 +87,16 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         setCurrentTime(val);
         if (playerRef.current) {
             playerRef.current.currentTime = val;
+        }
+        triggerControls();
+    };
+
+    const skipTime = (e: React.MouseEvent | React.TouchEvent, secondsOffset: number) => {
+        e.stopPropagation();
+        if (playerRef.current) {
+            const newTime = Math.max(0, Math.min(currentTime + secondsOffset, duration));
+            playerRef.current.currentTime = newTime;
+            setCurrentTime(newTime);
         }
         triggerControls();
     };
@@ -502,12 +512,30 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     <div className="flex items-center justify-between mt-1 px-1">
                         <div className="flex items-center gap-4">
                             <button
+                                onClick={(e) => skipTime(e, -15)}
+                                onTouchEnd={(e) => { e.preventDefault(); skipTime(e, -15); }}
+                                className="text-white hover:text-white/80 transition-colors p-2 cursor-pointer touch-manipulation active:scale-90"
+                                aria-label="Reculer de 15 secondes"
+                            >
+                                <RotateCcw size={20} />
+                            </button>
+
+                            <button
                                 onClick={(e) => { e.stopPropagation(); togglePlay(); }}
                                 onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); togglePlay(e); }}
                                 className="text-white hover:text-white/80 transition-colors p-2 -ml-2 cursor-pointer touch-manipulation active:scale-90"
                                 aria-label={isPlaying ? "Pause" : "Play"}
                             >
                                 {isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" />}
+                            </button>
+
+                            <button
+                                onClick={(e) => skipTime(e, 15)}
+                                onTouchEnd={(e) => { e.preventDefault(); skipTime(e, 15); }}
+                                className="text-white hover:text-white/80 transition-colors p-2 cursor-pointer touch-manipulation active:scale-90"
+                                aria-label="Avancer de 15 secondes"
+                            >
+                                <RotateCw size={20} />
                             </button>
                         </div>
 
