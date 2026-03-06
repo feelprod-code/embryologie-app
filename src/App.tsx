@@ -158,7 +158,7 @@ function App() {
 
         {/* Desktop Top Navigation Bar */}
         <nav className={cn(
-          "sticky top-0 z-40 w-full h-[60px] bg-white/80 backdrop-blur-md border-b border-slate-200 hidden md:flex items-center justify-center gap-2 px-6 shadow-sm outline outline-2 outline-dashed outline-red-500",
+          "sticky top-0 z-40 w-full h-[60px] bg-white/80 backdrop-blur-md border-b border-slate-200 hidden md:flex items-center justify-center gap-2 px-6 shadow-sm",
           currentView === 'video-player' ? "mb-4 lg:mb-6" : ""
         )}>
           <button
@@ -271,7 +271,7 @@ function App() {
             <div className="w-full max-w-5xl flex flex-col animate-fade-in relative z-10 mx-auto">
 
               {/* STICKY HEADER CONTAINER FOR TIMELINE */}
-              <div className="sticky top-[0px] md:top-[50px] lg:top-[50px] z-20 w-[100vw] lg:w-full bg-[#FAF9F6] outline outline-2 outline-dashed outline-green-500 -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-[10px] lg:pt-[10px] flex flex-col items-center shadow-sm lg:shadow-none pb-2 md:pb-2 mb-2 md:mb-2 px-2 transition-all">
+              <div className="sticky top-[0px] md:top-[60px] lg:top-[60px] z-20 w-[100vw] lg:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-0 lg:pt-0 flex flex-col items-center shadow-sm lg:shadow-none pb-2 md:pb-2 mb-2 md:mb-2 px-2 transition-all">
                 {/* TIMELINE BADGE */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center animate-fade-in-up pb-1 md:pb-0">
                   <div className="inline-flex items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] lg:max-w-full overflow-hidden">
