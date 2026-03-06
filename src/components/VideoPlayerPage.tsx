@@ -78,7 +78,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     <>
       <div className={cn(
         "w-full mx-auto flex flex-col bg-slate-50/50",
-        isFullscreen ? "h-screen" : "max-w-7xl h-[100dvh] overflow-hidden relative"
+        isFullscreen ? "h-screen" : "max-w-5xl h-[100dvh] overflow-hidden relative mx-auto"
       )}>
 
         <div className={cn(

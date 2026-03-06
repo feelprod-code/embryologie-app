@@ -226,7 +226,7 @@ function App() {
 
           {/* HEADER - Only visible when not on home and not on video-player or podcast-player */}
           {currentView !== 'home' && currentView !== 'video-player' && currentView !== 'podcast-player' && (
-            <header className="hidden md:block text-center mt-4 mb-4 animate-slide-up w-full max-w-7xl pt-[env(safe-area-inset-top,0px)]">
+            <header className="hidden lg:block text-center mt-4 mb-4 animate-slide-up w-full max-w-5xl mx-auto pt-[env(safe-area-inset-top,0px)]">
               <h1 className="text-4xl md:text-6xl font-anton tracking-wide text-dark mb-2 uppercase">
                 {t('app.title_embryology')} <span className="text-amber-500">{t('app.title_biodynamic')}</span>
               </h1>
@@ -263,7 +263,7 @@ function App() {
 
 
           {currentView === 'video-library' && (
-            <div className="w-full max-w-7xl flex flex-col items-center animate-fade-in relative z-10 pb-24 md:pb-0">
+            <div className="w-full max-w-5xl flex flex-col items-center animate-fade-in relative z-10 pb-24 lg:pb-0 mx-auto">
               <div className="w-full">
                 <VideoLibraryList
                   onSelectVideo={(video) => {
@@ -286,18 +286,12 @@ function App() {
           )}
 
           {currentView === 'timeline' && (
-            <div className="w-full max-w-7xl flex flex-col animate-fade-in relative z-10">
+            <div className="w-full max-w-5xl flex flex-col animate-fade-in relative z-10 mx-auto">
 
               {/* STICKY HEADER CONTAINER FOR TIMELINE */}
               <div className="sticky top-0 lg:top-[68px] z-50 w-[100vw] lg:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] lg:pt-2 flex flex-col items-center shadow-sm lg:shadow-none pb-2 lg:pb-0 mb-4 px-2">
                 {/* TIMELINE BADGE */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 relative w-full text-center animate-fade-in-up pb-1">
-                  <button
-                    onClick={() => setCurrentView('home')}
-                    className="hidden lg:flex lg:absolute lg:left-4 items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 px-6 py-2 rounded-full font-bebas tracking-widest transition-colors shadow-sm active:scale-95 text-base shrink-0"
-                  >
-                    {t('app.back_to_home')}
-                  </button>
                   <div className="inline-flex items-center justify-center px-4 sm:px-8 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[95vw] lg:max-w-full overflow-hidden">
                     <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl lg:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
                       {t('app.developmental_movement')}
