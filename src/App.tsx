@@ -273,9 +273,9 @@ function App() {
               {/* STICKY HEADER CONTAINER FOR TIMELINE */}
               <div className="sticky top-0 md:top-[69px] z-50 w-[100vw] lg:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-0 flex flex-col items-center shadow-sm lg:shadow-none pb-2 lg:pb-0 mb-4 px-2">
                 {/* TIMELINE BADGE */}
-                <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 relative w-full text-center animate-fade-in-up pb-1">
-                  <div className="inline-flex items-center justify-center px-4 sm:px-8 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[95vw] lg:max-w-full overflow-hidden">
-                    <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl lg:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center animate-fade-in-up pb-1 md:pb-0">
+                  <div className="inline-flex items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] lg:max-w-full overflow-hidden">
+                    <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-2xl lg:text-4xl uppercase tracking-widest truncate leading-none md:leading-[1.1] pt-1 md:pt-0 drop-shadow-sm text-slate-800">
                       {t('app.developmental_movement')}
                     </span>
                   </div>
