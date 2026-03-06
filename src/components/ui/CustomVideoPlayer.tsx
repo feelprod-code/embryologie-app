@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Stream } from '@cloudflare/stream-react';
 import { useTranslation } from 'react-i18next';
-import { Play, Pause, Maximize, Minimize, X, Airplay, PictureInPicture } from 'lucide-react';
+import { Play, Pause, Maximize, Minimize, X } from 'lucide-react';
 
 // Supported subtitle languages
 const SUBTITLE_LANGS = [
@@ -200,38 +200,6 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover');
         }
     }, [isFullscreen]);
-
-    const requestPiP = async () => {
-        const video = getVideoElement();
-        if (!video || typeof document === 'undefined') return;
-
-        try {
-            if (document.pictureInPictureEnabled && video.requestPictureInPicture) {
-                if (document.pictureInPictureElement) {
-                    await document.exitPictureInPicture();
-                } else {
-                    await video.requestPictureInPicture();
-                }
-            } else if ((video as any).webkitSupportsPresentationMode && typeof (video as any).webkitSetPresentationMode === 'function') {
-                const currentMode = (video as any).webkitPresentationMode;
-                const newMode = currentMode === 'picture-in-picture' ? 'inline' : 'picture-in-picture';
-                (video as any).webkitSetPresentationMode(newMode);
-            }
-        } catch (err) {
-            console.error('[PiP Error]', err);
-        }
-    };
-
-    const requestAirPlay = () => {
-        const video = getVideoElement();
-        // @ts-ignore
-        if (video && typeof window !== 'undefined' && window.WebKitPlaybackTargetAvailabilityEvent && video.webkitShowPlaybackTargetPicker) {
-            // @ts-ignore
-            video.webkitShowPlaybackTargetPicker();
-        } else {
-            console.warn('AirPlay not supported in this browser');
-        }
-    };
 
     const getCategoryColor = () => {
         if (!categoryId) return '#3b82f6';
@@ -544,28 +512,6 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                         </div>
 
                         <div className="flex items-center gap-3 sm:gap-5">
-                            {/* AirPlay / Cast */}
-                            <button
-                                onClick={(e) => { e.stopPropagation(); requestAirPlay(); }}
-                                onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); requestAirPlay(); }}
-                                className="text-white/90 hover:text-white transition-colors p-2 cursor-pointer touch-manipulation active:scale-90"
-                                title="AirPlay / Cast"
-                            >
-                                <Airplay size={20} />
-                            </button>
-
-                            {/* Picture in Picture */}
-                            {typeof document !== 'undefined' && (document.pictureInPictureEnabled || 'webkitSupportsPresentationMode' in document.createElement('video')) && (
-                                <button
-                                    onClick={(e) => { e.stopPropagation(); requestPiP(); }}
-                                    onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); requestPiP(); }}
-                                    className="text-white/90 hover:text-white transition-colors p-2 cursor-pointer touch-manipulation active:scale-90"
-                                    title="Picture in Picture"
-                                >
-                                    <PictureInPicture size={20} />
-                                </button>
-                            )}
-
                             {/* CC Toggle */}
                             {hasSubtitles && (
                                 <button
