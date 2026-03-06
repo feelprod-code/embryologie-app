@@ -156,7 +156,8 @@ function App() {
       {/* INNER SCROLLABLE CANVAS - Scroll contained to let Safari rest */}
       <div className="flex-1 w-full h-full flex flex-col items-center overflow-y-auto overflow-x-hidden relative z-10 overscroll-y-none no-scrollbar" id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
 
-        {/* Desktop Top Navigation Bar */}
+        {/* Desktop Top Navigation Bar (Supprimé) */}
+        {/*
         <nav className="sticky top-0 z-50 w-full h-[60px] bg-[#FAF9F6] border-b border-slate-200 hidden md:flex items-center justify-center gap-4 px-6 shadow-sm">
           <button
             onClick={() => setCurrentView('home')}
@@ -208,9 +209,9 @@ function App() {
 
           <div className="flex-1"></div>
 
-          {/* Desktop Nav Language Switcher */}
           <LanguageSwitcher variant="desktop-nav" />
         </nav>
+        */}
 
         {/* Main Container Wrapper */}
         <div className={cn(
