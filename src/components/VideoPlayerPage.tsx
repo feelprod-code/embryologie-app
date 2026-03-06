@@ -112,24 +112,24 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   key={layer}
                   onClick={handleLayerClick}
                   className={cn(
-                    "flex-1 relative flex flex-col items-center justify-center py-1.5 px-1 sm:py-2 md:py-1 lg:py-2 sm:px-2 rounded-xl sm:rounded-[1.2rem] md:rounded-[0.9rem] lg:rounded-[1.2rem] border transition-all duration-300 cursor-pointer touch-manipulation active:scale-[0.98]",
+                    "flex-1 relative flex flex-col items-center justify-center py-2 sm:py-2 md:py-0.5 lg:py-1 px-2 sm:px-3 md:px-1 lg:px-2 rounded-xl sm:rounded-xl md:rounded-lg lg:rounded-xl border transition-all duration-300 cursor-pointer touch-manipulation active:scale-[0.98]",
                     isSelected
                       ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
                       : `bg-white border-slate-200 text-slate-600 shadow-sm ${style.hover}`
                   )}
                 >
                   <span className={cn(
-                    "font-bebas text-[0.8rem] sm:text-lg md:text-base lg:text-lg xl:text-xl tracking-wider leading-none mb-0.5 md:mb-1 whitespace-nowrap",
+                    "font-bebas text-lg sm:text-lg md:text-xs lg:text-sm tracking-wider leading-none mb-[1px] md:mb-[1px] whitespace-nowrap",
                     isSelected ? "text-white" : "text-slate-800"
                   )}>
                     {t(`videoLibrary.layers.${tKeys[layer.replace("'", "")] || tKeys[layer]}`)}
                   </span>
 
                   <span className={cn(
-                    "text-[8px] sm:text-[10px] md:text-[9px] uppercase font-bold truncate w-full px-1 opacity-80 text-center",
+                    "text-[9px] sm:text-[9px] md:text-[8px] uppercase font-bold truncate w-full px-1 opacity-80 text-center",
                     isSelected ? "text-white/80" : "text-slate-500"
                   )}>
-                    <Clock size={8} className="hidden sm:inline md:hidden lg:inline mr-1 mb-[1px]" />
+                    <Clock size={8} className="hidden lg:inline mr-1 mb-[1px]" />
                     {getCategoryTotalDuration(cId as "ectoderme" | "endoderme" | "mesoderme" | "oeil")}
                   </span>
                 </button>
