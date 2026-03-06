@@ -15,10 +15,9 @@ import { useTranslation } from 'react-i18next';
 
 interface VideoLibraryListProps {
     onSelectVideo: (video: VideoCourse) => void;
-    onClose?: () => void;
 }
 
-export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVideo, onClose }) => {
+export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVideo }) => {
     const { t, i18n } = useTranslation();
 
     const videoCourses = i18n.language.startsWith('en')
@@ -70,14 +69,6 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
             {/* STICKY HEADER CONTAINER FOR VIDEO LIBRARY */}
             <div className="sticky top-0 md:top-[68px] z-50 w-[100vw] md:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-2 flex flex-col items-center shadow-sm md:shadow-none pb-2 md:pb-0 mb-4 px-2">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 relative w-full text-center animate-fade-in-up pb-1">
-                    {onClose && (
-                        <button
-                            onClick={onClose}
-                            className="hidden md:flex md:absolute md:left-4 items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 px-6 py-2 rounded-full font-bebas tracking-widest transition-colors shadow-sm active:scale-95 text-base shrink-0"
-                        >
-                            {t('videoLibrary.backToHome')}
-                        </button>
-                    )}
                     <div className="inline-flex items-center justify-center px-4 sm:px-8 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
                         <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
                             {t('videoLibrary.completeFormation')}

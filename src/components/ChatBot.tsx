@@ -82,7 +82,7 @@ type Message = {
     content: string;
 };
 
-export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (video: VideoCourse) => void }> = ({ onClose, onNavigateToVideo }) => {
+export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => void }> = ({ onNavigateToVideo }) => {
     const { t, i18n } = useTranslation();
     const videoCourses = i18n.language.startsWith('en') ? videoCoursesEn : i18n.language.startsWith('es') ? videoCoursesEs : videoCoursesFr;
 
@@ -281,15 +281,6 @@ export const ChatBot: React.FC<{ onClose?: () => void; onNavigateToVideo?: (vide
             {/* Header Fixed - Capsule Style */}
             <div className="flex-none z-30 w-full bg-[#FAF9F6] pt-[env(safe-area-inset-top,10px)] md:pt-4 flex flex-col items-center shadow-sm pb-2 md:pb-3 px-2 border-b border-slate-100">
                 <div className="flex items-center justify-center gap-3 sm:gap-4 relative w-full text-center animate-fade-in-up pb-1 max-w-4xl mx-auto">
-                    {onClose && (
-                        <button
-                            onClick={onClose}
-                            className="hidden md:flex md:absolute md:left-4 items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 px-6 py-2 rounded-full font-bebas tracking-widest transition-colors shadow-sm active:scale-95 text-base shrink-0"
-                            title={t('chatbot.backToHome')}
-                        >
-                            ← {t('chatbot.backToHome')}
-                        </button>
-                    )}
                     <div className="inline-flex flex-col items-center justify-center px-6 sm:px-10 py-2 sm:py-3 rounded-full mb-0 whitespace-nowrap max-w-[80vw] md:max-w-full overflow-hidden">
                         <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-4xl uppercase tracking-widest truncate leading-none pt-1 drop-shadow-sm text-slate-800">
                             EMBRYO AI

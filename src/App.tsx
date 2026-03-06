@@ -244,14 +244,13 @@ function App() {
 
           {currentView === 'home' && (
             <div className="w-full h-full flex items-center justify-center">
-              <Home onNavigate={setCurrentView} />
+              <Home />
             </div>
           )}
 
           {currentView === 'embryo-ai' && (
             <div className="w-full h-full flex flex-col items-center md:justify-center py-2 sm:py-6 px-2 sm:px-4">
               <ChatBot
-                onClose={() => setCurrentView('home')}
                 onNavigateToVideo={(video) => {
                   setActiveVideo(video);
                   setCurrentView('video-player');
@@ -270,7 +269,6 @@ function App() {
                     setActiveVideo(video);
                     setCurrentView('video-player');
                   }}
-                  onClose={() => setCurrentView('home')}
                 />
               </div>
             </div>

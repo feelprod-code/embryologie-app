@@ -1,12 +1,11 @@
-import { Clock, MonitorPlay, Bot } from 'lucide-react';
 import { CustomAudioPlayer } from './ui/CustomAudioPlayer';
 import { useTranslation } from 'react-i18next';
 
 interface HomeProps {
-    onNavigate: (view: 'timeline' | 'video-library' | 'embryo-ai') => void;
+    // any future props can go here
 }
 
-export function Home({ onNavigate }: HomeProps) {
+export function Home(_props: HomeProps) {
     const { t, i18n } = useTranslation();
 
     // Determine which podcast audio to load based on language
@@ -16,9 +15,9 @@ export function Home({ onNavigate }: HomeProps) {
         : "https://audio.ausha.co/6r2X8f6LVNAp.mp3";
 
     return (
-        <div className="w-full h-full relative overflow-x-hidden overflow-y-auto no-scrollbar bg-[#FAF9F6]">
+        <div className="w-full h-full relative overflow-x-hidden overflow-y-auto no-scrollbar bg-[#FAF9F6] flex flex-col items-center justify-center">
             {/* Inner responsive layout container */}
-            <div className="min-h-full w-full flex flex-col items-center justify-between px-4 sm:px-6 pt-[env(safe-area-inset-top,2rem)] md:pt-12 pb-[120px] md:pb-8">
+            <div className="min-h-full w-full max-w-5xl flex flex-col items-center justify-between px-4 sm:px-6 pt-[env(safe-area-inset-top,2rem)] md:pt-8 pb-[100px] md:pb-4 mx-auto">
 
                 {/* Top Section: Credits & Title */}
                 <div className="flex-none flex flex-col items-center w-full pt-10 sm:pt-12 md:pt-16">
@@ -44,9 +43,9 @@ export function Home({ onNavigate }: HomeProps) {
                 </div>
 
                 {/* Center - Vignette & Player */}
-                <div className="flex-1 flex flex-col items-center justify-center w-full shrink-0 py-10 sm:py-12">
+                <div className="flex-1 flex flex-col items-center justify-center w-full shrink-0 py-6 sm:py-8">
                     {/* Podcast Thumbnail/Vignette */}
-                    <div className="relative w-[65vw] max-w-[320px] sm:max-w-none sm:w-[24rem] md:w-[28rem] lg:w-[32rem] aspect-square shrink-0 mb-8 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                    <div className="relative w-[65vw] max-w-[320px] sm:max-w-none sm:w-[22rem] md:w-[24rem] lg:w-[26rem] aspect-square shrink-0 mb-4 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
@@ -66,32 +65,7 @@ export function Home({ onNavigate }: HomeProps) {
                     </div>
                 </div>
 
-                {/* Desktop Only Navigation (Hidden on Mobile because of App.tsx Tab Bar) */}
-                <div className="hidden md:flex relative z-20 flex-none flex-nowrap items-stretch justify-center w-full max-w-4xl gap-4 mb-10">
-                    <button
-                        onClick={() => onNavigate('timeline')}
-                        className="flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-sm font-bold font-bebas tracking-widest text-lg lg:text-xl transition-all bg-transparent text-slate-700 border border-slate-300 hover:border-slate-500 shadow-sm active:scale-95 px-4 leading-tight text-center"
-                    >
-                        <Clock size={16} className="w-7 h-7 mb-1" strokeWidth={1.5} />
-                        <span className="truncate w-full">{t('nav.timeline')}</span>
-                    </button>
-
-                    <button
-                        onClick={() => onNavigate('video-library')}
-                        className="flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-sm font-bold font-bebas tracking-widest text-lg lg:text-xl transition-all border shadow-sm bg-[#8B1111] border-[#6E0F12] text-[#FAF9F6] hover:bg-[#6E0F12] active:scale-95 group px-4 leading-tight text-center"
-                    >
-                        <MonitorPlay size={16} className="w-7 h-7 mb-1 text-[#FAF9F6]/80 group-hover:scale-110 transition-transform" strokeWidth={1.5} />
-                        <span className="truncate w-full">{t('nav.videos')}</span>
-                    </button>
-
-                    <button
-                        onClick={() => onNavigate('embryo-ai')}
-                        className="flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-sm font-bold font-bebas tracking-widest text-lg lg:text-xl transition-all bg-transparent text-slate-700 border border-slate-300 hover:border-slate-500 shadow-sm active:scale-95 px-4 leading-tight text-center"
-                    >
-                        <Bot size={16} className="w-7 h-7 mb-1" strokeWidth={1.5} />
-                        <span className="truncate w-full">{t('home.ai_assistant')}</span>
-                    </button>
-                </div>
+                {/* Desktop Only Navigation block has been removed to avoid duplicate menus */}
 
                 {/* Credits FeelProd */}
                 <div className="flex-none w-full flex items-center justify-center">
