@@ -344,17 +344,18 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 {/* 3. LAYER 2: Subtitle Overlay */}
                 {activeSubtitle && subtitlesEnabled && (
                     <div
-                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-20 md:bottom-24' : 'bottom-6 md:bottom-8'
+                        className={`absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300 ${showControls ? 'bottom-24 md:bottom-28' : 'bottom-10 md:bottom-12'
                             }`}
                         style={{ zIndex: 20, paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <div
-                            className="bg-black/40 backdrop-blur-sm text-white px-4 py-1.5 mx-4 max-w-[90%] md:max-w-2xl text-center rounded-lg whitespace-pre-wrap break-words drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
+                            className="text-white px-2 py-1 mx-4 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans"
                             style={{
-                                fontSize: isFullscreen ? 'clamp(1.1rem, 2.5vw, 2rem)' : 'clamp(0.85rem, 2vw, 1.15rem)',
-                                letterSpacing: '0.01em',
+                                fontSize: isFullscreen ? 'clamp(1.2rem, 3vw, 2.5rem)' : 'clamp(0.9rem, 2vw, 1.25rem)',
+                                letterSpacing: '0.02em',
                                 lineHeight: '1.25',
-                                fontWeight: '500'
+                                fontWeight: '600',
+                                textShadow: '0 0.5px 1px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,1)'
                             }}
                             dangerouslySetInnerHTML={{ __html: activeSubtitle }}
                         />

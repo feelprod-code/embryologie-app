@@ -1,67 +1,65 @@
 {
-    "translation": {
-        "home": {
-            "training_by": "TRAINING BY",
-            "title_part1": "BIODYNAMIC",
-            "title_part2": "EMBRYOLOGY",
-            "start": "Start",
-            "ai_assistant": "AI Assistant",
-            "credits": "A FeelProd Production ©"
-        },
-        "nav": {
-            "timeline": "Timeline",
-            "videos": "Video Courses"
-        },
-        "chatbot": {
-            "apiKeyMissing": "Missing API Key.",
-            "assistantRole": "Assistant",
-            "backToHome": "Back to Home",
-            "clear": "Clear",
-            "clearConversationTitle": "Clear conversation",
-            "detailedAnswer": "Detailed Answer",
-            "exportPdfTitle": "Export to PDF",
-            "generalError": "An error occurred.",
-            "inputPlaceholder": "Ask a question about embryology...",
-            "networkError": "Network Error: ",
-            "pdf": "PDF",
-            "question": "Question",
-            "searching": "Searching...",
-            "summaryDocument": "Summary Document",
-            "welcomeMessage": "Hello! I am Embryo AI, your assistant dedicated to Marc Damoiseaux's embryology course.\\n\\nAsk me your questions about **kinetic cascades**, **layers** or **biodynamic practice**."
-        },
-        "podcasts": {
-            "allResources": "All Resources",
-            "audioNotConfigured": "Audio not configured",
-            "backToHome": "Back to Home",
-            "backToLibrary": "Back to Library",
-            "browserNoAudioSupport": "Your browser does not support the audio element.",
-            "clickToReadSummary": "Click to read the full summary",
-            "close": "Close",
-            "closeSummary": "Close Summary",
-            "episodeSummary": "Episode Summary:",
-            "highlight": "HIGHLIGHT",
-            "listenAndLearn": "Listen & Learn",
-            "podcastType": "PODCAST",
-            "readSummary": "Read Summary",
-            "resourcesAndPodcasts": "Resources & Podcasts",
-            "transcript": "Transcript",
-            "transcriptNotAvailable": "Transcript not available for this podcast."
-        },
-        "videoLibrary": {
-            "backToHome": "Back to Home",
-            "completeFormation": "Complete Formation",
-            "download": "Download VTT",
-            "includedTranscript": "Included Transcript",
-            "next": "Next",
-            "noVideoSub": "This module is not yet available.",
-            "noVideoTitle": "Video not available",
-            "previous": "Previous",
-            "layers": {
-                "ectoderm": "Ectoderm",
-                "endoderm": "Endoderm",
-                "mesoderm": "Mesoderm",
-                "eye": "The Eye"
-            }
+    "home": {
+        "training_by": "TRAINING BY",
+        "title_part1": "BIODYNAMIC",
+        "title_part2": "EMBRYOLOGY",
+        "start": "Start",
+        "ai_assistant": "AI Assistant",
+        "credits": "A FeelProd Production ©"
+    },
+    "nav": {
+        "timeline": "Timeline",
+        "videos": "Video Courses"
+    },
+    "chatbot": {
+        "apiKeyMissing": "Missing API Key.",
+        "assistantRole": "Assistant",
+        "backToHome": "Back to Home",
+        "clear": "Clear",
+        "clearConversationTitle": "Clear conversation",
+        "detailedAnswer": "Detailed Answer",
+        "exportPdfTitle": "Export to PDF",
+        "generalError": "An error occurred.",
+        "inputPlaceholder": "Ask a question about embryology...",
+        "networkError": "Network Error: ",
+        "pdf": "PDF",
+        "question": "Question",
+        "searching": "Searching...",
+        "summaryDocument": "Summary Document",
+        "welcomeMessage": "Hello! I am Embryo AI, your assistant dedicated to Marc Damoiseaux's embryology course.\\n\\nAsk me your questions about **kinetic cascades**, **layers** or **biodynamic practice**."
+    },
+    "podcasts": {
+        "allResources": "All Resources",
+        "audioNotConfigured": "Audio not configured",
+        "backToHome": "Back to Home",
+        "backToLibrary": "Back to Library",
+        "browserNoAudioSupport": "Your browser does not support the audio element.",
+        "clickToReadSummary": "Click to read the full summary",
+        "close": "Close",
+        "closeSummary": "Close Summary",
+        "episodeSummary": "Episode Summary:",
+        "highlight": "HIGHLIGHT",
+        "listenAndLearn": "Listen & Learn",
+        "podcastType": "PODCAST",
+        "readSummary": "Read Summary",
+        "resourcesAndPodcasts": "Resources & Podcasts",
+        "transcript": "Transcript",
+        "transcriptNotAvailable": "Transcript not available for this podcast."
+    },
+    "videoLibrary": {
+        "backToHome": "Back to Home",
+        "completeFormation": "Complete Formation",
+        "download": "Download VTT",
+        "includedTranscript": "Included Transcript",
+        "next": "Next",
+        "noVideoSub": "This module is not yet available.",
+        "noVideoTitle": "Video not available",
+        "previous": "Previous",
+        "layers": {
+            "ectoderm": "Ectoderm",
+            "endoderm": "Endoderm",
+            "mesoderm": "Mesoderm",
+            "eye": "The Eye"
         }
     }
 }

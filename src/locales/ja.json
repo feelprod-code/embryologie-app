@@ -1,67 +1,65 @@
 {
-    "translation": {
-        "home": {
-            "training_by": "トレーニングにより",
-            "title_part1": "バイオダイナミック",
-            "title_part2": "発生学",
-            "start": "始めましょう！",
-            "ai_assistant": "AIアシスタント",
-            "credits": "FeelProd制作 ©"
-        },
-        "nav": {
-            "timeline": "タイムライン",
-            "videos": "ビデオコース"
-        },
-        "chatbot": {
-            "apiKeyMissing": "APIキーがありません。",
-            "assistantRole": "アシスタント",
-            "backToHome": "ホームに戻る",
-            "clear": "クリア",
-            "clearConversationTitle": "会話をクリア",
-            "detailedAnswer": "詳細な回答",
-            "exportPdfTitle": "PDFにエクスポート",
-            "generalError": "エラーが発生しました。",
-            "inputPlaceholder": "発生学に関する質問を入力してください...",
-            "networkError": "ネットワークエラー: ",
-            "pdf": "PDF",
-            "question": "質問",
-            "searching": "検索中...",
-            "summaryDocument": "要約ドキュメント",
-            "welcomeMessage": "こんにちは！私はEmbryo AI、Marc Damoiseauxの発生学コース専用アシスタントです。\\n\\n**運動カスケード**、**胚葉**、または**バイオダイナミック実践**について質問してください。"
-        },
-        "podcasts": {
-            "allResources": "すべてのリソース",
-            "audioNotConfigured": "オーディオが設定されていません",
-            "backToHome": "ホームに戻る",
-            "backToLibrary": "ライブラリに戻る",
-            "browserNoAudioSupport": "お使いのブラウザはオーディオ要素をサポートしていません。",
-            "clickToReadSummary": "クリックして概要の全文を読む",
-            "close": "閉じる",
-            "closeSummary": "概要を閉じる",
-            "episodeSummary": "エピソードの概要：",
-            "highlight": "ハイライト",
-            "listenAndLearn": "聞いて学ぶ",
-            "podcastType": "ポッドキャスト",
-            "readSummary": "概要を読む",
-            "resourcesAndPodcasts": "リソースとポッドキャスト",
-            "transcript": "文字起こし",
-            "transcriptNotAvailable": "このポッドキャストの文字起こしは利用できません。"
-        },
-        "videoLibrary": {
-            "backToHome": "ホームに戻る",
-            "completeFormation": "完全なコース",
-            "download": "VTTをダウンロード",
-            "includedTranscript": "文字起こし付き",
-            "next": "次へ",
-            "noVideoSub": "このモジュールはまだ利用できません。",
-            "noVideoTitle": "ビデオは利用できません",
-            "previous": "前へ",
-            "layers": {
-                "ectoderm": "外胚葉",
-                "endoderm": "内胚葉",
-                "mesoderm": "中胚葉",
-                "eye": "目"
-            }
+    "home": {
+        "training_by": "トレーニングにより",
+        "title_part1": "バイオダイナミック",
+        "title_part2": "発生学",
+        "start": "始めましょう！",
+        "ai_assistant": "AIアシスタント",
+        "credits": "FeelProd制作 ©"
+    },
+    "nav": {
+        "timeline": "タイムライン",
+        "videos": "ビデオコース"
+    },
+    "chatbot": {
+        "apiKeyMissing": "APIキーがありません。",
+        "assistantRole": "アシスタント",
+        "backToHome": "ホームに戻る",
+        "clear": "クリア",
+        "clearConversationTitle": "会話をクリア",
+        "detailedAnswer": "詳細な回答",
+        "exportPdfTitle": "PDFにエクスポート",
+        "generalError": "エラーが発生しました。",
+        "inputPlaceholder": "発生学に関する質問を入力してください...",
+        "networkError": "ネットワークエラー: ",
+        "pdf": "PDF",
+        "question": "質問",
+        "searching": "検索中...",
+        "summaryDocument": "要約ドキュメント",
+        "welcomeMessage": "こんにちは！私はEmbryo AI、Marc Damoiseauxの発生学コース専用アシスタントです。\\n\\n**運動カスケード**、**胚葉**、または**バイオダイナミック実践**について質問してください。"
+    },
+    "podcasts": {
+        "allResources": "すべてのリソース",
+        "audioNotConfigured": "オーディオが設定されていません",
+        "backToHome": "ホームに戻る",
+        "backToLibrary": "ライブラリに戻る",
+        "browserNoAudioSupport": "お使いのブラウザはオーディオ要素をサポートしていません。",
+        "clickToReadSummary": "クリックして概要の全文を読む",
+        "close": "閉じる",
+        "closeSummary": "概要を閉じる",
+        "episodeSummary": "エピソードの概要：",
+        "highlight": "ハイライト",
+        "listenAndLearn": "聞いて学ぶ",
+        "podcastType": "ポッドキャスト",
+        "readSummary": "概要を読む",
+        "resourcesAndPodcasts": "リソースとポッドキャスト",
+        "transcript": "文字起こし",
+        "transcriptNotAvailable": "このポッドキャストの文字起こしは利用できません。"
+    },
+    "videoLibrary": {
+        "backToHome": "ホームに戻る",
+        "completeFormation": "完全なコース",
+        "download": "VTTをダウンロード",
+        "includedTranscript": "文字起こし付き",
+        "next": "次へ",
+        "noVideoSub": "このモジュールはまだ利用できません。",
+        "noVideoTitle": "ビデオは利用できません",
+        "previous": "前へ",
+        "layers": {
+            "ectoderm": "外胚葉",
+            "endoderm": "内胚葉",
+            "mesoderm": "中胚葉",
+            "eye": "目"
         }
     }
 }

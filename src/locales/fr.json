@@ -1,67 +1,65 @@
 {
-    "translation": {
-        "home": {
-            "training_by": "FORMATION PAR",
-            "title_part1": "L'EMBRYOLOGIE",
-            "title_part2": "BIODYNAMIQUE",
-            "start": "C'est parti !",
-            "ai_assistant": "Assistant AI",
-            "credits": "Une production FeelProd ©"
-        },
-        "nav": {
-            "timeline": "Chronologie",
-            "videos": "Cours en Vidéo"
-        },
-        "chatbot": {
-            "apiKeyMissing": "Clé API manquante.",
-            "assistantRole": "Assistant",
-            "backToHome": "Retour à l'accueil",
-            "clear": "Effacer",
-            "clearConversationTitle": "Effacer la conversation",
-            "detailedAnswer": "Réponse détaillée",
-            "exportPdfTitle": "Exporter en PDF",
-            "generalError": "Une erreur est survenue.",
-            "inputPlaceholder": "Posez votre question sur l'embryologie...",
-            "networkError": "Erreur réseau : ",
-            "pdf": "PDF",
-            "question": "Question",
-            "searching": "Recherche en cours...",
-            "summaryDocument": "Document de synthèse",
-            "welcomeMessage": "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\\n\\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**."
-        },
-        "podcasts": {
-            "allResources": "Toutes les ressources",
-            "audioNotConfigured": "Audio non configuré",
-            "backToHome": "Retour à l'accueil",
-            "backToLibrary": "Retour à la bibliothèque",
-            "browserNoAudioSupport": "Votre navigateur ne supporte pas l'élément audio.",
-            "clickToReadSummary": "Cliquez pour lire le résumé complet",
-            "close": "Fermer",
-            "closeSummary": "Fermer le résumé",
-            "episodeSummary": "Résumé de l'épisode :",
-            "highlight": "À LA UNE",
-            "listenAndLearn": "Écouter & Apprendre",
-            "podcastType": "PODCAST",
-            "readSummary": "Lire le résumé",
-            "resourcesAndPodcasts": "Ressources & Podcasts",
-            "transcript": "Transcription",
-            "transcriptNotAvailable": "Transcription non disponible pour ce podcast."
-        },
-        "videoLibrary": {
-            "backToHome": "Retour à l'accueil",
-            "completeFormation": "Formation Complète",
-            "download": "Télécharger le VTT",
-            "includedTranscript": "Transcription incluse",
-            "next": "Suivant",
-            "noVideoSub": "Ce module n'est pas encore disponible.",
-            "noVideoTitle": "Vidéo non disponible",
-            "previous": "Précédent",
-            "layers": {
-                "ectoderm": "L'Ectoderme",
-                "endoderm": "L'Endoderme",
-                "mesoderm": "Le Mésoderme",
-                "eye": "L'Oeil"
-            }
+    "home": {
+        "training_by": "FORMATION PAR",
+        "title_part1": "L'EMBRYOLOGIE",
+        "title_part2": "BIODYNAMIQUE",
+        "start": "C'est parti !",
+        "ai_assistant": "Assistant AI",
+        "credits": "Une production FeelProd ©"
+    },
+    "nav": {
+        "timeline": "Chronologie",
+        "videos": "Cours en Vidéo"
+    },
+    "chatbot": {
+        "apiKeyMissing": "Clé API manquante.",
+        "assistantRole": "Assistant",
+        "backToHome": "Retour à l'accueil",
+        "clear": "Effacer",
+        "clearConversationTitle": "Effacer la conversation",
+        "detailedAnswer": "Réponse détaillée",
+        "exportPdfTitle": "Exporter en PDF",
+        "generalError": "Une erreur est survenue.",
+        "inputPlaceholder": "Posez votre question sur l'embryologie...",
+        "networkError": "Erreur réseau : ",
+        "pdf": "PDF",
+        "question": "Question",
+        "searching": "Recherche en cours...",
+        "summaryDocument": "Document de synthèse",
+        "welcomeMessage": "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\\n\\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**."
+    },
+    "podcasts": {
+        "allResources": "Toutes les ressources",
+        "audioNotConfigured": "Audio non configuré",
+        "backToHome": "Retour à l'accueil",
+        "backToLibrary": "Retour à la bibliothèque",
+        "browserNoAudioSupport": "Votre navigateur ne supporte pas l'élément audio.",
+        "clickToReadSummary": "Cliquez pour lire le résumé complet",
+        "close": "Fermer",
+        "closeSummary": "Fermer le résumé",
+        "episodeSummary": "Résumé de l'épisode :",
+        "highlight": "À LA UNE",
+        "listenAndLearn": "Écouter & Apprendre",
+        "podcastType": "PODCAST",
+        "readSummary": "Lire le résumé",
+        "resourcesAndPodcasts": "Ressources & Podcasts",
+        "transcript": "Transcription",
+        "transcriptNotAvailable": "Transcription non disponible pour ce podcast."
+    },
+    "videoLibrary": {
+        "backToHome": "Retour à l'accueil",
+        "completeFormation": "Formation Complète",
+        "download": "Télécharger le VTT",
+        "includedTranscript": "Transcription incluse",
+        "next": "Suivant",
+        "noVideoSub": "Ce module n'est pas encore disponible.",
+        "noVideoTitle": "Vidéo non disponible",
+        "previous": "Précédent",
+        "layers": {
+            "ectoderm": "L'Ectoderme",
+            "endoderm": "L'Endoderme",
+            "mesoderm": "Le Mésoderme",
+            "eye": "L'Oeil"
         }
     }
 }
