@@ -271,7 +271,7 @@ function App() {
             <div className="w-full max-w-5xl flex flex-col animate-fade-in relative z-10 mx-auto">
 
               {/* STICKY HEADER CONTAINER FOR TIMELINE */}
-              <div className="sticky top-0 md:top-[69px] z-50 w-[100vw] lg:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-0 flex flex-col items-center shadow-sm lg:shadow-none pb-2 lg:pb-0 mb-4 px-2">
+              <div className="sticky top-0 md:top-[60px] z-50 w-[100vw] lg:w-full bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-[env(safe-area-inset-top,4px)] md:pt-1 lg:pt-1 flex flex-col items-center shadow-sm lg:shadow-none pb-2 lg:pb-0 mb-2 md:mb-0 px-2 transition-all">
                 {/* TIMELINE BADGE */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center animate-fade-in-up pb-1 md:pb-0">
                   <div className="inline-flex items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] lg:max-w-full overflow-hidden">
