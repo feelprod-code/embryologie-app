@@ -89,9 +89,7 @@ function App() {
       )}
 
       {/* New Fixed Desktop Navigation */}
-      {currentView !== 'video-player' && (
-        <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} />
-      )}
+      <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} />
 
       {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
       {currentView !== 'podcast-player' && (
