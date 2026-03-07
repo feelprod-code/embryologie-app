@@ -7,7 +7,7 @@ import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
 import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
 import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
 import { cn } from '../utils';
-import { Clock, ChevronLeft, ChevronRight, DownloadCloud, Video, VideoOff, Play, Pause } from 'lucide-react';
+import { Clock, ChevronLeft, ChevronRight, Video, VideoOff, Play, Pause } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { CustomVideoPlayer, type CustomVideoPlayerRef } from './ui/CustomVideoPlayer';
