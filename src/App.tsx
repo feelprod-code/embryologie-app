@@ -303,7 +303,7 @@ function App() {
                           onClick={() => setActiveStageId(stage.id)}
                           onTouchStart={(e) => { e.preventDefault(); setActiveStageId(stage.id); }}
                           className={cn(
-                            "relative flex flex-col items-center justify-center py-3 px-2 rounded-[1.2rem] min-w-[120px] sm:min-w-[140px] border shrink-0 snap-center transition-all duration-300",
+                            "relative flex flex-col items-center justify-center py-4 px-3 rounded-[1.2rem] min-w-[130px] sm:min-w-[150px] border shrink-0 snap-center transition-all duration-300",
                             isActive
                               ? "bg-slate-900 border-slate-800 text-white shadow-md scale-100"
                               : isPast
@@ -315,13 +315,13 @@ function App() {
                             <div className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-amber-500 rounded-full shadow-sm animate-in zoom-in"></div>
                           )}
                           <span className={cn(
-                            "font-bebas text-lg sm:text-lg md:text-sm lg:text-sm tracking-wider leading-none mb-1 whitespace-nowrap",
+                            "font-bebas text-xl sm:text-2xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 whitespace-nowrap",
                             isActive ? "text-white" : "text-slate-800"
                           )}>
                             {stage.dayLabel}
                           </span>
                           <span className={cn(
-                            "text-[9px] uppercase font-bold truncate w-full px-2 opacity-80 text-center",
+                            "text-[10px] uppercase font-bold truncate w-full px-2 opacity-80 text-center",
                             isActive ? "text-slate-300" : "text-slate-500"
                           )}>
                             {stage.title}
