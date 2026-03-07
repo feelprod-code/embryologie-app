@@ -17,10 +17,10 @@ export function Home(_props: HomeProps) {
     return (
         <div className="w-full flex-1 relative bg-[#FAF9F6] flex flex-col items-center justify-start overflow-hidden">
             {/* Inner responsive layout container */}
-            <div className="h-full w-full max-w-5xl flex flex-col items-center justify-between px-4 sm:px-6 pt-1 md:pt-0 pb-8 mx-auto overflow-hidden">
+            <div className="h-full w-full max-w-5xl flex flex-col items-center justify-between px-4 sm:px-6 pt-1 md:pt-0 pb-24 sm:pb-8 mx-auto overflow-hidden">
 
                 {/* Top Section: Credits & Title */}
-                <div className="flex-none flex flex-col items-center w-full pt-1 sm:pt-6 md:pt-8">
+                <div className="flex-none flex flex-col items-center w-full pt-2 sm:pt-6 md:pt-8">
                     {/* Top Poster Credits */}
                     <div className="relative z-10 w-full text-center animate-fade-in-up">
                         <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
@@ -32,8 +32,8 @@ export function Home(_props: HomeProps) {
                     </div>
 
                     {/* Main Cinematic Title */}
-                    <div className="relative z-10 w-full text-center flex flex-col items-center mt-4 sm:mt-6 md:mt-8">
-                        <h1 className="text-[9vw] sm:text-5xl md:text-6xl lg:text-7xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
+                    <div className="relative z-10 w-full text-center flex flex-col items-center mt-2 sm:mt-6 md:mt-8">
+                        <h1 className="text-[8vw] sm:text-5xl md:text-6xl lg:text-7xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
                             {t('home.title_part1')}
                         </h1>
                         <h2 className="text-[6.5vw] sm:text-3xl md:text-4xl lg:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-2 sm:mt-4 pr-2">
@@ -43,9 +43,9 @@ export function Home(_props: HomeProps) {
                 </div>
 
                 {/* Center - Vignette & Player */}
-                <div className="flex-1 flex flex-col items-center justify-center w-full shrink-0 py-6 sm:py-8">
+                <div className="flex-1 flex flex-col items-center justify-center sm:justify-center w-full shrink-0 py-2 sm:py-8">
                     {/* Podcast Thumbnail/Vignette */}
-                    <div className="relative w-[65vw] max-w-[320px] sm:max-w-none sm:w-[22rem] md:w-[24rem] lg:w-[26rem] aspect-square shrink-0 mb-4 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                    <div className="relative w-[50vw] sm:w-[65vw] max-w-[320px] sm:max-w-none md:w-[24rem] lg:w-[26rem] aspect-square shrink-0 mb-2 sm:mb-4 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
@@ -54,7 +54,7 @@ export function Home(_props: HomeProps) {
                     </div>
 
                     {/* Minimalist Player */}
-                    <div className="w-[85%] sm:w-2/3 max-w-[300px] z-20 mt-4 flex flex-col items-center">
+                    <div className="w-[90%] sm:w-2/3 max-w-[300px] z-20 mt-3 sm:mt-4 flex flex-col items-center">
                         <CustomAudioPlayer
                             src={podcastAudioSrc}
                             className="w-full"
@@ -68,7 +68,7 @@ export function Home(_props: HomeProps) {
                 {/* Desktop Only Navigation block has been removed to avoid duplicate menus */}
 
                 {/* Credits FeelProd */}
-                <div className="flex-none w-full flex items-center justify-center">
+                <div className="flex-none w-full flex items-center justify-center pb-2 sm:pb-0">
                     <span className="text-[10px] sm:text-[11px] text-slate-400/60 font-light uppercase tracking-[0.2em] text-center relative z-20">
                         {t('home.credits')}
                     </span>

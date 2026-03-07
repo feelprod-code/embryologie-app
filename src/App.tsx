@@ -147,7 +147,7 @@ function App() {
             <div className={cn("transition-transform duration-200", currentView === 'embryo-ai' ? "scale-105" : "group-hover:scale-105")}>
               <Brain size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('home.ai_assistant')}</span>
+            <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('nav.ai_assistant')}</span>
           </button>
 
           {/* Mobile bottom nav Language Switcher */}
