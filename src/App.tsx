@@ -16,6 +16,7 @@ import { type VideoCourse } from './data/videoCourses';
 import { cn } from './utils';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './components/ui/LanguageSwitcher';
+import { DesktopMenu } from './components/DesktopMenu';
 
 const iconMap: Record<string, React.ReactNode> = {
   "j-0": <CircleDot size={20} className="text-blue-400" />,
@@ -85,6 +86,11 @@ function App() {
           <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,_#fff_0%,_#FAF9F6_60%)] pointer-events-none z-0"></div>
           <div className="fixed inset-0 bg-gradient-to-b from-transparent via-[#f5f5f0]/50 to-[#FAF9F6] pointer-events-none z-0"></div>
         </>
+      )}
+
+      {/* New Fixed Desktop Navigation */}
+      {currentView !== 'video-player' && (
+        <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} />
       )}
 
       {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
