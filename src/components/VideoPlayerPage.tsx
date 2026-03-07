@@ -82,59 +82,63 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       )}>
 
         <div className={cn(
-          "sticky top-0 z-40 bg-slate-50/95 backdrop-blur-md w-full pt-1 pb-2 mb-2 border-b border-slate-100",
+          "sticky top-[60px] z-40 backdrop-blur-md w-full pt-1 pb-2 mb-2 lg:mb-4 lg:pt-3",
           isFullscreen ? "hidden" : ""
         )}>
-          <div className="flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 w-full mx-auto md:mx-0">
-            {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
-              const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
-              const cId = lmap[layer as keyof typeof lmap];
-              const isSelected = course.categoryId === cId;
-              const tKeys: Record<string, string> = { "L'Ectoderme": "ectoderm", "L'Endoderme": "endoderm", "Le Mésoderme": "mesoderm", "L'Oeil": "eye" };
+          {/* We constrain the width to match the left column and start from auto-margin on large screens, though it can just align with max-w-5xl on desktop */}
+          <div className="flex flex-nowrap items-stretch justify-center lg:justify-start gap-1.5 sm:gap-2 w-full max-w-5xl mx-auto px-2 sm:px-0">
+            {/* Inner div to constrain strictly to the player's 7/12 space or similar if wanted, but simpler to limit max-width */}
+            <div className="flex flex-nowrap items-stretch w-full lg:w-7/12 gap-1.5 sm:gap-2 lg:pr-4">
+              {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
+                const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
+                const cId = lmap[layer as keyof typeof lmap];
+                const isSelected = course.categoryId === cId;
+                const tKeys: Record<string, string> = { "L'Ectoderme": "ectoderm", "L'Endoderme": "endoderm", "Le Mésoderme": "mesoderm", "L'Oeil": "eye" };
 
-              const handleLayerClick = () => {
-                if (isSelected) return;
-                const firstCourse = videoCourses.find((v: VideoCourse) => v.categoryId === cId);
-                if (firstCourse) onSelectVideo(firstCourse);
-              };
+                const handleLayerClick = () => {
+                  if (isSelected) return;
+                  const firstCourse = videoCourses.find((v: VideoCourse) => v.categoryId === cId);
+                  if (firstCourse) onSelectVideo(firstCourse);
+                };
 
-              // Colors based on layer mapping exactly matched with VideoLibraryList
-              const layerStyles: Record<string, { activeBg: string; activeBorder: string; activeText: string; hover: string }> = {
-                "L'Ectoderme": { activeBg: "bg-[#5A9C51]", activeBorder: "border-[#5A9C51]", activeText: "text-white", hover: "md:hover:bg-[#5A9C51]/5" },
-                "Le Mésoderme": { activeBg: "bg-[#F27D33]", activeBorder: "border-[#F27D33]", activeText: "text-white", hover: "md:hover:bg-[#F27D33]/5" },
-                "L'Endoderme": { activeBg: "bg-[#4171B5]", activeBorder: "border-[#4171B5]", activeText: "text-white", hover: "md:hover:bg-[#4171B5]/5" },
-                "L'Oeil": { activeBg: "bg-[#F2B729]", activeBorder: "border-[#F2B729]", activeText: "text-white", hover: "md:hover:bg-[#F2B729]/5" }
-              };
-              const style = layerStyles[layer];
+                // Colors based on layer mapping exactly matched with VideoLibraryList
+                const layerStyles: Record<string, { activeBg: string; activeBorder: string; activeText: string; hover: string }> = {
+                  "L'Ectoderme": { activeBg: "bg-[#5A9C51]", activeBorder: "border-[#5A9C51]", activeText: "text-white", hover: "md:hover:bg-[#5A9C51]/5" },
+                  "Le Mésoderme": { activeBg: "bg-[#F27D33]", activeBorder: "border-[#F27D33]", activeText: "text-white", hover: "md:hover:bg-[#F27D33]/5" },
+                  "L'Endoderme": { activeBg: "bg-[#4171B5]", activeBorder: "border-[#4171B5]", activeText: "text-white", hover: "md:hover:bg-[#4171B5]/5" },
+                  "L'Oeil": { activeBg: "bg-[#F2B729]", activeBorder: "border-[#F2B729]", activeText: "text-white", hover: "md:hover:bg-[#F2B729]/5" }
+                };
+                const style = layerStyles[layer];
 
-              return (
-                <button
-                  key={layer}
-                  onClick={handleLayerClick}
-                  className={cn(
-                    "flex-1 relative flex flex-col items-center justify-center py-3 sm:py-3 md:py-3 lg:py-2 px-3 sm:px-4 md:px-4 lg:px-3 rounded-2xl sm:rounded-2xl md:rounded-2xl lg:rounded-2xl border transition-all duration-300 cursor-pointer touch-manipulation active:scale-[0.98]",
-                    isSelected
-                      ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
-                      : `bg-white border-slate-200 text-slate-600 shadow-sm ${style.hover}`
-                  )}
-                >
-                  <span className={cn(
-                    "font-bebas text-xl sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 whitespace-nowrap",
-                    isSelected ? "text-white" : "text-slate-800"
-                  )}>
-                    {t(`videoLibrary.layers.${tKeys[layer.replace("'", "")] || tKeys[layer]}`)}
-                  </span>
+                return (
+                  <button
+                    key={layer}
+                    onClick={handleLayerClick}
+                    className={cn(
+                      "flex-1 relative flex flex-col items-center justify-center py-3 sm:py-3 md:py-3 lg:py-2 px-3 sm:px-4 md:px-4 lg:px-3 rounded-2xl sm:rounded-2xl md:rounded-2xl lg:rounded-2xl border transition-all duration-300 cursor-pointer touch-manipulation active:scale-[0.98]",
+                      isSelected
+                        ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
+                        : `bg-white border-slate-200 text-slate-600 shadow-sm ${style.hover}`
+                    )}
+                  >
+                    <span className={cn(
+                      "font-bebas text-xl sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 whitespace-nowrap",
+                      isSelected ? "text-white" : "text-slate-800"
+                    )}>
+                      {t(`videoLibrary.layers.${tKeys[layer.replace("'", "")] || tKeys[layer]}`)}
+                    </span>
 
-                  <span className={cn(
-                    "text-[10px] sm:text-[10px] md:text-[10px] uppercase font-bold truncate w-full px-1 opacity-80 text-center",
-                    isSelected ? "text-white/80" : "text-slate-500"
-                  )}>
-                    <Clock size={10} className="hidden lg:inline mr-1 mb-[1px]" />
-                    {getCategoryTotalDuration(cId as "ectoderme" | "endoderme" | "mesoderme" | "oeil")}
-                  </span>
-                </button>
-              );
-            })}
+                    <span className={cn(
+                      "text-[10px] sm:text-[10px] md:text-[10px] uppercase font-bold truncate w-full px-1 opacity-80 text-center",
+                      isSelected ? "text-white/80" : "text-slate-500"
+                    )}>
+                      <Clock size={10} className="hidden lg:inline mr-1 mb-[1px]" />
+                      {getCategoryTotalDuration(cId as "ectoderme" | "endoderme" | "mesoderme" | "oeil")}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
