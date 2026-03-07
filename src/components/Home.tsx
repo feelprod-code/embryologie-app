@@ -65,14 +65,6 @@ export function Home(_props: HomeProps) {
                     </div>
                 </div>
 
-                {/* Desktop Only Navigation block has been removed to avoid duplicate menus */}
-
-                {/* Credits FeelProd */}
-                <div className="flex-none w-full flex items-center justify-center pt-4 opacity-80">
-                    <span className="text-[10px] sm:text-xs text-slate-500 font-medium uppercase tracking-[0.2em] text-center relative z-20">
-                        {t('home.credits')}
-                    </span>
-                </div>
             </div>
         </div>
     );
