@@ -60,7 +60,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [isCached, setIsCached] = useState<boolean>(false);
   const [localVideoUrl, setLocalVideoUrl] = useState<string | null>(null);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState<boolean>(false);
-
   const videoUrl = course.cloudflareId ? `/cf-stream/${course.cloudflareId}/downloads/default.mp4` : '';
 
   useEffect(() => {
@@ -169,6 +168,32 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const pipDragStartRef = useRef<{ clientX: number, clientY: number, startX: number, startY: number, bounds: { minX: number, maxX: number, minY: number, maxY: number } | null } | null>(null);
   const pipContainerRef = useRef<HTMLDivElement>(null);
   const videoPlayerRef = useRef<CustomVideoPlayerRef>(null);
+  const playerWrapperRef = useRef<HTMLDivElement>(null);
+  const [playerDims, setPlayerDims] = useState<{ width: number; height: number } | null>(null);
+
+  useEffect(() => {
+    if (!playerWrapperRef.current) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
+        if (width === 0 || height === 0) continue;
+
+        const ratio = 16 / 9;
+
+        if (width / height > ratio) {
+          // Parent is wider than 16:9 -> constrain by height
+          setPlayerDims({ width: height * ratio, height });
+        } else {
+          // Parent is taller than 16:9 -> constrain by width
+          setPlayerDims({ width, height: width / ratio });
+        }
+      }
+    });
+
+    resizeObserver.observe(playerWrapperRef.current);
+    return () => resizeObserver.disconnect();
+  }, []);
 
   // Effect to automatically show video on layout change to avoid stuck invisible video state
   useEffect(() => {
@@ -306,24 +331,32 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   const TopContent = (
     <div className={cn(
-      "w-full flex justify-center items-center h-full max-h-full",
+      "w-full flex justify-center items-center h-full max-h-full min-h-0",
       isFullscreen ? "max-w-none px-0" : "flex-col justify-start md:px-0 lg:px-0"
     )}>
-      <div className="w-full flex-grow flex flex-col justify-center min-h-[200px] h-full">
-        <CustomVideoPlayer
-          ref={videoPlayerRef}
-          youtubeId={course.youtubeId}
-          cloudflareId={course.cloudflareId}
-          localVideoUrl={localVideoUrl}
-          categoryId={course.categoryId}
-          speed={currentSpeed}
-          onTimeUpdate={handleTimeUpdate}
-          onFullscreenChange={handleFullscreenChange}
-          onPlayStateChange={setIsVideoPlaying}
-          className={cn(
-            isFullscreen ? "" : "rounded-2xl md:rounded-3xl shadow-xl aspect-video border border-slate-800 w-full h-auto max-h-full object-contain mx-auto"
-          )}
-        />
+      <div
+        ref={playerWrapperRef}
+        className="w-full flex-grow flex flex-col items-center justify-center min-h-0 h-full overflow-hidden"
+      >
+        <div
+          className="relative transition-none flex-shrink-0 flex items-center justify-center"
+          style={!isFullscreen && playerDims ? { width: playerDims.width, height: playerDims.height } : { width: '100%', height: '100%', aspectRatio: '16/9' }}
+        >
+          <CustomVideoPlayer
+            ref={videoPlayerRef}
+            youtubeId={course.youtubeId}
+            cloudflareId={course.cloudflareId}
+            localVideoUrl={localVideoUrl}
+            categoryId={course.categoryId}
+            speed={currentSpeed}
+            onTimeUpdate={handleTimeUpdate}
+            onFullscreenChange={handleFullscreenChange}
+            onPlayStateChange={setIsVideoPlaying}
+            className={cn(
+              isFullscreen ? "" : "rounded-2xl md:rounded-3xl shadow-xl border border-slate-800 w-full h-full object-cover mx-auto"
+            )}
+          />
+        </div>
       </div>
 
       <div className={cn(
