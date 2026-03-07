@@ -85,7 +85,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           "sticky top-0 z-40 bg-slate-50/95 backdrop-blur-md w-full pt-1 pb-2 mb-2 border-b border-slate-100",
           isFullscreen ? "hidden" : ""
         )}>
-          <div className="flex flex-nowrap items-stretch gap-1.5 sm:gap-2 w-full mx-auto md:mx-0">
+          <div className="flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 w-full mx-auto md:mx-0">
             {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
               const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
               const cId = lmap[layer as keyof typeof lmap];
