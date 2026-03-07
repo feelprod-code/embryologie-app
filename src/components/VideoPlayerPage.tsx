@@ -477,7 +477,12 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               </div>
             ) : (
               <PanelGroup orientation="vertical" className="w-full h-full">
-                <Panel defaultSize={45} minSize={20} className={cn("flex flex-col pb-1", !isVideoVisible && "sr-only")}>
+                <Panel
+                  defaultSize={45}
+                  minSize={20}
+                  maxSize={55}
+                  className={cn("flex flex-col pb-1", !isVideoVisible && "sr-only hidden")}
+                >
                   {TopContent}
                 </Panel>
                 <PanelResizeHandle className={cn("relative flex items-center justify-center h-6 w-full -my-1 z-10 group cursor-row-resize touch-none", !isVideoVisible && "hidden")}>
