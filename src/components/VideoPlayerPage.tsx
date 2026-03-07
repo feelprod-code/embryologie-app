@@ -406,7 +406,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         </div>
       </div>
       <div className={cn(
-        "px-3 sm:px-4 md:px-6 pt-2 pb-16 md:pt-4 md:pb-12 lg:pb-12 overflow-y-auto flex-1 no-scrollbar prose prose-slate max-w-none",
+        "px-3 sm:px-4 md:px-6 pt-2 pb-24 md:pt-4 md:pb-[150px] lg:pb-[200px] overflow-y-auto flex-1 no-scrollbar prose prose-slate max-w-none",
         "prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-dark",
         "prose-h2:text-2xl md:prose-h2:text-2xl lg:prose-h2:text-[22px] prose-h2:mt-6 prose-h2:mb-3 md:prose-h2:mt-8 md:prose-h2:mb-4 lg:prose-h2:mt-8 lg:prose-h2:mb-4",
         "prose-h3:text-xl lg:prose-h3:text-[18px] prose-h3:text-slate-800 prose-h3:font-montserrat prose-h3:font-bold",

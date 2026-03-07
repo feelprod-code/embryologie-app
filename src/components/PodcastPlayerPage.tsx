@@ -110,7 +110,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
                     </div>
 
                     <div className="flex-1 overflow-y-auto no-scrollbar relative">
-                        <div className="p-6 md:p-10 lg:p-14 pb-32">
+                        <div className="p-6 md:p-10 lg:p-14 pb-32 md:pb-48 lg:pb-[200px]">
                             {podcast.transcript ? (
                                 <div className="prose prose-slate bg-transparent lg:prose-lg max-w-none text-slate-700 leading-loose text-[15px] md:text-lg
                                     prose-h1:font-anton prose-h1:text-dark prose-h1:uppercase prose-h1:tracking-wide prose-h1:text-4xl prose-h1:mb-8
