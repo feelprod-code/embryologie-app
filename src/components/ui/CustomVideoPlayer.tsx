@@ -67,6 +67,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const [hasSubtitles, setHasSubtitles] = useState(false);
     const [activeSubtitle, setActiveSubtitle] = useState<string | null>(null);
     const cuesRef = useRef<{ start: number, end: number, text: string }[]>([]);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     // Custom Controls State
     const [isPlaying, setIsPlaying] = useState(false);
@@ -200,7 +201,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         }
 
         // 2. Standard Web Fullscreen API
-        const playerContainer = videoEl?.closest('.group');
+        const playerContainer = containerRef.current;
         if (playerContainer && document.fullscreenEnabled) {
             if (document.fullscreenElement) {
                 document.exitFullscreen().catch(console.error);
@@ -399,6 +400,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     if (cloudflareId && cloudflareId !== "") {
         return (
             <div
+                ref={containerRef}
                 className={`relative w-full bg-black overflow-hidden group ${className} ${isFullscreen ? 'video-player-fullscreen-active' : 'aspect-video rounded-xl shadow-2xl'
                     }`}
                 onMouseMove={() => {

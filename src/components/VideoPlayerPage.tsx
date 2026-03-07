@@ -72,19 +72,22 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   const handleOfflineCache = async () => {
     if (!videoUrl || isCaching || typeof caches === 'undefined') return;
-    if (isCached) {
-      // Just give a visual acknowledgment if already cached
-      return;
-    }
+    if (isCached) return;
 
     setIsCaching(true);
     try {
+      // First try to fetch the video to check for errors like 404 or CORS
+      const response = await fetch(videoUrl);
+      if (!response.ok) {
+        throw new Error(`Erreur réseau: ${response.status} ${response.statusText}`);
+      }
+
       const cache = await caches.open('video-offline-cache');
-      await cache.add(videoUrl);
+      await cache.put(videoUrl, response);
       setIsCached(true);
-    } catch (e) {
+    } catch (e: any) {
       console.error("Failed to cache video", e);
-      alert(t('videoLibrary.cacheError', "Erreur lors de l'enregistrement."));
+      alert(t('videoLibrary.cacheError', `Erreur lors de l'enregistrement. (${e?.message || 'Erreur inconnue'})`));
     } finally {
       setIsCaching(false);
     }
