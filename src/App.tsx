@@ -224,7 +224,7 @@ function App() {
           currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai'
             ? "p-0"
             : "px-2 sm:px-6 lg:px-8 w-full pb-[100px]",
-          currentView === 'home' ? "overflow-y-auto no-scrollbar pb-[90px] md:pb-0" : "",
+          currentView === 'home' ? "overflow-hidden h-[100dvh] md:h-full" : "",
           currentView === 'video-player' ? "pt-0 md:pt-2 pb-[90px] md:pb-2 overflow-hidden h-[100dvh] md:h-full" : "pt-0"
         )}>
 
