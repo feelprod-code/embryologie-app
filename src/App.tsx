@@ -283,7 +283,7 @@ function App() {
                 {/* TIMELINE BADGE */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center pb-1 md:pb-0">
                   <div className="inline-flex items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] lg:max-w-full overflow-hidden">
-                    <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-2xl lg:text-4xl uppercase tracking-widest truncate leading-none md:leading-[1.1] pt-1 md:pt-0 drop-shadow-sm text-slate-800">
+                    <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-2xl lg:text-xl uppercase tracking-widest truncate leading-none md:leading-[1.1] pt-1 md:pt-0 drop-shadow-sm text-slate-800">
                       {t('app.developmental_movement')}
                     </span>
                   </div>
@@ -315,13 +315,13 @@ function App() {
                             <div className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-amber-500 rounded-full shadow-sm animate-in zoom-in"></div>
                           )}
                           <span className={cn(
-                            "font-bebas text-lg sm:text-xl tracking-wider leading-none mb-1 whitespace-nowrap",
+                            "font-bebas text-lg sm:text-lg md:text-sm lg:text-sm tracking-wider leading-none mb-1 whitespace-nowrap",
                             isActive ? "text-white" : "text-slate-800"
                           )}>
                             {stage.dayLabel}
                           </span>
                           <span className={cn(
-                            "text-[10px] uppercase font-bold truncate w-full px-2 opacity-80 text-center",
+                            "text-[9px] uppercase font-bold truncate w-full px-2 opacity-80 text-center",
                             isActive ? "text-slate-300" : "text-slate-500"
                           )}>
                             {stage.title}
@@ -369,13 +369,13 @@ function App() {
                           )}>
                             <div className="flex items-center gap-2 mb-1">
                               <Clock size={14} className={isActive ? "text-primary" : "text-slate-400"} />
-                              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                                 {stage.dayLabel}
                               </span>
                             </div>
                             <h3 className={cn(
-                              "text-base lg:text-lg transition-colors leading-tight mb-1 font-bebas tracking-wide",
-                              isActive ? "text-slate-950 text-xl lg:text-2xl" : "text-slate-700"
+                              "text-sm lg:text-base transition-colors leading-tight mb-1 font-bebas tracking-wide",
+                              isActive ? "text-slate-950 text-base lg:text-lg" : "text-slate-700"
                             )}>
                               {stage.title}
                             </h3>
@@ -410,16 +410,16 @@ function App() {
                           </span>
                         </div>
 
-                        <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-anton text-dark mb-2 md:mb-4 leading-tight tracking-wide uppercase break-words hyphens-auto">
+                        <h2 className="text-lg md:text-xl lg:text-xl xl:text-2xl font-anton text-dark mb-2 md:mb-4 leading-tight tracking-wide uppercase break-words hyphens-auto">
                           {activeStage.title}
                         </h2>
 
-                        <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-4xl mb-6 md:mb-10 font-medium border-l-4 border-slate-300 pl-4 md:pl-6">
+                        <p className="text-sm text-slate-600 leading-relaxed max-w-4xl mb-6 md:mb-10 font-medium border-l-4 border-slate-300 pl-4 md:pl-6">
                           {activeStage.generalDescription}
                         </p>
 
                         <div className="space-y-6 md:space-y-8">
-                          <h3 className="flex items-center text-lg md:text-xl text-dark font-bebas tracking-wide mb-6 md:mb-8 uppercase">
+                          <h3 className="flex items-center text-base md:text-lg text-dark font-bebas tracking-wide mb-6 md:mb-8 uppercase">
                             <Heart className="mr-3 text-primary animate-pulse-slow shrink-0" size={20} />
                             {t('app.timeline_processes')}
                           </h3>
