@@ -31,7 +31,7 @@
         "question": "Question",
         "searching": "Recherche en cours...",
         "summaryDocument": "Document de synthèse",
-        "welcomeMessage": "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\\n\\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**."
+        "welcomeMessage": "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**."
     },
     "podcasts": {
         "allResources": "Toutes les ressources",
@@ -66,5 +66,12 @@
             "mesoderm": "Le Mésoderme",
             "eye": "L'Oeil"
         }
+    },
+    "app": {
+        "timeline_palpation": "Palpation",
+        "timeline_therapist_posture": "Posture du thérapeute",
+        "timeline_psychosomatic": "Psychosomatique",
+        "timeline_layer_perceptions": "Perceptions des feuillets",
+        "timeline_fulcrums": "Fulcrums"
     }
 }
