@@ -36,7 +36,7 @@ interface CustomVideoPlayerProps {
     className?: string;
     categoryId?: string;
     onEnded?: () => void;
-    onTimeUpdate?: (currentTime: number) => void;
+    onTimeUpdate?: (currentTime: number, duration: number) => void;
     onFullscreenChange?: (isFullscreen: boolean) => void;
     onPlayStateChange?: (isPlaying: boolean) => void;
 }
@@ -411,7 +411,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
                             // Trigger controls on unpause or active scrubbing not required here continuously
 
-                            if (onTimeUpdate) onTimeUpdate(time);
+                            if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
 
                             let active = null;
                             // Use cuesRef mapping

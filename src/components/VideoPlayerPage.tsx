@@ -46,6 +46,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [isResizing, setIsResizing] = useState<boolean>(false);
   const [isVideoVisible, setIsVideoVisible] = useState<boolean>(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [videoDuration, setVideoDuration] = useState<number>(0);
 
   // Layout mode state to avoid triple-mounting the video player
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
@@ -124,8 +126,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     setCurrentSpeed(speed);
   };
 
-  const handleTimeUpdate = () => {
-    // Keep stub for backwards compatibility with CustomVideoPlayer prop
+  const handleTimeUpdate = (time: number, duration?: number) => {
+    setCurrentTime(time);
+    if (duration && duration > 0) {
+      setVideoDuration(duration);
+    }
   };
 
   const handleFullscreenChange = (isFs: boolean) => {
@@ -243,11 +248,23 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         <div className="flex items-center shrink-0 ml-1 gap-2 sm:gap-3">
           {/* Audio Controls (Only visible when video is hidden) */}
           {!isVideoVisible && (
-            <div className="flex items-center bg-slate-100 rounded-lg border border-slate-200 mr-1 sm:mr-1.5 fade-in">
+            <div className="flex items-center bg-slate-50/90 backdrop-blur-md rounded-full border border-slate-200/70 mr-1 sm:mr-1.5 px-1 py-1 sm:px-2 sm:py-1.5 fade-in relative overflow-hidden shadow-sm group transition-all">
+              {/* Progress Line Background */}
+              <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-slate-200/50">
+                {/* Progress Fill */}
+                <div className={cn(
+                  "h-full transition-all duration-200 ease-linear",
+                  course.categoryId === 'ectoderme' ? "bg-[#5A9C51]" :
+                    course.categoryId === 'endoderme' ? "bg-[#4171B5]" :
+                      course.categoryId === 'mesoderme' ? "bg-[#F27D33]" :
+                        course.categoryId === 'oeil' ? "bg-[#F2B729]" : "bg-slate-400"
+                )} style={{ width: `${videoDuration > 0 ? (currentTime / videoDuration) * 100 : 0}%` }} />
+              </div>
+
               <button
                 onClick={() => prevVideo && onSelectVideo(prevVideo)}
                 disabled={!prevVideo}
-                className="p-1 sm:p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-l-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                className="p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 title={t('videoLibrary.previous')}
               >
                 <ChevronLeft size={16} />
@@ -255,16 +272,16 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
               <button
                 onClick={() => videoPlayerRef.current?.togglePlay()}
-                className="p-1 sm:p-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-200 transition-colors border-x border-slate-200"
+                className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 mx-0.5 sm:mx-1 rounded-full bg-slate-800 text-white hover:bg-slate-700 hover:scale-105 active:scale-95 transition-all shadow-sm"
                 title={isVideoPlaying ? "Pause" : "Play"}
               >
-                {isVideoPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="ml-[1px]" />}
+                {isVideoPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-[1px]" />}
               </button>
 
               <button
                 onClick={() => nextVideo && onSelectVideo(nextVideo)}
                 disabled={!nextVideo}
-                className="p-1 sm:p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-r-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                className="p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 title={t('videoLibrary.next')}
               >
                 <ChevronRight size={16} />
