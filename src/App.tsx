@@ -160,7 +160,10 @@ function App() {
       )}
 
       {/* INNER SCROLLABLE CANVAS - Scroll contained to let Safari rest */}
-      <div className="flex-1 w-full h-full flex flex-col items-center overflow-y-auto overflow-x-hidden relative z-10 overscroll-y-none no-scrollbar" id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
+      <div className={cn(
+        "flex-1 w-full h-full flex flex-col items-center overflow-y-auto overflow-x-hidden relative z-10 overscroll-y-none no-scrollbar",
+        currentView !== 'video-player' ? "md:pt-[60px]" : ""
+      )} id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
 
         {/* Desktop Top Navigation Bar (Supprimé) */}
         {/*
