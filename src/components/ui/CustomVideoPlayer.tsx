@@ -400,7 +400,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     {localVideoUrl ? (
                         <video
                             ref={playerRef as any}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-cover"
                             src={localVideoUrl}
                             playsInline
                             controls={false}
@@ -436,7 +436,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     ) : (
                         <Stream
                             streamRef={playerRef}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-cover"
                             src={cloudflareId!}
                             controls={false} // Disable native UI to avoid iOS taking over fullscreen
                             width="100%"
