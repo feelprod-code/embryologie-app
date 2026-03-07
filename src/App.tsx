@@ -276,7 +276,7 @@ function App() {
             <div className="w-full max-w-5xl flex flex-col animate-fade-in relative z-10 mx-auto">
 
               {/* STICKY HEADER CONTAINER FOR TIMELINE */}
-              <div className="sticky top-0 z-40 self-stretch w-auto bg-[#FAF9F6] -mx-2 sm:-mx-6 lg:mx-0 pt-4 flex flex-col items-center pb-4 px-2 border-b border-transparent md:border-slate-100">
+              <div className="sticky top-0 z-40 w-[100vw] relative left-1/2 -translate-x-1/2 bg-[#FAF9F6] pt-4 flex flex-col items-center pb-4 px-2 border-b border-transparent md:border-slate-100">
                 {/* TIMELINE BADGE */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center pb-1 md:pb-0">
                   <div className="inline-flex items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] lg:max-w-full overflow-hidden">
@@ -287,7 +287,7 @@ function App() {
                 </div>
 
                 {/* MOBILE TIMELINE NAVIGATION (Horizontal chip selection) */}
-                <div className="self-stretch w-auto lg:hidden overflow-x-auto no-scrollbar -mx-2 sm:-mx-6 lg:mx-0 pb-2 pt-2 mt-1 border-t border-slate-100 snap-x">
+                <div className="w-[100vw] relative left-1/2 -translate-x-1/2 lg:hidden overflow-x-auto no-scrollbar pb-2 pt-2 mt-1 border-t border-slate-100 snap-x">
                   <div className="flex flex-nowrap items-stretch gap-1.5 px-4 w-max mx-auto">
                     {detailedStages.map((stage) => {
                       const isActive = stage.id === activeStageId;
