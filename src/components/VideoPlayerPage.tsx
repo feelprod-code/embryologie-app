@@ -282,8 +282,9 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
 
           {/* RIGHT: OFFLINE AND DOWNLOAD */}
-          <div className="flex items-center gap-2 justify-end shrink-0">
-
+          <div className="flex items-center gap-2 justify-end shrink-0 hidden">
+            {/* Download button intentionally hidden per request */}
+            {/*
             {course.cloudflareId && (
               <a
                 href={`https://customer-6i2z59dst7q6iswv.cloudflarestream.com/${course.cloudflareId}/downloads/default.mp4`}
@@ -295,6 +296,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 <DownloadCloud className="w-5 h-5 sm:w-5 sm:h-5 md:w-4 md:h-4 lg:w-5 lg:h-5" strokeWidth={2.5} />
               </a>
             )}
+            */}
           </div>
 
         </div>
