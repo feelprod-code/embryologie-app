@@ -494,20 +494,20 @@ function App() {
                                 {/* Fulcrums & Palpation */}
                                 <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
                                   <div>
-                                    <h4 className="flex items-center text-dark font-bold text-lg mb-3 uppercase tracking-wide">
+                                    <h4 className="flex items-center text-slate-800 font-semibold text-base mb-3 uppercase tracking-wide">
                                       <Eye size={20} className="mr-2 text-primary" /> {t('app.timeline_fulcrums')}
                                     </h4>
                                     <p className="text-slate-600 text-base leading-relaxed font-medium">{activeStage.practicalIntegration.fulcrums}</p>
                                   </div>
                                   <div>
-                                    <h4 className="flex items-center text-dark font-bold text-lg mb-3 uppercase tracking-wide">
+                                    <h4 className="flex items-center text-slate-800 font-semibold text-base mb-3 uppercase tracking-wide">
                                       <Stethoscope size={20} className="mr-2 text-primary" />
                                       {t('app.timeline_palpation')}
                                     </h4>
                                     <p className="text-slate-600 text-base leading-relaxed font-medium">{activeStage.practicalIntegration.generalPalpation}</p>
                                   </div>
                                   <div>
-                                    <h4 className="flex items-center text-dark font-bold text-lg mb-3 uppercase tracking-wide">
+                                    <h4 className="flex items-center text-slate-800 font-semibold text-base mb-3 uppercase tracking-wide">
                                       <HeartHandshake size={20} className="mr-2 text-primary" />
                                       {t('app.timeline_therapist_posture')}
                                     </h4>
@@ -518,7 +518,7 @@ function App() {
                                 <div className="space-y-6">
                                   {/* Psychosomatic */}
                                   <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-                                    <h4 className="flex items-center text-dark font-bold text-lg mb-3 uppercase tracking-wide">
+                                    <h4 className="flex items-center text-slate-800 font-semibold text-base mb-3 uppercase tracking-wide">
                                       <Brain size={20} className="mr-2 text-primary" /> {t('app.timeline_psychosomatic')}
                                     </h4>
                                     <p className="text-slate-600 text-base leading-relaxed font-medium">{activeStage.practicalIntegration.psychosomatic}</p>
@@ -527,7 +527,7 @@ function App() {
                                   {/* Layer Perceptions (if any) */}
                                   {activeStage.practicalIntegration.layerPerceptions && activeStage.practicalIntegration.layerPerceptions.length > 0 && (
                                     <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-                                      <h4 className="text-dark font-bold text-lg mb-5 uppercase tracking-wide">{t('app.timeline_layer_perceptions')}</h4>
+                                      <h4 className="text-slate-800 font-semibold text-base mb-5 uppercase tracking-wide">{t('app.timeline_layer_perceptions')}</h4>
                                       <div className="space-y-5">
                                         {activeStage.practicalIntegration.layerPerceptions.map((lp, idx) => (
                                           <div key={idx} className="flex flex-col">

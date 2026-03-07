@@ -63,6 +63,11 @@
         }
     },
     "app": {
+        "developmental_movement": "Movimiento de Desarrollo",
+        "timeline_processes": "Procesos por Capa",
+        "timeline_cine_dynamic": "Cine-dinámica",
+        "timeline_practical": "Integración Práctica",
+        "timeline_no_data": "Seleccione un período para ver los detalles.",
         "timeline_palpation": "Palpación",
         "timeline_therapist_posture": "Postura del terapeuta",
         "timeline_psychosomatic": "Psicosomática",

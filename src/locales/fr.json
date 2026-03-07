@@ -68,6 +68,11 @@
         }
     },
     "app": {
+        "developmental_movement": "Mouvement du Développement",
+        "timeline_processes": "Processus par Feuillet",
+        "timeline_cine_dynamic": "Ciné-dynamique",
+        "timeline_practical": "Intégration Pratique",
+        "timeline_no_data": "Sélectionnez une période pour voir les détails.",
         "timeline_palpation": "Palpation",
         "timeline_therapist_posture": "Posture du thérapeute",
         "timeline_psychosomatic": "Psychosomatique",

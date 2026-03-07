@@ -65,6 +65,11 @@
         }
     },
     "app": {
+        "developmental_movement": "Developmental Movement",
+        "timeline_processes": "Layer Processes",
+        "timeline_cine_dynamic": "Cine-dynamics",
+        "timeline_practical": "Practical Integration",
+        "timeline_no_data": "Select a period to see details.",
         "timeline_palpation": "Palpation",
         "timeline_therapist_posture": "Therapist Posture",
         "timeline_psychosomatic": "Psychosomatic",
