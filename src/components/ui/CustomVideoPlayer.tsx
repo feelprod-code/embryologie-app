@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, useImperativeHandle } from 'react';
 import { Stream } from '@cloudflare/stream-react';
 import { useTranslation } from 'react-i18next';
-import { Play, Pause, Maximize, Minimize, X, RotateCcw, RotateCw } from 'lucide-react';
+import { Play, Pause, Maximize, Minimize, X, RotateCcw, RotateCw, PictureInPicture } from 'lucide-react';
 
 // Supported subtitle languages
 const SUBTITLE_LANGS = [
@@ -218,6 +218,31 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
         // 3. Fallback CSS Fullscreen
         setIsFullscreen(!isFullscreen);
+    };
+
+    const togglePictureInPicture = async (e?: React.MouseEvent | React.TouchEvent) => {
+        if (e) {
+            e.stopPropagation();
+            if (e.type === 'touchend') e.preventDefault();
+        }
+
+        const videoEl = getVideoElement();
+        if (!videoEl) return;
+
+        try {
+            if (document.pictureInPictureElement) {
+                await document.exitPictureInPicture();
+            } else if (document.pictureInPictureEnabled) {
+                await videoEl.requestPictureInPicture();
+            } else if ((videoEl as any).webkitSupportsPresentationMode && typeof (videoEl as any).webkitSetPresentationMode === "function") {
+                // Fallback for older Safari / iPad OS variants
+                const currentMode = (videoEl as any).webkitPresentationMode;
+                const newMode = currentMode === "picture-in-picture" ? "inline" : "picture-in-picture";
+                (videoEl as any).webkitSetPresentationMode(newMode);
+            }
+        } catch (error) {
+            console.error("Picture-in-Picture failed", error);
+        }
     };
 
     // Dynamically allow zoom in fullscreen
@@ -581,6 +606,17 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                     {subtitlesEnabled && <div className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ bottom: '2px', backgroundColor: progressColor }} />}
                                 </button>
                             )}
+
+                            {/* PiP Toggle */}
+                            <button
+                                onClick={togglePictureInPicture}
+                                onTouchEnd={togglePictureInPicture}
+                                className="text-white hover:text-white/80 transition-colors p-2 cursor-pointer touch-manipulation active:scale-90"
+                                aria-label="Mode Image dans l'image / Flottant"
+                                title="Fenêtre volante"
+                            >
+                                <PictureInPicture size={22} />
+                            </button>
 
                             {/* Fullscreen Toggle */}
                             <button
