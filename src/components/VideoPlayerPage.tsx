@@ -164,10 +164,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               isFullscreen ? "hidden" : ""
             )}>
               {/* COMPACT SINGLE-LINE CONTROLS */}
-              <div className="flex items-center justify-between w-full gap-2 overflow-x-auto no-scrollbar">
+              <div className="grid grid-cols-3 items-center w-full gap-2 overflow-x-auto no-scrollbar">
 
                 {/* LEFT: SPEED CONTROLS */}
-                <div className="flex items-center gap-1 shrink-0">
+                <div className="flex items-center gap-1 justify-start shrink-0">
                   {[1, 1.25].map((speed) => (
                     <button
                       key={speed}
@@ -188,7 +188,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 </div>
 
                 {/* CENTER: PREV/NEXT */}
-                <div className="flex items-center gap-2 shrink-0 mx-auto">
+                <div className="flex items-center gap-2 justify-center shrink-0 w-full">
                   <button
                     onClick={() => prevVideo && onSelectVideo(prevVideo)}
                     disabled={!prevVideo}
@@ -208,7 +208,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 </div>
 
                 {/* RIGHT: OFFLINE AND DOWNLOAD */}
-                <div className="flex items-center gap-2 shrink-0">
+                <div className="flex items-center gap-2 justify-end shrink-0">
 
                   {course.cloudflareId && (
                     <a
