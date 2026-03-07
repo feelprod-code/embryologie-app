@@ -58,6 +58,14 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const formatTime = (seconds: number) => {
+    if (isNaN(seconds) || seconds < 0) return "0:00";
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+    return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+  };
+
+  // --- Effects ---
   const isMobileLayout = windowWidth < 768; // Tailwind md
   const isTabletLayout = windowWidth >= 768 && windowWidth < 1024; // Tailwind lg
   const isDesktopLayout = windowWidth >= 1024;
@@ -248,44 +256,67 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         <div className="flex items-center shrink-0 ml-1 gap-2 sm:gap-3">
           {/* Audio Controls (Only visible when video is hidden) */}
           {!isVideoVisible && (
-            <div className="flex items-center bg-slate-50/90 backdrop-blur-md rounded-full border border-slate-200/70 mr-1 sm:mr-1.5 px-1 py-1 sm:px-2 sm:py-1.5 fade-in relative overflow-hidden shadow-sm group transition-all">
-              {/* Progress Line Background */}
-              <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-slate-200/50">
-                {/* Progress Fill */}
-                <div className={cn(
-                  "h-full transition-all duration-200 ease-linear",
-                  course.categoryId === 'ectoderme' ? "bg-[#5A9C51]" :
-                    course.categoryId === 'endoderme' ? "bg-[#4171B5]" :
-                      course.categoryId === 'mesoderme' ? "bg-[#F27D33]" :
-                        course.categoryId === 'oeil' ? "bg-[#F2B729]" : "bg-slate-400"
-                )} style={{ width: `${videoDuration > 0 ? (currentTime / videoDuration) * 100 : 0}%` }} />
+            <div className="flex items-center bg-slate-50/90 backdrop-blur-md rounded-full border border-slate-200/70 p-1 sm:pr-3 shadow-sm fade-in w-[200px] sm:w-[320px] md:w-[420px] gap-1 sm:gap-2 transition-all relative">
+              {/* Playback Buttons */}
+              <div className="flex items-center shrink-0">
+                <button
+                  onClick={() => prevVideo && onSelectVideo(prevVideo)}
+                  disabled={!prevVideo}
+                  className="p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  title={t('videoLibrary.previous')}
+                >
+                  <ChevronLeft className="w-4 h-4 sm:w-4 sm:h-4" />
+                </button>
+
+                <button
+                  onClick={() => videoPlayerRef.current?.togglePlay()}
+                  className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-800 text-white hover:bg-slate-700 active:scale-95 transition-all shadow-sm mx-0.5 sm:mx-1"
+                  title={isVideoPlaying ? "Pause" : "Play"}
+                >
+                  {isVideoPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-[1px]" />}
+                </button>
+
+                <button
+                  onClick={() => nextVideo && onSelectVideo(nextVideo)}
+                  disabled={!nextVideo}
+                  className="p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  title={t('videoLibrary.next')}
+                >
+                  <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4" />
+                </button>
               </div>
 
-              <button
-                onClick={() => prevVideo && onSelectVideo(prevVideo)}
-                disabled={!prevVideo}
-                className="p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                title={t('videoLibrary.previous')}
-              >
-                <ChevronLeft size={16} />
-              </button>
-
-              <button
-                onClick={() => videoPlayerRef.current?.togglePlay()}
-                className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 mx-0.5 sm:mx-1 rounded-full bg-slate-800 text-white hover:bg-slate-700 hover:scale-105 active:scale-95 transition-all shadow-sm"
-                title={isVideoPlaying ? "Pause" : "Play"}
-              >
-                {isVideoPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-[1px]" />}
-              </button>
-
-              <button
-                onClick={() => nextVideo && onSelectVideo(nextVideo)}
-                disabled={!nextVideo}
-                className="p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                title={t('videoLibrary.next')}
-              >
-                <ChevronRight size={16} />
-              </button>
+              {/* Scrubber Area */}
+              <div className="flex flex-1 items-center gap-1.5 sm:gap-3 shrink-0">
+                <span className="text-[9px] sm:text-[11px] text-slate-400 font-medium tabular-nums text-right min-w-[24px] sm:min-w-[32px]">
+                  {formatTime(currentTime)}
+                </span>
+                <div className="relative flex-1 h-3 flex items-center group cursor-pointer touch-manipulation">
+                  <input
+                    type="range"
+                    min="0"
+                    max={videoDuration || 100}
+                    value={currentTime}
+                    onChange={(e) => videoPlayerRef.current?.seekTo(parseFloat(e.target.value))}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
+                  />
+                  <div className="w-full h-1 sm:h-1.5 bg-slate-200/80 rounded-full overflow-hidden pointer-events-none">
+                    <div
+                      className={cn(
+                        "h-full transition-all duration-200 ease-linear",
+                        course.categoryId === 'ectoderme' ? "bg-[#5A9C51]" :
+                          course.categoryId === 'endoderme' ? "bg-[#4171B5]" :
+                            course.categoryId === 'mesoderme' ? "bg-[#F27D33]" :
+                              course.categoryId === 'oeil' ? "bg-[#F2B729]" : "bg-slate-500"
+                      )}
+                      style={{ width: `${videoDuration > 0 ? (currentTime / videoDuration) * 100 : 0}%` }}
+                    />
+                  </div>
+                </div>
+                <span className="text-[9px] sm:text-[11px] text-slate-400 font-medium tabular-nums text-left min-w-[24px] sm:min-w-[32px]">
+                  {formatTime(videoDuration)}
+                </span>
+              </div>
             </div>
           )}
 
@@ -308,14 +339,14 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         </div>
       </div>
       <div className={cn(
-        "px-4 pt-2 pb-16 md:px-8 md:pt-4 md:pb-12 lg:px-8 lg:pb-12 overflow-y-auto flex-1 no-scrollbar prose prose-slate max-w-none",
+        "px-3 sm:px-4 md:px-6 pt-2 pb-16 md:pt-4 md:pb-12 lg:pb-12 overflow-y-auto flex-1 no-scrollbar prose prose-slate max-w-none",
         "prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-dark",
         "prose-h1:hidden",
         "prose-h2:text-2xl md:prose-h2:text-2xl lg:prose-h2:text-[22px] md:prose-h2:mt-8 md:prose-h2:mb-4 lg:prose-h2:mt-8 lg:prose-h2:mb-4",
         "prose-h3:text-xl lg:prose-h3:text-[18px] prose-h3:text-slate-800 prose-h3:font-montserrat prose-h3:font-bold",
         "prose-p:text-slate-600 prose-p:leading-loose md:prose-p:leading-relaxed prose-p:text-[15px] lg:prose-p:text-[15px] prose-p:mb-6 md:prose-p:mb-4",
         "prose-strong:text-slate-800 prose-strong:font-bold",
-        "prose-ul:text-slate-600 prose-ul:text-[15px] md:prose-ul:text-[15px] lg:prose-ul:text-[14px] prose-ul:my-6 md:prose-ul:my-4 prose-ul:space-y-3 md:prose-ul:space-y-2",
+        "prose-ul:text-slate-600 prose-ul:text-[15px] md:prose-ul:text-[15px] lg:prose-ul:text-[14px] prose-ul:my-6 md:prose-ul:my-4 prose-ul:space-y-3 md:prose-ul:space-y-2 prose-ul:pl-5",
         "prose-li:leading-relaxed",
         "prose-blockquote:border-l-4 prose-blockquote:bg-slate-50 prose-blockquote:py-4 md:prose-blockquote:py-3 prose-blockquote:px-5 lg:prose-blockquote:px-4 prose-blockquote:rounded-r-2xl prose-blockquote:text-slate-700 prose-blockquote:italic prose-blockquote:my-8 md:prose-blockquote:my-6 prose-blockquote:shadow-sm",
         course.categoryId === 'ectoderme' ? "prose-a:text-[#5A9C51] hover:prose-a:text-[#4a8243] prose-blockquote:border-[#5A9C51] prose-blockquote:bg-[#5A9C51]/5" :

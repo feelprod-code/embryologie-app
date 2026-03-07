@@ -43,6 +43,7 @@ interface CustomVideoPlayerProps {
 
 export interface CustomVideoPlayerRef {
     togglePlay: () => void;
+    seekTo: (time: number) => void;
     isPlaying: boolean;
 }
 
@@ -76,8 +77,14 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useImperativeHandle(ref, () => ({
-        togglePlay: () => togglePlay(),
+        togglePlay,
         isPlaying,
+        seekTo: (time: number) => {
+            setCurrentTime(time);
+            if (playerRef.current) {
+                playerRef.current.currentTime = time;
+            }
+        },
     }));
 
     // --- Media Controls Logic ---
