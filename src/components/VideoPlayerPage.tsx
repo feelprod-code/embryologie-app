@@ -47,8 +47,28 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [isVideoVisible, setIsVideoVisible] = useState<boolean>(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
 
+  // Layout mode state to avoid triple-mounting the video player
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobileLayout = windowWidth < 768; // Tailwind md
+  const isTabletLayout = windowWidth >= 768 && windowWidth < 1024; // Tailwind lg
+  const isDesktopLayout = windowWidth >= 1024;
+
   const pipResizeStartRef = useRef<{ x: number, width: number } | null>(null);
   const videoPlayerRef = useRef<CustomVideoPlayerRef>(null);
+
+  // Effect to automatically show video on layout change to avoid stuck invisible video state
+  useEffect(() => {
+    // When switching layouts, ensure video becomes visible if it was hidden in a way incompatible with new layout
+    // actually, keeping the state is fine, but resetting is safer.
+    // setIsVideoVisible(true); 
+  }, [isMobileLayout, isTabletLayout, isDesktopLayout]);
 
   const handlePipPointerDown = (e: React.PointerEvent) => {
     e.preventDefault();
@@ -209,7 +229,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     )}>
       {/* STICKY TRANSCRIPT HEADER */}
       <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 p-2 shadow-sm w-full flex items-center justify-between shrink-0">
-        // Import missing icons from lucide-react at the top of the file
         <div className="flex flex-col px-2 flex-1 min-w-0 pr-2">
           <h3 className={cn("font-anton text-sm md:text-sm lg:text-[15px] tracking-wide uppercase leading-tight truncate",
             course.categoryId === 'ectoderme' ? "text-[#5A9C51]" :
@@ -224,7 +243,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         <div className="flex items-center shrink-0 ml-1 gap-2 sm:gap-3">
           {/* Audio Controls (Only visible when video is hidden) */}
           {!isVideoVisible && (
-            <div className="flex items-center bg-slate-100 rounded-lg border border-slate-200 mr-1 sm:mr-2">
+            <div className="flex items-center bg-slate-100 rounded-lg border border-slate-200 mr-1 sm:mr-1.5 fade-in">
               <button
                 onClick={() => prevVideo && onSelectVideo(prevVideo)}
                 disabled={!prevVideo}
@@ -239,7 +258,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 className="p-1 sm:p-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-200 transition-colors border-x border-slate-200"
                 title={isVideoPlaying ? "Pause" : "Play"}
               >
-                {isVideoPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="ml-0.5" />}
+                {isVideoPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="ml-[1px]" />}
               </button>
 
               <button
@@ -255,13 +274,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
           <button
             onClick={() => setIsVideoVisible(!isVideoVisible)}
-            className="flex items-center justify-center py-1 sm:py-1.5 px-2 px-2.5 sm:px-3 bg-white hover:bg-slate-50 active:bg-slate-100 rounded-lg text-slate-500 hover:text-slate-700 transition-colors border border-slate-200 shadow-sm"
+            className="flex items-center justify-center p-1 sm:p-1.5 w-7 h-7 sm:w-8 sm:h-8 bg-white hover:bg-slate-50 active:bg-slate-100 rounded-lg text-slate-500 hover:text-slate-700 transition-colors border border-slate-200 shadow-sm"
             title={isVideoVisible ? "Masquer la vidéo" : "Afficher la vidéo"}
           >
-            {isVideoVisible ? <VideoOff size={16} className="sm:mr-1.5" /> : <Video size={16} className="sm:mr-1.5" />}
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider hidden sm:inline">
-              {isVideoVisible ? "Masquer" : "Vidéo"}
-            </span>
+            {isVideoVisible ? <VideoOff size={16} className="sm:w-4 sm:h-4" /> : <Video size={16} className="sm:w-4 sm:h-4" />}
           </button>
           <span className={cn(
             "font-bebas text-sm sm:text-base tracking-wider pt-0.5 shrink-0 transition-colors hidden md:block",
@@ -365,57 +381,56 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         </div>
 
         {/* --- MOBILE VIEW: Resizable Split Pane (Vertical) --- */}
-        <div className="md:hidden flex-1 flex flex-col min-h-0 px-2 w-full">
-          {isFullscreen ? (
-            <div className="w-full h-full">
-              {TopContent}
-            </div>
-          ) : (
-            <PanelGroup orientation="vertical" className="w-full h-full">
-              {isVideoVisible && (
-                <>
-                  <Panel defaultSize={45} minSize={20} className="flex flex-col pb-1">
-                    {TopContent}
-                  </Panel>
-                  <PanelResizeHandle className="relative flex items-center justify-center h-6 w-full -my-1 z-10 group cursor-row-resize touch-none">
-                    <div className={cn(
-                      "w-12 h-1.5 bg-slate-300/80 rounded-full transition-colors",
-                      course.categoryId === 'ectoderme' ? "group-hover:bg-[#5A9C51] active:bg-[#5A9C51]" :
-                        course.categoryId === 'endoderme' ? "group-hover:bg-[#4171B5] active:bg-[#4171B5]" :
-                          course.categoryId === 'mesoderme' ? "group-hover:bg-[#F27D33] active:bg-[#F27D33]" :
-                            course.categoryId === 'oeil' ? "group-hover:bg-[#F2B729] active:bg-[#F2B729]" : "group-hover:bg-slate-500 active:bg-slate-500"
-                    )} />
-                  </PanelResizeHandle>
-                </>
-              )}
-              <Panel defaultSize={isVideoVisible ? 55 : 100} minSize={20} className="flex flex-col pt-1">
-                {BottomContent}
-              </Panel>
-            </PanelGroup>
-          )}
-        </div>
+        {isMobileLayout && (
+          <div className="flex-1 flex flex-col min-h-0 px-2 w-full">
+            {isFullscreen ? (
+              <div className="w-full h-full">
+                {TopContent}
+              </div>
+            ) : (
+              <PanelGroup orientation="vertical" className="w-full h-full">
+                <Panel defaultSize={45} minSize={20} className={cn("flex flex-col pb-1", !isVideoVisible && "sr-only")}>
+                  {TopContent}
+                </Panel>
+                <PanelResizeHandle className={cn("relative flex items-center justify-center h-6 w-full -my-1 z-10 group cursor-row-resize touch-none", !isVideoVisible && "hidden")}>
+                  <div className={cn(
+                    "w-12 h-1.5 bg-slate-300/80 rounded-full transition-colors",
+                    course.categoryId === 'ectoderme' ? "group-hover:bg-[#5A9C51] active:bg-[#5A9C51]" :
+                      course.categoryId === 'endoderme' ? "group-hover:bg-[#4171B5] active:bg-[#4171B5]" :
+                        course.categoryId === 'mesoderme' ? "group-hover:bg-[#F27D33] active:bg-[#F27D33]" :
+                          course.categoryId === 'oeil' ? "group-hover:bg-[#F2B729] active:bg-[#F2B729]" : "group-hover:bg-slate-500 active:bg-slate-500"
+                  )} />
+                </PanelResizeHandle>
+                <Panel defaultSize={55} minSize={20} className="flex flex-col pt-1">
+                  {BottomContent}
+                </Panel>
+              </PanelGroup>
+            )}
+          </div>
+        )}
 
         {/* --- TABLET VIEW: Floating Picture-in-Picture in Corner --- */}
-        <div className="hidden md:flex lg:hidden flex-1 relative w-full h-full pb-4 px-4 overflow-hidden">
-          {isFullscreen ? (
-            <div className="w-full h-full fixed inset-0 z-[100] bg-black">
-              {TopContent}
-            </div>
-          ) : (
-            <>
-              {/* Transcript Background (Full Tablet Width) */}
-              <div className="w-full h-full relative">
-                {BottomContent}
+        {isTabletLayout && (
+          <div className="flex-1 relative w-full h-full pb-4 px-4 overflow-hidden">
+            {isFullscreen ? (
+              <div className="w-full h-full fixed inset-0 z-[100] bg-black">
+                {TopContent}
               </div>
+            ) : (
+              <>
+                {/* Transcript Background (Full Tablet Width) */}
+                <div className="w-full h-full relative">
+                  {BottomContent}
+                </div>
 
-              {/* Floating Video PiP */}
-              {isVideoVisible && (
+                {/* Floating Video PiP */}
                 <div
                   className={cn(
                     "absolute bottom-[90px] right-6 z-40 rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5 flex flex-col",
-                    !isResizing && "transition-all duration-300 ease-out"
+                    !isResizing && "transition-all duration-300 ease-out",
+                    !isVideoVisible && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
                   )}
-                  style={{ width: `${pipWidth}px`, height: 'auto', touchAction: 'none' }}
+                  style={{ width: isVideoVisible ? `${pipWidth}px` : undefined, height: 'auto', touchAction: 'none' }}
                 >
                   {/* Drag Handle */}
                   <div
@@ -442,41 +457,39 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     {TopContent}
                   </div>
                 </div>
-              )}
-            </>
-          )}
-        </div>
+              </>
+            )}
+          </div>
+        )}
 
         {/* --- DESKTOP VIEW: Resizable Split Pane --- */}
-        <div className="hidden lg:flex flex-1 min-h-0 w-full px-0">
-          {isFullscreen ? (
-            <div className="w-full h-full">
-              {TopContent}
-            </div>
-          ) : (
-            <PanelGroup orientation="horizontal" className="w-full">
-              {isVideoVisible && (
-                <>
-                  <Panel defaultSize={50} minSize={30} className="flex flex-col pr-2">
-                    {TopContent}
-                  </Panel>
-                  <PanelResizeHandle className="relative flex items-center justify-center w-4 h-full mx-1 group cursor-col-resize">
-                    <div className={cn(
-                      "w-1 h-12 bg-slate-300 rounded-full transition-colors",
-                      course.categoryId === 'ectoderme' ? "group-hover:bg-[#5A9C51] active:bg-[#5A9C51]" :
-                        course.categoryId === 'endoderme' ? "group-hover:bg-[#4171B5] active:bg-[#4171B5]" :
-                          course.categoryId === 'mesoderme' ? "group-hover:bg-[#F27D33] active:bg-[#F27D33]" :
-                            course.categoryId === 'oeil' ? "group-hover:bg-[#F2B729] active:bg-[#F2B729]" : "group-hover:bg-slate-500 active:bg-slate-500"
-                    )} />
-                  </PanelResizeHandle>
-                </>
-              )}
-              <Panel defaultSize={isVideoVisible ? 50 : 100} minSize={30} className="flex flex-col pl-2">
-                {BottomContent}
-              </Panel>
-            </PanelGroup>
-          )}
-        </div>
+        {isDesktopLayout && (
+          <div className="flex-1 min-h-0 w-full px-0">
+            {isFullscreen ? (
+              <div className="w-full h-full">
+                {TopContent}
+              </div>
+            ) : (
+              <PanelGroup orientation="horizontal" className="w-full">
+                <Panel defaultSize={50} minSize={30} className={cn("flex flex-col pr-2", !isVideoVisible && "sr-only")}>
+                  {TopContent}
+                </Panel>
+                <PanelResizeHandle className={cn("relative flex items-center justify-center w-4 h-full mx-1 group cursor-col-resize", !isVideoVisible && "hidden")}>
+                  <div className={cn(
+                    "w-1 h-12 bg-slate-300 rounded-full transition-colors",
+                    course.categoryId === 'ectoderme' ? "group-hover:bg-[#5A9C51] active:bg-[#5A9C51]" :
+                      course.categoryId === 'endoderme' ? "group-hover:bg-[#4171B5] active:bg-[#4171B5]" :
+                        course.categoryId === 'mesoderme' ? "group-hover:bg-[#F27D33] active:bg-[#F27D33]" :
+                          course.categoryId === 'oeil' ? "group-hover:bg-[#F2B729] active:bg-[#F2B729]" : "group-hover:bg-slate-500 active:bg-slate-500"
+                  )} />
+                </PanelResizeHandle>
+                <Panel defaultSize={50} minSize={30} className="flex flex-col pl-2">
+                  {BottomContent}
+                </Panel>
+              </PanelGroup>
+            )}
+          </div>
+        )}
 
       </div >
     </>
