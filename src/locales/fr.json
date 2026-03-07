@@ -31,7 +31,7 @@
         "question": "Question",
         "searching": "Recherche en cours...",
         "summaryDocument": "Document de synthèse",
-        "welcomeMessage": "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**."
+        "welcomeMessage": "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**."
     },
     "podcasts": {
         "allResources": "Toutes les ressources",

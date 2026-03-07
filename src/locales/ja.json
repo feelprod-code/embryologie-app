@@ -26,7 +26,7 @@
         "question": "質問",
         "searching": "検索中...",
         "summaryDocument": "要約ドキュメント",
-        "welcomeMessage": "こんにちは！私はEmbryo AI、Marc Damoiseauxの発生学コース専用アシスタントです。\\n**運動カスケード**、**胚葉**、または**バイオダイナミック実践**について質問してください。"
+        "welcomeMessage": "こんにちは！私はEmbryo AI、Marc Damoiseauxの発生学コース専用アシスタントです。\n\n**運動カスケード**、**胚葉**、または**バイオダイナミック実践**について質問してください。"
     },
     "podcasts": {
         "allResources": "すべてのリソース",

@@ -28,7 +28,7 @@
         "question": "Question",
         "searching": "Searching...",
         "summaryDocument": "Summary Document",
-        "welcomeMessage": "Hello! I am Embryo AI, your assistant dedicated to Marc Damoiseaux's embryology course.\\nAsk me your questions about **kinetic cascades**, **layers** or **biodynamic practice**."
+        "welcomeMessage": "Hello! I am Embryo AI, your assistant dedicated to Marc Damoiseaux's embryology course.\n\nAsk me your questions about **kinetic cascades**, **layers** or **biodynamic practice**."
     },
     "podcasts": {
         "allResources": "All Resources",
