@@ -341,8 +341,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       <div className={cn(
         "px-3 sm:px-4 md:px-6 pt-2 pb-16 md:pt-4 md:pb-12 lg:pb-12 overflow-y-auto flex-1 no-scrollbar prose prose-slate max-w-none",
         "prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-dark",
-        "prose-h1:hidden",
-        "prose-h2:text-2xl md:prose-h2:text-2xl lg:prose-h2:text-[22px] md:prose-h2:mt-8 md:prose-h2:mb-4 lg:prose-h2:mt-8 lg:prose-h2:mb-4",
+        "prose-h2:text-2xl md:prose-h2:text-2xl lg:prose-h2:text-[22px] prose-h2:mt-6 prose-h2:mb-3 md:prose-h2:mt-8 md:prose-h2:mb-4 lg:prose-h2:mt-8 lg:prose-h2:mb-4",
         "prose-h3:text-xl lg:prose-h3:text-[18px] prose-h3:text-slate-800 prose-h3:font-montserrat prose-h3:font-bold",
         "prose-p:text-slate-600 prose-p:leading-loose md:prose-p:leading-relaxed prose-p:text-[15px] lg:prose-p:text-[15px] prose-p:mb-6 md:prose-p:mb-4",
         "prose-strong:text-slate-800 prose-strong:font-bold",
@@ -356,7 +355,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 "prose-a:text-slate-800 hover:prose-a:text-slate-900 prose-blockquote:border-slate-800 prose-blockquote:bg-slate-100"
       )}>
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-          {course.transcriptMarkdown.replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
+          {course.transcriptMarkdown.replace(/^#\s.*$/gm, '').trim().replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
         </ReactMarkdown>
       </div>
     </div>
