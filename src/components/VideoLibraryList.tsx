@@ -78,7 +78,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                 {/* Category Pills (identical spacing to Timeline) */}
                 <div className="w-full pb-2 mb-2 sm:mb-0 border-t border-slate-100 pt-2 sm:pt-2 md:pt-1">
-                    <div className="flex flex-nowrap overflow-x-auto no-scrollbar items-stretch justify-center gap-1 sm:gap-1.5 md:gap-1.5 w-full max-w-4xl mx-auto px-2 md:px-0 translate-x-2 sm:translate-x-0">
+                    <div className="grid grid-cols-4 items-stretch gap-1.5 sm:gap-2 w-full max-w-4xl mx-auto px-2 md:px-0">
                         {tabs.map(layer => {
                             const isSelected = selectedLayer === layer;
 
@@ -110,21 +110,21 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     key={layer}
                                     onClick={() => setSelectedLayer(layer)}
                                     className={cn(
-                                        "flex-1 relative flex flex-col items-center justify-center py-3 sm:py-3 md:py-3 lg:py-2 px-3 sm:px-4 md:px-4 lg:px-3 rounded-2xl sm:rounded-2xl md:rounded-2xl lg:rounded-2xl border transition-transform duration-200 cursor-pointer touch-manipulation active:scale-[0.98]",
+                                        "relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-1 sm:px-4 md:px-4 lg:px-3 rounded-xl sm:rounded-2xl border transition-transform duration-200 cursor-pointer touch-manipulation active:scale-[0.98] w-full min-w-0",
                                         isSelected
                                             ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
                                             : `${style.unselectedBg} ${style.unselectedBorder} ${style.unselectedText} shadow-sm ${style.hover}`
                                     )}
                                 >
                                     <span className={cn(
-                                        "font-bebas text-xl sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 whitespace-nowrap",
+                                        "font-bebas text-[15px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
                                         isSelected ? "text-white" : style.unselectedText
                                     )}>
                                         {t(`videoLibrary.layers.${tKeys[layer as keyof typeof tKeys]}`)}
                                     </span>
 
                                     <span className={cn(
-                                        "text-[10px] sm:text-[10px] md:text-[10px] uppercase font-bold truncate w-full px-1 opacity-80 text-center",
+                                        "text-[9px] sm:text-[10px] md:text-[10px] uppercase font-bold truncate w-full px-0 sm:px-1 opacity-80 text-center",
                                         isSelected ? "text-white/80" : style.unselectedText
                                     )}>
                                         <Clock size={9} className="hidden lg:inline mr-1 mb-[1px]" />
