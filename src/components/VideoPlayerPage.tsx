@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 
 
 
-import { Panel, Group as PanelGroup, Separator as PanelResizeHandle } from 'react-resizable-panels';
+// No more resizable panels required
 
 interface VideoPlayerPageProps {
   course: VideoCourse;
@@ -476,28 +476,25 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 {TopContent}
               </div>
             ) : (
-              <PanelGroup orientation="vertical" className="w-full h-full">
-                <Panel
-                  defaultSize={45}
-                  minSize={20}
-                  maxSize={55}
-                  className={cn("flex flex-col pb-1", !isVideoVisible && "sr-only hidden")}
+              <div className="w-full h-full flex flex-col">
+                <div
+                  className={cn(
+                    "w-full flex-none transition-all duration-300 ease-in-out",
+                    !isVideoVisible ? "h-0 overflow-hidden" : ""
+                  )}
+                  style={{
+                    // We calculate the ideal height: 16/9 aspect ratio + ~38px for the top info controls
+                    height: isVideoVisible ? 'calc(100vw * 9 / 16 + 38px)' : '0'
+                  }}
                 >
-                  {TopContent}
-                </Panel>
-                <PanelResizeHandle className={cn("relative flex items-center justify-center h-6 w-full -my-1 z-10 group cursor-row-resize touch-none", !isVideoVisible && "hidden")}>
-                  <div className={cn(
-                    "w-12 h-1.5 bg-slate-300/80 rounded-full transition-colors",
-                    course.categoryId === 'ectoderme' ? "group-hover:bg-[#5A9C51] active:bg-[#5A9C51]" :
-                      course.categoryId === 'endoderme' ? "group-hover:bg-[#4171B5] active:bg-[#4171B5]" :
-                        course.categoryId === 'mesoderme' ? "group-hover:bg-[#F27D33] active:bg-[#F27D33]" :
-                          course.categoryId === 'oeil' ? "group-hover:bg-[#F2B729] active:bg-[#F2B729]" : "group-hover:bg-slate-500 active:bg-slate-500"
-                  )} />
-                </PanelResizeHandle>
-                <Panel defaultSize={55} minSize={20} className="flex flex-col pt-1">
+                  <div className="w-full h-full pb-1">
+                    {TopContent}
+                  </div>
+                </div>
+                <div className="flex-1 min-h-0 pt-1">
                   {BottomContent}
-                </Panel>
-              </PanelGroup>
+                </div>
+              </div>
             )}
           </div>
         )}
