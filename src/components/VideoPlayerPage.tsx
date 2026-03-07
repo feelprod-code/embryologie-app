@@ -44,6 +44,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [pipWidth, setPipWidth] = useState<number>(360);
   const [isResizing, setIsResizing] = useState<boolean>(false);
+  const [pipTranslate, setPipTranslate] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isVideoVisible, setIsVideoVisible] = useState<boolean>(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -71,6 +73,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const isDesktopLayout = windowWidth >= 1024;
 
   const pipResizeStartRef = useRef<{ x: number, width: number } | null>(null);
+  const pipDragStartRef = useRef<{ clientX: number, clientY: number, startX: number, startY: number } | null>(null);
   const videoPlayerRef = useRef<CustomVideoPlayerRef>(null);
 
   // Effect to automatically show video on layout change to avoid stuck invisible video state
@@ -84,6 +87,18 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     e.preventDefault();
     setIsResizing(true);
     pipResizeStartRef.current = { x: e.clientX, width: pipWidth };
+  };
+
+  const handlePipDragStart = (e: React.PointerEvent) => {
+    if (e.button !== 0) return; // only left click
+    e.preventDefault();
+    setIsDragging(true);
+    pipDragStartRef.current = {
+      clientX: e.clientX,
+      clientY: e.clientY,
+      startX: pipTranslate.x,
+      startY: pipTranslate.y
+    };
   };
 
   useEffect(() => {
@@ -108,6 +123,31 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       window.removeEventListener('pointercancel', handlePointerUp);
     };
   }, [isResizing, pipWidth]);
+
+  useEffect(() => {
+    if (!isDragging) return;
+    const handlePointerMove = (e: PointerEvent) => {
+      if (!pipDragStartRef.current) return;
+      const deltaX = e.clientX - pipDragStartRef.current.clientX;
+      const deltaY = e.clientY - pipDragStartRef.current.clientY;
+      setPipTranslate({
+        x: pipDragStartRef.current.startX + deltaX,
+        y: pipDragStartRef.current.startY + deltaY
+      });
+    };
+    const handlePointerUp = () => {
+      setIsDragging(false);
+      pipDragStartRef.current = null;
+    };
+    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointerup', handlePointerUp);
+    window.addEventListener('pointercancel', handlePointerUp);
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerup', handlePointerUp);
+      window.removeEventListener('pointercancel', handlePointerUp);
+    };
+  }, [isDragging]);
 
   const course = videoCourses.find((v: VideoCourse) => v.id === initialCourse.id) || initialCourse;
 
@@ -471,14 +511,18 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   {BottomContent}
                 </div>
 
-                {/* Floating Video PiP */}
                 <div
                   className={cn(
                     "absolute bottom-[90px] right-6 z-40 rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5 flex flex-col",
-                    !isResizing && "transition-all duration-300 ease-out",
+                    (!isResizing && !isDragging) && "transition-transform duration-300 ease-out",
                     !isVideoVisible && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
                   )}
-                  style={{ width: isVideoVisible ? `${pipWidth}px` : undefined, height: 'auto', touchAction: 'none' }}
+                  style={{
+                    width: isVideoVisible ? `${pipWidth}px` : undefined,
+                    height: 'auto',
+                    touchAction: 'none',
+                    transform: `translate(${pipTranslate.x}px, ${pipTranslate.y}px)`
+                  }}
                 >
                   {/* Drag Handle */}
                   <div
@@ -497,8 +541,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   </div>
 
                   {/* PiP Controls Header */}
-                  <div className="flex items-center justify-between px-2 pb-1.5 pt-0.5">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0">Lecteur Vidéo</span>
+                  <div
+                    className="flex items-center justify-between px-2 pb-1.5 pt-0.5 cursor-move touch-none active:bg-slate-50/50 rounded-t-lg transition-colors"
+                    onPointerDown={handlePipDragStart}
+                  >
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0 pointer-events-none">Lecteur Vidéo (Glisser)</span>
                   </div>
 
                   <div className="w-full flex flex-col">
