@@ -225,14 +225,14 @@ function App() {
           currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai'
             ? "p-0"
             : "px-2 sm:px-6 lg:px-8 w-full pb-[100px]",
-          currentView === 'home' ? "overflow-hidden h-[calc(100vh-69px)]" : "",
+          currentView === 'home' ? "overflow-hidden h-[calc(100dvh-69px)]" : "",
           currentView === 'video-player' ? "pt-0 md:pt-2 pb-[90px] md:pb-2 overflow-hidden h-[100dvh] md:h-[calc(100vh-60px)]" : "pt-0"
         )}>
 
           {/* Desktop Top Navigation Bar */}
 
           {currentView === 'home' && (
-            <div className="w-full h-full flex items-center justify-center">
+            <div className="w-full h-full flex items-stretch justify-center">
               <Home />
             </div>
           )}

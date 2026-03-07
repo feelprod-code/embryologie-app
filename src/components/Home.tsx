@@ -17,10 +17,10 @@ export function Home(_props: HomeProps) {
     return (
         <div className="w-full flex-1 relative bg-[#FAF9F6] flex flex-col items-center justify-start overflow-hidden">
             {/* Inner responsive layout container */}
-            <div className="h-full w-full max-w-5xl flex flex-col items-center justify-between px-4 sm:px-6 pt-4 md:pt-0 pb-8 mx-auto overflow-hidden">
+            <div className="h-full w-full max-w-5xl flex flex-col items-center justify-between px-4 sm:px-6 pt-1 md:pt-0 pb-8 mx-auto overflow-hidden">
 
                 {/* Top Section: Credits & Title */}
-                <div className="flex-none flex flex-col items-center w-full pt-4 sm:pt-6 md:pt-8">
+                <div className="flex-none flex flex-col items-center w-full pt-1 sm:pt-6 md:pt-8">
                     {/* Top Poster Credits */}
                     <div className="relative z-10 w-full text-center animate-fade-in-up">
                         <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
