@@ -107,7 +107,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       if (!pipResizeStartRef.current) return;
       // Dragging left (negative delta from start) increases size because it expands to the left
       const deltaX = pipResizeStartRef.current.x - e.clientX;
-      const newWidth = Math.max(280, Math.min(800, pipResizeStartRef.current.width + deltaX));
+      const newWidth = Math.max(340, Math.min(800, pipResizeStartRef.current.width + deltaX));
       setPipWidth(newWidth);
     };
     const handlePointerUp = () => {
@@ -211,7 +211,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         isFullscreen ? "hidden" : ""
       )}>
         {/* COMPACT SINGLE-LINE CONTROLS */}
-        <div className="grid grid-cols-3 items-center w-full gap-2 overflow-x-auto no-scrollbar">
+        <div className="flex items-center justify-between w-full gap-2 overflow-x-auto no-scrollbar">
 
           {/* LEFT: SPEED CONTROLS */}
           <div className="flex items-center gap-1 justify-start shrink-0">
@@ -235,7 +235,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
 
           {/* CENTER: PREV/NEXT */}
-          <div className="flex items-center gap-2 justify-center shrink-0 w-full">
+          <div className="flex items-center gap-2 justify-center shrink-0">
             <button
               onClick={() => prevVideo && onSelectVideo(prevVideo)}
               disabled={!prevVideo}
@@ -501,7 +501,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
         {/* --- TABLET & DESKTOP VIEW: Floating Picture-in-Picture in Corner --- */}
         {(isTabletLayout || isDesktopLayout) && (
-          <div className="flex-1 relative w-full h-full pb-4 px-4 overflow-hidden">
+          <div className="flex-1 relative w-full h-full pb-4 px-4">
             {isFullscreen ? (
               <div className="w-full h-full fixed inset-0 z-[100] bg-black">
                 {TopContent}
@@ -515,7 +515,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
                 <div
                   className={cn(
-                    "absolute bottom-[90px] right-6 z-40 rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5 flex flex-col",
+                    "absolute bottom-[90px] right-6 z-[90] rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5 flex flex-col",
                     (!isResizing && !isDragging) && "transition-transform duration-300 ease-out",
                     !isVideoVisible && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
                   )}
@@ -547,7 +547,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     className="flex items-center justify-between px-2 pb-1.5 pt-0.5 cursor-move touch-none active:bg-slate-50/50 rounded-t-lg transition-colors"
                     onPointerDown={handlePipDragStart}
                   >
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0 pointer-events-none">Lecteur Vidéo (Glisser)</span>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0 pointer-events-none">Lecteur Vidéo</span>
                   </div>
 
                   <div className="w-full flex flex-col">
