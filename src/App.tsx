@@ -332,7 +332,7 @@ function App() {
               <div className="w-full grid grid-cols-1 lg:grid-cols-12 lg:gap-10">
 
                 {/* TIMELINE NAVIGATION (Vertical Left Column - Desktop Only) */}
-                <div className="hidden lg:block lg:col-span-4 relative max-h-[calc(100vh-140px)] overflow-y-auto hide-scrollbar border-b-0 border-slate-200 mb-0 sticky top-[90px] z-10 bg-transparent p-0 self-start">
+                <div className="hidden lg:block lg:col-span-4 relative max-h-[calc(100vh-140px)] overflow-y-auto no-scrollbar border-b-0 border-slate-200 mb-0 sticky top-[90px] z-10 bg-transparent p-0 self-start">
                   {/* Removed vertical lateral bar as requested */}
                   <div className="space-y-6 relative pb-10 mt-6">
                     {detailedStages.map((stage) => {
