@@ -17,10 +17,10 @@ export function Home(_props: HomeProps) {
     return (
         <div className="w-full flex-1 relative bg-[#FAF9F6] flex flex-col items-center overflow-y-auto no-scrollbar">
             {/* Inner responsive layout container */}
-            <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-between px-4 sm:px-6 pt-6 sm:pt-10 pb-6 md:pb-12 mx-auto min-h-[min-content] gap-8">
+            <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-between px-4 sm:px-6 pt-2 sm:pt-10 pb-20 sm:pb-6 md:pb-12 mx-auto min-h-[min-content] gap-4 sm:gap-8">
 
                 {/* Top Section: Credits & Title */}
-                <div className="flex flex-col items-center w-full mt-4 md:mt-8">
+                <div className="flex flex-col items-center w-full mt-2 sm:mt-4 md:mt-8">
                     {/* Top Poster Credits */}
                     <div className="relative z-10 w-full text-center animate-fade-in-up">
                         <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
@@ -32,7 +32,7 @@ export function Home(_props: HomeProps) {
                     </div>
 
                     {/* Main Cinematic Title */}
-                    <div className="relative z-10 w-full text-center flex flex-col items-center mt-4 sm:mt-6">
+                    <div className="relative z-10 w-full text-center flex flex-col items-center mt-2 sm:mt-6">
                         <h1 className="text-4xl min-[380px]:text-5xl sm:text-6xl md:text-7xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
                             {t('home.title_part1')}
                         </h1>
@@ -43,9 +43,9 @@ export function Home(_props: HomeProps) {
                 </div>
 
                 {/* Center - Vignette & Player */}
-                <div className="flex flex-col items-center justify-center w-full my-auto py-2">
+                <div className="flex flex-col items-center justify-center w-full mt-4 sm:my-auto py-2">
                     {/* Podcast Thumbnail/Vignette */}
-                    <div className="relative w-[65vw] max-w-[280px] sm:max-w-[320px] md:w-[24rem] lg:w-[28rem] aspect-square shrink-0 mb-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                    <div className="relative w-[75vw] max-w-[280px] sm:max-w-[320px] md:w-[24rem] lg:w-[28rem] aspect-square shrink-0 mb-4 sm:mb-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
@@ -63,6 +63,13 @@ export function Home(_props: HomeProps) {
                             {t('home.start')}
                         </span>
                     </div>
+                </div>
+
+                {/* Credits FeelProd */}
+                <div className="flex-none w-full flex flex-col items-center justify-center mt-auto pt-6 sm:pt-8 opacity-80 pb-4 sm:pb-0">
+                    <span className="text-[10px] sm:text-xs text-slate-500 font-medium uppercase tracking-[0.2em] text-center relative z-20">
+                        {t('home.credits')}
+                    </span>
                 </div>
 
             </div>
