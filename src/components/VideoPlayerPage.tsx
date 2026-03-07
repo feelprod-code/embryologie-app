@@ -42,8 +42,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   const [currentSpeed, setCurrentSpeed] = useState<number>(1);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
-  const [pipWidth, setPipWidth] = useState<number>(360);
-  const [isResizing, setIsResizing] = useState<boolean>(false);
   const [isVideoVisible, setIsVideoVisible] = useState<boolean>(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -70,7 +68,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const isTabletLayout = windowWidth >= 768 && windowWidth < 1024; // Tailwind lg
   const isDesktopLayout = windowWidth >= 1024;
 
-  const pipResizeStartRef = useRef<{ x: number, width: number } | null>(null);
   const videoPlayerRef = useRef<CustomVideoPlayerRef>(null);
 
   // Effect to automatically show video on layout change to avoid stuck invisible video state
@@ -80,34 +77,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     // setIsVideoVisible(true); 
   }, [isMobileLayout, isTabletLayout, isDesktopLayout]);
 
-  const handlePipPointerDown = (e: React.PointerEvent) => {
-    e.preventDefault();
-    setIsResizing(true);
-    pipResizeStartRef.current = { x: e.clientX, width: pipWidth };
-  };
 
-  useEffect(() => {
-    if (!isResizing) return;
-    const handlePointerMove = (e: PointerEvent) => {
-      if (!pipResizeStartRef.current) return;
-      // Dragging left (negative delta from start) increases size because it expands to the left
-      const deltaX = pipResizeStartRef.current.x - e.clientX;
-      const newWidth = Math.max(280, Math.min(800, pipResizeStartRef.current.width + deltaX));
-      setPipWidth(newWidth);
-    };
-    const handlePointerUp = () => {
-      setIsResizing(false);
-      pipResizeStartRef.current = null;
-    };
-    window.addEventListener('pointermove', handlePointerMove);
-    window.addEventListener('pointerup', handlePointerUp);
-    window.addEventListener('pointercancel', handlePointerUp);
-    return () => {
-      window.removeEventListener('pointermove', handlePointerMove);
-      window.removeEventListener('pointerup', handlePointerUp);
-      window.removeEventListener('pointercancel', handlePointerUp);
-    };
-  }, [isResizing, pipWidth]);
 
   const course = videoCourses.find((v: VideoCourse) => v.id === initialCourse.id) || initialCourse;
 
@@ -428,8 +398,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
         </div>
 
-        {/* --- MOBILE VIEW: Resizable Split Pane (Vertical) --- */}
-        {isMobileLayout && (
+        {/* --- MOBILE & TABLET VIEW: Resizable Split Pane (Vertical) --- */}
+        {(isMobileLayout || isTabletLayout) && (
           <div className="flex-1 flex flex-col min-h-0 px-2 w-full">
             {isFullscreen ? (
               <div className="w-full h-full">
@@ -453,59 +423,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   {BottomContent}
                 </Panel>
               </PanelGroup>
-            )}
-          </div>
-        )}
-
-        {/* --- TABLET VIEW: Floating Picture-in-Picture in Corner --- */}
-        {isTabletLayout && (
-          <div className="flex-1 relative w-full h-full pb-4 px-4 overflow-hidden">
-            {isFullscreen ? (
-              <div className="w-full h-full fixed inset-0 z-[100] bg-black">
-                {TopContent}
-              </div>
-            ) : (
-              <>
-                {/* Transcript Background (Full Tablet Width) */}
-                <div className="w-full h-full relative">
-                  {BottomContent}
-                </div>
-
-                {/* Floating Video PiP */}
-                <div
-                  className={cn(
-                    "absolute bottom-[90px] right-6 z-40 rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5 flex flex-col",
-                    !isResizing && "transition-all duration-300 ease-out",
-                    !isVideoVisible && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
-                  )}
-                  style={{ width: isVideoVisible ? `${pipWidth}px` : undefined, height: 'auto', touchAction: 'none' }}
-                >
-                  {/* Drag Handle */}
-                  <div
-                    className="absolute -top-3 -left-3 w-8 h-8 bg-white border border-slate-200 shadow-[0_4px_10px_rgba(0,0,0,0.1)] rounded-full flex items-center justify-center cursor-nwse-resize z-50 touch-none active:bg-slate-50 transition-colors"
-                    onPointerDown={handlePipPointerDown}
-                  >
-                    <div className="w-3 h-3 rounded-full bg-slate-300/50 flex items-center justify-center">
-                      <div className={cn(
-                        "w-1.5 h-1.5 rounded-full",
-                        course.categoryId === 'ectoderme' ? "bg-[#5A9C51]" :
-                          course.categoryId === 'endoderme' ? "bg-[#4171B5]" :
-                            course.categoryId === 'mesoderme' ? "bg-[#F27D33]" :
-                              course.categoryId === 'oeil' ? "bg-[#F2B729]" : "bg-slate-400"
-                      )} />
-                    </div>
-                  </div>
-
-                  {/* PiP Controls Header */}
-                  <div className="flex items-center justify-between px-2 pb-1.5 pt-0.5">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0">Lecteur Vidéo</span>
-                  </div>
-
-                  <div className="w-full flex flex-col">
-                    {TopContent}
-                  </div>
-                </div>
-              </>
             )}
           </div>
         )}
