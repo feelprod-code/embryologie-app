@@ -75,6 +75,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [localScrubTime, setLocalScrubTime] = useState<number | null>(null);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(true);
     const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -549,28 +550,40 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 >
                     {/* Scrubber */}
                     <div className="flex items-center gap-3 w-full">
-                        <span className="text-white/90 text-xs font-medium tabular-nums min-w-[36px] text-left">{formatTime(currentTime)}</span>
+                        <span className="text-white/90 text-xs font-medium tabular-nums min-w-[36px] text-left">{formatTime(localScrubTime !== null ? localScrubTime : currentTime)}</span>
                         <div className="relative flex-1 h-3 flex items-center group cursor-pointer touch-manipulation">
                             <input
                                 type="range"
                                 min="0"
                                 max={duration || 100}
-                                value={currentTime}
-                                onChange={handleSeek}
-                                onTouchStart={triggerControls}
+                                value={localScrubTime !== null ? localScrubTime : currentTime}
+                                onPointerDown={() => setLocalScrubTime(currentTime)}
+                                onChange={(e) => {
+                                    setLocalScrubTime(parseFloat(e.target.value));
+                                }}
+                                onPointerUp={(e) => {
+                                    const val = parseFloat((e.currentTarget as HTMLInputElement).value);
+                                    handleSeek({ target: { value: val.toString() } } as any);
+                                    setLocalScrubTime(null);
+                                }}
+                                onTouchEnd={(e) => {
+                                    const val = parseFloat((e.currentTarget as HTMLInputElement).value);
+                                    handleSeek({ target: { value: val.toString() } } as any);
+                                    setLocalScrubTime(null);
+                                }}
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
                             />
                             {/* Visual Progress Track */}
                             <div className="w-full h-1.5 bg-white/30 rounded-full overflow-hidden pointer-events-none">
                                 <div
-                                    className="h-full"
-                                    style={{ width: `${(currentTime / (duration || 100)) * 100}%`, backgroundColor: progressColor }}
+                                    className="h-full transition-all duration-75"
+                                    style={{ width: `${((localScrubTime !== null ? localScrubTime : currentTime) / (duration || 100)) * 100}%`, backgroundColor: progressColor }}
                                 />
                             </div>
                             {/* Custom Thumb */}
                             <div
-                                className="absolute h-3.5 w-3.5 bg-white rounded-full shadow border-2 pointer-events-none transform -translate-x-1/2"
-                                style={{ left: `${(currentTime / (duration || 100)) * 100}%`, borderColor: progressColor }}
+                                className="absolute h-3.5 w-3.5 bg-white rounded-full shadow border-2 pointer-events-none transform -translate-x-1/2 transition-all duration-75"
+                                style={{ left: `${((localScrubTime !== null ? localScrubTime : currentTime) / (duration || 100)) * 100}%`, borderColor: progressColor }}
                             />
                         </div>
                         <span className="text-white/90 text-xs font-medium tabular-nums min-w-[36px] text-right">{formatTime(duration)}</span>

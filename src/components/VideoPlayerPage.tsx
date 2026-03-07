@@ -53,6 +53,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [isVideoVisible, setIsVideoVisible] = useState<boolean>(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
+  const [localScrubTime, setLocalScrubTime] = useState<number | null>(null);
   const [videoDuration, setVideoDuration] = useState<number>(0);
 
   const [isCaching, setIsCaching] = useState<boolean>(false);
@@ -467,29 +468,45 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               {/* Scrubber Area */}
               <div className="flex flex-1 items-center gap-1.5 sm:gap-3 shrink-0">
                 <span className="text-[9px] sm:text-[11px] text-slate-400 font-medium tabular-nums text-right min-w-[24px] sm:min-w-[32px]">
-                  {formatTime(currentTime)}
+                  {formatTime(localScrubTime !== null ? localScrubTime : currentTime)}
                 </span>
                 <div className="relative flex-1 h-3 flex items-center group cursor-pointer touch-manipulation">
                   <input
                     type="range"
                     min="0"
                     max={videoDuration || 100}
-                    value={currentTime}
-                    onChange={(e) => videoPlayerRef.current?.seekTo(parseFloat(e.target.value))}
+                    value={localScrubTime !== null ? localScrubTime : currentTime}
+                    onPointerDown={() => setLocalScrubTime(currentTime)}
+                    onChange={(e) => setLocalScrubTime(parseFloat(e.target.value))}
+                    onPointerUp={(e) => {
+                      const val = parseFloat((e.currentTarget as HTMLInputElement).value);
+                      videoPlayerRef.current?.seekTo(val);
+                      setLocalScrubTime(null);
+                    }}
+                    onTouchEnd={(e) => {
+                      const val = parseFloat((e.currentTarget as HTMLInputElement).value);
+                      videoPlayerRef.current?.seekTo(val);
+                      setLocalScrubTime(null);
+                    }}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
                   />
                   <div className="w-full h-1 sm:h-1.5 bg-slate-200/80 rounded-full overflow-hidden pointer-events-none">
                     <div
                       className={cn(
-                        "h-full transition-all duration-200 ease-linear",
+                        "h-full transition-all duration-75",
                         course.categoryId === 'ectoderme' ? "bg-[#5A9C51]" :
                           course.categoryId === 'endoderme' ? "bg-[#4171B5]" :
                             course.categoryId === 'mesoderme' ? "bg-[#F27D33]" :
                               course.categoryId === 'oeil' ? "bg-[#F2B729]" : "bg-slate-500"
                       )}
-                      style={{ width: `${videoDuration > 0 ? (currentTime / videoDuration) * 100 : 0}%` }}
+                      style={{ width: `${((localScrubTime !== null ? localScrubTime : currentTime) / (videoDuration || 100)) * 100}%` }}
                     />
                   </div>
+                  {/* Custom Thumb */}
+                  <div
+                    className="absolute h-2.5 w-2.5 sm:h-3 sm:w-3 bg-white rounded-full shadow border border-slate-300 pointer-events-none transform -translate-x-1/2 transition-all duration-75"
+                    style={{ left: `${((localScrubTime !== null ? localScrubTime : currentTime) / (videoDuration || 100)) * 100}%` }}
+                  />
                 </div>
                 <span className="text-[9px] sm:text-[11px] text-slate-400 font-medium tabular-nums text-left min-w-[24px] sm:min-w-[32px]">
                   {formatTime(videoDuration)}
