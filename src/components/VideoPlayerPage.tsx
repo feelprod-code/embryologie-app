@@ -85,7 +85,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           "w-full pt-1 pb-4 mb-2 lg:mb-6 lg:pt-3 shrink-0",
           isFullscreen ? "hidden" : ""
         )}>
-          <div className="flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 w-full max-w-3xl mx-auto px-2 md:px-0">
+          <div className="flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 w-full max-w-full lg:max-w-4xl mx-auto px-2 md:px-4 lg:px-0">
             {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
               const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
               const cId = lmap[layer as keyof typeof lmap];
@@ -112,7 +112,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   key={layer}
                   onClick={handleLayerClick}
                   className={cn(
-                    "flex-1 relative flex flex-col items-center justify-center py-3 sm:py-3 md:py-3 lg:py-2 px-3 sm:px-4 md:px-4 lg:px-3 rounded-2xl sm:rounded-2xl md:rounded-2xl lg:rounded-2xl border transition-all duration-300 cursor-pointer touch-manipulation active:scale-[0.98]",
+                    "flex-1 relative flex flex-col items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-2 sm:px-3 md:px-4 lg:px-3 rounded-xl sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-300 cursor-pointer touch-manipulation active:scale-[0.98]",
                     isSelected
                       ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
                       : `bg-white border-slate-200 text-slate-600 shadow-sm ${style.hover}`
@@ -144,8 +144,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         )}>
           {/* Top Section: Video & Controls */}
           <div className={cn(
-            "w-full flex flex-col mx-auto max-w-3xl",
-            isFullscreen ? "max-w-none" : "gap-2 shrink-0 z-20"
+            "w-full flex flex-col mx-auto max-w-2xl px-1 md:px-8 lg:px-0",
+            isFullscreen ? "max-w-none px-0 md:px-0 lg:px-0" : "gap-2 shrink-0 z-20"
           )}>
             <CustomVideoPlayer
               youtubeId={course.youtubeId}
@@ -160,7 +160,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             />
 
             <div className={cn(
-              "bg-white p-2 md:p-3 rounded-xl md:rounded-2xl shadow-sm border border-slate-200 flex-shrink-0",
+              "bg-white p-2 md:p-2.5 rounded-xl md:rounded-2xl shadow-sm border border-slate-200 flex-shrink-0",
               isFullscreen ? "hidden" : ""
             )}>
               {/* COMPACT SINGLE-LINE CONTROLS */}
@@ -173,7 +173,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                       key={speed}
                       onClick={() => handleSpeedChange(speed)}
                       className={cn(
-                        "flex items-center justify-center py-2 sm:py-2 md:py-2.5 lg:py-2 px-4 sm:px-4 md:px-5 lg:px-4 rounded-xl sm:rounded-xl md:rounded-xl lg:rounded-xl text-sm sm:text-sm md:text-sm lg:text-sm font-bold transition-all shadow-sm border cursor-pointer touch-manipulation active:scale-95 min-w-[44px]",
+                        "flex items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-4 sm:px-4 md:px-5 lg:px-4 rounded-xl sm:rounded-xl md:rounded-xl lg:rounded-xl text-sm sm:text-sm md:text-sm lg:text-sm font-bold transition-all shadow-sm border cursor-pointer touch-manipulation active:scale-95 min-w-[44px]",
                         currentSpeed === speed
                           ? (course.categoryId === 'ectoderme' ? "bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20" :
                             course.categoryId === 'endoderme' ? "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/20" :
@@ -192,7 +192,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   <button
                     onClick={() => prevVideo && onSelectVideo(prevVideo)}
                     disabled={!prevVideo}
-                    className="flex items-center justify-center py-2 sm:py-2 md:py-2.5 lg:py-2 px-6 sm:px-6 md:px-8 lg:px-6 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-xl sm:rounded-xl md:rounded-xl lg:rounded-xl shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+                    className="flex items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-6 sm:px-6 md:px-8 lg:px-6 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-xl sm:rounded-xl md:rounded-xl lg:rounded-xl shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
                     title={t('videoLibrary.previous')}
                   >
                     <ChevronLeft className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5" />
@@ -200,7 +200,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   <button
                     onClick={() => nextVideo && onSelectVideo(nextVideo)}
                     disabled={!nextVideo}
-                    className="flex items-center justify-center py-2 sm:py-2 md:py-2.5 lg:py-2 px-6 sm:px-6 md:px-8 lg:px-6 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-xl sm:rounded-xl md:rounded-xl lg:rounded-xl shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+                    className="flex items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-6 sm:px-6 md:px-8 lg:px-6 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-xl sm:rounded-xl md:rounded-xl lg:rounded-xl shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
                     title={t('videoLibrary.next')}
                   >
                     <ChevronRight className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5" />
@@ -215,7 +215,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                       href={`https://customer-6i2z59dst7q6iswv.cloudflarestream.com/${course.cloudflareId}/downloads/default.mp4`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex justify-center items-center py-2 sm:py-2 md:py-2.5 lg:py-2 px-4 sm:px-4 md:px-5 lg:px-4 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-500 md:hover:text-slate-900 transition-colors rounded-xl sm:rounded-xl md:rounded-xl lg:rounded-xl shadow-sm border border-slate-200"
+                      className="flex justify-center items-center py-2 sm:py-2 md:py-2 lg:py-2 px-4 sm:px-4 md:px-5 lg:px-4 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-500 md:hover:text-slate-900 transition-colors rounded-xl sm:rounded-xl md:rounded-xl lg:rounded-xl shadow-sm border border-slate-200"
                       title={t('videoLibrary.download')}
                     >
                       <DownloadCloud className="w-5 h-5 sm:w-5 sm:h-5 md:w-4 md:h-4 lg:w-5 lg:h-5" strokeWidth={2.5} />

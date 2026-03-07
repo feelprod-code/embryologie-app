@@ -287,8 +287,8 @@ function App() {
                 </div>
 
                 {/* MOBILE TIMELINE NAVIGATION (Horizontal chip selection) */}
-                <div className="w-[100vw] lg:hidden overflow-x-auto no-scrollbar -mx-2 sm:-mx-6 lg:mx-0 pb-3 pt-3 mt-1 border-t border-slate-100 snap-x">
-                  <div className="flex flex-nowrap items-stretch gap-2 px-4 w-max mx-auto">
+                <div className="w-[100vw] lg:hidden overflow-x-auto no-scrollbar -mx-2 sm:-mx-6 lg:mx-0 pb-2 pt-2 mt-1 border-t border-slate-100 snap-x">
+                  <div className="flex flex-nowrap items-stretch gap-1.5 px-4 w-max mx-auto">
                     {detailedStages.map((stage) => {
                       const isActive = stage.id === activeStageId;
                       const idx = getOriginalIndex(stage.id);
@@ -300,7 +300,7 @@ function App() {
                           onClick={() => setActiveStageId(stage.id)}
                           onTouchStart={(e) => { e.preventDefault(); setActiveStageId(stage.id); }}
                           className={cn(
-                            "relative flex flex-col items-center justify-center py-4 px-3 rounded-[1.2rem] min-w-[130px] sm:min-w-[150px] border shrink-0 snap-center transition-all duration-300",
+                            "relative flex flex-col items-center justify-center py-2.5 px-2 md:px-3 rounded-xl min-w-[110px] sm:min-w-[130px] md:min-w-[120px] border shrink-0 snap-center transition-all duration-300",
                             isActive
                               ? "bg-slate-900 border-slate-800 text-white shadow-md scale-100"
                               : isPast
@@ -312,7 +312,7 @@ function App() {
                             <div className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-amber-500 rounded-full shadow-sm animate-in zoom-in"></div>
                           )}
                           <span className={cn(
-                            "font-bebas text-xl sm:text-2xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 whitespace-nowrap",
+                            "font-bebas text-lg sm:text-xl md:text-base tracking-wider leading-none mb-1 whitespace-nowrap",
                             isActive ? "text-white" : "text-slate-800"
                           )}>
                             {stage.dayLabel}
@@ -457,10 +457,10 @@ function App() {
 
                                   {/* Content */}
                                   <div className="w-full sm:w-3/4 flex flex-col">
-                                    <h4 className="text-dark font-bold mb-2 text-xl font-sans">
+                                    <h4 className="text-dark font-bold mb-1 text-lg md:text-xl font-sans">
                                       {event.movement}
                                     </h4>
-                                    <p className="text-slate-600 text-base leading-relaxed font-medium">
+                                    <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
                                       {event.description}
                                     </p>
                                   </div>
