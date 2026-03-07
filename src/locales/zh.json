@@ -26,7 +26,7 @@
         "question": "问题",
         "searching": "搜索中...",
         "summaryDocument": "总结文档",
-        "welcomeMessage": "你好！我是 Embryo AI，你的 Marc Damoiseaux 胚胎学课程专属助手。\\n\\n向我提问关于**动力学级联**、**胚层**或**生物动力学实践**的问题吧。"
+        "welcomeMessage": "你好！我是 Embryo AI，你的 Marc Damoiseaux 胚胎学课程专属助手。\\n向我提问关于**动力学级联**、**胚层**或**生物动力学实践**的问题吧。"
     },
     "podcasts": {
         "allResources": "所有资源",
@@ -61,5 +61,12 @@
             "mesoderm": "中胚层",
             "eye": "眼睛"
         }
+    },
+    "app": {
+        "timeline_palpation": "触诊",
+        "timeline_therapist_posture": "治疗师姿势",
+        "timeline_psychosomatic": "身心",
+        "timeline_layer_perceptions": "层级感知",
+        "timeline_fulcrums": "支点"
     }
 }

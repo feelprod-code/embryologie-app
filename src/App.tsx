@@ -254,7 +254,7 @@ function App() {
 
 
           {currentView === 'video-library' && (
-            <div className="w-full max-w-5xl flex flex-col items-center animate-fade-in relative z-10 pb-24 lg:pb-0 mx-auto">
+            <div className="w-full flex flex-col items-center animate-fade-in relative z-10 pb-24 lg:pb-0 mx-auto">
               <div className="w-full">
                 <VideoLibraryList
                   onSelectVideo={(video) => {

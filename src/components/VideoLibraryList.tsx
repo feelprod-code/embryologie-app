@@ -78,7 +78,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                 {/* Category Pills (identical spacing to Timeline) */}
                 <div className="w-full pb-2 mb-2 sm:mb-0 border-t border-slate-100 pt-2 sm:pt-2 md:pt-1">
-                    <div className="flex flex-nowrap items-stretch justify-center gap-1 sm:gap-1.5 md:gap-1.5 w-full max-w-4xl mx-auto px-2 md:px-0">
+                    <div className="flex flex-nowrap items-stretch justify-center gap-1 sm:gap-1.5 md:gap-1.5 w-full max-w-4xl lg:max-w-6xl xl:max-w-[90%] mx-auto px-2 md:px-0">
                         {tabs.map(layer => {
                             const isSelected = selectedLayer === layer;
 
@@ -140,7 +140,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
             {/* Video List */}
             <motion.div
                 key={selectedLayer}
-                className="flex flex-col gap-1 sm:gap-2 w-full max-w-4xl mx-auto px-4 lg:px-0"
+                className="flex flex-col gap-1 sm:gap-2 w-full max-w-4xl lg:max-w-6xl xl:max-w-[90%] mx-auto px-4 lg:px-0"
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"

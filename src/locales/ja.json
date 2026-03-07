@@ -26,7 +26,7 @@
         "question": "質問",
         "searching": "検索中...",
         "summaryDocument": "要約ドキュメント",
-        "welcomeMessage": "こんにちは！私はEmbryo AI、Marc Damoiseauxの発生学コース専用アシスタントです。\\n\\n**運動カスケード**、**胚葉**、または**バイオダイナミック実践**について質問してください。"
+        "welcomeMessage": "こんにちは！私はEmbryo AI、Marc Damoiseauxの発生学コース専用アシスタントです。\\n**運動カスケード**、**胚葉**、または**バイオダイナミック実践**について質問してください。"
     },
     "podcasts": {
         "allResources": "すべてのリソース",
@@ -61,5 +61,12 @@
             "mesoderm": "中胚葉",
             "eye": "目"
         }
+    },
+    "app": {
+        "timeline_palpation": "触診",
+        "timeline_therapist_posture": "セラピストの姿勢",
+        "timeline_psychosomatic": "心身医学",
+        "timeline_layer_perceptions": "層の知覚",
+        "timeline_fulcrums": "支点"
     }
 }
