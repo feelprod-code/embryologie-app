@@ -430,11 +430,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           {!isVideoVisible && (
             <div className="flex items-center bg-slate-50/90 backdrop-blur-md rounded-full border border-slate-200/70 p-1 sm:pr-3 shadow-sm fade-in w-[200px] sm:w-[320px] md:w-[420px] gap-1 sm:gap-2 transition-all relative">
               {/* Playback Buttons */}
-              <div className="flex items-center shrink-0">
+              <div className="flex items-center justify-center shrink-0">
                 <button
                   onClick={() => prevVideo && onSelectVideo(prevVideo)}
                   disabled={!prevVideo}
-                  className="p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="flex items-center justify-center p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   title={t('videoLibrary.previous')}
                 >
                   <ChevronLeft className="w-4 h-4 sm:w-4 sm:h-4" />
@@ -442,7 +442,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
                 <button
                   onClick={() => videoPlayerRef.current?.togglePlay()}
-                  className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-800 text-white hover:bg-slate-700 active:scale-95 transition-all shadow-sm mx-0.5 sm:mx-1"
+                  className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-800 text-white hover:bg-slate-700 active:scale-95 transition-all shadow-sm mx-1"
                   title={isVideoPlaying ? "Pause" : "Play"}
                 >
                   {isVideoPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-[1px]" />}
@@ -451,7 +451,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 <button
                   onClick={() => nextVideo && onSelectVideo(nextVideo)}
                   disabled={!nextVideo}
-                  className="p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="flex items-center justify-center p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   title={t('videoLibrary.next')}
                 >
                   <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4" />
