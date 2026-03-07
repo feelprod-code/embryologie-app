@@ -330,7 +330,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         isFullscreen ? "hidden" : ""
       )}>
         {/* COMPACT SINGLE-LINE CONTROLS */}
-        <div className="flex items-center justify-between w-full gap-2 overflow-x-auto no-scrollbar">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center w-full gap-2 overflow-x-auto no-scrollbar">
 
           {/* LEFT: SPEED CONTROLS */}
           <div className="flex items-center gap-1 justify-start shrink-0">
