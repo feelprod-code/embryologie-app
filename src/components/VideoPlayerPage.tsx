@@ -497,8 +497,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
         )}
 
-        {/* --- TABLET VIEW: Floating Picture-in-Picture in Corner --- */}
-        {isTabletLayout && (
+        {/* --- TABLET & DESKTOP VIEW: Floating Picture-in-Picture in Corner --- */}
+        {(isTabletLayout || isDesktopLayout) && (
           <div className="flex-1 relative w-full h-full pb-4 px-4 overflow-hidden">
             {isFullscreen ? (
               <div className="w-full h-full fixed inset-0 z-[100] bg-black">
@@ -557,34 +557,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
         )}
 
-        {/* --- DESKTOP VIEW: Resizable Split Pane --- */}
-        {isDesktopLayout && (
-          <div className="flex-1 min-h-0 w-full px-0">
-            {isFullscreen ? (
-              <div className="w-full h-full">
-                {TopContent}
-              </div>
-            ) : (
-              <PanelGroup orientation="horizontal" className="w-full">
-                <Panel defaultSize={50} minSize={30} className={cn("flex flex-col pr-2", !isVideoVisible && "sr-only")}>
-                  {TopContent}
-                </Panel>
-                <PanelResizeHandle className={cn("relative flex items-center justify-center w-4 h-full mx-1 group cursor-col-resize", !isVideoVisible && "hidden")}>
-                  <div className={cn(
-                    "w-1 h-12 bg-slate-300 rounded-full transition-colors",
-                    course.categoryId === 'ectoderme' ? "group-hover:bg-[#5A9C51] active:bg-[#5A9C51]" :
-                      course.categoryId === 'endoderme' ? "group-hover:bg-[#4171B5] active:bg-[#4171B5]" :
-                        course.categoryId === 'mesoderme' ? "group-hover:bg-[#F27D33] active:bg-[#F27D33]" :
-                          course.categoryId === 'oeil' ? "group-hover:bg-[#F2B729] active:bg-[#F2B729]" : "group-hover:bg-slate-500 active:bg-slate-500"
-                  )} />
-                </PanelResizeHandle>
-                <Panel defaultSize={50} minSize={30} className="flex flex-col pl-2">
-                  {BottomContent}
-                </Panel>
-              </PanelGroup>
-            )}
-          </div>
-        )}
 
       </div >
     </>
