@@ -6,9 +6,10 @@ import { LanguageSwitcher } from './ui/LanguageSwitcher';
 interface DesktopMenuProps {
     currentView: string;
     setCurrentView: (view: any) => void;
+    isAdmin?: boolean;
 }
 
-export function DesktopMenu({ currentView, setCurrentView }: DesktopMenuProps) {
+export function DesktopMenu({ currentView, setCurrentView, isAdmin }: DesktopMenuProps) {
     const { t } = useTranslation();
 
     return (
@@ -69,6 +70,20 @@ export function DesktopMenu({ currentView, setCurrentView }: DesktopMenuProps) {
                 >
                     {t('nav.ai_assistant', 'Embryo AI')}
                 </button>
+
+                {isAdmin && (
+                    <button
+                        onClick={() => setCurrentView('admin')}
+                        className={cn(
+                            "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-colors",
+                            currentView === 'admin'
+                                ? "bg-[#F27D33] text-white shadow-md"
+                                : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                        )}
+                    >
+                        Admin
+                    </button>
+                )}
             </div>
 
             {/* Language / Tools */}

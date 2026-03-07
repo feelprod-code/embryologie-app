@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video } from 'lucide-react';
+import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video, Shield } from 'lucide-react';
 import { detailedStages as detailedStagesFr, type StageDataV2, type EmbryoLayer } from './data/embryologie';
 import { detailedStages as detailedStagesEn } from './data/embryologie_en';
 import { detailedStages as detailedStagesEs } from './data/embryologie_es';
@@ -14,6 +14,7 @@ import { Home } from './components/Home';
 import { VideoLibraryList } from './components/VideoLibraryList';
 import { VideoPlayerPage } from './components/VideoPlayerPage';
 import { AuthScreen } from './components/AuthScreen';
+import { AdminDashboard } from './components/AdminDashboard';
 import { supabase } from './lib/supabase';
 import { type VideoCourse } from './data/videoCourses';
 import { cn } from './utils';
@@ -62,11 +63,14 @@ const getDeviceId = () => {
   return deviceId;
 };
 
+const ADMIN_EMAILS = ['guillaumephilippe@me.com', 'feelprod@free.fr', 'guillaumephilippe1968@gmail.com'];
+
 function App() {
   const { t, i18n } = useTranslation();
 
   const [session, setSession] = useState<any>(null);
   const [isInitializing, setIsInitializing] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -146,12 +150,22 @@ function App() {
     };
 
     supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email)) {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
       checkProfileDevice(session);
     });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email)) {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
       if (_event === 'SIGNED_IN') {
         if (mounted) setIsInitializing(true);
         checkProfileDevice(session);
@@ -182,7 +196,7 @@ function App() {
 
   const [activeStageId, setActiveStageId] = useState<string>(detailedStages[0].id);
 
-  type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'podcast-player' | 'podcasts';
+  type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'podcast-player' | 'podcasts' | 'admin';
   const [currentView, setCurrentView] = useState<View>('home');
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
 
@@ -210,7 +224,7 @@ function App() {
       )}
 
       {/* New Fixed Desktop Navigation */}
-      <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} />
+      <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} isAdmin={isAdmin} />
 
       {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
       {currentView !== 'podcast-player' && (
@@ -270,6 +284,22 @@ function App() {
             </div>
             <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('nav.ai_assistant')}</span>
           </button>
+
+          {isAdmin && (
+            <button
+              onClick={() => setCurrentView('admin')}
+              onTouchStart={(e) => { e.preventDefault(); setCurrentView('admin'); }}
+              className={cn(
+                "flex flex-1 flex-col items-center justify-center pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group",
+                currentView === 'admin' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
+              )}
+            >
+              <div className={cn("transition-transform duration-200", currentView === 'admin' ? "scale-105" : "group-hover:scale-105")}>
+                <Shield size={24} />
+              </div>
+              <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'admin' ? "font-medium" : "font-normal")}>Admin</span>
+            </button>
+          )}
 
           {/* Mobile bottom nav Language Switcher */}
           <div className="flex flex-1 items-center justify-center pb-2 pt-3">
@@ -350,6 +380,10 @@ function App() {
         )}>
 
           {/* Desktop Top Navigation Bar */}
+
+          {currentView === 'admin' && isAdmin && (
+            <AdminDashboard />
+          )}
 
           {currentView === 'home' && (
             <div className="w-full flex-1 flex items-stretch justify-center">
