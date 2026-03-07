@@ -32,6 +32,7 @@ const formatTime = (seconds: number) => {
 interface CustomVideoPlayerProps {
     youtubeId?: string;
     cloudflareId?: string;
+    localVideoUrl?: string | null;
     speed?: number;
     className?: string;
     categoryId?: string;
@@ -50,6 +51,7 @@ export interface CustomVideoPlayerRef {
 export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVideoPlayerProps>(({
     youtubeId,
     cloudflareId,
+    localVideoUrl,
     categoryId,
     speed = 1,
     className = '',
@@ -184,6 +186,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     }, [isFullscreen, onFullscreenChange]);
 
     const getVideoElement = (): HTMLVideoElement | null => {
+        if (localVideoUrl && playerRef.current) return playerRef.current;
         const streamEl = document.querySelector(`stream[src="${cloudflareId}"]`) || document.querySelector('stream');
         if (!streamEl) return document.querySelector('video');
         return streamEl.shadowRoot?.querySelector('video') || streamEl.querySelector('video') || document.querySelector('video');
@@ -291,8 +294,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 const langCode = getCloudflareLangCode(i18n.language || 'fr');
                 let vttText = '';
 
-                // Try fetching directly from Cloudflare downloads first
-                const vttUrl = `https://customer-6i2z59dst7q6iswv.cloudflarestream.com/${cloudflareId}/downloads/default.vtt?lang=${langCode}`;
+                // Try fetching directly from Cloudflare downloads first via local proxy
+                const vttUrl = `/cf-stream/${cloudflareId}/downloads/default.vtt?lang=${langCode}`;
 
                 try {
                     const response = await fetch(vttUrl);
@@ -310,7 +313,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 } catch {
                     // Try to fetch FR as a last resort just to see if we have ANY subtitles
                     try {
-                        const localVttRes = await fetch(`/vtt/${cloudflareId}_fr.vtt`);
+                        const localVttRes = await fetch(`/cf-stream/${cloudflareId}/downloads/default.vtt?lang=fr`);
                         if (localVttRes.ok) {
                             vttText = await localVttRes.text();
                         }
@@ -396,8 +399,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         fetchVtt();
     }, [cloudflareId, i18n.language]);
 
-    // 1. PRIORITÉ ABSOLUE : Lecteur Stream Officiel customisé
-    if (cloudflareId && cloudflareId !== "") {
+    // 1. PRIORITÉ ABSOLUE : Lecteur Stream Officiel customisé OU Fichier local
+    if ((cloudflareId && cloudflareId !== "") || localVideoUrl) {
         return (
             <div
                 ref={containerRef}
@@ -417,48 +420,86 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             >
                 {/* 1. LAYER 0: The native stream player without controls */}
                 <div className="absolute inset-0 w-full h-full pointer-events-none">
-                    <Stream
-                        streamRef={playerRef}
-                        className="w-full h-full object-contain"
-                        src={cloudflareId}
-                        controls={false} // Disable native UI to avoid iOS taking over fullscreen
-                        width="100%"
-                        height="100%"
-                        playbackRate={speed}
-                        responsive={false}
-                        onEnded={() => {
-                            setIsPlaying(false);
-                            if (onEnded) onEnded();
-                        }}
-                        onPlay={() => setIsPlaying(true)}
-                        onPause={() => setIsPlaying(false)}
-                        onTimeUpdate={() => {
-                            const player = playerRef.current;
-                            if (!player) return;
-                            const time = player.currentTime || 0;
-                            setCurrentTime(time);
+                    {localVideoUrl ? (
+                        <video
+                            ref={playerRef as any}
+                            className="w-full h-full object-contain"
+                            src={localVideoUrl}
+                            playsInline
+                            controls={false}
+                            onEnded={() => {
+                                setIsPlaying(false);
+                                if (onEnded) onEnded();
+                            }}
+                            onPlay={() => setIsPlaying(true)}
+                            onPause={() => setIsPlaying(false)}
+                            onTimeUpdate={() => {
+                                const player = playerRef.current;
+                                if (!player) return;
+                                const time = player.currentTime || 0;
+                                setCurrentTime(time);
 
-                            // Initialize duration cleanly
-                            if (player.duration && player.duration > 0 && duration === 0) {
-                                setDuration(player.duration);
-                            }
-
-                            // Trigger controls on unpause or active scrubbing not required here continuously
-
-                            if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
-
-                            let active = null;
-                            // Use cuesRef mapping
-                            for (let i = 0; i < cuesRef.current.length; i++) {
-                                const c = cuesRef.current[i];
-                                if (time >= c.start && time <= c.end) {
-                                    active = c;
-                                    break;
+                                if (player.duration && player.duration > 0 && duration === 0) {
+                                    setDuration(player.duration);
                                 }
-                            }
-                            setActiveSubtitle(active ? active.text : null);
-                        }}
-                    />
+
+                                if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
+
+                                let active = null;
+                                for (let i = 0; i < cuesRef.current.length; i++) {
+                                    const c = cuesRef.current[i];
+                                    if (time >= c.start && time <= c.end) {
+                                        active = c;
+                                        break;
+                                    }
+                                }
+                                setActiveSubtitle(active ? active.text : null);
+                            }}
+                        />
+                    ) : (
+                        <Stream
+                            streamRef={playerRef}
+                            className="w-full h-full object-contain"
+                            src={cloudflareId!}
+                            controls={false} // Disable native UI to avoid iOS taking over fullscreen
+                            width="100%"
+                            height="100%"
+                            playbackRate={speed}
+                            responsive={false}
+                            onEnded={() => {
+                                setIsPlaying(false);
+                                if (onEnded) onEnded();
+                            }}
+                            onPlay={() => setIsPlaying(true)}
+                            onPause={() => setIsPlaying(false)}
+                            onTimeUpdate={() => {
+                                const player = playerRef.current;
+                                if (!player) return;
+                                const time = player.currentTime || 0;
+                                setCurrentTime(time);
+
+                                // Initialize duration cleanly
+                                if (player.duration && player.duration > 0 && duration === 0) {
+                                    setDuration(player.duration);
+                                }
+
+                                // Trigger controls on unpause or active scrubbing not required here continuously
+
+                                if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
+
+                                let active = null;
+                                // Use cuesRef mapping
+                                for (let i = 0; i < cuesRef.current.length; i++) {
+                                    const c = cuesRef.current[i];
+                                    if (time >= c.start && time <= c.end) {
+                                        active = c;
+                                        break;
+                                    }
+                                }
+                                setActiveSubtitle(active ? active.text : null);
+                            }}
+                        />
+                    )}
                 </div>
 
                 {/* 2. LAYER 1: Interactive Screen Tap Zone */}

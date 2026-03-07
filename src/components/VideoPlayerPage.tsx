@@ -7,11 +7,13 @@ import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
 import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
 import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
 import { cn } from '../utils';
-import { Clock, ChevronLeft, ChevronRight, Video, VideoOff, Play, Pause, DownloadCloud, Loader2, CheckCircle2 } from 'lucide-react';
+import { Clock, ChevronLeft, ChevronRight, Video, VideoOff, Play, Pause, DownloadCloud, Loader2, CheckCircle2, Trash2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { CustomVideoPlayer, type CustomVideoPlayerRef } from './ui/CustomVideoPlayer';
 import { useTranslation } from 'react-i18next';
+
+const CACHE_NAME = 'video-offline-cache';
 
 
 
@@ -40,6 +42,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               ? videoCoursesJa
               : videoCoursesFr;
 
+  const course = videoCourses.find((v: VideoCourse) => v.id === initialCourse.id) || initialCourse;
+
   const [currentSpeed, setCurrentSpeed] = useState<number>(1);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [pipWidth, setPipWidth] = useState<number>(360);
@@ -53,41 +57,87 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   const [isCaching, setIsCaching] = useState<boolean>(false);
   const [isCached, setIsCached] = useState<boolean>(false);
+  const [localVideoUrl, setLocalVideoUrl] = useState<string | null>(null);
+  const [isConfirmingDelete, setIsConfirmingDelete] = useState<boolean>(false);
 
-  const videoUrl = initialCourse.cloudflareId ? `https://customer-6i2z59dst7q6iswv.cloudflarestream.com/${initialCourse.cloudflareId}/downloads/default.mp4` : '';
+  const videoUrl = course.cloudflareId ? `/cf-stream/${course.cloudflareId}/downloads/default.mp4` : '';
 
   useEffect(() => {
+    let objectUrl: string | null = null;
+
     const checkCache = async () => {
       if (!videoUrl || typeof caches === 'undefined') return;
       try {
-        const cache = await caches.open('video-offline-cache');
+        const cache = await caches.open(CACHE_NAME);
         const response = await cache.match(videoUrl);
         setIsCached(!!response);
+        if (response) {
+          const blob = await response.blob();
+          objectUrl = URL.createObjectURL(blob);
+          setLocalVideoUrl(objectUrl);
+        } else {
+          setLocalVideoUrl(null);
+        }
       } catch (e) {
         console.error("Cache preview check failed", e);
       }
     };
     checkCache();
+
+    return () => {
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+      }
+    };
   }, [videoUrl]);
 
   const handleOfflineCache = async () => {
     if (!videoUrl || isCaching || typeof caches === 'undefined') return;
-    if (isCached) return;
+
+    // Si la vidéo est déjà en cache, l'utilisateur a cliqué pour la supprimer
+    if (isCached) {
+      if (!isConfirmingDelete) {
+        setIsConfirmingDelete(true);
+        // Annule la confirmation après 3 secondes
+        setTimeout(() => setIsConfirmingDelete(false), 3000);
+        return;
+      }
+
+      try {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.delete(videoUrl);
+        setIsCached(false);
+        setLocalVideoUrl(null);
+        setIsConfirmingDelete(false);
+      } catch (e) {
+        console.error("Erreur lors de la suppression du cache", e);
+      }
+      return;
+    }
 
     setIsCaching(true);
     try {
-      // First try to fetch the video to check for errors like 404 or CORS
+      // On passe par le proxy Vite / Vercel pour éviter l'erreur CORS sur la redirection 302 native de Cloudflare
       const response = await fetch(videoUrl);
+
       if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error("La vidéo est en cours de préparation par le serveur (Cloudflare) pour le téléchargement hors-ligne. Veuillez réessayer dans quelques minutes.");
+        }
         throw new Error(`Erreur réseau: ${response.status} ${response.statusText}`);
       }
 
-      const cache = await caches.open('video-offline-cache');
+      const cache = await caches.open(CACHE_NAME);
+      const clonedResponse = response.clone();
       await cache.put(videoUrl, response);
+
+      const blob = await clonedResponse.blob();
+      setLocalVideoUrl(URL.createObjectURL(blob));
+
       setIsCached(true);
     } catch (e: any) {
       console.error("Failed to cache video", e);
-      alert(t('videoLibrary.cacheError', `Erreur lors de l'enregistrement. (${e?.message || 'Erreur inconnue'})`));
+      alert(t('videoLibrary.cacheError', `Erreur lors de l'enregistrement de la vidéo: ${e?.message || 'Erreur inconnue'}`));
     } finally {
       setIsCaching(false);
     }
@@ -218,7 +268,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     };
   }, [isDragging]);
 
-  const course = videoCourses.find((v: VideoCourse) => v.id === initialCourse.id) || initialCourse;
 
   const categoryVideos = videoCourses.filter((v: VideoCourse) => v.categoryId === course.categoryId);
   const currentIndex = categoryVideos.findIndex((v: VideoCourse) => v.id === course.id);
@@ -264,6 +313,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           ref={videoPlayerRef}
           youtubeId={course.youtubeId}
           cloudflareId={course.cloudflareId}
+          localVideoUrl={localVideoUrl}
           categoryId={course.categoryId}
           speed={currentSpeed}
           onTimeUpdate={handleTimeUpdate}
@@ -325,20 +375,29 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
           {/* RIGHT: OFFLINE AND DOWNLOAD */}
           <div className="flex items-center gap-2 justify-end shrink-0">
-            {initialCourse.cloudflareId && (
+            {course.cloudflareId && (
               <button
                 onClick={handleOfflineCache}
                 disabled={isCaching}
-                className="flex justify-center items-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-3 sm:px-3 md:px-4 lg:px-4 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-500 md:hover:text-slate-900 transition-colors rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm border border-slate-200 disabled:opacity-50"
-                title={isCached ? "Déjà téléchargé hors ligne" : "Télécharger pour accès hors ligne"}
+                className={`group relative flex justify-center items-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-3 sm:px-3 md:px-4 lg:px-4 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-white text-slate-500 border-slate-200 hd:hover:text-slate-900 md:hover:bg-slate-50'} disabled:opacity-50 touch-manipulation active:scale-95`}
+                title={isCaching ? "Enregistrement en cours..." : isCached ? "Supprimer la vidéo de cet appareil" : "Enregistrer pour accès hors-ligne"}
               >
-                {isCaching ? (
-                  <Loader2 className="w-5 h-5 sm:w-5 sm:h-5 md:w-4 md:h-4 lg:w-5 lg:h-5 animate-spin" strokeWidth={2.5} />
-                ) : isCached ? (
-                  <CheckCircle2 className="w-5 h-5 sm:w-5 sm:h-5 md:w-4 md:h-4 lg:w-5 lg:h-5 text-green-500" strokeWidth={2.5} />
-                ) : (
-                  <DownloadCloud className="w-5 h-5 sm:w-5 sm:h-5 md:w-4 md:h-4 lg:w-5 lg:h-5" strokeWidth={2.5} />
-                )}
+                <div className="relative flex items-center justify-center w-5 h-5 sm:w-5 sm:h-5 md:w-4 md:h-4 lg:w-5 lg:h-5">
+                  {isCaching ? (
+                    <Loader2 className="w-full h-full animate-spin" strokeWidth={2.5} />
+                  ) : isCached ? (
+                    isConfirmingDelete ? (
+                      <Trash2 className="w-full h-full text-red-500 animate-in zoom-in duration-200" strokeWidth={2.5} />
+                    ) : (
+                      <>
+                        <CheckCircle2 className="w-full h-full text-[#5A9C51] md:group-hover:opacity-0 transition-opacity absolute" strokeWidth={2.5} />
+                        <Trash2 className="w-full h-full text-red-500 opacity-0 md:group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />
+                      </>
+                    )
+                  ) : (
+                    <DownloadCloud className="w-full h-full" strokeWidth={2.5} />
+                  )}
+                </div>
               </button>
             )}
           </div>
