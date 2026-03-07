@@ -352,7 +352,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           course.categoryId === 'endoderme' ? "prose-a:text-[#4171B5] hover:prose-a:text-[#33598f] prose-blockquote:border-[#4171B5] prose-blockquote:bg-[#4171B5]/5" :
             course.categoryId === 'mesoderme' ? "prose-a:text-[#F27D33] hover:prose-a:text-[#d46522] prose-blockquote:border-[#F27D33] prose-blockquote:bg-[#F27D33]/5" :
               course.categoryId === 'oeil' ? "prose-a:text-[#F2B729] hover:prose-a:text-[#d49d1e] prose-blockquote:border-[#F2B729] prose-blockquote:bg-[#F2B729]/5" :
-                "prose-a:text-slate-800 hover:prose-a:text-slate-900 prose-blockquote:border-slate-800 prose-blockquote:bg-slate-100"
+                "prose-a:text-slate-800 hover:prose-a:text-slate-900 prose-blockquote:border-slate-800 prose-blockquote:bg-slate-100",
+        "[&>*:first-child]:!mt-0"
       )}>
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
           {course.transcriptMarkdown.replace(/^#\s.*$/gm, '').trim().replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
