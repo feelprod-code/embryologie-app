@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video } from 'lucide-react';
 import { detailedStages as detailedStagesFr, type StageDataV2, type EmbryoLayer } from './data/embryologie';
 import { detailedStages as detailedStagesEn } from './data/embryologie_en';
@@ -12,6 +13,8 @@ import { ChatBot } from './components/ChatBot';
 import { Home } from './components/Home';
 import { VideoLibraryList } from './components/VideoLibraryList';
 import { VideoPlayerPage } from './components/VideoPlayerPage';
+import { AuthScreen } from './components/AuthScreen';
+import { supabase } from './lib/supabase';
 import { type VideoCourse } from './data/videoCourses';
 import { cn } from './utils';
 import { useTranslation } from 'react-i18next';
@@ -50,8 +53,118 @@ const layerColors: Record<EmbryoLayer, string> = {
   "N/A": "bg-transparent text-slate-400 border-transparent",
 };
 
+const getDeviceId = () => {
+  let deviceId = localStorage.getItem('device_id');
+  if (!deviceId) {
+    deviceId = uuidv4();
+    localStorage.setItem('device_id', deviceId);
+  }
+  return deviceId;
+};
+
 function App() {
   const { t, i18n } = useTranslation();
+
+  const [session, setSession] = useState<any>(null);
+  const [isInitializing, setIsInitializing] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const checkProfileDevice = async (currentSession: any) => {
+      if (!currentSession?.user) {
+        if (mounted) {
+          setSession(null);
+          setIsInitializing(false);
+        }
+        return;
+      }
+
+      const localDeviceId = getDeviceId();
+      let retries = 5;
+      let profile = null;
+
+      // Retry fetching profile in case the Supabase trigger takes a moment
+      while (retries > 0 && !profile) {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('device_id, is_active')
+          .eq('id', currentSession.user.id)
+          .single();
+
+        if (data) {
+          profile = data;
+        } else {
+          if (error && error.code !== 'PGRST116') { // PGRST116 is not found
+            console.warn("Retrying profile fetch due to error:", error.message);
+          }
+          retries--;
+          await new Promise(res => setTimeout(res, 500));
+        }
+      }
+
+      if (profile) {
+        if (!profile.is_active) {
+          alert(t('auth.account_inactive', 'Votre compte est désactivé. Veuillez contacter le support.'));
+          await supabase.auth.signOut();
+          if (mounted) {
+            setSession(null);
+            setIsInitializing(false);
+          }
+          return;
+        }
+
+        if (!profile.device_id) {
+          // Bind new device
+          const { error: updateError } = await supabase
+            .from('profiles')
+            .update({ device_id: localDeviceId })
+            .eq('id', currentSession.user.id);
+
+          if (updateError) {
+            console.error("Failed to bind device:", updateError);
+          }
+        } else if (profile.device_id !== localDeviceId) {
+          // Mismatch
+          alert(t('auth.device_mismatch', 'Cet accès est déjà utilisé sur un autre appareil. Vous ne pouvez vous connecter que depuis votre appareil principal.'));
+          await supabase.auth.signOut();
+          if (mounted) {
+            setSession(null);
+            setIsInitializing(false);
+          }
+          return;
+        }
+      } else {
+        // Trigger failed or profile not found
+        console.error("Profile not found after retries. Proceeding without device check.");
+      }
+
+      if (mounted) {
+        setSession(currentSession);
+        setIsInitializing(false);
+      }
+    };
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      checkProfileDevice(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (_event === 'SIGNED_IN') {
+        if (mounted) setIsInitializing(true);
+        checkProfileDevice(session);
+      } else if (_event === 'SIGNED_OUT') {
+        if (mounted) setSession(null);
+      }
+    });
+
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
+  }, [t]);
 
   const detailedStages = i18n.language.startsWith('en')
     ? detailedStagesEn
@@ -77,6 +190,14 @@ function App() {
   // Use original index for timeline visual order
   const getOriginalIndex = (id: string) => detailedStages.findIndex(s => s.id === id);
   const activeIndex = getOriginalIndex(activeStageId);
+
+  if (isInitializing) {
+    return <div className="h-[100dvh] w-full flex items-center justify-center bg-slate-50"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-800"></div></div>;
+  }
+
+  if (!session) {
+    return <AuthScreen />;
+  }
 
   return (
     <div className="flex flex-col items-center h-[100dvh] w-full max-w-full relative bg-[#FAF9F6] text-slate-800 overflow-hidden">
