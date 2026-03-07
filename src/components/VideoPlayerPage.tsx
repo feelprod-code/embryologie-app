@@ -85,7 +85,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           "w-full pt-1 pb-4 mb-2 lg:mb-6 lg:pt-3 shrink-0",
           isFullscreen ? "hidden" : ""
         )}>
-          <div className="flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 w-full max-w-4xl mx-auto px-2 md:px-0">
+          <div className="flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 w-full max-w-3xl mx-auto px-2 md:px-0">
             {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
               const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
               const cId = lmap[layer as keyof typeof lmap];
@@ -139,13 +139,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         </div>
 
         <div className={cn(
-          "flex-1 flex flex-col flex-1",
-          isFullscreen ? "w-full h-full" : "lg:flex-row gap-2 lg:gap-8 min-h-0 px-2 sm:px-0"
+          "flex-1 flex flex-col",
+          isFullscreen ? "w-full h-full" : "gap-3 sm:gap-4 min-h-0 px-2 sm:px-0 w-full"
         )}>
-          {/* Left Column: Video & Controls */}
+          {/* Top Section: Video & Controls */}
           <div className={cn(
-            "w-full flex flex-col",
-            isFullscreen ? "" : "lg:w-7/12 gap-2 shrink-0 z-20"
+            "w-full flex flex-col mx-auto max-w-3xl",
+            isFullscreen ? "max-w-none" : "gap-2 shrink-0 z-20"
           )}>
             <CustomVideoPlayer
               youtubeId={course.youtubeId}
@@ -227,9 +227,9 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             </div>
           </div>
 
-          {/* Right Column: Transcript (Scrollable Independent Area) */}
+          {/* Bottom Section: Transcript (Scrollable Independent Area) */}
           <div className={cn(
-            "w-full lg:w-5/12 bg-white rounded-t-2xl md:rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col flex-1 min-h-0 mx-0 pb-8 lg:pb-0 z-10 pt-0 relative",
+            "w-full max-w-3xl mx-auto bg-white rounded-t-2xl md:rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col flex-1 min-h-0 pb-8 lg:pb-0 z-10 pt-0 relative",
             isFullscreen ? "hidden" : ""
           )}>
 
