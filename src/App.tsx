@@ -219,14 +219,13 @@ function App() {
         </nav>
         */}
 
-        {/* Main Container Wrapper */}
         <div className={cn(
           "flex flex-col items-center w-full flex-1",
           currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai'
             ? "p-0"
             : "px-2 sm:px-6 lg:px-8 w-full pb-[100px]",
-          currentView === 'home' ? "overflow-hidden h-[calc(100dvh-69px)]" : "",
-          currentView === 'video-player' ? "pt-0 md:pt-2 pb-[90px] md:pb-2 overflow-hidden h-[100dvh] md:h-[calc(100vh-60px)]" : "pt-0"
+          currentView === 'home' ? "overflow-hidden h-[calc(100dvh-75px-env(safe-area-inset-bottom,16px))] md:h-full" : "",
+          currentView === 'video-player' ? "pt-0 md:pt-2 pb-[90px] md:pb-2 overflow-hidden h-[100dvh] md:h-full" : "pt-0"
         )}>
 
           {/* Desktop Top Navigation Bar */}
