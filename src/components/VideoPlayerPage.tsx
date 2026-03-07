@@ -380,10 +380,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               <button
                 onClick={handleOfflineCache}
                 disabled={isCaching}
-                className={`group relative flex justify-center items-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-3 sm:px-3 md:px-4 lg:px-4 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-white text-slate-500 border-slate-200 hd:hover:text-slate-900 md:hover:bg-slate-50'} disabled:opacity-50 touch-manipulation active:scale-95`}
+                className={`group relative flex justify-center items-center h-7 sm:h-8 px-2 sm:px-3 md:px-4 rounded-md sm:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50'} disabled:opacity-50 touch-manipulation active:scale-95`}
                 title={isCaching ? "Enregistrement en cours..." : isCached ? "Supprimer la vidéo de cet appareil" : "Enregistrer pour accès hors-ligne"}
               >
-                <div className="relative flex items-center justify-center w-5 h-5 sm:w-5 sm:h-5 md:w-4 md:h-4 lg:w-5 lg:h-5">
+                <div className="relative flex items-center justify-center w-4 h-4 sm:w-4 sm:h-4">
                   {isCaching ? (
                     <Loader2 className="w-full h-full animate-spin" strokeWidth={2.5} />
                   ) : isCached ? (
@@ -426,7 +426,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </h3>
 
           {course.duration && (
-            <span className="text-slate-400 font-medium text-[11px] tabular-nums tracking-wide shrink-0">
+            <span className="text-slate-500 font-semibold text-[13px] tabular-nums tracking-wide shrink-0 ml-2">
               {course.duration}
             </span>
           )}
@@ -517,10 +517,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
           <button
             onClick={() => setIsVideoVisible(!isVideoVisible)}
-            className="flex items-center justify-center p-1 sm:p-1.5 w-7 h-7 sm:w-8 sm:h-8 bg-white hover:bg-slate-50 active:bg-slate-100 rounded-lg text-slate-500 hover:text-slate-700 transition-colors border border-slate-200 shadow-sm"
+            className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-white hover:bg-slate-50 active:bg-slate-100 rounded-md sm:rounded-lg text-slate-500 hover:text-slate-700 transition-colors border border-slate-200 shadow-sm shrink-0"
             title={isVideoVisible ? "Masquer la vidéo" : "Afficher la vidéo"}
           >
-            {isVideoVisible ? <VideoOff size={16} className="sm:w-4 sm:h-4" /> : <Video size={16} className="sm:w-4 sm:h-4" />}
+            {isVideoVisible ? <VideoOff className="w-4 h-4" /> : <Video className="w-4 h-4" />}
           </button>
           <span className={cn(
             "font-bebas text-sm sm:text-base tracking-wider pt-0.5 shrink-0 transition-colors hidden md:block",
