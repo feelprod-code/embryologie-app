@@ -475,8 +475,8 @@ function App() {
                                 <GitCommitHorizontal className="mr-3 text-primary" size={28} />
                                 {t('app.timeline_cine_dynamic')}
                               </h3>
-                              <div className="bg-slate-50 p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-x-auto w-full">
-                                <div className="min-w-[600px] flex justify-center mx-auto">
+                              <div className="bg-slate-50 p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-hidden w-full flex justify-center items-center">
+                                <div className="w-full max-w-full flex justify-center mx-auto overflow-hidden [&>svg]:max-w-full [&>svg]:h-auto">
                                   <Mermaid chart={activeStage.mermaidCode} />
                                 </div>
                               </div>
