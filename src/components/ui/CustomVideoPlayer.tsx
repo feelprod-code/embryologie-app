@@ -539,7 +539,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
                 {/* 4. LAYER 3: Bottom Custom Controls Bar */}
                 <div
-                    className={`absolute bottom-0 left-0 right-0 pt-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-30 transition-opacity duration-300 flex flex-col justify-end gap-1 ${showControls || !isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    className={`absolute bottom-0 left-0 right-0 pt-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-40 transition-opacity duration-300 flex flex-col justify-end gap-1 ${showControls || !isPlaying ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                         }`}
                     style={{
                         paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))',

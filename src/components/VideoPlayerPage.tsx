@@ -327,7 +327,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       </div>
 
       <div className={cn(
-        "bg-white p-1.5 md:p-2 rounded-lg md:rounded-xl shadow-sm border border-slate-200 flex-shrink-0 w-full mt-2 lg:max-w-4xl mx-auto",
+        "bg-white p-2 rounded-lg md:rounded-xl shadow-sm border border-slate-200 flex-shrink-0 w-full mt-2 lg:max-w-4xl mx-auto",
         isFullscreen ? "hidden" : ""
       )}>
         {/* COMPACT SINGLE-LINE CONTROLS */}
@@ -380,7 +380,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               <button
                 onClick={handleOfflineCache}
                 disabled={isCaching}
-                className={`group relative flex justify-center items-center h-7 sm:h-8 px-2 sm:px-3 md:px-4 rounded-md sm:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50'} disabled:opacity-50 touch-manipulation active:scale-95`}
+                className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50'} disabled:opacity-50 touch-manipulation active:scale-95 shrink-0`}
                 title={isCaching ? "Enregistrement en cours..." : isCached ? "Supprimer la vidéo de cet appareil" : "Enregistrer pour accès hors-ligne"}
               >
                 <div className="relative flex items-center justify-center w-4 h-4 sm:w-4 sm:h-4">
