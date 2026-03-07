@@ -67,7 +67,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
     return (
         <div className="w-full flex-1 flex flex-col pt-0 pb-16">
             {/* STICKY HEADER CONTAINER FOR VIDEO LIBRARY */}
-            <div className="sticky top-0 z-40 w-[100vw] relative left-1/2 -translate-x-1/2 bg-[#FAF9F6] pt-4 flex flex-col items-center pb-4 px-2 border-b border-transparent md:border-slate-100">
+            <div className="sticky top-0 z-40 w-full bg-[#FAF9F6] pt-4 flex flex-col items-center pb-4 border-b border-transparent md:border-slate-100">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center pb-1 md:pb-0">
                     <div className="inline-flex items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
                         <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-2xl lg:text-xl uppercase tracking-widest truncate leading-none md:leading-[1.1] pt-1 md:pt-0 drop-shadow-sm text-slate-800">
@@ -78,7 +78,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                 {/* Category Pills (identical spacing to Timeline) */}
                 <div className="w-full pb-2 mb-2 sm:mb-0 border-t border-slate-100 pt-2 sm:pt-2 md:pt-1">
-                    <div className="flex flex-nowrap items-stretch justify-center gap-1 sm:gap-1.5 md:gap-1.5 w-full max-w-4xl mx-auto px-2 md:px-0">
+                    <div className="flex flex-nowrap overflow-x-auto no-scrollbar items-stretch justify-center gap-1 sm:gap-1.5 md:gap-1.5 w-full max-w-4xl mx-auto px-2 md:px-0">
                         {tabs.map(layer => {
                             const isSelected = selectedLayer === layer;
 
