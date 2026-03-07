@@ -29,7 +29,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-blue-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Ovocyte en Maturation]:::global -->|Empreinte Maternelle| B(Fluides et Sécrétions Folliculaires):::global\n  B --> C[Drapeau de Wolpert]:::global\n  C --> D(Axe Crânio-Caudal Originel):::global\n  D --> E[Pôle Synthétique/Noyau]:::global"
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Ovocito en Maduración]:::global -->|Impronta Materna| B(Fluidos y Secreciones Foliculares):::global\n  B --> C[Bandera de Wolpert]:::global\n  C --> D(Eje Craneocaudal Original):::global\n  D --> E[Polo Sintético/Núcleo]:::global"
     },
     {
         "id": "j-1",
@@ -64,7 +64,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-purple-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Fécondation]:::global -->|Reconnaissance ZP3| B(Inversion Électrique):::global\n  B --> C[Libération du Zinc]:::global\n  C --> D{Vague Calcique Explosive}:::global\n  D --> E(Réorganisation Cytosquelette):::global\n  D --> F(Cristallisation de l'Axe Central):::global",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Fecundación]:::global -->|Reconocimiento ZP3| B(Inversión Eléctrica):::global\n  B --> C[Liberación de Zinc]:::global\n  C --> D{Onda de Calcio Explosiva}:::global\n  D --> E(Reorganización del Citoesqueleto):::global\n  D --> F(Cristalización del Eje Central):::global",
         "practicalIntegration": {
             "fulcrums": "Origen Epigenético del Corazón: vestigio energético de la fecundación que desciende hasta S2/Cóccix. El eje Corazón-Cóccix conecta el corazón actual con su fuente concepcional.",
             "generalPalpation": "Diagnóstico de motilidad tisular cardíaca en el espacio facial: Sístole facial (verticalización, sobreactuación, agotamiento) vs Diástole facial (horizontalización, postración, búsqueda de energía original hacia el cóccix).",
@@ -117,7 +117,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-indigo-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Zygote]:::global --> B(Divisions sans Croissance Volumétrique):::global\n  B -->|Augmentation Surface Membranaire| C[Pression Métabolique & Energétique]:::global\n  C -->|Rejet d'Exsudat Liquidien| D(Blastocèle<br/>Apparition Endoderme):::endo\n  D --> E[Concentration du Bouton Embryonnaire]:::ecto\n  E --> F{Éclosion Radicale J4/J5}:::global",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Cigoto]:::global --> B(Divisiones sin Crecimiento Volumétrico):::global\n  B -->|Aumento de Superficie Membranal| C[Presión Metabólica y Energética]:::global\n  C -->|Rechazo de Exudado Líquido| D(Blastocelo<br/>Aparición de Endodermo):::endo\n  D --> E[Concentración del Botón Embrionario]:::ecto\n  E --> F{Eclosión Radical D4/D5}:::global",
         "practicalIntegration": {
             "fulcrums": "Eje cráneo-caudal primitivo y las \"envolturas de presión\". El Blastocisto temprano como origen de las tensiones viscerales.",
             "generalPalpation": "Densificación metabólica sin expansión de los tejidos. Percepción de una fluctuación longitudinal obstaculizada, y búsqueda de \"liberación/eclosión\" a niveles tisulares profundos.",
@@ -174,7 +174,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-rose-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Enfouissement Utérin]:::global --> B(Exsudat Cavité Amniotique):::global\n  A --> C{Séparation Didermique}:::global\n  C --> D[Épiblaste<br/>Ectoderme Primitif]:::ecto\n  C --> E[Hypoblaste<br/>Endoderme Primitif]:::endo",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Anidación Uterina]:::global --> B(Exudado de Cavidad Amniótica):::global\n  A --> C{Separación Didérmica}:::global\n  C --> D[Epiblasto<br/>Ectodermo Primitivo]:::ecto\n  C --> E[Hipoblasto<br/>Endodermo Primitivo]:::endo",
         "practicalIntegration": {
             "fulcrums": "La Zona B (campo energético alrededor del cuerpo físico, rastro de la cavidad amniótica original) y el pedículo embrionario.",
             "generalPalpation": "Movimiento de infusión y permeación. Integración de los fluidos de la periferia (madre) hacia el centro. Aparición de una presión bilateral del exudado.",
@@ -213,7 +213,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-pink-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Croissance Périphérique Différentielle]:::global --> B(Traction Arachnoïdienne):::meso\n  B --> C[Déchirement du Réticulum]:::meso\n  C --> D(Création Cœlome Externe<br/>Mésoderme Extra-Embryonnaire):::meso"
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Crecimiento Periférico Diferencial]:::global --> B(Tracción Aracnoidea):::meso\n  B --> C[Desgarro del Retículo]:::meso\n  C --> D(Creación del Celoma Externo<br/>Mesodermo Extraembrionario):::meso"
     },
     {
         "id": "j-14-21",
@@ -242,7 +242,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-red-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Ligne Primitive]:::ecto --> B(Champ d'Aspiration):::ecto\n  B --> C[Invagination Bottle Cells]:::meso\n  C --> D(Naissance du Mésoderme 3ème Tissu):::meso\n  A --> E[Rotation Ciliaire 60°]:::global\n  E --> F(Asymétrie Gauche-Droite):::global",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Línea Primitiva]:::ecto --> B(Campo de Aspiración):::ecto\n  B --> C[Invaginación Bottle Cells]:::meso\n  C --> D(Nacimiento del Mesodermo 3er Tejido):::meso\n  A --> E[Rotación Ciliar 60°]:::global\n  E --> F(Asimetría Izquierda-Derecha):::global",
         "practicalIntegration": {
             "fulcrums": "Eje craneosacro embriológico primitivo (Notocorda). Tensión entre dos polos: El Punto Cero (Fulcro fijo, Sínfisis Esfenobasilar / SEB) y el Punto Sacro (Fulcro móvil, Nódulo de Hensen, vestigio en S2/Cóccix).",
             "generalPalpation": "La \"Hola\" (potente ola de crecimiento notocordal descendente) acoplada a la \"Subida del punto cero\" (fuerza de telencefalización ascendente y de enderezamiento del cráneo).",
@@ -281,7 +281,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-purple-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Ralentissement Notochordal]:::global --> B(Gouttière Neurale):::ecto\n  B --> C[Expansion Diencéphalique<br/>Futurs Yeux]:::ecto\n  D[Zone Apicale Mésodermique]:::meso --> E(Aortes Primitives):::meso\n  E --> F[Début Battements J21/J22]:::meso",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Ralentización Notocordal]:::global --> B(Canal Neural):::ecto\n  B --> C[Expansión Diencefálica<br/>Futuros Ojos]:::ecto\n  D[Zona Apical Mesodérmica]:::meso --> E(Aortas Primitivas):::meso\n  E --> F[Inicio de Latidos D21/D22]:::meso",
         "practicalIntegration": {
             "fulcrums": "Sínfisis Esfenobasilar (SSB, Punto Cero), la Ínsula (punto de anclaje del balanceo cerebral), el Neuroporo Anterior, y EL CORAZÓN.",
             "generalPalpation": "El 'Tai-Chi del Cerebro'. Percepción de una expansión fulminante, seguida de una primera flexión cefálica de enrollamiento paroxístico sobre el punto fijo central del corazón.",
@@ -350,7 +350,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-orange-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Céphalisation Explosive Ectodermique]:::ecto -->|Frein des Aortes| B(Cardialisation et Fusion):::meso\n  B -->|Looping & Redressement| C{Compression de la masse et<br/>Diaphragmatisation}:::meso\n  C --> D[Congestion Veineuse Inférieure]:::meso\n  D -->|Loosing Field Aspiration| E(Fractalisation Endodermique<br/>Hépatisation):::endo\n  E -->|Croissance spatiale Droite| F[Basculement Estomac & Cavité Péritonéale]:::global\n  C -->|Nouveau Loosing Field| G(Pneumatisation Pulmonaire):::endo\n  F --> H[Poussée sur la Crête Génitale]:::meso",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Cefalización Explosiva Ectodérmica]:::ecto -->|Freno de las Aortas| B(Cardialización y Fusión):::meso\n  B -->|Bucle y Enderezamiento| C{Compresión de Masa y<br/>Diafragmatización}:::meso\n  C --> D[Congestión Venosa Inferior]:::meso\n  D -->|Aspiración Campo Aflojado| E(Fractalización Endodérmica<br/>Hepatización):::endo\n  E -->|Crecimiento Espacial Derecho| F[Inclinación Estómago y Cavidad Peritoneal]:::global\n  C -->|Nuevo Campo Aflojado| G(Neumatización Pulmonar):::endo\n  F --> H[Empuje en la Cresta Genital]:::meso",
         "practicalIntegration": {
             "fulcrums": "El Septum Transversum (futuro diafragma/pericardio), el Centro de gravedad hepatobiliar (Hígado), el Hiato de Winslow (Entrada a la cavidad epiploica) y el Hilo Pulmonar (centro de articulación asimétrico).",
             "generalPalpation": "Palpación en cascada. Seguimiento del deslizamiento espiral del estómago en el arco peritoneal, de la congestión hepatobiliar, luego la 'burbuja de aire' de los pulmones siguiendo su báscula (rotación externa con la parte superior hacia atrás y la parte inferior hacia adelante).",
@@ -393,7 +393,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-yellow-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Enroulement Global Terminal]:::global --> B(Fermeture du Neuropore Postérieur):::ecto\n  A --> C(Intégration Finale du Cœlome Externe):::meso"
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Enrollamiento Global Terminal]:::global --> B(Cierre del Neuroporo Posterior):::ecto\n  A --> C(Integración Final del Celoma Externo):::meso"
     },
     {
         "id": "j-45",
@@ -416,7 +416,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-amber-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Rapprochement Côtes Mi-ligne]:::meso --> B(Suture de l'Angle de Louis J45):::meso\n  A --> C[Fermeture du Médiastin]:::meso\n  D[Redressement Axial]:::global --> E(Tension Dure-Mérienne):::ecto\n  E --> F[Modélisation du Desmocrâne]:::ecto"
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Acercamiento de Costillas Línea Media]:::meso --> B(Sutura Ángulo de Louis D45):::meso\n  A --> C[Cierre del Mediastino]:::meso\n  D[Enderezamiento Axial]:::global --> E(Tensión Duramadre):::ecto\n  E --> F[Modelización del Desmocráneo]:::ecto"
     },
     {
         "id": "maturation-12ans",
@@ -457,6 +457,6 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-emerald-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Dentition 6m]:::ecto --> B(Pivot de Redressement Neural):::ecto\n  C[Pneumatisation Maxillaire 3A]:::endo --> D(Engagement Appendice/Surrénales):::endo\n  E[Relais Thyroïdien 7A]:::global --> F(Autonomie Calorique):::global\n  G[Hypophyse Pubertaire 12A]:::global --> H(Pneumatisation Sphénoïdale):::global"
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Dentición 6m]:::ecto --> B(Pivote de Enderezamiento Neural):::ecto\n  C[Neumatización Maxilar 3A]:::endo --> D(Compromiso Apéndice/Suprarrenales):::endo\n  E[Relevo Tiroideo 7A]:::global --> F(Autonomía Calórica):::global\n  G[Hipófisis Puberal 12A]:::global --> H(Neumatización Esfenoidal):::global"
     }
 ];
