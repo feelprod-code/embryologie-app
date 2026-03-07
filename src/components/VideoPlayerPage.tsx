@@ -73,7 +73,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const isDesktopLayout = windowWidth >= 1024;
 
   const pipResizeStartRef = useRef<{ x: number, width: number } | null>(null);
-  const pipDragStartRef = useRef<{ clientX: number, clientY: number, startX: number, startY: number } | null>(null);
+  const pipDragStartRef = useRef<{ clientX: number, clientY: number, startX: number, startY: number, bounds: { minX: number, maxX: number, minY: number, maxY: number } } | null>(null);
+  const pipContainerRef = useRef<HTMLDivElement>(null);
   const videoPlayerRef = useRef<CustomVideoPlayerRef>(null);
 
   // Effect to automatically show video on layout change to avoid stuck invisible video state
@@ -93,11 +94,27 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     if (e.button !== 0) return; // only left click
     e.preventDefault();
     setIsDragging(true);
+    let minX = -Infinity, maxX = Infinity, minY = -Infinity, maxY = Infinity;
+    if (pipContainerRef.current) {
+      const rect = pipContainerRef.current.getBoundingClientRect();
+      const margin = 16;
+      const baseLeft = rect.left - pipTranslate.x;
+      const baseRight = rect.right - pipTranslate.x;
+      const baseTop = rect.top - pipTranslate.y;
+      const baseBottom = rect.bottom - pipTranslate.y;
+
+      minX = margin - baseLeft;
+      maxX = window.innerWidth - margin - baseRight;
+      minY = margin - baseTop;
+      maxY = window.innerHeight - margin - baseBottom;
+    }
+
     pipDragStartRef.current = {
       clientX: e.clientX,
       clientY: e.clientY,
       startX: pipTranslate.x,
-      startY: pipTranslate.y
+      startY: pipTranslate.y,
+      bounds: { minX, maxX, minY, maxY }
     };
   };
 
@@ -130,10 +147,16 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       if (!pipDragStartRef.current) return;
       const deltaX = e.clientX - pipDragStartRef.current.clientX;
       const deltaY = e.clientY - pipDragStartRef.current.clientY;
-      setPipTranslate({
-        x: pipDragStartRef.current.startX + deltaX,
-        y: pipDragStartRef.current.startY + deltaY
-      });
+      let newX = pipDragStartRef.current.startX + deltaX;
+      let newY = pipDragStartRef.current.startY + deltaY;
+
+      if (pipDragStartRef.current.bounds) {
+        const { minX, maxX, minY, maxY } = pipDragStartRef.current.bounds;
+        newX = Math.max(minX, Math.min(newX, maxX));
+        newY = Math.max(minY, Math.min(newY, maxY));
+      }
+
+      setPipTranslate({ x: newX, y: newY });
     };
     const handlePointerUp = () => {
       setIsDragging(false);
@@ -514,6 +537,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 </div>
 
                 <div
+                  ref={pipContainerRef}
                   className={cn(
                     "absolute bottom-[90px] right-6 z-[90] rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5 flex flex-col",
                     (!isResizing && !isDragging) && "transition-transform duration-300 ease-out",
