@@ -135,10 +135,14 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       let newY = pipDragStartRef.current.startY + deltaY;
 
       // Handle bounding calculations against exact container size
-      if (pipContainerRef.current) {
+      if (pipContainerRef.current && pipContainerRef.current.parentElement) {
+        const parent = pipContainerRef.current.parentElement;
         const margin = 16;
         const boxWidth = pipContainerRef.current.offsetWidth;
         const boxHeight = pipContainerRef.current.offsetHeight;
+
+        const parentWidth = parent.clientWidth;
+        const parentHeight = parent.clientHeight;
 
         // Base absolute CSS positioning offsets from the bottom-right origin
         const rightOffset = 24;
@@ -146,10 +150,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
         // Limits computation using negative logic (moving right/up = negative X/Y)
         const maxTransX = rightOffset - margin;
-        const minTransX = -(window.innerWidth - rightOffset - boxWidth - margin);
+        const minTransX = -(parentWidth - rightOffset - boxWidth - margin);
 
         const maxTransY = bottomOffset - margin;
-        const minTransY = -(window.innerHeight - bottomOffset - boxHeight - margin);
+        const minTransY = -(parentHeight - bottomOffset - boxHeight - margin);
 
         newX = Math.max(minTransX, Math.min(newX, maxTransX));
         newY = Math.max(minTransY, Math.min(newY, maxTransY));
