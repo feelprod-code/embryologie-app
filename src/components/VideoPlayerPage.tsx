@@ -73,7 +73,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const isDesktopLayout = windowWidth >= 1024;
 
   const pipResizeStartRef = useRef<{ x: number, width: number } | null>(null);
-  const pipDragStartRef = useRef<{ clientX: number, clientY: number, startX: number, startY: number, bounds: { minX: number, maxX: number, minY: number, maxY: number } } | null>(null);
+  const pipDragStartRef = useRef<{ clientX: number, clientY: number, startX: number, startY: number } | null>(null);
   const pipContainerRef = useRef<HTMLDivElement>(null);
   const videoPlayerRef = useRef<CustomVideoPlayerRef>(null);
 
@@ -94,27 +94,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     if (e.button !== 0) return; // only left click
     e.preventDefault();
     setIsDragging(true);
-    let minX = -Infinity, maxX = Infinity, minY = -Infinity, maxY = Infinity;
-    if (pipContainerRef.current) {
-      const rect = pipContainerRef.current.getBoundingClientRect();
-      const margin = 16;
-      const baseLeft = rect.left - pipTranslate.x;
-      const baseRight = rect.right - pipTranslate.x;
-      const baseTop = rect.top - pipTranslate.y;
-      const baseBottom = rect.bottom - pipTranslate.y;
-
-      minX = margin - baseLeft;
-      maxX = window.innerWidth - margin - baseRight;
-      minY = margin - baseTop;
-      maxY = window.innerHeight - margin - baseBottom;
-    }
-
     pipDragStartRef.current = {
       clientX: e.clientX,
       clientY: e.clientY,
       startX: pipTranslate.x,
-      startY: pipTranslate.y,
-      bounds: { minX, maxX, minY, maxY }
+      startY: pipTranslate.y
     };
   };
 
@@ -150,10 +134,25 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       let newX = pipDragStartRef.current.startX + deltaX;
       let newY = pipDragStartRef.current.startY + deltaY;
 
-      if (pipDragStartRef.current.bounds) {
-        const { minX, maxX, minY, maxY } = pipDragStartRef.current.bounds;
-        newX = Math.max(minX, Math.min(newX, maxX));
-        newY = Math.max(minY, Math.min(newY, maxY));
+      // Handle bounding calculations against exact container size
+      if (pipContainerRef.current) {
+        const margin = 16;
+        const boxWidth = pipContainerRef.current.offsetWidth;
+        const boxHeight = pipContainerRef.current.offsetHeight;
+
+        // Base absolute CSS positioning offsets from the bottom-right origin
+        const rightOffset = 24;
+        const bottomOffset = 90;
+
+        // Limits computation using negative logic (moving right/up = negative X/Y)
+        const maxTransX = rightOffset - margin;
+        const minTransX = -(window.innerWidth - rightOffset - boxWidth - margin);
+
+        const maxTransY = bottomOffset - margin;
+        const minTransY = -(window.innerHeight - bottomOffset - boxHeight - margin);
+
+        newX = Math.max(minTransX, Math.min(newX, maxTransX));
+        newY = Math.max(minTransY, Math.min(newY, maxTransY));
       }
 
       setPipTranslate({ x: newX, y: newY });
