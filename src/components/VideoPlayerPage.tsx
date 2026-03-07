@@ -7,10 +7,10 @@ import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
 import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
 import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
 import { cn } from '../utils';
-import { Clock, ChevronLeft, ChevronRight, DownloadCloud, Video, VideoOff } from 'lucide-react';
+import { Clock, ChevronLeft, ChevronRight, DownloadCloud, Video, VideoOff, Play, Pause } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { CustomVideoPlayer } from './ui/CustomVideoPlayer';
+import { CustomVideoPlayer, type CustomVideoPlayerRef } from './ui/CustomVideoPlayer';
 import { useTranslation } from 'react-i18next';
 
 
@@ -45,8 +45,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [pipWidth, setPipWidth] = useState<number>(360);
   const [isResizing, setIsResizing] = useState<boolean>(false);
   const [isVideoVisible, setIsVideoVisible] = useState<boolean>(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
 
   const pipResizeStartRef = useRef<{ x: number, width: number } | null>(null);
+  const videoPlayerRef = useRef<CustomVideoPlayerRef>(null);
 
   const handlePipPointerDown = (e: React.PointerEvent) => {
     e.preventDefault();
@@ -117,12 +119,14 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     )}>
       <div className="w-full flex-grow flex flex-col justify-center min-h-[200px] h-full">
         <CustomVideoPlayer
+          ref={videoPlayerRef}
           youtubeId={course.youtubeId}
           cloudflareId={course.cloudflareId}
           categoryId={course.categoryId}
           speed={currentSpeed}
           onTimeUpdate={handleTimeUpdate}
           onFullscreenChange={handleFullscreenChange}
+          onPlayStateChange={setIsVideoPlaying}
           className={cn(
             isFullscreen ? "" : "rounded-2xl md:rounded-3xl shadow-xl aspect-video border border-slate-800 w-full h-auto max-h-full object-contain mx-auto"
           )}
@@ -205,6 +209,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     )}>
       {/* STICKY TRANSCRIPT HEADER */}
       <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 p-2 shadow-sm w-full flex items-center justify-between shrink-0">
+        // Import missing icons from lucide-react at the top of the file
         <div className="flex flex-col px-2 flex-1 min-w-0 pr-2">
           <h3 className={cn("font-anton text-sm md:text-sm lg:text-[15px] tracking-wide uppercase leading-tight truncate",
             course.categoryId === 'ectoderme' ? "text-[#5A9C51]" :
@@ -217,6 +222,37 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         </div>
 
         <div className="flex items-center shrink-0 ml-1 gap-2 sm:gap-3">
+          {/* Audio Controls (Only visible when video is hidden) */}
+          {!isVideoVisible && (
+            <div className="flex items-center bg-slate-100 rounded-lg border border-slate-200 mr-1 sm:mr-2">
+              <button
+                onClick={() => prevVideo && onSelectVideo(prevVideo)}
+                disabled={!prevVideo}
+                className="p-1 sm:p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-l-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                title={t('videoLibrary.previous')}
+              >
+                <ChevronLeft size={16} />
+              </button>
+
+              <button
+                onClick={() => videoPlayerRef.current?.togglePlay()}
+                className="p-1 sm:p-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-200 transition-colors border-x border-slate-200"
+                title={isVideoPlaying ? "Pause" : "Play"}
+              >
+                {isVideoPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="ml-0.5" />}
+              </button>
+
+              <button
+                onClick={() => nextVideo && onSelectVideo(nextVideo)}
+                disabled={!nextVideo}
+                className="p-1 sm:p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-r-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                title={t('videoLibrary.next')}
+              >
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          )}
+
           <button
             onClick={() => setIsVideoVisible(!isVideoVisible)}
             className="flex items-center justify-center py-1 sm:py-1.5 px-2 px-2.5 sm:px-3 bg-white hover:bg-slate-50 active:bg-slate-100 rounded-lg text-slate-500 hover:text-slate-700 transition-colors border border-slate-200 shadow-sm"
@@ -228,7 +264,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             </span>
           </button>
           <span className={cn(
-            "font-bebas text-sm sm:text-base tracking-wider pt-0.5 shrink-0 transition-colors",
+            "font-bebas text-sm sm:text-base tracking-wider pt-0.5 shrink-0 transition-colors hidden md:block",
             course.categoryId === 'ectoderme' ? "text-[#5A9C51]" :
               course.categoryId === 'endoderme' ? "text-[#4171B5]" :
                 course.categoryId === 'mesoderme' ? "text-[#F27D33]" :

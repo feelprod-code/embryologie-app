@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useImperativeHandle } from 'react';
 import { Stream } from '@cloudflare/stream-react';
 import { useTranslation } from 'react-i18next';
 import { Play, Pause, Maximize, Minimize, X, RotateCcw, RotateCw } from 'lucide-react';
@@ -38,9 +38,15 @@ interface CustomVideoPlayerProps {
     onEnded?: () => void;
     onTimeUpdate?: (currentTime: number) => void;
     onFullscreenChange?: (isFullscreen: boolean) => void;
+    onPlayStateChange?: (isPlaying: boolean) => void;
 }
 
-export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
+export interface CustomVideoPlayerRef {
+    togglePlay: () => void;
+    isPlaying: boolean;
+}
+
+export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVideoPlayerProps>(({
     youtubeId,
     cloudflareId,
     categoryId,
@@ -49,7 +55,8 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     onEnded,
     onTimeUpdate,
     onFullscreenChange,
-}) => {
+    onPlayStateChange,
+}, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
     const { i18n } = useTranslation();
@@ -68,6 +75,11 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     const [showControls, setShowControls] = useState(true);
     const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    useImperativeHandle(ref, () => ({
+        togglePlay: () => togglePlay(),
+        isPlaying,
+    }));
+
     // --- Media Controls Logic ---
     const togglePlay = (e?: React.MouseEvent | React.TouchEvent) => {
         if (e) e.stopPropagation();
@@ -75,9 +87,11 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             if (isPlaying) {
                 playerRef.current.pause();
                 setIsPlaying(false);
+                onPlayStateChange?.(false);
             } else {
                 playerRef.current.play();
                 setIsPlaying(true);
+                onPlayStateChange?.(true);
             }
         }
     };
@@ -599,5 +613,5 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             Vidéo non disponible
         </div>
     );
-};
+});
 
