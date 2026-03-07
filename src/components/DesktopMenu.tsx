@@ -14,14 +14,14 @@ export function DesktopMenu({ currentView, setCurrentView }: DesktopMenuProps) {
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 w-full h-[60px] bg-[#FAF9F6] border-b border-slate-200 hidden md:flex items-center justify-between px-6 xl:px-12 shadow-sm">
             {/* Brand / Logo Area */}
-            <div className="flex items-center">
+            <div className="flex flex-1 items-center justify-start">
                 <span className="font-bebas text-2xl text-[#F27D33] tracking-widest leading-none pt-1 cursor-pointer" onClick={() => setCurrentView('home')}>
                     EMBRYOLOGIE
                 </span>
             </div>
 
             {/* Navigation Links */}
-            <div className="flex items-center justify-center gap-2 lg:gap-4">
+            <div className="flex items-center justify-center gap-2 lg:gap-4 shrink-0">
                 <button
                     onClick={() => setCurrentView('home')}
                     className={cn(
@@ -72,7 +72,7 @@ export function DesktopMenu({ currentView, setCurrentView }: DesktopMenuProps) {
             </div>
 
             {/* Language / Tools */}
-            <div className="flex items-center justify-end">
+            <div className="flex flex-1 items-center justify-end">
                 <LanguageSwitcher variant="desktop-nav" />
             </div>
         </nav>
