@@ -78,7 +78,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                 {/* Category Pills (identical spacing to Timeline) */}
                 <div className="w-full pb-2 mb-2 sm:mb-0 border-t border-slate-100 pt-2 sm:pt-2 md:pt-1">
-                    <div className="flex flex-nowrap overflow-x-auto no-scrollbar items-stretch justify-center gap-1 sm:gap-1.5 md:gap-1.5 w-full max-w-4xl mx-auto px-2 md:px-0">
+                    <div className="flex flex-nowrap overflow-x-auto no-scrollbar items-stretch justify-center gap-1 sm:gap-1.5 md:gap-1.5 w-full max-w-4xl mx-auto px-2 md:px-0 translate-x-2 sm:translate-x-0">
                         {tabs.map(layer => {
                             const isSelected = selectedLayer === layer;
 

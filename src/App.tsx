@@ -288,7 +288,7 @@ function App() {
 
                 {/* MOBILE TIMELINE NAVIGATION (Horizontal chip selection) */}
                 <div className="w-full lg:hidden overflow-x-auto no-scrollbar pb-2 pt-2 mt-1 border-t border-slate-100 snap-x">
-                  <div className="flex flex-nowrap items-stretch gap-1.5 px-4 w-max mx-auto">
+                  <div className="flex flex-nowrap items-stretch gap-1.5 px-4 w-max mx-auto translate-x-2 sm:translate-x-0">
                     {detailedStages.map((stage) => {
                       const isActive = stage.id === activeStageId;
                       const idx = getOriginalIndex(stage.id);
