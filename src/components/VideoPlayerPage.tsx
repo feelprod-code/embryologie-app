@@ -342,7 +342,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     {TopContent}
                   </Panel>
                   <PanelResizeHandle className="relative flex items-center justify-center h-6 w-full -my-1 z-10 group cursor-row-resize touch-none">
-                    <div className="w-12 h-1.5 bg-slate-300/80 rounded-full group-hover:bg-[#4171B5] active:bg-[#4171B5] transition-colors" />
+                    <div className={cn(
+                      "w-12 h-1.5 bg-slate-300/80 rounded-full transition-colors",
+                      course.categoryId === 'ectoderme' ? "group-hover:bg-[#5A9C51] active:bg-[#5A9C51]" :
+                        course.categoryId === 'endoderme' ? "group-hover:bg-[#4171B5] active:bg-[#4171B5]" :
+                          course.categoryId === 'mesoderme' ? "group-hover:bg-[#F27D33] active:bg-[#F27D33]" :
+                            course.categoryId === 'oeil' ? "group-hover:bg-[#F2B729] active:bg-[#F2B729]" : "group-hover:bg-slate-500 active:bg-slate-500"
+                    )} />
                   </PanelResizeHandle>
                 </>
               )}
@@ -381,7 +387,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     onPointerDown={handlePipPointerDown}
                   >
                     <div className="w-3 h-3 rounded-full bg-slate-300/50 flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                      <div className={cn(
+                        "w-1.5 h-1.5 rounded-full",
+                        course.categoryId === 'ectoderme' ? "bg-[#5A9C51]" :
+                          course.categoryId === 'endoderme' ? "bg-[#4171B5]" :
+                            course.categoryId === 'mesoderme' ? "bg-[#F27D33]" :
+                              course.categoryId === 'oeil' ? "bg-[#F2B729]" : "bg-slate-400"
+                      )} />
                     </div>
                   </div>
 
@@ -413,7 +425,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     {TopContent}
                   </Panel>
                   <PanelResizeHandle className="relative flex items-center justify-center w-4 h-full mx-1 group cursor-col-resize">
-                    <div className="w-1 h-12 bg-slate-300 rounded-full group-hover:bg-[#4171B5] transition-colors" />
+                    <div className={cn(
+                      "w-1 h-12 bg-slate-300 rounded-full transition-colors",
+                      course.categoryId === 'ectoderme' ? "group-hover:bg-[#5A9C51] active:bg-[#5A9C51]" :
+                        course.categoryId === 'endoderme' ? "group-hover:bg-[#4171B5] active:bg-[#4171B5]" :
+                          course.categoryId === 'mesoderme' ? "group-hover:bg-[#F27D33] active:bg-[#F27D33]" :
+                            course.categoryId === 'oeil' ? "group-hover:bg-[#F2B729] active:bg-[#F2B729]" : "group-hover:bg-slate-500 active:bg-slate-500"
+                    )} />
                   </PanelResizeHandle>
                 </>
               )}
