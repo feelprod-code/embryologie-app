@@ -425,14 +425,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </h3>
 
           {course.duration && (
-            <span className={cn(
-              "text-[10px] font-bold px-1.5 py-[2px] rounded-md shrink-0 flex items-center justify-center tabular-nums shadow-sm border",
-              course.categoryId === 'ectoderme' ? "bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20" :
-                course.categoryId === 'endoderme' ? "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/20" :
-                  course.categoryId === 'mesoderme' ? "bg-[#F27D33]/10 text-[#F27D33] border-[#F27D33]/20" :
-                    course.categoryId === 'oeil' ? "bg-[#F2B729]/10 text-[#F2B729] border-[#F2B729]/20" :
-                      "bg-slate-100 text-slate-600 border-slate-200"
-            )}>
+            <span className="text-slate-400 font-medium text-[11px] tabular-nums tracking-wide shrink-0">
               {course.duration}
             </span>
           )}
