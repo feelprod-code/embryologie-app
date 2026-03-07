@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { cn } from '../utils';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './ui/LanguageSwitcher';
