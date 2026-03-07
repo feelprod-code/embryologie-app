@@ -45,7 +45,7 @@ export function Home(_props: HomeProps) {
                 {/* Center - Vignette & Player */}
                 <div className="flex flex-col items-center justify-center w-full mt-4 sm:my-auto py-2">
                     {/* Podcast Thumbnail/Vignette */}
-                    <div className="relative w-[75vw] max-w-[280px] sm:max-w-[320px] md:w-[24rem] lg:w-[28rem] aspect-square shrink-0 mb-4 sm:mb-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                    <div className="relative w-[85vw] max-w-[340px] sm:max-w-[320px] md:w-[24rem] lg:w-[28rem] aspect-square shrink-0 mb-4 sm:mb-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
