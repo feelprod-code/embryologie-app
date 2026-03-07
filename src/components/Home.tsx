@@ -15,37 +15,37 @@ export function Home(_props: HomeProps) {
         : "https://audio.ausha.co/6r2X8f6LVNAp.mp3";
 
     return (
-        <div className="w-full flex-1 relative bg-[#FAF9F6] flex flex-col items-center justify-start overflow-y-auto no-scrollbar">
+        <div className="w-full flex-1 relative bg-[#FAF9F6] flex flex-col items-center overflow-y-auto no-scrollbar">
             {/* Inner responsive layout container */}
-            <div className="min-h-full w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 pt-2 md:pt-4 pb-20 md:pb-8 mx-auto">
+            <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-between px-4 sm:px-6 pt-6 sm:pt-10 pb-6 md:pb-12 mx-auto min-h-[min-content] gap-8">
 
                 {/* Top Section: Credits & Title */}
-                <div className="flex-none flex flex-col items-center w-full pt-2 sm:pt-6 md:pt-8">
+                <div className="flex flex-col items-center w-full mt-4 md:mt-8">
                     {/* Top Poster Credits */}
                     <div className="relative z-10 w-full text-center animate-fade-in-up">
                         <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
                             {t('home.training_by')}
                         </div>
-                        <div className="text-sm md:text-base font-bold tracking-[0.2em] text-slate-800 mt-1 md:mt-2 uppercase">
+                        <div className="text-sm md:text-base font-bold tracking-[0.2em] text-slate-800 mt-2 uppercase">
                             Marc Damoiseaux <span className="opacity-70 text-xs font-normal">Ostéopathe D.O.</span>
                         </div>
                     </div>
 
                     {/* Main Cinematic Title */}
-                    <div className="relative z-10 w-full text-center flex flex-col items-center mt-2 sm:mt-6 md:mt-8">
-                        <h1 className="text-3xl min-[380px]:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
+                    <div className="relative z-10 w-full text-center flex flex-col items-center mt-4 sm:mt-6">
+                        <h1 className="text-4xl min-[380px]:text-5xl sm:text-6xl md:text-7xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
                             {t('home.title_part1')}
                         </h1>
-                        <h2 className="text-2xl min-[380px]:text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 sm:mt-4 pr-2">
+                        <h2 className="text-3xl min-[380px]:text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-2 pr-2">
                             {t('home.title_part2')}
                         </h2>
                     </div>
                 </div>
 
                 {/* Center - Vignette & Player */}
-                <div className="flex flex-col items-center justify-center w-full shrink-0 mt-auto mb-auto py-4 sm:py-8">
+                <div className="flex flex-col items-center justify-center w-full my-auto py-2">
                     {/* Podcast Thumbnail/Vignette */}
-                    <div className="relative w-[50vw] max-w-[220px] sm:max-w-none md:w-[24rem] lg:w-[26rem] aspect-square shrink-0 mb-4 md:mb-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                    <div className="relative w-[65vw] max-w-[280px] sm:max-w-[320px] md:w-[24rem] lg:w-[28rem] aspect-square shrink-0 mb-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
@@ -54,12 +54,12 @@ export function Home(_props: HomeProps) {
                     </div>
 
                     {/* Minimalist Player */}
-                    <div className="w-[85%] sm:w-2/3 max-w-[280px] sm:max-w-[300px] z-20 mt-2 sm:mt-4 flex flex-col items-center">
+                    <div className="w-[90%] sm:w-2/3 max-w-[320px] z-20 mt-2 flex flex-col items-center">
                         <CustomAudioPlayer
                             src={podcastAudioSrc}
                             className="w-full"
                         />
-                        <span className="font-handwriting text-xl lg:text-3xl text-slate-600 mt-2 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                        <span className="font-handwriting text-2xl lg:text-3xl text-slate-600 mt-3 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                             {t('home.start')}
                         </span>
                     </div>
@@ -68,8 +68,8 @@ export function Home(_props: HomeProps) {
                 {/* Desktop Only Navigation block has been removed to avoid duplicate menus */}
 
                 {/* Credits FeelProd */}
-                <div className="flex-none w-full flex items-center justify-center pb-2 sm:pb-0">
-                    <span className="text-[10px] sm:text-[11px] text-slate-400/60 font-light uppercase tracking-[0.2em] text-center relative z-20">
+                <div className="flex-none w-full flex items-center justify-center pt-4 opacity-80">
+                    <span className="text-[10px] sm:text-xs text-slate-500 font-medium uppercase tracking-[0.2em] text-center relative z-20">
                         {t('home.credits')}
                     </span>
                 </div>
