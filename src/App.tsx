@@ -134,7 +134,7 @@ function App() {
       while (retries > 0 && !profile) {
         const { data, error } = await supabase
           .from('profiles')
-          .select('device_id, is_active')
+          .select('device_id, is_active, first_name, last_name')
           .eq('id', currentSession.user.id)
           .single();
 
@@ -160,6 +160,24 @@ function App() {
           return;
         }
 
+        if (!profile.first_name || !profile.last_name) {
+          // Attempt to rescue names from localStorage if they got lost during OTP auth
+          const pendingFirstName = localStorage.getItem('pending_first_name');
+          const pendingLastName = localStorage.getItem('pending_last_name');
+
+          if (pendingFirstName || pendingLastName) {
+            await supabase.from('profiles').update({
+              first_name: pendingFirstName || profile.first_name,
+              last_name: pendingLastName || profile.last_name
+            }).eq('id', currentSession.user.id);
+
+            // Clean up to prevent stale data for other users on same device
+            localStorage.removeItem('pending_first_name');
+            localStorage.removeItem('pending_last_name');
+            localStorage.removeItem('pending_email');
+          }
+        }
+
         if (!profile.device_id) {
           // Bind new device
           const { error: updateError } = await supabase
@@ -170,15 +188,30 @@ function App() {
           if (updateError) {
             console.error("Failed to bind device:", updateError);
           }
-        } else if (profile.device_id !== localDeviceId) {
-          // Mismatch
-          alert(t('auth.device_mismatch', 'Cet accès est déjà utilisé sur un autre appareil. Vous ne pouvez vous connecter que depuis votre appareil principal.'));
-          await supabase.auth.signOut();
-          if (mounted) {
-            setSession(null);
-            setIsInitializing(false);
+        } else {
+          const dbDevice = profile.device_id;
+          const isMatch =
+            dbDevice === localDeviceId ||
+            (localDeviceId.includes('-') && dbDevice === localDeviceId.substring(localDeviceId.indexOf('-') + 1)) ||
+            (dbDevice.includes('-') && localDeviceId === dbDevice.substring(dbDevice.indexOf('-') + 1));
+
+          if (!isMatch) {
+            const isAdminUser = currentSession?.user?.email && ADMIN_EMAILS.includes(currentSession.user.email);
+
+            if (isAdminUser) {
+              // Bypassing the device check for administrators so they can use multiple devices
+              console.log("Admin multi-device access granted. Ignoring mismatch.");
+            } else {
+              // Mismatch for normal users
+              alert(t('auth.device_mismatch', 'Cet accès est déjà utilisé sur un autre appareil. Vous ne pouvez vous connecter que depuis votre appareil principal.'));
+              await supabase.auth.signOut();
+              if (mounted) {
+                setSession(null);
+                setIsInitializing(false);
+              }
+              return;
+            }
           }
-          return;
         }
       } else {
         // Trigger failed or profile not found
@@ -375,13 +408,7 @@ function App() {
         "flex-1 w-full min-h-0 flex flex-col items-center overflow-y-auto overflow-x-hidden relative z-10 overscroll-y-none no-scrollbar md:mt-[60px]"
       )} id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
 
-        {/* Mobile Top App Bar (Visible on mobile across all views) */}
-        <div className="md:hidden fixed top-0 w-full z-40 bg-[#FAF9F6]/80 backdrop-blur-xl border-b border-slate-200/50 h-[52px] flex flex-row items-center px-4 justify-end">
-          <div className="flex items-center gap-3">
-            <LanguageSwitcher />
-          </div>
-        </div>
-
+        {/* Mobile Top App Bar (Supprimé) */}
         {/* Desktop Top Navigation Bar (Supprimé) */}
         {/*
         <nav className="sticky top-0 z-50 w-full h-[60px] bg-[#FAF9F6] border-b border-slate-200 hidden md:flex items-center justify-center gap-4 px-6 shadow-sm">

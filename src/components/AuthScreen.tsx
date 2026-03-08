@@ -30,11 +30,14 @@ export const AuthScreen: React.FC = () => {
         setError(null);
 
         try {
+            // Save data locally so we can restore it or update the profile once the user actually clicks the link
+            localStorage.setItem('pending_first_name', firstName);
+            localStorage.setItem('pending_last_name', lastName);
+            localStorage.setItem('pending_email', email);
+
             const { error } = await supabase.auth.signInWithOtp({
                 email,
                 options: {
-                    // In development, you can point this to localhost
-                    // In production, point it to your vercel app
                     emailRedirectTo: window.location.origin,
                     data: {
                         first_name: firstName,
