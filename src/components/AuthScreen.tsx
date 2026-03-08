@@ -148,10 +148,11 @@ export const AuthScreen: React.FC = () => {
             </div>
 
             {/* Footer FeelProd */}
-            <div className="absolute bottom-10 w-full text-center z-0">
-                <span className="text-[9px] sm:text-[10px] md:text-xs text-slate-400 font-medium uppercase tracking-[0.3em] opacity-80">
-                    Une réalisation FEELPROD
+            <div className="absolute bottom-6 w-full flex flex-col items-center justify-end opacity-90 z-0">
+                <span className="text-[10px] sm:text-[11px] md:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20 mb-1">
+                    Réalisation Feelprod
                 </span>
+                <div className="w-12 h-[1px] bg-slate-300/50 mt-1"></div>
             </div>
         </div >
     );
