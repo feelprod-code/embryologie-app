@@ -29,6 +29,18 @@
   <title>TDT Embryo</title>
 </head>
 
+<script>
+  // FORCED DEV BYPASS TO BREAK PWA CACHE ON MOBILE
+  if (window.location.hash.includes('magic-dev')) {
+    localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) { registration.unregister() }
+      });
+    }
+    window.location.href = '/';
+  }
+</script>
 <body>
   <div id="root"></div>
 
