@@ -265,7 +265,7 @@ function App() {
         <nav
           className={cn(
             "fixed bottom-0 z-50 w-full bg-white/90 backdrop-blur-xl border-t border-slate-200 md:hidden pb-[env(safe-area-inset-bottom,16px)] shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
-            isAdmin ? "grid-cols-6" : "grid-cols-5"
+            isAdmin ? "grid-cols-7" : "grid-cols-6"
           )}
         >
           <button
@@ -308,6 +308,20 @@ function App() {
               <Video size={24} />
             </div>
             <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'video-library' || currentView === 'video-player' ? "font-medium" : "font-normal")}>{t('nav.videos')}</span>
+          </button>
+
+          <button
+            onClick={() => setCurrentView('embryo-ai')}
+            onTouchStart={(e) => { e.preventDefault(); setCurrentView('embryo-ai'); }}
+            className={cn(
+              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden w-full",
+              currentView === 'embryo-ai' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
+            )}
+          >
+            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", currentView === 'embryo-ai' ? "scale-105" : "group-hover:scale-105")}>
+              <Brain size={24} />
+            </div>
+            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('nav.ai_assistant')}</span>
           </button>
 
           <button
