@@ -47,12 +47,12 @@ export function Home(_props: HomeProps) {
                   Magic Flexible Spacer 
                   Grows to perfectly distribute empty space between Header and Center Content 
                 */}
-                <div className="flex-1 min-h-[2vh] max-h-[6vh]"></div>
+                <div className="flex-[0.5] sm:flex-1 min-h-[0.5vh] max-h-[3vh] sm:max-h-[6vh]"></div>
 
                 {/* Center - Vignette & Player */}
-                <div className="flex flex-col items-center justify-center w-full flex-none">
+                <div className="flex flex-col items-center justify-center w-full flex-none mt-2 sm:mt-0">
                     {/* Podcast Thumbnail/Vignette */}
-                    <div className="relative w-[80vw] max-w-[340px] sm:max-w-[320px] md:w-[24rem] lg:w-[28rem] aspect-square shrink-0 mb-4 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                    <div className="relative w-[75vw] max-w-[340px] sm:max-w-[320px] md:w-[24rem] lg:w-[28rem] aspect-square shrink-0 mb-4 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
@@ -76,7 +76,7 @@ export function Home(_props: HomeProps) {
                   Magic Flexible Spacer 
                   Grows to distribute empty space between Center Content and Footer
                 */}
-                <div className="flex-[2] min-h-[4vh]"></div>
+                <div className="flex-[2.5] sm:flex-[2] min-h-[6vh] sm:min-h-[4vh]"></div>
 
                 {/* Credits FeelProd */}
                 <div className="flex-none w-full flex flex-col items-center justify-end opacity-90 mt-auto pb-2">
