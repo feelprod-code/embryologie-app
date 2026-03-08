@@ -639,30 +639,30 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         {/* --- MOBILE VIEW: Resizable Split Pane (Vertical) --- */}
         {isMobileLayout && (
           <div className={cn("flex-1 flex flex-col min-h-0 w-full", !isFullscreen && "px-2")}>
-            {isFullscreen ? (
-              <div className="w-full h-full fixed inset-0 z-50">
-                {TopContent}
-              </div>
-            ) : (
-              <div className="w-full h-full flex flex-col">
-                <div
-                  className={cn(
-                    "w-full flex-none transition-all duration-300 ease-in-out grid",
-                    !isVideoVisible ? "opacity-0" : "opacity-100"
-                  )}
-                  style={{
-                    gridTemplateRows: isVideoVisible ? '1fr' : '0fr'
-                  }}
-                >
-                  <div className="overflow-hidden w-full pb-1">
-                    {TopContent}
-                  </div>
+            <div className="w-full h-full flex flex-col">
+              {/* Le conteneur du lecteur vidéo */}
+              <div
+                className={cn(
+                  "w-full transition-all duration-300 ease-in-out",
+                  isFullscreen ? "fixed inset-0 z-[100] bg-black h-full !p-0 !m-0 block" : "flex-none grid",
+                  !isVideoVisible && !isFullscreen ? "opacity-0" : "opacity-100"
+                )}
+                style={!isFullscreen ? {
+                  gridTemplateRows: isVideoVisible ? '1fr' : '0fr'
+                } : undefined}
+              >
+                <div className={cn("w-full", !isFullscreen && "overflow-hidden pb-1", isFullscreen && "h-full")}>
+                  {TopContent}
                 </div>
+              </div>
+
+              {/* La section basse (transcription) n'est rendue ou visible qu'en mode normal */}
+              {!isFullscreen && (
                 <div className="flex-1 min-h-0 pt-1">
                   {BottomContent}
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         )}
 
