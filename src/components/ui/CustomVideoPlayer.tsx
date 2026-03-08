@@ -215,6 +215,30 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         setIsFullscreen(!isFullscreen);
     };
 
+    // Auto-Rotate Fullscreen Logic
+    useEffect(() => {
+        const handleOrientationChange = () => {
+            const isLandscape = window.matchMedia("(orientation: landscape)").matches;
+            const isMobileShape = window.innerWidth <= 900 && /iPad|iPhone|iPod|android/i.test(navigator.userAgent);
+
+            if (isMobileShape) {
+                if (isLandscape) {
+                    setIsFullscreen(true);
+                } else {
+                    // Si on repasse en portrait et qu'on était en fullscreen automatique
+                    setIsFullscreen(false);
+                }
+            }
+        };
+
+        // Listen for orientation changes to automatically enter/exit fullscreen
+        window.addEventListener("orientationchange", handleOrientationChange);
+
+        return () => {
+            window.removeEventListener("orientationchange", handleOrientationChange);
+        };
+    }, []);
+
 
     // Dynamically allow zoom in fullscreen
     useEffect(() => {

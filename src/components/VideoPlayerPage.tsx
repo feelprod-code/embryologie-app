@@ -311,7 +311,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     )}>
       <div
         ref={playerWrapperRef}
-        className="w-full flex-grow flex flex-col items-center justify-center min-h-0 h-full overflow-hidden"
+        className={cn(
+          "w-full flex-grow flex flex-col items-center justify-center min-h-0 h-full",
+          !isFullscreen && "overflow-hidden"
+        )}
       >
         <div
           className={cn(
@@ -635,9 +638,9 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
         {/* --- MOBILE VIEW: Resizable Split Pane (Vertical) --- */}
         {isMobileLayout && (
-          <div className="flex-1 flex flex-col min-h-0 px-2 w-full">
+          <div className={cn("flex-1 flex flex-col min-h-0 w-full", !isFullscreen && "px-2")}>
             {isFullscreen ? (
-              <div className="w-full h-full">
+              <div className="w-full h-full fixed inset-0 z-50">
                 {TopContent}
               </div>
             ) : (
