@@ -222,9 +222,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         const handleOrientationChange = () => {
             const isLandscape = window.matchMedia("(orientation: landscape)").matches;
 
-            // iPad should NOT trigger this, only iPhones/Android Phones
             const isTablet = /iPad/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            const isMobileShape = window.innerWidth < 768 && /iPhone|iPod|android/i.test(navigator.userAgent) && !isTablet;
+            // Allow auto-rotate on smartphones, regardless of their current innerWidth (which changes in landscape)
+            const isMobileShape = /iPhone|iPod|android/i.test(navigator.userAgent) && !isTablet;
 
             if (isMobileShape) {
                 if (isLandscape) {
