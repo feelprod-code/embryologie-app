@@ -160,9 +160,27 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   };
 
   // --- Effects ---
-  const isMobileLayout = windowWidth < 768; // Tailwind md
-  const isTabletLayout = windowWidth >= 768 && windowWidth < 1024; // Tailwind lg
-  const isDesktopLayout = windowWidth >= 1024;
+  const [activeLayout, setActiveLayout] = useState<'mobile' | 'tablet' | 'desktop'>(
+    window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1024 ? 'tablet' : 'desktop'
+  );
+
+  useEffect(() => {
+    // We lock the layout state while in fullscreen so rotating an iPhone to landscape
+    // doesn't cause its width (>768px) to trigger the Tablet layout and unmount the player.
+    if (isFullscreen) return;
+
+    if (windowWidth < 768) {
+      setActiveLayout('mobile');
+    } else if (windowWidth < 1024) {
+      setActiveLayout('tablet');
+    } else {
+      setActiveLayout('desktop');
+    }
+  }, [windowWidth, isFullscreen]);
+
+  const isMobileLayout = activeLayout === 'mobile';
+  const isTabletLayout = activeLayout === 'tablet';
+  const isDesktopLayout = activeLayout === 'desktop';
 
   const pipResizeStartRef = useRef<{ x: number, width: number } | null>(null);
   const pipDragStartRef = useRef<{ clientX: number, clientY: number, startX: number, startY: number, bounds: { minX: number, maxX: number, minY: number, maxY: number } | null } | null>(null);
