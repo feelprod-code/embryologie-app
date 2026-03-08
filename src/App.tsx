@@ -260,73 +260,65 @@ function App() {
       <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} isAdmin={isAdmin} onLogout={handleLogout} />
 
       {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
+      {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
       {currentView !== 'podcast-player' && (
-        <nav className="fixed bottom-0 z-50 w-full bg-white/90 backdrop-blur-xl border-t border-slate-200 flex md:hidden pb-[env(safe-area-inset-bottom,16px)] shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none items-stretch">
+        <nav
+          className={cn(
+            "fixed bottom-0 z-50 w-full bg-white/90 backdrop-blur-xl border-t border-slate-200 md:hidden pb-[env(safe-area-inset-bottom,16px)] shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
+            isAdmin ? "grid-cols-6" : "grid-cols-5"
+          )}
+        >
           <button
             onClick={() => setCurrentView('home')}
             onTouchStart={(e) => { e.preventDefault(); setCurrentView('home'); }}
             className={cn(
-              "flex flex-1 flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden",
+              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden w-full",
               currentView === 'home' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <div className={cn("h-6 flex items-center justify-center transition-transform duration-200", currentView === 'home' ? "scale-105" : "group-hover:scale-105")}>
+            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", currentView === 'home' ? "scale-105" : "group-hover:scale-105")}>
               <HomeIcon size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-1", currentView === 'home' ? "font-medium" : "font-normal")}>{t('nav.home')}</span>
+            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'home' ? "font-medium" : "font-normal")}>{t('nav.home')}</span>
           </button>
 
           <button
             onClick={() => setCurrentView('timeline')}
             onTouchStart={(e) => { e.preventDefault(); setCurrentView('timeline'); }}
             className={cn(
-              "flex flex-1 flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden",
+              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden w-full",
               currentView === 'timeline' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <div className={cn("h-6 flex items-center justify-center transition-transform duration-200", currentView === 'timeline' ? "scale-105" : "group-hover:scale-105")}>
+            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", currentView === 'timeline' ? "scale-105" : "group-hover:scale-105")}>
               <Clock size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-1", currentView === 'timeline' ? "font-medium" : "font-normal")}>{t('nav.timeline')}</span>
+            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'timeline' ? "font-medium" : "font-normal")}>{t('nav.timeline')}</span>
           </button>
 
           <button
             onClick={() => setCurrentView('video-library')}
             onTouchStart={(e) => { e.preventDefault(); setCurrentView('video-library'); }}
             className={cn(
-              "flex flex-1 flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden",
+              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden w-full",
               currentView === 'video-library' || currentView === 'video-player' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
             )}
           >
-            <div className={cn("h-6 flex items-center justify-center transition-transform duration-200", currentView === 'video-library' || currentView === 'video-player' ? "scale-105" : "group-hover:scale-105")}>
+            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", currentView === 'video-library' || currentView === 'video-player' ? "scale-105" : "group-hover:scale-105")}>
               <Video size={24} />
             </div>
-            <span className={cn("text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-1", currentView === 'video-library' || currentView === 'video-player' ? "font-medium" : "font-normal")}>{t('nav.videos')}</span>
+            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'video-library' || currentView === 'video-player' ? "font-medium" : "font-normal")}>{t('nav.videos')}</span>
           </button>
 
           <button
             onClick={handleLogout}
             onTouchStart={(e) => { e.preventDefault(); handleLogout(); }}
-            className="flex flex-1 flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden text-slate-400 hover:text-red-500"
+            className="flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden text-slate-400 hover:text-red-500 w-full"
           >
-            <div className="h-6 flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
+            <div className="h-[24px] flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
               <LogOut size={24} className="text-red-400 group-hover:text-red-500" />
             </div>
-            <span className="text-[10px] tracking-wide transition-all font-normal whitespace-nowrap truncate w-full text-center px-1 text-red-500">Quitter</span>
-          </button>
-
-          <button
-            onClick={() => setCurrentView('embryo-ai')}
-            onTouchStart={(e) => { e.preventDefault(); setCurrentView('embryo-ai'); }}
-            className={cn(
-              "flex flex-1 flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden",
-              currentView === 'embryo-ai' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
-            )}
-          >
-            <div className={cn("h-6 flex items-center justify-center transition-transform duration-200", currentView === 'embryo-ai' ? "scale-105" : "group-hover:scale-105")}>
-              <Brain size={24} />
-            </div>
-            <span className={cn("text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-1", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('nav.ai_assistant')}</span>
+            <span className="mt-auto text-[10px] tracking-wide transition-all font-normal whitespace-nowrap truncate w-full text-center px-0.5 text-red-500">Quitter</span>
           </button>
 
           {isAdmin && (
@@ -334,21 +326,23 @@ function App() {
               onClick={() => setCurrentView('admin')}
               onTouchStart={(e) => { e.preventDefault(); setCurrentView('admin'); }}
               className={cn(
-                "flex flex-1 flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden",
+                "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden w-full",
                 currentView === 'admin' ? "text-slate-800" : "text-slate-400 hover:text-slate-600"
               )}
             >
-              <div className={cn("h-6 flex items-center justify-center transition-transform duration-200", currentView === 'admin' ? "scale-105" : "group-hover:scale-105")}>
+              <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", currentView === 'admin' ? "scale-105" : "group-hover:scale-105")}>
                 <Shield size={24} />
               </div>
-              <span className={cn("text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-1", currentView === 'admin' ? "font-medium" : "font-normal")}>Admin</span>
+              <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'admin' ? "font-medium" : "font-normal")}>Admin</span>
             </button>
           )}
 
           {/* Mobile bottom nav Language Switcher */}
-          <div className="flex flex-1 flex-col items-center justify-start pt-3 pb-2 gap-1 overflow-hidden">
-            <div className="h-6 flex items-center justify-center">
-              <LanguageSwitcher variant="bottom-nav" />
+          <div className="flex flex-col items-center justify-start pt-3 pb-2 gap-1 overflow-hidden w-full">
+            <div className="h-[24px] flex items-center justify-center relative -top-[3px]">
+              <div className="scale-90 origin-center">
+                <LanguageSwitcher variant="bottom-nav" />
+              </div>
             </div>
           </div>
         </nav>
