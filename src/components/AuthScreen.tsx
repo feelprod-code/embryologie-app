@@ -116,7 +116,7 @@ export const AuthScreen: React.FC = () => {
                             )}
                         </button>
 
-                        {import.meta.env.DEV && (
+                        {true && (
                             <button
                                 type="button"
                                 onClick={async () => {
