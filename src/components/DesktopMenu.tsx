@@ -27,7 +27,7 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
                     <img
                         src="/icon-emb.png"
                         alt="Logo Embryologie"
-                        className="w-10 h-10 object-contain rounded-full shadow-sm"
+                        className="w-[52px] h-[52px] object-contain rounded-full shadow-sm"
                     />
                 </button>
             </div>
