@@ -678,16 +678,19 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               <div
                 ref={pipContainerRef}
                 className={cn(
-                  "absolute bottom-[90px] right-6 z-[90] rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5 flex flex-col",
-                  (!isResizing && !isDragging) && "transition-transform duration-300 ease-out",
-                  !isVideoVisible && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0",
-                  isFullscreen && "opacity-0 pointer-events-none" // Hide the PIP shell if the video is natively fullscreen
+                  "absolute bottom-[90px] right-6 z-[90] flex flex-col",
+                  isFullscreen
+                    ? "fixed inset-0 !bottom-0 !right-0 w-full h-full border-none rounded-none bg-black/90 p-0"
+                    : "rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5",
+                  (!isResizing && !isDragging && !isFullscreen) && "transition-transform duration-300 ease-out",
+                  !isVideoVisible && !isFullscreen && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
                 )}
                 style={{
-                  width: isVideoVisible ? `${pipWidth}px` : undefined,
-                  height: 'auto',
-                  touchAction: 'none',
-                  transform: `translate(${pipTranslate.x}px, ${pipTranslate.y}px)`
+                  width: isFullscreen ? '100%' : (isVideoVisible ? `${pipWidth}px` : undefined),
+                  height: isFullscreen ? '100%' : 'auto',
+                  touchAction: isFullscreen ? 'auto' : 'none',
+                  transform: isFullscreen ? 'none' : `translate(${pipTranslate.x}px, ${pipTranslate.y}px)`,
+                  zIndex: isFullscreen ? 99990 : 90
                 }}
               >
                 {/* Drag Handle */}
