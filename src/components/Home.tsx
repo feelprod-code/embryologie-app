@@ -79,7 +79,7 @@ export function Home(_props: HomeProps) {
                 <div className="flex-[2.5] sm:flex-[2] min-h-[6vh] sm:min-h-[4vh]"></div>
 
                 {/* Credits FeelProd */}
-                <div className="flex-none w-full flex flex-col items-center justify-end opacity-90 mt-auto pb-2">
+                <div className="flex-none w-full flex flex-col items-center justify-end opacity-90 mt-auto pb-6">
                     <span className="text-[10px] sm:text-[11px] md:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20 mb-1">
                         {t('home.credits', 'RÉALISATION FEELPROD')}
                     </span>
