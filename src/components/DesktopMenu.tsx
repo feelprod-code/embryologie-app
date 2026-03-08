@@ -19,9 +19,17 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
         <nav className="fixed top-0 left-0 right-0 z-50 w-full h-[60px] bg-[#FAF9F6] border-b border-slate-200 hidden md:flex items-center justify-between px-6 xl:px-12 shadow-sm">
             {/* Brand / Logo Area */}
             <div className="flex flex-1 items-center justify-start">
-                <span className="font-bebas text-lg text-[#F27D33] tracking-wide leading-none cursor-pointer" onClick={() => setCurrentView('home')}>
-                    EMBRYOLOGIE
-                </span>
+                <button
+                    onClick={() => setCurrentView('home')}
+                    className="flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105 active:scale-95"
+                    aria-label="Accueil EMBRYOLOGIE"
+                >
+                    <img
+                        src="/icon-emb.png"
+                        alt="Logo Embryologie"
+                        className="w-10 h-10 object-contain rounded-full shadow-sm"
+                    />
+                </button>
             </div>
 
             {/* Navigation Links */}
