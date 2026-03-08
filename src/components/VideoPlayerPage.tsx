@@ -169,31 +169,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const pipContainerRef = useRef<HTMLDivElement>(null);
   const videoPlayerRef = useRef<CustomVideoPlayerRef>(null);
   const playerWrapperRef = useRef<HTMLDivElement>(null);
-  const [playerDims, setPlayerDims] = useState<{ width: number; height: number } | null>(null);
-
-  useEffect(() => {
-    if (!playerWrapperRef.current) return;
-
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const { width, height } = entry.contentRect;
-        if (width === 0 || height === 0) continue;
-
-        const ratio = 16 / 9;
-
-        if (width / height > ratio) {
-          // Parent is wider than 16:9 -> constrain by height
-          setPlayerDims({ width: height * ratio, height });
-        } else {
-          // Parent is taller than 16:9 -> constrain by width
-          setPlayerDims({ width, height: width / ratio });
-        }
-      }
-    });
-
-    resizeObserver.observe(playerWrapperRef.current);
-    return () => resizeObserver.disconnect();
-  }, []);
 
   // Effect to automatically show video on layout change to avoid stuck invisible video state
   useEffect(() => {
@@ -339,8 +314,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         className="w-full flex-grow flex flex-col items-center justify-center min-h-0 h-full overflow-hidden"
       >
         <div
-          className="relative transition-none flex-shrink-0 flex items-center justify-center"
-          style={!isFullscreen && playerDims ? { width: playerDims.width, height: playerDims.height } : { width: '100%', height: '100%', aspectRatio: '16/9' }}
+          className={cn(
+            "relative transition-none flex-shrink-0 flex items-center justify-center w-full",
+            isFullscreen ? "h-full" : "aspect-video"
+          )}
         >
           <CustomVideoPlayer
             ref={videoPlayerRef}
@@ -667,15 +644,14 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               <div className="w-full h-full flex flex-col">
                 <div
                   className={cn(
-                    "w-full flex-none transition-all duration-300 ease-in-out",
-                    !isVideoVisible ? "h-0 overflow-hidden" : ""
+                    "w-full flex-none transition-all duration-300 ease-in-out grid",
+                    !isVideoVisible ? "opacity-0" : "opacity-100"
                   )}
                   style={{
-                    // We calculate the ideal height: 16/9 aspect ratio + ~38px for the top info controls
-                    height: isVideoVisible ? 'calc(100vw * 9 / 16 + 38px)' : '0'
+                    gridTemplateRows: isVideoVisible ? '1fr' : '0fr'
                   }}
                 >
-                  <div className="w-full h-full pb-1">
+                  <div className="overflow-hidden w-full pb-1">
                     {TopContent}
                   </div>
                 </div>

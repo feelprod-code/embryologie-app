@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useImperativeHandle } from 'react';
 import { Stream } from '@cloudflare/stream-react';
 import { useTranslation } from 'react-i18next';
 import { Play, Pause, Maximize, Minimize, X, RotateCcw, RotateCw } from 'lucide-react';
+import { cn } from '../../utils';
 
 // Supported subtitle languages
 const SUBTITLE_LANGS = [
@@ -186,27 +187,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         };
     }, [isFullscreen, onFullscreenChange]);
 
-    const getVideoElement = (): HTMLVideoElement | null => {
-        if (localVideoUrl && playerRef.current) return playerRef.current;
-        const streamEl = document.querySelector(`stream[src="${cloudflareId}"]`) || document.querySelector('stream');
-        if (!streamEl) return document.querySelector('video');
-        return streamEl.shadowRoot?.querySelector('video') || streamEl.querySelector('video') || document.querySelector('video');
-    };
-
     const toggleFullscreen = (e?: React.MouseEvent | React.TouchEvent) => {
         if (e) e.stopPropagation();
 
-        const videoEl = getVideoElement();
-
-        // 1. iOS Native Fullscreen (Won't trigger if controls=false in CF iframe, but keeping if we ever switch to native video)
-        if (videoEl && (videoEl as any).webkitEnterFullscreen) {
-            (videoEl as any).webkitEnterFullscreen();
-            return;
-        }
-
-        // 2. Standard Web Fullscreen API
         const playerContainer = containerRef.current;
-        if (playerContainer && document.fullscreenEnabled) {
+
+        // Custom Fullscreen approach First because we want to preserve OUR UI overlay (subtitles, cc, controls)
+        // iOS will otherwise break out of our React tree and show native player WITHOUT our cc toggle
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+        if (playerContainer && document.fullscreenEnabled && !isIOS) {
             if (document.fullscreenElement) {
                 document.exitFullscreen().catch(console.error);
                 setIsFullscreen(false);
@@ -215,13 +205,13 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     setIsFullscreen(true);
                 }).catch(err => {
                     console.error("Error attempting to enable fullscreen:", err);
-                    setIsFullscreen(!isFullscreen); // fallback
+                    setIsFullscreen(!isFullscreen); // fallback to CSS
                 });
             }
             return;
         }
 
-        // 3. Fallback CSS Fullscreen
+        // CSS Fullscreen is actually safer and preferred for iOS so our overlay UI works
         setIsFullscreen(!isFullscreen);
     };
 
@@ -381,8 +371,10 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         return (
             <div
                 ref={containerRef}
-                className={`relative w-full bg-black overflow-hidden group ${className} ${isFullscreen ? 'video-player-fullscreen-active' : 'aspect-video rounded-xl shadow-2xl'
-                    }`}
+                className={cn(
+                    "relative w-full bg-black overflow-hidden group",
+                    isFullscreen ? 'video-player-fullscreen-active' : className || 'aspect-video rounded-xl shadow-2xl'
+                )}
                 onMouseMove={() => {
                     // Only trigger mouse move if we are inside the window!
                     triggerControls();
