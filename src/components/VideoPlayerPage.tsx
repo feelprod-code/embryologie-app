@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { videoCourses as videoCoursesFr, type VideoCourse, getCategoryTotalDuration } from '../data/videoCourses';
 import { videoCourses as videoCoursesEn } from '../data/videoCourses_en';
 import { videoCourses as videoCoursesEs } from '../data/videoCourses_es';
@@ -300,9 +300,9 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     }
   };
 
-  const handleFullscreenChange = (isFs: boolean) => {
+  const handleFullscreenChange = useCallback((isFs: boolean) => {
     setIsFullscreen(isFs);
-  };
+  }, []);
 
   const TopContent = (
     <div className={cn(
@@ -669,31 +669,31 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         {/* --- TABLET & DESKTOP VIEW: Floating Picture-in-Picture in Corner --- */}
         {(isTabletLayout || isDesktopLayout) && (
           <div className="flex-1 relative w-full h-full pb-4 px-4">
-            <>
-              {/* Transcript Background (Full Tablet Width) */}
-              <div className="w-full h-full relative">
-                {BottomContent}
-              </div>
+            {/* Transcript Background (Full Tablet Width) */}
+            <div className="w-full h-full relative">
+              {BottomContent}
+            </div>
 
-              <div
-                ref={pipContainerRef}
-                className={cn(
-                  "absolute bottom-[90px] right-6 z-[90] flex flex-col",
-                  isFullscreen
-                    ? "fixed inset-0 !bottom-0 !right-0 w-full h-full border-none rounded-none bg-black/90 p-0"
-                    : "rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5",
-                  (!isResizing && !isDragging && !isFullscreen) && "transition-transform duration-300 ease-out",
-                  !isVideoVisible && !isFullscreen && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
-                )}
-                style={{
-                  width: isFullscreen ? '100%' : (isVideoVisible ? `${pipWidth}px` : undefined),
-                  height: isFullscreen ? '100%' : 'auto',
-                  touchAction: isFullscreen ? 'auto' : 'none',
-                  transform: isFullscreen ? 'none' : `translate(${pipTranslate.x}px, ${pipTranslate.y}px)`,
-                  zIndex: isFullscreen ? 99990 : 90
-                }}
-              >
-                {/* Drag Handle */}
+            <div
+              ref={pipContainerRef}
+              className={cn(
+                "absolute bottom-[90px] right-6 z-[90] flex flex-col",
+                isFullscreen
+                  ? "fixed inset-0 !bottom-0 !right-0 w-full h-full border-none rounded-none bg-black/90 p-0"
+                  : "rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5",
+                (!isResizing && !isDragging && !isFullscreen) && "transition-transform duration-300 ease-out",
+                !isVideoVisible && !isFullscreen && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
+              )}
+              style={{
+                width: isFullscreen ? '100%' : (isVideoVisible ? `${pipWidth}px` : undefined),
+                height: isFullscreen ? '100%' : 'auto',
+                touchAction: isFullscreen ? 'auto' : 'none',
+                transform: isFullscreen ? 'none' : `translate(${pipTranslate.x}px, ${pipTranslate.y}px)`,
+                zIndex: isFullscreen ? 99990 : 90
+              }}
+            >
+              {/* Drag Handle */}
+              {!isFullscreen && (
                 <div
                   className="absolute -top-3 -left-3 w-8 h-8 bg-white border border-slate-200 shadow-[0_4px_10px_rgba(0,0,0,0.1)] rounded-full flex items-center justify-center cursor-nwse-resize z-50 touch-none active:bg-slate-50 transition-colors"
                   onPointerDown={handlePipPointerDown}
@@ -708,20 +708,22 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     )} />
                   </div>
                 </div>
+              )}
 
-                {/* PiP Controls Header */}
+              {/* PiP Controls Header */}
+              {!isFullscreen && (
                 <div
                   className="flex items-center justify-between px-2 pb-1.5 pt-0.5 cursor-move touch-none active:bg-slate-50/50 rounded-t-lg transition-colors"
                   onPointerDown={handlePipDragStart}
                 >
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0 pointer-events-none">Lecteur Vidéo</span>
                 </div>
+              )}
 
-                <div className="w-full flex flex-col">
-                  {TopContent}
-                </div>
+              <div className="w-full flex flex-col h-full">
+                {TopContent}
               </div>
-            </>
+            </div>
           </div>
         )}
 
