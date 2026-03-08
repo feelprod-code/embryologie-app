@@ -338,13 +338,7 @@ function App() {
           )}
 
           {/* Mobile bottom nav Language Switcher */}
-          <div className="flex flex-col items-center justify-start pt-3 pb-2 gap-1 overflow-hidden w-full">
-            <div className="h-[24px] flex items-center justify-center relative -top-[3px]">
-              <div className="scale-90 origin-center">
-                <LanguageSwitcher variant="bottom-nav" />
-              </div>
-            </div>
-          </div>
+          <LanguageSwitcher variant="bottom-nav" />
         </nav>
       )}
 

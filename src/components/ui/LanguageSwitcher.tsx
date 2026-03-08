@@ -32,7 +32,7 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
     }, []);
 
     return (
-        <div className="relative" ref={menuRef}>
+        <div className="relative w-full h-full flex flex-col" ref={menuRef}>
             {/* Trigger Button - A circle containing the flag exactly the size of other icons (e.g. 24px inner for mobile) */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
