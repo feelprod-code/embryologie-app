@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Mail, CheckCircle, AlertCircle, Loader2, ShieldAlert } from 'lucide-react';
 
@@ -7,6 +8,19 @@ export const AuthScreen: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSent, setIsSent] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        // Sometimes mobile Safari delays mapping the hash fragment. Check explicitly.
+        const hash = window.location.hash;
+        if (hash && hash.includes('access_token')) {
+            setIsLoading(true);
+            // This forces Supabase to parse the URL and save the session.
+            // When done, App.tsx's onAuthStateChange will pick it up and unmount AuthScreen.
+            supabase.auth.getSession().finally(() => {
+                 setIsLoading(false);
+            });
+        }
+    }, []);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
