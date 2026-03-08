@@ -37,19 +37,24 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={cn(
-                    "flex flex-col items-center justify-center transition-all duration-200 group active:scale-95",
-                    variant === 'bottom-nav' ? "pt-3 pb-2 gap-1 w-full" : "w-10 h-10 rounded-full hover:bg-slate-100"
+                    "flex flex-col items-center justify-start transition-all duration-200 group active:scale-95 w-full",
+                    variant === 'bottom-nav' ? "pt-3 pb-2 gap-1 overflow-hidden" : "w-10 h-10 rounded-full hover:bg-slate-100 justify-center"
                 )}
                 aria-label="Changer de langue"
             >
                 <div className={cn(
-                    "transition-transform duration-200 overflow-hidden flex items-center justify-center rounded-full shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-slate-50",
-                    variant === 'bottom-nav' ? "w-6 h-6" : "w-7 h-7"
+                    "flex px-1 items-center justify-center transition-transform duration-200",
+                    variant === 'bottom-nav' ? "h-[24px]" : ""
                 )}>
-                    {activeLang.flag}
+                    <div className={cn(
+                        "overflow-hidden flex items-center justify-center rounded-full shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-slate-50",
+                        variant === 'bottom-nav' ? "w-[24px] h-[24px]" : "w-7 h-7"
+                    )}>
+                        {activeLang.flag}
+                    </div>
                 </div>
                 {variant === 'bottom-nav' && (
-                    <span className={cn("text-[10px] tracking-wide transition-all font-normal text-slate-400 group-hover:text-slate-600")}>
+                    <span className={cn("mt-auto text-[10px] tracking-wide transition-all font-normal text-slate-400 group-hover:text-slate-600 whitespace-nowrap truncate w-full text-center px-0.5")}>
                         {activeLang.code.toUpperCase()}
                     </span>
                 )}
@@ -59,8 +64,8 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
             {isOpen && (
                 <div
                     className={cn(
-                        "absolute right-0 flex flex-col bg-white/95 backdrop-blur-xl border border-slate-200/60 shadow-xl rounded-xl overflow-hidden min-w-[130px] z-50 animate-in fade-in zoom-in-95 duration-100",
-                        variant === 'bottom-nav' ? "bottom-full mb-2 origin-bottom-right" : "top-full mt-2 origin-top-right"
+                        "absolute right-0 flex flex-col bg-white/95 backdrop-blur-xl border border-slate-200/60 shadow-xl rounded-xl overflow-hidden min-w-[130px] z-[60] animate-in fade-in zoom-in-95 duration-100",
+                        variant === 'bottom-nav' ? "bottom-full mb-4 origin-bottom-right shadow-[0_4px_24px_-8px_rgba(0,0,0,0.3)] right-2" : "top-full mt-2 origin-top-right"
                     )}
                 >
                     {languages.map((lang) => (
