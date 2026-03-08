@@ -160,14 +160,22 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   };
 
   // --- Effects ---
-  const [activeLayout, setActiveLayout] = useState<'mobile' | 'tablet' | 'desktop'>(
-    window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1024 ? 'tablet' : 'desktop'
-  );
+  const [activeLayout, setActiveLayout] = useState<'mobile' | 'tablet' | 'desktop'>(() => {
+    const isMobileDevice = /iPhone|iPod|android.*mobile/i.test(navigator.userAgent);
+    if (isMobileDevice) return 'mobile';
+    return window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1024 ? 'tablet' : 'desktop';
+  });
 
   useEffect(() => {
     // We lock the layout state while in fullscreen so rotating an iPhone to landscape
     // doesn't cause its width (>768px) to trigger the Tablet layout and unmount the player.
     if (isFullscreen) return;
+
+    const isMobileDevice = /iPhone|iPod|android.*mobile/i.test(navigator.userAgent);
+    if (isMobileDevice) {
+      setActiveLayout('mobile');
+      return;
+    }
 
     if (windowWidth < 768) {
       setActiveLayout('mobile');

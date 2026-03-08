@@ -54,10 +54,23 @@ const layerColors: Record<EmbryoLayer, string> = {
   "N/A": "bg-transparent text-slate-400 border-transparent",
 };
 
+const getDeviceType = () => {
+  const ua = navigator.userAgent;
+  if (/iPad|iPhone|iPod/.test(ua)) return 'iOS';
+  if (/Macintosh|Mac OS X/.test(ua)) return 'Mac';
+  if (/Android/.test(ua)) return 'Android';
+  if (/Windows/.test(ua)) return 'Windows';
+  if (/Linux/.test(ua)) return 'Linux';
+  return 'Device';
+};
+
 const getDeviceId = () => {
   let deviceId = localStorage.getItem('device_id');
   if (!deviceId) {
-    deviceId = uuidv4();
+    const rawId = uuidv4();
+    const os = getDeviceType();
+    // Maintain old IDs but new ones will look like Mac-abcdef-1234
+    deviceId = `${os}-${rawId}`;
     localStorage.setItem('device_id', deviceId);
   }
   return deviceId;
@@ -87,8 +100,8 @@ function App() {
   useEffect(() => {
     let mounted = true;
 
-    // DEV BYPASS LOGIC (Temporarily unconditional for debugging)
-    if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+    // DEV BYPASS LOGIC (Only in local development)
+    if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
       setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
       setIsAdmin(true);
       setIsInitializing(false);
@@ -96,7 +109,8 @@ function App() {
     }
 
     const checkProfileDevice = async (currentSession: any) => {
-      if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+      // DEV BYPASS: If local dev AND bypass is enabled, don't check device ID
+      if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
         if (mounted) {
           setSession(currentSession);
           setIsInitializing(false);
@@ -190,9 +204,9 @@ function App() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       // Don't override if bypassed
-      if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true') return;
+      if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') return;
 
-      if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+      if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
         setIsAdmin(true);
       } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email)) {
         setIsAdmin(true);
@@ -361,6 +375,13 @@ function App() {
         "flex-1 w-full min-h-0 flex flex-col items-center overflow-y-auto overflow-x-hidden relative z-10 overscroll-y-none no-scrollbar md:mt-[60px]"
       )} id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
 
+        {/* Mobile Top App Bar (Visible on mobile across all views) */}
+        <div className="md:hidden fixed top-0 w-full z-40 bg-[#FAF9F6]/80 backdrop-blur-xl border-b border-slate-200/50 h-[52px] flex flex-row items-center px-4 justify-end">
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+          </div>
+        </div>
+
         {/* Desktop Top Navigation Bar (Supprimé) */}
         {/*
         <nav className="sticky top-0 z-50 w-full h-[60px] bg-[#FAF9F6] border-b border-slate-200 hidden md:flex items-center justify-center gap-4 px-6 shadow-sm">
@@ -409,7 +430,7 @@ function App() {
                 : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
             )}
           >
-            {t('nav.ai_assistant', 'Embryo AI')}
+            {t('nav.ai_assistant', 'Assistant IA')}
           </button>
 
           <div className="flex-1"></div>

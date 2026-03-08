@@ -14,7 +14,7 @@
         "timeline": "Chronologie",
         "videos": "Vidéos",
         "home": "Accueil",
-        "ai_assistant": "Embryo AI"
+        "ai_assistant": "Assistant IA"
     },
     "chatbot": {
         "apiKeyMissing": "Clé API manquante.",

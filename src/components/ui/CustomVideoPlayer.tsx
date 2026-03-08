@@ -234,15 +234,17 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     }, []);
 
 
-    // Dynamically allow zoom in fullscreen
+    // Dynamically allow zoom and handle status bar in fullscreen
     useEffect(() => {
         const viewportMeta = document.querySelector('meta[name="viewport"]');
-        if (!viewportMeta) return;
+        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
         if (isFullscreen) {
-            viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, viewport-fit=cover');
+            if (viewportMeta) viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, viewport-fit=cover');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', '#000000');
         } else {
-            viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover');
+            if (viewportMeta) viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', '#FAF9F6');
         }
     }, [isFullscreen]);
 

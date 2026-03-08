@@ -5,6 +5,8 @@ import { Mail, CheckCircle, AlertCircle, Loader2, ShieldAlert } from 'lucide-rea
 
 export const AuthScreen: React.FC = () => {
     const [email, setEmail] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isSent, setIsSent] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -34,6 +36,10 @@ export const AuthScreen: React.FC = () => {
                     // In development, you can point this to localhost
                     // In production, point it to your vercel app
                     emailRedirectTo: window.location.origin,
+                    data: {
+                        first_name: firstName,
+                        last_name: lastName
+                    }
                 }
             });
 
@@ -80,7 +86,7 @@ export const AuthScreen: React.FC = () => {
                     </h4>
 
                     <p className="text-slate-400 text-center text-xs sm:text-sm mb-6 font-light px-4">
-                        Entrez votre adresse e-mail pour accéder à votre espace.
+                        Créez votre accès ou connectez-vous.
                     </p>
                 </div>
 
@@ -95,7 +101,7 @@ export const AuthScreen: React.FC = () => {
                         </p>
                     </div>
                 ) : (
-                    <form onSubmit={handleLogin} className="w-full flex flex-col gap-5">
+                    <form onSubmit={handleLogin} className="w-full flex flex-col gap-4">
 
                         {error && (
                             <div className="w-full bg-red-50 border border-red-200 text-red-600 p-3 rounded-xl flex items-start gap-3 text-sm">
@@ -103,6 +109,25 @@ export const AuthScreen: React.FC = () => {
                                 <p>{error}</p>
                             </div>
                         )}
+
+                        <div className="flex gap-4">
+                            <input
+                                type="text"
+                                required
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                className="w-1/2 px-5 py-4 bg-white/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
+                                placeholder="Prénom"
+                            />
+                            <input
+                                type="text"
+                                required
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                                className="w-1/2 px-5 py-4 bg-white/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
+                                placeholder="Nom"
+                            />
+                        </div>
 
                         <div className="relative group">
                             <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none transition-colors group-focus-within:text-[#3B82F6]">
@@ -120,7 +145,7 @@ export const AuthScreen: React.FC = () => {
 
                         <button
                             type="submit"
-                            disabled={isLoading || !email}
+                            disabled={isLoading || !email || !firstName || !lastName}
                             className="w-full bg-[#A06C50] text-white py-4 rounded-2xl font-bold tracking-[0.2em] text-lg uppercase flex items-center justify-center transition-all hover:bg-[#85543c] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none mt-2 shadow-lg shadow-[#A06C50]/30"
                         >
                             {isLoading ? (
@@ -130,7 +155,7 @@ export const AuthScreen: React.FC = () => {
                             )}
                         </button>
 
-                        {true && (
+                        {import.meta.env.DEV && (
                             <button
                                 type="button"
                                 onClick={() => {

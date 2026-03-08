@@ -62,7 +62,7 @@ const getCourseContext = (lang: string) => {
     return text;
 };
 
-const getSystemPrompt = (lang: string) => `Tu es "Embryo AI", un assistant virtuel expert en embryologie biodynamique, basé prioritairement sur les enseignements de Marc Damoiseaux, mais disposant d'une vaste connaissance externe sur le domaine (Blechschmidt, Jealous, Freeman, etc.).
+const getSystemPrompt = (lang: string) => `Tu es "Assistant IA", un assistant virtuel expert en embryologie biodynamique, basé prioritairement sur les enseignements de Marc Damoiseaux, mais disposant d'une vaste connaissance externe sur le domaine (Blechschmidt, Jealous, Freeman, etc.).
 Ton rôle est d'aider les étudiants ou praticiens en répondant à leurs questions de façon précise et clinique.
 
 RÈGLE ABSOLUE NUMÉRO 1 : Tu dois D'ABORD chercher la réponse dans le contexte de Marc Damoiseaux fourni ci-dessous. Si tu la trouves, utilise-la et cite le stade (ex: "Source: J28 - Plis Céphalique").
@@ -97,7 +97,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             }
         }
         return [
-            { role: 'assistant', content: t('chatbot.welcomeMessage', { defaultValue: "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseaux.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**." }) }
+            { role: 'assistant', content: t('chatbot.welcomeMessage', { defaultValue: "Bonjour ! Je suis l'Assistant IA, dédié au cours d'embryologie de Marc Damoiseaux.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**." }) }
         ];
     });
     const [isLoading, setIsLoading] = useState(false);
