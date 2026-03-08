@@ -17,8 +17,11 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 w-full h-[60px] bg-[#FAF9F6] border-b border-slate-200 hidden md:flex items-center justify-between px-6 xl:px-12 shadow-sm">
+            {/* Empty Left Spacer for centering */}
+            <div className="flex flex-1"></div>
+
             {/* Navigation Links (Centered without logo) */}
-            <div className="flex flex-1 items-center justify-center gap-2 lg:gap-4">
+            <div className="flex shrink-0 items-center justify-center gap-2 lg:gap-4">
                 <button
                     onClick={() => setCurrentView('home')}
                     className={cn(
