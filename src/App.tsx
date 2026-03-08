@@ -96,6 +96,14 @@ function App() {
     }
 
     const checkProfileDevice = async (currentSession: any) => {
+      if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+        if (mounted) {
+          setSession(currentSession);
+          setIsInitializing(false);
+        }
+        return;
+      }
+
       if (!currentSession?.user) {
         if (mounted) {
           setSession(null);
@@ -184,7 +192,9 @@ function App() {
       // Don't override if bypassed
       if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true') return;
 
-      if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email)) {
+      if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+        setIsAdmin(true);
+      } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email)) {
         setIsAdmin(true);
       } else {
         setIsAdmin(false);
