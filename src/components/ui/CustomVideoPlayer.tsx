@@ -193,10 +193,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         const playerContainer = containerRef.current;
 
         // Custom Fullscreen approach First because we want to preserve OUR UI overlay (subtitles, cc, controls)
-        // iOS will otherwise break out of our React tree and show native player WITHOUT our cc toggle
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        // iPhone handles this poorly by replacing the node with native QTKit player, so we skip standard Web Fullscreen on iPhone.
+        // But iPad handles standard Fullscreen API correctly! (Safari 16.4+)
+        const isIPhone = /iPhone|iPod/.test(navigator.userAgent);
 
-        if (playerContainer && document.fullscreenEnabled && !isIOS) {
+        if (playerContainer && document.fullscreenEnabled && !isIPhone) {
             if (document.fullscreenElement) {
                 document.exitFullscreen().catch(console.error);
                 setIsFullscreen(false);
@@ -215,11 +216,14 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         setIsFullscreen(!isFullscreen);
     };
 
-    // Auto-Rotate Fullscreen Logic
+    // Auto-Rotate Fullscreen Logic (Phones Only)
     useEffect(() => {
         const handleOrientationChange = () => {
             const isLandscape = window.matchMedia("(orientation: landscape)").matches;
-            const isMobileShape = window.innerWidth <= 900 && /iPad|iPhone|iPod|android/i.test(navigator.userAgent);
+
+            // iPad should NOT trigger this, only iPhones/Android Phones
+            const isTablet = /iPad/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const isMobileShape = window.innerWidth < 768 && /iPhone|iPod|android/i.test(navigator.userAgent) && !isTablet;
 
             if (isMobileShape) {
                 if (isLandscape) {
