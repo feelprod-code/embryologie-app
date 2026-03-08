@@ -17,7 +17,7 @@ export const AuthScreen: React.FC = () => {
             // This forces Supabase to parse the URL and save the session.
             // When done, App.tsx's onAuthStateChange will pick it up and unmount AuthScreen.
             supabase.auth.getSession().finally(() => {
-                 setIsLoading(false);
+                setIsLoading(false);
             });
         }
     }, []);
@@ -133,23 +133,11 @@ export const AuthScreen: React.FC = () => {
                         {true && (
                             <button
                                 type="button"
-                                onClick={async () => {
-                                    setIsLoading(true);
-                                    try {
-                                        // This uses a test account or generic sign in if configured, 
-                                        // but realistically we should just alert the user or fake a session if needed.
-                                        // Since we can't easily forge a real Supabase session without a password or valid token,
-                                        // we'll instruct them to use Resend later, but for now we provide a direct login 
-                                        // using a password if we set one up, or we can just bypass the whole screen.
-                                        // To truly bypass, we need App.tsx to know we are bypassing.
-                                        // Let's set a fake local storage flag and force a reload.
-                                        localStorage.setItem('DEV_BYPASS_AUTH', 'true');
-                                        window.location.reload();
-                                    } catch (e) {
-                                        console.error(e);
-                                    }
+                                onClick={() => {
+                                    localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+                                    window.location.reload();
                                 }}
-                                className="w-full mt-4 bg-orange-100 text-orange-700 py-3 rounded-xl font-bold tracking-wide flex items-center justify-center transition-all hover:bg-orange-200 border border-orange-200"
+                                className="w-full flex items-center justify-center py-3 px-4 rounded-xl text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all duration-300 mt-4"
                             >
                                 <ShieldAlert className="w-5 h-5 mr-2" />
                                 DEV: Forcer l'accès Admin
@@ -165,6 +153,6 @@ export const AuthScreen: React.FC = () => {
                     Une réalisation FEELPROD
                 </span>
             </div>
-        </div>
+        </div >
     );
 };
