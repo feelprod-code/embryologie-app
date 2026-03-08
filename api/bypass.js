@@ -12,6 +12,7 @@ export default function handler(req, res) {
         <h1>Réinitialisation en cours...</h1>
         <script>
           window.localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+          window.localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
           if ('serviceWorker' in window.navigator) {
             window.navigator.serviceWorker.getRegistrations()
               .then(function(r) { 
