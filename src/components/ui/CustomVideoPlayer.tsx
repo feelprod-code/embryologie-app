@@ -217,26 +217,15 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         setIsFullscreen(!isFullscreen);
     };
 
-    // Auto-Rotate Fullscreen Logic (Phones Only)
+    // Allow standard browser rotation
     useEffect(() => {
         const handleOrientationChange = () => {
-            const isLandscape = window.matchMedia("(orientation: landscape)").matches;
-
-            const isTablet = /iPad/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            // Allow auto-rotate on smartphones, regardless of their current innerWidth (which changes in landscape)
-            const isMobileShape = /iPhone|iPod|android/i.test(navigator.userAgent) && !isTablet;
-
-            if (isMobileShape) {
-                if (isLandscape) {
-                    setIsFullscreen(true);
-                } else {
-                    // Si on repasse en portrait et qu'on était en fullscreen automatique
-                    setIsFullscreen(false);
-                }
-            }
+            // Give browser time to finish physical rotation before forcing layout updates
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 100);
         };
 
-        // Listen for orientation changes to automatically enter/exit fullscreen
         window.addEventListener("orientationchange", handleOrientationChange);
 
         return () => {

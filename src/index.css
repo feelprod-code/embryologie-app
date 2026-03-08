@@ -24,6 +24,12 @@
 
   /* Fullscreen specific overrides */
   body.video-fullscreen-active,
+  body.video-fullscreen-active #root,
+  html:has(body.video-fullscreen-active) {
+    background-color: #000 !important;
+  }
+
+  body.video-fullscreen-active,
   body.video-fullscreen-active #root {
     position: static !important;
     /* Release the fixed lock to allow inner fixed to work relative to viewport */
@@ -31,7 +37,6 @@
     filter: none !important;
     max-height: 100dvh;
     height: 100dvh;
-    background-color: #000 !important;
     touch-action: auto !important;
     /* ALLOW PINCH TO ZOOM */
   }
@@ -58,21 +63,23 @@
   @media screen and (orientation: portrait) and (max-width: 767px) {
     .video-player-fullscreen-active {
       position: fixed !important;
-      top: 50% !important;
-      left: 50% !important;
-      /* Swap viewport width & height for simulated landscape */
-      width: 100dvh !important;
-      height: 100vw !important;
-      max-width: 100dvh !important;
-      max-height: 100vw !important;
-      /* Rotate and beautifully center the player */
-      transform: translate(-50%, -50%) rotate(90deg) !important;
-      transform-origin: center center !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      /* Using dvh for better mobile support */
+      height: 100dvh !important;
+      max-width: 100vw !important;
+      max-height: 100dvh !important;
+      transform: none !important;
       z-index: 99999 !important;
       margin: 0 !important;
       padding: 0 !important;
       border-radius: 0 !important;
       background-color: #000 !important;
+      /* Center video vertically since it's going to be letterboxed */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
