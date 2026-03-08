@@ -34,26 +34,18 @@
   if (window.location.hash.includes('magic-dev')) {
     localStorage.setItem('DEV_BYPASS_AUTH', 'true');
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(registrations) {
-        for(let registration of registrations) { registration.unregister() }
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) { registration.unregister() }
       });
     }
     window.location.href = '/';
   }
 </script>
+
 <body>
   <div id="root"></div>
 
-  <!-- Portrait Lock Overlay -->
-  <div id="portrait-lock-overlay">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-      <line x1="12" y1="18" x2="12.01" y2="18"></line>
-    </svg>
-    <h2>Tournez l'appareil</h2>
-    <p>Cette application est conçue pour être utilisée en mode vertical.</p>
-  </div>
+
 
   <script type="module" src="/src/main.tsx"></script>
 </body>
