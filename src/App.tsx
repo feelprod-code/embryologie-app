@@ -75,6 +75,14 @@ function App() {
   useEffect(() => {
     let mounted = true;
 
+    // DEV BYPASS LOGIC
+    if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+      setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
+      setIsAdmin(true);
+      setIsInitializing(false);
+      return;
+    }
+
     const checkProfileDevice = async (currentSession: any) => {
       if (!currentSession?.user) {
         if (mounted) {
@@ -161,6 +169,9 @@ function App() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
+      // Don't override if bypassed
+      if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') return;
+
       if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email)) {
         setIsAdmin(true);
       } else {
