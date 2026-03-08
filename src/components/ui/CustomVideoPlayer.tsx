@@ -193,11 +193,12 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         const playerContainer = containerRef.current;
 
         // Custom Fullscreen approach First because we want to preserve OUR UI overlay (subtitles, cc, controls)
-        // iPhone handles this poorly by replacing the node with native QTKit player, so we skip standard Web Fullscreen on iPhone.
-        // But iPad handles standard Fullscreen API correctly! (Safari 16.4+)
-        const isIPhone = /iPhone|iPod/.test(navigator.userAgent);
+        // Apple devices (iPhone, iPad Safari) handle requestFullscreen on generic DIVs poorly 
+        // when they contain iframes (Cloudflare Stream) by replacing the node or clipping it. 
+        // So we skip standard Web Fullscreen on ALL iOS/iPadOS devices and use our CSS fallback wrapper.
+        const isAppleMobile = /iPhone|iPod|iPad/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
-        if (playerContainer && document.fullscreenEnabled && !isIPhone) {
+        if (playerContainer && document.fullscreenEnabled && !isAppleMobile) {
             if (document.fullscreenElement) {
                 document.exitFullscreen().catch(console.error);
                 setIsFullscreen(false);
