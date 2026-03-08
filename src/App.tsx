@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video, Shield } from 'lucide-react';
+import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video, Shield, LogOut } from 'lucide-react';
 import { detailedStages as detailedStagesFr, type StageDataV2, type EmbryoLayer } from './data/embryologie';
 import { detailedStages as detailedStagesEn } from './data/embryologie_en';
 import { detailedStages as detailedStagesEs } from './data/embryologie_es';
@@ -71,6 +71,18 @@ function App() {
   const [session, setSession] = useState<any>(null);
   const [isInitializing, setIsInitializing] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+
+  const handleLogout = async () => {
+    localStorage.removeItem('DEV_BYPASS_AUTH');
+    try {
+      await supabase.auth.signOut();
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+    setSession(null);
+    setIsAdmin(false);
+    window.location.reload();
+  };
 
   useEffect(() => {
     let mounted = true;
@@ -235,7 +247,7 @@ function App() {
       )}
 
       {/* New Fixed Desktop Navigation */}
-      <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} isAdmin={isAdmin} />
+      <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} isAdmin={isAdmin} onLogout={handleLogout} />
 
       {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
       {currentView !== 'podcast-player' && (
@@ -280,6 +292,17 @@ function App() {
               <Video size={24} />
             </div>
             <span className={cn("text-[10px] tracking-wide transition-all", currentView === 'video-library' || currentView === 'video-player' ? "font-medium" : "font-normal")}>{t('nav.videos')}</span>
+          </button>
+
+          <button
+            onClick={handleLogout}
+            onTouchStart={(e) => { e.preventDefault(); handleLogout(); }}
+            className="flex flex-1 flex-col items-center justify-center pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group text-slate-400 hover:text-red-500"
+          >
+            <div className="transition-transform duration-200 group-hover:scale-105">
+              <LogOut size={24} className="text-red-400 group-hover:text-red-500" />
+            </div>
+            <span className="text-[10px] tracking-wide transition-all font-normal text-red-500">Quitter</span>
           </button>
 
           <button

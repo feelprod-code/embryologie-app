@@ -3,13 +3,16 @@ import { cn } from '../utils';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './ui/LanguageSwitcher';
 
+import { LogOut } from 'lucide-react';
+
 interface DesktopMenuProps {
     currentView: string;
     setCurrentView: (view: any) => void;
     isAdmin?: boolean;
+    onLogout?: () => void;
 }
 
-export function DesktopMenu({ currentView, setCurrentView, isAdmin }: DesktopMenuProps) {
+export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: DesktopMenuProps) {
     const { t } = useTranslation();
 
     return (
@@ -87,8 +90,17 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin }: DesktopMen
             </div>
 
             {/* Language / Tools */}
-            <div className="flex flex-1 items-center justify-end">
+            <div className="flex flex-1 items-center justify-end gap-5">
                 <LanguageSwitcher variant="desktop-nav" />
+                {onLogout && (
+                    <button
+                        onClick={onLogout}
+                        className="flex items-center justify-center text-slate-400 hover:text-red-500 transition-colors"
+                        title="Se déconnecter"
+                    >
+                        <LogOut size={20} />
+                    </button>
+                )}
             </div>
         </nav>
     );
