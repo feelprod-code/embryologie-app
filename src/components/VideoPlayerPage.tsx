@@ -357,7 +357,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       </div>
 
       <div className={cn(
-        "bg-white p-2 rounded-lg md:rounded-xl shadow-sm border border-slate-200 flex-shrink-0 w-full mt-2 lg:max-w-4xl mx-auto",
+        "bg-transparent p-2 rounded-lg md:rounded-xl shadow-sm border border-slate-200 flex-shrink-0 w-full mt-2 lg:max-w-4xl mx-auto",
         isFullscreen ? "hidden" : ""
       )}>
         {/* COMPACT SINGLE-LINE CONTROLS */}
@@ -376,7 +376,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                       course.categoryId === 'endoderme' ? "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/20" :
                         course.categoryId === 'mesoderme' ? "bg-[#F27D33]/10 text-[#F27D33] border-[#F27D33]/20" :
                           course.categoryId === 'oeil' ? "bg-[#F2B729]/10 text-[#F2B729] border-[#F2B729]/20" : "bg-red-50 text-[#8B1111] border-red-200")
-                    : "bg-white border-slate-200 text-slate-500 md:hover:text-slate-700 md:hover:bg-slate-50 active:bg-slate-50"
+                    : "bg-transparent border-slate-200 text-slate-500 md:hover:text-slate-700 md:hover:bg-slate-50 active:bg-slate-50"
                 )}
               >
                 x{speed}
@@ -389,7 +389,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             <button
               onClick={() => prevVideo && onSelectVideo(prevVideo)}
               disabled={!prevVideo}
-              className="flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-5 sm:px-5 md:px-6 lg:px-6 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+              className="flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-5 sm:px-5 md:px-6 lg:px-6 bg-transparent active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
               title={t('videoLibrary.previous')}
             >
               <ChevronLeft className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5" />
@@ -397,7 +397,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             <button
               onClick={() => nextVideo && onSelectVideo(nextVideo)}
               disabled={!nextVideo}
-              className="flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-5 sm:px-5 md:px-6 lg:px-6 bg-white active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+              className="flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-5 sm:px-5 md:px-6 lg:px-6 bg-transparent active:bg-slate-50 md:hover:bg-slate-50 cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
               title={t('videoLibrary.next')}
             >
               <ChevronRight className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5" />
@@ -410,7 +410,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               <button
                 onClick={handleOfflineCache}
                 disabled={isCaching}
-                className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50'} disabled:opacity-50 touch-manipulation active:scale-95 shrink-0`}
+                className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-transparent text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50'} disabled:opacity-50 touch-manipulation active:scale-95 shrink-0`}
                 title={isCaching ? "Enregistrement en cours..." : isCached ? "Supprimer la vidéo de cet appareil" : "Enregistrer pour accès hors-ligne"}
               >
                 <div className="relative flex items-center justify-center w-4 h-4 sm:w-4 sm:h-4">
@@ -440,11 +440,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   const BottomContent = (
     <div className={cn(
-      "w-full h-full bg-white md:rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col pt-0 relative",
+      "w-full h-full bg-transparent md:rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col pt-0 relative",
       isFullscreen && "hidden"
     )}>
       {/* STICKY TRANSCRIPT HEADER */}
-      <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 p-2 shadow-sm w-full flex items-center justify-between shrink-0">
+      <div className="sticky top-0 z-30 bg-transparent/95 backdrop-blur-md border-b border-slate-200 p-2 shadow-sm w-full flex items-center justify-between shrink-0">
         <div className="flex flex-row items-center px-2 flex-1 min-w-0 pr-2 gap-2">
           <h3 className={cn("font-anton text-sm md:text-sm lg:text-[15px] tracking-wide uppercase leading-tight truncate",
             course.categoryId === 'ectoderme' ? "text-[#5A9C51]" :
@@ -534,7 +534,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   </div>
                   {/* Custom Thumb */}
                   <div
-                    className="absolute h-2.5 w-2.5 sm:h-3 sm:w-3 bg-white rounded-full shadow border border-slate-300 pointer-events-none transform -translate-x-1/2 transition-all duration-75"
+                    className="absolute h-2.5 w-2.5 sm:h-3 sm:w-3 bg-transparent rounded-full shadow border border-slate-300 pointer-events-none transform -translate-x-1/2 transition-all duration-75"
                     style={{ left: `${((localScrubTime !== null ? localScrubTime : currentTime) / (videoDuration || 100)) * 100}%` }}
                   />
                 </div>
@@ -547,7 +547,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
           <button
             onClick={() => setIsVideoVisible(!isVideoVisible)}
-            className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-white hover:bg-slate-50 active:bg-slate-100 rounded-md sm:rounded-lg text-slate-500 hover:text-slate-700 transition-colors border border-slate-200 shadow-sm shrink-0"
+            className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-transparent hover:bg-slate-50 active:bg-slate-100 rounded-md sm:rounded-lg text-slate-500 hover:text-slate-700 transition-colors border border-slate-200 shadow-sm shrink-0"
             title={isVideoVisible ? "Masquer la vidéo" : "Afficher la vidéo"}
           >
             {isVideoVisible ? <VideoOff className="w-4 h-4" /> : <Video className="w-4 h-4" />}
@@ -629,7 +629,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                       "relative flex flex-col items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-1 sm:px-3 md:px-4 lg:px-3 rounded-xl sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-300 cursor-pointer touch-manipulation active:scale-[0.98] w-full min-w-0",
                       isSelected
                         ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
-                        : `bg-white border-slate-200 text-slate-600 shadow-sm ${style.hover}`
+                        : `bg-transparent border-slate-200 text-slate-600 shadow-sm ${style.hover}`
                     )}
                   >
                     <span className={cn(
@@ -697,7 +697,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 "absolute bottom-[90px] right-6 z-[90] flex flex-col",
                 isFullscreen
                   ? "fixed inset-0 !bottom-0 !right-0 w-full h-full border-none rounded-none bg-black/90 p-0"
-                  : "rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-xl border border-white/60 p-1.5",
+                  : "rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-transparent/95 backdrop-blur-xl border border-white/60 p-1.5",
                 (!isResizing && !isDragging && !isFullscreen) && "transition-transform duration-300 ease-out",
                 !isVideoVisible && !isFullscreen && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
               )}
@@ -712,7 +712,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               {/* Drag Handle */}
               {!isFullscreen && (
                 <div
-                  className="absolute -top-3 -left-3 w-8 h-8 bg-white border border-slate-200 shadow-[0_4px_10px_rgba(0,0,0,0.1)] rounded-full flex items-center justify-center cursor-nwse-resize z-50 touch-none active:bg-slate-50 transition-colors"
+                  className="absolute -top-3 -left-3 w-8 h-8 bg-transparent border border-slate-200 shadow-[0_4px_10px_rgba(0,0,0,0.1)] rounded-full flex items-center justify-center cursor-nwse-resize z-50 touch-none active:bg-slate-50 transition-colors"
                   onPointerDown={handlePipPointerDown}
                 >
                   <div className="w-3 h-3 rounded-full bg-slate-300/50 flex items-center justify-center">

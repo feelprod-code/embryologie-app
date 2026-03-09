@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#FAF9F6', // beige cinematic
-        card: '#ffffff', // blanc pur
+        background: '#FAF6ED', // beige premium TDT (exact icon color)
+        card: '#FAF6ED', // beige au lieu de blanc pour éviter les décalages
         primary: '#8B1111', // carmine red (cinematic)
         secondary: '#64748b', // slate-500
         dark: '#1e293b', // slate-800

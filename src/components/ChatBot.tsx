@@ -277,9 +277,9 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
     };
 
     return (
-        <div className="fixed inset-0 md:relative md:inset-auto z-40 md:z-10 w-full h-[100dvh] md:h-[calc(100vh-69px)] bg-white flex flex-col overflow-hidden md:border-x-0 md:border-b-0 md:border-slate-200">
+        <div className="fixed inset-0 md:relative md:inset-auto z-40 md:z-10 w-full h-[100dvh] md:h-full bg-transparent flex flex-col overflow-hidden">
             {/* Header Fixed - Capsule Style */}
-            <div className="flex-none z-30 w-full bg-[#FAF9F6] pt-[env(safe-area-inset-top,4px)] md:pt-4 flex flex-col items-center shadow-sm pb-2 md:pb-4 px-2 border-b border-transparent md:border-slate-100">
+            <div className="flex-none z-30 w-full bg-[#FAF6ED]/90 backdrop-blur-md pt-[env(safe-area-inset-top,4px)] md:pt-4 flex flex-col items-center pb-2 md:pb-4 px-2">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center animate-fade-in-up pb-1 md:pb-0 max-w-4xl mx-auto">
                     <div className="inline-flex flex-col md:flex-row items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
                         <span className="font-bebas font-normal text-xl sm:text-2xl md:text-xl lg:text-xl uppercase tracking-widest truncate leading-none md:leading-[1.1] pt-1 md:pt-0 drop-shadow-sm text-slate-800">
@@ -293,7 +293,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                     {messages.length > 1 && (
                         <button
                             onClick={handleClearChat}
-                            className="absolute right-4 text-slate-400 hover:text-slate-600 transition-colors p-2 md:bg-white md:border md:border-slate-200 md:rounded-full md:shadow-sm hover:bg-slate-50 active:scale-95 flex items-center justify-center shrink-0"
+                            className="absolute right-4 text-slate-400 hover:text-slate-600 transition-colors p-2 md:bg-white md:border md:border-slate-200 md:rounded-full md:shadow-sm hover:bg-transparent active:scale-95 flex items-center justify-center shrink-0"
                             title={t('chatbot.clearConversationTitle')}
                         >
                             <X size={18} />
@@ -304,15 +304,15 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto overscroll-none p-4 md:p-8 space-y-6 bg-slate-50/50" id="chatbot-messages" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <div className="flex-1 overflow-y-auto overscroll-none p-4 md:p-8 space-y-6 bg-transparent" id="chatbot-messages" style={{ WebkitOverflowScrolling: 'touch' }}>
                 <div className="max-w-4xl mx-auto w-full space-y-6">
                     {messages.map((msg, idx) => (
                         <div key={idx} className={cn("flex", msg.role === 'user' ? "justify-end" : "justify-start")}>
                             <div className={cn(
-                                "max-w-[90%] md:max-w-[85%] rounded-2xl p-4 md:p-6 shadow-sm",
+                                "max-w-[90%] md:max-w-[85%] rounded-3xl p-4 md:p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]",
                                 msg.role === 'user'
-                                    ? "bg-slate-200 text-slate-800 rounded-br-md"
-                                    : "bg-white border border-slate-200 text-slate-800 rounded-bl-md relative group"
+                                    ? "bg-slate-800 text-white rounded-br-md"
+                                    : "bg-white text-slate-800 rounded-bl-md relative group border border-slate-100/50"
                             )}>
                                 {msg.role === 'user' ? (
                                     <p id={`msg-${idx}`} className="text-base md:text-lg font-medium whitespace-pre-wrap leading-relaxed">
@@ -406,23 +406,23 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             </div>
 
             {/* Input Form */}
-            <div className="flex-none p-4 md:p-6 bg-white border-t border-slate-200 z-40 pb-[calc(1rem+env(safe-area-inset-bottom,0px)+80px)] md:pb-6">
-                <div className="max-w-4xl mx-auto w-full">
-                    <form onSubmit={handleSubmit} className="relative flex items-center">
+            <div className="flex-none p-4 md:p-6 bg-transparent z-40 pb-[calc(1rem+env(safe-area-inset-bottom,0px)+80px)] md:pb-6 relative before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#FAF6ED] before:via-[#FAF6ED]/90 before:to-transparent before:-z-10 mt-auto">
+                <div className="max-w-4xl mx-auto w-full relative z-10">
+                    <form onSubmit={handleSubmit} className="relative flex items-center shadow-[0_8px_30px_-4px_rgba(0,0,0,0.08)] rounded-2xl bg-white/80 backdrop-blur-xl border border-slate-100/50 p-1.5 focus-within:ring-4 focus-within:ring-[#A06C50]/10 transition-all">
                         <input
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             placeholder={t('chatbot.inputPlaceholder')}
-                            className="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-6 py-5 md:py-6 pr-16 md:pr-20 text-base md:text-lg text-slate-800 focus:outline-none focus:ring-0 focus:border-slate-400 font-medium placeholder:text-slate-400 shadow-inner transition-colors"
+                            className="w-full bg-transparent px-4 py-3 md:py-4 pr-14 text-base md:text-lg text-slate-800 focus:outline-none placeholder:text-slate-400 font-medium"
                             disabled={isLoading}
                         />
                         <button
                             type="submit"
                             disabled={!input.trim() || isLoading}
-                            className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center hover:bg-slate-300 transition-colors disabled:opacity-50 shadow-sm active:scale-95"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-[#A06C50] text-white rounded-xl flex items-center justify-center hover:bg-[#8d5c41] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 shadow-md active:scale-95"
                         >
-                            <ArrowRight size={20} className="md:w-6 md:h-6" />
+                            <ArrowRight size={20} />
                         </button>
                     </form>
                 </div>

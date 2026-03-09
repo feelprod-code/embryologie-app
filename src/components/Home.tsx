@@ -15,7 +15,7 @@ export function Home(_props: HomeProps) {
         : "https://audio.ausha.co/6r2X8f6LVNAp.mp3";
 
     return (
-        <div className="w-full h-full relative bg-[#FAF9F6] flex flex-col items-center overflow-hidden">
+        <div className="w-full h-full relative bg-transparent flex flex-col items-center overflow-hidden">
             {/* Inner responsive layout container */}
             {/* Inner responsive layout container */}
             <div className="flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 pt-16 min-[380px]:pt-20 sm:pt-8 md:pt-12 pb-24 sm:pb-6 md:pb-12 mx-auto h-full">

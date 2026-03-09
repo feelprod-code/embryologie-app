@@ -244,7 +244,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (themeColorMeta) themeColorMeta.setAttribute('content', '#000000');
         } else {
             if (viewportMeta) viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover');
-            if (themeColorMeta) themeColorMeta.setAttribute('content', '#FAF9F6');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', '#FAF6ED');
         }
     }, [isFullscreen]);
 

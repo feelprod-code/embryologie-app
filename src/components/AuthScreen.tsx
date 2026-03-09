@@ -7,6 +7,8 @@ export const AuthScreen: React.FC = () => {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [address, setAddress] = useState('');
+    const [profession, setProfession] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isSent, setIsSent] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -33,6 +35,8 @@ export const AuthScreen: React.FC = () => {
             // Save data locally so we can restore it or update the profile once the user actually clicks the link
             localStorage.setItem('pending_first_name', firstName);
             localStorage.setItem('pending_last_name', lastName);
+            localStorage.setItem('pending_address', address);
+            localStorage.setItem('pending_profession', profession);
             localStorage.setItem('pending_email', email);
 
             const { error } = await supabase.auth.signInWithOtp({
@@ -41,7 +45,9 @@ export const AuthScreen: React.FC = () => {
                     emailRedirectTo: window.location.origin,
                     data: {
                         first_name: firstName,
-                        last_name: lastName
+                        last_name: lastName,
+                        address,
+                        profession
                     }
                 }
             });
@@ -57,7 +63,7 @@ export const AuthScreen: React.FC = () => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FBF7EC] overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF6ED] overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://feelprod.com/wp-content/uploads/2023/11/bg-texture.jpg')] opacity-[0.03] bg-cover mix-blend-multiply pointer-events-none"></div>
 
             <div className="relative w-full max-w-md px-8 py-10 bg-transparent flex flex-col items-center z-10 mb-8">
@@ -121,6 +127,7 @@ export const AuthScreen: React.FC = () => {
                                 onChange={(e) => setFirstName(e.target.value)}
                                 className="w-1/2 px-5 py-4 bg-white/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
                                 placeholder="Prénom"
+                                autoComplete="given-name"
                             />
                             <input
                                 type="text"
@@ -129,6 +136,28 @@ export const AuthScreen: React.FC = () => {
                                 onChange={(e) => setLastName(e.target.value)}
                                 className="w-1/2 px-5 py-4 bg-white/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
                                 placeholder="Nom"
+                                autoComplete="family-name"
+                            />
+                        </div>
+
+                        <div className="flex gap-4">
+                            <input
+                                type="text"
+                                required
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                className="w-1/2 px-5 py-4 bg-white/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
+                                placeholder="Adresse / Ville"
+                                autoComplete="address-line1"
+                            />
+                            <input
+                                type="text"
+                                required
+                                value={profession}
+                                onChange={(e) => setProfession(e.target.value)}
+                                className="w-1/2 px-5 py-4 bg-white/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
+                                placeholder="Profession"
+                                autoComplete="organization-title"
                             />
                         </div>
 
@@ -143,6 +172,7 @@ export const AuthScreen: React.FC = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 className="w-full pl-14 pr-5 py-4 bg-white/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-lg shadow-inner"
                                 placeholder="votre@email.com"
+                                autoComplete="email"
                             />
                         </div>
 

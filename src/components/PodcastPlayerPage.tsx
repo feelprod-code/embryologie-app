@@ -42,7 +42,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
             {/* Bouton de Retour Global */}
             <button
                 onClick={onBack}
-                className="absolute top-4 left-4 md:top-6 md:left-6 z-50 w-12 h-12 flex items-center justify-center bg-white/90 backdrop-blur-md text-slate-700 hover:text-primary rounded-full shadow-lg border border-slate-200 hover:scale-105 transition-all"
+                className="absolute top-4 left-4 md:top-6 md:left-6 z-50 w-12 h-12 flex items-center justify-center bg-transparent/90 backdrop-blur-md text-slate-700 hover:text-primary rounded-full shadow-lg border border-slate-200 hover:scale-105 transition-all"
                 aria-label={t('podcasts.backToLibrary')}
                 title={t('podcasts.backToLibrary')}
             >
@@ -101,9 +101,9 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
                 </div>
 
                 {/* Partie Inférieure : Fenêtre de Retranscription */}
-                <div className="flex-1 w-full bg-white rounded-t-3xl shadow-[0_-15px_40px_rgba(0,0,0,0.06)] border-t border-slate-200 overflow-hidden flex flex-col relative z-30">
+                <div className="flex-1 w-full bg-transparent rounded-t-3xl shadow-[0_-15px_40px_rgba(0,0,0,0.06)] border-t border-slate-200 overflow-hidden flex flex-col relative z-30">
                     <div className="shrink-0 w-full px-6 py-4 border-b border-slate-100 bg-slate-50/90 backdrop-blur-sm flex justify-center sticky top-0 z-20">
-                        <div className="inline-flex items-center gap-2 px-5 py-2 bg-white text-slate-700 rounded-full text-sm font-bold uppercase tracking-widest shadow-sm border border-slate-200">
+                        <div className="inline-flex items-center gap-2 px-5 py-2 bg-transparent text-slate-700 rounded-full text-sm font-bold uppercase tracking-widest shadow-sm border border-slate-200">
                             <BookOpen size={18} className="text-primary" />
                             {t('podcasts.transcript')}
                         </div>
@@ -143,7 +143,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
                     onClick={() => setSummaryModalOpen(false)}
                 >
                     <div
-                        className="bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.3)] w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden animate-scale-up"
+                        className="bg-transparent rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.3)] w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden animate-scale-up"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Header Modal */}
@@ -158,7 +158,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
                             </div>
                             <button
                                 onClick={() => setSummaryModalOpen(false)}
-                                className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-500 hover:text-red-500 hover:bg-red-50 hover:border-red-200 flex items-center justify-center transition-all shadow-sm shrink-0 ml-4"
+                                className="w-10 h-10 rounded-full bg-transparent border border-slate-200 text-slate-500 hover:text-red-500 hover:bg-red-50 hover:border-red-200 flex items-center justify-center transition-all shadow-sm shrink-0 ml-4"
                                 aria-label={t('podcasts.closeSummary')}
                                 title={t('podcasts.closeSummary')}
                             >
