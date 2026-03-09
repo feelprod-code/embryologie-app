@@ -21,7 +21,7 @@ export function Home(_props: HomeProps) {
             <div className="flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 pt-16 min-[380px]:pt-20 sm:pt-8 md:pt-12 pb-24 sm:pb-6 md:pb-12 mx-auto h-full">
 
                 {/* Top Section: Credits & Title */}
-                <div className="flex flex-col items-center w-full justify-center flex-none">
+                <div className="flex flex-col items-center w-full justify-center flex-none -mt-8 sm:-mt-0">
                     {/* Top Poster Credits */}
                     <div className="relative z-10 w-full text-center animate-fade-in-up mt-2 sm:mt-6">
                         <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
