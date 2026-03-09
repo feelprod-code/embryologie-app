@@ -16,7 +16,7 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
     const { t } = useTranslation();
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 w-full h-[60px] bg-transparent border-b border-slate-200 hidden md:flex items-center justify-between px-6 xl:px-12 shadow-sm">
+        <nav className="fixed top-0 left-0 right-0 z-50 w-full h-[60px] bg-[#FAF6ED] border-b border-slate-200 hidden md:flex items-center justify-between px-6 xl:px-12 shadow-sm">
             {/* Empty Left Spacer for centering */}
             <div className="flex flex-1"></div>
 

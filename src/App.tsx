@@ -128,56 +128,28 @@ function App() {
 
       const localDeviceId = getDeviceId();
       let retries = 5;
-      let profile: any = null;
+      let profile = null;
 
       // Retry fetching profile in case the Supabase trigger takes a moment
       while (retries > 0 && !profile) {
-        try {
-          const { data, error } = await supabase
-            .from('profiles')
-            .select('device_id, is_active, first_name, last_name, address, profession')
-            .eq('id', currentSession.user.id)
-            .single();
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('device_id, is_active, first_name, last_name')
+          .eq('id', currentSession.user.id)
+          .single();
 
+        if (data) {
+          profile = data;
+        } else {
           if (error && error.code !== 'PGRST116') { // PGRST116 is not found
-            throw error;
+            console.warn("Retrying profile fetch due to error:", error.message);
           }
-          if (data) {
-            profile = data;
-          }
-        } catch (error: any) {
-          console.warn("Retrying profile fetch (might lack new columns):", error.message);
-          try {
-            const { data: fallbackData } = await supabase
-              .from('profiles')
-              .select('device_id, is_active, first_name, last_name')
-              .eq('id', currentSession.user.id)
-              .single();
-            if (fallbackData) profile = fallbackData;
-          } catch (e) { }
-        }
-
-        if (!profile) {
           retries--;
           await new Promise(res => setTimeout(res, 500));
         }
       }
 
       if (profile) {
-        // Enregistrer la session dans le localStorage comme demandé
-        localStorage.setItem('emb_session', JSON.stringify({
-          session: currentSession,
-          user: currentSession.user,
-          profile: {
-            id: currentSession.user.id,
-            email: currentSession.user.email,
-            first_name: profile.first_name,
-            last_name: profile.last_name,
-            address: profile.address || '',
-            profession: profile.profession || ''
-          }
-        }));
-
         if (!profile.is_active) {
           alert(t('auth.account_inactive', 'Votre compte est désactivé. Veuillez contacter le support.'));
           await supabase.auth.signOut();
@@ -188,40 +160,26 @@ function App() {
           return;
         }
 
-        if (!profile.first_name || !profile.last_name || !profile.address || !profile.profession) {
-          // Attempt to rescue from localStorage if they got lost during OTP auth
+        if (!profile.first_name || !profile.last_name) {
+          // Attempt to rescue names from localStorage if they got lost during OTP auth
           const pendingFirstName = localStorage.getItem('pending_first_name');
           const pendingLastName = localStorage.getItem('pending_last_name');
-          const pendingAddress = localStorage.getItem('pending_address');
-          const pendingProfession = localStorage.getItem('pending_profession');
 
-          if (pendingFirstName || pendingLastName || pendingAddress || pendingProfession) {
-            try {
-              await supabase.from('profiles').update({
-                first_name: pendingFirstName || profile.first_name,
-                last_name: pendingLastName || profile.last_name,
-                address: pendingAddress || profile.address,
-                profession: pendingProfession || profile.profession
-              }).eq('id', currentSession.user.id);
-            } catch (err: any) {
-              console.warn("Fallback name update:", err.message);
-              await supabase.from('profiles').update({
-                first_name: pendingFirstName || profile.first_name,
-                last_name: pendingLastName || profile.last_name
-              }).eq('id', currentSession.user.id);
-            }
+          if (pendingFirstName || pendingLastName) {
+            await supabase.from('profiles').update({
+              first_name: pendingFirstName || profile.first_name,
+              last_name: pendingLastName || profile.last_name
+            }).eq('id', currentSession.user.id);
 
             // Clean up to prevent stale data for other users on same device
             localStorage.removeItem('pending_first_name');
             localStorage.removeItem('pending_last_name');
-            localStorage.removeItem('pending_address');
-            localStorage.removeItem('pending_profession');
             localStorage.removeItem('pending_email');
           }
         }
 
         if (!profile.device_id) {
-          // Binding premier appareil
+          // Bind new device
           const { error: updateError } = await supabase
             .from('profiles')
             .update({ device_id: localDeviceId })
@@ -231,56 +189,27 @@ function App() {
             console.error("Failed to bind device:", updateError);
           }
         } else {
-          // Gestion jusqu'à 3 appareils
-          let authorizedDevices: string[] = [];
-          try {
-            // Essayons de parser du JSON au cas où c'est un tableau JSON ['id1', 'id2']
-            const parsed = JSON.parse(profile.device_id);
-            if (Array.isArray(parsed)) {
-              authorizedDevices = parsed;
-            } else {
-              authorizedDevices = [profile.device_id];
-            }
-          } catch (e) {
-            // Si ce n'est pas du JSON, on gère les virgules ou juste une string
-            authorizedDevices = profile.device_id.split(',').map((d: string) => d.trim()).filter((d: string) => d);
-          }
-
-          // check if current localDeviceId is in the authorized list
-          const isMatch = authorizedDevices.some(dbDevice =>
+          const dbDevice = profile.device_id;
+          const isMatch =
             dbDevice === localDeviceId ||
             (localDeviceId.includes('-') && dbDevice === localDeviceId.substring(localDeviceId.indexOf('-') + 1)) ||
-            (dbDevice.includes('-') && localDeviceId === dbDevice.substring(dbDevice.indexOf('-') + 1))
-          );
+            (dbDevice.includes('-') && localDeviceId === dbDevice.substring(dbDevice.indexOf('-') + 1));
 
           if (!isMatch) {
-            if (authorizedDevices.length < 3) {
-              // Ajouter le nouvel appareil
-              authorizedDevices.push(localDeviceId);
-              const { error: updateError } = await supabase
-                .from('profiles')
-                .update({ device_id: JSON.stringify(authorizedDevices) }) // On sauvegarde en array JSON
-                .eq('id', currentSession.user.id);
+            const isAdminUser = currentSession?.user?.email && ADMIN_EMAILS.includes(currentSession.user.email);
 
-              if (updateError) {
-                console.error("Failed to bind additional device:", updateError);
-              }
+            if (isAdminUser) {
+              // Bypassing the device check for administrators so they can use multiple devices
+              console.log("Admin multi-device access granted. Ignoring mismatch.");
             } else {
-              const isAdminUser = currentSession?.user?.email && ADMIN_EMAILS.includes(currentSession.user.email);
-
-              if (isAdminUser) {
-                // Bypassing the device check for administrators
-                console.log("Admin multi-device access granted. Ignoring mismatch.");
-              } else {
-                // Mismatch for normal users
-                alert(t('auth.device_mismatch', 'Vous avez atteint la limite de 3 appareils connectés. Cet accès est refusé.'));
-                await supabase.auth.signOut();
-                if (mounted) {
-                  setSession(null);
-                  setIsInitializing(false);
-                }
-                return;
+              // Mismatch for normal users
+              alert(t('auth.device_mismatch', 'Cet accès est déjà utilisé sur un autre appareil. Vous ne pouvez vous connecter que depuis votre appareil principal.'));
+              await supabase.auth.signOut();
+              if (mounted) {
+                setSession(null);
+                setIsInitializing(false);
               }
+              return;
             }
           }
         }
@@ -382,7 +311,7 @@ function App() {
       {currentView !== 'podcast-player' && (
         <nav
           className={cn(
-            "fixed bottom-0 z-50 w-full bg-transparent/90 backdrop-blur-xl border-t border-slate-200 md:hidden pb-[env(safe-area-inset-bottom,16px)] shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
+            "fixed bottom-0 z-50 w-full bg-white/90 backdrop-blur-xl border-t border-slate-200 md:hidden pb-[env(safe-area-inset-bottom,16px)] shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
             isAdmin ? "grid-cols-7" : "grid-cols-6"
           )}
         >
@@ -541,7 +470,7 @@ function App() {
           "flex flex-col items-center w-full flex-1",
           currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai'
             ? "p-0"
-            : "px-2 sm:px-6 lg:px-8 w-full pb-28 lg:pb-12",
+            : "px-2 sm:px-6 lg:px-8 w-full pb-[100px]",
           currentView === 'home' ? "overflow-hidden h-[100dvh] md:h-full" : "",
           currentView === 'video-player' ? "pt-0 md:pt-2 pb-[90px] md:pb-2 overflow-hidden h-[100dvh] md:h-full" : "pt-0"
         )}>
@@ -626,7 +555,7 @@ function App() {
                               ? "bg-slate-900 border-slate-800 text-white shadow-md scale-100"
                               : isPast
                                 ? "bg-slate-50 border-slate-200 text-slate-500 opacity-80"
-                                : "bg-transparent border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm"
+                                : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm"
                           )}
                         >
                           {isActive && (
@@ -674,8 +603,8 @@ function App() {
                           {/* Timeline Dot */}
                           <div className={cn(
                             "relative z-10 w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-500 flex-shrink-0 shadow-sm",
-                            isActive ? "bg-transparent border-primary glow-blue scale-110" :
-                              isPast ? "bg-slate-50 border-slate-300" : "bg-transparent border-slate-200"
+                            isActive ? "bg-white border-primary glow-blue scale-110" :
+                              isPast ? "bg-slate-50 border-slate-300" : "bg-white border-slate-200"
                           )}>
                             {iconMap[stage.id] || <CircleDot size={20} className={isActive ? "text-primary" : "text-slate-400"} />}
                           </div>
@@ -710,7 +639,7 @@ function App() {
                 {/* STAGE DETAILS (Right Column) */}
                 <div className="lg:col-span-8">
                   {activeStage ? (
-                    <div className="bg-transparent rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden animate-fade-in flex flex-col h-full">
+                    <div className="bg-white rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden animate-fade-in flex flex-col h-full">
                       {/* Background Color Hint (Subtle for light theme) */}
                       <div className={cn(
                         "absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.04] rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 transition-colors duration-1000 pointer-events-none",
@@ -747,11 +676,11 @@ function App() {
                               .map((event, idx) => (
                                 <div
                                   key={idx}
-                                  className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-slate-50 rounded-[1.2rem] p-4 border border-slate-200 hover:bg-transparent transition-all hover:shadow-md hover:border-slate-300"
+                                  className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-slate-50 rounded-[1.2rem] p-4 border border-slate-200 hover:bg-white transition-all hover:shadow-md hover:border-slate-300"
                                 >
                                   {/* Order Indicator (if exists) */}
                                   {event.order && (
-                                    <div className="absolute -left-3 -top-3 w-8 h-8 rounded-full bg-transparent border-2 border-slate-200 shadow-sm flex items-center justify-center text-xs font-bold text-slate-400 group-hover:text-primary group-hover:border-primary transition-colors z-10 font-anton">
+                                    <div className="absolute -left-3 -top-3 w-8 h-8 rounded-full bg-white border-2 border-slate-200 shadow-sm flex items-center justify-center text-xs font-bold text-slate-400 group-hover:text-primary group-hover:border-primary transition-colors z-10 font-anton">
                                       {event.order}
                                     </div>
                                   )}
@@ -813,7 +742,7 @@ function App() {
                               </h3>
                               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 {/* Fulcrums & Palpation */}
-                                <div className="bg-transparent p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
+                                <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
                                   <div>
                                     <h4 className="flex items-center text-slate-800 font-semibold text-base mb-3 uppercase tracking-wide">
                                       <Eye size={20} className="mr-2 text-primary" /> {t('app.timeline_fulcrums')}
@@ -838,7 +767,7 @@ function App() {
 
                                 <div className="space-y-6">
                                   {/* Psychosomatic */}
-                                  <div className="bg-transparent p-8 rounded-3xl border border-slate-200 shadow-sm">
+                                  <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
                                     <h4 className="flex items-center text-slate-800 font-semibold text-base mb-3 uppercase tracking-wide">
                                       <Brain size={20} className="mr-2 text-primary" /> {t('app.timeline_psychosomatic')}
                                     </h4>
@@ -847,7 +776,7 @@ function App() {
 
                                   {/* Layer Perceptions (if any) */}
                                   {activeStage.practicalIntegration.layerPerceptions && activeStage.practicalIntegration.layerPerceptions.length > 0 && (
-                                    <div className="bg-transparent p-8 rounded-3xl border border-slate-200 shadow-sm">
+                                    <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
                                       <h4 className="text-slate-800 font-semibold text-base mb-5 uppercase tracking-wide">{t('app.timeline_layer_perceptions')}</h4>
                                       <div className="space-y-5">
                                         {activeStage.practicalIntegration.layerPerceptions.map((lp, idx) => (
@@ -868,7 +797,7 @@ function App() {
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-transparent rounded-3xl border border-slate-200 shadow-sm p-16 flex items-center justify-center h-full">
+                    <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-16 flex items-center justify-center h-full">
                       <p className="text-slate-400 font-medium text-lg">{t('app.timeline_no_data')}</p>
                     </div>
                   )}

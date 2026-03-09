@@ -67,7 +67,7 @@ export function PodcastLibraryList({ onNavigate, onSelectPodcast }: PodcastLibra
                     const content = (
                         <div
                             key={item.id}
-                            className="group flex flex-col h-full bg-card rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                            className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
                             style={{ animationDelay: `${index * 50}ms` }}
                             onClick={item.externalLink ? undefined : () => onSelectPodcast(item)}
                         >
@@ -90,7 +90,7 @@ export function PodcastLibraryList({ onNavigate, onSelectPodcast }: PodcastLibra
 
                                 {/* Play Overlay sur Hover */}
                                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
-                                    <div className="w-16 h-16 bg-card/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary transform scale-75 group-hover:scale-100 transition-transform duration-300 shadow-lg">
+                                    <div className="w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary transform scale-75 group-hover:scale-100 transition-transform duration-300 shadow-lg">
                                         {item.externalLink ? <ExternalLink size={28} className="ml-0.5" /> : <Headphones size={28} className="ml-1" />}
                                     </div>
                                 </div>
