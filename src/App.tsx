@@ -725,7 +725,7 @@ function App() {
                                 <GitCommitHorizontal className="mr-3 text-primary" size={28} />
                                 {t('app.timeline_cine_dynamic')}
                               </h3>
-                              <div className="bg-[#F5F1E8] p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-hidden w-full flex justify-center items-center">
+                              <div className="bg-white p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-hidden w-full flex justify-center items-center">
                                 <div className="w-full max-w-full flex justify-center mx-auto overflow-hidden [&>svg]:max-w-full [&>svg]:h-auto">
                                   <Mermaid chart={activeStage.mermaidCode} />
                                 </div>
@@ -742,7 +742,7 @@ function App() {
                               </h3>
                               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 {/* Fulcrums & Palpation */}
-                                <div className="bg-[#FAF6ED] p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
+                                <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
                                   <div>
                                     <h4 className="flex items-center text-slate-800 font-semibold text-base mb-3 uppercase tracking-wide">
                                       <Eye size={20} className="mr-2 text-primary" /> {t('app.timeline_fulcrums')}
@@ -767,7 +767,7 @@ function App() {
 
                                 <div className="space-y-6">
                                   {/* Psychosomatic */}
-                                  <div className="bg-[#FAF6ED] p-8 rounded-3xl border border-slate-200 shadow-sm">
+                                  <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
                                     <h4 className="flex items-center text-slate-800 font-semibold text-base mb-3 uppercase tracking-wide">
                                       <Brain size={20} className="mr-2 text-primary" /> {t('app.timeline_psychosomatic')}
                                     </h4>
@@ -776,7 +776,7 @@ function App() {
 
                                   {/* Layer Perceptions (if any) */}
                                   {activeStage.practicalIntegration.layerPerceptions && activeStage.practicalIntegration.layerPerceptions.length > 0 && (
-                                    <div className="bg-[#FAF6ED] p-8 rounded-3xl border border-slate-200 shadow-sm">
+                                    <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
                                       <h4 className="text-slate-800 font-semibold text-base mb-5 uppercase tracking-wide">{t('app.timeline_layer_perceptions')}</h4>
                                       <div className="space-y-5">
                                         {activeStage.practicalIntegration.layerPerceptions.map((lp, idx) => (
