@@ -639,7 +639,7 @@ function App() {
                 {/* STAGE DETAILS (Right Column) */}
                 <div className="lg:col-span-8">
                   {activeStage ? (
-                    <div className="bg-[#FAF6ED] rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden animate-fade-in flex flex-col h-full">
+                    <div className="bg-white rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden animate-fade-in flex flex-col h-full">
                       {/* Background Color Hint (Subtle for light theme) */}
                       <div className={cn(
                         "absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.04] rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 transition-colors duration-1000 pointer-events-none",
@@ -676,7 +676,7 @@ function App() {
                               .map((event, idx) => (
                                 <div
                                   key={idx}
-                                  className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-[#F5F1E8] rounded-[1.2rem] p-4 border border-slate-200 hover:bg-[#FAF6ED] transition-all hover:shadow-md hover:border-slate-300"
+                                  className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-white rounded-[1.2rem] p-4 border border-slate-200 hover:bg-slate-50 transition-all hover:shadow-md hover:border-slate-300"
                                 >
                                   {/* Order Indicator (if exists) */}
                                   {event.order && (
