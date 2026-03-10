@@ -392,7 +392,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             <div
                 ref={containerRef}
                 className={cn(
-                    "relative w-full bg-black overflow-hidden group",
+                    "relative w-full bg-transparent overflow-hidden group",
                     isFullscreen ? 'video-player-fullscreen-active' : className || 'aspect-video rounded-xl shadow-2xl'
                 )}
                 onMouseMove={() => {
@@ -536,7 +536,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         }}
                     >
                         <span
-                            className="text-slate-700 bg-white/95 px-3 py-1.5 rounded-xl mx-2 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans shadow-md"
+                            className="text-slate-700 bg-[#FAF6ED]/95 px-3 py-1.5 rounded-xl mx-2 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans shadow-md"
                             style={{
                                 display: 'inline-block',
                                 fontSize: isFullscreen ? 'clamp(0.95rem, 2vw, 1.4rem)' : 'clamp(0.85rem, 2vw, 1.25rem)',
@@ -586,7 +586,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
                             />
                             {/* Visual Progress Track */}
-                            <div className="w-full h-1.5 bg-white/30 rounded-full overflow-hidden pointer-events-none">
+                            <div className="w-full h-1.5 bg-[#FAF6ED]/30 rounded-full overflow-hidden pointer-events-none">
                                 <div
                                     className="h-full transition-all duration-75"
                                     style={{ width: `${((localScrubTime !== null ? localScrubTime : currentTime) / (duration || 100)) * 100}%`, backgroundColor: progressColor }}
@@ -594,7 +594,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             </div>
                             {/* Custom Thumb */}
                             <div
-                                className="absolute h-3.5 w-3.5 bg-white rounded-full shadow border-2 pointer-events-none transform -translate-x-1/2 transition-all duration-75"
+                                className="absolute h-3.5 w-3.5 bg-[#FAF6ED] rounded-full shadow border-2 border-transparent pointer-events-none transform -translate-x-1/2 transition-all duration-75"
                                 style={{ left: `${((localScrubTime !== null ? localScrubTime : currentTime) / (duration || 100)) * 100}%`, borderColor: progressColor }}
                             />
                         </div>
@@ -670,7 +670,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     // 2. FALLBACK : Ancien lecteur YouTube
     if (youtubeId && youtubeId !== "") {
         return (
-            <div className={`w-full aspect-video bg-black overflow-hidden rounded-xl shadow-2xl ${className}`}>
+            <div className={`w-full aspect-video bg-transparent overflow-hidden rounded-xl shadow-2xl ${className}`}>
                 <iframe
                     className="w-full h-full"
                     src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}

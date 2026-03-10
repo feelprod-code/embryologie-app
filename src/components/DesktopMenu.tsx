@@ -28,7 +28,7 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
                         "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-colors",
                         currentView === 'home'
                             ? "bg-[#F27D33] text-white shadow-md"
-                            : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                            : "bg-transparent text-slate-600 hover:bg-[#F5F1E8] hover:text-slate-900"
                     )}
                 >
                     {t('nav.home', 'Accueil')}
@@ -40,7 +40,7 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
                         "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-colors",
                         currentView === 'timeline'
                             ? "bg-[#F27D33] text-white shadow-md"
-                            : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                            : "bg-transparent text-slate-600 hover:bg-[#F5F1E8] hover:text-slate-900"
                     )}
                 >
                     {t('nav.timeline', 'Chronologie')}
@@ -52,7 +52,7 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
                         "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-colors",
                         currentView === 'video-library' || currentView === 'video-player'
                             ? "bg-[#F27D33] text-white shadow-md"
-                            : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                            : "bg-transparent text-slate-600 hover:bg-[#F5F1E8] hover:text-slate-900"
                     )}
                 >
                     {t('nav.videos', 'Vidéos')}
@@ -64,7 +64,7 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
                         "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-colors",
                         currentView === 'embryo-ai'
                             ? "bg-[#F27D33] text-white shadow-md"
-                            : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                            : "bg-transparent text-slate-600 hover:bg-[#F5F1E8] hover:text-slate-900"
                     )}
                 >
                     {t('nav.ai_assistant', 'Assistant IA')}
@@ -77,7 +77,7 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
                             "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-colors",
                             currentView === 'admin'
                                 ? "bg-[#F27D33] text-white shadow-md"
-                                : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                                : "bg-transparent text-slate-600 hover:bg-[#F5F1E8] hover:text-slate-900"
                         )}
                     >
                         Admin

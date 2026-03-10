@@ -47,7 +47,7 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
                     variant === 'bottom-nav' ? "h-[24px]" : ""
                 )}>
                     <div className={cn(
-                        "overflow-hidden flex items-center justify-center rounded-full shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-slate-50",
+                        "overflow-hidden flex items-center justify-center rounded-full shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-[#FAF6ED]",
                         variant === 'bottom-nav' ? "w-[24px] h-[24px]" : "w-7 h-7"
                     )}>
                         {activeLang.flag}
@@ -60,11 +60,10 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
                 )}
             </button>
 
-            {/* Dropdown Menu */}
             {isOpen && (
                 <div
                     className={cn(
-                        "absolute right-0 flex flex-col bg-white/95 backdrop-blur-xl border border-slate-200/60 shadow-xl rounded-xl overflow-hidden min-w-[130px] z-[60] animate-in fade-in zoom-in-95 duration-100",
+                        "absolute right-0 flex flex-col bg-[#FAF6ED]/95 backdrop-blur-xl border border-slate-200/60 shadow-xl rounded-xl overflow-hidden min-w-[130px] z-[60] animate-in fade-in zoom-in-95 duration-100",
                         variant === 'bottom-nav' ? "bottom-full mb-4 origin-bottom-right shadow-[0_4px_24px_-8px_rgba(0,0,0,0.3)] right-2" : "top-full mt-2 origin-top-right"
                     )}
                 >
@@ -76,11 +75,11 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
                                 setIsOpen(false);
                             }}
                             className={cn(
-                                "flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors hover:bg-slate-50 active:bg-slate-100",
+                                "flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors hover:bg-[#F5F1E8] active:bg-[#EAE4D3]",
                                 activeLang.code === lang.code ? "text-[#F27D33] bg-orange-50/50" : "text-slate-700"
                             )}
                         >
-                            <div className="w-5 h-5 rounded-full overflow-hidden shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-slate-50 flex-shrink-0">
+                            <div className="w-5 h-5 rounded-full overflow-hidden shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-[#FAF6ED] flex-shrink-0">
                                 {lang.flag}
                             </div>
                             <span>{lang.label}</span>

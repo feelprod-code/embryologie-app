@@ -119,7 +119,7 @@ export const AuthScreen: React.FC = () => {
                                 required
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
-                                className="w-1/2 px-5 py-4 bg-white/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
+                                className="w-1/2 px-5 py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
                                 placeholder="Prénom"
                             />
                             <input
@@ -127,7 +127,7 @@ export const AuthScreen: React.FC = () => {
                                 required
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
-                                className="w-1/2 px-5 py-4 bg-white/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
+                                className="w-1/2 px-5 py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
                                 placeholder="Nom"
                             />
                         </div>
@@ -141,7 +141,7 @@ export const AuthScreen: React.FC = () => {
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full pl-14 pr-5 py-4 bg-white/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-lg shadow-inner"
+                                className="w-full pl-14 pr-5 py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-lg shadow-inner"
                                 placeholder="votre@email.com"
                             />
                         </div>
@@ -176,7 +176,7 @@ export const AuthScreen: React.FC = () => {
             </div>
 
             {/* Footer FeelProd */}
-            <div className="absolute bottom-6 w-full flex flex-col items-center justify-end opacity-90 z-0">
+            <div className="absolute bottom-12 w-full flex flex-col items-center justify-end opacity-90 z-0">
                 <span className="text-[10px] sm:text-[11px] md:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20 mb-1">
                     Réalisation Feelprod
                 </span>

@@ -23,7 +23,7 @@ export function Home(_props: HomeProps) {
                 {/* Top Section: Credits & Title */}
                 <div className="flex flex-col items-center w-full justify-center flex-none -mt-8 sm:-mt-0">
                     {/* Top Poster Credits */}
-                    <div className="relative z-10 w-full text-center animate-fade-in-up mt-2 sm:mt-6">
+                    <div className="relative z-10 w-full text-center animate-fade-in-up -mt-2 sm:-mt-2">
                         <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
                             {t('home.training_by')}
                         </div>
@@ -52,7 +52,7 @@ export function Home(_props: HomeProps) {
                 {/* Center - Vignette & Player */}
                 <div className="flex flex-col items-center justify-center w-full flex-none mt-2 sm:mt-0">
                     {/* Podcast Thumbnail/Vignette */}
-                    <div className="relative w-[85vw] max-w-[340px] sm:max-w-[320px] md:w-[24rem] lg:w-[28rem] aspect-square shrink-0 mb-4 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                    <div className="relative w-[86vw] max-w-[360px] sm:max-w-[340px] md:w-[25rem] lg:w-[29rem] aspect-square shrink-0 mb-4 mt-4 sm:mt-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
@@ -61,12 +61,12 @@ export function Home(_props: HomeProps) {
                     </div>
 
                     {/* Minimalist Player */}
-                    <div className="w-[90%] sm:w-2/3 max-w-[320px] z-20 mt-1 flex flex-col items-center">
+                    <div className="w-[92%] sm:w-2/3 max-w-[380px] z-20 mt-1 flex flex-col items-center">
                         <CustomAudioPlayer
                             src={podcastAudioSrc}
-                            className="w-full"
+                            className="w-full mb-1"
                         />
-                        <span className="font-handwriting text-2xl lg:text-3xl text-slate-600 mt-2 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                        <span className="font-handwriting text-3xl lg:text-4xl text-slate-600 mt-2 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                             {t('home.start')}
                         </span>
                     </div>
@@ -79,11 +79,11 @@ export function Home(_props: HomeProps) {
                 <div className="flex-[2.5] sm:flex-[2] min-h-[6vh] sm:min-h-[4vh]"></div>
 
                 {/* Credits FeelProd */}
-                <div className="flex-none w-full flex flex-col items-center justify-end opacity-90 mt-auto pb-6">
+                <div className="flex-none w-full flex flex-col items-center justify-end opacity-90 mt-auto pb-6 sm:pb-8">
                     <span className="text-[10px] sm:text-[11px] md:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20 mb-1">
                         {t('home.credits', 'RÉALISATION FEELPROD')}
                     </span>
-                    <div className="w-12 h-[1px] bg-slate-300/50 mt-1 mb-2"></div>
+                    <div className="w-12 h-[1px] bg-slate-300/50 mt-1 mb-0 sm:mb-1"></div>
                 </div>
 
             </div>

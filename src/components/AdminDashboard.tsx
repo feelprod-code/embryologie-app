@@ -87,7 +87,7 @@ export function AdminDashboard() {
                     </div>
                     <input
                         type="text"
-                        className="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm font-medium"
+                        className="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-xl leading-5 bg-[#FAF6ED] placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm font-medium"
                         placeholder="Rechercher un élève..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -95,11 +95,11 @@ export function AdminDashboard() {
                 </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-24">
+            <div className="bg-[#FAF6ED] rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-24">
                 {/* Desktop Table View */}
                 <div className="hidden md:block overflow-x-auto">
                     <table className="min-w-full divide-y divide-slate-200">
-                        <thead className="bg-slate-50">
+                        <thead className="bg-[#F5F1E8]">
                             <tr>
                                 <th scope="col" className="px-6 py-4 text-left text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                                     Élève
@@ -115,7 +115,7 @@ export function AdminDashboard() {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="bg-white divide-y divide-slate-200">
+                        <tbody className="bg-[#FAF6ED] divide-y divide-slate-200">
                             {loading ? (
                                 <tr>
                                     <td colSpan={4} className="px-6 py-12 text-center text-slate-500 font-medium">
@@ -133,7 +133,7 @@ export function AdminDashboard() {
                                 </tr>
                             ) : (
                                 filteredProfiles.map((profile) => (
-                                    <tr key={profile.id} className="hover:bg-slate-50 transition-colors">
+                                    <tr key={profile.id} className="hover:bg-[#F5F1E8] transition-colors">
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center">
                                                 <div className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold uppercase shrink-0">
@@ -179,8 +179,8 @@ export function AdminDashboard() {
                                                     className={cn(
                                                         "flex items-center px-3 py-1.5 rounded-lg border transition-colors text-xs font-bold",
                                                         profile.is_active
-                                                            ? "bg-white border-red-200 text-red-600 hover:bg-red-50"
-                                                            : "bg-white border-green-200 text-green-600 hover:bg-green-50"
+                                                            ? "bg-[#FAF6ED] border-red-200 text-red-600 hover:bg-red-50"
+                                                            : "bg-[#FAF6ED] border-green-200 text-green-600 hover:bg-green-50"
                                                     )}
                                                     title={profile.is_active ? "Bloquer l'accès" : "Autoriser l'accès"}
                                                 >
@@ -194,8 +194,8 @@ export function AdminDashboard() {
                                                     className={cn(
                                                         "flex items-center px-3 py-1.5 rounded-lg border transition-colors text-xs font-bold",
                                                         !profile.device_id
-                                                            ? "bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed opacity-50"
-                                                            : "bg-white border-amber-200 text-amber-600 hover:bg-amber-50"
+                                                            ? "bg-[#F5F1E8] border-slate-200 text-slate-400 cursor-not-allowed opacity-50"
+                                                            : "bg-[#FAF6ED] border-amber-200 text-amber-600 hover:bg-amber-50"
                                                     )}
                                                     title="Permettre de se connecter sur un nouvel appareil"
                                                 >
@@ -252,7 +252,7 @@ export function AdminDashboard() {
                                         {profile.is_active ? '✅ Actif' : '🚫 Bloqué'}
                                     </span>
                                     {profile.device_id ? (
-                                        <div className="flex items-center text-[11px] text-slate-600 font-medium px-2.5 py-1 bg-slate-50 rounded-full border border-slate-200">
+                                        <div className="flex items-center text-[11px] text-slate-600 font-medium px-2.5 py-1 bg-[#F5F1E8] rounded-full border border-slate-200">
                                             <KeyRound size={12} className="mr-1 text-amber-500" />
                                             <span className="truncate max-w-[80px]" title={profile.device_id}>
                                                 {profile.device_id.includes('-') && profile.device_id.split('-').length > 4 ?
@@ -261,7 +261,7 @@ export function AdminDashboard() {
                                             </span>
                                         </div>
                                     ) : (
-                                        <span className="text-[11px] px-2.5 py-1 bg-slate-50 text-slate-400 italic rounded-full border border-slate-200">Sans appareil</span>
+                                        <span className="text-[11px] px-2.5 py-1 bg-[#F5F1E8] text-slate-400 italic rounded-full border border-slate-200">Sans appareil</span>
                                     )}
                                 </div>
 
@@ -271,8 +271,8 @@ export function AdminDashboard() {
                                         className={cn(
                                             "flex-1 flex justify-center items-center px-3 py-2 rounded-[10px] border transition-colors text-xs font-bold",
                                             profile.is_active
-                                                ? "bg-white border-red-200 text-red-600 hover:bg-red-50"
-                                                : "bg-white border-green-200 text-green-600 hover:bg-green-50"
+                                                ? "bg-[#FAF6ED] border-red-200 text-red-600 hover:bg-red-50"
+                                                : "bg-[#FAF6ED] border-green-200 text-green-600 hover:bg-green-50"
                                         )}
                                     >
                                         {profile.is_active ? <UserX size={14} className="mr-1.5" /> : <UserCheck size={14} className="mr-1.5" />}
@@ -285,8 +285,8 @@ export function AdminDashboard() {
                                         className={cn(
                                             "flex-1 flex justify-center items-center px-3 py-2 rounded-[10px] border transition-colors text-xs font-bold",
                                             !profile.device_id
-                                                ? "bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed opacity-50"
-                                                : "bg-white border-amber-200 text-amber-600 hover:bg-amber-50"
+                                                ? "bg-[#F5F1E8] border-slate-200 text-slate-400 cursor-not-allowed opacity-50"
+                                                : "bg-[#FAF6ED] border-amber-200 text-amber-600 hover:bg-amber-50"
                                         )}
                                     >
                                         <ShieldOff size={14} className="mr-1.5" />

@@ -31,7 +31,7 @@ export function PodcastLibraryList({ onNavigate, onSelectPodcast }: PodcastLibra
                             : podcastsDataFr;
 
     return (
-        <div className="w-full max-w-7xl mx-auto animate-fade-in pb-16 px-4">
+        <div className="w-full max-w-7xl mx-auto animate-fade-in pb-4 md:pb-0 px-4">
 
             {/* Header (Même style que Vidéothèque & Chronologie) */}
             <div className="flex flex-col sm:flex-row items-center justify-between mb-8 sm:mb-12 gap-4">

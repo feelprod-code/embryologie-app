@@ -38,7 +38,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
     const [isSummaryModalOpen, setSummaryModalOpen] = useState(false);
 
     return (
-        <div className="flex flex-col items-center w-full h-full bg-slate-50 relative overflow-hidden animate-fade-in z-50">
+        <div className="flex flex-col items-center w-full h-full bg-[#FAF6ED] relative overflow-hidden animate-fade-in z-50">
             {/* Bouton de Retour Global */}
             <button
                 onClick={onBack}
@@ -85,7 +85,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
                         <div className="w-full max-w-lg mt-4 z-40">
                             <audio
                                 controls
-                                className="w-full rounded-2xl bg-slate-50 h-14"
+                                className="w-full rounded-2xl bg-[#FAF6ED] h-14"
                                 src={podcast.audioUrl}
                                 controlsList="nodownload"
                             >
@@ -93,7 +93,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
                             </audio>
                         </div>
                     ) : (
-                        <div className="w-full max-w-lg mt-4 bg-slate-50 rounded-2xl p-6 text-center border border-slate-100 flex flex-col items-center gap-3 z-40">
+                        <div className="w-full max-w-lg mt-4 bg-[#FAF6ED] rounded-2xl p-6 text-center border border-slate-100 flex flex-col items-center gap-3 z-40">
                             <Headphones size={32} className="text-slate-300" />
                             <p className="text-slate-500 font-medium">{t('podcasts.audioNotConfigured')}</p>
                         </div>
@@ -102,7 +102,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
 
                 {/* Partie Inférieure : Fenêtre de Retranscription */}
                 <div className="flex-1 w-full bg-transparent rounded-t-3xl shadow-[0_-15px_40px_rgba(0,0,0,0.06)] border-t border-slate-200 overflow-hidden flex flex-col relative z-30">
-                    <div className="shrink-0 w-full px-6 py-4 border-b border-slate-100 bg-slate-50/90 backdrop-blur-sm flex justify-center sticky top-0 z-20">
+                    <div className="shrink-0 w-full px-6 py-4 border-b border-slate-100 bg-[#FAF6ED]/90 backdrop-blur-sm flex justify-center sticky top-0 z-20">
                         <div className="inline-flex items-center gap-2 px-5 py-2 bg-transparent text-slate-700 rounded-full text-sm font-bold uppercase tracking-widest shadow-sm border border-slate-200">
                             <BookOpen size={18} className="text-primary" />
                             {t('podcasts.transcript')}
@@ -147,7 +147,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Header Modal */}
-                        <div className="flex flex-shrink-0 items-center justify-between p-6 border-b border-slate-100 bg-slate-50 relative z-10">
+                        <div className="flex flex-shrink-0 items-center justify-between p-6 border-b border-slate-100 bg-[#FAF6ED] relative z-10">
                             <div>
                                 <span className="text-primary text-xs font-bold uppercase tracking-widest mb-1 block">
                                     {t('podcasts.episodeSummary')}
@@ -176,7 +176,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
                         </div>
 
                         {/* Footer Modal */}
-                        <div className="flex-shrink-0 p-4 bg-slate-50 border-t border-slate-100 flex justify-center">
+                        <div className="flex-shrink-0 p-4 bg-[#FAF6ED] border-t border-slate-100 flex justify-center">
                             <button
                                 onClick={() => setSummaryModalOpen(false)}
                                 className="px-6 py-2 bg-dark hover:bg-primary text-white font-bebas text-xl tracking-wider uppercase rounded-xl transition-colors shadow-md"

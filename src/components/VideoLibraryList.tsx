@@ -65,7 +65,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
     const tKeys: Record<string, string> = { "L'Ectoderme": "ectoderm", "L'Endoderme": "endoderm", "Le Mésoderme": "mesoderm", "L'Oeil": "eye" };
 
     return (
-        <div className="w-full flex-1 flex flex-col pt-0 pb-16">
+        <div className="w-full flex-1 flex flex-col pt-0 pb-4 md:pb-0">
             {/* STICKY HEADER CONTAINER FOR VIDEO LIBRARY */}
             <div className="sticky top-0 z-40 w-full bg-[#FAF6ED] pt-4 flex flex-col items-center pb-4 border-b border-transparent md:border-slate-100">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center pb-1 md:pb-0">
@@ -149,11 +149,11 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                     filteredCourses.length > 0 ? (
                         filteredCourses.map((course) => {
                             const activeListStyle = {
-                                "L'Ectoderme": { textHover: "group-hover:text-[#5A9C51]", bgHover: "group-hover:bg-[#5A9C51]/10", rowBgHover: "hover:bg-[#5A9C51]/5 border-l-2 border-transparent hover:border-[#5A9C51]" },
-                                "Le Mésoderme": { textHover: "group-hover:text-[#F27D33]", bgHover: "group-hover:bg-[#F27D33]/10", rowBgHover: "hover:bg-[#F27D33]/5 border-l-2 border-transparent hover:border-[#F27D33]" },
-                                "L'Endoderme": { textHover: "group-hover:text-[#4171B5]", bgHover: "group-hover:bg-[#4171B5]/10", rowBgHover: "hover:bg-[#4171B5]/5 border-l-2 border-transparent hover:border-[#4171B5]" },
-                                "L'Oeil": { textHover: "group-hover:text-[#F2B729]", bgHover: "group-hover:bg-[#F2B729]/10", rowBgHover: "hover:bg-[#F2B729]/5 border-l-2 border-transparent hover:border-[#F2B729]" },
-                            }[selectedLayer] || { textHover: "group-hover:text-[#8B1111]", bgHover: "group-hover:bg-red-50", rowBgHover: "hover:bg-black/[0.02]" };
+                                "L'Ectoderme": { textHover: "group-hover:text-[#5A9C51]", bgHover: "group-hover:bg-[#5A9C51]/10", rowBgHover: "hover:bg-[#5A9C51]/5 border-l-2 border-transparent hover:border-[#5A9C51]", textColor: "text-[#5A9C51]" },
+                                "Le Mésoderme": { textHover: "group-hover:text-[#F27D33]", bgHover: "group-hover:bg-[#F27D33]/10", rowBgHover: "hover:bg-[#F27D33]/5 border-l-2 border-transparent hover:border-[#F27D33]", textColor: "text-[#F27D33]" },
+                                "L'Endoderme": { textHover: "group-hover:text-[#4171B5]", bgHover: "group-hover:bg-[#4171B5]/10", rowBgHover: "hover:bg-[#4171B5]/5 border-l-2 border-transparent hover:border-[#4171B5]", textColor: "text-[#4171B5]" },
+                                "L'Oeil": { textHover: "group-hover:text-[#F2B729]", bgHover: "group-hover:bg-[#F2B729]/10", rowBgHover: "hover:bg-[#F2B729]/5 border-l-2 border-transparent hover:border-[#F2B729]", textColor: "text-[#F2B729]" },
+                            }[selectedLayer] || { textHover: "group-hover:text-[#8B1111]", bgHover: "group-hover:bg-red-50", rowBgHover: "hover:bg-black/[0.02]", textColor: "text-slate-300" };
 
                             return (
                                 <motion.div
@@ -175,8 +175,8 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                                         {/* Minimalist Play Icon */}
                                         <div className="flex-shrink-0 w-10 h-10 sm:w-10 sm:h-10 md:w-8 md:h-8 lg:w-7 lg:h-7 flex items-center justify-center mr-3 sm:mr-4 md:mr-4 lg:mr-3">
-                                            <div className={cn("w-8 h-8 sm:w-8 sm:h-8 md:w-6 md:h-6 lg:w-6 lg:h-6 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] bg-slate-100/50 transition-all duration-300 group-hover:scale-110", activeListStyle.bgHover)}>
-                                                <Play className={cn("w-4 h-4 sm:w-4 sm:h-4 md:w-3 md:h-3 lg:w-3 lg:h-3 text-slate-300 transition-colors translate-x-[1px]", activeListStyle.textHover)} fill="currentColor" strokeWidth={1} />
+                                            <div className={cn("w-8 h-8 sm:w-8 sm:h-8 md:w-6 md:h-6 lg:w-6 lg:h-6 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] bg-[#FAF6ED] transition-all duration-300 group-hover:scale-110", activeListStyle.bgHover)}>
+                                                <Play className={cn("w-4 h-4 sm:w-4 sm:h-4 md:w-3 md:h-3 lg:w-3 lg:h-3 transition-colors translate-x-[1px]", activeListStyle.textColor)} fill="currentColor" strokeWidth={1} />
                                             </div>
                                         </div>
 

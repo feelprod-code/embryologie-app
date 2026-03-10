@@ -88,7 +88,7 @@ export const CustomAudioPlayer: React.FC<CustomAudioPlayerProps> = ({
             <div className="flex items-center gap-2 group w-full">
                 <button
                     onClick={togglePlay}
-                    className="flex shrink-0 items-center justify-center w-8 h-8 rounded-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#F27D33] hover:scale-105 active:scale-95 transition-all outline-none shadow-sm focus-visible:ring-1 focus-visible:ring-[#F27D33]"
+                    className="flex shrink-0 items-center justify-center w-8 h-8 rounded-full bg-[#FAF6ED] hover:bg-[#F5F1E8] border border-slate-200/60 text-slate-700 hover:text-[#F27D33] hover:scale-105 active:scale-95 transition-all outline-none shadow-sm focus-visible:ring-1 focus-visible:ring-[#F27D33]"
                     aria-label={isPlaying ? "Pause" : "Play"}
                 >
                     {isPlaying ? <Pause size={12} className="fill-current" /> : <Play size={12} className="ml-0.5 fill-current" />}

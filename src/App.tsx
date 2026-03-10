@@ -50,7 +50,7 @@ const layerColors: Record<EmbryoLayer, string> = {
   "L'Endoderme": "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/40",
   "Le Mésoderme": "bg-[#F27D33]/10 text-[#F27D33] border-[#F27D33]/40",
   "L'Oeil": "bg-[#F2B729]/10 text-[#F2B729] border-[#F2B729]/40",
-  "Global": "bg-slate-100 text-slate-700 border-slate-200",
+  "Global": "bg-[#EAE4D3] text-slate-700 border-slate-200",
   "N/A": "bg-transparent text-slate-400 border-transparent",
 };
 
@@ -286,7 +286,7 @@ function App() {
   const activeIndex = getOriginalIndex(activeStageId);
 
   if (isInitializing) {
-    return <div className="h-[100dvh] w-full flex items-center justify-center bg-slate-50"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-800"></div></div>;
+    return <div className="h-[100dvh] w-full flex items-center justify-center bg-[#F5F1E8]"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-800"></div></div>;
   }
 
   if (!session) {
@@ -298,8 +298,8 @@ function App() {
       {/* Cinematic Background Gradients (Global) */}
       {currentView !== 'video-player' && (
         <>
-          <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,_#fff_0%,_#FAF6ED_60%)] pointer-events-none z-0"></div>
-          <div className="fixed inset-0 bg-gradient-to-b from-transparent via-[#f5f5f0]/50 to-[#FAF6ED] pointer-events-none z-0"></div>
+          <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,_#F5F1E8_0%,_#FAF6ED_60%)] pointer-events-none z-0"></div>
+          <div className="fixed inset-0 bg-gradient-to-b from-transparent via-[#FAF6ED]/50 to-[#FAF6ED] pointer-events-none z-0"></div>
         </>
       )}
 
@@ -418,7 +418,7 @@ function App() {
               "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-all",
               currentView === 'home'
                 ? "bg-[#F27D33] text-white shadow-md"
-                : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                : "bg-transparent text-slate-600 hover:bg-[#EAE4D3] hover:text-slate-900"
             )}
           >
             {t('nav.home', 'Accueil')}
@@ -430,7 +430,7 @@ function App() {
               "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-all",
               currentView === 'timeline'
                 ? "bg-[#F27D33] text-white shadow-md"
-                : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                : "bg-transparent text-slate-600 hover:bg-[#EAE4D3] hover:text-slate-900"
             )}
           >
             {t('nav.timeline')}
@@ -442,7 +442,7 @@ function App() {
               "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-all",
               currentView === 'video-library'
                 ? "bg-[#F27D33] text-white shadow-md"
-                : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                : "bg-transparent text-slate-600 hover:bg-[#EAE4D3] hover:text-slate-900"
             )}
           >
             {t('nav.videos')}
@@ -454,7 +454,7 @@ function App() {
               "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-all",
               currentView === 'embryo-ai'
                 ? "bg-[#F27D33] text-white shadow-md"
-                : "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                : "bg-transparent text-slate-600 hover:bg-[#EAE4D3] hover:text-slate-900"
             )}
           >
             {t('nav.ai_assistant', 'Assistant IA')}
@@ -470,7 +470,7 @@ function App() {
           "flex flex-col items-center w-full flex-1",
           currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai'
             ? "p-0"
-            : "px-2 sm:px-6 lg:px-8 w-full pb-[100px]",
+            : "px-2 sm:px-6 lg:px-8 w-full pb-[90px] md:pb-8",
           currentView === 'home' ? "overflow-hidden h-[100dvh] md:h-full" : "",
           currentView === 'video-player' ? "pt-0 md:pt-2 pb-[90px] md:pb-2 overflow-hidden h-[100dvh] md:h-full" : "pt-0"
         )}>
@@ -501,7 +501,7 @@ function App() {
 
 
           {currentView === 'video-library' && (
-            <div className="w-full flex flex-col items-center animate-fade-in relative z-10 pb-24 lg:pb-0 mx-auto">
+            <div className="w-full flex flex-col items-center animate-fade-in relative z-10 mx-auto">
               <div className="w-full">
                 <VideoLibraryList
                   onSelectVideo={(video) => {
@@ -554,8 +554,8 @@ function App() {
                             isActive
                               ? "bg-slate-900 border-slate-800 text-white shadow-md scale-100"
                               : isPast
-                                ? "bg-slate-50 border-slate-200 text-slate-500 opacity-80"
-                                : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm"
+                                ? "bg-[#F5F1E8] border-slate-200 text-slate-500 opacity-80"
+                                : "bg-[#FAF6ED] border-slate-200 text-slate-600 hover:bg-[#F5F1E8] shadow-sm"
                           )}
                         >
                           {isActive && (
@@ -603,8 +603,8 @@ function App() {
                           {/* Timeline Dot */}
                           <div className={cn(
                             "relative z-10 w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-500 flex-shrink-0 shadow-sm",
-                            isActive ? "bg-white border-primary glow-blue scale-110" :
-                              isPast ? "bg-slate-50 border-slate-300" : "bg-white border-slate-200"
+                            isActive ? "bg-[#FAF6ED] border-primary glow-blue scale-110" :
+                              isPast ? "bg-[#F5F1E8] border-slate-300" : "bg-[#FAF6ED] border-slate-200"
                           )}>
                             {iconMap[stage.id] || <CircleDot size={20} className={isActive ? "text-primary" : "text-slate-400"} />}
                           </div>
@@ -639,7 +639,7 @@ function App() {
                 {/* STAGE DETAILS (Right Column) */}
                 <div className="lg:col-span-8">
                   {activeStage ? (
-                    <div className="bg-white rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden animate-fade-in flex flex-col h-full">
+                    <div className="bg-[#FAF6ED] rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden animate-fade-in flex flex-col h-full">
                       {/* Background Color Hint (Subtle for light theme) */}
                       <div className={cn(
                         "absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.04] rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 transition-colors duration-1000 pointer-events-none",
@@ -648,7 +648,7 @@ function App() {
 
                       <div className="relative z-10 p-8 md:p-14 flex-1">
                         <div className="flex flex-row flex-nowrap items-center w-full overflow-x-auto no-scrollbar gap-2 mb-4 md:mb-6">
-                          <span className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest bg-slate-100/80 px-2.5 py-1 rounded-md whitespace-nowrap">
+                          <span className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest bg-[#EAE4D3]/80 px-2.5 py-1 rounded-md whitespace-nowrap">
                             {activeStage.dayLabel}
                           </span>
                           <span className="text-slate-300 flex-shrink-0">•</span>
@@ -676,11 +676,11 @@ function App() {
                               .map((event, idx) => (
                                 <div
                                   key={idx}
-                                  className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-slate-50 rounded-[1.2rem] p-4 border border-slate-200 hover:bg-white transition-all hover:shadow-md hover:border-slate-300"
+                                  className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-[#F5F1E8] rounded-[1.2rem] p-4 border border-slate-200 hover:bg-[#FAF6ED] transition-all hover:shadow-md hover:border-slate-300"
                                 >
                                   {/* Order Indicator (if exists) */}
                                   {event.order && (
-                                    <div className="absolute -left-3 -top-3 w-8 h-8 rounded-full bg-white border-2 border-slate-200 shadow-sm flex items-center justify-center text-xs font-bold text-slate-400 group-hover:text-primary group-hover:border-primary transition-colors z-10 font-anton">
+                                    <div className="absolute -left-3 -top-3 w-8 h-8 rounded-full bg-[#FAF6ED] border-2 border-slate-200 shadow-sm flex items-center justify-center text-xs font-bold text-slate-400 group-hover:text-primary group-hover:border-primary transition-colors z-10 font-anton">
                                       {event.order}
                                     </div>
                                   )}
@@ -725,7 +725,7 @@ function App() {
                                 <GitCommitHorizontal className="mr-3 text-primary" size={28} />
                                 {t('app.timeline_cine_dynamic')}
                               </h3>
-                              <div className="bg-slate-50 p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-hidden w-full flex justify-center items-center">
+                              <div className="bg-[#F5F1E8] p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-hidden w-full flex justify-center items-center">
                                 <div className="w-full max-w-full flex justify-center mx-auto overflow-hidden [&>svg]:max-w-full [&>svg]:h-auto">
                                   <Mermaid chart={activeStage.mermaidCode} />
                                 </div>
@@ -742,7 +742,7 @@ function App() {
                               </h3>
                               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 {/* Fulcrums & Palpation */}
-                                <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
+                                <div className="bg-[#FAF6ED] p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
                                   <div>
                                     <h4 className="flex items-center text-slate-800 font-semibold text-base mb-3 uppercase tracking-wide">
                                       <Eye size={20} className="mr-2 text-primary" /> {t('app.timeline_fulcrums')}
@@ -767,7 +767,7 @@ function App() {
 
                                 <div className="space-y-6">
                                   {/* Psychosomatic */}
-                                  <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                                  <div className="bg-[#FAF6ED] p-8 rounded-3xl border border-slate-200 shadow-sm">
                                     <h4 className="flex items-center text-slate-800 font-semibold text-base mb-3 uppercase tracking-wide">
                                       <Brain size={20} className="mr-2 text-primary" /> {t('app.timeline_psychosomatic')}
                                     </h4>
@@ -776,7 +776,7 @@ function App() {
 
                                   {/* Layer Perceptions (if any) */}
                                   {activeStage.practicalIntegration.layerPerceptions && activeStage.practicalIntegration.layerPerceptions.length > 0 && (
-                                    <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                                    <div className="bg-[#FAF6ED] p-8 rounded-3xl border border-slate-200 shadow-sm">
                                       <h4 className="text-slate-800 font-semibold text-base mb-5 uppercase tracking-wide">{t('app.timeline_layer_perceptions')}</h4>
                                       <div className="space-y-5">
                                         {activeStage.practicalIntegration.layerPerceptions.map((lp, idx) => (
@@ -797,7 +797,7 @@ function App() {
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-16 flex items-center justify-center h-full">
+                    <div className="bg-[#FAF6ED] rounded-3xl border border-slate-200 shadow-sm p-16 flex items-center justify-center h-full">
                       <p className="text-slate-400 font-medium text-lg">{t('app.timeline_no_data')}</p>
                     </div>
                   )}
