@@ -554,8 +554,8 @@ function App() {
                             isActive
                               ? "bg-slate-900 border-slate-800 text-white shadow-md scale-100"
                               : isPast
-                                ? "bg-[#F5F1E8] border-slate-200 text-slate-500 opacity-80"
-                                : "bg-[#F5F1E8] border-slate-200 text-slate-600 hover:bg-[#F5F1E8] shadow-sm"
+                                ? "bg-white border-slate-200 text-slate-500 opacity-80"
+                                : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm"
                           )}
                         >
                           {isActive && (
@@ -602,9 +602,9 @@ function App() {
                         >
                           {/* Timeline Dot */}
                           <div className={cn(
-                            "relative z-10 w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-500 flex-shrink-0 shadow-sm",
-                            isActive ? "bg-[#F5F1E8] border-primary glow-blue scale-110" :
-                              isPast ? "bg-[#F5F1E8] border-slate-300" : "bg-[#F5F1E8] border-slate-200"
+                            "relative z-10 w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-500 flex-shrink-0 shadow-sm bg-white",
+                            isActive ? "border-primary glow-blue scale-110" :
+                              isPast ? "border-slate-300" : "border-slate-200"
                           )}>
                             {iconMap[stage.id] || <CircleDot size={20} className={isActive ? "text-primary" : "text-slate-400"} />}
                           </div>
@@ -639,7 +639,7 @@ function App() {
                 {/* STAGE DETAILS (Right Column) */}
                 <div className="lg:col-span-8">
                   {activeStage ? (
-                    <div className="bg-white rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden animate-fade-in flex flex-col h-full">
+                    <div className="bg-[#FAF6ED] rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden animate-fade-in flex flex-col h-full">
                       {/* Background Color Hint (Subtle for light theme) */}
                       <div className={cn(
                         "absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.04] rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 transition-colors duration-1000 pointer-events-none",
