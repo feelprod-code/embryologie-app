@@ -555,7 +555,7 @@ function App() {
                               ? "bg-slate-900 border-slate-800 text-white shadow-md scale-100"
                               : isPast
                                 ? "bg-[#F5F1E8] border-slate-200 text-slate-500 opacity-80"
-                                : "bg-[#FAF6ED] border-slate-200 text-slate-600 hover:bg-[#F5F1E8] shadow-sm"
+                                : "bg-[#F5F1E8] border-slate-200 text-slate-600 hover:bg-[#F5F1E8] shadow-sm"
                           )}
                         >
                           {isActive && (
@@ -603,8 +603,8 @@ function App() {
                           {/* Timeline Dot */}
                           <div className={cn(
                             "relative z-10 w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-500 flex-shrink-0 shadow-sm",
-                            isActive ? "bg-[#FAF6ED] border-primary glow-blue scale-110" :
-                              isPast ? "bg-[#F5F1E8] border-slate-300" : "bg-[#FAF6ED] border-slate-200"
+                            isActive ? "bg-[#F5F1E8] border-primary glow-blue scale-110" :
+                              isPast ? "bg-[#F5F1E8] border-slate-300" : "bg-[#F5F1E8] border-slate-200"
                           )}>
                             {iconMap[stage.id] || <CircleDot size={20} className={isActive ? "text-primary" : "text-slate-400"} />}
                           </div>

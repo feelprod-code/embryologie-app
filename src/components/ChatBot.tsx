@@ -312,7 +312,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                 "max-w-[90%] md:max-w-[85%] rounded-3xl p-4 md:p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]",
                                 msg.role === 'user'
                                     ? "bg-slate-800 text-white rounded-br-md"
-                                    : "bg-[#FAF6ED] text-slate-800 rounded-bl-md relative group border border-slate-100/50"
+                                    : "bg-white text-slate-800 rounded-bl-md relative group border border-slate-100"
                             )}>
                                 {msg.role === 'user' ? (
                                     <p id={`msg-${idx}`} className="text-base md:text-lg font-medium whitespace-pre-wrap leading-relaxed">
@@ -390,7 +390,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                     ))}
                     {isLoading && (
                         <div className="flex justify-start">
-                            <div className="bg-[#FAF6ED] border border-slate-200 rounded-2xl rounded-bl-md p-4 md:p-6 shadow-sm flex items-center gap-3">
+                            <div className="bg-white border border-slate-200 rounded-2xl rounded-bl-md p-4 md:p-6 shadow-sm flex items-center gap-3">
                                 <Loader2 size={20} className="animate-spin text-slate-400" />
                                 <span className="text-sm text-slate-500 font-bold uppercase tracking-wider pt-0.5">{t('chatbot.searching')}</span>
                             </div>
@@ -408,7 +408,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             {/* Input Form */}
             <div className="flex-none p-4 md:p-6 bg-transparent z-40 pb-[calc(1rem+env(safe-area-inset-bottom,0px)+80px)] md:pb-6 relative before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#FAF6ED] before:via-[#FAF6ED]/90 before:to-transparent before:-z-10 mt-auto">
                 <div className="max-w-4xl mx-auto w-full relative z-10">
-                    <form onSubmit={handleSubmit} className="relative flex items-center shadow-[0_8px_30px_-4px_rgba(0,0,0,0.08)] rounded-2xl bg-[#FAF6ED]/80 backdrop-blur-xl border border-slate-100/50 p-1.5 focus-within:ring-4 focus-within:ring-[#A06C50]/10 transition-all">
+                    <form onSubmit={handleSubmit} className="relative flex items-center shadow-[0_8px_30px_-4px_rgba(0,0,0,0.08)] rounded-2xl bg-white/90 backdrop-blur-xl border border-slate-100/50 p-1.5 focus-within:ring-4 focus-within:ring-[#A06C50]/10 transition-all">
                         <input
                             type="text"
                             value={input}
