@@ -48,7 +48,6 @@
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    /* Force cover of safe areas on iOS landscape */
     width: 100vw !important;
     height: 100vh !important; /* Fallback */
     height: 100dvh !important;
@@ -58,7 +57,7 @@
     padding-bottom: env(safe-area-inset-bottom) !important;
     padding-left: env(safe-area-inset-left) !important;
     padding-right: env(safe-area-inset-right) !important;
-    transform: translateZ(0) !important; /* Force hardware acceleration */
+    transform: translateZ(0) !important;
     z-index: 999999 !important;
     margin: 0 !important;
     border-radius: 0 !important;
@@ -67,7 +66,34 @@
     align-items: center !important;
     justify-content: center !important;
     overscroll-behavior: none !important;
-    touch-action: none !important; /* Prevent Safari UI from showing on swipe */
+    touch-action: none !important;
+  }
+
+  /* Force landscape orientation via CSS rotation if device is portrait */
+  @media screen and (orientation: portrait) {
+    .video-player-fullscreen-active {
+      transform: rotate(90deg) translateZ(0) !important;
+      transform-origin: center center !important;
+      /* In portrait, width and height logic is flipped */
+      width: 100dvh !important;
+      height: 100vw !important;
+      max-width: 100dvh !important;
+      max-height: 100vw !important;
+      position: fixed !important;
+      top: 50% !important;
+      left: 50% !important;
+      margin-top: -50vw !important;
+      margin-left: -50dvh !important;
+      padding: 0 !important;
+    }
+
+    /* Adjust the iOS specific close button position after rotation */
+    .video-player-fullscreen-active > div[style*="env(safe-area-inset)"] {
+       top: auto !important;
+       right: auto !important;
+       left: env(safe-area-inset-top, 1rem) !important;
+       bottom: env(safe-area-inset-right, 1rem) !important;
+    }
   }
 
   /* Extreme lock on the body to prevent the Safari address bar gap in landscape */
