@@ -134,7 +134,7 @@ function App() {
       while (retries > 0 && !profile) {
         const { data, error } = await supabase
           .from('profiles')
-          .select('device_id, is_active, first_name, last_name')
+          .select('device_id, is_active, first_name, last_name, profession')
           .eq('id', currentSession.user.id)
           .single();
 
@@ -160,20 +160,23 @@ function App() {
           return;
         }
 
-        if (!profile.first_name || !profile.last_name) {
+        if (!profile.first_name || !profile.last_name || !profile.profession) {
           // Attempt to rescue names from localStorage if they got lost during OTP auth
           const pendingFirstName = localStorage.getItem('pending_first_name');
           const pendingLastName = localStorage.getItem('pending_last_name');
+          const pendingProfession = localStorage.getItem('pending_profession');
 
-          if (pendingFirstName || pendingLastName) {
+          if (pendingFirstName || pendingLastName || pendingProfession) {
             await supabase.from('profiles').update({
               first_name: pendingFirstName || profile.first_name,
-              last_name: pendingLastName || profile.last_name
+              last_name: pendingLastName || profile.last_name,
+              profession: pendingProfession || profile.profession
             }).eq('id', currentSession.user.id);
 
             // Clean up to prevent stale data for other users on same device
             localStorage.removeItem('pending_first_name');
             localStorage.removeItem('pending_last_name');
+            localStorage.removeItem('pending_profession');
             localStorage.removeItem('pending_email');
           }
         }

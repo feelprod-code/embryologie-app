@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { Mail, AlertCircle, Loader2, ShieldAlert } from 'lucide-react';
+import { Mail, AlertCircle, Loader2, ShieldAlert, Briefcase } from 'lucide-react';
 
 export const AuthScreen: React.FC = () => {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [profession, setProfession] = useState('');
     const [otpCode, setOtpCode] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isSent, setIsSent] = useState(false);
@@ -35,6 +36,7 @@ export const AuthScreen: React.FC = () => {
             localStorage.setItem('pending_first_name', firstName);
             localStorage.setItem('pending_last_name', lastName);
             localStorage.setItem('pending_email', email);
+            localStorage.setItem('pending_profession', profession);
 
             const { error } = await supabase.auth.signInWithOtp({
                 email,
@@ -42,7 +44,8 @@ export const AuthScreen: React.FC = () => {
                     emailRedirectTo: window.location.origin,
                     data: {
                         first_name: firstName,
-                        last_name: lastName
+                        last_name: lastName,
+                        profession: profession
                     }
                 }
             });
@@ -83,37 +86,33 @@ export const AuthScreen: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FBF7EC] overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://feelprod.com/wp-content/uploads/2023/11/bg-texture.jpg')] opacity-[0.03] bg-cover mix-blend-multiply pointer-events-none"></div>
 
-            <div className="relative w-full max-w-md px-8 py-10 bg-transparent flex flex-col items-center z-10 mb-8">
+            <div className="relative w-full max-w-md px-6 py-6 sm:py-10 bg-transparent flex flex-col items-center z-10 sm:mb-8 max-h-[100dvh] overflow-y-auto no-scrollbar">
 
-                <div className="w-[14rem] h-[14rem] mb-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full">
+                <div className="w-[10rem] h-[10rem] sm:w-[14rem] sm:h-[14rem] shrink-0 mb-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full mt-2">
                     <img src="/icon-emb.png" alt="Embryologie" className="w-full h-full object-contain rounded-full" />
                 </div>
 
                 <div className="w-full flex flex-col items-center">
-                    <div className="flex items-center justify-center gap-3 w-full mb-8">
-                        <div className="h-[1px] w-6 bg-[#A06C50]/40"></div>
-                        <h3 className="text-lg sm:text-xl font-bebas tracking-[0.15em] text-slate-500 text-center uppercase">
+                    <div className="flex items-center justify-center gap-2 sm:gap-3 w-full mb-4 sm:mb-8 mt-2">
+                        <div className="h-[1px] w-4 sm:w-6 bg-[#A06C50]/40"></div>
+                        <h3 className="text-base sm:text-xl font-bebas tracking-[0.15em] text-slate-500 text-center uppercase">
                             Techniques Douces Tissulaires
                         </h3>
-                        <div className="h-[1px] w-6 bg-[#A06C50]/40"></div>
+                        <div className="h-[1px] w-4 sm:w-6 bg-[#A06C50]/40"></div>
                     </div>
 
-                    <div className="flex flex-col items-center justify-center w-full mb-6">
-                        <h1 className="text-5xl sm:text-6xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center">
+                    <div className="flex flex-col items-center justify-center w-full mb-4 sm:mb-6">
+                        <h1 className="text-4xl sm:text-6xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center">
                             L'EMBRYOLOGIE
                         </h1>
-                        <h2 className="text-4xl sm:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-2 text-center">
+                        <h2 className="text-3xl sm:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 sm:mt-2 text-center">
                             BIODYNAMIQUE
                         </h2>
                     </div>
 
-                    <h4 className="text-xs sm:text-sm font-light text-slate-500 mb-10 text-center uppercase tracking-widest">
+                    <h4 className="text-[10px] sm:text-sm font-light text-slate-500 mb-6 sm:mb-10 text-center uppercase tracking-widest">
                         par Marc Damoiseaux, <span className="font-medium text-slate-700">Ostéopathe D.O</span>
                     </h4>
-
-                    <p className="text-slate-400 text-center text-xs sm:text-sm mb-6 font-light px-4">
-                        Créez votre accès ou connectez-vous.
-                    </p>
                 </div>
 
                 {isSent ? (
@@ -183,7 +182,7 @@ export const AuthScreen: React.FC = () => {
                                 required
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
-                                className="w-1/2 px-5 py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
+                                className="w-1/2 px-4 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-sm sm:text-base shadow-inner"
                                 placeholder="Prénom"
                             />
                             <input
@@ -191,13 +190,27 @@ export const AuthScreen: React.FC = () => {
                                 required
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
-                                className="w-1/2 px-5 py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-base shadow-inner"
+                                className="w-1/2 px-4 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-sm sm:text-base shadow-inner"
                                 placeholder="Nom"
                             />
                         </div>
 
                         <div className="relative group">
-                            <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none transition-colors group-focus-within:text-[#3B82F6]">
+                            <div className="absolute inset-y-0 left-0 pl-4 sm:pl-5 flex items-center pointer-events-none transition-colors group-focus-within:text-[#3B82F6]">
+                                <Briefcase className="h-5 w-5 text-slate-400 group-focus-within:text-[#3B82F6]" />
+                            </div>
+                            <input
+                                type="text"
+                                required
+                                value={profession}
+                                onChange={(e) => setProfession(e.target.value)}
+                                className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-sm sm:text-base shadow-inner"
+                                placeholder="Profession (ex: Ostéopathe)"
+                            />
+                        </div>
+
+                        <div className="relative group">
+                            <div className="absolute inset-y-0 left-0 pl-4 sm:pl-5 flex items-center pointer-events-none transition-colors group-focus-within:text-[#3B82F6]">
                                 <Mail className="h-5 w-5 text-slate-400 group-focus-within:text-[#3B82F6]" />
                             </div>
                             <input
@@ -205,15 +218,15 @@ export const AuthScreen: React.FC = () => {
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full pl-14 pr-5 py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-lg shadow-inner"
+                                className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-sm sm:text-base shadow-inner"
                                 placeholder="votre@email.com"
                             />
                         </div>
 
                         <button
                             type="submit"
-                            disabled={isLoading || !email || !firstName || !lastName}
-                            className="w-full bg-[#A06C50] text-white py-4 rounded-2xl font-bold tracking-[0.2em] text-lg uppercase flex items-center justify-center transition-all hover:bg-[#85543c] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none mt-2 shadow-lg shadow-[#A06C50]/30"
+                            disabled={isLoading || !email || !firstName || !lastName || !profession}
+                            className="w-full bg-[#A06C50] text-white py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold tracking-[0.2em] text-base sm:text-lg uppercase flex items-center justify-center transition-all hover:bg-[#85543c] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none mt-2 shadow-lg shadow-[#A06C50]/30"
                         >
                             {isLoading ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
