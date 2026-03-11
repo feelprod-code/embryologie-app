@@ -88,7 +88,7 @@ export const AuthScreen: React.FC = () => {
 
             <div className="relative w-full max-w-md px-6 sm:px-8 py-10 bg-transparent flex flex-col items-center z-10 my-auto">
 
-                <div className="w-[10rem] h-[10rem] sm:w-[14rem] sm:h-[14rem] mb-4 sm:mb-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
+                <div className="w-[14rem] h-[14rem] mb-4 sm:mb-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
                     <img src="/icon-emb.png" alt="Embryologie" className="w-full h-full object-contain rounded-full" />
                 </div>
 
@@ -122,7 +122,7 @@ export const AuthScreen: React.FC = () => {
                         </div>
                         <h3 className="text-slate-800 font-bold text-xl">Vérifiez vos emails</h3>
                         <p className="text-slate-500 text-sm mb-2">
-                            Nous avons envoyé un code à <strong className="text-slate-800">{email}</strong>
+                            Voici le code envoyé à <strong className="text-slate-800">{email}</strong> :
                         </p>
 
                         {error && (
@@ -138,13 +138,13 @@ export const AuthScreen: React.FC = () => {
                             value={otpCode}
                             onChange={(e) => setOtpCode(e.target.value)}
                             className="w-full text-center tracking-[0.5em] px-5 py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-300 font-bold text-2xl shadow-inner"
-                            placeholder="000000"
-                            maxLength={6}
+                            placeholder="00000000"
+                            maxLength={8}
                         />
 
                         <button
                             type="submit"
-                            disabled={isLoading || otpCode.length < 6}
+                            disabled={isLoading || otpCode.length < 8}
                             className="w-full bg-[#A06C50] text-white py-4 rounded-2xl font-bold tracking-[0.2em] text-lg uppercase flex items-center justify-center transition-all hover:bg-[#85543c] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none mt-2 shadow-lg shadow-[#A06C50]/30"
                         >
                             {isLoading ? (
