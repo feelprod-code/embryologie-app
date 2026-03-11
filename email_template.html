@@ -21,23 +21,30 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            /* Ajout d'une bordure pour bien séparer le conteneur du fond */
+            border: 1px solid #eaeaea;
         }
 
         .header {
             background-color: #FBF7EC;
-            padding: 40px 20px;
+            padding: 40px 20px 20px 20px;
             text-align: center;
         }
 
+        /* Corrections pour le logo : taille augmentée, rendu forcé en bloc pour éviter les coupures */
         .logo {
-            width: 150px;
+            width: 180px;
+            max-width: 100%;
             height: auto;
             border-radius: 50%;
+            display: block;
+            margin: 0 auto;
         }
 
         .content {
             padding: 40px 30px;
             text-align: center;
+            background-color: #ffffff;
         }
 
         h1 {
@@ -66,22 +73,17 @@
             margin-bottom: 30px;
         }
 
-        .btn-wrapper {
-            margin: 40px 0;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #A06C50;
-            color: #ffffff !important;
-            text-decoration: none;
-            padding: 16px 40px;
-            border-radius: 12px;
-            font-size: 18px;
+        .otp-code {
+            font-size: 32px;
             font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(160, 108, 80, 0.3);
+            letter-spacing: 5px;
+            color: #A06C50;
+            background-color: #FBF7EC;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 30px auto;
+            max-width: fit-content;
+            border: 1px dashed #A06C50;
         }
 
         .footer {
@@ -90,47 +92,52 @@
             text-align: center;
             font-size: 12px;
             color: #94a3b8;
+            border-top: 1px solid #eaeaea;
         }
     </style>
 </head>
 
-<body>
+<body style="background-color: #FBF7EC; margin: 0; padding: 20px;">
 
-    <div class="container">
-        <div class="header">
-            <!-- Logo de l'app encapsulé dans le header beige -->
-            <img src="https://embryologie-app.vercel.app/icon-emb.png" alt="Logo Embryologie" class="logo">
-        </div>
+    <!-- Wrapper supplémentaire pour forcer le fond et la marge sur certains clients mail -->
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #FBF7EC;">
+        <tr>
+            <td align="center" style="padding: 40px 0;">
 
-        <div class="content">
-            <h1>L'Embryologie</h1>
-            <h2>Biodynamique</h2>
+                <div class="container">
+                    <div class="header">
+                        <!-- Utilisation de l'URL absolue Vercel pour le logo -->
+                        <img src="https://embryologie-app.vercel.app/icon-emb.png" alt="Logo Embryologie" class="logo">
+                    </div>
 
-            <p>Bonjour,</p>
-            <p>Votre adhésion est validée. Vous pouvez dès à présent accéder à la plateforme privée "Techniques Douces
-                Tissulaires" et visionner l'intégralité du contenu vidéo.</p>
+                    <div class="content">
+                        <h1>L'Embryologie</h1>
+                        <h2>Biodynamique</h2>
 
-            <div class="btn-wrapper">
-                <!-- Lien stylisé en gros bouton -->
-                <a href="https://embryologie-app.vercel.app/" class="btn">ACCÉDER À LA PLATEFORME</a>
-            </div>
+                        <p>Bonjour,</p>
+                        <p>Voici votre code de connexion pour accéder à la plateforme privée "Techniques Douces Tissulaires".</p>
 
-            <p style="font-size: 14px;"><strong>Pour vous connecter :</strong><br>
-                1. Cliquez sur le bouton ci-dessus.<br>
-                2. Renseignez votre adresse e-mail.<br>
-                3. Entrez le code magique reçu par mail.</p>
+                        <div class="otp-code">
+                            {{ .Token }}
+                        </div>
 
-            <p style="font-size: 13px; color: #94a3b8; font-style: italic;">
-                Note : Votre accès est strictement personnel. Le premier appareil utilisé sera le seul autorisé à se
-                connecter.
-            </p>
-        </div>
+                        <p style="font-size: 14px;"><strong>Instructions :</strong><br>
+                            Retournez sur l'application et saisissez ce code à 6 chiffres pour vous connecter.</p>
 
-        <div class="footer">
-            © Techniques Douces Tissulaires - Marc Damoiseaux, Ostéopathe D.O<br>
-            Une réalisation FEELPROD
-        </div>
-    </div>
+                        <p style="font-size: 13px; color: #94a3b8; font-style: italic;">
+                            Note : Votre accès est strictement personnel. Ce code expirera dans quelques minutes.
+                        </p>
+                    </div>
+
+                    <div class="footer">
+                        © Techniques Douces Tissulaires - Marc Damoiseaux, Ostéopathe D.O<br>
+                        Une réalisation FEELPROD
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+    </table>
 
 </body>
 
