@@ -83,34 +83,34 @@ export const AuthScreen: React.FC = () => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FBF7EC] overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FBF7EC] overflow-y-auto no-scrollbar py-12">
             <div className="absolute inset-0 bg-[url('https://feelprod.com/wp-content/uploads/2023/11/bg-texture.jpg')] opacity-[0.03] bg-cover mix-blend-multiply pointer-events-none"></div>
 
-            <div className="relative w-full max-w-md px-6 py-6 sm:py-10 bg-transparent flex flex-col items-center z-10 sm:mb-8 max-h-[100dvh] overflow-y-auto no-scrollbar">
+            <div className="relative w-full max-w-md px-6 sm:px-8 py-10 bg-transparent flex flex-col items-center z-10 my-auto">
 
-                <div className="w-[10rem] h-[10rem] sm:w-[14rem] sm:h-[14rem] shrink-0 mb-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full mt-2">
+                <div className="w-[10rem] h-[10rem] sm:w-[14rem] sm:h-[14rem] mb-4 sm:mb-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
                     <img src="/icon-emb.png" alt="Embryologie" className="w-full h-full object-contain rounded-full" />
                 </div>
 
                 <div className="w-full flex flex-col items-center">
-                    <div className="flex items-center justify-center gap-2 sm:gap-3 w-full mb-4 sm:mb-8 mt-2">
+                    <div className="flex items-center justify-center gap-2 sm:gap-3 w-full mb-4 sm:mb-8">
                         <div className="h-[1px] w-4 sm:w-6 bg-[#A06C50]/40"></div>
-                        <h3 className="text-base sm:text-xl font-bebas tracking-[0.15em] text-slate-500 text-center uppercase">
+                        <h3 className="text-sm sm:text-xl font-bebas tracking-[0.15em] text-slate-500 text-center uppercase">
                             Techniques Douces Tissulaires
                         </h3>
                         <div className="h-[1px] w-4 sm:w-6 bg-[#A06C50]/40"></div>
                     </div>
 
                     <div className="flex flex-col items-center justify-center w-full mb-4 sm:mb-6">
-                        <h1 className="text-4xl sm:text-6xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center">
+                        <h1 className="text-5xl sm:text-6xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center">
                             L'EMBRYOLOGIE
                         </h1>
-                        <h2 className="text-3xl sm:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 sm:mt-2 text-center">
+                        <h2 className="text-4xl sm:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 sm:mt-2 text-center">
                             BIODYNAMIQUE
                         </h2>
                     </div>
 
-                    <h4 className="text-[10px] sm:text-sm font-light text-slate-500 mb-6 sm:mb-10 text-center uppercase tracking-widest">
+                    <h4 className="text-[11px] sm:text-sm font-light text-slate-500 mb-6 sm:mb-10 text-center uppercase tracking-widest">
                         par Marc Damoiseaux, <span className="font-medium text-slate-700">Ostéopathe D.O</span>
                     </h4>
                 </div>
