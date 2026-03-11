@@ -83,25 +83,17 @@ export const AuthScreen: React.FC = () => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FBF7EC] overflow-y-auto no-scrollbar py-12">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FBF7EC] overflow-y-auto no-scrollbar">
             <div className="absolute inset-0 bg-[url('https://feelprod.com/wp-content/uploads/2023/11/bg-texture.jpg')] opacity-[0.03] bg-cover mix-blend-multiply pointer-events-none"></div>
 
-            <div className="relative w-full max-w-md px-6 sm:px-8 py-10 bg-transparent flex flex-col items-center z-10 my-auto">
+            <div className="relative w-full max-w-md px-6 sm:px-8 pt-8 pb-32 bg-transparent flex flex-col items-center z-10 min-h-full justify-center">
 
                 <div className="w-[14rem] h-[14rem] mb-4 sm:mb-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
                     <img src="/icon-emb.png" alt="Embryologie" className="w-full h-full object-contain rounded-full" />
                 </div>
 
                 <div className="w-full flex flex-col items-center">
-                    <div className="flex items-center justify-center gap-2 sm:gap-3 w-full mb-4 sm:mb-8">
-                        <div className="h-[1px] w-4 sm:w-6 bg-[#A06C50]/40"></div>
-                        <h3 className="text-sm sm:text-xl font-bebas tracking-[0.15em] text-slate-500 text-center uppercase">
-                            Techniques Douces Tissulaires
-                        </h3>
-                        <div className="h-[1px] w-4 sm:w-6 bg-[#A06C50]/40"></div>
-                    </div>
-
-                    <div className="flex flex-col items-center justify-center w-full mb-4 sm:mb-6">
+                    <div className="flex flex-col items-center justify-center w-full mb-4 sm:mb-6 mt-4 sm:mt-8">
                         <h1 className="text-5xl sm:text-6xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center">
                             L'EMBRYOLOGIE
                         </h1>
@@ -111,7 +103,7 @@ export const AuthScreen: React.FC = () => {
                     </div>
 
                     <h4 className="text-[11px] sm:text-sm font-light text-slate-500 mb-6 sm:mb-10 text-center uppercase tracking-widest">
-                        par Marc Damoiseaux, <span className="font-medium text-slate-700">Ostéopathe D.O</span>
+                        le cours de Marc Damoiseaux, <span className="font-medium text-slate-700">Ostéopathe D.O</span>
                     </h4>
                 </div>
 
@@ -253,11 +245,16 @@ export const AuthScreen: React.FC = () => {
             </div>
 
             {/* Footer FeelProd */}
-            <div className="absolute bottom-12 w-full flex flex-col items-center justify-end opacity-90 z-0">
-                <span className="text-[10px] sm:text-[11px] md:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20 mb-1">
-                    Réalisation Feelprod
-                </span>
-                <div className="w-12 h-[1px] bg-slate-300/50 mt-1"></div>
+            <div className="absolute bottom-8 w-full flex flex-col items-center justify-end opacity-90 z-0 pointer-events-none gap-2">
+                <h3 className="text-xs sm:text-sm font-bebas tracking-[0.15em] text-slate-400 text-center uppercase">
+                    Techniques Douces Tissulaires
+                </h3>
+                <div className="flex flex-col items-center justify-center gap-1">
+                    <span className="text-[10px] sm:text-[11px] md:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20">
+                        Réalisation Feelprod
+                    </span>
+                    <div className="w-12 h-[1px] bg-slate-300/50 mt-0.5"></div>
+                </div>
             </div>
         </div >
     );
