@@ -242,9 +242,20 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         if (isFullscreen) {
             if (viewportMeta) viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, viewport-fit=cover');
             if (themeColorMeta) themeColorMeta.setAttribute('content', '#000000');
+            document.body.classList.add('fullscreen-locked');
+            document.documentElement.classList.add('fullscreen-locked');
+            // Force scroll to top to hide Safari address bar in landscape
+            window.scrollTo(0, 0);
         } else {
             if (viewportMeta) viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover');
             if (themeColorMeta) themeColorMeta.setAttribute('content', '#FAF6ED');
+            document.body.classList.remove('fullscreen-locked');
+            document.documentElement.classList.remove('fullscreen-locked');
+        }
+
+        return () => {
+            document.body.classList.remove('fullscreen-locked');
+            document.documentElement.classList.remove('fullscreen-locked');
         }
     }, [isFullscreen]);
 
