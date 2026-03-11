@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { Mail, CheckCircle, AlertCircle, Loader2, ShieldAlert } from 'lucide-react';
+import { Mail, AlertCircle, Loader2, ShieldAlert } from 'lucide-react';
 
 export const AuthScreen: React.FC = () => {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [otpCode, setOtpCode] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isSent, setIsSent] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -56,6 +57,28 @@ export const AuthScreen: React.FC = () => {
         }
     };
 
+    const handleVerifyOtp = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            const { error } = await supabase.auth.verifyOtp({
+                email,
+                token: otpCode,
+                type: 'email'
+            });
+
+            if (error) throw error;
+
+            // La session sera automatiquement mise à jour et interceptée par onAuthStateChange
+        } catch (err: any) {
+            setError(err.message || 'Code invalide ou expiré.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FBF7EC] overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://feelprod.com/wp-content/uploads/2023/11/bg-texture.jpg')] opacity-[0.03] bg-cover mix-blend-multiply pointer-events-none"></div>
@@ -94,15 +117,56 @@ export const AuthScreen: React.FC = () => {
                 </div>
 
                 {isSent ? (
-                    <div className="w-full bg-[#10B981]/10 border border-[#10B981]/20 p-6 rounded-3xl flex flex-col items-center text-center animate-in fade-in zoom-in duration-300">
-                        <div className="w-16 h-16 bg-[#10B981]/20 rounded-full flex items-center justify-center mb-4">
-                            <CheckCircle className="text-[#10B981] w-8 h-8" />
+                    <form onSubmit={handleVerifyOtp} className="w-full bg-white p-6 rounded-3xl flex flex-col items-center text-center animate-in fade-in zoom-in duration-300 border border-slate-200 shadow-sm gap-4">
+                        <div className="w-16 h-16 bg-[#10B981]/10 rounded-full flex items-center justify-center mb-2">
+                            <Mail className="text-[#10B981] w-8 h-8" />
                         </div>
-                        <h3 className="text-[#10B981] font-bold text-xl mb-2">Lien magique envoyé !</h3>
-                        <p className="text-emerald-700 text-sm">
-                            Vérifiez votre boîte de réception <strong className="text-slate-800">{email}</strong> et cliquez sur le lien pour vous connecter.
+                        <h3 className="text-slate-800 font-bold text-xl">Vérifiez vos emails</h3>
+                        <p className="text-slate-500 text-sm mb-2">
+                            Nous avons envoyé un code à <strong className="text-slate-800">{email}</strong>
                         </p>
-                    </div>
+
+                        {error && (
+                            <div className="w-full bg-red-50 border border-red-200 text-red-600 p-3 rounded-xl flex items-start gap-3 text-sm text-left mb-2">
+                                <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                                <p>{error}</p>
+                            </div>
+                        )}
+
+                        <input
+                            type="text"
+                            required
+                            value={otpCode}
+                            onChange={(e) => setOtpCode(e.target.value)}
+                            className="w-full text-center tracking-[0.5em] px-5 py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-300 font-bold text-2xl shadow-inner"
+                            placeholder="000000"
+                            maxLength={6}
+                        />
+
+                        <button
+                            type="submit"
+                            disabled={isLoading || otpCode.length < 6}
+                            className="w-full bg-[#A06C50] text-white py-4 rounded-2xl font-bold tracking-[0.2em] text-lg uppercase flex items-center justify-center transition-all hover:bg-[#85543c] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none mt-2 shadow-lg shadow-[#A06C50]/30"
+                        >
+                            {isLoading ? (
+                                <Loader2 className="w-5 h-5 animate-spin" />
+                            ) : (
+                                "VALIDER LE CODE"
+                            )}
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setIsSent(false);
+                                setOtpCode('');
+                                setError(null);
+                            }}
+                            className="text-slate-400 text-sm mt-2 hover:text-slate-600 underline"
+                        >
+                            Modifier l'adresse email
+                        </button>
+                    </form>
                 ) : (
                     <form onSubmit={handleLogin} className="w-full flex flex-col gap-4">
 
