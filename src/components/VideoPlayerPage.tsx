@@ -144,10 +144,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   };
 
   // Layout mode state to avoid triple-mounting the video player
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  const [windowSize, setWindowSize] = useState({ width: typeof window !== 'undefined' ? window.innerWidth : 1200, height: typeof window !== 'undefined' ? window.innerHeight : 800 });
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    const handleResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -161,9 +161,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   // --- Effects ---
   const [activeLayout, setActiveLayout] = useState<'mobile' | 'tablet' | 'desktop'>(() => {
-    const isMobileDevice = /iPhone|iPod|android.*mobile/i.test(navigator.userAgent);
-    if (isMobileDevice) return 'mobile';
-    return window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1024 ? 'tablet' : 'desktop';
+    if (typeof window === 'undefined') return 'desktop';
+    const isMobileUserAgent = /iPhone|iPod|android.*mobile/i.test(navigator.userAgent);
+    const isSmallScreen = Math.min(window.innerWidth, window.innerHeight) < 768;
+    if (isMobileUserAgent || isSmallScreen) return 'mobile';
+    return window.innerWidth < 1024 ? 'tablet' : 'desktop';
   });
 
   useEffect(() => {
@@ -171,20 +173,17 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     // doesn't cause its width (>768px) to trigger the Tablet layout and unmount the player.
     if (isFullscreen) return;
 
-    const isMobileDevice = /iPhone|iPod|android.*mobile/i.test(navigator.userAgent);
-    if (isMobileDevice) {
-      setActiveLayout('mobile');
-      return;
-    }
+    const isMobileUserAgent = /iPhone|iPod|android.*mobile/i.test(navigator.userAgent);
+    const isSmallScreen = Math.min(windowSize.width, windowSize.height) < 768;
 
-    if (windowWidth < 768) {
+    if (isMobileUserAgent || isSmallScreen) {
       setActiveLayout('mobile');
-    } else if (windowWidth < 1024) {
+    } else if (windowSize.width < 1024) {
       setActiveLayout('tablet');
     } else {
       setActiveLayout('desktop');
     }
-  }, [windowWidth, isFullscreen]);
+  }, [windowSize, isFullscreen]);
 
   const isMobileLayout = activeLayout === 'mobile';
   const isTabletLayout = activeLayout === 'tablet';
