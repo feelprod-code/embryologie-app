@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/cf-stream/:match*",
+      "destination": "https://customer-6i2z59dst7q6iswv.cloudflarestream.com/:match*"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

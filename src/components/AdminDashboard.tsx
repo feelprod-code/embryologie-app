@@ -8,6 +8,7 @@ type Profile = {
     email: string;
     first_name: string;
     last_name: string;
+    profession?: string;
     device_id: string | null;
     is_active: boolean;
     created_at: string;
@@ -144,7 +145,15 @@ export function AdminDashboard() {
                                                     <div className="text-sm font-bold text-slate-900">
                                                         {profile.first_name || profile.last_name ? `${profile.first_name || ''} ${profile.last_name || ''}` : <span className="italic text-slate-400">Nom inconnu</span>}
                                                     </div>
-                                                    <div className="text-sm text-slate-500 font-medium">{profile.email}</div>
+                                                    <div className="text-sm text-slate-500 font-medium flex items-center gap-2">
+                                                        <span>{profile.email}</span>
+                                                        {profile.profession && (
+                                                            <>
+                                                                <span className="text-slate-300">•</span>
+                                                                <span className="text-slate-500 italic">{profile.profession}</span>
+                                                            </>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -238,6 +247,9 @@ export function AdminDashboard() {
                                                 {profile.first_name || profile.last_name ? `${profile.first_name || ''} ${profile.last_name || ''}` : <span className="italic text-slate-400">Nom inconnu</span>}
                                             </div>
                                             <div className="text-xs text-slate-500 font-medium truncate">{profile.email}</div>
+                                            {profile.profession && (
+                                                <div className="text-xs text-slate-400 italic truncate">{profile.profession}</div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

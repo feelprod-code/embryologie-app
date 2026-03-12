@@ -187,34 +187,63 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         };
     }, [isFullscreen, onFullscreenChange]);
 
-    const toggleFullscreen = (e?: React.MouseEvent | React.TouchEvent) => {
+    const toggleFullscreen = async (e?: React.MouseEvent | React.TouchEvent) => {
         if (e) e.stopPropagation();
 
         const playerContainer = containerRef.current;
-
-        // Custom Fullscreen approach First because we want to preserve OUR UI overlay (subtitles, cc, controls)
-        // Apple devices (iPhone, iPad Safari) handle requestFullscreen on generic DIVs poorly 
-        // when they contain iframes (Cloudflare Stream) by replacing the node or clipping it. 
-        // So we skip standard Web Fullscreen on ALL iOS/iPadOS devices and use our CSS fallback wrapper.
         const isAppleMobile = /iPhone|iPod|iPad/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
-        if (playerContainer && document.fullscreenEnabled && !isAppleMobile) {
-            if (document.fullscreenElement) {
-                document.exitFullscreen().catch(console.error);
-                setIsFullscreen(false);
-            } else {
-                playerContainer.requestFullscreen().then(() => {
+        if (!isFullscreen) {
+            // Entering Fullscreen
+            if (playerContainer && document.fullscreenEnabled && !isAppleMobile) {
+                try {
+                    await playerContainer.requestFullscreen();
                     setIsFullscreen(true);
-                }).catch(err => {
+                } catch (err) {
                     console.error("Error attempting to enable fullscreen:", err);
-                    setIsFullscreen(!isFullscreen); // fallback to CSS
-                });
+                    setIsFullscreen(true); // fallback to CSS
+                }
+            } else {
+                // Apple Mobile or Fullscreen not enabled
+                setIsFullscreen(true);
             }
-            return;
-        }
 
-        // CSS Fullscreen is actually safer and preferred for iOS so our overlay UI works
-        setIsFullscreen(!isFullscreen);
+            // Try to force Landscape orientation using API
+            try {
+                if (window.screen && window.screen.orientation && (window.screen.orientation as any).lock) {
+                    await (window.screen.orientation as any).lock('landscape');
+                } else if (window.screen && (window.screen as any).mozLockOrientation) {
+                    (window.screen as any).mozLockOrientation('landscape');
+                } else if (window.screen && (window.screen as any).msLockOrientation) {
+                    (window.screen as any).msLockOrientation('landscape');
+                }
+            } catch (err) {
+                console.warn("Screen orientation lock failed or not supported:", err);
+            }
+        } else {
+            // Exiting Fullscreen
+            if (document.fullscreenElement) {
+                try {
+                    await document.exitFullscreen();
+                } catch (err) {
+                    console.error("Error attempting to exit fullscreen:", err);
+                }
+            }
+            setIsFullscreen(false);
+
+            // Unlock orientation
+            try {
+                if (window.screen && window.screen.orientation && window.screen.orientation.unlock) {
+                    window.screen.orientation.unlock();
+                } else if (window.screen && (window.screen as any).mozUnlockOrientation) {
+                    (window.screen as any).mozUnlockOrientation();
+                } else if (window.screen && (window.screen as any).msUnlockOrientation) {
+                    (window.screen as any).msUnlockOrientation();
+                }
+            } catch (err) {
+                console.warn("Screen orientation unlock failed:", err);
+            }
+        }
     };
 
     // Allow standard browser rotation
@@ -242,9 +271,20 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         if (isFullscreen) {
             if (viewportMeta) viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, viewport-fit=cover');
             if (themeColorMeta) themeColorMeta.setAttribute('content', '#000000');
+            document.body.classList.add('fullscreen-locked');
+            document.documentElement.classList.add('fullscreen-locked');
+            // Force scroll to top to hide Safari address bar in landscape
+            window.scrollTo(0, 0);
         } else {
             if (viewportMeta) viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover');
             if (themeColorMeta) themeColorMeta.setAttribute('content', '#FAF6ED');
+            document.body.classList.remove('fullscreen-locked');
+            document.documentElement.classList.remove('fullscreen-locked');
+        }
+
+        return () => {
+            document.body.classList.remove('fullscreen-locked');
+            document.documentElement.classList.remove('fullscreen-locked');
         }
     }, [isFullscreen]);
 
