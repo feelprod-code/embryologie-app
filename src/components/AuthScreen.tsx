@@ -83,12 +83,12 @@ export const AuthScreen: React.FC = () => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FBF7EC] overflow-y-auto no-scrollbar">
+        <div className="fixed inset-0 z-50 flex justify-center bg-[#FBF7EC] overflow-y-auto no-scrollbar">
             <div className="absolute inset-0 bg-[url('https://feelprod.com/wp-content/uploads/2023/11/bg-texture.jpg')] opacity-[0.03] bg-cover mix-blend-multiply pointer-events-none"></div>
 
-            <div className="relative w-full max-w-md px-6 sm:px-8 pt-8 pb-32 bg-transparent flex flex-col items-center z-10 min-h-full justify-center">
+            <div className="relative w-full max-w-md px-6 sm:px-8 pt-12 md:pt-8 pb-32 bg-transparent flex flex-col items-center z-10 min-h-full justify-start md:justify-center">
 
-                <div className="w-[14rem] h-[14rem] mb-4 sm:mb-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
+                <div className="w-[14rem] h-[14rem] mb-4 sm:mb-0 mt-8 md:mt-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
                     <img src="/icon-emb.png" alt="Embryologie" className="w-full h-full object-contain rounded-full" />
                 </div>
 
