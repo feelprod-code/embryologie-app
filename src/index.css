@@ -32,6 +32,7 @@
   body.video-fullscreen-active,
   body.video-fullscreen-active #root {
     position: static !important;
+    background-color: #000000 !important;
     /* Release the fixed lock to allow inner fixed to work relative to viewport */
     transform: none !important;
     filter: none !important;

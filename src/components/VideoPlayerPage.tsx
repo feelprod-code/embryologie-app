@@ -712,7 +712,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           isFullscreen ? "hidden" : ""
         )}>
           <div className="w-full max-w-full lg:max-w-4xl mx-auto px-2 md:px-4 lg:px-0">
-            <div className="grid grid-cols-2 md:grid-cols-4 items-stretch gap-1.5 sm:gap-2 w-full">
+            <div className="flex overflow-x-auto hide-scrollbar gap-1.5 sm:gap-2 w-full snap-x snap-mandatory" style={{ WebkitOverflowScrolling: 'touch' }}>
               {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
                 const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
                 const cId = lmap[layer as keyof typeof lmap];
@@ -742,7 +742,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     key={layer}
                     onClick={handleLayerClick}
                     className={cn(
-                      "relative flex flex-col items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-1 sm:px-3 md:px-4 lg:px-3 rounded-xl sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0",
+                      "flex-none w-[120px] sm:w-auto sm:flex-1 relative flex flex-col items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-2 sm:px-3 md:px-4 lg:px-3 rounded-xl sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation snap-start",
                       !isSelected && style.hover
                     )}
                     style={isSelected
