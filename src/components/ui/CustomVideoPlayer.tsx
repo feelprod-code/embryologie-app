@@ -165,6 +165,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         document.addEventListener('fullscreenchange', handleFullscreenChange);
         document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
         if (isFullscreen) {
             document.body.style.overflow = 'hidden';
             document.body.classList.add('video-fullscreen-active');
@@ -172,6 +174,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 // Ensure no transform constraint clips the fixed child
                 rootElement.style.setProperty('transform', 'none', 'important');
             }
+            if (metaThemeColor) metaThemeColor.setAttribute('content', '#000000');
             window.scrollTo(0, 0);
         } else {
             document.body.style.overflow = '';
@@ -179,6 +182,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (rootElement) {
                 rootElement.style.removeProperty('transform');
             }
+            if (metaThemeColor) metaThemeColor.setAttribute('content', '#FAF6ED');
         }
 
         if (onFullscreenChange) {
@@ -193,6 +197,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (rootElement) {
                 rootElement.style.removeProperty('transform');
             }
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) metaThemeColor.setAttribute('content', '#FAF6ED');
         };
     }, [isFullscreen, onFullscreenChange]);
 

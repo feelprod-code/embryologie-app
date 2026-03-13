@@ -712,7 +712,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           isFullscreen ? "hidden" : ""
         )}>
           <div className="w-full max-w-full lg:max-w-4xl mx-auto px-2 md:px-4 lg:px-0">
-            <div className="flex overflow-x-auto hide-scrollbar gap-1.5 sm:gap-2 w-full snap-x snap-mandatory" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <div className="grid grid-cols-4 items-stretch gap-1 sm:gap-2 w-full">
               {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
                 const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
                 const cId = lmap[layer as keyof typeof lmap];
@@ -742,7 +742,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     key={layer}
                     onClick={handleLayerClick}
                     className={cn(
-                      "flex-none w-[120px] sm:w-auto sm:flex-1 relative flex flex-col items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-2 sm:px-3 md:px-4 lg:px-3 rounded-xl sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation snap-start",
+                      "relative flex flex-col items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-0 min-[375px]:px-0.5 sm:px-3 md:px-4 lg:px-3 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0",
                       !isSelected && style.hover
                     )}
                     style={isSelected
@@ -751,7 +751,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     }
                   >
                     <span className={cn(
-                      "font-bebas text-[15px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 w-full text-center",
+                      "font-bebas text-[10px] min-[375px]:text-[12px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
                       isSelected ? "text-white" : "text-slate-800"
                     )}>
                       {t(`videoLibrary.layers.${tKeys[layer.replace("'", "")] || tKeys[layer]}`)}

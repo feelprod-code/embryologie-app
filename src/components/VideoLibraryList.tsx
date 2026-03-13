@@ -84,7 +84,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                 {/* Category Pills (identical spacing to Timeline) */}
                 <div className="w-full pb-2 mb-2 sm:mb-0 border-t border-slate-100 pt-2 sm:pt-2 md:pt-1">
-                    <div className="flex overflow-x-auto hide-scrollbar gap-1.5 sm:gap-2 w-full max-w-4xl mx-auto px-2 md:px-0 snap-x snap-mandatory" style={{ WebkitOverflowScrolling: 'touch' }}>
+                    <div className="grid grid-cols-4 items-stretch gap-1 sm:gap-2 w-full max-w-4xl mx-auto px-1 sm:px-2 md:px-0">
                         {tabs.map(layer => {
                             const isSelected = activeTab === layer;
 
@@ -122,14 +122,14 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     key={layer}
                                     onClick={handleLayerSelect}
                                     className={cn(
-                                        "flex-none w-[120px] sm:w-auto sm:flex-1 relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-2 sm:px-4 md:px-4 lg:px-3 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation snap-start",
+                                        "relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-0 min-[375px]:px-1 sm:px-4 md:px-4 lg:px-3 rounded-lg sm:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0",
                                         isSelected
                                             ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
                                             : `${style.unselectedBg} ${style.unselectedBorder} ${style.unselectedText} shadow-sm ${style.hover}`
                                     )}
                                 >
                                     <span className={cn(
-                                        "font-bebas text-[15px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 w-full text-center",
+                                        "font-bebas text-[10px] min-[375px]:text-[12px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
                                         isSelected ? "text-white" : style.unselectedText
                                     )}>
                                         {t(`videoLibrary.layers.${tKeys[layer as keyof typeof tKeys]}`)}
