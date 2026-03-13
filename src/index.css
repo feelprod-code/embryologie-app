@@ -23,12 +23,15 @@
   }
 
   /* Fullscreen specific overrides */
+  html.video-fullscreen-active,
   body.video-fullscreen-active,
   body.video-fullscreen-active #root,
+  body.video-fullscreen-active #root>div,
   html:has(body.video-fullscreen-active) {
-    background-color: #000 !important;
+    background-color: #000000 !important;
   }
 
+  html.video-fullscreen-active,
   body.video-fullscreen-active,
   body.video-fullscreen-active #root {
     position: static !important;

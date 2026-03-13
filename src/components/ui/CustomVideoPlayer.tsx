@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, useImperativeHandle } from 'react';
 import { Stream } from '@cloudflare/stream-react';
 import { useTranslation } from 'react-i18next';
-import { Play, Pause, Maximize, Minimize, X, RotateCcw, RotateCw } from 'lucide-react';
+import { Play, Pause, Maximize, X, RotateCcw, RotateCw } from 'lucide-react';
 import { cn } from '../../utils';
 
 // Supported subtitle languages
@@ -168,6 +168,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
 
         if (isFullscreen) {
+            document.documentElement.classList.add('video-fullscreen-active');
             document.body.style.overflow = 'hidden';
             document.body.classList.add('video-fullscreen-active');
             if (rootElement) {
@@ -177,6 +178,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (metaThemeColor) metaThemeColor.setAttribute('content', '#000000');
             window.scrollTo(0, 0);
         } else {
+            document.documentElement.classList.remove('video-fullscreen-active');
             document.body.style.overflow = '';
             document.body.classList.remove('video-fullscreen-active');
             if (rootElement) {
@@ -192,6 +194,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         return () => {
             document.removeEventListener('fullscreenchange', handleFullscreenChange);
             document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.documentElement.classList.remove('video-fullscreen-active');
             document.body.style.overflow = '';
             document.body.classList.remove('video-fullscreen-active');
             if (rootElement) {
@@ -723,14 +726,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             )}
 
                             {/* Fullscreen Toggle */}
-                            <button
-                                onClick={(e) => { e.stopPropagation(); toggleFullscreen(e); }}
-                                onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); toggleFullscreen(e); }}
-                                className="text-white hover:text-white/80 transition-colors p-2 -mr-2 cursor-pointer touch-manipulation active:scale-90"
-                                aria-label={isFullscreen ? "Quitter le plein écran" : "Plein écran"}
-                            >
-                                {isFullscreen ? <Minimize size={22} /> : <Maximize size={22} />}
-                            </button>
+                            {!isFullscreen && (
+                                <button
+                                    onClick={(e) => { e.stopPropagation(); toggleFullscreen(e); }}
+                                    onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); toggleFullscreen(e); }}
+                                    className="text-white hover:text-white/80 transition-colors p-2 -mr-2 cursor-pointer touch-manipulation active:scale-90"
+                                    aria-label="Plein écran"
+                                >
+                                    <Maximize size={22} />
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

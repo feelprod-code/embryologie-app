@@ -122,24 +122,26 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     key={layer}
                                     onClick={handleLayerSelect}
                                     className={cn(
-                                        "relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-0 min-[375px]:px-1 sm:px-4 md:px-4 lg:px-3 rounded-lg sm:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0",
-                                        isSelected
-                                            ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
-                                            : `${style.unselectedBg} ${style.unselectedBorder} ${style.unselectedText} shadow-sm ${style.hover}`
+                                        "relative flex flex-col items-center justify-center py-3 min-[375px]:py-4 lg:py-3 px-0 min-[375px]:px-0.5 sm:px-3 md:px-4 lg:px-3 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0",
+                                        !isSelected && style.hover
                                     )}
+                                    style={isSelected
+                                        ? { backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''), borderColor: style.activeBorder.replace('border-[', '').replace(']', ''), color: 'white', zIndex: 10, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }
+                                        : { borderColor: '#e2e8f0', color: '#475569', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }
+                                    }
                                 >
                                     <span className={cn(
-                                        "font-bebas text-[10px] min-[375px]:text-[12px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
-                                        isSelected ? "text-white" : style.unselectedText
+                                        "font-bebas text-[12px] min-[375px]:text-[14px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-[1.1] mb-1 md:mb-1 w-full text-center",
+                                        isSelected ? "text-white" : "text-slate-800"
                                     )}>
                                         {t(`videoLibrary.layers.${tKeys[layer as keyof typeof tKeys]}`)}
                                     </span>
 
                                     <span className={cn(
                                         "text-[9px] sm:text-[10px] md:text-[10px] uppercase font-bold truncate w-full px-0 sm:px-1 opacity-80 text-center",
-                                        isSelected ? "text-white/80" : style.unselectedText
+                                        isSelected ? "text-white/80" : "text-slate-500"
                                     )}>
-                                        <Clock size={9} className="hidden lg:inline mr-1 mb-[1px]" />
+                                        <Clock size={10} className="hidden lg:inline mr-1 mb-[1px]" />
                                         {getCategoryTotalDuration(cId as "ectoderme" | "endoderme" | "mesoderme" | "oeil")}
                                     </span>
                                 </button>

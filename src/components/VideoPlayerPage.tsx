@@ -68,6 +68,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const isPending = false;
 
   const [contentMode, setContentMode] = useState<'summary' | 'transcript'>('summary');
+  const [isAutoScrollEnabled, setIsAutoScrollEnabled] = useState(true);
   const markdownContainerRef = useRef<HTMLDivElement>(null);
   const lastActiveNodeRef = useRef<number>(-1);
 
@@ -114,7 +115,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
         if (lastActiveNodeRef.current !== activeIndex) {
           lastActiveNodeRef.current = activeIndex;
-          if (isVideoPlaying) {
+          if (isVideoPlaying && isAutoScrollEnabled) {
             el.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
         }
@@ -127,7 +128,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       }
     });
 
-  }, [currentTime, videoDuration, contentMode, course.categoryId, isVideoPlaying]);
+  }, [currentTime, videoDuration, contentMode, course.categoryId, isVideoPlaying, isAutoScrollEnabled]);
 
   // Reset optimistic layer when actual course changes
   useEffect(() => {
@@ -236,7 +237,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [activeLayout, setActiveLayout] = useState<'mobile' | 'tablet' | 'desktop'>(() => {
     if (typeof window === 'undefined') return 'desktop';
     const isMobileUserAgent = /iPhone|iPod|android.*mobile/i.test(navigator.userAgent);
-    const isSmallScreen = Math.min(window.innerWidth, window.innerHeight) < 768;
+    const isSmallScreen = window.screen ? Math.min(window.screen.width, window.screen.height) < 700 : false;
     if (isMobileUserAgent || isSmallScreen) return 'mobile';
     return window.innerWidth < 1024 ? 'tablet' : 'desktop';
   });
@@ -247,7 +248,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     if (isFullscreen) return;
 
     const isMobileUserAgent = /iPhone|iPod|android.*mobile/i.test(navigator.userAgent);
-    const isSmallScreen = Math.min(windowSize.width, windowSize.height) < 768;
+    const isSmallScreen = window.screen ? Math.min(window.screen.width, window.screen.height) < 700 : false;
 
     if (isMobileUserAgent || isSmallScreen) {
       setActiveLayout('mobile');
@@ -639,29 +640,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </span>
         </div>
       </div>
-      <div className={cn(
-        "px-3 sm:px-4 md:px-6 pt-2 pb-24 md:pt-4 md:pb-[150px] lg:pb-[200px] overflow-y-auto flex-1 no-scrollbar prose prose-slate max-w-none",
-        "prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-dark",
-        "prose-h2:text-2xl md:prose-h2:text-2xl lg:prose-h2:text-[22px] prose-h2:mt-6 prose-h2:mb-3 md:prose-h2:mt-8 md:prose-h2:mb-4 lg:prose-h2:mt-8 lg:prose-h2:mb-4",
-        "prose-h3:text-xl lg:prose-h3:text-[18px] prose-h3:text-slate-800 prose-h3:font-montserrat prose-h3:font-bold",
-        "prose-p:text-slate-600 prose-p:leading-loose md:prose-p:leading-relaxed prose-p:text-[15px] lg:prose-p:text-[15px] prose-p:mb-6 md:prose-p:mb-4",
-        "prose-strong:text-slate-800 prose-strong:font-bold",
-        "prose-ul:text-slate-600 prose-ul:text-[15px] md:prose-ul:text-[15px] lg:prose-ul:text-[14px] prose-ul:my-6 md:prose-ul:my-4 prose-ul:space-y-3 md:prose-ul:space-y-2 prose-ul:pl-5",
-        "prose-li:leading-relaxed",
-        "prose-blockquote:border-l-4 prose-blockquote:bg-[#FAF6ED] prose-blockquote:py-4 md:prose-blockquote:py-3 prose-blockquote:px-5 lg:prose-blockquote:px-4 prose-blockquote:rounded-r-2xl prose-blockquote:text-slate-700 prose-blockquote:italic prose-blockquote:my-8 md:prose-blockquote:my-6 prose-blockquote:shadow-sm",
-        course.categoryId === 'ectoderme' ? "prose-a:text-[#5A9C51] hover:prose-a:text-[#4a8243] prose-blockquote:border-[#5A9C51] prose-blockquote:bg-[#5A9C51]/5" :
-          course.categoryId === 'endoderme' ? "prose-a:text-[#4171B5] hover:prose-a:text-[#33598f] prose-blockquote:border-[#4171B5] prose-blockquote:bg-[#4171B5]/5" :
-            course.categoryId === 'mesoderme' ? "prose-a:text-[#F27D33] hover:prose-a:text-[#d46522] prose-blockquote:border-[#F27D33] prose-blockquote:bg-[#F27D33]/5" :
-              course.categoryId === 'oeil' ? "prose-a:text-[#F2B729] hover:prose-a:text-[#d49d1e] prose-blockquote:border-[#F2B729] prose-blockquote:bg-[#F2B729]/5" :
-                "prose-a:text-slate-800 hover:prose-a:text-slate-900 prose-blockquote:border-slate-800 prose-blockquote:bg-slate-100",
-        "[&>*:first-child]:!mt-0"
-      )}>
-        <div className="flex justify-center mt-2 mb-6">
-          <div className="inline-flex bg-slate-100/80 p-1 rounded-lg">
+      <div className="flex flex-col h-full w-full relative">
+        <div className="flex-none flex justify-center py-2 mb-2 bg-[#FAF6ED]/95 backdrop-blur-md z-20 sticky top-0 border-b border-transparent">
+          <div className="inline-flex bg-slate-100/80 p-1 rounded-lg items-center">
             <button
               onClick={() => setContentMode('summary')}
               className={cn(
-                "px-4 md:px-6 py-1.5 text-[13px] md:text-sm font-medium rounded-md transition-all duration-200",
+                "px-3 min-[370px]:px-4 md:px-6 py-1.5 text-[12px] min-[370px]:text-[13px] md:text-sm font-medium rounded-md transition-all duration-200",
                 contentMode === 'summary' ? "bg-white text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-700"
               )}
             >
@@ -670,30 +655,57 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             <button
               onClick={() => setContentMode('transcript')}
               className={cn(
-                "px-4 md:px-6 py-1.5 text-[13px] md:text-sm font-medium rounded-md transition-all duration-200",
+                "px-3 min-[370px]:px-4 md:px-6 py-1.5 text-[12px] min-[370px]:text-[13px] md:text-sm font-medium rounded-md transition-all duration-200",
                 contentMode === 'transcript' ? "bg-white text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-700"
               )}
             >
-              Re-transcription interactive
+              <span className="hidden min-[400px]:inline">Re-transcription interactive</span>
+              <span className="inline min-[400px]:hidden">Re-transcript</span>
             </button>
-            <div className="flex items-center ml-2 md:ml-4 text-xs text-slate-400">
-              <div className={cn("w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mr-1.5 transition-all duration-300",
-                contentMode === 'transcript' && isVideoPlaying ? "bg-red-500 animate-pulse" :
-                  contentMode === 'transcript' ? "bg-red-300" : "bg-transparent")}
-              />
-              <span className={contentMode === 'transcript' ? 'opacity-100' : 'opacity-0'}>
-                Autoscroll
-              </span>
-            </div>
+            {contentMode === 'transcript' && (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsAutoScrollEnabled(!isAutoScrollEnabled);
+                }}
+                className="flex items-center ml-2 min-[370px]:ml-3 md:ml-4 text-[10px] min-[370px]:text-xs text-slate-500 hover:text-slate-700 font-medium transition-colors"
+                title={isAutoScrollEnabled ? "Désactiver le défilement automatique" : "Activer le défilement automatique"}
+              >
+                <div className={cn(
+                  "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mr-1.5 transition-all duration-300",
+                  isAutoScrollEnabled ? "bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.5)]" : "bg-slate-300"
+                )} />
+                <span className="hidden sm:inline">Autoscroll</span>
+                <span className="sm:hidden">Auto</span>
+              </button>
+            )}
           </div>
         </div>
 
-        <div ref={markdownContainerRef} className="pb-[40vh] transition-all duration-500 overflow-visible px-4">
-          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-            {contentMode === 'summary' && course.fullSummary
-              ? course.fullSummary.replace(/\n/g, '\n\n')
-              : course.transcriptMarkdown.replace(/^#\s.*$/gm, '').trim().replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
-          </ReactMarkdown>
+        <div className={cn(
+          "flex-1 overflow-y-auto no-scrollbar px-3 sm:px-4 md:px-6 pb-12 prose prose-slate max-w-none",
+          "prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-dark",
+          "prose-h2:text-2xl md:prose-h2:text-2xl lg:prose-h2:text-[22px] prose-h2:mt-6 prose-h2:mb-3 md:prose-h2:mt-8 md:prose-h2:mb-4 lg:prose-h2:mt-8 lg:prose-h2:mb-4",
+          "prose-h3:text-xl lg:prose-h3:text-[18px] prose-h3:text-slate-800 prose-h3:font-montserrat prose-h3:font-bold",
+          "prose-p:text-slate-600 prose-p:leading-loose md:prose-p:leading-relaxed prose-p:text-[15px] lg:prose-p:text-[15px] prose-p:mb-3 md:prose-p:mb-2",
+          "prose-strong:text-slate-800 prose-strong:font-bold",
+          "prose-ul:text-slate-600 prose-ul:text-[15px] md:prose-ul:text-[15px] lg:prose-ul:text-[14px] prose-ul:my-6 md:prose-ul:my-4 prose-ul:space-y-3 md:prose-ul:space-y-2 prose-ul:pl-5",
+          "prose-li:leading-relaxed",
+          "prose-blockquote:border-l-4 prose-blockquote:bg-[#FAF6ED] prose-blockquote:py-4 md:prose-blockquote:py-3 prose-blockquote:px-5 lg:prose-blockquote:px-4 prose-blockquote:rounded-r-2xl prose-blockquote:text-slate-700 prose-blockquote:italic prose-blockquote:my-8 md:prose-blockquote:my-6 prose-blockquote:shadow-sm",
+          course.categoryId === 'ectoderme' ? "prose-a:text-[#5A9C51] hover:prose-a:text-[#4a8243] prose-blockquote:border-[#5A9C51] prose-blockquote:bg-[#5A9C51]/5" :
+            course.categoryId === 'endoderme' ? "prose-a:text-[#4171B5] hover:prose-a:text-[#33598f] prose-blockquote:border-[#4171B5] prose-blockquote:bg-[#4171B5]/5" :
+              course.categoryId === 'mesoderme' ? "prose-a:text-[#F27D33] hover:prose-a:text-[#d46522] prose-blockquote:border-[#F27D33] prose-blockquote:bg-[#F27D33]/5" :
+                course.categoryId === 'oeil' ? "prose-a:text-[#F2B729] hover:prose-a:text-[#d49d1e] prose-blockquote:border-[#F2B729] prose-blockquote:bg-[#F2B729]/5" :
+                  "prose-a:text-slate-800 hover:prose-a:text-slate-900 prose-blockquote:border-slate-800 prose-blockquote:bg-slate-100",
+          "[&>*:first-child]:!mt-0"
+        )}>
+          <div ref={markdownContainerRef} className="pb-16 transition-all duration-500 overflow-visible px-0 sm:px-4">
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+              {contentMode === 'summary' && course.fullSummary
+                ? course.fullSummary.replace(/\n/g, '\n\n')
+                : course.transcriptMarkdown.replace(/^#\s.*$/gm, '').trim().replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
+            </ReactMarkdown>
+          </div>
         </div>
       </div>
     </div>
@@ -702,17 +714,18 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   return (
     <>
       <div className={cn(
-        "w-full mx-auto flex flex-col bg-[#FAF6ED] transition-opacity duration-200",
-        isFullscreen ? "h-screen z-50 fixed inset-0" : "max-w-5xl h-full overflow-hidden relative mx-auto",
+        "w-full mx-auto flex flex-col transition-opacity duration-200",
+        !isFullscreen && "bg-[#FAF6ED]",
+        isFullscreen ? "bg-[#000000] h-screen z-50 fixed inset-0" : "max-w-5xl h-full overflow-hidden relative mx-auto",
         isPending ? "opacity-70" : "opacity-100"
       )}>
 
         <div className={cn(
-          "w-full pt-1 pb-2 md:pb-4 mb-2 shrink-0",
+          "w-full pt-1 pb-2 md:pb-4 mb-2 shrink-0 overflow-x-auto no-scrollbar",
           isFullscreen ? "hidden" : ""
         )}>
           <div className="w-full max-w-full lg:max-w-4xl mx-auto px-2 md:px-4 lg:px-0">
-            <div className="grid grid-cols-4 items-stretch gap-1 sm:gap-2 w-full">
+            <div className="flex gap-2 sm:gap-3 lg:gap-4 flex-nowrap min-w-max pb-0 items-stretch">
               {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
                 const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
                 const cId = lmap[layer as keyof typeof lmap];
@@ -730,10 +743,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
                 // Colors based on layer mapping exactly matched with VideoLibraryList
                 const layerStyles: Record<string, { activeBg: string; activeBorder: string; activeText: string; hover: string }> = {
-                  "L'Ectoderme": { activeBg: "bg-[#5A9C51]", activeBorder: "border-[#5A9C51]", activeText: "text-white", hover: "md:hover:bg-[#5A9C51]/5" },
-                  "Le Mésoderme": { activeBg: "bg-[#F27D33]", activeBorder: "border-[#F27D33]", activeText: "text-white", hover: "md:hover:bg-[#F27D33]/5" },
-                  "L'Endoderme": { activeBg: "bg-[#4171B5]", activeBorder: "border-[#4171B5]", activeText: "text-white", hover: "md:hover:bg-[#4171B5]/5" },
-                  "L'Oeil": { activeBg: "bg-[#F2B729]", activeBorder: "border-[#F2B729]", activeText: "text-white", hover: "md:hover:bg-[#F2B729]/5" }
+                  "L'Ectoderme": { activeBg: "bg-[#5A9C51]", activeBorder: "border-[#5A9C51]", activeText: "text-white", hover: "hover:bg-white border-transparent hover:border-slate-200/50" },
+                  "Le Mésoderme": { activeBg: "bg-[#F27D33]", activeBorder: "border-[#F27D33]", activeText: "text-white", hover: "hover:bg-white border-transparent hover:border-slate-200/50" },
+                  "L'Endoderme": { activeBg: "bg-[#4171B5]", activeBorder: "border-[#4171B5]", activeText: "text-white", hover: "hover:bg-white border-transparent hover:border-slate-200/50" },
+                  "L'Oeil": { activeBg: "bg-[#F2B729]", activeBorder: "border-[#F2B729]", activeText: "text-white", hover: "hover:bg-white border-transparent hover:border-slate-200/50" }
                 };
                 const style = layerStyles[layer];
 
@@ -742,26 +755,29 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     key={layer}
                     onClick={handleLayerClick}
                     className={cn(
-                      "relative flex flex-col items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-0 min-[375px]:px-0.5 sm:px-3 md:px-4 lg:px-3 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0",
-                      !isSelected && style.hover
+                      "relative px-4 sm:px-6 md:px-7 lg:px-8 py-2.5 sm:py-3 lg:py-3.5 rounded-xl sm:rounded-2xl transition-all duration-300 flex-1 sm:flex-none min-w-[120px] flex flex-col items-center justify-center",
+                      isSelected
+                        ? "bg-white text-slate-900 shadow-md shadow-black/5 ring-1 ring-black/5 scale-[1.02]"
+                        : "bg-white/50 hover:bg-white text-slate-500 hover:text-slate-800 border border-transparent hover:border-slate-200/50"
                     )}
-                    style={isSelected
-                      ? { backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''), borderColor: style.activeBorder.replace('border-[', '').replace(']', ''), color: 'white', zIndex: 10, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }
-                      : { borderColor: '#e2e8f0', color: '#475569', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }
-                    }
+                    style={isSelected ? {
+                      backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''),
+                      borderColor: style.activeBorder.replace('border-[', '').replace(']', ''),
+                      color: 'white'
+                    } : {}}
                   >
                     <span className={cn(
-                      "font-bebas text-[10px] min-[375px]:text-[12px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
+                      "block text-[15px] sm:text-base lg:text-lg whitespace-nowrap text-center font-bebas tracking-wide w-full leading-[1.1] mb-1",
                       isSelected ? "text-white" : "text-slate-800"
                     )}>
                       {t(`videoLibrary.layers.${tKeys[layer.replace("'", "")] || tKeys[layer]}`)}
                     </span>
 
                     <span className={cn(
-                      "text-[9px] sm:text-[10px] md:text-[10px] uppercase font-bold truncate w-full px-0 sm:px-1 opacity-80 text-center",
+                      "flex justify-center items-center mt-0.5 text-[10px] sm:text-[11px] md:text-sm font-sans font-bold uppercase tracking-wider text-center",
                       isSelected ? "text-white/80" : "text-slate-500"
                     )}>
-                      <Clock size={10} className="hidden lg:inline mr-1 mb-[1px]" />
+                      <Clock size={10} className="inline mr-1 mb-[1px]" />
                       {getCategoryTotalDuration(cId as "ectoderme" | "endoderme" | "mesoderme" | "oeil")}
                     </span>
                   </button>
