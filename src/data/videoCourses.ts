@@ -1,16 +1,28 @@
 export interface VideoCourse {
-    id: string;
-    title: string;
-    categoryId: "ectoderme" | "mesoderme" | "endoderme" | "oeil";
-    youtubeId: string;
-    cloudflareId?: string;
-    duration: string;
-    transcriptMarkdown: string;
+  id: string;
+  title: string;
+  categoryId: "ectoderme" | "mesoderme" | "endoderme" | "oeil";
+  youtubeId: string;
+  cloudflareId?: string;
+  duration: string;
+  shortSummary?: string;
+  fullSummary?: string;
+  transcriptMarkdown: string;
 }
 
 export const videoCourses: VideoCourse[] = [
-    {
-        id: "ecto-01", categoryId: "ectoderme", youtubeId: "_bnk-aQx3d8", cloudflareId: "9928d1d298f329797032bb5abd4e3e59", duration: "04:33", title: "1. Introduction", transcriptMarkdown: `
+  {
+    id: "ecto-01",
+    categoryId: "ectoderme",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "9928d1d298f329797032bb5abd4e3e59",
+    duration: "04:33",
+    title: "1. Introduction",
+    shortSummary:
+      "Découvrez l'embryologie biodynamique ! Apprenez à explorer la précision et la puissance du développement humain pour mieux accompagner vos patients.",
+    fullSummary:
+      "Dans cette introduction à l'embryologie biodynamique, nous plongeons profondément dans le processus de développement humain, mettant en lumière la puissance intrinsèque du fœtus. Les ostéopathes sont encouragés à renoncer à une volonté consciente pour participer activement à ce ballet de croissance dynamique. En explorant les interactions fondamentales, les synchronicités moléculaires et tissulaires, ainsi que les scènes clés du développement embryonnaire, cette session offre une compréhension enrichie de la construction humaine. Les praticiens apprendront comment ces principes peuvent révolutionner leur approche thérapeutique.",
+    transcriptMarkdown: `
 # L'Embryologie Biodynamique : Une Quête d'Honnêteté Sensorielle
 
 Ce séminaire est dédié à l'**embryologie biodynamique**, une approche qui nous invite à repenser notre perception du développement humain et notre rôle en tant qu'ostéopathes. Ce voyage au cœur de la genèse nous amène à une recherche profonde d'**honnêteté** dans notre ressenti, nous poussant à explorer un contexte où la **volonté consciente** cède la place à la **participation**.
@@ -69,9 +81,20 @@ Ce processus notochordal est crucial, car il va induire le **processus neurologi
 Comprenez bien cette absence de volonté consciente dans le développement. Lorsque vous êtes dans le ventre maternel, le processus de croissance est inéluctable. Vous ne pouvez pas dire "stop, arrête". Le corps grandit de manière **autonome** et **puissante**.
 
 C'est précisément à ce niveau que nous sommes invités à participer en tant qu'ostéopathes. Notre intervention ne relève pas d'une imposition, mais d'une **écoute profonde** et d'un **accompagnement** du mouvement inhérent à la vie. L'embryologie biodynamique nous offre les clés pour comprendre et honorer cette **sagesse intrinsèque** du corps en développement.
-` },
-    {
-        id: "ecto-02", categoryId: "ectoderme", youtubeId: "FE2U-d-2cbQ", cloudflareId: "50b5c488080885643ba4424c9d7681f6", duration: "08:38", title: "2. Généralités", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-02",
+    categoryId: "ectoderme",
+    youtubeId: "FE2U-d-2cbQ",
+    cloudflareId: "50b5c488080885643ba4424c9d7681f6",
+    duration: "08:38",
+    title: "2. Généralités",
+    shortSummary:
+      "Découvrez comment l'environnement et l'embryologie interagissent pour façonner notre être. Apprenez à libérer le potentiel de vos patients grâce à une approche holistique.",
+    fullSummary:
+      "Cette session aborde l'importance de l'environnement dans le développement et le bien-être des individus, mettant en lumière l'impact des contextes émotionnels et physiques. L'embryologie est présentée comme une anatomie en mouvement, intégrant la notion de temps et de mémoire, essentielle pour comprendre les blocages corporels. Les notions de corps, d'esprit et de spiritualité sont explorées, établissant un lien entre l'ostéopathie et l'épigénétique, tout en soulignant l'importance d'une approche intégrative dans la pratique thérapeutique.",
+    transcriptMarkdown: `
 # L'Embryologie Biodynamique : Une Approche Holistique du Vivant
 
 ## L'Influence Cruciale de l'Environnement et de l'Espace
@@ -160,9 +183,20 @@ Les **atomes** forment des **molécules**, les molécules forment des **cellules
 La **phylogenèse** reprend l'histoire du développement de toutes les espèces à travers le temps.
 
 Nous allons étudier l'ontogenèse humaine, en recherchant surtout la forme et la puissance du développement de l'être humain, et en observant les impacts que cela peut avoir au niveau de la pratique.
-` },
-    {
-        id: "ecto-03", categoryId: "ectoderme", youtubeId: "hNI6dBCQ6YY", cloudflareId: "8cdf090911343b771e44cb559d3e5aa0", duration: "07:33", title: "3. Chronologie des Différents Systèmes", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-03",
+    categoryId: "ectoderme",
+    youtubeId: "hNI6dBCQ6YY",
+    cloudflareId: "8cdf090911343b771e44cb559d3e5aa0",
+    duration: "07:33",
+    title: "3. Chronologie des Différents Systèmes",
+    shortSummary:
+      "Découvrez l'évolution fascinante des systèmes de communication cellulaire en embryologie et leur impact sur notre compréhension de l'ostéopathie biodynamique.",
+    fullSummary:
+      "Cette vidéo explore la chronologie des systèmes de communication au sein des cellules, mettant en lumière les différentes étapes allant de la communication autocrine à la création de systèmes complexes. On y découvre comment la cellule, à travers la communication autocrine, prend connaissance de son état, puis interagit avec ses voisines via la communication paracrine. Au fur et à mesure de l'évolution des systèmes, des structures comme le tube digestif primitif, le système conjonctif, circulatoire et endocrinien émergent, menant au développement des premiers organes, notamment le cœur primitif, et à une complexification des systèmes nerveux. Cette meilleure compréhension aide les praticiens en ostéopathie à appréhender l'interconnexion entre les différentes strates de l'organisme.",
+    transcriptMarkdown: `
 # L'Évolution de la Communication Cellulaire : Une Perspective Embryologique
 
 Dans le cadre de l'**ostéopathie biodynamique**, comprendre la **chronologie d'apparition** des différents systèmes de communication est fondamental. Cette approche nous éclaire sur la façon dont les organismes se développent et s'adaptent, depuis la **cellule primitive** jusqu'à l'**être humain complexe**.
@@ -238,9 +272,20 @@ Par exemple, un enfant qui présente un problème de développement moteur : il 
 Cela implique que votre **premier cerveau** est entérique, il n'est pas du tout ici (dans la tête). Le cerveau céphalique s'est développé dans la logique, au départ pour lui. Nous l'avons tellement développé que nous avons perdu de vue cette connexion, nous sommes coupés.
 
 Cette chronologie est importante et doit être apprise dans ce sens. Nous verrons que dans le développement ontogénétique, cela se suivra, même si nous ne le verrons pas toujours en apparence.
-` },
-    {
-        id: "ecto-04", categoryId: "ectoderme", youtubeId: "RdmPT_FrwZE", cloudflareId: "500b369d3203ed966d5c910662eb56c4", duration: "06:25", title: "4. Notions d'épigénétique, tenségrité, électromagnétisme", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-04",
+    categoryId: "ectoderme",
+    youtubeId: "RdmPT_FrwZE",
+    cloudflareId: "500b369d3203ed966d5c910662eb56c4",
+    duration: "06:25",
+    title: "4. Notions d'épigénétique, tenségrité, électromagnétisme",
+    shortSummary:
+      "Découvrez comment l'épigénétique, la tenségrité et l'électromagnétisme influencent notre corps et notre pratique ostéopathique pour des soins plus profonds.",
+    fullSummary:
+      "Cette vidéo explore les notions d'épigénétique, de tenségrité et d'électromagnétisme, révélant comment l'environnement module notre code génétique. En tant qu'ostéopathes, il est crucial de comprendre que nos actions et nos interactions peuvent altérer le comportement cellulaire et répercuter des informations transgénérationnelles. Le concept de tenségrité nous rappelle que chaque touche est une vibration intégrale, influencée par divers champs et stimuli. Ensemble, ces idées fournissent un cadre essentiel pour une approche thérapeutique plus consciente et holistique.",
+    transcriptMarkdown: `
 # Notions d'Épigénétique, Tenségrité et Électromagnétisme
 
 ## L'Impact de l'Environnement sur la Génétique
@@ -301,9 +346,20 @@ La **force électromagnétique** est particulièrement intéressante car elle pe
 C'est ce qui nous amène au concept de **l'homme polarisé**. La **loi de Maxwell** est très simple : si vous avez un champ électrique, vous avez toujours un champ électromagnétique autour. 
 
 En d'autres termes, un champ électrique génère inévitablement un champ électromagnétique environnant. Cette interaction est fondamentale pour comprendre comment notre corps fonctionne et interagit avec son environnement.
-` },
-    {
-        id: "ecto-05", categoryId: "ectoderme", youtubeId: "N3WwDAfcm6Y", cloudflareId: "1d0b5f5be2fba5c460ca67acffa64b65", duration: "11:37", title: "5. La cellule : Champs métaboliques et Différentiation", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-05",
+    categoryId: "ectoderme",
+    youtubeId: "N3WwDAfcm6Y",
+    cloudflareId: "1d0b5f5be2fba5c460ca67acffa64b65",
+    duration: "11:37",
+    title: "5. La cellule : Champs métaboliques et Différentiation",
+    shortSummary:
+      "Plongez au cœur des mécanismes fascinants du développement cellulaire et découvrez comment la polarisation influence la vie embryonnaire.",
+    fullSummary:
+      "Cette session sur l'embryologie biodynamique enseigne les fondements du développement cellulaire, en expliquant la trajectoire de la cellule souche jusqu'à sa différenciation. Avec des concepts essentiels comme le clivage, les substances polarisantes et les champs métaboliques, les étudiants comprendront comment les cellules communiquent et interagissent. L'accent est mis sur l'importance de la polarisation dans la formation des ovocytes, ainsi que sur les types de communication cellulaire, illustrant des exemples concrets pour enrichir la compréhension de l'embryogenèse.",
+    transcriptMarkdown: `
 # L'Embryologie Biodynamique : Comprendre le Développement Cellulaire
 
 Ce cours d'ostéopathie biodynamique explore les mécanismes fascinants de l'embryologie, en s'appuyant sur les concepts de **Marc Damoiseaux**. Nous plongerons au cœur de la cellule, de sa naissance à sa différenciation, en passant par les forces qui la modèlent.
@@ -426,9 +482,20 @@ Si une cellule subit une contrainte trop forte, elle meurt. Ce processus est app
 Le corps utilise la multiplication, la différenciation et l'apoptose pour se développer et grandir. Si un groupe de cellules reçoit une contrainte mécanique de compression trop importante, il ne restera qu'un **exsudat cellulaire**.
 
 Ce cours nous a permis de poser les bases de la compréhension de l'embryologie biodynamique, en mettant en lumière l'importance des **champs métaboliques**, des **communications cellulaires** et des forces qui guident le développement de la vie.
-` },
-    {
-        id: "ecto-06", categoryId: "ectoderme", youtubeId: "Xoc4Gah3lFA", cloudflareId: "b491fe14b38b0a524881066b9d247004", duration: "47:51", title: "6. Les 3 Tissus Embryologiques", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-06",
+    categoryId: "ectoderme",
+    youtubeId: "Xoc4Gah3lFA",
+    cloudflareId: "b491fe14b38b0a524881066b9d247004",
+    duration: "47:51",
+    title: "6. Les 3 Tissus Embryologiques",
+    shortSummary:
+      "Découvrez les fondements des trois tissus embryologiques et leur impact sur le corps, une clé essentielle pour votre pratique !",
+    fullSummary:
+      "Cette session explore les trois tissus embryologiques : l'ectoderme, l'endoderme et le mésoderme, en les reliant aux concepts de biodynamique. En introduisant la classification de Blech-Schmidt, l'enseignement met en lumière la relation entre les tissus de limite et d'intérieur, illustrée par des exemples concrets comme le tympan. L'importance des tissus conjonctifs, leur rôle nutritif pour les tissus épithéliaux et les dynamiques de congestion et d'assèchement sont discutées. Comprendre ces éléments vous permettra d'intégrer une approche holistique dans votre pratique thérapeutique.",
+    transcriptMarkdown: `
 # Les 3 Tissus Embryologiques : Une Approche Biodynamique
 
 ## Les Tissus Embryonnaires et Histologiques : Au-delà des Classiques
@@ -646,9 +713,20 @@ Pour bouger les autres sans les perturber, il faut bouger l'espace dans lequel i
 ## Conclusion
 
 En ostéopathie biodynamique, nous travaillons avec ces espaces. Le corps se réorganise par rapport à cet espace. L'espace est là, il s'agit juste d'être en adéquation.
-` },
-    {
-        id: "ecto-07", categoryId: "ectoderme", youtubeId: "ZlOewEH8Uw8", cloudflareId: "18a059e5956b5c11d008caffb495f0b2", duration: "03:59", title: "7. Chronologie, croissance, synchronicités", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-07",
+    categoryId: "ectoderme",
+    youtubeId: "ZlOewEH8Uw8",
+    cloudflareId: "18a059e5956b5c11d008caffb495f0b2",
+    duration: "03:59",
+    title: "7. Chronologie, croissance, synchronicités",
+    shortSummary:
+      "Découvrez comment la compréhension de la chronologie embryonnaire et des mouvements développés peut transformer votre approche en ostéopathie.",
+    fullSummary:
+      "Dans cette vidéo, nous explorons les concepts essentiels de l'Embryologie Biodynamique, en insistant sur la chronologie du développement embryonnaire, allant des premières étapes de la conception aux transformations majeures du deuxième mois. Nous faisons la distinction entre motilité, intrinsèque au tissu, et mobilité, liée à la respiration, soulignant l'importance de traiter l'environnement plutôt que les seuls organes. Des notions de puissance dans le tissu et l'importance du diaphragme sont également abordées, offrant aux thérapeutes des outils pour travailler efficacement avec le mouvement et la croissance embryonnaires.",
+    transcriptMarkdown: `
 # L'Embryologie Biodynamique : Chronologie, Croissance, Synchronicités
 
 ## Définir l'Embryon : Jours, Carnegie et Croissance
@@ -696,9 +774,20 @@ Dès le début du **vingtième jour**, une forme commence déjà à se dessiner.
 Au départ, c'est simplement un **ovule** qui a reçu le patrimoine génétique du père, le **spermatozoïde**. Les deux patrimoines sont en train de se rencontrer. C'est à peu près la première image de votre vie.
 
 Nous observons alors ce qu'on appelle la **zone pellucida** et des **cellules nourricières**. Il y a plusieurs couches de cellules importantes qui se mettent en place.
-` },
-    {
-        id: "ecto-08", categoryId: "ectoderme", youtubeId: "9n-9baCAaNA", cloudflareId: "abd4ad73b060e039dea2f34b04f48ddd", duration: "05:51", title: "8. Pratique : Puissance en Mouvement", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-08",
+    categoryId: "ectoderme",
+    youtubeId: "9n-9baCAaNA",
+    cloudflareId: "abd4ad73b060e039dea2f34b04f48ddd",
+    duration: "05:51",
+    title: "8. Pratique : Puissance en Mouvement",
+    shortSummary:
+      "Découvrez comment la polarité cellulaire et l'interaction des cellules façonnent la vie. Un voyage captivant dans l'embryologie et l'ostéopathie vous attend!",
+    fullSummary:
+      "Dans cette vidéo, nous explorons la relation fascinante entre la polarité cellulaire et l'embryologie, en commençant par la notion de polarité au niveau cellulaire, à savoir la nécessité d'un noyau excentré pour favoriser l'échange métabolique. Nous plongeons ensuite dans le processus de polarisation de l'ovocyte et les interactions cruciales avec le spermatozoïde, illustrant comment cette rencontre initie une réorganisation systémique. En abordant les champs électriques du corps, notamment celui de la colonne vertébrale, nous apprenons à ancrer notre pratique en nous connectant à notre propre expérience corporelle. La session se conclut par des conseils sur l'accompagnement du processus de santé, rappelant l'importance de rester centré sur la santé plutôt que sur la pathologie.",
+    transcriptMarkdown: `
 # Pratique : Puissance en Mouvement
 
 ## La Polarité Cellulaire
@@ -750,9 +839,20 @@ C'est la **santé** qui commence à travailler, et nous devons l'accompagner. No
 Dans le travail que nous allons effectuer avec l'embryologie et la biodynamique, il est important de dire : "Je t'ai vu, mais je ne pars pas avec toi". Nous reconnaissons la lésion, mais nous restons concentrés sur la santé. 
 
 Nous demeurons dans la dynamique de la santé, sur le **fulcrum** de santé.
-` },
-    {
-        id: "ecto-09", categoryId: "ectoderme", youtubeId: "5MYjKhrZlNc", cloudflareId: "0c001dd5b6c664015f2fc9ce8b07b886", duration: "05:52", title: "9. Généralités suite", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-09",
+    categoryId: "ectoderme",
+    youtubeId: "5MYjKhrZlNc",
+    cloudflareId: "0c001dd5b6c664015f2fc9ce8b07b886",
+    duration: "05:52",
+    title: "9. Généralités suite",
+    shortSummary:
+      "Découvrez les mystères du développement embryonnaire : champs d'énergie, différenciation cellulaire et tissus cruciaux. Transformez votre compréhension !",
+    fullSummary:
+      "Cette vidéo couvre les aspects fondamentaux du développement embryonnaire, notamment le concept de 'champ de forme' et l'importance de l'énergie sans matière. Les mécanismes comme la mécano-transduction, la polarité, et divers facteurs environnementaux tels que chaleur et lumière sont explorés. Vous apprendrez comment la localisation des cellules influence leur différenciation, ainsi que les différences entre les tissus embryonnaires, y compris les dérivés ectodermiques, endodermiques et mésodermiques. La vidéo se termine par un aperçu des phases de l'embryogenèse, profondément essentielles pour toute pratique thérapeutique.",
+    transcriptMarkdown: `
 # Généralités sur le Développement Embryonnaire
 
 Le **potentiel de développement embryonnaire** est comparable à un **"champ de forme"**, une expression qui décrit un champ hypothétique contenant de l'**énergie sans matière**. Ce concept est complexe et inclut des éléments tels que l'impact au niveau du noyau, la **tenségrité** et l'importance de la **matrice**.
@@ -802,9 +902,20 @@ En deux à trois mois, toutes les **structures nobles** sont déjà formées. En
 Il est essentiel de souligner la notion de **croissance** et le fait que la **motilité** est un mouvement toujours présent dans le corps, défini par le système développemental. Ce mouvement se complexifie dans différentes situations.
 
 La croissance et la **gamme autogenèse** sont des processus fondamentaux.
-` },
-    {
-        id: "ecto-10", categoryId: "ectoderme", youtubeId: "A5CMMYIB8sA", cloudflareId: "30c857a297096f08b24abf8069aa907a", duration: "02:38", title: "10. Gamétogénèse", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-10",
+    categoryId: "ectoderme",
+    youtubeId: "A5CMMYIB8sA",
+    cloudflareId: "30c857a297096f08b24abf8069aa907a",
+    duration: "02:38",
+    title: "10. Gamétogénèse",
+    shortSummary:
+      "Découvrez les clés de la gamétogénèse et son impact sur la fertilité. Apprenez comment l'ostéopathie peut améliorer les chances de conception!",
+    fullSummary:
+      "Cette session explore la gamétogénèse en détaillant les différences cruciales entre l'ovocyte et le spermatozoïde, tant sur le plan cellulaire que fonctionnel. Les étudiants découvrent la production d'ovocytes, leur origine pendant la vie fœtale, ainsi que l'importance des cellules nourricières et folliculaires dans le développement embryonnaire. L'impact de la température sur la fertilité est également abordé, soulignant la nécessité de chaleur pour les ovaires et de fraîcheur pour les testicules, ainsi que les implications pour les problèmes de fertilité chez les femmes. Enfin, les liens anatomiques entre les organes et le système artériel sont présentés, mettant en lumière les axes de communication trophique et le rôle de l'ostéopathie dans la gestion de la fertilité.",
+    transcriptMarkdown: `
 # Gamétogénèse
 
 ## Comparaison Ovocyte et Spermatozoïde
@@ -852,9 +963,20 @@ On en parlera en lien avec le **duodénum**, les **artères** et les "plicas" ou
 Ces structures permettent le passage de l'information **trophique** via le système artériel, notamment les **artères ovariennes** ou **testiculaires**. 
 
 La fertilité doit souvent être traitée plus haut, sur le cadre du **pentagone facial** du **pancréas**.
-` },
-    {
-        id: "ecto-11", categoryId: "ectoderme", youtubeId: "69Pou_jhG3s", cloudflareId: "48b3c353021d12f670324743d767c826", duration: "14:26", title: "11. La Fécondation", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-11",
+    categoryId: "ectoderme",
+    youtubeId: "69Pou_jhG3s",
+    cloudflareId: "48b3c353021d12f670324743d767c826",
+    duration: "14:26",
+    title: "11. La Fécondation",
+    shortSummary:
+      "Découvrez les secrets de la fécondation et son impact sur la vie future, entre anatomie, mobilité ovarienne et techniques modernes comme la FIV.",
+    fullSummary:
+      "Cette session explore en profondeur le processus de fécondation, de l'ovulation à la réception du spermatozoïde par l'ovocyte. Les concepts de mobilité ovarienne, de barrières naturelles à la fécondation, et de la reconnaissance membranaire grâce à la ZP3 sont abordés pour comprendre les dynamiques complexes de la reproduction. La session met également en lumière les implications des techniques de fécondation in vitro, soulignant des liens émotionnels et énergétiques essentiels entre la mère et l'enfant, ainsi que l'importance de connaître son histoire personnelle pour une santé holistique.",
+    transcriptMarkdown: `
 # La Fécondation
 
 ## L'ovulation et la mobilité ovarienne
@@ -908,9 +1030,20 @@ Les spermatozoïdes doivent passer plusieurs couches pour atteindre la **zona pe
 La rencontre des patrimoines génétiques des deux cellules forme la première cellule de vie. Ce processus dynamique donne naissance aux deux premiers **blastomères**, qui sont les premières cellules germes-mères. 
 
 Cette recherche sur la polarité et les premières phases de développement embryonnaire est essentielle pour comprendre les bases de la vie.
-` },
-    {
-        id: "ecto-12", categoryId: "ectoderme", youtubeId: "bECRknTsbes", cloudflareId: "2feb2b0eabe44818f742473d26b29f8d", duration: "10:38", title: "12. Algorithme de Développement", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-12",
+    categoryId: "ectoderme",
+    youtubeId: "bECRknTsbes",
+    cloudflareId: "2feb2b0eabe44818f742473d26b29f8d",
+    duration: "10:38",
+    title: "12. Algorithme de Développement",
+    shortSummary:
+      "Découvrez l'algorithme de développement embryonnaire et les processus clés du zygote au blastocèle. Un savoir essentiel pour tout praticien en ostéopathie.",
+    fullSummary:
+      "Cette session explore l'algorithme fondamental du développement embryonnaire, détaillant le passage de l'ovocyte au zygote et les premiers stades cruciaux de division cellulaire. Les concepts de polarité, de divisions cellulaires asymétriques et d'augmentation du potentiel métabolique sont abordés, illustrant comment une simple cellule commence à se multiplier et à s'organiser. La session met également en avant la phase d'éclosion, où l'énergie accumulée atteint un seuil critique, résultant en la migration de l'embryon. Un aperçu fascinant des mécanismes de base qui sous-tendent la croissance embryonnaire, essentiel pour les praticiens en thérapeutique.",
+    transcriptMarkdown: `
 # 12. Algorithme de Développement : De l'Ovocyte au Blastocèle
 
 Pendant les trois à quatre premiers jours du développement, l'**ovocyte** que nous observons n'est plus un ovocyte, mais est désormais appelé un **zygote**.
@@ -978,9 +1111,20 @@ Il est crucial de retenir que pendant les trois premiers jours, l'embryon ne gra
 L'embryon quitte son "œuf" et se retrouve dans le milieu extérieur. Dans ce milieu extérieur, il s'organise très rapidement en une zone concentrée de cellules et une cavité.
 
 C'est toujours la même image du blastocèle, mais cette fois-ci, il va développer ce que l'on appelle un **pôle embryonnaire**, avec une concentration de cellules plus importante d'un côté que de l'autre. Ce pôle est un pôle d'assimilation, cherchant à "prendre l'intérieur".
-` },
-    {
-        id: "ecto-13", categoryId: "ectoderme", youtubeId: "MEczyu4el-U", cloudflareId: "1050cd1cf29c6ff5c1e19378a9fc19f8", duration: "01:12", title: "13. Migration Blastocèle", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-13",
+    categoryId: "ectoderme",
+    youtubeId: "MEczyu4el-U",
+    cloudflareId: "1050cd1cf29c6ff5c1e19378a9fc19f8",
+    duration: "01:12",
+    title: "13. Migration Blastocèle",
+    shortSummary:
+      "Découvrez les phases fascinantes de la migration du blastocèle et son implantation dans l'utérus, clé du développement embryonnaire !",
+    fullSummary:
+      "Dans cette vidéo, nous explorons la migration du blastocèle à travers la trompe de l'utérus vers son implantation dans l'utérus entre le 4ème et le 6ème jour. Le processus implique une recherche de chaleur maternelle, qui guide le blastocèle vers des zones optimales pour l'implantation, généralement la partie antérieure de l'utérus. La muqueuse utérine devient accueillante, se gonflant et se préparant à fournir les nutriments essentiels comme chaleur, sucre et oxygène, indispensables pour le zygote dans cette phase critique de son développement.",
+    transcriptMarkdown: `
 # Migration du Blastocèle
 
 J'avance maintenant dans la **trompe de l'utérus**. Après avoir parcouru ce chemin, j'arrive progressivement, aux environs du **4ème-5ème jour**, puis vers le **6ème jour**, dans l'utérus.
@@ -994,9 +1138,20 @@ Je vais rechercher la **muqueuse utérine**. Qu'a-t-elle fait ? Elle est devenue
 Le **zygote** arrive dans l'utérus. Il est là, et moi, le zygote, qu'est-ce dont j'ai besoin ? J'ai besoin de chaleur, de **sucre**, d'**activité électrolytique**, et d'un début d'**oxygène** pour le futur développement.
 
 Nous allons aborder le moment de l'**implantation** après la pause.
-` },
-    {
-        id: "ecto-14", categoryId: "ectoderme", youtubeId: "yI_FuzNhDQY", cloudflareId: "2c09e95f7a4bbd75c9ea863ef0d1ad7c", duration: "14:52", title: "14. Implantation et Cavité Amniotique", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-14",
+    categoryId: "ectoderme",
+    youtubeId: "yI_FuzNhDQY",
+    cloudflareId: "2c09e95f7a4bbd75c9ea863ef0d1ad7c",
+    duration: "14:52",
+    title: "14. Implantation et Cavité Amniotique",
+    shortSummary:
+      "Découvrez le mystère de l'implantation embryonnaire et son importance cruciale pour la vie. Apprenez comment l'embryon s'incarne dans la muqueuse utérine.",
+    fullSummary:
+      "Cette vidéo explore le processus fascinant d'implantation embryonnaire et la formation de la cavité amniotique primitive. Vous apprendrez comment l'embryon, avec son pôle assimilateur, pénètre la muqueuse utérine grâce à des cellules spécialisées et à une activité agressive du syncytiotrophoblaste, qui engendre des micro-saignements et prépare le terrain pour la vie. Nous aborderons la différenciation cellulaire entre les hypoblastes et épiblastes, qui donneront respectivement naissance au système digestif et au système neuronal. En fin de compte, cette session révèle les subtilités de la quête de l'embryon pour s'incarner, renforçant la compréhension des défis d'implantation et de leur impact sur la réussite de la grossesse.",
+    transcriptMarkdown: `
 # Implantation et Cavité Amniotique
 
 L'**embryon primitif** possède un **pôle embryonnaire**, qui est un pôle assimilateur. Il pénètre toujours la **muqueuse utérine** par ce pôle.
@@ -1066,9 +1221,20 @@ Au huitième jour, l'embryon pénètre la muqueuse. Des pressions à droite et �
 Dans le bouton embryonnaire, au moment où cette cavité apparaît, des cellules s'organisent et s'orientent vers elle. C'est là qu'apparaissent l'épiblaste et l'hypoblaste.
 
 À ce stade, nous avons déjà une préparation pour un tissu de type digestif et un tissu de type neurologique.
-` },
-    {
-        id: "ecto-15", categoryId: "ectoderme", youtubeId: "zJQjGZ9AowU", cloudflareId: "f8e930abbb905d975af5cae83badf90b", duration: "06:17", title: "15. Mise en Place de la 3ème Chambre", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-15",
+    categoryId: "ectoderme",
+    youtubeId: "zJQjGZ9AowU",
+    cloudflareId: "f8e930abbb905d975af5cae83badf90b",
+    duration: "06:17",
+    title: "15. Mise en Place de la 3ème Chambre",
+    shortSummary:
+      "Découvrez la fascinante mise en place de la troisième chambre embryonnaire et apprenez comment les cavités se forment et interagissent dans le développement précoce.",
+    fullSummary:
+      "Cette vidéo aborde l'importance de la troisième chambre embryonnaire dans le cadre de la croissance différentielle des cellules. On y explore le rôle du blastocèle, de la cavité amniotique, de l'endocyste et de l'algorithme de croissance qui conditionne la formation des différentes cavités : la cavité vitelline, le cœlome externe et la cavité amniotique. L'accent est mis sur la dynamique des fluides et l'impact des divisions cellulaires, fusionnant ainsi la compréhension embryologique avec des applications potentielles en ostéopathie et en biodynamique.",
+    transcriptMarkdown: `
 # Mise en Place de la 3ème Chambre
 
 Nous abordons un moment crucial : l'apparition de la **troisième chambre**.
@@ -1130,9 +1296,20 @@ Le terme "exsudat" fait également référence à la croissance. Imaginez la qua
 Chaque division cellulaire provoque une légère perte. La vitesse de croissance est telle qu'un volume considérable de liquide apparaît. Initialement, les cellules sont maintenues par un **réseau fibreux**. Mais avec le temps, ce réseau fibreux se dégrade, laissant place aux cavités.
 
 C'est ce que l'on appelle le **réseau arachnoïdal primitif** du cœlome externe. Il ne s'agit pas de cellules qui se brisent, mais plutôt d'une absorption liquide massive, plus forte de l'extérieur vers l'intérieur, dans la périphérie. On peut l'imaginer comme un environnement riche en fluides qui sont absorbés en grande quantité.
-` },
-    {
-        id: "ecto-16", categoryId: "ectoderme", youtubeId: "TlHInomOF2k", cloudflareId: "2b4cbcf85e614131c0a86336527b5283", duration: "16:49", title: "16. Mise en Place du Processus Axial", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-16",
+    categoryId: "ectoderme",
+    youtubeId: "TlHInomOF2k",
+    cloudflareId: "2b4cbcf85e614131c0a86336527b5283",
+    duration: "16:49",
+    title: "16. Mise en Place du Processus Axial",
+    shortSummary:
+      "Découvrez les fondements du processus axial embryonnaire et son impact sur le développement crânio-sacral, clé de l'ostéopathie biodynamique.",
+    fullSummary:
+      "Cette vidéo enseigne les mécanismes de mise en place du processus axial dans l'embryologie, en mettant l'accent sur la dynamique entre les cellules épiblastiques en expansion et en impansion. Les concepts de point zéro, de notochorde et de nœud de Hensen sont détaillés, illustrant leur rôle crucial dans le développement crânio-sacral. Les étudiants découvriront comment ces structures embryonnaires interagissent pour former une unité fonctionnelle, essentielle pour comprendre l'ensemble des processus de croissance et de développement dans le cadre de l'ostéopathie biodynamique.",
+    transcriptMarkdown: `
 # Mise en Place du Processus Axial
 
 Ce mouvement est animé par une **force de croissance**. Dans le tissu **épiblastique**, certaines cellules divergent vers le haut tandis que d'autres convergent. 
@@ -1202,9 +1379,20 @@ Ces molécules, sous forme de petites vésicules contenant des protéines, étab
 Ainsi, au moment du processus axial, un côté gauche et un côté droit, ainsi qu'un axe spécifique, apparaissent. À travers ce moment, tout le tissu mésodermique se développe, accompagné d'une activité morphogénétique asymétrique.
 
 L'axe crânio-sacré primitif se forme entre le **14ème** et le **21ème jour**.
-` },
-    {
-        id: "ecto-17", categoryId: "ectoderme", youtubeId: "wRPZTw_Y1bg", cloudflareId: "81492486cc63961d13ad83e3efe181f6", duration: "08:21", title: "17. Organisation des Champs Métaboliques", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-17",
+    categoryId: "ectoderme",
+    youtubeId: "wRPZTw_Y1bg",
+    cloudflareId: "81492486cc63961d13ad83e3efe181f6",
+    duration: "08:21",
+    title: "17. Organisation des Champs Métaboliques",
+    shortSummary:
+      "Découvrez comment la dynamique des champs métaboliques influence le développement embryonnaire et l'organisation cellulaire dans cette fascinante session.",
+    fullSummary:
+      "Dans cette vidéo, nous explorons l'organisation des champs métaboliques durant le développement embryonnaire, en partant du bouton embryonnaire et de la formation du blastocèle. Les concepts clés incluent l'introduction des champs de parméation, de perméation et d'infusion, qui déterminent la manière dont l'information trophique se distribue et influence la transformation des tissus. La vidéo détaille également le rôle du pédicule embryonnaire, qui guide l'apport trophique de manière polarisée, ainsi que la dynamique qui mène à la formation de la forme en 'S' du tissu embryonnaire. Cet enseignement est essentiel pour comprendre les fondements de l'embryologie biodynamique et son application en ostéopathie.",
+    transcriptMarkdown: `
 # Organisation des Champs Métaboliques
 
 Lors du **développement embryonnaire**, nous partons d'un bouton embryonnaire et d'une cavité, le **blastocèle**. 
@@ -1246,9 +1434,20 @@ Ce mouvement transforme le tissu, qui au départ était plat, en un tissu avec u
 Il est crucial de noter l'erreur entre les représentations de ces deux dessins. Le cœlome externe doit être beaucoup plus grand. L'erreur réside dans la taille relative des structures. Il est nécessaire de redimensionner le dessin pour avoir une vision plus juste, car c'est dans ce passage entre le cœlome externe et la cavité vitelline que le pédicule se dessine.
 
 Dans ce pédicule, un mouvement de **perméation**, de **parméation** et d'**infusion** se développe, créant un mouvement vers l'avant de la cavité amniotique, légèrement moins marqué en dessous. Cela entraîne une bascule, et ce mouvement de bascule crée une forme de S au sein de l'épiblaste et de l'endoblaste.
-` },
-    {
-        id: "ecto-18", categoryId: "ectoderme", youtubeId: "f8QZtJu0Tp0", cloudflareId: "bcb2a9f61b15f6d0d373e016a20e186a", duration: "04:45", title: "18. Méditation 1 - Respi & Connexion au Souffle de Vie", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-18",
+    categoryId: "ectoderme",
+    youtubeId: "f8QZtJu0Tp0",
+    cloudflareId: "bcb2a9f61b15f6d0d373e016a20e186a",
+    duration: "04:45",
+    title: "18. Méditation 1 - Respi & Connexion au Souffle de Vie",
+    shortSummary:
+      "Découvrez comment la méditation et la respiration se connectent à la puissance embryonnaire, facilitant un état de calme propice aux transformations intérieures.",
+    fullSummary:
+      "Cette vidéo explore la méditation axée sur la respiration et la connexion au Souffle de Vie, en mettant l'accent sur l'observation de la respiration du patient. Les participants apprennent à s'accorder à une fréquence spécifique, favorisant un état d'esprit calme et ouvert à de nouvelles perceptions. L'exercice guide également les participants à prolonger l'expiration pour atteindre un espace de silence intérieur, crucial pour accéder à la puissance embryonnaire et à la respiration pré-natale. Les concepts clés incluent l'attention à la respiration, l'observation des changements respiratoires et la recherche des points d'équilibre dans la respiration primaire, ouvrant ainsi la voie aux transformations personnelles et thérapeutiques.",
+    transcriptMarkdown: `
 # Méditation 1 - Respi & Connexion au Souffle de Vie
 
 ## Se connecter à la puissance embryonnaire
@@ -1295,9 +1494,20 @@ Cela signifie que le **Souffle de Vie** existe avant ce moment-là. En rentrant 
 C'est une porte d'entrée, une clé pour accéder à cette perception du souffle. Nous irons encore plus loin par la suite. 
 
 Nous chercherons les **points d'équilibre** dans la respiration primaire pour retrouver des points de **silence** où les problèmes d'émergence peuvent ressurgir dans les voies de transformation.
-` },
-    {
-        id: "ecto-19", categoryId: "ectoderme", youtubeId: "xelWN33fkQM", cloudflareId: "bd06bbcb35ccfc479b01c957a84a552f", duration: "02:00", title: "19. Question J1 : Orientation de La Vague Dans le Processus Axial", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-19",
+    categoryId: "ectoderme",
+    youtubeId: "xelWN33fkQM",
+    cloudflareId: "bd06bbcb35ccfc479b01c957a84a552f",
+    duration: "02:00",
+    title: "19. Question J1 : Orientation de La Vague Dans le Processus Axial",
+    shortSummary:
+      "Découvrez comment le mouvement de vague entre les cavités amniotique et vitelline influence le développement embryonnaire et la nutrition cellulaire.",
+    fullSummary:
+      "Dans cette vidéo, nous explorons le mouvement de vague entre la cavité amniotique et la cavité vitelline durant la phase 1 du développement embryonnaire. Ce mouvement, où la cavité amniotique va vers l'avant et la vitelline vers l'arrière, créer une dynamique en forme de S et marque le début d'un processus d'infusion et de perméation d'informations essentielles pour les cellules embryonnaires. Les implications de ce mouvement sont cruciales, notamment lors de la nidation, où les cellules du bouton embryonnaire reçoivent des nutriments et de l'information trophique, leur permettant de croître rapidement et de développer une nouvelle polarité. Cette session met en lumière l'interaction complexe entre mouvement, nutrition et développement embryonnaire, offrant des clés pour une meilleure compréhension des processus ontologiques.",
+    transcriptMarkdown: `
 # Orientation de La Vague Dans le Processus Axial
 
 Entre la **cavité amniotique** et la **cavité vitelline**, un mouvement de **vague** se produit. Le mouvement de la cavité amniotique se dirige vers l'avant, tandis que celui de la cavité vitelline se dirige vers l'arrière. Ce mouvement est à considérer par rapport au **pédicule**.
@@ -1313,9 +1523,20 @@ Dans cette phase, je reste le long de la membrane et je suis en perméation. J'e
 Cette **nourriture** implique un mouvement. Cependant, au départ, la force sera principalement dirigée vers l'appareil. Cela est dû à sa position d'origine, qui est antérieure.
 
 Au moment de la **nidation**, on peut dire que lorsque j'entre dans la muqueuse, les cellules du **bouton embryonnaire** sont les premières à recevoir l'information trophique. Elles sont déjà prédisposées à se développer plus rapidement. Ces cellules sont plus centrées et plus petites, ce qui leur permet d'attirer davantage d'informations. Cela représente une nouvelle **polarité**.
-` },
-    {
-        id: "ecto-20", categoryId: "ectoderme", youtubeId: "WWt_6v51VMI", cloudflareId: "a76cdefd55ad66ced70d1707fc5a34b6", duration: "02:33", title: "20. Question J1 : Mise En Place du Mésoderme", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-20",
+    categoryId: "ectoderme",
+    youtubeId: "WWt_6v51VMI",
+    cloudflareId: "a76cdefd55ad66ced70d1707fc5a34b6",
+    duration: "02:33",
+    title: "20. Question J1 : Mise En Place du Mésoderme",
+    shortSummary:
+      "Découvrez comment la vague embryonnaire crée le mésoderme, essentiel au développement. Un aperçu fascinant pour tous les thérapeutes !",
+    fullSummary:
+      "Dans cette session, vous apprendrez les étapes cruciales de la formation du mésoderme au sein de l'embryon, un processus orchestré par des mouvements de vague. L'accent est mis sur la dynamique de la ligne primitive et du nœud de Hensen, qui sont fondamentaux pour le développement cellulaire. Vous découvrirez comment la notocorde se forme en synchronie avec la régression de la ligne primitive, et comment les cellules épithéliales de l'épiblaste contribuent à l'émergence du tissu intermédiaire, le mésoblaste, qui deviendra le mésoderme. Cette compréhension enrichira votre pratique en embryologie et ostéopathie, offrant des outils précieux pour appréhender le développement embryonnaire.",
+    transcriptMarkdown: `
 # Mise en Place du Mésoderme
 
 Le **mésoderme** se forme à travers un mouvement de **vague** qui se dessine dans l'embryon. Ce mouvement crée un **champ d'aspiration** au niveau de la ligne primitive, qui est un élément clé dans le développement embryonnaire.
@@ -1327,9 +1548,20 @@ La **notocorde** se forme en réponse à ce mouvement. À ce stade, une traction
 Le dessin illustré montre une coupe qui met en évidence le mouvement des **cellules épithéliales** de l'épiblaste. Ces cellules sont tirées vers le centre, remplissant ainsi l'espace qui se crée entre l'épiblaste et l'hypoblaste.
 
 Cet espace, qui s'ouvre lors de la formation de la vague, est essentiel pour l'apparition du **tissu intermédiaire** connu sous le nom de **mésoblaste**, qui deviendra le futur **mésoderme**.
-` },
-    {
-        id: "ecto-21", categoryId: "ectoderme", youtubeId: "ITZatPmhSwM", cloudflareId: "0e1583e1bf1bb2a0ce9155aeef392256", duration: "02:33", title: "21. Question J1 : Ligne Primitive", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-21",
+    categoryId: "ectoderme",
+    youtubeId: "ITZatPmhSwM",
+    cloudflareId: "0e1583e1bf1bb2a0ce9155aeef392256",
+    duration: "02:33",
+    title: "21. Question J1 : Ligne Primitive",
+    shortSummary:
+      "Découvrez comment la ligne primitive et la notochorde orchestrent le développement embryonnaire, révélant une connexion subtile entre structures.",
+    fullSummary:
+      "Cette session explore l'émergence de la ligne primitive comme une force d'aspiration qui établit l'axe embryonnaire. On découvre le concept de 'point zéro', zone de mouvement minimal où se forme la notochorde, essentielle au développement des structures embryonnaires. L'accent est mis sur l'embryon comme une unité fonctionnelle, démontrant l'importance des connexions précises entre les diverses parties du corps, comme le sacrum et la base du crâne, pour un développement sain.",
+    transcriptMarkdown: `
 # 21. Question J1 : Ligne Primitive
 
 ## L'émergence de la Ligne Primitive : une force d'aspiration méthodique
@@ -1355,9 +1587,20 @@ De la même manière, le **nœud d'Hensen** n'est pas le sacrum, mais le point a
 Ces mécanismes montrent que l'embryon n'est pas une juxtaposition de pièces séparées, mais une **unité fonctionnelle** mue par un mouvement continu.
 
 C'est comme si l'on tenait le sacrum et qu'on devait connecter, avec une précision comparable à un **rayon laser**, cette structure à notre sphénoïde ou à la base du crâne. Il est essentiel de retrouver ce lien, cette **connexion subtile**.
-` },
-    {
-        id: "ecto-22", categoryId: "ectoderme", youtubeId: "kXcpaSTEB2M", cloudflareId: "b0c7c66ab31e401f3a26551f3dec5dd9", duration: "02:33", title: "22. Question J1 : Formation du Pédoncule Embryonnaire", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-22",
+    categoryId: "ectoderme",
+    youtubeId: "kXcpaSTEB2M",
+    cloudflareId: "b0c7c66ab31e401f3a26551f3dec5dd9",
+    duration: "02:33",
+    title: "22. Question J1 : Formation du Pédoncule Embryonnaire",
+    shortSummary:
+      "Découvrez comment la formation du pédoncule embryonnaire influence le développement et conduit à la création du cordon ombilical !",
+    fullSummary:
+      "Dans cette vidéo captivante, nous explorons la formation du pédoncule embryonnaire, un moment crucial de l'embryogenèse. Nous découvrons la dynamique de la croissance différentielle entre la périphérie et le centre de l'embryon, et comment ce mouvement de déchirement contribue à l'orientation et à la structuration du pédicule embryonnaire. L'émergence de ce dernier est liée à des mécanismes tels que la croissance de l'analyse et le cœlome externe, influençant la création d'espaces internes. Enfin, nous abordons la transition du pédicule embryonnaire vers le cordon ombilical, en soulignant l'importance de la vésicule vitelline dans ce processus. Cette leçon essentielle offre une perspective enrichissante sur l'embryologie biodynamique et ses implications cliniques.",
+    transcriptMarkdown: `
 # Formation du Pédoncule Embryonnaire
 
 La mise en place de la **troisième chambre** de l'embryon est marquée par une **vitesse de croissance différentielle**. 
@@ -1386,9 +1629,20 @@ Ce que l'on appelle la **croissance de l'analyse** et le **cœlome externe** don
 Il est important de noter que le pédicule embryonnaire n'est pas encore le **cordon ombilical**. À un certain moment, en raison de la croissance excessive de la **cavité amniotique**, celle-ci va pousser la **vésicule vitelline** sur le pédicule embryonnaire.
 
 La rencontre entre le pédicule embryonnaire et la vésicule vitelline est ce qui va former le cordon ombilical.
-` },
-    {
-        id: "ecto-23", categoryId: "ectoderme", youtubeId: "Qxp9VzZpVxw", cloudflareId: "57afbc3afddc5aace152032422d694aa", duration: "03:09", title: "23. Révision J1 : Processus Notochordal", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-23",
+    categoryId: "ectoderme",
+    youtubeId: "Qxp9VzZpVxw",
+    cloudflareId: "57afbc3afddc5aace152032422d694aa",
+    duration: "03:09",
+    title: "23. Révision J1 : Processus Notochordal",
+    shortSummary:
+      "Plongez dans le processus notochordal et découvrez comment les cellules embryonnaires s'organisent et se développent autour du nœud de Hensen.",
+    fullSummary:
+      "Dans cette session, nous explorons le processus notochordal, essentiel pour la formation embryonnaire. Nous étudions la structure en dôme, où le tissu ectodermique perd sa polarité et devient un point d'appui pour le développement. Le champ d'aspiration généré par la ligne primitive attire les cellules épithéliales vers le centre, aboutissant à la formation du mésoderme. Les mécanismes impliqués, tels que la libération d'acide hyaluronique et la dynamique de croissance cellulaire, sont examinés en détail, soulignant l'importance cruciale de ces transformations dans le développement embryonnaire précoce.",
+    transcriptMarkdown: `
 # Révision J1 : Processus Notochordal
 
 Nous allons examiner le **processus notochordal** pour approfondir votre compréhension.
@@ -1414,9 +1668,20 @@ En parallèle, dans ce même développement, il y a du **liquide nodal** à l'in
 Pourquoi les cellules qui se trouvent dans le dôme se développent-elles plus vite ? Il a été constaté que les cellules dans ce processus élargi, comme si nous n'étions plus dans un dôme d'expansion, se multiplient beaucoup plus rapidement que celles qui sont sur la même ligne, mais qui sont en convergence.
 
 Ces dernières se développent moins vite.
-` },
-    {
-        id: "ecto-24", categoryId: "ectoderme", youtubeId: "rUqg_ATEoFo", cloudflareId: "157fa5ec102375025b56fa44f11ff536", duration: "03:43", title: "24. Révision J1 : Le Flux Nodal", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-24",
+    categoryId: "ectoderme",
+    youtubeId: "rUqg_ATEoFo",
+    cloudflareId: "157fa5ec102375025b56fa44f11ff536",
+    duration: "03:43",
+    title: "24. Révision J1 : Le Flux Nodal",
+    shortSummary:
+      "Découvrez comment le flux nodal et les vésicules génèrent l'asymétrie interne, essentielle pour la compréhension embryologique en ostéopathie.",
+    fullSummary:
+      "Cette session aborde l'origine de l'asymétrie interne par le biais du nœud d'Hensen et du flux nodal. Les cils rotatoires créent un mouvement qui permet le déplacement des molécules et des vésicules, générant ainsi des morphogènes qui influencent le développement asymétrique des organes, comme le cœur et le foie. Les interrupteurs génétiques impliqués, tels que Sonic Hedgehog et les facteurs de croissance des fibroblastes (FGF), jouent un rôle clé dans l'organisation des structures internes.\n\nL'axe embryonnaire est présenté comme un centre d'organisation, avec un accent sur l'importance du mésoderme intra-embryonnaire. L'impact de ces concepts sur la pratique ostéopathique est également souligné, en mettant en lumière comment la compréhension de ces processus est cruciale pour la prise en charge des patients, grâce à une image mentale appropriée de ces dynamiques internes.",
+    transcriptMarkdown: `
 # 24. Révision J1 : Le Flux Nodal
 
 ## L'Origine de l'Asymétrie Interne : Le Nœud d'Hensen
@@ -1456,9 +1721,20 @@ Il est essentiellement issu de l'épithélium épiblastique. C'est pourquoi, au 
 C'est crucial dans notre réflexion **ostéopathique**, dans notre travail. Nous travaillons avec notre **image mentale**.
 
 Quelle est notre représentation mentale de ces processus ? Le corps l'utilise, que nous en soyons conscients ou non.
-` },
-    {
-        id: "ecto-25", categoryId: "ectoderme", youtubeId: "aYi0MqpBPf4", cloudflareId: "0c49f5059d01d54e6f86059d71ac078c", duration: "03:10", title: "25. Fermeture du Tube Neural", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-25",
+    categoryId: "ectoderme",
+    youtubeId: "aYi0MqpBPf4",
+    cloudflareId: "0c49f5059d01d54e6f86059d71ac078c",
+    duration: "03:10",
+    title: "25. Fermeture du Tube Neural",
+    shortSummary:
+      "Découvrez le processus vital de la fermeture du tube neural, clé dans le développement embryonnaire et la formation de la colonne vertébrale.",
+    fullSummary:
+      "Cette session explore en détail la fermeture du tube neural, un moment crucial dans le développement embryonnaire qui commence par la formation d'une structure allongée à partir de l'épiblaste. Ce processus implique l'interaction fascinante entre l'hypoblaste et l'ectoderme, menant à l'émergence de la notochorde et sa transformation en une corde cordale. Les étudiants apprendront comment cette dynamique influence la formation de la vertèbre et intègre des informations essentielles pour le développement embryonnaire. En comprenant ces interactions, les thérapeutes peuvent mieux appréhender les fondements embryologiques liés à leurs pratiques.",
+    transcriptMarkdown: `
 # Fermeture du Tube Neural
 
 La **fermeture du tube neural** est un processus crucial dans le développement embryonnaire. Ce tube, par sa nature, est creux et se forme à partir de l'épiblaste.
@@ -1476,9 +1752,20 @@ La notochorde, à ce stade, est considérée comme un tube cordal, évoluant ens
 Cette dynamique est importante : la notochorde est épiblastique en raison de son développement. Lorsqu'elle devient cordale, elle conserve des informations hypoblastiques.
 
 Cette information est cruciale, car elle constitue le **tube neural**, autour duquel se dessine la vertèbre. On peut déjà observer la vertèbre se former autour de la notochorde, qui laisse ensuite un vestige de son existence.
-` },
-    {
-        id: "ecto-26", categoryId: "ectoderme", youtubeId: "gq7rEBIX7EM", cloudflareId: "b321f649bcc7e9bfd780871b2ee749f3", duration: "05:28", title: "26. Référence Ventral Midline", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-26",
+    categoryId: "ectoderme",
+    youtubeId: "gq7rEBIX7EM",
+    cloudflareId: "b321f649bcc7e9bfd780871b2ee749f3",
+    duration: "05:28",
+    title: "26. Référence Ventral Midline",
+    shortSummary:
+      "Découvrez comment la ligne médiane ventrale influence le développement embryonnaire et son impact sur la santé à long terme !",
+    fullSummary:
+      "Dans cette session, nous explorons le rôle clé de la ligne médiane ventrale dans l'embryogenèse, où elle sert de référence vitale qui dirige le développement embryonnaire. La notocorde, en tant qu'élément central, induit la formation du tube neural et influence l'ascension du sacrum. Nous soulignons l'importance de cette référence pour le métabolisme, la structure des systèmes corporels, et son lien avec des problématiques de santé comme l'ostéoporose. Les enroulements embryonnaires et la structuration des lignes médianes sont abordés, tout comme leur intégration aux diaphragmes et la formation des divers systèmes du corps, soulignant ainsi la complexité et l'harmonie de l'embryon en développement.",
+    transcriptMarkdown: `
 # Référence Ventral Midline
 
 Le **centre de la ligne médiane ventrale** est un élément fondamental de l'embryon. C'est un centre clé qui permet au **génome** d'exécuter son programme et d'organiser l'ensemble de l'embryon.
@@ -1533,9 +1820,20 @@ Ces structures sont fondamentales pour le développement des systèmes suivants 
 - **Métabolique digestif**
 - **Rythmique**
 - **Neurosensoriel** (ou minéral, végétal, animal)
-` },
-    {
-        id: "ecto-27", categoryId: "ectoderme", youtubeId: "d4e-UzpNhFw", cloudflareId: "9c1eef54b3abaa89860b4894af272d8b", duration: "16:33", title: "27. Démo", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-27",
+    categoryId: "ectoderme",
+    youtubeId: "d4e-UzpNhFw",
+    cloudflareId: "9c1eef54b3abaa89860b4894af272d8b",
+    duration: "16:33",
+    title: "27. Démo",
+    shortSummary:
+      "Découvrez une démonstration ostéopathique captivante axée sur la connexion au corps et les techniques subtiles pour libérer les tensions.",
+    fullSummary:
+      "Cette vidéo propose une démonstration ostéopathique centrée sur le travail avec le sacrum et la notochorde. L'enseignant met en lumière l'importance de l'observation de la respiration et de l'écoute des sensations du patient, tout en naviguant dans les systèmes corporels. Des concepts clés tels que le point zéro, la polarité et l'asymétrie sont abordés, ainsi que la nécessité de rester attentif à l'immobilité et aux flux énergétiques. L'enseignant insiste sur l'importance de l'intuition et de la connexion à la vague de vie du patient pour faciliter le processus de guérison.",
+    transcriptMarkdown: `
 # Démonstration Ostéopathique
 
 Dans cette démonstration, je prends le **sacrum** assez bas. Mes doigts se placent sur la partie la plus haute que vous pouvez sentir. Je ne saisis pas le sacrum en entier, mais suffisamment bas pour atteindre la pointe de la **notochorde**.
@@ -1587,9 +1885,20 @@ Je reste sur la santé, sur le **fulcrum** de la santé. Il est essentiel de met
 Il est crucial de quitter cette notion de vouloir bien faire pour aller vers cette référence. La puissance de vie est connectée à cette force embryonnaire. Nous sommes là pour donner un point d'appui, et si c'est nécessaire, il le prendra ou non.
 
 Ce n'est pas une technique que je vous enseigne, mais une connexion à la fréquence.
-` },
-    {
-        id: "ecto-28", categoryId: "ectoderme", youtubeId: "8sjoAPe_zhI", cloudflareId: "3a1572c68ae8622d4f42d582460e5dbe", duration: "02:05", title: "28. Méditation", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-28",
+    categoryId: "ectoderme",
+    youtubeId: "8sjoAPe_zhI",
+    cloudflareId: "3a1572c68ae8622d4f42d582460e5dbe",
+    duration: "02:05",
+    title: "28. Méditation",
+    shortSummary:
+      "Découvrez comment la méditation peut transformer vos pensées en bienveillance et amour. Une pratique essentielle pour apaiser l'esprit!",
+    fullSummary:
+      "Cette session de méditation nous guide à travers une expérience de connexion profonde avec notre respiration. En stabilisant notre regard et en prenant conscience de l'œil en tant qu'expansion du cerveau, on apprend à observer le moment présent, notamment la fin de l'expiration. À travers un exercice de pensée bienveillante, nous sommes encouragés à envoyer amour et tendresse à une personne qui nous vient à l'esprit. Ce processus favorise non seulement notre propre bien-être, mais enrichit également nos relations avec autrui.",
+    transcriptMarkdown: `
 # Méditation
 
 Prends contact avec ta **respiration**.
@@ -1605,9 +1914,20 @@ Essaye de terminer de penser à quelque chose. Penses à quelqu'un qui te vient 
 Imagine que, par cette pensée, tu peux lui transmettre du **bien-être**, de la **tendresse**, de l'**amour** et de la **joie**. 
 
 Fais cela.
-` },
-    {
-        id: "ecto-29", categoryId: "ectoderme", youtubeId: "C01Mp-t08s8", cloudflareId: "8c0ebf367a20e3b637b394a0db9ed860", duration: "59:59", title: "29. Plicature de l'Embryon", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-29",
+    categoryId: "ectoderme",
+    youtubeId: "C01Mp-t08s8",
+    cloudflareId: "8c0ebf367a20e3b637b394a0db9ed860",
+    duration: "59:59",
+    title: "29. Plicature de l'Embryon",
+    shortSummary:
+      "Découvrez la magie de la plicature embryonnaire : comment la notochorde façonne les articulations et optimise la croissance de l'embryon.",
+    fullSummary:
+      "Dans cette vidéo, nous plongeons dans le processus crucial de la plicature embryonnaire, révélant comment la notochorde influence le développement structurel de l'embryon. Nous explorons le rôle central de la notochorde dans l'établissement de la polarité et la formation du tube neural, tout en découvrant les dynamiques de croissance différentielle entre l'ectoderme et le mésoderme. Ce processus engendre la création de la gouttière neurale et des vaisseaux préaortiques, essentiels à la circulation sanguine embryonnaire.\n\nEn outre, nous analysons comment la flexion de l'embryon autour de son système vasculaire, en utilisant le cœur comme point d'appui, est semblable à des mouvements naturels et confortables. Cette interaction complexe entre les différents tissus et structures embryonnaires est clé pour comprendre la formation des articulations et l'organisation corporelle, offrant des perceptions essentielles pour les étudiants et praticiens intéressés par l'embryologie biodynamique et l'ostéopathie.",
+    transcriptMarkdown: `
 # 29. Plicature de l'Embryon
 
 Nous allons continuer le mouvement de l'embryon et aborder la **plicature**. Ce concept a été une révélation pour comprendre ce qu'est une **articulation**. C'est l'algorithme qui génère cette **vitesse de croissance différentielle**, conduisant à la flexion de l'embryon.
@@ -1718,9 +2038,20 @@ Un point d'équilibre pour le médiastin se situe souvent autour de **D3-D4**, c
 Le corps est un complexe de tricot. En **biodynamique**, on travaille sur les huit plages. Lorsque l'occiput descend et le sacrum descend (flexion), le sternum monte. Ce mouvement en **"whiplash"** (coup du lapin) est souvent associé à une perte de pouvoir de décision.
 
 Si le sacrum monte alors qu'il devrait descendre en flexion, cela crée un décalage dans le mouvement.
-` },
-    {
-        id: "ecto-30", categoryId: "ectoderme", youtubeId: "PSaZeNgQAPY", cloudflareId: "229f78076bb9ad3da0d3e2c6eef4343d", duration: "14:51", title: "30. Le Diaphragme", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-30",
+    categoryId: "ectoderme",
+    youtubeId: "PSaZeNgQAPY",
+    cloudflareId: "229f78076bb9ad3da0d3e2c6eef4343d",
+    duration: "14:51",
+    title: "30. Le Diaphragme",
+    shortSummary:
+      "Découvrez comment le diaphragme se forme à partir des structures embryonnaires et son rôle crucial dans le développement fonctionnel du cœur.",
+    fullSummary:
+      "Cette vidéo explore la formation du diaphragme à travers les quatre structures embryonnaires essentielles : le septum transversum, les membranes pleuro-péritonéales, le mésoblaste paraaxial et le mésenchyme œsophagien. Les concepts clés incluent la dynamique du mouvement embryonnaire, la connexion fonctionnelle entre le diaphragme et le péricarde, et l'importance de la flexion de l'embryon pour l'organisation des structures internes. L'interaction entre ces éléments est cruciale pour la rythmicité cardiaque et pour la croissance des organes voisins tels que les poumons.",
+    transcriptMarkdown: `
 # 30. Le Diaphragme
 
 Le processus de **flexion de l'embryon** est fondamental. Il ne se contente pas d'organiser la mise en place des articulations, mais initie également une phase de délimitation de l'embryon. Ce processus implique quatre structures embryonnaires principales.
@@ -1828,9 +2159,20 @@ Les **récessus costodiaphragmatiques** sont des sacs d'accumulation pour les ex
 ## L'Unité Cellulaire et Tissulaire du Corps
 
 Le corps humain est une **unité cellulaire et tissulaire**. Ses réactions de défense et d'intégration peuvent se manifester à n'importe quel niveau grâce à la continuité tissulaire de la splanchnopleure et de la somatopleure, comme nous l'avons vu avec le diaphragme.
-` },
-    {
-        id: "ecto-31", categoryId: "ectoderme", youtubeId: "RM4qp5eaWNU", cloudflareId: "4a5349e463496d2f69f9952dcbf1901c", duration: "16:09", title: "31. Diaphragme Pratique - 3 Techniques", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-31",
+    categoryId: "ectoderme",
+    youtubeId: "RM4qp5eaWNU",
+    cloudflareId: "4a5349e463496d2f69f9952dcbf1901c",
+    duration: "16:09",
+    title: "31. Diaphragme Pratique - 3 Techniques",
+    shortSummary:
+      "Découvrez des techniques pratiques pour libérer le diaphragme et améliorer la respiration! Parfait pour les thérapeutes cherchant à optimiser leurs soins.",
+    fullSummary:
+      "Cette vidéo présente deux techniques de libération du diaphragme, essentielles pour améliorer la fonction respiratoire et l'état général des patients, notamment des enfants. La première technique se concentre sur la jonction œsophagienne et diaphragmatique, exploitant des mouvements spiralés et l'écoute tissulaire pour relâcher la pression au niveau du diaphragme. Le protocole pratique détaillé comprend des étapes d'évaluation de la nuque, de relâchement et de mobilisation, visant à redonner une liberté de mouvement. La deuxième technique vise l'arrière-cavité des épiploons et les insertions œsophagiennes, soulignant l'importance de l'interaction entre les côtes et le diaphragme. Ces approches, ancrées dans la pratique biodynamique, visent le bien-être global du patient.",
+    transcriptMarkdown: `
 # Diaphragme Pratique - 3 Techniques
 
 ## Introduction aux Techniques Diaphragmatiques
@@ -1975,9 +2317,20 @@ Le toucher est très léger, avec beaucoup de chaleur. Il est global, on a l'imp
 ### Le Champ de Glycocalyx
 
 Le plus grand lieu de concentration d'informations d'un champ de **glycocalyx** se trouve au niveau du **deuxième duodénum** – la partie la plus informée de l'intestin. Ce champ est présent partout sur le corps, comme un champ global qui englobe tout. Cela permet d'établir un contact profond.
-` },
-    {
-        id: "ecto-32", categoryId: "ectoderme", youtubeId: "b5AeLri4pmw", cloudflareId: "790753eaaa2b244a3f16cfd5cdf65469", duration: "07:05", title: "32. Pratique Guidée : Diaphragme en Biodynamie", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-32",
+    categoryId: "ectoderme",
+    youtubeId: "b5AeLri4pmw",
+    cloudflareId: "790753eaaa2b244a3f16cfd5cdf65469",
+    duration: "07:05",
+    title: "32. Pratique Guidée : Diaphragme en Biodynamie",
+    shortSummary:
+      "Découvrez comment harmoniser le souffle de vie et la tranquillité intérieure pour un processus thérapeutique puissant en biodynamie.",
+    fullSummary:
+      "Cette vidéo propose une pratique guidée centrée sur la perception du diaphragme en biodynamie. Les participants sont invités à se connecter à leur environnement, à leur souffle et à l'immobilité ambiante, créant ainsi une expérience de relaxation profonde et de présence. En se concentrant sur le mouvement naturel de la respiration et en visualisant l'immobilité comme un point d'appui, les thérapeutes apprennent à favoriser un processus de guérison par la prise de conscience et la tranquillité. Les concepts clés incluent le souffle de vie, l'harmonie corporelle, et l'importance de se sentir ancré et en contact avec la Terre, propices à l'équilibre intérieur et au bien-être global.",
+    transcriptMarkdown: `
 # Pratique Guidée : Diaphragme en Biodynamie
 
 Concentrez-vous et ajustez légèrement votre position si nécessaire. 
@@ -2027,9 +2380,20 @@ La chaleur du corps s'accroît, créant une **homogénéité**.
 Lorsque tous ces éléments s'harmonisent, vous pouvez sentir la respiration comme le vent qui se déplace dans l'air.
 
 Vous éprouvez une sensation de **globalité**, d'homogénéité, de calme et de bien-être. Vous pouvez vous retirer et échanger.
-` },
-    {
-        id: "ecto-33", categoryId: "ectoderme", youtubeId: "WDRI_u1Vsdg", cloudflareId: "16d805ed5ed84e51881f52dc5d4c5d1d", duration: "13:42", title: "33. Méditation J3", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-33",
+    categoryId: "ectoderme",
+    youtubeId: "WDRI_u1Vsdg",
+    cloudflareId: "16d805ed5ed84e51881f52dc5d4c5d1d",
+    duration: "13:42",
+    title: "33. Méditation J3",
+    shortSummary:
+      "Plongez dans une méditation transformative qui vous connecte à votre essence vitale. Découvrez des techniques de respiration pour harmoniser votre corps et esprit.",
+    fullSummary:
+      "Dans cette session de méditation, l'accent est mis sur la préparation corporelle et la connexion vitale à travers des exercices de respiration. Vous apprendrez à maîtriser la respiration nasale alternée pour ouvrir les sinus et à pratiquer des techniques de respiration profonde qui favorisent la libération d'énergie. L'exercice de Mula Bandha vous aidera à centrer votre énergie dans le canal central et à établir une connexion profonde avec la terre, vous permettant d'accéder à votre 'montagne' intérieure. En explorant l'importance du ventre comme centre vital, la méditation encourage une prise de conscience de notre interdépendance avec l'univers, favorisant ainsi un état d'harmonie intérieure.",
+    transcriptMarkdown: `
 # 33. Méditation J3 : Préparation Corporelle et Connexion Vitale
 
 ## Entrée en Conscience Aquatique : Respiration Nasale Alternée
@@ -2130,9 +2494,20 @@ La notion d'interdépendance est cruciale. Quand je fais du crânien, je ne fais
 - Parfois, il faut diriger, mais il est essentiel de comprendre comment se développe le crâne.
 
 Ces deux jours, nous allons étudier le **développement embryonnaire** du crâne.
-` },
-    {
-        id: "ecto-34", categoryId: "ectoderme", youtubeId: "AhdZ6cw__C8", cloudflareId: "08cc737d95ec38293ca07ec19d064ba3", duration: "08:08", title: "34. Questions J2", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-34",
+    categoryId: "ectoderme",
+    youtubeId: "AhdZ6cw__C8",
+    cloudflareId: "08cc737d95ec38293ca07ec19d064ba3",
+    duration: "08:08",
+    title: "34. Questions J2",
+    shortSummary:
+      "Découvrez comment les mouvements cérébraux influencent la santé globale du corps et l'ostéopathie crânienne ! Cette vidéo vous guide dans l'écoute des dynamiques internes pour un travail de guérison plus profond.",
+    fullSummary:
+      "Cette vidéo explore l'importance du mouvement cérébral dans l'ostéopathie crânienne, soulignant la manière dont le corps, en tant qu'entité intelligente, se développe de manière autonome. Les concepts clés incluent le lien entre le viscérocrâne, le cœur, le diaphragme et le système immunitaire, montrant que des dysfonctions à un niveau peuvent affecter d'autres systèmes. L'interconnexion entre le diaphragme et le fonctionnement organique est mise en avant, tout en soulignant l'importance de travailler sur la dynamique du diaphragme pour améliorer la qualité de vie des patients. Des exercices pratiques et des notions théoriques soutiennent l'apprentissage sur comment équilibrer les structures corporelles interconnectées.",
+    transcriptMarkdown: `
 # 34. Questions J2 : L'Embryologie Biodynamique et le Corps Humain
 
 ## Le Mouvement Cérébral : Fondation de l'Ostéopathie Crânienne
@@ -2205,9 +2580,20 @@ Cela signifie qu'il y a un mouvement de fermeture du corps par le **pédicule em
 À ce stade, deux éléments sont cruciaux : le cœur qui pousse sur la partie sud et la partie supérieure de la **vésicule vitelline**. Cette poussée oriente et organise le **septum transversal**.
 
 Son origine tissulaire était déjà présente (les cellules étaient là), mais cette rencontre entre le cerveau et le cœur, et le cœur et la vésicule vitelline, donne l'impulsion à la création du septum transversal. Le cœur agit ainsi comme une articulation entre le cerveau et le diaphragme.
-` },
-    {
-        id: "ecto-35", categoryId: "ectoderme", youtubeId: "7X_Ay1zb-xw", cloudflareId: "4b2c5d414af085c442c475451b956104", duration: "21:32", title: "35. La Plaque Neurale", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-35",
+    categoryId: "ectoderme",
+    youtubeId: "7X_Ay1zb-xw",
+    cloudflareId: "4b2c5d414af085c442c475451b956104",
+    duration: "21:32",
+    title: "35. La Plaque Neurale",
+    shortSummary:
+      "Explorez les mystères de la plaque neurale et découvrez comment les mouvements embryonnaires influencent la santé du futur individu! Plongez dans un enseignement riche en théories et applications pratiques essentielles.",
+    fullSummary:
+      "Cette vidéo plonge dans la dynamique fascinante de la plaque neurale et du processus notochordal, essentiel à la formation embryonnaire. En étudiant la manière dont la notochorde influence la courbure de la plaque neurale et la formation de la gouttière neurale, les étudiants découvriront les interactions fluidiques et vasculaires qui façonnent le développement du tube neural. L'importance des éléments comme le mézenchyme et les composés moléculaires comme Sonic Hedge-Hog (SHH) et les protéines morphogénétiques osseuses (BMP) seront abordés, soulignant leur rôle dans la dorsalisation et l'induction cellulaire. En pratique, les ostéopathes apprendront à utiliser ces connaissances pour rééquilibrer le système nerveux et libérer les tensions, tout en mesurant l'impact de l'environnement sur le développement embryonnaire.",
+    transcriptMarkdown: `
 # La Plaque Neurale
 
 ## Introduction au processus notochordal
@@ -2292,9 +2678,20 @@ Cette fermeture est déterminante pour le développement de l'embryon, reliant l
 Nous intégrerons tous les champs métaboliques pour l'ectomesenchyme, en tenant compte des **building blocks** morphologiques et des facteurs de croissance. En visualisant le mouvement de fermeture du tube neural, nous pouvons utiliser cette première rencontre entre les côtés gauche et droit comme un outil thérapeutique pour rééquilibrer le système.
 
 Une fois le neuropore antérieur fermé, il devient la **lamina terminalis**, marquant une impulsion significative dans le développement corporel.
-` },
-    {
-        id: "ecto-36", categoryId: "ectoderme", youtubeId: "3p5X0HXTYwk", cloudflareId: "7f4e40f843db6da0023983593a80d2fb", duration: "18:22", title: "36. La Plaque Neurale Pratique", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-36",
+    categoryId: "ectoderme",
+    youtubeId: "3p5X0HXTYwk",
+    cloudflareId: "7f4e40f843db6da0023983593a80d2fb",
+    duration: "18:22",
+    title: "36. La Plaque Neurale Pratique",
+    shortSummary:
+      "Découvrez comment rétablir l'homogénéité du corps par une approche douce et centrée, essentielle pour optimiser le fonctionnement du système nerveux et améliorer la perception globale en biodynamique.",
+    fullSummary:
+      "Cette vidéo aborde le concept fondamental de rééquilibrage corporel en ostéopathie biodynamique, en mettant l'accent sur l'homogénéité du corps. Les praticiens apprennent à se positionner correctement pour permettre une perception fine des déséquilibres dans le corps, tout en restant centrés. La vidéo explore la manière dont les praticiens peuvent identifier différentes densités et sensations dans les systèmes physique, éthérique, astral et mental, tout en facilitant l'auto-organisation du patient grâce à une approche douce et respectueuse. Les techniques pratiques de rééquilibrage et d'observation sont détaillées, offrant aux étudiants des outils précieux pour améliorer leur pratique et leur sensibilité en tant que thérapeutes.",
+    transcriptMarkdown: `
 # 36. La Plaque Neurale Pratique : Rééquilibrage et Perception
 
 ## I. Le Rééquilibrage par l'Homogénéité
@@ -2430,9 +2827,20 @@ Apprendre à revenir à son objet d'attention, à s'entraîner à cela. C'est pa
 Je vous propose une méditation qui apporte une qualité de présence, d'attention, quelque chose qui fait du bien au corps, à l'esprit, à l'âme. C'est intéressant de voir que les études sur la méditation montrent l'activation d'une partie de notre cerveau : le **cortex préfrontal**.
 
 Le cortex préfrontal a la capacité de nous ouvrir, car nous opérons souvent dans des schémas automatiques. Il nous permet de quitter cela et d'accéder à un autre plan, un autre moment du cerveau. On a découvert qu'une zone spécifique y active l'empathie, mais une empathie juste, une compassion.
-` },
-    {
-        id: "ecto-37", categoryId: "ectoderme", youtubeId: "J5Pn5aGqD2k", cloudflareId: "3692509b921629dec036336ade06799a", duration: "13:08", title: "37. Le Cerveau Pratique", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-37",
+    categoryId: "ectoderme",
+    youtubeId: "J5Pn5aGqD2k",
+    cloudflareId: "3692509b921629dec036336ade06799a",
+    duration: "13:08",
+    title: "37. Le Cerveau Pratique",
+    shortSummary:
+      "Découvrez comment optimiser la dynamique cérébrale grâce à l'approche biodynamique. Apprenez des techniques uniques pour stimuler l'expansion et l'encéphalisation chez vos patients !",
+    fullSummary:
+      "Cette vidéo 'Le Cerveau Pratique' présente une approche biodynamique détaillée centrée sur le cerveau et son expansion. L'instructeur enseigne comment identifier les niveaux d'expansion chez le patient, en explorant des stratégies de redynamisation efficaces, telles que le travail sur le cœur et les axes digestifs. S'ensuit une exploration des mouvements de flexion céphalique et pontine, avec des précautions spécifiques à prendre lors du toucher. En se concentrant sur la sensation d'expansion, les praticiens apprendront à accompagner le mouvement d'encéphalisation, en comprenant le rythme et la synchronicité liés à l'embryologie biodynamique. Cette session est à la fois théorique et pratique, promettant aux étudiants une compréhension enrichie et des compétences développées pour améliorer leur pratique.",
+    transcriptMarkdown: `
 # 37. Le Cerveau Pratique : Approche Biodynamique
 
 ## I. Positionnement Initial et Recherche de l'Expansion
@@ -2551,9 +2959,20 @@ Lorsqu'une connexion a été établie, le système s'est "débloqué". Cela est 
 *   **Centrage de l'écoute** : Centrer son écoute au niveau du cerveau, et si cela ne "va pas", observer ailleurs.
 
 C'est une question de **synchronicité**. Il faut "se faire un synchronisme" pour trouver le mot juste et travailler avec cette synchronicité.
-` },
-    {
-        id: "ecto-38", categoryId: "ectoderme", youtubeId: "jzm-SvjNW08", cloudflareId: "5fb7477aef73a653e1faafff8795212a", duration: "14:52", title: "38. Le Cerveau : Les Ventricules", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-38",
+    categoryId: "ectoderme",
+    youtubeId: "jzm-SvjNW08",
+    cloudflareId: "5fb7477aef73a653e1faafff8795212a",
+    duration: "14:52",
+    title: "38. Le Cerveau : Les Ventricules",
+    shortSummary:
+      "Découvrez comment les structures cérébrales se forment et interagissent dans le développement embryologique, et comment ces connaissances peuvent transformer votre pratique ostéopathique !",
+    fullSummary:
+      "Dans cette vidéo, nous explorons en profondeur le système ventriculaire du cerveau, en intégrant des concepts embryologiques clés tels que la télencéphalisation, l'ascensus et l'hémisphérisation. Vous apprendrez comment la croissance des ventricules latéraux et des autres structures cérébrales influence non seulement le développement neurologique, mais aussi la dynamique de la thérapie ostéopathique. La formation des plexus choroïdes, ainsi que la circulation du liquide céphalo-rachidien, seront également abordés, offrant des insights précieux sur les interactions entre le cerveau et le reste du corps, comme les connexions avec le péritoine. Cette compréhension enrichira votre approche clinique et stimulera votre pratique.",
+    transcriptMarkdown: `
 # Le Cerveau : Les Ventricules
 
 ## Introduction au Système Ventriculaire
@@ -2670,9 +3089,20 @@ On observe une croissance énorme et toute l'attraction qui s'opère.
 Le processus de **cérébralisation** (ascensus cerebrali) influencera toutes les zones du palais, ce que nous expliquerons la prochaine fois. Il y a un point d'appui très important ici.
 
 Le développement télencéphalique entraîne le rapprochement du palatin, la flexion des choanes et la résultante postérieure. Il s'agit d'un changement simultané entre le développement du cerveau vers l'arrière, la corticalisation et la ventricularisation.
-` },
-    {
-        id: "ecto-39", categoryId: "ectoderme", youtubeId: "fb4g6EFp6eY", cloudflareId: "e22e6f3d6e4db5652b183d41f895c283", duration: "05:02", title: "39. Résumé du Mouvement", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-39",
+    categoryId: "ectoderme",
+    youtubeId: "fb4g6EFp6eY",
+    cloudflareId: "e22e6f3d6e4db5652b183d41f895c283",
+    duration: "05:02",
+    title: "39. Résumé du Mouvement",
+    shortSummary:
+      "Découvrez les fondamentaux du développement embryonnaire à travers le mouvement! Cette vidéo explore comment l'axe électrique et les processus de cérébralisation influencent la croissance de l'embryon, révélant des concepts fascinants pour les thérapeutes.",
+    fullSummary:
+      "Cette vidéo plonge au cœur du mouvement embryonnaire, en détaillant le rôle crucial de l'axe électrique et électromagnétique dans l'établissement d'une vitesse de croissance différentielle. Vous apprendrez comment le processus noto-chordal initie la cérébralisation, influençant le développement de structures essentielles comme le tube digestif et le système cardiaque. Les concepts de palpation et d'interconnexion entre les différentes couches embryonnaires sont explorés afin de mieux comprendre les dynamiques entre le cœur, le cerveau et d'autres organes. Profitez de cette synthèse enrichissante qui met en lumière les interactions complexes qui façonnent l'embryon.",
+    transcriptMarkdown: `
 # Résumé du Mouvement
 
 ## Établissement de l'Axe et Croissance Différentielle
@@ -2735,9 +3165,20 @@ En termes de profondeur, on peut identifier plusieurs couches :
 - **Couche corticale** : Pour sentir son mouvement.
 - **Les noyaux** : En descendant plus profondément.
 - **Le plan ventriculaire** : Principalement latéral.
-` },
-    {
-        id: "ecto-40", categoryId: "ectoderme", youtubeId: "axnU1B60iw0", cloudflareId: "9c7011795512784685e1bd7ffb15e776", duration: "00:42", title: "40. Introduction Biodynamie", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-40",
+    categoryId: "ectoderme",
+    youtubeId: "axnU1B60iw0",
+    cloudflareId: "9c7011795512784685e1bd7ffb15e776",
+    duration: "00:42",
+    title: "40. Introduction Biodynamie",
+    shortSummary:
+      "Découvrez comment la biodynamie redéfinit votre compréhension du vivant à travers le mouvement développemental ontogénétique et l'importance du système crânio-sacré en ostéopathie.",
+    fullSummary:
+      "Cette vidéo introduit le concept de biodynamie, qui va au-delà d'une simple définition en l'associant au mouvement développemental ontogénétique. Elle explore la dynamique du vivant, révélant l'influence d'un génie créatif dans l'organisation de la vie. L'enseignement propose également une nouvelle perspective sur le système crânio-sacré, le considérant non seulement d'un point de vue anatomique, mais également embryologique et dynamique. Les étudiants et thérapeutes apprendront ainsi à intégrer ces dimensions dans leur pratique médicale.",
+    transcriptMarkdown: `
 # Introduction à la Biodynamie
 
 Le terme **biodynamique** peut être rapidement interprété de manière simpliste. Dans le cadre de ce cours, je souhaite que vous l'associez au **mouvement développemental ontogénétique**.
@@ -2745,9 +3186,20 @@ Le terme **biodynamique** peut être rapidement interprété de manière simplis
 La biodynamique représente donc la **dynamique du vivant**. Elle illustre comment ce vivant est organisé par un **génie créatif**, une sorte d'émergence d'originalité qui est, en fin de compte, assez merveilleuse.
 
 De plus, vous avez désormais une perspective enrichie. Le **système crânio-sacré**, qui était initialement perçu sous un angle strictement anatomique, se révèle maintenant sous un aspect **embryologique** et **dynamique**.
-` },
-    {
-        id: "ecto-41", categoryId: "ectoderme", youtubeId: "UobBInr9dpA", cloudflareId: "c1956f647c7bebcb6e2c535cb0cc0208", duration: "03:25", title: "41. Caractéristiques Des Différents Tissus", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-41",
+    categoryId: "ectoderme",
+    youtubeId: "UobBInr9dpA",
+    cloudflareId: "c1956f647c7bebcb6e2c535cb0cc0208",
+    duration: "03:25",
+    title: "41. Caractéristiques Des Différents Tissus",
+    shortSummary:
+      "Découvrez les secrets fascinants des tissus corporels avec une approche innovante de l'embryologie biodynamique. Apprenez à comprendre comment la tenségrité et l'équilibre homéostatique influencent le corps et comment une bonne santé digestive peut être liée à la dynamique tissulaire.",
+    fullSummary:
+      "Dans cette vidéo, nous plongeons dans les caractéristiques des différents tissus corporels en lien avec la tenségrité et l'homéostasie. Monsieur Benjamin expose des concepts clés comme le 'tissu de limite' et le 'tissu d'intérieur', tout en analysant leurs rôles respectifs au sein des systèmes organiques. Vous découvrirez comment des troubles gastriques peuvent être liés à des déséquilibres au niveau du petit bassin et l'importance de rééquilibrer le fascia pelvien pour la santé digestive.\n\nDe plus, la vidéo met en avant le rôle central du tissu vasculaire, à la fois moteur et frein pour la croissance des tissus, soulignant son importance dans la circulation et l'alimentation des cellules. Une compréhension approfondie de ces mécanismes ouvre des perspectives nouvelles pour les praticiens en santé et en ostéopathie, offrant des outils concrets pour améliorer l'état de santé de leurs patients.",
+    transcriptMarkdown: `
 # Caractéristiques des Différents Tissus
 
 Ce cours vise à comprendre le phénomène de **tenségrité** sur le plan développemental et l'équilibre des processus **homéostatiques** du corps, notamment l'organisation des **champs métaboliques**.
@@ -2782,9 +3234,20 @@ Ce que l'on retient principalement, c'est que le tissu vasculaire est un tissu o
 Cependant, le système vasculaire est à la fois un **moteur** et une **résistance** pour la croissance des tissus qui se nourrissent de lui. Un vaisseau qui arrive est un moteur, car il fournit la force au tissu qu'il nourrit. Il transporte l'alimentation, il donne.
 
 Mais en même temps, il ne grandit pas à la même vitesse que les tissus qu'il alimente. Donc, c'est à la fois le moteur pour la croissance et le frein pour la croissance. Cela peut paraître paradoxal, mais ce n'est pas le cas.
-` },
-    {
-        id: "ecto-43", categoryId: "ectoderme", youtubeId: "-aVvS6Ekvew", cloudflareId: "5c1152d2337c2163b5053223f06165bb", duration: "18:39", title: "43. Classification Des Différents Champs Métaboliques", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-43",
+    categoryId: "ectoderme",
+    youtubeId: "-aVvS6Ekvew",
+    cloudflareId: "5c1152d2337c2163b5053223f06165bb",
+    duration: "18:39",
+    title: "43. Classification Des Différents Champs Métaboliques",
+    shortSummary:
+      "Découvrez comment les champs métaboliques façonnent notre développement embryonnaire ! Cette vidéo vous révélera les mécanismes fascinants derrière la fusion, la corrosion et la création des structures glandulaires essentielles au corps.",
+    fullSummary:
+      "Cette vidéo explore la 'Classification des Différents Champs Métaboliques', en mettant l'accent sur deux concepts clés : le Champ de Corrosion et le Champ d'Aspiration. Le Champ de Corrosion est illustré par le processus de fusion des aortes primitives, où la disparition de tissus intérieurs crée de nouvelles structures, comme les arcs branchiaux, et illustre des phénomènes pathologiques tels que les escarres. En parallèle, le Champ d'Aspiration décrit comment les glandes se forment grâce à l'aspiration et la manipulation des tissus épithéliaux, en prenant des exemples tels que la formation des poumons et du diaphragme. Cette vidéo fournit une compréhension approfondie des transformations métaboliques à l'œuvre durant le développement embryonnaire.",
+    transcriptMarkdown: `
 # Classification des Différents Champs Métaboliques
 
 ## I. Le Champ de Corrosion : Création de Nouvelles Structures
@@ -2918,9 +3381,20 @@ La **synchronisation** est essentielle. Le tube neural, par exemple, s'articule 
 L'axe **urogénital**, de par sa force mésodermique, est l'articulation entre l'endo et l'ecto. Le mésoderme est l'articulation entre l'endoderme et l'ectoderme.
 
 Il est nécessaire d'intégrer le **système vasculaire** pour comprendre pleinement ce schéma, mettant en évidence l'importance du cerveau, du foie, du cœur, des poumons, du plexus mésentérique et du système rénal.
-` },
-    {
-        id: "ecto-44", categoryId: "ectoderme", youtubeId: "z2uDkP_tWMY", cloudflareId: "78fd0cc4aaf577dd69344c6b24f3c587", duration: "04:50", title: "44. Équilibre Acido Basique et Système Hypothalamo-Hypophysaire", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-44",
+    categoryId: "ectoderme",
+    youtubeId: "z2uDkP_tWMY",
+    cloudflareId: "78fd0cc4aaf577dd69344c6b24f3c587",
+    duration: "04:50",
+    title: "44. Équilibre Acido Basique et Système Hypothalamo-Hypophysaire",
+    shortSummary:
+      "Découvrez comment l'équilibre acido-basique influence votre corps et votre posture, et apprenez à intégrer cette connaissance au niveau hypothalamo-hypophysaire pour optimiser vos pratiques thérapeutiques.",
+    fullSummary:
+      "Cette vidéo approfondit l'interaction entre l'équilibre acido-basique et le système hypothalamo-hypophysaire, mettant en lumière le rôle crucial de l'hypothalamus dans la régulation du tonus corporel. À travers des concepts tels que l'ergotrophie et la trophotropie, vous apprendrez comment les variations acido-basiques influencent non seulement votre posture, mais aussi votre bien-être général. La transmission synaptique et son intégration à des niveaux neurologiques supérieurs sont explorées, offrant une compréhension des réponses corporelles et des sphincters. En observant ces interactions, vous pourrez mieux adapter vos pratiques en ostéopathie ou en thérapie manuelle, permettant une approche intégrative du corps et de sa chimie.",
+    transcriptMarkdown: `
 # Équilibre Acido-Basique et Système Hypothalamo-Hypophysaire
 
 Nous allons approfondir la compréhension du corps en lien avec son **équilibre acido-basique**, son **système nerveux** et la chimie de son tonus.
@@ -2974,9 +3448,20 @@ Tout cela s'exprime par cette chimie intégrée au niveau hypothalamique.
 On peut observer dans votre plan **chimico-postural** des phases en **rotation externe** et des phases en **rotation interne**. 
 
 L'observation de la posture et de l'équilibre permet de lire la chimie du corps. C'est pourquoi le corps essaie continuellement, à travers l'acte respiratoire, de s'adapter à l'environnement programmé par son système hypothalamo-hypophysaire, situé à la base du crâne.
-` },
-    {
-        id: "ecto-45", categoryId: "ectoderme", youtubeId: "2IDGuqLRC3c", cloudflareId: "21b346074ef3bea3f7f95e7396b00170", duration: "03:45", title: "45. Démo : Système Ventriculaire", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-45",
+    categoryId: "ectoderme",
+    youtubeId: "2IDGuqLRC3c",
+    cloudflareId: "21b346074ef3bea3f7f95e7396b00170",
+    duration: "03:45",
+    title: "45. Démo : Système Ventriculaire",
+    shortSummary:
+      "Découvrez l'art subtil de la thérapie biodynamique à travers une démonstration immersive du système ventriculaire. Plongez dans la profondeur de votre pratique et libérez le potentiel de guérison du corps !",
+    fullSummary:
+      "Cette vidéo propose une démonstration pratique de l'approche biodynamique appliquée au système ventriculaire, mettant l'accent sur la perception tactile et la progression à travers les différentes couches tissulaires. L'instructeur guide les thérapeutes à travers un processus d'exploration du corps, en commençant par une prise de contact délicate avec la surface de la tête et en descendendant jusqu'aux structures osseuses, tout en cultivant une sensibilité accrue aux changements de texture et de température. Les concepts clés abordés incluent l'interaction oscillatoire dans les hémisphères cérébraux, ainsi que la création d'un espace thérapeutique qui favorise une meilleure respiration et engagement corporel. Cette pratique s'avère enrichissante pour comprendre les dynamiques internes et évolutionnaires du corps.",
+    transcriptMarkdown: `
 # Démonstration : Système Ventriculaire
 
 ## Prise de Contact et Perception Initiale
@@ -3016,9 +3501,20 @@ Voici une description de la perception ressentie :
 * **Au niveau de l'os :** Une sensation d'impact initial, puis une grande légèreté.
 * **En dessous de l'os :** Le mouvement des hémisphères était très agréable. Une distinction nette était perceptible entre le gauche et le droit, particulièrement au niveau des ventricules.
 * **En dernier lieu :** Une fréquence plus **électrique**, une vibration très rapide mais non piquante.
-` },
-    {
-        id: "ecto-46", categoryId: "ectoderme", youtubeId: "BVne9WiNtCI", cloudflareId: "207227182bc286afdde33cafbccba574", duration: "10:20", title: "46. Pratique Guidée : Systèmes Ventriculaires", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-46",
+    categoryId: "ectoderme",
+    youtubeId: "BVne9WiNtCI",
+    cloudflareId: "207227182bc286afdde33cafbccba574",
+    duration: "10:20",
+    title: "46. Pratique Guidée : Systèmes Ventriculaires",
+    shortSummary:
+      "Découvrez une pratique guidée fascinante pour explorer les systèmes ventriculaires à travers une approche délicate et intuitive. Idéale pour les praticiens souhaitant affiner leur perception et favoriser la connexion avec le corps de leurs patients.",
+    fullSummary:
+      "Cette vidéo propose une pratique guidée centrée sur l'exploration des systèmes ventriculaires à travers le toucher subtil. Les instructeurs encouragent à adopter un positionnement et une attitude appropriés, en insistant sur l'importance de ressentir l'espace autour du patient tout en maintenant une légèreté de contact. Les participants apprennent à cartographier mentalement les différentes couches de tissus, depuis les cheveux jusqu'à la structure osseuse, tout en prenant conscience des variations de densité et de fluidité. En progressant vers les profondeurs cérébrales, les praticiens développent une perception fine des mouvements des hémisphères et des différentes structures neuronales, ce qui enrichit leur capacité à travailler avec le système nerveux et à trouver des solutions adaptées aux besoins du patient.",
+    transcriptMarkdown: `
 # Pratique Guidée : Systèmes Ventriculaires
 
 ## Le positionnement du praticien
@@ -3099,9 +3595,20 @@ Vous percevez des structures telles que :
 * La **corticale externe**
 * Les **fascias**
 * La présence de **cheveux**
-` },
-    {
-        id: "ecto-47", categoryId: "ectoderme", youtubeId: "zPBVe0bfm60", cloudflareId: "57ed355916bd8571286a4337eb683348", duration: "11:21", title: "47. Crêtes Neurales", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-47",
+    categoryId: "ectoderme",
+    youtubeId: "zPBVe0bfm60",
+    cloudflareId: "57ed355916bd8571286a4337eb683348",
+    duration: "11:21",
+    title: "47. Crêtes Neurales",
+    shortSummary:
+      "Découvrez comment les crêtes neurales jouent un rôle central dans le développement du système nerveux périphérique et influencent la santé physique et émotionnelle à travers le corps. Une exploration essentielle pour tous les thérapeutes en quête de comprendre les fondements de l'embryologie !",
+    fullSummary:
+      "Cette vidéo approfondit le rôle crucial des crêtes neurales dans le développement embryologique, en mettant l'accent sur leur impact sur la formation du système nerveux périphérique, de la face et des structures associées. Grâce à des concepts clés comme la migration cellulaire et l'influence sur la peau, elle révèle comment les crêtes neurales interagissent avec le système nerveux autonome et affectent la santé des organes. Les implications thérapeutiques sont également explorées, permettant aux thérapeutes de concilier anatomie, physiologie et épigénétique pour mieux comprendre et traiter leurs patients. Les processus de différenciation et les signaux épigénétiques qui guident la formation des crêtes neurales sont présentés, offrant des pistes pour des approches thérapeutiques novatrices.",
+    transcriptMarkdown: `
 # Crêtes Neurales : Impact et Implications
 
 Les **crêtes neurales** sont des structures essentielles qui apparaissent lors de la fermeture du tube neural. Elles s'étendent le long de la gouttière neurale et sont cruciales car elles donnent naissance à l'intégralité du **système nerveux périphérique**, incluant tous les nerfs et chaînes ganglionnaires.
@@ -3168,9 +3675,20 @@ Ces distinctions ont des implications thérapeutiques majeures :
 Le point d'articulation entre le **péritoine pariétal** et le **péritoine viscéral**, au niveau du hile pulmonaire, est un exemple de zone où les crêtes neurales jouent un rôle, agissant comme un champ d'aspiration qui envahit tout le corps.
 
 Cette compréhension de la migration des crêtes neurales, notamment au niveau du crâne et de l'épaule, offre des pistes de réflexion pour le travail thérapeutique.
-` },
-    {
-        id: "ecto-48", categoryId: "ectoderme", youtubeId: "UMJYZS_T9W8", cloudflareId: "eed24828641a97bf8f7f5fc203238f74", duration: "03:47", title: "48. Notes", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-48",
+    categoryId: "ectoderme",
+    youtubeId: "UMJYZS_T9W8",
+    cloudflareId: "eed24828641a97bf8f7f5fc203238f74",
+    duration: "03:47",
+    title: "48. Notes",
+    shortSummary:
+      "Découvrez comment le développement crânien et la compréhension du temps interagissent pour libérer notre potentiel. Cette vidéo révélera des outils pratiques pour dépasser les blocages émotionnels et embrasser la vie pleinement.",
+    fullSummary:
+      "Cette vidéo explore le développement du crâne à travers le prisme de l'embryologie biodynamique, en mettant particulièrement l'accent sur le rôle central du cerveau et des structures crâniennes. Les concepts de ligne médiane d'anticipation et de blocages liés aux 'micro-cristaux de temps' sont abordés, offrant aux thérapeutes des clés pour aider leurs patients à libérer des restrictions émotionnelles et à mieux s'ancrer dans le présent. Avec une réflexion sur l’acceptation de la mort et la respiration comme acte de création, cette session propose des outils concrets pour soutenir une transformation personnelle et professionnelle.",
+    transcriptMarkdown: `
 # Développement du Crâne et Notion de Temps
 
 ## Le moteur du développement crânien : Le cerveau
@@ -3228,9 +3746,20 @@ C'est toujours difficile, car qu'est-ce qui, en moi, a si peur de mourir ? Qu'es
 Souvent, ce sont ces freins qui nous retiennent. Il faut savoir faire confiance.
 
 C'est là qu'il faut laisser émerger un mot, un geste ou un regard spécifique pour donner cette voie de confiance à la personne.
-` },
-    {
-        id: "ecto-49", categoryId: "ectoderme", youtubeId: "Rvqay7dQ1i8", cloudflareId: "a36cd61fcafa63f5b57bf022980f98d0", duration: "01:11", title: "49. Méditation", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-49",
+    categoryId: "ectoderme",
+    youtubeId: "Rvqay7dQ1i8",
+    cloudflareId: "a36cd61fcafa63f5b57bf022980f98d0",
+    duration: "01:11",
+    title: "49. Méditation",
+    shortSummary:
+      "Découvrez comment la méditation peut transformer vos moments de repos en expériences de satisfaction profonde. Allumez la flamme de la pleine conscience et apprenez à apprécier chaque instant.",
+    fullSummary:
+      "Dans cette vidéo, la méditation est présentée comme un moment essentiel de repos et de satisfaction après une journée bien remplie. L'analogie avec le retour chez soi, en retirant ses chaussures et en s'installant confortablement, illustre l'importance de se permettre un moment de pause. L'enseignant invite les participants à cultiver une qualité de contentement, en éveillant une flamme intérieure qui rappelle l'importance d'apprécier l'instant présent. La vidéo encourage ainsi un voyage personnel vers la méditation, en soulignant ses bienfaits sur le bien-être mental et physique.",
+    transcriptMarkdown: `
 # 49. Méditation
 
 La **méditation** peut être comparée à une journée de travail bien remplie. 
@@ -3244,9 +3773,20 @@ C'est l'occasion de développer en vous une petite **qualité** de contentement.
 Allumez cette petite flamme intérieure qui vous rappelle d'apprécier chaque instant et ce que vous avez. 
 
 Ainsi, nous pouvons commencer notre voyage vers la **méditation**.
-` },
-    {
-        id: "ecto-50", categoryId: "ectoderme", youtubeId: "AWG_vm3gqWQ", cloudflareId: "0f5f2ad7ccf431e2aecb67dc383151e4", duration: "01:00:35", title: "50. Le Crâne", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-50",
+    categoryId: "ectoderme",
+    youtubeId: "AWG_vm3gqWQ",
+    cloudflareId: "0f5f2ad7ccf431e2aecb67dc383151e4",
+    duration: "01:00:35",
+    title: "50. Le Crâne",
+    shortSummary:
+      "Découvrez comment le développement cérébral influence la structure du crâne et son rôle dans notre posture et équilibre. Cette vidéo révèle les interconnexions fascinantes entre le crâne, les dents et les rythmes corporels essentiels.",
+    fullSummary:
+      "Cette vidéo explore en profondeur l'influence du développement cérébral sur les membranes intracrâniennes et le système veineux, en mettant l'accent sur la formation des membranes de tension réciproque. Vous apprendrez comment la base du crâne est cruciale pour le mécanisme crâne-sacré, et comment les dents et la langue agissent comme des capteurs de posture qui influencent l'équilibre et la respiration. L'interaction entre l'oreille interne, la posture, et les rythmes corporels est également discutée pour donner une vision holistique de l’équilibre neuro-digestif. Enfin, la vidéo aborde les processus métaboliques liés à la formation cartilagineuse et les chaînes tissulaires, illustrant leur signification dans la dynamique corporelle globale.",
+    transcriptMarkdown: `
 # Le Crâne
 
 ## L'influence du développement cérébral sur les membranes intracrâniennes et le système veineux
@@ -3376,9 +3916,20 @@ La voûte crânienne est le résultat d'une densification. Des champs métaboliq
 Les noyaux d'ossification se forment en périphérie. Le développement du cerveau, encadré par les gaines durales (comme des fenêtres), dicte la chronologie de l'ossification : frontal, pariétal, occipital supérieur et temporal supérieur.
 
 Les fenêtres frontales, pariétales et occipitales sont les futures sutures.
-` },
-    {
-        id: "ecto-51", categoryId: "ectoderme", youtubeId: "uVIECbHbdFk", cloudflareId: "24cf013a26253e0e42ec86cfa65e25a2", duration: "06:08", title: "51. Démo : La Gaine Durale", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-51",
+    categoryId: "ectoderme",
+    youtubeId: "uVIECbHbdFk",
+    cloudflareId: "24cf013a26253e0e42ec86cfa65e25a2",
+    duration: "06:08",
+    title: "51. Démo : La Gaine Durale",
+    shortSummary:
+      "Découvrez comment rééquilibrer la gaine durale pour favoriser la fluidité et le développement optimal chez les enfants et les adultes. Cette démonstration révèle des techniques clés pour libérer les tensions et optimiser les mouvements embryonnaires.",
+    fullSummary:
+      "Cette vidéo propose une démonstration approfondie sur l'examen et le rééquilibrage de la gaine durale moyenne, visant à améliorer la liberté de fonctionnement du corps. À travers des techniques pratiques, l'instructeur examine minutieusement les structures crâniennes et détecte d'éventuelles anomalies, en se concentrant sur la fluidité et le champ électrique autour de la suture coronaire. L'importance de ce travail est particulièrement soulignée chez les enfants, où le développement de la mandibule et la dynamique de succion sont cruciaux. En parallèle, la vidéo aborde l'interconnexion entre le système vasculaire, les mouvements embryonnaires, et l'axe crânio-sacré, tout en proposant des méthodes pour garantir la liberté des différents diaphragmes, y compris ceux au niveau des pieds. La séance se conclut par des vérifications du",
+    transcriptMarkdown: `
 # Démo : La Gaine Durale
 
 ## Examen de la Gaine Durale Moyenne
@@ -3438,9 +3989,20 @@ La **technique du genou** est également essentielle. Il faut une bonne liberté
 C'est une technique simple : ajuster le genou, par compression, pour lui redonner sa liberté. La vision importante, la voie importante.
 
 Je termine très souvent en vérifiant si le **"rebalancing"** est correct. Je travaille beaucoup en observant l'espace.
-` },
-    {
-        id: "ecto-52", categoryId: "ectoderme", youtubeId: "taZj1dczHX4", cloudflareId: "5f50cc46a3153578157e84b106ae3505", duration: "02:03", title: "52. Conclusion Phase 1", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "ecto-52",
+    categoryId: "ectoderme",
+    youtubeId: "taZj1dczHX4",
+    cloudflareId: "5f50cc46a3153578157e84b106ae3505",
+    duration: "02:03",
+    title: "52. Conclusion Phase 1",
+    shortSummary:
+      "Découvrez comment les trois lignes médianes fondamentales et la zone urogénitale forment la base de votre ancrage et de votre équilibre émotionnel. Apprenez à harmoniser vos règnes pour atteindre un discernement authentique.",
+    fullSummary:
+      "Cette vidéo conclut la Phase 1 d'enseignement sur l'embryologie biodynamique, en explorant les trois lignes médianes fondamentales et leur relation avec la zone urogénitale. L'importance de l'ancrage est soulignée, en reliant le règne minéral à la réalité physique et en intégrant les aspects émotionnels et rythmiques des règnes végétal et animal. En vous établissant dans votre règne neurosensoriel, vous apprenez à faire la différence entre jugement et discernement, favorisant ainsi une connexion plus profonde avec vos émotions et votre environnement. Cette harmonie conduit à une meilleure respiration et ancrage, favorables à votre pratique professionnelle.",
+    transcriptMarkdown: `
 # Conclusion de la Phase 1
 
 Nous portons en nous ces **trois lignes médianes fondamentales**.
@@ -3478,9 +4040,20 @@ C'est là que l'on apprend à bien respirer. Quand je suis bien établi dans mon
 Quand je suis dans mon discernement, je suis bien dans mes rythmes. Quand je suis bien dans mes rythmes, je suis bien dans mes émotions.
 
 Je reviens alors pleinement sur ma Terre, en parfaite harmonie avec mes émotions.
-` },
-    {
-        id: "meso-01", categoryId: "mesoderme", youtubeId: "", cloudflareId: "682f30474ce5bd68cfb9ddb8e11f45db", duration: "08:15", title: "1-Introduction_Le WUWAI", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-01",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "682f30474ce5bd68cfb9ddb8e11f45db",
+    duration: "08:15",
+    title: "1-Introduction_Le WUWAI",
+    shortSummary:
+      "Découvrez comment l'embryologie biodynamique vous invite à libérer le potentiel de la santé innée du corps en cultivant l'état de neutre, tant chez le praticien que chez le patient. Un changement de paradigme essentiel pour tout thérapeute souhaitant approfondir sa pratique.",
+    fullSummary:
+      "Cette vidéo d'introduction au WUWAI de l'embryologie biodynamique présente le rôle du thérapeute comme un facilitateur plutôt qu'un intervenant actif. Les concepts de respiration primaire et de mouvement respiratoire primaire sont explorés en tant qu'éléments clés du processus de guérison. En mettant l'accent sur la découverte du 'neutre', le praticien apprend à se centrer pour permettre à la puissance thérapeutique d'émerger, notamment à travers une rencontre avec le neutre du patient. De plus, les notions de force de gravité et de force électromagnétique sont abordées pour ramener chaque patient dans son corps, favorisant ainsi une meilleure autorégulation et un accès à la santé plutôt qu'à la maladie.",
+    transcriptMarkdown: `
 # Introduction au WUWAI de l'Embryologie Biodynamique
 
 ## Confiance et Absence d'Induction
@@ -3600,9 +4173,20 @@ C'est là que les Chinois ont un mot fantastique : le **"wu bei"** (ou **"wu wei
 Certains thérapeutes utilisent uniquement leurs connaissances, d'autres s'appuient davantage sur leur imaginaire. Je vous demande d'utiliser les deux.
 
 Nous avons besoin de ces connaissances, de votre bagage, et nous avons besoin de cet imaginaire. Il faut les combiner et travailler progressivement avec eux.
-` },
-    {
-        id: "meso-03", categoryId: "mesoderme", youtubeId: "", cloudflareId: "7a0256b069d4205ffbce0301a8a15a0f", duration: "05:50", title: "3-Introduction Le Mesoderme", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-03",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "7a0256b069d4205ffbce0301a8a15a0f",
+    duration: "05:50",
+    title: "3-Introduction Le Mesoderme",
+    shortSummary:
+      "Découvrez comment le mésoderme, en tant qu'articulation fondamentale entre les tissus embryonnaires, influence notre santé et notre pratique thérapeutique. Une approche dynamique qui vous connecte à la puissance de régénération de votre corps !",
+    fullSummary:
+      "Cette vidéo introduit le concept de mésoderme et son rôle central dans le développement embryonnaire et la santé humaine. Le formateur explore la croissance et la puissance longitudinale qui émergent de ce tissu, soulignant l'importance de la synchronisation entre l'intérieur et l'extérieur du corps. En intégrant la notion de fluides corporels, il démontre comment cette approche fluide peut transformer notre compréhension de la santé et de la thérapie, tout en mettant en avant la capacité d'autorégulation du corps. Enfin, il évoque des concepts clés comme l'axe notochordal, le développement du viscérocrâne et l'importance de l'eau dans la structure corporelle.",
+    transcriptMarkdown: `
 # Introduction au Mésoderme
 
 Ce qui se passe ici, cela montre l'unité et les **synchronicités** du développement. L'importance de cet enroulement autour de la **cavité cardio-pleuropéritonéale** est capitale. On peut dire que le **mésoderme** est une articulation entre l'**ectoderme** et l'**endoderme**.
@@ -3670,9 +4254,20 @@ L'**Homunculus Interni**, l'homme mésodermique, est lié aux **trajectoires**.
 - Sur le développement des trajectoires **locomotrices**.
 
 J'aime bien l'idée de trajectoire car elle vous donne une aide thérapeutique et un soutien à la compréhension.
-` },
-    {
-        id: "meso-04", categoryId: "mesoderme", youtubeId: "", cloudflareId: "4bd3ba1e95f549e158bb96855cb55ba4", duration: "03:43", title: "4- Mise en Place du Mesoderme et La Notochorde", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-04",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "4bd3ba1e95f549e158bb96855cb55ba4",
+    duration: "03:43",
+    title: "4- Mise en Place du Mesoderme et La Notochorde",
+    shortSummary:
+      "Plongez dans les secrets du mésoderme et de la notochorde ! Découvrez comment ces structures essentielles influencent le développement embryonnaire tout en apprenant des techniques pratiques pour optimiser vos soins ostéopathiques.",
+    fullSummary:
+      "Cette vidéo vous guide à travers le processus fascinant de la mise en place du mésoderme et du rôle crucial de la notochorde dans le développement embryonnaire. Vous apprendrez comment ces structures interagissent au niveau cellulaire, notamment grâce à la ligne primitive et aux cellules en bouteille, entraînant la formation du tissu mésenchymateux primitif. De plus, vous explorerez des aspects pratiques en lien avec le coccyx, en découvrant comment les impulsions et les champs électromagnétiques influencent la santé des tissus. La session inclut une approche pratique des mouvements notochordaux tout en mettant en lumière l'interconnexion entre le sacrum, le coccyx, et même le cœur, approfondissant ainsi votre compréhension de l'embryologie biodynamique et de l'ostéopathie.",
+    transcriptMarkdown: `
 # Mise en Place du Mésoderme et de la Notochorde
 
 ## La mise en place du Mésoderme
@@ -3726,9 +4321,20 @@ Puis, en dessous, en même temps que ce mouvement, il y a une invasion en dessou
 On peut se positionner sur le sacrum ou sur le coccyx. Par la suite, nous aborderons d'autres points d'équilibre très spécifiques au niveau du **cœur**.
 
 L'aspect présomptif du cœur est déterminé par ce champ d'action.
-` },
-    {
-        id: "meso-05", categoryId: "mesoderme", youtubeId: "", cloudflareId: "45605bc798594f7f044f3ccc16385e13", duration: "03:59", title: "5- Le Systeme Circulatoire Mise à Jour", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-05",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "45605bc798594f7f044f3ccc16385e13",
+    duration: "03:59",
+    title: "5- Le Systeme Circulatoire Mise à Jour",
+    shortSummary:
+      "Découvrez la révolution dans notre compréhension du système circulatoire ! Apprenez comment les trajectoires veineuses passent au-delà du circuit traditionnel, révélant des implications essentielles pour votre pratique ostéopathique.",
+    fullSummary:
+      "Cette vidéo propose une mise à jour profonde du modèle traditionnel du système circulatoire, en démontrant qu'il existe en réalité trois systèmes veineux distincts. Vous apprendrez sur les interactions complexes entre le sang et le cœur, ainsi que sur les différentes voies que le sang peut emprunter, illustrant l'intelligence intrinsèque de la circulation. Les théories des pionniers comme M. Herveillat et M. Batson permettent de repenser les rôles des veines et de comprendre en détail les systèmes cardinal, vitellin et ombilical. Les implications pratiques sur des pathologies courantes, comme les lombalgies et les acidités locales, seront également abordées, vous offrant des outils concrets pour enrichir votre pratique ostéopathique.",
+    transcriptMarkdown: `
 # Le Système Circulatoire : Mise à Jour
 
 ## Le développement des trajectoires vasculaires
@@ -3772,9 +4378,20 @@ Toute forme de stase entraînera une **acidité**, même locale, qu'il faudra r�
 Dans les problèmes de **prostate**, on peut retrouver ce même schéma. De plus, il existe une **continuité vasculaire** entre les sinus vertébraux et les sinus sacrés du petit bassin.
 
 Une prise de sang effectuée dans un bras ne reflète pas la totalité du sang qui pourrait être prélevé dans un système veineux, artériel ou autre.
-` },
-    {
-        id: "meso-06", categoryId: "mesoderme", youtubeId: "", cloudflareId: "b8f701a2d44df6931668db02f0e2ede4", duration: "13:32", title: "6- Construction des Vaisseaux Primitifs", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-06",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "b8f701a2d44df6931668db02f0e2ede4",
+    duration: "13:32",
+    title: "6- Construction des Vaisseaux Primitifs",
+    shortSummary:
+      "Découvrez comment les vaisseaux primitifs se construisent dans l'embryon et les forces fluidiques qui les façonnent ! Cette vidéo vous plonge au cœur des processus essentiels de l'embryologie, indispensables à chaque thérapeute.",
+    fullSummary:
+      "Cette vidéo explore la fascinante construction des vaisseaux primitifs au sein de l'embryon, mettant en lumière le mouvement des fluides et les forces embryonnaires qui agissent de l'extérieur vers le centre. Les concepts clés incluent le rôle vital de la cavité amniotique, l'importance d'une substance intercellulaire et les quatre composants nécessaires à la formation vasculaire. L'enseignement aborde également le développement des systèmes artériels et veineux primitifs, la polarité et les phases d'assimilation et de désassimilation, tout en soulignant comment ces processus interconnectés forment la base des réseaux vasculaires embryonnaires. Cette connaissance est indispensable pour tout praticien désireux de comprendre les fondements anatomiques et physiologiques du développement humain.",
+    transcriptMarkdown: `
 # Construction des Vaisseaux Primitifs
 
 ## 1. Mouvement des fluides et forces embryonnaires
@@ -3851,9 +4468,20 @@ Ces éléments donnent naissance à un système vasculaire primitif d'assimilati
 L'ectoderme réorganise le plan vasculaire, mais le premier champ d'aspiration est lié à un champ métabolique (mouvements de perméation et d'infusion). Il faut toujours ramener les fluides vers le centre. 
 
 La rate est un grand moteur, mais pour avoir une rate fonctionnelle, le **foie** est essentiel. Le foie, par sa croissance et son orientation, est le moteur de l'organisation. Il est un centre d'organisation global (sous-diaphragmatique) et gauche-droite, structurant l'espace gastro-hépato-pancréatico-splénique. Le système splénique dépend du foie.
-` },
-    {
-        id: "meso-07", categoryId: "mesoderme", youtubeId: "", cloudflareId: "745898da9ea893ede3c6382f9f6e1cd1", duration: "11:43", title: "7-Le Coeur_ Introduction et Origines", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-07",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "745898da9ea893ede3c6382f9f6e1cd1",
+    duration: "11:43",
+    title: "7-Le Coeur_ Introduction et Origines",
+    shortSummary:
+      "Découvrez comment le cœur agit comme le moteur du développement embryonnaire, influençant le cerveau et la santé du futur enfant dès les premières semaines de vie. Une exploration fascinante des liens vitaux entre le cœur et le bien-être maternel.",
+    fullSummary:
+      "Cette vidéo propose une introduction approfondie sur le rôle central du cœur dans le développement embryonnaire. Le cœur, qui commence à battre dès le 21e jour de la vie intra-utérine, joue un rôle crucial dans la distribution de l'information, influençant le tube neural et le système digestif via des mécanismes autocrines et paracrines. L'interdépendance entre le cœur de l'enfant et la santé de la mère est également abordée, soulignant que les enfants sont énergétiquement liés à leur mère jusqu'à l'âge de 7 ans, moment important de leur développement. On explore aussi les origines primitives du cœur, sa position asymétrique et les polarités établies dès la fécondation, illustrant ainsi l'interaction complexe entre la biologie et l'embryologie, et comment cela influence la santé future de l'individu.",
+    transcriptMarkdown: `
 # Le Cœur : Introduction et Origines
 
 ## Le Cœur, Moteur du Développement
@@ -3981,9 +4609,20 @@ Vous perdez vos substrats fondamentaux de cette puissance. Donc, vous avez besoi
 Après, on la retrouve au niveau de la ligne primitive. Puis, une information déjà des champs cardiaques qui se font ici en rapport avec la présence d'un œdème sain, c'est dans la vague de croissance du développement des champs cardiaques.
 
 Et puis on va voir une chose qui est très importante, c'est tout ce mouvement développemental.
-` },
-    {
-        id: "meso-08", categoryId: "mesoderme", youtubeId: "", cloudflareId: "d6f435c7b1cda4e47ea4538a276c064f", duration: "10:08", title: "8- Le Coeur_Mise en Place du Mouvement Developpemental", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-08",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "d6f435c7b1cda4e47ea4538a276c064f",
+    duration: "10:08",
+    title: "8- Le Coeur_Mise en Place du Mouvement Developpemental",
+    shortSummary:
+      "Découvrez comment le cœur embryonnaire se forme grâce à un mouvement complexe et fascinant qui relie la croissance des tissus, la céphalisation et l'organisation globale de l'embryon. Une vidéo essentielle pour comprendre les bases du développement cardiaque en embryologie biodynamique.",
+    fullSummary:
+      "Cette vidéo explore la formation initiale du cœur à travers un processus de congestion et de réorganisation du mésoderme. Le cours détaille comment une concentration de cellules angiogéniques primitives donne naissance à un tube cardiaque, avec une flexion embryonnaire qui aligne les aortes vers le centre. Les interactions entre le tube neural et la cavité amniotique sont également mises en lumière, notamment l'importance de la convergence sur la ligne médiane. De plus, la vidéo aborde le concept de cardialisation, illustrant comment les mouvements morphogénétiques du cerveau et des cavités environnantes influencent le développement cardiaque et d'autres structures embryonnaires clés, positionnant la compréhension des embryologistes et ostéopathes en lien avec la biodynamique.",
+    transcriptMarkdown: `
 # Le Cœur : Mise en Place du Mouvement Développemental
 
 ## La Formation Initiale du Cœur
@@ -4061,9 +4700,20 @@ Le reste partira sous forme d'exsudat à l'extérieur, repoussé par la cavité 
 Le **canal neuro-entérique** est une information entre la vésicule vitelline et la cavité amniotique, sans rapport avec le cœlome externe. Le cœlome externe sera intégré en cœlome interne pour former la cavité péritonéale.
 
 Cependant, à un moment donné, il n'y aura plus de croissance de cette cavité. On a l'impression qu'elle est repoussée, mais il s'agit en réalité d'un exsudat, car la cavité amniotique grandit tellement vite qu'elle a intégré le cœlome interne.
-` },
-    {
-        id: "meso-09", categoryId: "mesoderme", youtubeId: "", cloudflareId: "bb3df01f4c8052bd8780a2ae5e52f48e", duration: "11:04", title: "9- Le Coeur_Dynamique du Mouvement Developpemental", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-09",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "bb3df01f4c8052bd8780a2ae5e52f48e",
+    duration: "11:04",
+    title: "9- Le Coeur_Dynamique du Mouvement Developpemental",
+    shortSummary:
+      "Découvrez comment le cœur embryonnaire se développe à travers des mouvements fascinants et dynamiques ! Apprenez à observer et à soutenir ces processus cruciaux pour optimiser vos pratiques en ostéopathie.",
+    fullSummary:
+      "Cette vidéo plonge au cœur de l'embryologie cardiaque, explorant les étapes fondamentales de la croissance du cœur au début du développement embryonnaire. On y aborde des concepts clés tels que le rapprochement des tubes endocardiques, le mouvement en 'looping' et les processus d'inversion qui transforment le cœur. Le formateur souligne l'importance de la compréhension de la dynamique entre le cœur et le foie, ainsi que la nécessité de suivre l'empreinte embryonnaire pour mieux accompagner les patients. En intégrant ces connaissances, les praticiens pourront affiner leur approche biodynamique, favorisant ainsi un développement harmonieux chez leurs patients.",
+    transcriptMarkdown: `
 # Le Cœur : Dynamique du Mouvement Développemental
 
 ## Introduction au Développement Cardiaque Embryonnaire
@@ -4175,9 +4825,20 @@ Ce n'est pas juste le corps, mais aussi ses "tentacules" qui peuvent être resse
 Cela implique qu'une **déstabilisation** de la hanche peut déstabiliser le cœur. Il existe des cas d'**arythmies** qui peuvent être améliorées en libérant les hanches.
 
 Il existe une relation complexe à travers l'**endothélium**, ce tissu qui relie l'ensemble du système.
-` },
-    {
-        id: "meso-10", categoryId: "mesoderme", youtubeId: "", cloudflareId: "d9d6d1e2ff3d9decd95941395a615ea7", duration: "02:50", title: "10 -Le Coeur_3 prises D'informations Exterieures", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-10",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "d9d6d1e2ff3d9decd95941395a615ea7",
+    duration: "02:50",
+    title: "10 -Le Coeur_3 prises D'informations Exterieures",
+    shortSummary:
+      "Découvrez comment le cœur, les yeux, les mains et la thyroïde interagissent pour enrichir votre pratique thérapeutique ! Cette vidéo explore la connexion essentielle entre émotion et technique.",
+    fullSummary:
+      "Dans cette vidéo captivante sur l'embryologie biodynamique, vous apprendrez trois interactions essentielles entre le cœur et d'autres systèmes vitaux : les yeux, les membres et la thyroïde. Chaque interaction illustre comment ces éléments transmettent des informations cruciales qui influencent notre perception et notre communication en tant que thérapeutes. En intégrant ces enseignements, vous découvrirez comment toucher et parler avec un cœur ouvert peut transformer non seulement votre pratique, mais aussi la relation que vous établissez avec vos patients. Plongez dans cette exploration qui unifie corps, cœur et esprit pour une approche encore plus holistique de la guérison.",
+    transcriptMarkdown: `
 # Le Cœur : 3 Prises d'Informations Extérieures
 
 Ce moment est crucial, car **l'embryon** va accélérer sa croissance. Nous allons observer un **enroulement complet** du cerveau, et, remarquablement, trois niveaux d'**informations externes** vont interagir via cette rythmicité.
@@ -4209,9 +4870,20 @@ J'ai donc trois champs magnétiques d'informations. Quand nous recevons cette in
 * Notre regard.
 
 Cela est d'abord conçu pour recevoir, puis pour donner. Mais la fonction première vient du **rythme du cœur**, qui a donné ta **neurosensibilité** de la main. Ce cœur agit ainsi, puis il s'ouvre. C'est **l'amour**, c'est **la joie**.
-` },
-    {
-        id: "meso-11", categoryId: "mesoderme", youtubeId: "", cloudflareId: "59295dcd057ecd4e9ed81b085f5c288e", duration: "04:14", title: "11- Le Coeur_Developpement de l'Anatomie Arterielle", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-11",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "59295dcd057ecd4e9ed81b085f5c288e",
+    duration: "04:14",
+    title: "11- Le Coeur_Developpement de l'Anatomie Arterielle",
+    shortSummary:
+      "Découvrez le fascinant développement de l'anatomie artérielle et son lien intrinsèque avec le cœur ! Une exploration captivante qui enrichira vos connaissances en embryologie et vous éveillera à des liens insoupçonnés entre le cœur et l'anatomie fasciale.",
+    fullSummary:
+      "Cette vidéo plonge au cœur du développement embryonnaire des cellules sanguines, décrivant leur origine depuis la vésicule ombilicale jusqu'à la moelle osseuse. On explore également la persistance de l'artère mésentérique, un vestige vital de ce processus, et son rôle dans le développement intestinal. La crosse aortique est mise en avant pour illustrer le mouvement rythmique du cœur et son impact sur la circulation sanguine. En associant les dynamiques cardiaques à l'environnement fascial qui maintient les structures vitales comme l'œsophage et les bronches, la vidéo révèle comment les déséquilibres dans cette zone rythmique peuvent influencer des pathologies cardiologiques et musculosquelettiques. Une leçon essentielle pour tout thérapeute s'intéressant interconnexions corporelles.",
+    transcriptMarkdown: `
 # Le Cœur : Développement de l'Anatomie Artérielle
 
 ## Origine et Développement des Cellules Sanguines
@@ -4271,9 +4943,20 @@ C'est une grande zone rythmique qui se rejoint et s'attache entre **D3**, **D4**
 On a l'aorte, le cœur, et en bas, une bifurcation très importante : les **artères iliaques**. En haut, il y a encore un autre niveau.
 
 En fait, tout ceci forme un plan unitaire et pur. On constate que certaines pathologies de type **coxo-fémoral** ou autres peuvent déstabiliser le cœur. Inversement, ce qui se passe dans ces phases de rotation peut se manifester jusqu'au niveau du cœur.
-` },
-    {
-        id: "meso-12", categoryId: "mesoderme", youtubeId: "", cloudflareId: "e21df653a2bdf4e865befd457ae4b7d7", duration: "11:02", title: "12- Le Coeur_ Résumé et Implication Pratique", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-12",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "e21df653a2bdf4e865befd457ae4b7d7",
+    duration: "11:02",
+    title: "12- Le Coeur_ Résumé et Implication Pratique",
+    shortSummary:
+      "Découvrez comment le cœur, point de rencontre symbolique de la conception, influence le développement embryonnaire. Apprenez des techniques pratiques pour harmoniser le mouvement entre le cœur et le cerveau.",
+    fullSummary:
+      "Cette vidéo explore l'importance du cœur dans le développement embryonnaire, en le positionnant comme le point de rencontre des forces vitales entre le spermatozoïde et l'ovule. On y apprend comment le cœur se forme au sein de la ligne primitive, interagissant avec des structures clés comme le tube neural et le mésoderme. Les concepts de diastole et systole sont également abordés, avec une attention particulière à la façon dont ces mouvements peuvent être observés et intégrés dans la pratique ostéopathique. Les praticiens apprendront à utiliser des fulcrums embryonnaires pour revitaliser et équilibrer les systèmes cardiaques et cérébraux, en affinant leur approche au travers de points d'appui pertinents.",
+    transcriptMarkdown: `
 # Le Cœur : Résumé et Implications Pratiques
 
 ## Le Cœur : Point de Rencontre Symbolique
@@ -4391,9 +5074,20 @@ Je me positionne bien au niveau du coccyx et du cœur. On peut visualiser l'**an
 Le cœur est sur l'**axe longitudinal**. Seule une partie de lui est dilatée vers la gauche, avec une phase de développement sur sa pointe du cœur à gauche.
 
 Vous vous positionnerez sur le plan longitudinal du cœur. En donnant un fulcrum ici et un point d'appui sur le cœur, mon attention est dans l'espace, neutre, et nous laissons le système s'organiser.
-` },
-    {
-        id: "meso-13", categoryId: "mesoderme", youtubeId: "", cloudflareId: "d0e5bb74e93846b1161022a1726cc153", duration: "05:06", title: "13- Le Coeur_Diastole & Systole", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-13",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "d0e5bb74e93846b1161022a1726cc153",
+    duration: "05:06",
+    title: "13- Le Coeur_Diastole & Systole",
+    shortSummary:
+      "Découvrez comment le cœur, véritable moteur énergétique, équilibre diastole et systole pour gérer la vitalité corporelle. Cette vidéo plonge dans le mouvement fascinant du cœur et ses répercussions sur notre bien-être émotionnel et physique.",
+    fullSummary:
+      "Cette vidéo explore la dynamique essentielle des mouvements systoliques et diastoliques du cœur, en mettant l'accent sur leur impact sur l'énergie corporelle et les émotions. Vous apprendrez à observer les orientations verticales et horizontales du cœur, ce qui peut révéler des aspects cruciaux de la santé émotionnelle de vos patients. Les concepts de looping ventriculaire et d'interaction avec d'autres systèmes organiques comme le foie et les poumons montrent comment le cœur maintient une pression régulatrice dans son environnement fascial. Des techniques pratiques d’évaluation manuelle du cuir fascial et des mouvements permettent d'appliquer ces notions dans un cadre thérapeutique, tout en dévoilant aussi le lien entre le cœur et le diaphragme pour un bon fonctionnement rythmique et métabolique.",
+    transcriptMarkdown: `
 # 13 - Le Cœur : Diastole & Systole
 
 Le **cœur** stocke de l'**énergie** dans un environnement **facial**, soutenant ainsi son **électricité**, tant dans sa phase ascendante que descendante. 
@@ -4476,9 +5170,20 @@ Nous avons étudié le **fulcrum embryonnaire pré-pattern** qui se positionne a
 Maintenant, plaçons la main au niveau du cœur et laissons-la suivre le mouvement fascial. Le tissu, si vous êtes attentif, vous indiquera si le cœur penche plutôt vers la systole ou vers la diastole.
 
 Est-ce que c'est mon foie qui réagit ? Est-ce par rapport à mon estomac ? Ou est-ce par rapport à mes reins ? (Trois niveaux). Ensuite, nous observerons si cela peut se rééquilibrer par rapport à cette observation.
-` },
-    {
-        id: "meso-14", categoryId: "mesoderme", youtubeId: "", cloudflareId: "b92b48e79a6bcd70c9eb4239070fe283", duration: "03:24", title: "14- structuration du Systeme Vasculaire_Notes", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-14",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "b92b48e79a6bcd70c9eb4239070fe283",
+    duration: "03:24",
+    title: "14- structuration du Systeme Vasculaire_Notes",
+    shortSummary:
+      "Découvrez comment le système vasculaire embryonnaire se structure et s'intègre, influençant le développement du système nerveux et des fluides corporels. Cette vidéo offre des clés essentielles pour comprendre les dynamiques de la croissance embryonnaire.",
+    fullSummary:
+      "Dans cette vidéo, nous explorons la structuration du système vasculaire durant le développement embryonnaire, en mettant l'accent sur l'interconnexion entre la vésicule vitelline et la cavité amniotique. Les concepts de céphalisation, de cardialisation et de diaphragmatique sont détaillés, illustrant comment le système vasculaire se centralise au fur et à mesure de son développement. En analysant les systèmes cardinaux et la formation de l'axe vasculaire veineux, nous découvrirons comment les mouvements fluidiques et les germinations latérales contribuent à la formation d'une 'aura protectrice', essentielle au développement du système cérébral. Cette approche souligne l'importance de réintégrer la zone B lors du traitement du système nerveux, établissant un lien crucial entre l'ombilic et les structures embryonnaires.",
+    transcriptMarkdown: `
 # Structuration du Système Vasculaire
 
 Le **système vasculaire**, qui se développe à la périphérie, est profondément intégré à la **vésicule vitelline**. Les **îlots de Wolff-Pander**, par exemple, se forment dans le dédoublement de cette vésicule.
@@ -4508,9 +5213,20 @@ La première cavité qui apparaît, ou plutôt la seconde, est la cavité amniot
 Les deux ne doivent pas être séparés. Si nous voulons traiter le système nerveux, nous devons toujours réintégrer la zone B. Cela converge sur tout l'**axe médian** et finalement au niveau **ombilical**.
 
 L'**ombilic** est le point de rencontre final, la jonction entre le pédicule embryonnaire et la vésicule vitelline.
-` },
-    {
-        id: "meso-15", categoryId: "mesoderme", youtubeId: "", cloudflareId: "6eba5b2a7cfff106aab16b95eb4e621b", duration: "03:38", title: "15- Le Coeur_Rappel Taichi &  Pratique", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-15",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "6eba5b2a7cfff106aab16b95eb4e621b",
+    duration: "03:38",
+    title: "15- Le Coeur_Rappel Taichi &  Pratique",
+    shortSummary:
+      "Découvrez le lien fascinant entre le cœur, le cerveau et le système circulatoire ! Apprenez des techniques palpatoires essentielles pour évaluer la santé cardiaque et émotionnelle de vos patients.",
+    fullSummary:
+      "Cette vidéo enseigne comment le cœur interagit avec le cerveau et le système circulatoire à travers des mouvements embryonnaires, tout en révisant les bases théoriques du système cœur-cerveau. Vous apprendrez des techniques palpatoires spécifiques pour évaluer le cœur, le foie et les reins ainsi que leur impact émotionnel, notamment comment le rein est lié à la peur. En intégrant ces concepts avec la pulsologie, vous développerez une approche thérapeutique holistique, permettant de soutenir le corps dans son cheminement de guérison.",
+    transcriptMarkdown: `
 # Le Cœur : Rappel Taï-chi & Pratique
 
 ## Introduction au Système Cœur-Cerveau
@@ -4581,9 +5297,20 @@ Pour moi, il y a des stases, probablement localisées dans la zone hépatique.
 Un pouls artériel, lorsque vous le prenez, est caractéristique, tandis qu'un pouls veineux se manifeste différemment.
 
 Malgré cette sensation sur une artère, la question demeure : suis-je plus dans la **systole** ou dans la **diastole** finalement ?
-` },
-    {
-        id: "meso-16", categoryId: "mesoderme", youtubeId: "", cloudflareId: "e411fdbe2ff35ce87ef6faaa27441b94", duration: "12:46", title: "16- Structuration du systeme veineux 1_ Les Veines Cardinales", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-16",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "e411fdbe2ff35ce87ef6faaa27441b94",
+    duration: "12:46",
+    title: "16- Structuration du systeme veineux 1_ Les Veines Cardinales",
+    shortSummary:
+      "Découvrez comment le système veineux se structure dès l'embryogenèse avec des concepts clés sur les veines cardinales, subcardinales et supracardinales. Une exploration enrichissante pour les thérapeutes désireux de comprendre l'anatomie veineuse et son développement.",
+    fullSummary:
+      "Cette vidéo propose un enseignement détaillé sur la structuration du système veineux, en mettant un accent particulier sur les veines cardinales, qui jouent un rôle fondamental dans l'embryologie. Les principaux systèmes veineux, leurs origines embryologiques et la transformation des structures veineuses, telles que les veines ombilicales et vitellines, sont abordés. L'exploration inclut également la génèse du cœur et les grands vaisseaux, ainsi que l'importance des veines subcardinales et supracardinales dans le développement du système veineux. Ces connaissances sont cruciales pour les praticiens et étudiants en embryologie et ostéopathie, enrichissant leur compréhension des interrelations entre le développement embryologique et l'anatomie vasculaire.",
+    transcriptMarkdown: `
 # Structuration du Système Veineux : Les Veines Cardinales
 
 ## Les Trois Systèmes Veineux Généraux
@@ -4676,9 +5403,21 @@ Les seuls vestiges finaux sont :
 *   **Les veines iliaques** en dessous.
 *   **Au centre :** La rencontre sur le plan cave avec des structures rénales, supra-rénales (de type mésodermique) et azygos.
 *   **À gauche et à droite :** Hémi-azygos et azygos, assurant un drainage thoraco-abdominal sur le plan mésodermique.
-` },
-    {
-        id: "meso-17", categoryId: "mesoderme", youtubeId: "", cloudflareId: "d982e245367f57387731a3228ce994da", duration: "08:22", title: "17- Structuration du systeme veineux 2_Le Systeme Vitellin & Ombidical", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-17",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "d982e245367f57387731a3228ce994da",
+    duration: "08:22",
+    title:
+      "17- Structuration du systeme veineux 2_Le Systeme Vitellin & Ombidical",
+    shortSummary:
+      "Plongez dans la structuration fascinante du système veineux vitellin et ombilical ! Découvrez comment le foie se forme et s'organise pour transformer la toxicité en vitalité, tout en apprenant la dynamique veineuse essentielle pour optimiser votre pratique de la santé.",
+    fullSummary:
+      "Cette vidéo offre une exploration approfondie du système vitellin et ombilical, en mettant l'accent sur le développement du foie à partir de tissus mésodermiques et endodermiques. Elle détaille les différentes étapes de formation du réseau vasculaire hépatique, y compris les veines vitellines et ombilicales, ainsi que leurs interactions complexes. Les concepts clés tels que la céphalisation, la cardialisation, et les deux courants du système portal hépatique sont expliqués, soulignant l'importance de ce réseau pour le drainage sanguin et la santé métabolique globale. Les impacts émotionnels liés aux organes digestifs sont également abordés, enrichissant ainsi la compréhension biodynamique du corps humain.",
+    transcriptMarkdown: `
 # 17 - Structuration du Système Veineux 2 : Le Système Vitellin & Ombilical
 
 ## Le Système Vitellin et le Foie
@@ -4771,9 +5510,20 @@ Il est donc nécessaire de libérer la fonction faciale pour redonner la libéra
 Le mouvement de la cavité amniotique montre la vésicule vitelline qui régresse et se dépose sur le cordon ombilical. Une anse se développera, intégrant l'anse intestinale à l'intérieur.
 
 Dans le cordon ombilical, les vaisseaux en spirale dans le pédicule embryonnaire se lient, avec le vestige du **yolk sac**. Le tube intestinal et le pédicule embryonnaire se rejoignent, intégrant l'allantoïde et tout le processus avec la grande cavité amniotique.
-` },
-    {
-        id: "meso-18", categoryId: "mesoderme", youtubeId: "", cloudflareId: "2caa045e81e4b3ae68342b2223e222f0", duration: "08:04", title: "18- Systeme Vasculaire_Arcs Banchiaux", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-18",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "2caa045e81e4b3ae68342b2223e222f0",
+    duration: "08:04",
+    title: "18- Systeme Vasculaire_Arcs Banchiaux",
+    shortSummary:
+      "Découvrez comment le système vasculaire embryonnaire s'élabore à travers les arcs branchiaux et leur impact crucial sur la formation du crâne et du tube digestif, révélant des clés essentielles pour l'ostéopathie!",
+    fullSummary:
+      "Cette vidéo explore le développement du système circulatoire à partir des îlots vasculaires sanguins, mettant l'accent sur l'évolution du système aortique primitif et des veines cardinales. Les arcs branchiaux, qui jouent un rôle fondamental dans la structure vasculaire et squelettique, sont analysés en détail, notamment leurs dérivés et leur influence sur le crâne et le tube digestif. En plus d'explorer les relations vasculaires, la vidéo souligne l'importance de l'équilibre dans la circulation sanguine et lymphatique, offrant des perspectives pratiques pour l'ostéopathie. Les fonctions spécifiques des arcs branchiaux et leurs contributions morphologiques à des structures telles que l'artère maxillaire et le système hyoïdien sont également abordées, fournissant une compréhension approfondie nécessaire pour des manipulations thérapeutiques efficaces.",
+    transcriptMarkdown: `
 # Système Vasculaire : Arcs Branchiaux
 
 Nous allons explorer l'origine et le développement du **système circulatoire**, qui débute au sein des îlots vasculaires sanguins, situés dans le dédoublement de la **vésicule vitelline**. Ce processus s'accélère avec le développement de la **cavité amniotique** et l'intégration progressive de ce système vasculaire.
@@ -4860,9 +5610,20 @@ Le **liquide céphalo-rachidien** (LCR) est le contrôleur. Il assure l'équilib
 ## Les Lits Capillaires : Points de Rencontre et de Transformation
 
 Le grand plan d'équilibre réside dans les **lits capillaires**, lieu de rencontre entre les systèmes artériel et veineux. À ce niveau, il y a une transformation d'énergie, un rééquilibrage des zones rythmiques et un ajustement de la **vasorégulation** des différents plans. Ces lits capillaires sont les "gardiens de la balance homéostasique" sur le plan fluide, correspondant à des zones de copula, des zones rythmiques spécifiques, essentielles à l'équilibre corporel.
-` },
-    {
-        id: "meso-19", categoryId: "mesoderme", youtubeId: "", cloudflareId: "644a290bd2b816190edb9e139abcce62", duration: "07:29", title: "19- Le Systeme Veineux_Notes", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-19",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "644a290bd2b816190edb9e139abcce62",
+    duration: "07:29",
+    title: "19- Le Systeme Veineux_Notes",
+    shortSummary:
+      "Découvrez comment le système veineux influence notre santé globale ! Cette vidéo explore des concepts essentiels pour libérer les congestions et améliorer le drainage veineux, vous permettant ainsi d'explorer des solutions thérapeutiques innovantes.",
+    fullSummary:
+      "Cette vidéo approfondit le rôle crucial du système veineux, en abordant des sujets tels que les plexus vertébraux et leur lien avec le système nerveux, ainsi que l'importance d'un drainage veineux efficace pour la santé corporelle. Vous apprendrez à identifier et à libérer les compressions veineuses qui peuvent engendrer des douleurs chroniques, comme les cervicalgies ou les troubles pelviens. De plus, elle explique comment la pression abdominale et la fonction diaphragmatique impactent l'équilibre circulatoire, avec des implications directes sur le bien-être émotionnel et physique. Des techniques pratiques pour améliorer le drainage lymphatique et veineux seront également décrites, vous permettant d'appliquer ces connaissances dans votre pratique thérapeutique.",
+    transcriptMarkdown: `
 # Le Système Veineux
 
 ## Les Plexus Vertébraux et le Système Nerveux
@@ -4933,9 +5694,20 @@ Nous considérons qu'il existe **sept diaphragmes** cruciaux pour le corps :
 7. L'espace de drainage le plus important pour le système LCR, au-dessus des pariétaux.
 
 Les pariétaux, comme des **panneaux solaires**, doivent respirer et capter la lumière, tout comme les **radius** sont des "os solaires". L'intégration de ces systèmes au cerveau, en lien avec les systèmes **vitellin** et **ombilical** et le **choc apexien**, permet de relâcher le cerveau.
-` },
-    {
-        id: "meso-21", categoryId: "mesoderme", youtubeId: "", cloudflareId: "508ae7b45e4abdd3e0825986c8e4b566", duration: "05:54", title: "21- Resume de La Structuration Vasculaire par La Cavite Amiotique", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-21",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "508ae7b45e4abdd3e0825986c8e4b566",
+    duration: "05:54",
+    title: "21- Resume de La Structuration Vasculaire par La Cavite Amiotique",
+    shortSummary:
+      "Découvrez comment la cavité amniotique révolutionne la structuration vasculaire embryonnaire, un processus essentiel pour les thérapeutes souhaitant approfondir leur compréhension de l'embryologie biodynamique.",
+    fullSummary:
+      "Cette vidéo explore en profondeur la structuration vasculaire par la cavité amniotique, mettant en lumière son intégration avec le système vitellin et son rôle dans le développement embryonnaire. Les concepts clés abordés incluent le mouvement de résorption vers le centre de l'embryon, l'intégration artérielle, et l'importance de la cavité amniotique dans la redéfinition des espaces internes. Les mouvements essentiels tels que la céphalisation, l'enroulement embryonnaire, et le rapatriement des fluides sont discutés, tout en soulignant l'impact du système notochordal et du tube neural. Cette connaissance est cruciale pour les praticiens cherchant à reconnaître les dynamiques internes qui influencent la santé embryonnaire et le bien-être global.",
+    transcriptMarkdown: `
 # Résumé de la Structuration Vasculaire par la Cavité Amniotique
 
 ## L'Origine et l'Intégration du Système Vasculaire
@@ -4995,9 +5767,20 @@ Le **mouvement endovolontaire des poumons** part de l'endoderme et est orienté 
 Le retour se fait alors. La vésicule vitelline, poussée par la vitesse de croissance différentielle, sera reprise dans le schéma. Elle va repousser le pédicule pour rejoindre la vésicule vitelline et former plus tard le cordon ombilical.
 
 Tout se rejoint ici, partant d'un pédicule pour revenir à un cordon.
-` },
-    {
-        id: "meso-22", categoryId: "mesoderme", youtubeId: "", cloudflareId: "dcf1c0a32b6f60cb7eb729fda2dd1c70", duration: "02:50", title: "22- Pratique de Structuration du Systeme vasculaire", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-22",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "dcf1c0a32b6f60cb7eb729fda2dd1c70",
+    duration: "02:50",
+    title: "22- Pratique de Structuration du Systeme vasculaire",
+    shortSummary:
+      "Découvrez comment structurer le système vasculaire en atteignant le neutre thérapeutique et en éveillant la respiration primaire. Un savoir-faire essentiel pour les étudiants et praticiens en ostéopathie !",
+    fullSummary:
+      "Cette vidéo vous plonge dans la pratique de structuration du système vasculaire, en mettant l'accent sur l'importance de trouver et d'émerger le neutre chez le patient. Grâce à des techniques telles que le champ micro-cristallin et l'immobilité dynamique, vous apprendrez à créer un environnement propice à la guérison en intégrant les concepts de silence dans la pièce et mobilité au niveau des piliers diaphragmatiques. La session se concentre aussi sur la cavité amniotique et l'importance de la respiration primaire comme souffle de vie, essentielle pour une approche thérapeutique holistique. Cette approche offre une opportunité d'apprendre non seulement comment intervenir, mais aussi comment laisser les processus naturels du corps s'épanouir.",
+    transcriptMarkdown: `
 # Pratique de Structuration du Système Vasculaire
 
 Nous allons rechercher le **silence** de la zone C par rapport à la zone A sur le plan diaphragmatique. Il y a un point de silence dans la pièce.
@@ -5029,9 +5812,20 @@ Tout en étant conscient de la cavité amniotique et de l'intégration de ma **v
 Il est crucial de vous abandonner totalement à la **respiration primaire**, au mouvement présent, à la marée, c'est-à-dire à la **force thérapeutique**, à la puissance.
 
 Laissez petit à petit voir ce que cela peut engendrer. Le but, dans le **non-agir**, est de ne pas induire, mais de faire confiance à l'ostéopathe.
-` },
-    {
-        id: "meso-23", categoryId: "mesoderme", youtubeId: "", cloudflareId: "859e3a39ea5020a0ab73d521fd6e983b", duration: "06:20", title: "23- Pratique Guidée_Travail de la zone B", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-23",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "859e3a39ea5020a0ab73d521fd6e983b",
+    duration: "06:20",
+    title: "23- Pratique Guidée_Travail de la zone B",
+    shortSummary:
+      "Découvrez comment accéder à la santé intérieure de vos patients grâce à la respiration primaire et à la synchronisation des neutres. Cette pratique guérit et régénère en vous connectant à des niveaux profonds de conscience corporelle.",
+    fullSummary:
+      "Dans cette pratique guidée dédiée au travail de la zone B, vous apprendrez à établir une communication délicate avec votre patient, favorisant l'autorégulation et une profonde connexion avec la respiration primaire. L'enseignement met l'accent sur la perception du corps en tant que champ dynamique, où la synchronisation des respirations thoracique et primaire joue un rôle central. En vous engageant dans ce processus délicat de rencontre des neutres, vous favoriserez la régénération et l'immobilité dynamique, permettant ainsi aux fluides et à la cavité amniotique de se rééquilibrer. Cette approche thérapeutique ouvre la voie à une meilleure compréhension de la fonction corporelle et à une coopération harmonieuse entre le praticien et le patient pour favoriser la guérison.",
+    transcriptMarkdown: `
 # Pratique Guidée : Travail de la Zone B
 
 Dans cette pratique, l'objectif est de trouver la **santé**, de travailler avec elle, et de faire pleine confiance au processus d'**autorégulation** généré par la **respiration primaire**, lorsque les deux neutres se confondent.
@@ -5103,9 +5897,20 @@ La respiration, le souffle de vie. Petit à petit, il peut y avoir un **tight** 
 C'est comme une chaleur qui va commencer à rentrer. Une **augmentation métabolique**. Un **rééquilibrage**.
 
 C'est un mantra qui coupe le mental : Oum ! O yā ā O vénā Vēnā Sī Nē O.
-` },
-    {
-        id: "meso-24", categoryId: "mesoderme", youtubeId: "", cloudflareId: "9e4db38b61ee79715490cfa73e2c4988", duration: "11:53", title: "24-Le Foie_Généralités", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-24",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "9e4db38b61ee79715490cfa73e2c4988",
+    duration: "11:53",
+    title: "24-Le Foie_Généralités",
+    shortSummary:
+      "Découvrez les secrets du foie dans cette vidéo captivante ! Apprenez comment cet organe vital, avec ses origines embryologiques fascinantes et son rôle clé dans la détoxification et la régénération, transforme notre santé et bien-être.",
+    fullSummary:
+      "Cette vidéo explore l'origine embryologique complexe du foie, constitué de tissus provenant de l'intestin supérieur, moyen et inférieur, ainsi que de structures mésodermiques essentielles. Elle détaille la dualité fonctionnelle du foie, agissant à la fois comme glande exocrine pour la sécrétion de bile et glande endocrine grâce à son composant mésodermique. On y apprend également l'importance de la croissance embryonnaire et de l'hémodynamique dans le développement de cet organe vital. De plus, la vidéo souligne l'intégrité fonctionnelle et les relations anatomiques entre le foie et le diaphragme, illustre comment des déséquilibres peuvent mener à des dysfonctionnements, tout en insistant sur le rôle du diaphragme comme 'porte de la vie' qui influence directement la santé hépatique.",
+    transcriptMarkdown: `
 # Le Foie : Généralités
 
 ## 1. Origine Embryologique du Foie
@@ -5217,9 +6022,20 @@ L'axe entre le foie et le cœur est la **veine cave**, dont la construction est 
 ## 10. Foie et Système Immunitaire
 
 Il y a une relation immunitaire importante impliquant le **système thymique**. Le foie est impliqué dans le passage des **lymphocytes T** avec le thymus, et le retour des informations immunitaires via la rate. Ce processus contribue à l'équilibre thymique et à la maturation des lymphocytes T.
-` },
-    {
-        id: "meso-25", categoryId: "mesoderme", youtubeId: "", cloudflareId: "524beab29391d3f675fdd8a7e561cfef", duration: "06:13", title: "25- Notes Pratique avant l'Abord du Foie", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-25",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "524beab29391d3f675fdd8a7e561cfef",
+    duration: "06:13",
+    title: "25- Notes Pratique avant l'Abord du Foie",
+    shortSummary:
+      "Découvrez comment optimiser la fonction du foie grâce à une approche biodynamique innovante qui relie motilité embryonnaire et régénération organique. Ce cours transformera votre pratique ostéopathique et affinera votre perception corporelle.",
+    fullSummary:
+      "Dans cette session, les praticiens apprendront à explorer le foie en tenant compte de son intégration dans l'ensemble du corps et de ses relations avec le cœur et les structures environnantes. Les concepts de motilité embryonnaire sont au cœur de la pratique, où la technique débutera par un contact neutre et progressera vers une approche plus profonde, favorisant ainsi la respiration primaire et l'émergence d'un processus thérapeutique. Les participants seront guidés sur l'importance de travailler en lien avec les fulcrums embryonnaires, notamment la ligne médiane et le cœur, afin de dynamiser les systèmes vasculaires et neurologiques, et améliorer par là même l'efficacité de leur traitement.",
+    transcriptMarkdown: `
 # Pratique Avant l'Abord du Foie
 
 Dans cette session, nous allons explorer le **foie** en relation avec son **environnement global**. Il est essentiel de ne pas adopter une approche trop **sélective** ou **locale**.
@@ -5278,9 +6094,20 @@ Le foie est une **spécialisation** à considérer comme une **expansion fractal
 - Un visage tout jaune peut signaler un problème hépatique de type **endodermique**.
 
 Ces deux approches permettent d'appréhender le système de manière complémentaire.
-` },
-    {
-        id: "meso-26", categoryId: "mesoderme", youtubeId: "", cloudflareId: "1a555c1376af6f7ab45f6426482ff516", duration: "03:58", title: "26- Pratique Le Foie", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-26",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "1a555c1376af6f7ab45f6426482ff516",
+    duration: "03:58",
+    title: "26- Pratique Le Foie",
+    shortSummary:
+      "Découvrez comment stimuler le foie avec des techniques de mouvement doux et respectueuses, idéales pour favoriser la régénération des organes et optimiser votre pratique thérapeutique.",
+    fullSummary:
+      "Cette vidéo explore l'interaction entre le mouvement de croissance hépatique et les organes environnants, en mettant l'accent sur l'importance de la position du foie sous le diaphragme et de l'axe aortique. À travers une approche délicate, l'enseignant guide les thérapeutes sur la manière de se connecter à la dynamique embryonnaire du foie, en cultivant une écoute et un neutre respectueux, alors qu'il encourage l'utilisation de gestes légers pour favoriser sa régénération. Les concepts de conscience de l'espace et de la respiration primaire sont également abordés, soulignant l'importance de la patience dans le processus thérapeutique.",
+    transcriptMarkdown: `
 # Pratique du Foie : Mouvement et Approche Thérapeutique
 
 ## Le Mouvement de Croissance Hépatique et ses Relations Anatomiques
@@ -5318,9 +6145,20 @@ Lorsque ce neutre commence à maturer, petit à petit, les deux neutres se renco
 L'**impatience** est un obstacle ; si nous créons un espace d'impatience, cette rencontre ne peut avoir lieu. Le processus est là, et c'est à ce stade que l'on peut oser laisser la respiration primaire agir.
 
 Je sais que l'envie est grande d'intervenir, mais cette pratique peut aussi se faire sur d'autres niveaux. J'enseigne ici une approche **énergétique**, embryonnaire, mais on peut très bien travailler sur des plans faciaux, etc. Mon constat est que les autres approches ne tiennent pas aussi bien.
-` },
-    {
-        id: "meso-27", categoryId: "mesoderme", youtubeId: "", cloudflareId: "eed34168127c89300829357d85830800", duration: "06:56", title: "27-Le Systeme Renal_Cinétique Embryonnaire Globale", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-27",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "eed34168127c89300829357d85830800",
+    duration: "06:56",
+    title: "27-Le Systeme Renal_Cinétique Embryonnaire Globale",
+    shortSummary:
+      "Découvrez comment le système rénal se forme à partir du mésoderme et les forces embryonnaires qui sculptent son développement, une compréhension essentielle pour tout thérapeute souhaitant maîtriser l'embryologie biodynamique.",
+    fullSummary:
+      "Cette vidéo explore en profondeur la cinétique embryonnaire du système rénal, en commençant par son origine mésodermique, puis en illustrant comment les forces de flexion et d'endorotation influencent le développement des reins. Les concepts clés incluent le développement crânio-caudal des différentes étapes du rein – Pronéphron, Mésonéphron et Métanéphron – et la dynamique des mouvements de compression et de rotation au sein du mésoderme. Les thérapeutes apprendront à reconnaître comment ces mécanismes embryonnaires établissent les bases des systèmes organiques, offrant ainsi une meilleure compréhension de l'anatomie et de la physiologie humaine.",
+    transcriptMarkdown: `
 # Le Système Rénal : Cinétique Embryonnaire Globale
 
 ## 1. L'Origine Mésodermique du Système Rénal
@@ -5405,9 +6243,20 @@ Le rein primitif donne naissance à un petit canal collecteur primitif, qui sera
 Puis, la troisième partie sera le rein définitif, appelé rein métanéphron.
 
 Au début, la lame mésodermique est non différenciée. Mais pour avoir le rein définitif, il faut d'abord ce premier petit système, cervical, qui suit presque le trajet d'un **méridien**. Le système de la **vessie** se développera également à partir d'un petit canal.
-` },
-    {
-        id: "meso-28", categoryId: "mesoderme", youtubeId: "", cloudflareId: "31981e33d3c86e03b857c4e98a0a826f", duration: "06:06", title: "28- Le Systeme Renal_ Cinetique Embryonnaire en détail", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-28",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "31981e33d3c86e03b857c4e98a0a826f",
+    duration: "06:06",
+    title: "28- Le Systeme Renal_ Cinetique Embryonnaire en détail",
+    shortSummary:
+      "Découvrez les secrets fascinants du développement rénal embryonnaire ! Cette vidéo vous offre une plongée inédite dans la cinétique embryonnaire, préparant l'élaboration ultime du rein tout en vous reliant à la pratique clinique.",
+    fullSummary:
+      "Cette vidéo explore en profondeur le développement du système rénal, en se concentrant sur la séquence embryonnaire depuis le pronéphron jusqu'au métanéphron. À partir du 28e jour, elle aborde les étapes clés de formation des glomérules et la préparation des pro-urines, tout en soulignant l'impact significatif du foie sur le développement rénal. En parallèle, elle discute des interactions entre les canaux de Wolff et de Müller et l'importance de la couche mésodermique dans la constitution rénale. Cette approche avant-gardiste vise à enrichir la compréhension théorique et pratique du développement embryonnaire, offrant aux étudiants et thérapeutes des outils précieux pour intégrer ces connaissances dans leur pratique ostéopathique.",
+    transcriptMarkdown: `
 # Le Système Rénal : Cinétique Embryonnaire en Détail
 
 ## Le Pronéphron : Première Ébauche Rénale
@@ -5455,9 +6304,20 @@ L'embryon possède une lame intermédiaire contenant tout le potentiel **mésode
 2. **Mésonéphron** : Le pronéphron disparaît très vite, laissant place à une deuxième structure embryonnaire rénale : le mésonéphron. Il s'établit une connexion avec le canal mésonéphrotique, et le mésonéphron se segmente en petites vésicules pour former un premier petit pronéphron. Ce dernier rentre en contact avec le système vasculaire vers le 28e jour et commence à fonctionner vers le 45e jour.
    
 3. **Métanéphron** : Ensuite, la croissance du foie et l'allongement de l'embryon entraînent la disparition du mésonéphron. Seul subsiste le canal collecteur. De ce canal, une petite ouverture se forme, créant un **bourgeon urétérique** par un mouvement d'aspiration. Ce bourgeon induit la partie terminale de la lame intermédiaire en un **blastème méso-métanéphrotique**, qui donnera le rein définitif.
-` },
-    {
-        id: "meso-29", categoryId: "mesoderme", youtubeId: "", cloudflareId: "5614a8fdffc60dad6447505e85e2937c", duration: "05:58", title: "29-Le Système Renal_Croissance et Differentiation", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-29",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "5614a8fdffc60dad6447505e85e2937c",
+    duration: "05:58",
+    title: "29-Le Système Renal_Croissance et Differentiation",
+    shortSummary:
+      "Plongez dans la fascinante dynamique de croissance du système rénal embryonnaire ! Découvrez comment le foie, en tant qu'organisateur, influence le positionnement des reins et la formation des voies urinaires, avec des implications cruciales pour les thérapeutes.",
+    fullSummary:
+      "Cette vidéo explore en profondeur la croissance et la différenciation du système rénal durant l'embryogenèse. Elle met en lumière le rôle central du foie en tant qu'organisateur majeur, dont la dynamique et la croissance influencent le développement des structures environnantes. En analysant le processus de 'montée' des reins, qui résulte en réalité d'une expansion du reste du corps, ainsi que le phénomène de séparation entre la vessie et le rectum, cette session offre des aperçus précieux sur les référentiels embryologiques. Les narrations sur la motilité rénale et l'articulation rétropéritonéale démontrent comment la coopération entre ectoderme et endoderme, sous l'influence du mésoderme, est essentielle pour la formation harmonieuse des organes urinaires.",
+    transcriptMarkdown: `
 # Le Système Rénal : Croissance et Différenciation
 
 ## La Dynamique de Croissance Postérieure et son Rôle
@@ -5501,9 +6361,20 @@ La région rétropéritonéale devient une **articulation** créée par deux mou
 2. Le mouvement endodermique.
 
 L'intégrité de ces deux fonctions dépend de cette articulation intermédiaire, qui est une articulation entre l'**ectoderme** et l'**endoderme**. Le système pariétal est dépendant du système **mésodermique**, ce qui fait du mésoderme une voie royale dans le développement embryonnaire.
-` },
-    {
-        id: "meso-30", categoryId: "mesoderme", youtubeId: "", cloudflareId: "bd3f92bbdc0d35727600f32bf7072b06", duration: "05:27", title: "30-Pratique_Reins Vessie", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-30",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "bd3f92bbdc0d35727600f32bf7072b06",
+    duration: "05:27",
+    title: "30-Pratique_Reins Vessie",
+    shortSummary:
+      "Découvrez comment la pratique des reins et de la vessie en embryologie biodynamique peut transformer votre approche thérapeutique, en intégrant respiration primaire et mouvements subtils pour favoriser la guérison.",
+    fullSummary:
+      "Cette vidéo vous propose une exploration approfondie de la pratique des reins et de la vessie à travers le prisme de l'embryologie biodynamique. Vous apprendrez l'importance du trajet embryonnaire des reins et comment la respiration primaire influence l'équilibre corporel. Des techniques pratiques incluent la manipulation du sacrum et la reconnaissance des connexions entre les reins et l'utérus, révélant des tensions et des déséquilibres potentiels. Vous serez également guidé dans des exercices de rééquilibrage entre l'ecto et l'endo, tout en prenant conscience des processus de guérison inachevés liés aux mouvements de torsion des reins. Une approche sensorielle enrichissante pour tout thérapeute en quête de techniques pour optimiser la santé de leurs patients.",
+    transcriptMarkdown: `
 # Embryologie Biodynamique : Pratique des Reins et de la Vessie
 
 ## Le Trajet Embryonnaire du Rein et la Respiration Primaire
@@ -5535,9 +6406,20 @@ Il existe une **santé** qui s'exprime, mais le processus semble inachevé. Cela
 ## Mouvement de Torsion des Reins
 
 Le mouvement des reins implique une **torsion**. En prenant un rein dans le sens horaire, l'autre se déplace en sens anti-horaire, s'ouvrant vers l'avant. La face antérieure se dirige vers le dos, et bien que le **hile rénal** ne soit pas encore développé, ce mouvement est essentiel. Il est initié par la **résine thoracique**, qui joue un rôle clé dans la formation du système rénal.
-` },
-    {
-        id: "meso-31", categoryId: "mesoderme", youtubeId: "", cloudflareId: "40f594b3e128f0233d9bcb29af5040ec", duration: "05:37", title: "31-L'Appareil Génital_ Mise en Place", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-31",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "40f594b3e128f0233d9bcb29af5040ec",
+    duration: "05:37",
+    title: "31-L'Appareil Génital_ Mise en Place",
+    shortSummary:
+      "Découvrez comment l'appareil génital se forme grâce à des interactions fascinantes entre le système nerveux, les glandes surrénales et les gonades. Une vidéo incontournable pour tous les thérapeutes intéressés par le développement embryonnaire !",
+    fullSummary:
+      "Cette vidéo explore en profondeur la mise en place de l'appareil génital, en mettant l'accent sur l'influence de la notocorde et du système nerveux sur le développement des structures génitales. Les concepts clés incluent la diaphragmatisation, le développement des surrénales et des gonades, ainsi que l'interaction dynamique entre ces organes, qui guide la formation des trompes de Fallope, de l'utérus et des canaux de Wolff. À travers une approche biodynamique, les praticiens découvriront comment ces processus embryonnaires influencent la morphologie et la structure ligamentaire, offrant ainsi des clés essentielles pour une compréhension intégrative de l'évolution des systèmes urogénitaux chez l'homme et la femme.",
+    transcriptMarkdown: `
 # L'Appareil Génital : Mise en Place
 
 ## Influence de la Notocorde et du Système Nerveux
@@ -5587,9 +6469,20 @@ La crête gonadique elle-même se déplace latéralement, formant un pli dans le
 Le premier niveau, issu du tube collecteur, est le **ductus mésonéphrotique**, également connu sous le nom de **canal de Wolff**. Ce canal servira plus tard de conduit pour la crête gonadique (futur testicule ou ovaire).
 
 Enfin, le **ligament suspenseur diaphragmatique** en haut et le **gubernaculum** en bas guideront les ovaires à leur place chez la femme ou permettront la descente des testicules à travers le **canal inguinal** chez l'homme.
-` },
-    {
-        id: "meso-32", categoryId: "mesoderme", youtubeId: "", cloudflareId: "c77453bb83b115cb3362dcf6bb3f6bcc", duration: "06:40", title: "32-L'Appareil Génital Masculin", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-32",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "c77453bb83b115cb3362dcf6bb3f6bcc",
+    duration: "06:40",
+    title: "32-L'Appareil Génital Masculin",
+    shortSummary:
+      "Découvrez les secrets fascinants du développement de l'appareil génital masculin ! Cette vidéo vous plonge dans la formation des gonades, l'importance des canaux de Wolff et de Müller, et la mécanique unique de la descente testiculaire, essentiels pour tous les thérapeutes en embryologie.",
+    fullSummary:
+      "Cette vidéo explore en profondeur la formation de l'appareil génital masculin à travers différents stades embryonnaires. Vous apprendrez comment la crête génitale, influencée par la migration des gonocytes, donne naissance aux gonades, ainsi que le rôle critique des canaux de Wolff, qui se transforment en structures comme le canal déférent et l'épididyme, tandis que le canal de Müller régresse. La vidéo détaille également le mécanisme de la descente testiculaire, mettant en avant l'importance du ligament gubernaculum et son interaction avec le développement du foie. Finalement, elle aborde la prostate, ses origines embryologiques et son lien avec le sinus urogénital, fournissant une compréhension holistique nécessaire pour les praticiens et étudiants en embryologie et ostéopathie.",
+    transcriptMarkdown: `
 # L'Appareil Génital Masculin
 
 ## 1. La Crête Génitale et la Formation des Gonades
@@ -5643,9 +6536,20 @@ Pendant ce temps, l'autre ligament, le **ligament suspenseur gonadique** (ancien
 Cette attache entre le ligament gubernaculum et les couches inférieures, combinée à la croissance différentielle, provoque la descente testiculaire. Il s'agit en fait d'une croissance globale qui donne l'impression d'une réduction du ligament, alors que c'est le reste qui grandit.
 
 La suspension initiale des testicules jusqu'au plan diaphragmatique, et plus précisément au carrefour **duodéno-pancréatique**, est un point crucial à revoir.
-` },
-    {
-        id: "meso-33", categoryId: "mesoderme", youtubeId: "", cloudflareId: "f92f262f253b6f715dae7efbed1495a5", duration: "06:15", title: "33-L'Appareil Génital Féminin", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-33",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "f92f262f253b6f715dae7efbed1495a5",
+    duration: "06:15",
+    title: "33-L'Appareil Génital Féminin",
+    shortSummary:
+      "Découvrez comment le développement embryonnaire du système génital féminin façonne les organes et influence la fertilité. Cette vidéo passionnante révèle des concepts clés qui amélioreront votre pratique en ostéopathie et en embryologie biodynamique.",
+    fullSummary:
+      "Dans cette vidéo, nous explorons en profondeur le développement de l'appareil génital féminin, en commençant par la formation des canaux de Wolff et de Müller, et leur impact sur la structure reproductive. L'accent est mis sur la relation uro-génitale qui diffère entre l'homme et la femme, en mettant en lumière la création de l'utérus et des trompes. Nous approfondissons également le rôle des ligaments large et ovarien, ainsi que l'importance de la santé rénale dans la régulation hormonale et la fertilité. La vidéo aborde la continuité fasciale dans le pelvis et comment des anomalies comme les fibromes peuvent influencer l'ensemble de la dynamique corporelle, fournissant des informations cruciales pour les praticiens en ostéopathie et en développement embryonnaire.",
+    transcriptMarkdown: `
 # L'Appareil Génital Féminin
 
 ## 1. Ductus Mésonephrotique (Canal de Wolff) et Paranéphrotique (Canal de Müller)
@@ -5719,9 +6623,20 @@ Lorsque l'on tire plus fort, on peut voir comment tout le système réagit, y co
 Le péritoine est un tissu très intelligent. L'influence d'un fibrome, par exemple, peut modifier tout le système en aval par une simple traction.
 
 Un gros fibrome peut entraîner une cascade de conséquences dans tout le système.
-` },
-    {
-        id: "meso-34", categoryId: "mesoderme", youtubeId: "", cloudflareId: "d64448003de39974f1c60a3897fd2d8d", duration: "08:54", title: "34-L'Appareil Génital Inferieur", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-34",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "d64448003de39974f1c60a3897fd2d8d",
+    duration: "08:54",
+    title: "34-L'Appareil Génital Inferieur",
+    shortSummary:
+      "Découvrez comment l'embryologie du vagin et de l'utérus influence l'équilibre gynécologique et les approches thérapeutiques en biodynamique. Transformez votre compréhension de la santé féminine !",
+    fullSummary:
+      "Dans cette vidéo immersive sur l'Appareil Génital Inférieur, nous explorons l'embryologie du vagin et de l'utérus, en mettant en lumière la dynamique de croissance postérieure qui forme ces structures essentielles. L'équilibre gynécologique est abordé à travers l'analyse des mouvements entre le sacrum et le péritoine, et comment ces interactions affectent la santé des organes reproducteurs. En se concentrant sur des déséquilibres tels que les fausses couches ou l'endométriose, la vidéo propose des techniques thérapeutiques fascinantes basées sur des concepts de nettoyage énergétique, d'équilibre fascial et de liens transgénérationnels. Cette approche permet aux praticiens d'apprendre à",
+    transcriptMarkdown: `
 # L'Appareil Génital Inférieur : Approche Biodynamique
 
 ## Embryologie du Vagin et de l'Utérus
@@ -5795,9 +6710,20 @@ Un ligament se développe entre le pubis et l'ombilic, encapsulant l'histoire de
 Comme le sternum contient l'histoire de notre flexion, ce ligament ventromédial (sur la ligne blanche) concentre l'histoire de toute la formation postérieure, de la **gonadisation** et de l'**utérisation** du bassin.
 
 La ligne blanche est la rencontre de toute l'histoire **urogénitale**.
-` },
-    {
-        id: "meso-35", categoryId: "mesoderme", youtubeId: "", cloudflareId: "cfe1066f2c95adb6db0f64839e25e447", duration: "03:26", title: "35-Synthése de L'Appareil Génital", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-35",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "cfe1066f2c95adb6db0f64839e25e447",
+    duration: "03:26",
+    title: "35-Synthése de L'Appareil Génital",
+    shortSummary:
+      "Découvrez les fascinantes correspondances embryologiques entre les sexes et comment elles modulèrent le développement de l'appareil génital, enrichissant votre compréhension en embryologie et en thérapie.",
+    fullSummary:
+      "Cette vidéo propose une synthèse approfondie du développement de l'appareil génital, en mettant en lumière les analogies embryologiques et la différenciation des organes sexuels masculins et féminins. Vous apprendrez comment des structures indifférenciées se transforment, sous l'influence hormonale, pour former des organes distincts comme le pénis et le clitoris, tout en intégrant les processus de fermeture le long de la ligne médiane. Les notions de sexe gonadique, de canaux embryonnaires et d’implications somatiques des conflits psychiques sont aussi abordées, permettant une approche thérapeutique enrichissante pour les praticiens.",
+    transcriptMarkdown: `
 # Synthèse de l'Appareil Génital
 
 Le développement de l'**appareil génital** présente des correspondances remarquables entre les structures masculines et féminines, issues d'un même embryon indifférencié. Ces structures évoluent sous l'influence hormonale, modulant leur fermeture progressive le long de la **ligne médiane**.
@@ -5865,9 +6791,20 @@ Il est important de noter que notre corps **somatise** les conflits psychiques. 
 
 - **Séparation :** Peut affecter la peau.
 - **Conflit urogénital, métabolique, rythmique ou neurosensoriel :** Sera exprimé dans l'appareil correspondant.
-` },
-    {
-        id: "meso-36", categoryId: "mesoderme", youtubeId: "", cloudflareId: "6175a59f302ae4e22d0ef7538f92324b", duration: "03:16", title: "36-Pratique_L'Appareil Génital", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-36",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "6175a59f302ae4e22d0ef7538f92324b",
+    duration: "03:16",
+    title: "36-Pratique_L'Appareil Génital",
+    shortSummary:
+      "Découvrez comment rééquilibrer le bassin féminin pour optimiser l'axe de naissance grâce à des techniques biodynamiques. Apprenez à libérer la circulation et à soutenir le corps pendant la grossesse.",
+    fullSummary:
+      "Dans cette vidéo, vous apprendrez deux méthodes pratiques pour équilibrer le bassin de la femme, essentielles pour optimiser l'axe de naissance. Les techniques se concentrent sur l'identification du tubercule du troisième adducteur et l'utilisation de points d'appui pour soutenir le bassin sans pression excessive. En explorant des approches alternatives pour repositionner le bassin, le praticien favorisera également la décongestion et améliorera la circulation, en tenant compte des besoins spécifiques des femmes enceintes. Vous découvrirez l'importance des fascias pendant l'accouchement, soulignant les risques d'un bassin déséquilibré qui pourrait entraver la naissance.",
+    transcriptMarkdown: `
 # L'Appareil Génital : Pratique Biodynamique
 
 Je vais vous montrer deux façons de préparer le **bassin de la femme** pour le rééquilibrer et travailler sur l'**axe de naissance**. Cette approche est également valable pour le **système utérin** ou **prostatique**. Cependant, il existe une différence fondamentale : l'homme n'a pas à accoucher ni à porter un enfant.
@@ -5905,9 +6842,20 @@ Lors d'une grossesse, je vérifie systématiquement l'axe de naissance et la lib
 ### Rôle des fascias dans l'accouchement
 
 Il est fondamental de savoir que lors de la naissance, l'enfant est guidé par les **fascias du bassin**. Si le bassin est en déséquilibre, l'enfant pourrait se retrouver coincé pendant le mouvement de naissance.
-` },
-    {
-        id: "meso-37", categoryId: "mesoderme", youtubeId: "", cloudflareId: "3dd603fcb951986650cab8a946c61fed", duration: "09:57", title: "37-Meditation_4 pratiques", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-37",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "3dd603fcb951986650cab8a946c61fed",
+    duration: "09:57",
+    title: "37-Meditation_4 pratiques",
+    shortSummary:
+      "Découvrez des techniques de méditation puissantes pour harmoniser votre énergie et celle de vos patients. Apprenez à vous connecter au prana et à libérer les tensions pour une guérison profonde.",
+    fullSummary:
+      "Cette vidéo propose un ensemble de pratiques de méditation adaptées à l'embryologie biodynamique, avec un accent sur la respiration, l'activation de l'énergie et l'ouverture du canal central. Les participants exploreront des techniques de respiration comme le Nadi Shodhana pour équilibrer le prana, tout en apprenant à créer une connexion méditative propice à la guérison. Les concepts clés abordés incluent l'harmonie, l'écoute active des besoins du patient et l'importance d'augmenter sa propre vibration énergétique pour favoriser le bien-être. La vidéo invite les thérapeutes à dépasser la volonté d'aider, favorisant une approche non-jugement et complémentaire envers leurs patients.",
+    transcriptMarkdown: `
 # Méditation et Pratiques en Embryologie Biodynamique
 
 ## Préparation Posturale et Respiratoire
@@ -5991,9 +6939,20 @@ C'est là où il faut devenir conscient. Chaque mot, chaque geste, chaque regard
 Soyez comme des **tisserands de la lumière**. Chaque fois que vous avez une pensée, elle part dans l'**Akasha** et elle est distribuée dans la grande toile. Vous avez droit à cette conscience.
 
 Là, vous pouvez ressentir une vibration dans votre corps, comme de petits **pétillements**.
-` },
-    {
-        id: "meso-38", categoryId: "mesoderme", youtubeId: "", cloudflareId: "88a0ee1410567dee3864e333f21b3b96", duration: "04:48", title: "38- Cinetique Embryo_Résumé", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-38",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "88a0ee1410567dee3864e333f21b3b96",
+    duration: "04:48",
+    title: "38- Cinetique Embryo_Résumé",
+    shortSummary:
+      "Découvrez comment la cinétique embryonnaire biodynamique révèle les secrets du développement humain et renforce votre pratique thérapeutique! Apprenez à intégrer la sagesse du cœur dans votre approche.",
+    fullSummary:
+      "Cette vidéo explore en profondeur les dynamiques de la cinétique embryonnaire, mettant en lumière les mouvements fondamentaux tels que l'enroulement péritonéal, la formation de l'angle de l'ouïe, et le développement du cadre péritonéal. Vous apprendrez comment ces mouvements influencent le développement des organes vitaux et leur intégration dans le corps, en se concentrant sur les interactions entre le diaphragme, le système urogénital et la force éthérique. Les concepts de paix intérieure et de sagesse sont également abordés, soulignant l'importance de l'équilibre émotionnel pour une pratique efficace. Enfin, la vidéo propose des techniques applicables pour intégrer la force pranaïque dans votre pratique, offrant une approche harmonieuse du corps et de l'esprit.",
+    transcriptMarkdown: `
 # Cinétique Embryonnaire Biodynamique (Résumé)
 
 ## Le mouvement d'enroulement péritonéal et la ligne médiane
@@ -6064,9 +7023,20 @@ Ces deux éléments vont de pair : la sagesse et la paix se rencontrent dans le 
 Tout le système de l'embryon illustre cette **force pranaïque** qui sera intégrée par notre **respiration** et notre **alimentation**. 
 
 Les techniques abordées ne doivent pas être perçues comme des techniques, mais plutôt comme une **fréquence**.
-` },
-    {
-        id: "meso-39", categoryId: "mesoderme", youtubeId: "", cloudflareId: "1f58e2883679ef581ade7d9f5a04de57", duration: "01:38", title: "39-Les Tai chi Ebryologique_Rappel", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-39",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "1f58e2883679ef581ade7d9f5a04de57",
+    duration: "01:38",
+    title: "39-Les Tai chi Ebryologique_Rappel",
+    shortSummary:
+      "Découvrez les mouvements essentiels du Tai Chi embryologique et leur impact sur le développement des tissus et organes. Une approche intégrative pour enrichir vos pratiques en ostéopathie et embryologie !",
+    fullSummary:
+      "Cette vidéo offre un rappel clair et structuré sur les Tai Chi embryologiques, en se concentrant sur le premier grand mouvement : la vague notochordale et son interaction avec le mouvement mésodermique. Les étapes essentielles décrites incluent la croissance et les flexions du cerveau, ainsi que les mouvements des reins, de la vessie et de l'utérus, mettant en lumière leur importance dans le développement embryologique. Les démonstrations pratiques illustrent comment ces mouvements influencent la manipulation ostéopathique, notamment à travers des mouvements spécifiques impliquant le péritoine et le foie, permettant aux étudiants et thérapeutes d'approfondir leur compréhension et d'enrichir leurs soins.",
+    transcriptMarkdown: `
 # Les Tai Chi Embryologiques : Rappel
 
 Le premier grand mouvement du **Tai Chi** se concentre sur la **vague notochordale**. Ce mouvement englobe l'ensemble du **mouvement mésodermique** qui l'accompagne.
@@ -6092,9 +7062,20 @@ La main descend ensuite et termine la rotation. Ainsi, j'élance ce qui se trouv
 Je tire cette main et viens chercher l'anse ici pour la ramener vers mon **foie**.
 
 Puis, la main à cet endroit descend, monte, et l'autre main descend pour former la **face terminale**.
-` },
-    {
-        id: "meso-40", categoryId: "mesoderme", youtubeId: "", cloudflareId: "67a81d30d3e01bf839eee13f4d05ddaa", duration: "09:17", title: "40-Pratique 2_ L'Appareil Génital", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-40",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "67a81d30d3e01bf839eee13f4d05ddaa",
+    duration: "09:17",
+    title: "40-Pratique 2_ L'Appareil Génital",
+    shortSummary:
+      "Découvrez comment harmoniser l'appareil génital grâce à des techniques de contact et de perception en biodynamique, offrant un chemin vers le bien-être et la réorganisation énergétique de vos patients.",
+    fullSummary:
+      "Cette vidéo approfondit les techniques pratiques relatives à l'appareil génital en biodynamique, enseignant la manière de se positionner, de sentir et de répondre aux besoins du corps du patient. Les concepts clés incluent l'importance du neutre, le contact conscient, et l'exploration des zones délicates telles que le sac péritonéal et la zone utéro-prostatique. Les étudiants apprendront comment engager le processus de réorganisation énergétique et reconnaître les signaux du corps, tout en créant un espace propice à l'harmonie et à la guérison, idéal après des événements tels que des accouchements difficiles.",
+    transcriptMarkdown: `
 # Pratique 2 : L'Appareil Génital - Biodynamique
 
 ## Approche Initiale : Positionnement et Perception
@@ -6192,9 +7173,20 @@ Il est essentiel de s'entraîner à la **méditation** pour stabiliser l'esprit.
 L'**imagination** est une forme d'intelligence. Il faut savoir la mélanger à la réalité, sans tomber dans un extrême ou l'autre.
 
 Revoir l'**embryologie** offre une meilleure compréhension de l'anatomie. L'embryologie est la mise en place de l'anatomie vivante, nous reliant à la structure, à la fonction et à la forme.
-` },
-    {
-        id: "meso-41", categoryId: "mesoderme", youtubeId: "", cloudflareId: "7a9f22f0989f39d951de2247e764a495", duration: "09:06", title: "41-L'Appareil Locomoteur_Dévelloppement Des Somites", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-41",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "7a9f22f0989f39d951de2247e764a495",
+    duration: "09:06",
+    title: "41-L'Appareil Locomoteur_Dévelloppement Des Somites",
+    shortSummary:
+      "Plongez dans le fascinant développement des somites et découvrez comment la notochorde et le tube neural orchestrent la formation des tissus qui composent notre appareil locomoteur. Idéal pour les thérapeutes souhaitant intégrer la compréhension embryologique dans leur pratique !",
+    fullSummary:
+      "Cette vidéo explore en profondeur le développement des somites dans le cadre de la formation de l'appareil locomoteur, en mettant l'accent sur l'importance de la notochorde, du tube neural et des lames latérales. On y aborde les concepts fondamentaux tels que la création des dermatome, myotome et sclérotome, ainsi que leur rôle respectif dans le développement de la peau, des muscles et de la structure osseuse. Les processus d'induction moléculaire et d'épigénétique sont également expliqués, soulignant comment des facteurs génétiques et environnementaux interagissent pour réguler ce développement complexe.",
+    transcriptMarkdown: `
 # Développement des Somites dans l'Appareil Locomoteur
 
 Au départ, nous avons étudié la mise en place de la **notochorde**, puis de l'**ectoderme**, avec son **mésoderme** associé. L'importance de ce tissu de soutien, qui est ici le tissu intermédiaire, a également été abordée.
@@ -6266,9 +7258,20 @@ C'est une absorption par le système vasculaire, liée à une polarité entre l'
 Je ne peux pas amener un vaisseau qui est ainsi. Non, cela commence à se faire comme cela. Ce sont les vaisseaux qui créent l'espace entre le myotome et le sclérotome. C'est l'os qui a grandi et qui tire sur le myotome. Après, c'est le muscle.
 
 J'ai donc une inversion. Au départ, l'os est fluide et grandit. Quand il tire et qu'il s'allonge, cela crée un champ métabolique autour de lui, qui est un champ de dilatation. C'est l'os qui va devenir actif dans un premier temps. Et puis, ce sera seulement le muscle qui sera actif dans un deuxième temps.
-` },
-    {
-        id: "meso-42", categoryId: "mesoderme", youtubeId: "", cloudflareId: "39eb07e1f55cb14494b0f4ad23bc4b56", duration: "06:41", title: "42-Développement des Vertebres", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-42",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "39eb07e1f55cb14494b0f4ad23bc4b56",
+    duration: "06:41",
+    title: "42-Développement des Vertebres",
+    shortSummary:
+      "Découvrez comment se forment les vertèbres et l'appareil locomoteur dans le corps embryonnaire. Un regard fascinant sur les mécanismes qui influencent notre structure osseuse, essentiel pour tout thérapeute !",
+    fullSummary:
+      "Cette vidéo aborde en profondeur le développement des vertèbres et de l'appareil locomoteur, en détaillant la segmentation qui influence la formation du squelette axial, des côtes et des extrémités. Elle explore la mise en place de la notocorde et du tube neural, éléments cruciaux pour la structuration embryonnaire, ainsi que les interactions entre l'anneau ectodermique et ces structures. Les concepts clés incluent la croissance différentielle, la formation des disques intervertébraux, des corps vertébraux, et l'importance des informations provenant du tube neural et de la notocorde dans ce processus. Pratiquement, les thérapeutes apprendront comment toucher et travailler sur ces différentes structures pour influencer le développement vertébral et identifier des problèmes cliniques potentiels associés aux dermalgies.",
+    transcriptMarkdown: `
 # Développement des Vertèbres
 
 Le développement de l'**appareil locomoteur**, et plus spécifiquement des **vertèbres**, repose sur une segmentation précise. Cette segmentation influence les trajectoires du **squelette axial**, des **côtes** et des **extrémités**.
@@ -6294,9 +7297,20 @@ Chaque élément, comme la peau, le tube neural et la notocorde, envoie des mol�
 Lorsque le développement s'intensifie, cela déclenche des inductions spécifiques pour le tube neural, entraînant la formation des **dermatomes**, qui sont segmentés sur tout le corps. Une **dermalgie** sur un dermatome peut indiquer un lien avec un viscère, tandis que plusieurs dermalgies sur un même dermatome peuvent suggérer un problème au niveau de la vertèbre correspondante.
 
 Par exemple, une dermalgie au niveau 9 peut être associée à des structures comme la **vésicule biliaire**, le **pancréas**, ou le **système pylorique**. Dans ces cas, il est pertinent d'explorer la vertèbre associée pour mieux comprendre les implications cliniques.
-` },
-    {
-        id: "meso-43", categoryId: "mesoderme", youtubeId: "", cloudflareId: "587f00d037ff2dd7ee3f92dad4745178", duration: "07:22", title: "43-Développement des Cotes", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-43",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "587f00d037ff2dd7ee3f92dad4745178",
+    duration: "07:22",
+    title: "43-Développement des Cotes",
+    shortSummary:
+      "Découvrez le fascinant processus de développement des côtes et son impact sur la santé physique et émotionnelle. Apprenez des techniques pour libérer les côtes et améliorer les échanges respiratoires !",
+    fullSummary:
+      "Cette vidéo plonge dans le développement embryologique des côtes, en reliant des éléments comme l'ectoderme et le mésoderme à la formation des structures thoraciques. Elle expose les concepts de complexité et d'émergence, et montre comment ces processus peuvent influencer les conditions cliniques. En parallèle, l'importance de la motilité costale est mise en avant, offrant des techniques tant directes qu'indirectes pour travailler sur chaque côte. L'aspect émotionnel, notamment en lien avec la quatrième côte à gauche, est exploré, soulignant la corrélation entre les mouvements respiratoires et l’équilibre émotionnel.",
+    transcriptMarkdown: `
 # Développement des Côtes
 
 Les **côtes** sont liées à un processus développemental complexe. Ce développement implique l'**ectoderme**, le **mésoderme**, l'**anatomie vasculaire**, la **cérébralisation**, la **segmentation**, ainsi que le développement de l'**intestin**, des **cavités**, du **cœur** et du **foie**. Tous ces éléments contribuent à l'émergence globale du système costal. 
@@ -6318,9 +7332,20 @@ Il est possible de travailler sur chaque côte individuellement ou d'adopter une
 Un point important à noter est l'impact émotionnel de la **quatrième côte à gauche**, qui est souvent associée à des phénomènes d'angoisse et de **précordialgies**. Les côtes fonctionnent en synchronisation avec l'**inspiration** et l'**expiration**. Si une côte ne redescend pas correctement, cela peut entraîner des blocages émotionnels. 
 
 Le travail sur cette zone implique de ramener la côte dans son mouvement d'inspiration et d'expiration, en corrigeant sa position et en équilibrant le hile pulmonaire. Ce processus est essentiel pour restaurer l'équilibre et la fonctionnalité du système costal.
-` },
-    {
-        id: "meso-44", categoryId: "mesoderme", youtubeId: "", cloudflareId: "5bbf2d82e245a513e0e46e81342b19f4", duration: "10:30", title: "44-Développement des Extrémités", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-44",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "5bbf2d82e245a513e0e46e81342b19f4",
+    duration: "10:30",
+    title: "44-Développement des Extrémités",
+    shortSummary:
+      "Explorez comment le développement des membres est profondément lié aux structures internes du corps et découvrez des approches innovantes pour traiter les douleurs en utilisant la dynamique embryologique.",
+    fullSummary:
+      "Cette vidéo met en lumière le lien fascinant entre le développement des membres et les structures internes, notamment le cerveau et le tube digestif. Vous apprendrez comment les blessures de l'enfance peuvent influencer des douleurs actuelles et comment des approches en médecine chinoise et en ostéopathie peuvent être intégrées pour traiter les tendinites et autres douleurs articulaires. Les concepts clés abordés incluent la dynamique du péritone, l'importance des vaisseaux sanguins dans la formation des membres, et l'interaction entre os et muscles au cours du développement. En comprenant ces relations complexes, vous serez mieux équipé pour traiter efficacement les lésions des membres et améliorer la santé globale de vos patients.",
+    transcriptMarkdown: `
 # Développement des Extrémités
 
 Le développement des membres se produit en parallèle avec les structures internes, notamment le **cerveau** et le **tube digestif**. Après la rotation, les membres inférieurs et supérieurs se forment simultanément. 
@@ -6342,9 +7367,20 @@ L'induction du cellulome est orientée par le champ vasculaire, influençant la 
 Le développement des membres, tant supérieurs qu'inférieurs, est lié à la **contre-rotation** et à l'organisation du péritone. La base du crâne et la colonne vertébrale dérivent du **mésenchyme para-axial**, tandis que le squelette des membres provient de la **somatopleur**. 
 
 Traiter les lésions des membres implique de les réintégrer dans leur cavité péritonelle, ce qui est une clé pour comprendre le fulcrum embryonnaire.
-` },
-    {
-        id: "meso-45", categoryId: "mesoderme", youtubeId: "", cloudflareId: "f8c884c7161e6f4edb80e3823a40bfd2", duration: "02:01", title: "45-Pratique_Accéder à L'Os Fluide _Le Péroné", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-45",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "f8c884c7161e6f4edb80e3823a40bfd2",
+    duration: "02:01",
+    title: "45-Pratique_Accéder à L'Os Fluide _Le Péroné",
+    shortSummary:
+      "Plongez dans la pratique du péroné et ressentez la fluidité de l'os comme jamais auparavant ! Découvrez comment la conscience corporelle peut transformer votre perception en ostéopathie.",
+    fullSummary:
+      "Dans cette session, l'accent est mis sur l'exploration du péroné à travers une approche biodynamique. Les praticiens apprendront à ressentir la densité de l'os, à observer sa structure et à développer une sensibilité au champ micro-cristallin. En adoptant une conscience cellulaire puis moléculaire, les participants sont guidés à s'aligner avec la respiration primaire, permettant aux fluides corporels de s'intégrer harmonieusement. La pratique aborde des concepts clés comme le neutre, la maturation et la nature embryonnaire de cet os membranaire. Enfin, les participants sont invités à explorer des réalités plus profondes allant du plan atomique au plan lumineux, mettant en avant l'importance de l'eau dans cette dynamique.",
+    transcriptMarkdown: `
 # Pratique : Accéder à l'Os Fluide - Le Péroné
 
 Dans cette pratique, nous allons nous concentrer sur le **péroné** pour rechercher une sensation de **liquide**. 
@@ -6360,9 +7396,20 @@ N'oubliez pas de rester dans votre **neutre** et de laisser le neutre de la pers
 L'os est fluide et s'intègre progressivement dans le corps fluide. Découvrir cet os est intéressant car c'est un **os membranaire**, issu d'une membrane qui s'est condensée au fil du temps. C'est un os **embryonnaire**.
 
 Pour aller plus loin, explorez le **plan atomique**, puis le **plan vibratoire**, et enfin le **plan lumineux**. Nous avons principalement travaillé sur le plan moléculaire, où se trouve la combinaison **H2O**.
-` },
-    {
-        id: "meso-46", categoryId: "mesoderme", youtubeId: "", cloudflareId: "ad346f1bf924125f22b885c96d2f4668", duration: "04:46", title: "46-La Naissance", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "meso-46",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    cloudflareId: "ad346f1bf924125f22b885c96d2f4668",
+    duration: "04:46",
+    title: "46-La Naissance",
+    shortSummary:
+      "Découvrez comment la naissance influence profondément notre existence et apprenez des techniques innovantes pour libérer les tensions corporelles liées à cet événement crucial. Une plongée fascinante entre spiritualité et biomécanique !",
+    fullSummary:
+      "Cette vidéo explore les impacts profonds de la naissance sur notre vie et notre corps, tout en proposant des méthodes pratiques pour relâcher les tensions mémorisées dans les tissus corporels. Les concepts clés incluent l'importance de la compression et décompression au niveau cranien, pelvien et vasculaire, et comment cela affecte la respiration autonome des nouveau-nés. L'intervenant souligne également le rôle central de la rate et du transfert d'oxygène lors de la première respiration, ainsi que l'importance du mouvement fluide entre les os pariétaux et temporaux pour faciliter cette transition capitale. Les étudiants apprendront à mieux comprendre le lien entre les mouvements corporels, la dynamique spirituelle et l'approche ostéopathique, tout en intégrant ces principes dans leur pratique thérapeutique.",
+    transcriptMarkdown: `
 # La Naissance : Impact et Mécanismes
 
 La façon dont vous êtes **né** détermine de nombreux aspects de votre vie. À chaque fois que vous devez **renaître** à quelque chose, comme un changement de travail, vous pouvez vous reconnecter à cette mémoire. Il est parfois nécessaire de libérer des tensions dans le **tissu** corporel, soit en le recomprimant, soit en le décompressant, afin de rétablir un **désengagement respiratoire**.
@@ -6380,9 +7427,20 @@ Ce passage d'oxygène, de la compression globale et fluidique du système, ainsi
 Le mouvement fluide entre **parieto** et **temporo** est un premier désengagement. Ce mouvement entraîne une rotation de la **nuque**, essentielle pour libérer le corps. Le moment clé pour redonner le premier souffle est marqué par un léger mouvement de la nuque, suivi d'une spirale qui se forme. 
 
 Ce mouvement occipital, associé à une torsion dans l'axe, est crucial. L'hyperextension de la nuque et le désengagement des membres sont également des éléments à considérer. Ainsi, il existe une compression dans les membranes et une compression au niveau fluidique qui se produisent simultanément.
-` },
-    {
-        id: "endo-01", categoryId: "endoderme", youtubeId: "", cloudflareId: "02f2a3722206d00f73064bed455e6103", duration: "12:31", title: "1-Méditation 1_Théorie,Pratique,Réflexion", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-01",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "02f2a3722206d00f73064bed455e6103",
+    duration: "12:31",
+    title: "1-Méditation 1_Théorie,Pratique,Réflexion",
+    shortSummary:
+      "Découvrez comment la méditation centrée sur la respiration peut libérer votre esprit des entraves du passé et favoriser une guérison profonde. Plongez dans une pratique essentielle pour les thérapeutes !",
+    fullSummary:
+      "Dans cette vidéo, vous apprendrez à explorer la méditation en vous concentrant sur la conscience de l'inspire et de l'expire, développant ainsi un état de pleine conscience. Cette technique favorise l'union entre l'esprit et le corps, permettant de se libérer des douleurs et des maladies liées au passé. Vous découvrirez l'importance de la respiration dans le processus de guérison et comment elle peut activer votre système parasympathique en stimulant le nerf vague. La vidéo aborde également les niveaux de conscience et la vision profonde, vous aidant à observer vos émotions sans réagir instinctivement. Finalement, vous serez guidé à pratiquer la méditation pour cultiver un moment présent et favoriser une vraie liberté de mouvement, essentielle pour les ostéopathes.",
+    transcriptMarkdown: `
 # Méditation : Théorie, Pratique et Réflexion
 
 La **méditation** que nous allons explorer repose sur la **conscience de l'inspire et de l'expire**. Cette pratique nous amène à une **pleine conscience**, un état où nous pouvons discerner plutôt que juger. 
@@ -6414,9 +7472,20 @@ En tant qu'ostéopathe, il est crucial de comprendre l'importance de l'inspirati
 La guérison commence par la reconnaissance des **inquiétudes** et des **symptômes**. Il est essentiel d'amener les patients vers un **point de balance**, un processus de guérison qui redonne confiance en la vie. Parfois, il suffit de parler pour amener une prise de conscience et permettre aux gens de repartir avec une **joie** renouvelée. 
 
 En conclusion, la méditation et la conscience de la respiration sont des outils puissants pour favoriser la guérison et le bien-être. En cultivant cette pratique, vous pouvez transformer votre relation avec vous-même et avec votre corps.
-` },
-    {
-        id: "endo-02", categoryId: "endoderme", youtubeId: "", cloudflareId: "75bbf492798e3d4bc138169f47fd133e", duration: "11:08", title: "2-L'Endoderme_Introduction & Généralités 1", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-02",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "75bbf492798e3d4bc138169f47fd133e",
+    duration: "11:08",
+    title: "2-L'Endoderme_Introduction & Généralités 1",
+    shortSummary:
+      "Découvrez l'importance de l'endoderme dans le développement embryonnaire et son interaction avec le mésoderme, tout en explorant comment ces tissus influencent notre santé digestive et émotionnelle!",
+    fullSummary:
+      "Cette vidéo propose une introduction approfondie à l'endoderme, un tissu embryonnaire essentiel, en relation avec le mésoderme qui peut le protéger. Les concepts clés comprennent l'organisation et la flexion de l'embryon, l'importance de la respiration, et le rôle du système digestif dans notre santé globale. L'enseignement s'oriente vers l'ostéopathie et intègre des éléments pratiques, comme le lien entre le tube digestif et les émotions, l'élimination des déchets, ainsi que l'impact de la flore intestinale sur notre bien-être. En explorant le lien avec les saisons et le jeûne, la vidéo met en avant la nécessité de prendre soin de notre corps et de notre esprit pour obtenir un équilibre optimal.",
+    transcriptMarkdown: `
 # L'Endoderme : Introduction et Généralités
 
 Nous allons étudier un **tissu embryonnaire** appelé l'**endoderme**, en relation avec un tissu **mésodermique** qui le protège. Il est essentiel de comprendre que l'étude de l'endoderme ne peut se faire sans prendre en compte son enveloppe. Ainsi, nous examinerons à la fois le **péritoine** et le **tube digestif**.
@@ -6451,9 +7520,20 @@ Il existe quatre niveaux thérapeutiques importants :
 4. Les rétablir dans leur **lumière**.
 
 Ces éléments sont essentiels pour retrouver la vitalité et la fonction pour laquelle chacun est venu. La présence d'une personne peut illuminer une pièce, tout comme son absence peut créer une ombre.
-` },
-    {
-        id: "endo-03", categoryId: "endoderme", youtubeId: "", cloudflareId: "078d64df33c952dce1de291b8c8a5e06", duration: "04:06", title: "3-Méditation 2_Les Centres energetiques", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-03",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "078d64df33c952dce1de291b8c8a5e06",
+    duration: "04:06",
+    title: "3-Méditation 2_Les Centres energetiques",
+    shortSummary:
+      "Découvrez comment la méditation et la conscience corporelle peuvent transformer votre énergie vitale! Cette vidéo vous guide à travers des exercices pratiques pour équilibrer vos centres énergétiques et améliorer votre bien-être.",
+    fullSummary:
+      "Cette vidéo vous initie à la méditation en mettant l'accent sur les centres énergétiques du corps. Vous apprendrez les relations entre l'œil, l'épiphyse, et l'importance de la respiration, de l'alimentation, et du sommeil pour maintenir votre santé. À travers un exercice guidé, vous intégrerez des techniques de méditation pour vous connecter à votre corps à différents niveaux – minéral, végétal, et animal. Ce processus vous aidera à trouver des points de silence et d'équilibre tout en renforçant votre conscience corporelle, ce qui est essentiel pour apaiser un esprit agité et revitaliser votre énergie vitale.",
+    transcriptMarkdown: `
 # Méditation et Centres Énergétiques
 
 L'œil est considéré comme un **cerveau extériorisé**. Il représente une **expansion** de notre **troisième ventricule** et est en relation avec une petite glande appelée **épiphyse**. Bien que l'on pense souvent à l'hypophyse, c'est l'épiphyse qui régule une des qualités d'énergie les plus essentielles de notre vie : le **sommeil**. 
@@ -6476,9 +7556,20 @@ Lorsque vous êtes bien ancré dans votre **règne minéral**, vous pouvez vous 
 Lorsque l'on demande à un maître combien de temps il faut rester dans cette méditation, il répondra : "Autant de temps que tu peux rester." 
 
 Finalement, relâchez-vous et bougez légèrement les mains pour amener un peu d'**énergie**. En fléchissant légèrement les genoux, vous pouvez stimuler la circulation de l'énergie dans votre corps.
-` },
-    {
-        id: "endo-04", categoryId: "endoderme", youtubeId: "", cloudflareId: "2d5c16d1b0cce326cbbc308387b990da", duration: "11:50", title: "4-L'Endoderme_Introduction & Généralités 2", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-04",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "2d5c16d1b0cce326cbbc308387b990da",
+    duration: "11:50",
+    title: "4-L'Endoderme_Introduction & Généralités 2",
+    shortSummary:
+      "Découvrez comment l'endoderme, ce tissu fondamental du développement embryonnaire, influence notre santé et équilibre hormonal. Apprenez à libérer le potentiel de notre système digestif et glandulaire par une approche biodynamique fascinante !",
+    fullSummary:
+      "Cette vidéo offre une exploration approfondie de l'endoderme, un tissu crucial dans le développement embryonnaire, mettant en évidence son rôle dans le système digestif et endocrinien. Vous apprendrez comment le tissu de limite et le tissu intérieur interagissent, affectant la santé globale du corps. Des concepts clés tels que le crânio-sacro-sterno-système et l'importance des glandes comme la thyroïde et les surrénales sont abordés. En combinant théorie et pratique, cette leçon vous permettra de mieux comprendre les dynamiques tissulaires et leur impact sur le corps, tout en vous offrant des outils pour travailler sur les tissus faciaux et alimentaires afin de soutenir le système endocrinien en profondeur.",
+    transcriptMarkdown: `
 # L'Endoderme : Introduction et Généralités
 
 Le **système digestif** est suspendu à la base du crâne, ce qui implique un mouvement essentiel entre le **sacrum** et l'**occiput**. Ce mouvement est vital pour la santé, car une tension excessive dans cette zone peut perturber le système **crânio-sacré**.
@@ -6512,9 +7603,20 @@ Le **nombril** représente le contact initial lors de l'incarnation dans la terr
 Le cordon ombilical, vestige de la **vésicule viteline** et du **pédicule embryonnaire**, symbolise cette phase primitive d'intégration. Il représente le lien entre l'incarnation et le contact avec la mère.
 
 Enfin, l'intestin et le corps symbolisent l'intégration de l'individu. La recherche du symbole personnel est essentielle pour éviter la dispersion et favoriser la concentration et le rassemblement.
-` },
-    {
-        id: "endo-05", categoryId: "endoderme", youtubeId: "", cloudflareId: "476e5151e0b8d417836ac703566f93db", duration: "24:00", title: "5-Révisions_Chronologie des systèmes, les 5 Phases d'embryologie", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-05",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "476e5151e0b8d417836ac703566f93db",
+    duration: "24:00",
+    title: "5-Révisions_Chronologie des systèmes, les 5 Phases d'embryologie",
+    shortSummary:
+      "Découvrez comment la chronologie des systèmes embryonnaires transforme la compréhension de l'anatomie et de la physiologie humaine ! Plongez dans les cinq phases cruciales de l'embryologie et leur impact sur la santé tout au long de la vie.",
+    fullSummary:
+      "Cette vidéo aborde la chronologie des systèmes de communication dans le développement embryonnaire, en mettant l'accent sur les cinq phases clés : fécondation, gastrulation, neurulation, métamérisation et délimitation. Vous apprendrez comment les systèmes digestif et circulatoire se développent en interaction, ainsi que le rôle fondamental de la cavité viteline et du blastocèle dans l'organisation embryonnaire. Les principes de base tels que la formation axiale et la dynamique des tissus sont expliqués, illustrant comment ces processus influencent la santé et l'intégration des systèmes corporels dans une approche biodynamique. Cette connaissance est essentielle pour les thérapeutes souhaitant approfondir leur compréhension des origines embryologiques des structures humaines et leur application en ostéopathie.",
+    transcriptMarkdown: `
 # Chronologie des Systèmes : Les 5 Phases d'Embryologie
 
 Dans la **chronologie d'apparition des systèmes de communication**, le **système digestif** est très précoce. Le premier mouvement dans ce système est un mouvement fluidique de type **autocrine**. En d'autres termes, il s'agit d'apprendre à se connaître avant de pouvoir échanger et digérer.
@@ -6544,9 +7646,20 @@ Le développement embryonnaire se caractérise par un mouvement vers l'avant de 
 La flexion de l'embryon et la dynamique fluidique sont essentielles pour comprendre l'enroulement et la croissance. Au 28ème jour, l'intégration du cellulome externe en un cellulome interne marque un point d'appui sur le liquide céphalo-rachidien. Le développement s'enroule autour du corps vasculaire, nécessitant de ramener les fluides vers le centre.
 
 Il est crucial d'écouter le mouvement du tissu et de trouver son point de balance pour entrer dans son histoire. Ce processus peut révéler des images ou des mots liés à des points embryonnaires ou à des capacités transgénérationnelles.
-` },
-    {
-        id: "endo-06", categoryId: "endoderme", youtubeId: "", cloudflareId: "e4acbf303e3d710083d0fe3ee2e20a77", duration: "06:24", title: "6-Notions Pratique", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-06",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "e4acbf303e3d710083d0fe3ee2e20a77",
+    duration: "06:24",
+    title: "6-Notions Pratique",
+    shortSummary:
+      "Plongez dans les profondeurs de l'ostéopathie avec des notions pratiques qui transforment non seulement le corps, mais aussi l'esprit. Découvrez comment l'énergie et la posture influencent notre bien-être global !",
+    fullSummary:
+      "Cette vidéo explore des concepts pratiques fondamentaux en ostéopathie, mettant l'accent sur la transformation tissulaire et énergétique au sein de notre corps. L'enseignement explique comment des changements profonds peuvent émerger de moments de chaos, et l'importance d'une présence authentique et libératrice en tant que thérapeute. Les connexions entre différentes structures corporelles, comme la deuxième vertèbre cervicale et la symphyse phéno-basilaire, sont illustrées pour montrer comment elles influencent l'équilibre et la posture. La vidéo aborde également des aspects symboliques, comme le tonus chimique et le rôle des dents en tant que capteurs de posture, tout en soulignant l'importance d'une écoute attentive et d'une réorganisation du corps pour favoriser la santé.",
+    transcriptMarkdown: `
 # Notions Pratiques en Ostéopathie
 
 Lorsqu'il y a une **transformation profonde** du système, un changement soudain peut se produire. Cela évoque une **formation en transformation**, où l'on modifie sa forme. Ce processus peut être comparé à un **niveau alchimique** qui engendre un changement **tissulaire** et **énergétique**. À ce stade, il est possible de se reconnecter à la **vague de l'impermanence** de la vie.
@@ -6568,9 +7681,20 @@ Ainsi, il existe un **tonus chimique** en rapport avec l'environnement, et nous 
 L'expression de notre posture et de notre visage reflète notre meilleure adaptation au moment présent. Sur un plan symbolique, la **symphyse phéno-basilaire** représente l'harmonie entre différentes structures corporelles. La base du crâne reçoit des informations viscérales et neuronales, et toutes les membranes de tension des **gaines durales** influencent cette région.
 
 Le **pentagone de Willis** est un élément clé qui intègre l'information neurologique et la qualité tissulaire du corps. De plus, le plan **lymphatique** est un lieu de réception d'informations, cherchant constamment à maintenir l'équilibre. En redonnant le **silence**, il est possible d'initier une réorganisation qui favorise la santé.
-` },
-    {
-        id: "endo-07", categoryId: "endoderme", youtubeId: "", cloudflareId: "b307fdfbbae084ff299b6f5304796014", duration: "05:17", title: "7-Pratique_ Praticien Mirroir", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-07",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "b307fdfbbae084ff299b6f5304796014",
+    duration: "05:17",
+    title: "7-Pratique_ Praticien Mirroir",
+    shortSummary:
+      "Découvrez comment devenir un véritable reflet pour vos patients en apprenant à explorer leur pesanteur, électromagnétisme et lumière intérieure. Transformez votre pratique en intégrant la méditation et l'énergie dans votre approche thérapeutique.",
+    fullSummary:
+      "Dans cette vidéo, le thérapeute apprend à jouer le rôle de miroir pour ses patients, en les aidant à ressentir leur propre pesanteur et niveau électromagnétique à travers des techniques de respiration et de méditation. L'importance de la gravité, de l'électromagnétisme et de la lumière dans le processus de transformation énergétique est soulignée, avec une insistance sur l'observation des sensations et la prise de conscience des énergies environnantes. Le praticien explore les rôles des glandes surrénales et thyroïdiennes tout en guidant le patient vers un état de confiance et de conscientisation, permettant ainsi d'accueillir une prise de conscience plus profonde de leur processus de guérison.",
+    transcriptMarkdown: `
 # Pratique du Praticien Miroir
 
 Le **thérapeute** sert de **miroir** au patient, lui permettant de ressentir sa propre **pesanteur** et son niveau **électromagnétique**. Au niveau atomique, cela se manifeste par une **vibration** ressentie comme une sensation. Il est essentiel de laisser cet état vibratoire s'installer et de noter, sans réfléchir, les **vides** et les **pleins**.
@@ -6594,9 +7718,20 @@ En conclusion, la **gravité** met l'homme dans la terre, l'**électromagnétism
 Lorsque vous écoutez les autres, ce que vous percevez d'eux peut être un reflet de vous-même ou de son opposé, mais rarement la réalité qui représente le mouvement de l'énergie, toujours en changement. C'est un peu comme une **méditation**. 
 
 Les thérapeutes doivent laisser venir à eux, sans volonté, un mot, un regard ou un geste à offrir à l'autre en toute simplicité. Cela peut être le mot, le geste ou le regard dont l'autre a besoin. Accueillez cela comme une **sentence cosmique**, permettant à quelque chose de plus grand de venir à vous.
-` },
-    {
-        id: "endo-08", categoryId: "endoderme", youtubeId: "", cloudflareId: "5e5761d048d38c2741125a6a3e07a069", duration: "08:42", title: "8-Pratique_C2 Ombilic", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-08",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "5e5761d048d38c2741125a6a3e07a069",
+    duration: "08:42",
+    title: "8-Pratique_C2 Ombilic",
+    shortSummary:
+      "Découvrez la pratique transformative de l'ombilic qui relie l'embryon, la mère et les influences transgénérationnelles. Explorez comment libérer l'énergie vitale pour favoriser la guérison et la reconnexion à votre essence.",
+    fullSummary:
+      "Cette vidéo propose une immersion dans la pratique de l'ombilic, centrée sur l'importance de l'axe crânio-caudal et son lien avec le développement embryonnaire. Les praticiens apprendront à se placer intuitivement sur cet axe, à ressentir la circulation des énergies nourricières, et à créer un courant énergétique propice à l'harmonie. En témoignent des concepts clés tels que l'anidation, la déviation de la ligne médiane, et l'impact des traumatismes de naissance ou des influences transgénérationnelles. La compréhension des dynamiques de conception, y compris l'importance de la FIV, et la création d'un hologramme de vie sont abordées, montrant comment ces éléments peuvent libérer les enfants de schémas hérités, ouvrant ainsi la voie à la guérison et à l'équilibre.",
+    transcriptMarkdown: `
 # Pratique de l'Ombilic : Compréhension et Libération Énergétique
 
 Dans cette pratique, nous allons explorer l'**axe crânio-caudal** et son importance dans le développement embryonnaire et la connexion avec la mère. 
@@ -6632,9 +7767,20 @@ Les cellules folliculaires et nourricières jouent un rôle clé dans l'organisa
 Ce processus de conception et de développement crée un **hologramme** qui intègre le passé, le présent et le futur de l'individu. La compréhension de ces dynamiques permet de libérer les enfants des schémas hérités et de leur offrir un chemin vers la guérison et l'équilibre.
 
 En conclusion, la pratique de l'ombilic est une exploration profonde des liens entre l'embryon, la mère et les influences transgénérationnelles, permettant ainsi une reconnexion à la **ligne médiane** et à l'énergie vitale.
-` },
-    {
-        id: "endo-09", categoryId: "endoderme", youtubeId: "", cloudflareId: "4ee71d2e62f7ea0e8a6d89ee24ec1faa", duration: "05:28", title: "9- influence de la plicature de l'embryon sur le tube digestif sup", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-09",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "4ee71d2e62f7ea0e8a6d89ee24ec1faa",
+    duration: "05:28",
+    title: "9- influence de la plicature de l'embryon sur le tube digestif sup",
+    shortSummary:
+      "Découvrez comment la plicature embryonnaire façonne le tube digestif supérieur, en révélant les secrets du développement humain dès ses débuts. Une exploration fascinante qui éclairera vos pratiques en embryologie et ostéopathie !",
+    fullSummary:
+      "Cette vidéo plonge dans l'impact crucial de la plicature de l'embryon sur le développement du tube digestif supérieur. Elle illustre comment la flexion de l'embryon influence le mésenchyme et crée la base du crâne, tout en mettant en lumière l'organisation des structures comme le tube neural, le cœur et le système vasculaire. Les termes clés tels que la cavité amniotique, la notochorde et le foregut sont abordés pour démontrer leur rôle dans la formation du tube digestif, reliant ainsi le développement des organes à la dynamique vitale du liquide amniotique. Une approche à la fois théorique et pratique, essentielle pour tout thérapeute désireux de comprendre les subtilités du développement embryonnaire.",
+    transcriptMarkdown: `
 # Influence de la Plicature de l'Embryon sur le Tube Digestif Supérieur
 
 L'**importance de la plicature** de l'embryon se manifeste au niveau de la partie supérieure de l'intestin. Ce mouvement de **flexion** de l'embryon entraîne des modifications significatives dans son développement.
@@ -6656,9 +7802,20 @@ Entre cette membrane et la membrane pharyngienne, les bouches au niveau buccal s
 L'apparition d'un vaisseau dépend de divers composants : un champ, une concentration métabolique, une trajectoire, des **vacuolations** et la présence de particules interstitielles. Ces éléments sont dynamiques, ce qui explique pourquoi certains vaisseaux peuvent apparaître et disparaître au cours du développement embryonnaire. Au départ, deux grandes aortes se centrent en une seule aorte.
 
 L'influence de cette plicature est donc essentielle pour organiser la **délimitation interne** du tube digestif. Nous allons maintenant entrer dans les détails de ce processus.
-` },
-    {
-        id: "endo-10", categoryId: "endoderme", youtubeId: "", cloudflareId: "41583d304832de740ad82c84985bbb92", duration: "25:32", title: "10-Formation de l'Intestin Superieur", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-10",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "41583d304832de740ad82c84985bbb92",
+    duration: "25:32",
+    title: "10-Formation de l'Intestin Superieur",
+    shortSummary:
+      "Découvrez comment la formation de l’intestin supérieur et des structures faciales se déroule à travers des mécanismes biodynamiques fascinants, reliant embryologie et ostéopathie pour une pratique thérapeutique enrichissante.",
+    fullSummary:
+      "Cette vidéo explore en profondeur le développement de l'intestin supérieur, mettant en lumière les mouvements complexes de l'endoderme et les interactions vasculaires. Vous apprendrez comment ces processus embryologiques se traduisent par la formation des arcs branchiaux et l'organisation des structures faciales, et comment ces connaissances peuvent être appliquées dans un contexte thérapeutique. Les concepts de flexion embryonnaire, de cérébralisation, et de l’impact de l’ostéopathie sur la dynamique des arcs mandibulaires et des structures dentaires sont abordés, offrant ainsi des outils pratiques pour restaurer l’harmonie face à l’architecture interne.",
+    transcriptMarkdown: `
 # Formation de l'Intestin Supérieur
 
 La formation de l'intestin supérieur est un processus complexe qui implique le mouvement de l'**endoderme**. Ce mouvement se manifeste à la fois dans sa globalité et de manière **transversale**, transformant un sac en tube. La **cavité amniotique** joue un rôle clé dans ce mouvement, englobant complètement l'embryon et intégrant le tube digestif de l'extérieur vers l'intérieur, principalement orienté par le **frein aortique** primitif.
@@ -6686,9 +7843,20 @@ Le développement des **ptérigoïdes** et du **palais** est influencé par la t
 Les forces occlusales, les pressions du massif lingual et les effets piézoélectriques influencent également la formation des dents et des structures faciales. Chaque dent reçoit une information spécifique, et traiter la face ou les dents nécessite de rééquilibrer ces structures avec leur origine embryonnaire.
 
 En conclusion, la formation de l'intestin supérieur et des structures faciales est un processus complexe, impliquant des interactions dynamiques entre les différents tissus embryonnaires et leur développement synchronisé.
-` },
-    {
-        id: "endo-11", categoryId: "endoderme", youtubeId: "", cloudflareId: "6481dc78aeb696228e7f667dd7b2f7dd", duration: "03:11", title: "11- revision_ Origine assymetrie du corps", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-11",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "6481dc78aeb696228e7f667dd7b2f7dd",
+    duration: "03:11",
+    title: "11- revision_ Origine assymetrie du corps",
+    shortSummary:
+      "Découvrez comment l'origine de l'asymétrie du corps se forme durant l'embryogenèse et son impact fascinant sur le développement des organes. Une vidéo captivante pour tout étudiant ou thérapeute souhaitant approfondir sa compréhension des structures corporelles internes.",
+    fullSummary:
+      "Cette vidéo explore les origines de l'asymétrie corporelle, en examinant le mouvement du processus notocordal et son rôle dans la formation du nœud d'Ensens. À travers ce processus, les chercheurs découvrent l'importance des microcils, liés à des troubles de la latéralité et influençant la position des organes comme le cœur et le foie. L'animation d'une cascade de molécules et de protéines spécifiques est mise en lumière, soulignant leur impact sur l'organisation asymétrique du corps. En plus d'un aspect théorique, cette leçon offre des insights précieux pour l'application clinique, renforçant la compréhension des mécanismes développementaux en embryologie biodynamique et ostéopathie.",
+    transcriptMarkdown: `
 # Origine de l'Asymétrie du Corps
 
 L'origine de cette **asymétrie** se produit lors du mouvement du **processus notocordal**. Ce mouvement engendre un nœud, appelé le **nœud d'Ensens**. Ce nœud est essentiel dans la formation de l'axe notocordal.
@@ -6702,9 +7870,20 @@ Lorsque ces petites **vésicules** éclatent, elles libèrent une nouvelle **nei
 Bien que le corps semble symétrique à l'extérieur, une grande asymétrie existe à l'intérieur, que ce soit au niveau **cérébral**, **oculaire**, ou dans l'ensemble du corps. Cette asymétrie s'étend entre le **sacrum** et la **base du crâne**, représentant l'organisation de la latéralité embryonnaire.
 
 Une cascade de ces petites molécules libère des **protéines spécifiques**, connues sous le nom de **sonotique HETCH**, ainsi que des gènes spécifiques contenant du **zinc**. Ces éléments activent un côté du système de la **corrompté** et de l'**hypercalcium**. Cette activité calcique joue un rôle crucial dans le développement des cellules, favorisant un développement plus rapide d'un côté par rapport à l'autre.
-` },
-    {
-        id: "endo-12", categoryId: "endoderme", youtubeId: "", cloudflareId: "9b0373fcfa6eeca2f95bc23098254bfa", duration: "01:03", title: "12-Exercice de Yoga", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-12",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "9b0373fcfa6eeca2f95bc23098254bfa",
+    duration: "01:03",
+    title: "12-Exercice de Yoga",
+    shortSummary:
+      "Découvrez un exercice de yoga puissant pour renforcer votre hara et améliorer votre respiration. Une pratique essentielle pour tous les thérapeutes et étudiants en quête d'équilibre et de contrôle intérieur.",
+    fullSummary:
+      "Dans cette vidéo, apprenez un exercice de yoga centré sur le contrôle du hara, essentiel pour la stabilité émotionnelle et physique. En plaçant votre main droite dans votre main gauche, et en visualisant une épée à votre ventre, vous développez une conscience profonde de cette région clé. À travers des respirations profondes, des expirations lentes et des apnées prolongées, vous serez guidé pour renforcer votre maîtrise du hara. Cette méthode progressive vous aidera à augmenter à la fois le nombre de répétitions et la durée de l'apnée, vous permettant d'atteindre une pratique allant jusqu'à deux minutes sans respirer.",
+    transcriptMarkdown: `
 # Exercice de Yoga : Contrôle du Hara
 
 Pour cet exercice, commencez par placer votre **main droite** dans votre **main gauche**. Imaginez que vous tenez une **épée** au niveau de votre ventre, ce qui vous aidera à avoir un **contrôle** sur le **hara**.
@@ -6714,9 +7893,20 @@ Commencez par **respirer** profondément dans le ventre. Inspirez par le nez, pu
 Effectuez une **apnée** de dix secondes après l'expiration. Ensuite, aspirez à nouveau. 
 
 Pratiquez cet exercice **trois fois**, en augmentant progressivement le nombre de répétitions jusqu'à **trente**. Avec le temps, vous pourrez prolonger la durée de l'apnée jusqu'à **une à deux minutes** sans respirer.
-` },
-    {
-        id: "endo-13", categoryId: "endoderme", youtubeId: "", cloudflareId: "11b4b7830b1ed72f55ad56dd4a1f1f0f", duration: "08:33", title: "13- Questions Jour 1", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-13",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "11b4b7830b1ed72f55ad56dd4a1f1f0f",
+    duration: "08:33",
+    title: "13- Questions Jour 1",
+    shortSummary:
+      "Découvrez comment le développement embryonnaire façonne la santé individuelle grâce à la compréhension des systèmes intégrés et de leur interdépendance. Apprenez à libérer les déséquilibres pour favoriser une croissance harmonieuse !",
+    fullSummary:
+      "Dans cette vidéo, nous plongeons dans le développement embryonnaire, en mettant l'accent sur la vésicule viteline et son rôle indispensable dans la nutrition et la formation du cordon ombilical. L'élargissement à la dynamique du système digestif et glandulaire offre une compréhension plus vaste des premiers stades de la vie, et l'importance des axes hormonaux comme l'axe hypothalamo-hypophysaire est révélée. Des méthodes pratiques pour libérer les congestions dans divers systèmes corporels sont présentées, tout en soulignant l'importance du mouvement et de la flexion dans la croissance embryonnaire. Explorez les liens entre les structures anatomiques et le développement harmonieux pour optimiser votre pratique d'ostéopathie et d'accompagnement.",
+    transcriptMarkdown: `
 # Développement Embryonnaire et Systèmes Intégrés
 
 La **vésicule viteline** joue un rôle crucial en tant que **réserve d'informations nutritives** au début du développement embryonnaire. À mesure que l'embryon grandit, cette vésicule régresse et s'intègre avec le **pédicule embryonnaire** pour former le **cordon ombilical**. Bien que ce processus puisse sembler complexe, il est essentiel de comprendre que la vésicule viteline contribue également au développement du **système intestinal**.
@@ -6736,9 +7926,20 @@ Le mouvement de flexion et d'allongement est essentiel pour la croissance embryo
 Les **globules rouges** et les **gonades** sont des éléments clés qui émergent de cette dynamique de croissance. Parfois, des individus peuvent rencontrer des **blocages** dans leur développement, ce qui nécessite une approche pour libérer ces nœuds et restaurer la **probabilité** de leur évolution.
 
 Cette dynamique de développement est une **biodynamique cinétique**, reliant le cerveau et les lignes de force aux axes durmériens et aux arcs branchiaux. Tout cela se répercute sur la **symphyse phénobasilaire**, un point crucial dans le développement embryonnaire. La compréhension de ces processus est essentielle pour appréhender la complexité du développement humain.
-` },
-    {
-        id: "endo-14", categoryId: "endoderme", youtubeId: "", cloudflareId: "6450b7e0428cfccd815437fb80f98283", duration: "05:11", title: "14-La Face", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-14",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "6450b7e0428cfccd815437fb80f98283",
+    duration: "05:11",
+    title: "14-La Face",
+    shortSummary:
+      "Découvrez comment la dynamique de la face révèle les secrets de notre santé globale à travers une approche ostéopathique holistique, alliant théorie embryologique et pratiques cliniques.",
+    fullSummary:
+      "Dans cette vidéo captivante, nous plongeons dans l'approche ostéopathique de la face à partir de la compréhension embryologique et de l'importance de l'environnement dans notre réorganisation corporelle. Les étudiants apprendront à relier les arcs mandibulaires à la base du crâne, tout en explorant le rôle des systèmes glandulaire, circulatoire et neurologique dans l'équilibre de la face. Cette formation met l'accent sur la dynamique entre la face et le développement du cerveau, et sur l'importance de la symphyse phénobasilaire pour favoriser une guérison profonde. Les participants seront également sensibilisés aux processus complexes de la crête neurale et à leur impact sur notre santé globale, intégrant une approche pratique pour traiter les hyper et hypomobilités liées à ces structures.",
+    transcriptMarkdown: `
 # La Face : Approche Ostéopathique et Développement Embryologique
 
 Dans ce cours, nous allons explorer la **pratique ostéopathique** de la face, en adoptant une approche **holistique**. Cela signifie que nous ne nous concentrons pas uniquement sur des zones spécifiques, mais que nous prenons en compte l'environnement qui nous entoure, car cet environnement joue un rôle crucial dans notre réorganisation.
@@ -6756,9 +7957,20 @@ Au fur et à mesure de ce développement, la face, initialement comprimée entre
 Nous observons également la **coulée de la crête neurale**, qui s'étend depuis le **mésencéphale** postérieur et envahit le **mésoderme** pour former du **mésectoderme**. Ce processus d'intégration se produit simultanément avec le développement du cerveau et l'organisation des **gaines durales**.
 
 Enfin, il est important de noter que la zone de la superficie à la profondeur, représentée par le mésectoderme, comprend la peau, les muscles, les os, et d'autres structures comme la cornée. Cette intégration est essentielle pour comprendre la complexité de la face et son rôle dans notre santé globale.
-` },
-    {
-        id: "endo-15", categoryId: "endoderme", youtubeId: "", cloudflareId: "608e30fd9ba81b5d9658452659955096", duration: "07:43", title: "15-Face_Dvt de la  Langue et Thyroide", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-15",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "608e30fd9ba81b5d9658452659955096",
+    duration: "07:43",
+    title: "15-Face_Dvt de la  Langue et Thyroide",
+    shortSummary:
+      "Découvrez comment le développement de la langue et de la thyroïde influence la posture et la dynamique corporelle. Une exploration essentielle pour tout thérapeute souhaitant améliorer ses pratiques en ostéopathie et embryologie biodynamique.",
+    fullSummary:
+      "Cette vidéo explore les processus complexes de développement de la langue et de la thyroïde au cours de l'embryogenèse, en mettant l'accent sur le redressement embryonnaire et ses implications sur la dynamique posturale. Les pratiques telles que la stabilisation de la langue et l'interaction avec le cartilage thyroïdien sont abordées, soulignant l'importance des structures entourant le foramen sécum. Les enseignants examinent également l'impact des arc branchiaux et des tissus embryonnaires sur le développement global, ainsi que l'importance des fulcrums dans le corps, notamment à travers le bassin. Ces concepts sont cruciaux pour les praticiens cherchant à intégrer une approche holistique dans leur travail ostéopathique.",
+    transcriptMarkdown: `
 # Développement de la Langue et de la Thyroïde
 
 Au moment de la **flexion** et du **redressement** de l'embryon, le tube digestif est initialement positionné assez bas. En observant le **palais**, on remarque qu'il présente une forme ogivale, alors qu'auparavant, il était plutôt bas. Ce redressement s'accompagne d'une **descente des ptérigoïdes** et d'une traction qui fait monter le tube digestif.
@@ -6780,9 +7992,20 @@ Le développement embryonnaire se déroule sur une période spécifique, avec la
 Les tissus embryonnaires s'influencent mutuellement : l'**ectoderme** et l'**endoderme** dépendent du **mésoderme**, qui assure la transmission des informations nutritives. Cette dynamique est essentielle pour comprendre le développement de la langue, de la thyroïde et de la parathyroïde.
 
 Il est crucial de suivre les **fulcrums** dans le corps, car ils se manifestent dans la pratique. Le **nombril** est un grand fulcrum, et il est essentiel que le bassin soit dégagé et libre pour un bon fonctionnement. Dans la pratique ostéopathique, le traitement du bassin est souvent une priorité, car il est lié à la **symphyse phénobasilaire**. Travailler sur le sacrum ou le bassin influence directement cette synphyse, permettant ainsi une approche holistique du corps.
-` },
-    {
-        id: "endo-16", categoryId: "endoderme", youtubeId: "", cloudflareId: "105720d888f31b797cdd6cc986351491", duration: "14:40", title: "16-Lecture de la face,Yeux,Langue", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-16",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "105720d888f31b797cdd6cc986351491",
+    duration: "14:40",
+    title: "16-Lecture de la face,Yeux,Langue",
+    shortSummary:
+      "Découvrez comment lire la face, les yeux et la langue pour déceler des déséquilibres internes et améliorer votre pratique thérapeutique. Apprenez à transformer l'apparence en diagnostic précis grâce à des signes corporels révélateurs !",
+    fullSummary:
+      "Cette vidéo offre une approche détaillée de l'analyse faciale et des signes associés aux yeux et à la langue, permettant aux thérapeutes d'interpréter visuellement l'état de santé global de leurs patients. À travers des exemples pratiques, l'enseignement couvre les indices révélateurs tels que les rides, la couleur des yeux et la texture de la langue, reliant ces éléments à des problèmes spécifiques des organes internes comme le foie, les reins et le système digestif. Vous apprendrez comment des caractéristiques apparemment innocentes peuvent être des indicateurs de maladies sous-jacentes, enrichissant ainsi votre pratique clinique avec des outils d'évaluation non invasifs et basés sur l'observation.",
+    transcriptMarkdown: `
 # Lecture de la Face, des Yeux et de la Langue
 
 L'analyse des **rides** sur le visage peut révéler des informations sur l'état de santé d'un individu. Par exemple, un excès de rides peut indiquer des **problèmes de déshydratation** ou d'**inquiétude**. La présence de lignes de soucis est souvent liée à des **problèmes d'estomac**. Une ligne marquée à droite peut signaler un **problème hépatique** ou une **colère renfermée**, tandis qu'à gauche, cela peut être associé à des troubles de la **rate**. Des lignes horizontales peuvent également indiquer des **allergies**.
@@ -6806,9 +8029,20 @@ Des dépôts sur la langue peuvent signaler des problèmes au niveau du colon ou
 La couleur de la langue est un indicateur clé des états internes. Une langue blanche peut signaler un **froid** dans le corps, tandis qu'une langue jaune peut indiquer une **humidité**. Une langue rouge signale un **excès de feu**, et une langue noire peut indiquer une **toxémie**.
 
 L'évolution de la couleur de la langue peut refléter la profondeur d'une pathologie. Les dépôts sur la langue sont souvent le reflet de l'état de l'estomac. Les médicaments peuvent également influencer l'apparence de la langue, et il est important de prendre en compte ces facteurs lors de l'évaluation de la santé d'un patient.
-` },
-    {
-        id: "endo-17", categoryId: "endoderme", youtubeId: "", cloudflareId: "40df9e15b3735c3bf2d5ae29fc5be4dd", duration: "10:59", title: "17-Lecture de la peau", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-17",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "40df9e15b3735c3bf2d5ae29fc5be4dd",
+    duration: "10:59",
+    title: "17-Lecture de la peau",
+    shortSummary:
+      "Découvrez comment la peau reflète l'état de santé interne grâce à son lien profond avec le liquide céphalo-rachidien et les hormones. Apprenez à interpréter les couleurs de la peau pour mieux diagnostiquer et traiter vos patients !",
+    fullSummary:
+      "Cette vidéo explore le rôle essentiel de la peau comme reflet de la qualité du liquide céphalo-rachidien et des déséquilibres internes. À travers des concepts d'embryologie, elle explique comment la peau se développe à partir de la crête neurale et comment les déséquilibres hormonaux et métaboliques peuvent se manifester à travers divers changements de pigmentation et d'état cutané. Les interactions entre organes, telles que celles entre la thyroïde, les surrénales et le système circulatoire, sont également abordées pour offrir une vision intégrative du traitement des problèmes cutanés. En comprenant ces interactions, les thérapeutes peuvent mieux diagnostiquer et relâcher les tensions corporelles pour un bien-être optimal.",
+    transcriptMarkdown: `
 # Lecture de la Peau
 
 La **peau** est le reflet de la qualité du **liquide céphalo-rachidien**. Lors de la fermeture du tube neural, la peau se développe à partir de la **crête neurale**. Ce processus commence avec une plaque neurale, entourée de **liquide amniotique**, qui forme une gouttière neurale. Ce liquide amniotique représente le liquide céphalo-rachidien primitif. Ainsi, le liquide présent dans le tube neural a la même origine que le tissu environnant.
@@ -6848,9 +8082,20 @@ Les couleurs de la peau peuvent également indiquer des déséquilibres :
 ### Conclusion
 
 La peau est un indicateur précieux de la santé interne. Les déséquilibres hormonaux, notamment ceux liés à la thyroïde, peuvent se manifester par des changements cutanés. Il est essentiel de considérer l'ensemble du système, y compris les interactions entre les organes, pour comprendre et traiter les problèmes de peau.
-` },
-    {
-        id: "endo-18", categoryId: "endoderme", youtubeId: "", cloudflareId: "1233874fc70e436843a64ac89ce38be7", duration: "03:40", title: "18-Lecture des Ongles,mains, état, cheveux", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-18",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "1233874fc70e436843a64ac89ce38be7",
+    duration: "03:40",
+    title: "18-Lecture des Ongles,mains, état, cheveux",
+    shortSummary:
+      "Découvrez comment vos ongles, mains et cheveux révèlent des indices précieux sur votre santé ! Cette vidéo vous enseignera à interpréter ces signes pour mieux comprendre l'état interne de vos patients.",
+    fullSummary:
+      "Dans cette vidéo captivante, vous apprendrez à lire les signaux que votre corps envoie à travers les ongles, mains et cheveux. La formation se concentre sur l'angulation des ongles, les différentes lignes qui indiquent des problèmes de nutriments et d'absorption, ainsi que l'impact des infections sur la santé minérale. Vous découvrirez également des indications sur les déséquilibres thyroïdiens et hépatiques à travers l'état des mains et des cheveux, avec des conseils pratiques pour évaluer les problèmes de santé liés. En combinant observations physiques et connaissances en embryologie biodynamique, cette approche intégrative vous permettra d'affiner votre diagnostic et d'adopter une stratégie de traitement plus ciblée.",
+    transcriptMarkdown: `
 # Lecture des Ongles, Mains, État et Cheveux
 
 Au niveau des **ongles**, l'**angulation normale** est d'environ **165 degrés**. Une inversion de cette angulation peut indiquer un **signe de défaillance pulmonaire**. Les ongles souvent **cassants** ou **rongés** sont typiques des personnes nerveuses ou des enfants qui s'ennuient.
@@ -6866,9 +8111,20 @@ Un **ongle jaune** est le signe d'un **foie fragile**, tandis qu'un **ongle bleu
 Les mains moites et froides peuvent indiquer un **déséquilibre thyroïdien** ou hépatique. Par exemple, une personne maigre avec des yeux exorbités et des mains moites présente souvent un déséquilibre thyroïdien. Il est important de vérifier également les **surrénales**, car un épuisement des surrénales peut affecter la conversion de la **T3** en **T4**.
 
 Les frilosités peuvent être le signe d'un épuisement de l'**énergie ancestrale** des reins ou d'un problème d'**hypothyroïdie**. Les **cheveux gris** chez une personne jeune peuvent indiquer un déséquilibre dans l'**absorption** de certains **acides aminés**, ce qui nécessite une évaluation de l'intestin et du foie. De plus, la décoloration des **sourcils** peut être un signe d'**allergie alimentaire** ou d'autres problèmes.
-` },
-    {
-        id: "endo-19", categoryId: "endoderme", youtubeId: "", cloudflareId: "c1490e222c4b9a9346a343bc99ea896c", duration: "07:11", title: "19-Pratique _la Face", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-19",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "c1490e222c4b9a9346a343bc99ea896c",
+    duration: "07:11",
+    title: "19-Pratique _la Face",
+    shortSummary:
+      "Découvrez comment rééquilibrer la face et le crâne grâce à une approche biodynamique unique. Initiez-vous à des techniques douces qui favorisent la santé et libèrent les tensions corporelles tout en respectant l'intégrité de votre patient.",
+    fullSummary:
+      "Dans cette vidéo, nous plongeons dans la pratique du rééquilibrage de la face en lien avec le cerveau, en explorant les lignes de force entre le neurocrâne et le viscérocrâne. Les concepts clés abordés incluent l'importance du système nerveux et viscéral, ainsi que la nécessité de détendre les zones comme le bassin et le médiastin avant d'aborder le crâne. La méthode se concentre sur une approche biodynamique qui favorise un toucher léger, permettant aux tensions d’être libérées tout en préservant l'intégrité corporelle. Cette session offre des outils concrets pour faciliter l'harmonie et l'unité corporelle chez le patient, tout en intégrant des éléments de conscience et de ressenti. Un apprentissage essentiel pour tout praticien désireux d'améliorer ses compétences en ostéopathie et embryologie biodynamique.",
+    transcriptMarkdown: `
 # Pratique de la Face : Rééquilibrage et Biodynamique
 
 Dans cette session, nous allons explorer les **lignes de force** qui relient la périphérie de la face à la base du crâne, dans le but de rééquilibrer la face en relation avec le cerveau. Le **neurocrâne** et le **viscérocrâne** s'articulent sur la **symphyse phénobasilaire**, ce qui nécessite un traitement intégré des deux.
@@ -6888,9 +8144,20 @@ Il est important de maintenir une **immobilité** tout en étant conscient des d
 En travaillant avec légèreté, je peux aider la personne à ressentir une **unité** dans son corps. Si des mémoires anciennes se manifestent, comme des tensions ou des douleurs, je les libère doucement. Cela permet de dégager des **souvenirs** corporels sans provoquer de douleur excessive.
 
 En conclusion, cette approche biodynamique vise à libérer les tensions tout en respectant l'intégrité du corps, permettant ainsi un rééquilibrage harmonieux de la face et du crâne.
-` },
-    {
-        id: "endo-20", categoryId: "endoderme", youtubeId: "", cloudflareId: "7585875397d08be8124cb2a0430cf98b", duration: "06:01", title: "20- Pratique_Synchronicite et Expansion cerveau", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-20",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "7585875397d08be8124cb2a0430cf98b",
+    duration: "06:01",
+    title: "20- Pratique_Synchronicite et Expansion cerveau",
+    shortSummary:
+      "Découvrez comment l'approche douce de la synchronicité et l'expansion cérébrale peuvent transformer vos pratiques ostéopathiques! Plongez dans des techniques innovantes pour revitaliser le corps et harmoniser l'énergie vitale.",
+    fullSummary:
+      "Cette vidéo explore des techniques innovantes centrées sur la synchronicité et l'expansion cérébrale, essentielles pour les praticiens en ostéopathie et en embryologie biodynamique. Vous apprendrez à évaluer l'énergie du cerveau en utilisant des mouvements de tai-chi et des approches holistiques basées sur un champ micro-crystallin. La session se concentre sur rééquilibrer le corps, en travaillant sur des axes spécifiques comme le mésentérique, afin de libérer l'énergie vitale ancienne et favoriser des sensations d'expansion au niveau cérébral. Les praticiens seront guidés à travers des expériences d'observation des effets subtils de ces techniques, tout en étant encouragés à partager leurs ressentis pour un apprentissage collectif.",
+    transcriptMarkdown: `
 # Pratique de la Synchronicité et Expansion du Cerveau
 
 Lors de notre dernière session, nous avons abordé l'importance de la **douceur** dans notre approche. Il est essentiel de travailler sur un **champ micro-crystallin** pour établir un contact holistique avec le corps.
@@ -6910,9 +8177,20 @@ Nous travaillons ici sur un niveau subtil. En profondeur, je ressens une **libé
 Le **diaphragme**, qui est un peu perturbé, est le premier à être traité. Décrivez vos ressentis, car cela peut entraîner des changements significatifs. Vous pourriez ressentir un dénouement, notamment dans la région de la bouche. La langue est souvent considérée comme le **bourgeon du cœur**, et cette approche va revitaliser les circuits fermés. 
 
 Est-ce que cela vous fait du bien ? Y a-t-il quelqu'un d'autre qui souhaite partager son expérience ?
-` },
-    {
-        id: "endo-21", categoryId: "endoderme", youtubeId: "", cloudflareId: "c58a4e2bad687a6c5e21c81cc8101913", duration: "09:22", title: "21-Le Tonsille Pharyngien", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-21",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "c58a4e2bad687a6c5e21c81cc8101913",
+    duration: "09:22",
+    title: "21-Le Tonsille Pharyngien",
+    shortSummary:
+      "Découvrez comment les amygdales pharyngiennes et le système sphéno-basilaire interagissent pour renforcer l'immunité et la santé globale. Apprenez des techniques essentielles en ostéopathie pour traiter les affections ORL et optimiser le développement immunitaire des enfants.",
+    fullSummary:
+      "Cette vidéo approfondit l'importance des amygdales pharyngiennes dans le système immunitaire et explore leur lien avec le système sphéno-basilaire. Les étudiants apprendront comment la mobilité de la symphyse sphéno-basilaire est vitale pour l'équilibre immunitaire et les échanges corporels, ainsi que l'impact des déséquilibres intestinaux sur la santé ORL. Le traitement craniosacré est également mis en lumière comme une stratégie pour renforcer le système immunitaire. De plus, des conseils pratiques concernant le traitement des affections telles que l'amygdalite et la sinusite, en tenant compte de l'anatomie et des mouvements physiologiques, sont fournis. Ces connaissances permettront aux thérapeutes d'adapter leur approche en fonction du développement immunitaire crucial des enfants.",
+    transcriptMarkdown: `
 # Le Tonsille Pharyngien : Importance et Interactions
 
 Les **amygdales pharyngiennes** jouent un rôle crucial dans le système immunitaire, notamment au niveau du **pharynx**. Elles font partie d'un ensemble appelé l'**anneau de Weymuller** et dépendent de la dynamique du **système sphéno-basilaire**. Ce dernier est essentiel pour la défense respiratoire et digestive, et contribue à l'équilibre immunitaire.
@@ -6938,9 +8216,20 @@ La **trompe de Stach** est également liée à la symphyse sphéno-basilaire, et
 La langue agit comme un stabilisateur vagal, et des perturbations au niveau de la mandibule ou de l'os hyoïde peuvent affecter la stabilité de la langue. La profondeur de la langue est liée à la **thyroïde**, et la position du corps dépend de la santé cardiaque.
 
 Les sensations dans la gorge ou le ventre ne sont pas nécessairement liées à l'hypertension artérielle, mais peuvent être des manifestations de pulsions profondes. Les informations reçues peuvent être vibratoires plutôt que purement physiologiques, ce qui explique l'importance des **fréquences** et des **mantras** dans certaines traditions, comme le **OM**, qui purifie le corps, la parole et l'esprit.
-` },
-    {
-        id: "endo-22", categoryId: "endoderme", youtubeId: "", cloudflareId: "10a715f1c4af1e7165caa04a589e7fc9", duration: "05:29", title: "22-Méditation_Le bras Marie", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-22",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "10a715f1c4af1e7165caa04a589e7fc9",
+    duration: "05:29",
+    title: "22-Méditation_Le bras Marie",
+    shortSummary:
+      "Découvrez comment la méditation et la respiration peuvent transformer votre pratique thérapeutique ! Apprenez à reconnecter corps et esprit tout en générant une profonde joie intérieure.",
+    fullSummary:
+      "Cette vidéo vous plonge dans une méditation centrée sur la technique de respiration 'brahmarie', inspirée des enseignements de Bouddha. Vous apprendrez les quatre étapes essentielles de la respiration consciente, de la pleine attention à la relaxation, et comment générer une sensation de joie. À travers un exercice pratique et des explications sur l'importance des sons et des fréquences, cette session vous guide pour mieux comprendre l'interaction entre la respiration et le bien-être émotionnel. En développant cette conscience corporelle, vous pourrez favoriser un état de guérison et d'équilibre intérieur à travers la reconnexion à votre force embryonnaire, essentielle pour votre développement personnel et thérapeutique.",
+    transcriptMarkdown: `
 # Méditation : Le Bras Marie
 
 Dans l'acte respiratoire, il y a **quatre temps** essentiels. D'abord, il est important d'apprendre à être **conscient de sa respiration**. Ensuite, il s'agit de suivre cette respiration avec **pleine conscience**. Cette pleine conscience implique une **énergie de concentration**, car il est nécessaire d'être attentif plus longtemps.
@@ -6968,9 +8257,20 @@ Votre cœur a commencé à battre après **21 jours** de gestation. Il est donc 
 Pour entrer en contact avec cette présence, il est essentiel d'accepter d'aller dans le silence. Cela peut favoriser un **mouvement de guérison** et permettre à la santé de s'exprimer plus facilement. En vous plaçant dans ce silence, laissez l'espace s'ouvrir. 
 
 Il est nécessaire de créer cet espace, car sans lui, il n'y a pas de développement. Ce silence spacieux permet au tissu de retrouver sa capacité à se réorganiser. Le corps sait comment se réorganiser lorsqu'il est dans cet espace, car il peut utiliser son **potentiel** inné. En redonnant cette possibilité au système, nous lui permettons de retrouver son équilibre.
-` },
-    {
-        id: "endo-23", categoryId: "endoderme", youtubeId: "", cloudflareId: "c2d5df2ad03ab26ba55215cff2f8b834", duration: "07:43", title: "23-Développement de L'Oesophage", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-23",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "c2d5df2ad03ab26ba55215cff2f8b834",
+    duration: "07:43",
+    title: "23-Développement de L'Oesophage",
+    shortSummary:
+      "Découvrez comment le développement de l'œsophage relie corps et esprit, influençant non seulement la digestion, mais aussi notre santé ORL. Un voyage fascinant à travers l'embryologie qui transformera votre approche thérapeutique !",
+    fullSummary:
+      "Cette vidéo explore en profondeur le développement de l'œsophage, soulignant son rôle essentiel en tant qu'articulation entre le mental et le cœur. On y aborde l'impact de la flexion embryonnaire sur le tronc, qui façonne le système digestif et permet la formation des poumons et de l'œsophage. Un focus est mis sur la structure adaptative de l'œsophage, son lien avec le diaphragme, et les conséquences des dysfonctionnements, notamment en matière de reflux et de problèmes ORL. Les interactions dynamiques entre l'œsophage, la trachée et l'aorte révèlent une complexité rythmique qui est cruciale pour notre santé globale. À travers des concepts clés tels que le plexus vagal et la vasculature péritonéale, cette leçon met en lumière l'importance du système embryonnaire pour la pratique ostéopathique.",
+    transcriptMarkdown: `
 # Développement de l'Oesophage
 
 Le développement de l'**œsophage** est une articulation entre le **mental** et le **cœur**. L'**aorte** joue un rôle central dans ce système, tandis que la **cavité amniotique** exerce une pression externe. Entre ces deux éléments, le **cerveau** oriente le développement et le **cœur** sert de point d'appui.
@@ -6994,9 +8294,20 @@ L'**œsophage** est impliqué dans la déglutition, la **trachée** dans la resp
 Nous avons également une continuité directe avec le système aortique, ainsi qu'un ligament qui s'étend vers le **quatrième portion du duodénum**, ouvrant une zone importante au niveau du **tronc cœliaque**. Ce dernier est essentiel pour la vascularisation de la partie péritonéale sous-diaphragmatique, irrigant le **foie** et l'**estomac**.
 
 Enfin, nous allons aborder l'étude des **poumons**, en passant en revue les différentes couches de l'œsophage et leur importance dans le développement global du système digestif.
-` },
-    {
-        id: "endo-24", categoryId: "endoderme", youtubeId: "", cloudflareId: "9320f0f86a69f246100ef2d91ee2c99a", duration: "09:49", title: "24-Dévelloppement Des Poumons", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-24",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "9320f0f86a69f246100ef2d91ee2c99a",
+    duration: "09:49",
+    title: "24-Dévelloppement Des Poumons",
+    shortSummary:
+      "Découvrez les étapes fascinantes du développement des poumons et leur lien avec le mouvement embryonnaire ! Apprenez à optimiser la fonction pulmonaire grâce à une approche biodynamique essentielle pour les thérapeutes.",
+    fullSummary:
+      "Cette vidéo explore en profondeur le développement embryonnaire des poumons, en commençant par l'organisation de la cavité amniotique et la formation du tube digestif, jusqu'à l'apparition des bronches et du diaphragme. Les concepts clés abordés incluent les mouvements de flexion, d'allongement et d'étirement qui caractérisent ce processus, ainsi que l'importance de l'environnement de développement. La vidéo met également en lumière le rôle des tissus mésodermiques et la relation entre le diaphragme et le système nerveux. Les thérapeutes apprendront comment optimiser la fonction pulmonaire en favorisant la liberté de mouvement au niveau des côtes et du fascia, tout en intégrant la dynamique d'aspiration développée pendant l'embryogenèse.",
+    transcriptMarkdown: `
 # Développement des Poumons
 
 Le développement des **poumons** peut être considéré comme un phénomène complexe lié à la croissance embryonnaire. Ce processus commence par l'organisation de la **cavité amniotique** et la formation du **tube digestif antérieur**, qui inclut l'apparition de diverticules. Au fur et à mesure de cette évolution, une zone pulmonaire se dessine, accompagnée de l'apparition des **bouches pulmonaires** et d'un champ d'aspiration.
@@ -7016,9 +8327,20 @@ La formation de la colonne vertébrale et la densification des tissus sont égal
 Le **hile pulmonaire** est un espace crucial où se rencontrent les tissus de la plèvre viscérale et pariétale. Cet espace est à la fois aérien, fluidique, lymphatique et neurologique, permettant des échanges gazeux sous pression partielle. Lors de l'inspiration, les poumons effectuent un mouvement de rotation et d'allongement, facilitant l'échange de gaz.
 
 Il est essentiel de comprendre que les poumons reposent sur un volume résiduel d'air, permettant des mouvements de bascule lors de l'inspiration. La liberté de mouvement des côtes et du fascia endothoracique est primordiale pour optimiser la fonction pulmonaire. Travailler sur le poumon dans sa phase d'aspiration permet de restaurer son mouvement embryonnaire et d'améliorer son efficacité respiratoire.
-` },
-    {
-        id: "endo-26", categoryId: "endoderme", youtubeId: "", cloudflareId: "65aec50bd0a87dd7b85f7845cb3d27ab", duration: "05:35", title: "26-Pratique_Les  Poumons", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-26",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "65aec50bd0a87dd7b85f7845cb3d27ab",
+    duration: "05:35",
+    title: "26-Pratique_Les  Poumons",
+    shortSummary:
+      "Découvrez comment la pratique des poumons en embryologie biodynamique vous permet d'accéder aux émotions profondément ancrées et de rétablir une respiration optimale pour vos patients. Apprenez à libérer les tensions et à recréer l'espace vital des poumons !",
+    fullSummary:
+      "Cette vidéo se concentre sur l'approche biodynamique des poumons, en mettant l'accent sur la manière dont le mouvement de bascule des poumons et la recherche du point de fulcrum embryonnaire sont essentiels pour restaurer leur fonction primaire. Les participants apprendront à observer la dynamique entre les poumons, la plèvre et le tissu environnant, notamment comment les émotions, telles que la tristesse, peuvent s'y loger et influencer la respiration. Des techniques visant à initier un dialogue tissulaire et à libérer les espaces pleuraux bondés d'exsudats sont également abordées, en soulignant l'importance de la réorganisation structurelle et émotionnelle des poumons pour améliorer la santé respiratoire.",
+    transcriptMarkdown: `
 # Pratique des Poumons
 
 La **main postérieure** est légèrement plus basse que la **main antérieure**, qui est légèrement plus haute. Cela est dû au mouvement de **bascule** des poumons sur leur axe. Ce mouvement est essentiel pour se placer dans le **champ embryonnaire** des poumons, où l'on recherche le **point de fulcrum embryonnaire**. Ce point représente un champ d'aspiration, permettant de se repotentialiser dans la fonction primaire des poumons, c'est-à-dire être prêt à **prendre le souffle de vie**.
@@ -7034,9 +8356,20 @@ Il est important de noter que ce tissu peut abriter des émotions, comme une **t
 Il est également crucial de dégager les poumons par rapport à leurs points d'attache, notamment les **ligaments suspenseurs du dôme pleural**. Les récessus, comme les **récessus costodiafragmatiques** et le **récessus frémomédiostinal**, jouent un rôle important dans la liberté du médiastin et du cœur.
 
 La production de liquide amniotique commence dès la **cinquième semaine** de grossesse et se développe jusqu'à la **38e semaine**, avec l'apparition du surfactant autour de la **25e semaine**. Les pathologies pulmonaires, telles que la bronchite ou la bronchiolite, peuvent être des manifestations cherchant à résoudre des problèmes non exprimés durant le stade embryonnaire, se manifestant sous forme de **liquide**. On peut dire que l'on "pleure dans les poumons".
-` },
-    {
-        id: "endo-27", categoryId: "endoderme", youtubeId: "", cloudflareId: "14d8fd636e9ef3f1f368b62d3616f227", duration: "02:48", title: "27- Méditation et Obstacles", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-27",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "14d8fd636e9ef3f1f368b62d3616f227",
+    duration: "02:48",
+    title: "27- Méditation et Obstacles",
+    shortSummary:
+      "Découvrez comment surmonter les obstacles à la méditation et cultiver une pleine conscience qui transforme votre pratique en une expérience éclairante et pleine de joie ! Cette vidéo vous guide vers une concentration profonde et une clarté mentale.",
+    fullSummary:
+      "Dans cette vidéo captivante, l'enseignant aborde les défis courants de la méditation, notamment la paresse et l'oubli des méthodologies essentielles. En soulignant l'importance d'une motivation authentique qui englobe les autres, il propose des antidotes comme l'attention et la pleine conscience pour surmonter ces obstacles. À travers une métaphore puissante de l'esprit comparé à une bougie, il nous invite à stabiliser notre concentration, révélant ainsi un potentiel caché pour une vision profonde. Cette session fournit des insights pratiques sur le développement de la clarté d'esprit, rendant la méditation accessible et enrichissante pour tous.",
+    transcriptMarkdown: `
 # Méditation et Obstacles
 
 Je suis conscient que j'inspire, je suis conscient que j'expire. Je prends conscience de ma **respiration** et de mon **corps**. Je relâche mon corps et génère un sentiment de **joie** et de **bonheur** dans le présent. Je prends conscience de ma **douleur**, je l'embrasse et je prends soin d'elle.
@@ -7050,9 +8383,20 @@ Il est normal de ne pas toujours se sentir bien en méditant. L'important est d'
 Il faut avancer progressivement. Imaginez entrer dans un espace où des secrets sont cachés derrière les murs. Vous entrez avec une **bougie**, qui représente votre esprit. Au début, la flamme de la bougie vacille, ce qui signifie qu'il n'y a pas de véritable luminosité. Cependant, à travers la pratique de la méditation, vous apprenez à stabiliser cette flamme. Une clarté lumineuse apparaît alors dans votre esprit.
 
 Cette clarté vous conduit à une **vision profonde**. Il est essentiel d'apprendre à stabiliser votre esprit, car cela nécessite un travail de **stabilisation**. Vous devez développer cette clarté de l'esprit à travers l'énergie de la **pleine conscience**, de la **concentration** et de la **vision profonde**. Avec de l'entraînement, tout le monde peut accéder à cela.
-` },
-    {
-        id: "endo-28", categoryId: "endoderme", youtubeId: "", cloudflareId: "fac7000b6ad8245fe570a3f162c14dc7", duration: "03:13", title: "28- Rappel Reconnexion Embryologique", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-28",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "fac7000b6ad8245fe570a3f162c14dc7",
+    duration: "03:13",
+    title: "28- Rappel Reconnexion Embryologique",
+    shortSummary:
+      "Découvrez comment chaque organe en développement atteint son potentiel maximal grâce à la reconnexion embryologique. Apprenez à libérer les pressions émotionnelles et physiques pour favoriser l'équilibre et le bien-être corporel.",
+    fullSummary:
+      "Cette vidéo explore la reconnexion embryologique, un concept fondamental en embryologie biodynamique et ostéopathie. Les intervenants discutent du développement des organes tels que le péritoine et la rate, ainsi que leur capacité à retrouver des fonctions ontogénétiques. Les participants apprennent comment des composantes essentielles comme la trajectoire, la concentration métabolique et les substances intercellulaires interagissent pour former des vaisseaux, et comment un équilibre volémique est crucial pour la santé générale. On aborde également l'impact des compressions au moment de la naissance sur la circulation sanguine, ainsi que l'importance du silence intérieur et de l'apprentissage dans l'état de calme pour favoriser la gratitude et la réorganisation du corps.",
+    transcriptMarkdown: `
 # Rappel de la Reconnexion Embryologique
 
 Chaque **organe** en voie de développement atteint à chaque instant le meilleur de son **potentiel**. Chaque étape de développement peut être considérée comme une **fonction**. Dans un stade précoce, le **péritoine** exprimait une membrane osmotique, que l'on pourrait considérer comme un **rein primitif**. Dans certains cas, le péritoine peut redevenir une **membrane de dialyse**.
@@ -7070,9 +8414,20 @@ Certaines personnes peuvent être bloquées au niveau de la rate, ce que l'on ap
 Nous apprenons dans un **silence** profond, souvent lors d'une **apnée expiratoire**. Dans cet état, nous recevons continuellement des informations. De même, dans le tissu, nous recherchons des **points de silence**, car c'est là où le corps se réorganise. 
 
 Le véritable silence est comparable à la **gratitude** : il implique une gratuité et une liberté. Ce sentiment de remerciement est ce que le tissu recherche. Il cherche à trouver son point de **gratitude** pour se rééquilibrer. L'embryon illustre parfaitement ce processus.
-` },
-    {
-        id: "endo-29", categoryId: "endoderme", youtubeId: "", cloudflareId: "455673ebcaca5c3d1b156f0cd19ca217", duration: "08:40", title: "29- Integration du Caelome Ext en un Interne", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-29",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "455673ebcaca5c3d1b156f0cd19ca217",
+    duration: "08:40",
+    title: "29- Integration du Caelome Ext en un Interne",
+    shortSummary:
+      "Découvrez comment l'intégration du cellulome externe en un cellulome interne structure le développement embryonnaire, influençant la motricité, la protection et même notre génétique. Une exploration fascinante pour comprendre les fondements de notre existence.",
+    fullSummary:
+      "Cette vidéo explore le processus complexe de l'intégration du cellulome externe en un cellulome interne, essentiel au développement embryonnaire. On y apprend comment le péritone se forme parallèlement au tube digestif et comment les influences mécanique et génétique de l'environnement façonnent notre épigénétique. Les concepts de polarité, de notocorde et de motricité sont exposés, illustrant comment la cavité amniotique et les aortes interagissent pour créer l'architecture embryonnaire. En analysant ce processus, la vidéo souligne l'importance du péritone non seulement comme structure protectrice, mais aussi comme acteur clé de l'intégration métabolique et génétique, garantissant notre adaptation à l'environnement dès le stade embryonnaire.",
+    transcriptMarkdown: `
 # Intégration du Caelome Externe en un Caelome Interne
 
 Le **péritone** se met en place simultanément avec la phase de développement de l'intégration du **cellulome externe** dans un **cellulome interne**. Cette mise en place primitive du péritone commence par la polarité et l'information sur le **tube neural**, dont la croissance est organisée dans l'espace et le temps par la réorganisation fluidique de l'embryon, notamment le développement précoce des **aortes primitives**. Ce processus est une recherche constante pour revenir vers la ligne médiane, avec l'axe de retour étant cette aorte.
@@ -7092,9 +8447,20 @@ Il est crucial de visualiser ce processus de croissance. La cavité amniotique e
 Les gènes présents dans la flore interagissent avec le cerveau et influencent la pensée, soulignant l'importance d'un environnement adéquat pour l'évolution. L'environnement dans lequel on évolue impacte également notre génétique et notre épigénétique, qui sont essentielles pour notre capacité d'adaptation.
 
 La première image de la cavité péritonienne montre un péritone qui a des fonctions **métaboliques**, **protectrices**, et **mécaniques**. Il participe à la motricité et à la mobilité, étant intégré par la motilité. Son origine est le **mésoderme**, ce qui lui confère des fonctions de soutien et de mobilité. Les cellules **mésotéliales** spécialisées au niveau du mésoderme permettent au péritone de capter des informations inter- et intra-péritoniales. Cette membrane séreuse est très large, mesurant environ 2 mètres carrés.
-` },
-    {
-        id: "endo-30", categoryId: "endoderme", youtubeId: "", cloudflareId: "7d8d66e364e76e3b204bb92088e2bb0f", duration: "04:49", title: "30- Propriétés du Péritoine", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-30",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "7d8d66e364e76e3b204bb92088e2bb0f",
+    duration: "04:49",
+    title: "30- Propriétés du Péritoine",
+    shortSummary:
+      "Découvrez comment le péritoine joue un rôle vital dans notre corps, non seulement en tant que barrière protectrice, mais aussi comme acteur clé dans l'équilibre biologique et immunitaire. Un enseignement incontournable pour tout thérapeute désireux d'intégrer ces connaissances dans sa pratique.",
+    fullSummary:
+      "Dans cette vidéo, explorez le péritoine, souvent sous-estimé, en tant qu'organe actif et dynamique. L'enseignement met en avant sa fonction essentielle dans la mobilité du liquide intrapéritonéal, son rôle dans l'intégration embryologique et son implication dans les échanges moléculaires au sein de l'organisme. Les concepts de continuité cellulaire et d'homéostasie sont approfondis, illustrant comment des interactions au niveau péritonéal peuvent déclencher des réponses immunitaires à distance, telles que des réactions allergiques. Un éclairage précieux sur les liens entre le péritoine et des symptômes apparemment non liés, comme l'asthme, rend cette vidéo cruciale pour tout professionnel des thérapies somatiques.",
+    transcriptMarkdown: `
 # Propriétés du Péritoine
 
 Le péritoine joue un rôle essentiel dans la **mobilité passive** et constante du **liquide intrapéritonéal**. Il participe également à la marche, surtout en cas de fixation péritonéale. Les membres supérieurs et inférieurs peuvent être considérés comme une **expansion** de ce sac péritonéal. Ce qui se passe dans cette région peut refléter un développement dans d'autres zones, illustrant une **continuité cellulaire**, tissulaire, moléculaire et même énergétique.
@@ -7112,9 +8478,20 @@ Des cellules de type **mésothélial**, comme les **macrophages**, les **polynuc
 Une mauvaise barrière immunitaire au niveau de la membrane péritonéale peut permettre à des macromolécules indésirables de passer, entraînant des réactions allergiques. Par exemple, une allergie au lait peut provoquer une réaction asthmatique, même si l'agent infectieux est initialement péritonéal. 
 
 Le tube digestif, considéré comme un tissu d'extérieur, peut également exprimer des problèmes par des symptômes tels que l'asthme ou la bronchite, en réponse à des agents allergènes. Les traitements, comme les **bronchodilatateurs** ou les **antibiotiques**, peuvent soulager les symptômes, mais ne résolvent pas toujours la cause sous-jacente, qui peut être simplement une allergie à un aliment, comme une fraise.
-` },
-    {
-        id: "endo-31", categoryId: "endoderme", youtubeId: "", cloudflareId: "544f507aba924aa01dab5ac3baf0a196", duration: "05:35", title: "31- MEP Tractus Gastro-Intestinal 1_ Délimitation de l' Embryon", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-31",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "544f507aba924aa01dab5ac3baf0a196",
+    duration: "05:35",
+    title: "31- MEP Tractus Gastro-Intestinal 1_ Délimitation de l' Embryon",
+    shortSummary:
+      "Découvrez comment la mise en place du tractus gastro-intestinal et la délimitation de l'embryon forment les fondations du corps humain. Un voyage fascinant au cœur du développement embryologique qui enrichira votre pratique.",
+    fullSummary:
+      "Cette vidéo aborde en profondeur la mise en place du tractus gastro-intestinal ainsi que la délimitation de l'embryon, en se concentrant sur le développement de l'estomac, du duodénum et du côlon. Les concepts clés tels que la synchronicité du développement, la dynamique des mouvements tridimensionnels, et l'importance du diaphragme pour la délimitation sont explorés. Les relations entre les différents organes, le péritoine et les structures associées sont détaillées, incluant des éléments comme le mésogastre et les épiplombs. Ce contenu offre des bases solides pour toute pratique thérapeutique, en soulignant l'importance d'une compréhension intégrale des processus embryologiques dans l'ostéopathie.",
+    transcriptMarkdown: `
 # Mise en Place du Tractus Gastro-Intestinal et Délimitation de l'Embryon
 
 Nous allons étudier la **mise en place** du **tractus gastro-intestinal**, de la **cavité péritonéale** et du **péritoine** dans le développement de l'estomac, du duodénum, de l'intestin et du côlon.
@@ -7138,9 +8515,20 @@ Un épiplomb ou un méso est toujours une double lame qui contient un vaisseau a
 Au niveau du péritoine, nous avons le **mésoderme**, la **somatopleure**, la **splanchnopleure**, ainsi que le **mésogastrome** ventral et dorsal. Nous avons également des méso, des fascia, des **omentums** (épiplombs) et des ligaments. Tout cela constitue le péritoine, organisé dans la cavité péritonéale. 
 
 L'intestin commence à grandir, le foie se développe, l'estomac veut s'exprimer et les poumons poussent. Tout cela doit trouver sa place.
-` },
-    {
-        id: "endo-32", categoryId: "endoderme", youtubeId: "", cloudflareId: "90139b1c0b9aff8a0c20515b0cb94552", duration: "17:08", title: "32- MEP Tractus Gastro-Intestinal 2_ Estomac, Arr Cavité, Epiplons", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-32",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "90139b1c0b9aff8a0c20515b0cb94552",
+    duration: "17:08",
+    title: "32- MEP Tractus Gastro-Intestinal 2_ Estomac, Arr Cavité, Epiplons",
+    shortSummary:
+      "Découvrez comment l'organisation complexe du tractus gastro-intestinal, en particulier l'estomac et ses épiplons, influence la santé digestive. Apprenez des techniques pour libérer les tensions et optimiser le fonctionnement de ces organes vitaux !",
+    fullSummary:
+      "Cette vidéo explore en profondeur la mécanique et l'organisation du tractus gastro-intestinal, en se concentrant sur l'estomac et son environnement péritonéal. Les concepts de développement organique, de rotation gastrique et d'interactions vasculaires sont entrelacés pour expliquer comment ces éléments influencent la digestion et la santé digestive. Vous apprendrez à traiter efficacement les dysfonctionnements gastriques par la libération des tensions au niveau du diaphragme et de l'œsophage, en tenant compte des influences hormonales des organes pelviens. Une compréhension approfondie de la dynamique interne de l'estomac et du péritoine est essentielle pour tout thérapeute souhaitant améliorer le bien-être de ses patients.",
+    transcriptMarkdown: `
 # Mécanismes et Organisation du Tractus Gastro-Intestinal : Estomac et Épiplons
 
 Le **péritoine** viscéral de l'estomac se divise en plusieurs feuillets : le **feuillet gauche** et le **feuillet droit**. Le péritoine pariétal et viscéral, ainsi que le péritoine hépatique, jouent un rôle crucial dans l'organisation de la cavité abdominale.
@@ -7174,9 +8562,20 @@ Il est également important de prendre en compte l'impact des organes pelviens s
 ### Conclusion
 
 La compréhension des interactions entre les différents organes et leur organisation dans la cavité péritonéale est essentielle pour traiter efficacement les dysfonctionnements gastriques. La libération des tensions et l'adaptation des organes sont des éléments clés pour maintenir une bonne santé digestive.
-` },
-    {
-        id: "endo-33", categoryId: "endoderme", youtubeId: "", cloudflareId: "a05f9132bdf28b0da6d036aadfdf0893", duration: "07:43", title: "33- Pratique_Rappels & Travail en Chaine pour L'estomac", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-33",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "a05f9132bdf28b0da6d036aadfdf0893",
+    duration: "07:43",
+    title: "33- Pratique_Rappels & Travail en Chaine pour L'estomac",
+    shortSummary:
+      "Découvrez comment libérer l'énergie de l'estomac grâce à des techniques de travail en chaîne basées sur l'embryologie et l'ostéopathie. Transformez la colère en clarté d'esprit tout en apprenant à soulager les tensions physiques et émotionnelles.",
+    fullSummary:
+      "Cette vidéo propose une approche approfondie du travail ostéopathique sur l'estomac, en mettant l'accent sur le lien entre le tube digestif et les émotions. Les concepts clés incluent la manipulation douce depuis la base du crâne jusqu'à l'estomac, en tenant compte des points d'appui et des fulcrums embryologiques. Vous apprendrez à reconnaître et traiter les tensions et les émotions retenues, comme la colère, tout en améliorant la fonctionnalité organique. La vidéo explore également la relation entre l'estomac, la parole, et la respiration du patient, en intégrant des techniques de transmutation et de connexion au système limbique pour ancrer les corrections dans la mémoire corporelle.",
+    transcriptMarkdown: `
 # Pratique : Rappels & Travail en Chaîne pour l'Estomac
 
 Le **tube digestif** s'étend de la bouche jusqu'à la membrane anorectale. Nous avons déjà exploré l'œsophage, les poumons et maintenant l'estomac, en tenant compte de son **emballage** essentiel, à savoir la **poche rétrogastrique** et le **péritoine**. Ce dernier doit être considéré comme un élément **intelligent** dans notre approche.
@@ -7198,9 +8597,20 @@ L'estomac, dans sa globalité, est relié à l'arrière-cavité des **épiplants
 Une **transmutation** douce se produit, et il est possible de ressentir une odeur qui se dégage du tissu, indiquant un changement. En travaillant au niveau du **sacrum**, nous pouvons explorer le petit bassin, ce qui peut aider à réaligner le corps. Une forte chaleur peut être ressentie, symbolisant l'alignement des ancêtres.
 
 Nous inscrivons ces corrections dans le cerveau du patient, en accédant au **système limbique** pour qu'il retienne ce moment comme une **éternité**.
-` },
-    {
-        id: "endo-34", categoryId: "endoderme", youtubeId: "", cloudflareId: "6162f25bea38b8f59a962b902be32bc2", duration: "04:27", title: "34- Synchronique Globale_Rappel et Intro pour Duodenum", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-34",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "6162f25bea38b8f59a962b902be32bc2",
+    duration: "04:27",
+    title: "34- Synchronique Globale_Rappel et Intro pour Duodenum",
+    shortSummary:
+      "Découvrez comment l'embryologie et la biodynamique se rencontrent pour enrichir votre pratique ostéopathique ! Apprenez les interconnexions essentielles entre les organes et leur développement synchronisé, et transformez votre approche thérapeutique.",
+    fullSummary:
+      "Dans cette vidéo, nous explorons la complexité du développement embryonnaire, en mettant l'accent sur l'interconnexion des systèmes tels que le cortex, le cœur, les poumons, le foie et le pancréas. Apprenez comment ces éléments évoluent simultanément selon un timing spécifique, et découvrez l'importance de la polarité et de l'axe notocordal dans la morphogenèse. L'enseignement aborde également les implications cliniques de cette dynamique embryonnaire en ostéopathie, en soulignant la nécessité de rétablir des points d'appui et d'identifier les fulcrums embryonnaires pour optimiser les soins. Enfin, le développement du duodénum, avec ses processus de rotation et d'organisation, est présenté comme essentiel à la compréhension de l'interaction entre les intestins et les organes associés.",
+    transcriptMarkdown: `
 # Synchronique Globale : Rappel et Introduction pour le Duodénum
 
 Le développement embryonnaire implique une **interconnexion complexe** entre plusieurs systèmes. On observe un développement simultané du **cortex**, du **cœur**, des **poumons**, ainsi que du **foie** et du **pancréas digestif**. Ce processus est marqué par des phénomènes de **colocalisation** et de **synchronicité** durant la morphogenèse, où chaque élément se réintègre dans un **timing spécifique**.
@@ -7216,9 +8626,20 @@ Cette congestion est à l'origine de l'**impulsion primitive** sur le plan méso
 Le foie est considéré comme un produit de la **désassimilation**, se développant à partir des exudats du corps. Il reçoit également des informations via le système **ombilical** et **ophalomésentérique**, ce qui lui permet de prendre un nouvel espace. Ce développement, influencé par la **latéralité de l'embryon**, entraîne une réorganisation de l'espace intra-péritonéal.
 
 La phase de développement du duodénum est caractérisée par une **rotation** et une **organisation** qui définissent le cadre du **duodéno-intestin-grêle-écolique**. Cette dynamique sera explorée en relation avec le duodénum.
-` },
-    {
-        id: "endo-35", categoryId: "endoderme", youtubeId: "", cloudflareId: "3471e720f3f8f99efe93a48453354cad", duration: "28:04", title: "35-Développement du Cadre Colique_ Le Duodénum", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-35",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "3471e720f3f8f99efe93a48453354cad",
+    duration: "28:04",
+    title: "35-Développement du Cadre Colique_ Le Duodénum",
+    shortSummary:
+      "Découvrez comment le duodénum et ses sphincters influencent la digestion, l'absorption et même la fertilité. Une approche innovante qui relie embryologie et ostéopathie pour optimiser la santé !",
+    fullSummary:
+      "Cette vidéo enseigne le développement du duodénum en relation avec le foie, le pancréas, et les sphincters, essentiels à la digestion et à l'homéostasie. En explorant la dynamique de rotation de 90 degrés, l'interconnexion des organes et l'impact des mouvements sur l'équilibre hormonal et neurovasculaire, le conférencier met en lumière comment un déséquilibre dans le cadre duodénal peut influencer non seulement l'absorption des nutriments, mais aussi la fertilité. L'importance des sphincters, leur rôle en tant qu'articulations et leur functionality mécanique sont analysés, tout en soulignant leur impact sur le système immunitaire et l'état émotionnel.",
+    transcriptMarkdown: `
 # Développement du Cadre Colique : Le Duodénum
 
 Cette phase de développement **duodénal** est caractérisée par une **rotation** et une **organisation** du cadre duodéno, de l'intestin grêle et du colon. Nous allons explorer cette dynamique en relation avec le duodénum.
@@ -7248,9 +8669,20 @@ Le sphincter de D, en relation avec le développement du foie et du pancréas, e
 Le muscle de Tretz, en tant que carrefour vasculaire, influence le débit sanguin intra-péritonéal et sus-mésocolique. Les viscérospasmes peuvent avoir des répercussions sur la circulation sanguine, affectant ainsi l'état métabolique et digestif.
 
 Le traitement des déséquilibres au niveau du duodénum nécessite une approche holistique, prenant en compte les interactions entre les différents systèmes. La compréhension de l'embryologie, de l'anatomie et de la physiologie est essentielle pour appréhender les liens entre le corps, l'esprit et la santé globale.
-` },
-    {
-        id: "endo-36", categoryId: "endoderme", youtubeId: "", cloudflareId: "6c4049c019d28bc079e83cb1ee3912c0", duration: "00:54", title: "36- Développement du Colon_Intro", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-36",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "6c4049c019d28bc079e83cb1ee3912c0",
+    duration: "00:54",
+    title: "36- Développement du Colon_Intro",
+    shortSummary:
+      "Découvrez comment le développement du colon, véritable reflet de notre santé, influence la dynamique entre le cerveau, le cœur et le tube digestif. Plongez dans les connexions fascinantes entre ces éléments essentiels !",
+    fullSummary:
+      "Cette vidéo explore le développement du colon, considéré comme un espace de révélation pour notre santé digestive. Vous apprendrez des concepts clés tel le 'tai chi du colon', qui relie le sécum à la dynamique du duodénum, tout en mettant en lumière l'importance du mouvement du foie et de la vésicule viteline. Ce cours met en avant l'interaction cruciale entre le cerveau et le cœur, montrant comment ces éléments s'alignent pour rééquilibrer le tube digestif et améliorer notre bien-être. Une approche intégrative essentielle pour les étudiants et praticiens en embryologie biodynamique et ostéopathie.",
+    transcriptMarkdown: `
 # Développement du Colon
 
 L'esprit et le corps se cachent dans le **colon**. Le mot **colon** vient de "coleone", signifiant l'infini. 
@@ -7262,9 +8694,20 @@ Nous allons explorer le **tai chi du colon**, en le reliant au cadre **duodénal
 En parallèle, un mouvement se produit au niveau de la **vésicule viteline**. Le grand fulcrum de cette dynamique réside dans l'interaction entre le **cerveau** et le **cœur**, permettant d'aller encore plus loin dans cette exploration.
 
 Dans cette phase de développement, nous observons comment tout cela organise complètement le **tube digestif**. Il s'agit d'un rééquilibrage de la dynamique entre le cerveau, le cœur et le retour vers la vésicule viteline.
-` },
-    {
-        id: "endo-37", categoryId: "endoderme", youtubeId: "", cloudflareId: "d863a556097f77854954be26fe174f0c", duration: "08:37", title: "37- Développement du Foie & Vesicule", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-37",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "d863a556097f77854954be26fe174f0c",
+    duration: "08:37",
+    title: "37- Développement du Foie & Vesicule",
+    shortSummary:
+      "Plongez dans le fascinant développement du foie et de la vésicule, où l'interconnexion entre le cerveau, le cœur et l'embryon façonne cette structure vitale. Ideal pour les étudiants souhaitant optimiser leur compréhension de l'embryologie et son application en ostéopathie !",
+    fullSummary:
+      "Cette vidéo offre une exploration approfondie du développement du foie, enracinée dans le contexte endodermique, et révèle comment la notocorde et le cerveau influencent cette formation. Les concepts clés incluent les relations entre les différentes parties de l'intestin, l'importance de la congestion vasculaire primitive, et la structuration complexe des canaux biliaires. Vous découvrirez également comment le foie sert de point d'appui central dans l'organisation embryologique et son rôle fondamental dans la détoxication. L'éclairage sur le flux sanguin veineux et artériel apporte une dimension essentielle à votre compréhension des fonctions hépatiques et de leur régénération. Une ressource précieuse pour tout étudiant ou thérapeute cherchant à intégrer l'embryologie à sa pratique ostéopathique.",
+    transcriptMarkdown: `
 # Développement du Foie et de la Vésicule
 
 Le développement du **foie** s'inscrit dans un contexte **endodermique**. La première impulsion au niveau hépatique provient de la **notocorde**, qui influence la formation du **tube neural**. Des cellules **mésenchymateuses** contribuent à la formation du sac péricardique et diaphragmatique. 
@@ -7288,9 +8731,20 @@ Le foie, en tant que point d'appui central, joue un rôle crucial dans l'équili
 Le développement hépatique est synchronisé avec d'autres structures, telles que le **cerveau** et le **cervelet**. Les tensions et les mouvements dans ces espaces de développement communs influencent la santé et le fonctionnement du foie.
 
 Enfin, il est essentiel de noter que pendant la phase digestive, le foie reçoit une grande quantité de **sang veineux** et peu de **sang artériel**. En revanche, pendant la nuit, la circulation s'inverse, permettant au foie de se régénérer sur le plan cellulaire.
-` },
-    {
-        id: "endo-38", categoryId: "endoderme", youtubeId: "", cloudflareId: "ea8b6a3b7794840513c3453c7e6e6bb9", duration: "02:56", title: "38-Développement du Pancréas", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-38",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "ea8b6a3b7794840513c3453c7e6e6bb9",
+    duration: "02:56",
+    title: "38-Développement du Pancréas",
+    shortSummary:
+      "Découvrez comment le pancréas se développe et influence notre métabolisme ! Plongez dans cette vidéo captivante pour maîtriser les dynamiques embryologiques essentielles à votre pratique thérapeutique.",
+    fullSummary:
+      "Dans cette vidéo sur le développement du pancréas, vous apprendrez comment cet organe crucial se forme à partir de la phase de développement hépatique et des mouvements gastriques. À travers une approche détaillée, le contenu couvre les transitions entre le pancréas antérieur et dorsal, ainsi que les types de pancréas exocrine et endocrine. Les interactions entre le pancréas, le foie et les autres structures embryologiques comme l'estomac et le cœur sont explorées, illustrant la complexité de ces relations et leur impact sur la santé métabolique via l'insuline. Cette leçon inclut des éléments théoriques et pratiques, idéaux pour améliorer votre compréhension en ostéopathie et embryologie.",
+    transcriptMarkdown: `
 # Développement du Pancréas
 
 Dans cette phase de **développement hépatique** et de mise en place du **mouvement gastrique** ainsi que de l'**arrière-cavité des épiplons**, on observe au départ un **pancréas antérieur** et un **pancréas dorsal**. 
@@ -7306,9 +8760,20 @@ Lors de la dissection, il est important de noter qu'il est très difficile de s�
 Ce processus est comparable à un mouvement de **tai chi**, se déroulant simultanément au niveau du cerveau et des mains. On observe l'ouverture des **poumons**, le **looping du cœur**, le développement du **cerveau**, ainsi que la spirale du **système diaphragmatique**. 
 
 Le développement anti-horaire du **côlon** et l'expression des **membres supérieurs** se font également en synchronisation. Lors de la flexion du cerveau, il est intéressant d'observer les interactions au niveau du cœur, l'ébauche des yeux, la configuration du visage, du palais et des poumons, et d'évaluer où l'on en est dans ce processus.
-` },
-    {
-        id: "endo-39", categoryId: "endoderme", youtubeId: "", cloudflareId: "f0306c1fa07d2ecdf28c396977eb09d1", duration: "20:47", title: "39-Développement de l'Anse Intestinale", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-39",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "f0306c1fa07d2ecdf28c396977eb09d1",
+    duration: "20:47",
+    title: "39-Développement de l'Anse Intestinale",
+    shortSummary:
+      "Explorez les fascinantes dynamiques du développement embryonnaire de l'anse intestinale et leur impact sur la santé globale ! Cette vidéo vous révèlera comment les connexions entre les émotions et la santé intestinale peuvent transformer votre pratique thérapeutique.",
+    fullSummary:
+      "Cette vidéo approfondit le développement embryologique de l'anse intestinale, en mettant l'accent sur la rotation antihoraire de l'intestin, l'importance de l'artère mésentérique supérieure et son influence sur la dynamique de croissance intestinale. Les concepts clés abordés incluent la relation entre l'estomac, le foie et le cœur, ainsi que les différents points d'appui essentiels pour le développement et le fonctionnement de l'intestin. De plus, la vidéo explore les liens entre les émotions et la santé intestinale, détaillant comment des sentiments comme la colère ou la peur peuvent affecter la digestion. Vous apprendrez également l'importance de considérer la dynamique péritonéale lors du traitement des troubles intestinaux, enrichissant ainsi votre approche thérapeutique en ostéopathie.",
+    transcriptMarkdown: `
 # Développement de l'Anse Intestinale
 
 Le **cordon ombilical** est initialement volumineux, mais il va se réduire au fil du développement. Au départ, l'**intestin** se développe en dehors de la cavité péritonéale, en raison d'un **apport trophique** important, principalement fourni par l'**artère mésentérique supérieure**. Cette artère, qui se divise à partir de l'aorte, constitue l'axe de la rotation intestinale.
@@ -7332,9 +8797,20 @@ Les émotions et les états d'âme sont également liés à la santé intestinal
 Le **colon descendant** est lié à des problématiques familiales et à la recherche d'indépendance. L'**appendice** et le **cæcum** jouent un rôle important dans la défense immunitaire. Les problèmes intestinaux chez les enfants, tels que les **appendicites**, peuvent être liés à des phases de développement embryonnaire.
 
 Le traitement des troubles intestinaux doit prendre en compte la dynamique péritonéale et les relations entre les différents organes. La stabilisation du cadre péritonéal peut aider à résoudre de nombreux problèmes de santé, notamment les infections et les inflammations.
-` },
-    {
-        id: "endo-40", categoryId: "endoderme", youtubeId: "", cloudflareId: "13d1e0e7a0444e0bd09fb45f638b4063", duration: "03:16", title: "40- Pratique 1 Le Cadre Colique", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-40",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "13d1e0e7a0444e0bd09fb45f638b4063",
+    duration: "03:16",
+    title: "40- Pratique 1 Le Cadre Colique",
+    shortSummary:
+      "Découvrez comment équilibrer le cadre colique avec des techniques de palpation précises pour réconcilier corps et psyché. Une pratique essentielle pour tous les thérapeutes souhaitant approfondir leur compréhension des dynamiques internes du vivant.",
+    fullSummary:
+      "Dans cette vidéo, la pratique du cadre colique est explorée à travers des points d'appui cruciaux tels que l'artère mésentérique et l'angle collique gauche. Les intervenants mettent l'accent sur la motilité intestinale et son lien avec les plans psychique et émotionnel, démontrant comment certaines tensions peuvent refléter des déséquilibres internes comme la ptose ou des dysfonctionnements viscéraux. L'importance de la normotension abdominale est soulignée, affrontant les problématiques d'hypertension et d'hypotension. Les connexions entre le côlon transverse et les certitudes personnelles, ainsi que l'impact des excès alimentaires sur le bien-être, sont également abordées, offrant aux étudiants et thérapeutes des clés pour une approche intégrative et libératrice.",
+    transcriptMarkdown: `
 # Pratique 1 : Le Cadre Colique
 
 Dans cette pratique, nous allons explorer les **points d'appui** essentiels dans le cadre colique.
@@ -7354,9 +8830,20 @@ Il est important de noter que des **excès alimentaires** peuvent encore être a
 Le **côlon transverse** représente mes **certitudes** dans la vie. Si ces certitudes ne sont pas résolues, elles se transforment en **doutes**. En montant, je fais face à la **zone de confiance**, où se trouvent mes **angoisses**. L'angle ici est ce que l'on appelle le **boulet du coupable**, qu'il est essentiel de dégager.
 
 Enfin, en redescendant, j'aborde la **recherche de mon indépendance**, un processus par lequel je dois être totalement libre de mes **parents**.
-` },
-    {
-        id: "endo-41", categoryId: "endoderme", youtubeId: "", cloudflareId: "de6e5e48e167d03e66c99a3c18509270", duration: "03:23", title: "41- Pratique 2 Le Cadre Colique", transcriptMarkdown: `
+`,
+  },
+  {
+    id: "endo-41",
+    categoryId: "endoderme",
+    youtubeId: "",
+    cloudflareId: "de6e5e48e167d03e66c99a3c18509270",
+    duration: "03:23",
+    title: "41- Pratique 2 Le Cadre Colique",
+    shortSummary:
+      "Découvrez comment rétablir l'harmonie corporelle après une césarienne grâce à des techniques de palpation avancées et à une compréhension approfondie du cadre colique. Une approche essentielle pour tout thérapeute souhaitant améliorer son accompagnement post-chirurgical !",
+    fullSummary:
+      "Cette vidéo explore les techniques de redynamisation corporelle après une césarienne, mettant l'accent sur le cadre colique et l'importance du péritoine. Les participants apprendront à effectuer une palpation approfondie du ventre, en prennent en compte la réponse tissulaire et thermique, tout en restaurant l'homogénéité du corps. Des concepts clés comme le fulcrum terminal, la nécessité de libérer des tissus et l'ajustement dynamique après des interventions comme l'hystérectomie sont abordés. Les praticiens découvriront comment travailler efficacement sur des zones spécifiques pour encourager une réintégration harmonieuse et un processus thérapeutique holistique.",
+    transcriptMarkdown: `
 # Pratique 2 : Le Cadre Colique
 
 Une **césarienne** sectionne le corps entre le haut et le bas, nécessitant une **redynamisation**. L'utérus représente une concentration de **péritoine pariétal postérieur**. Au cours du développement dans le péritoine, il existe une concentration et une puissance qui se recentrent, formant un **fulcrum terminal**. Ce fulcrum est à la fois embryonnaire et final, et il est crucial de les ramener en conscience.
@@ -7368,15 +8855,20 @@ Lorsque la chaleur augmente, toutes les lignes de force semblent s'orienter vers
 Dans le cas d'une **hystérectomie**, la dynamique corporelle change, et le patient peut développer une **bosse de bison**. Cela nécessite un rééquilibrage dans plusieurs zones. Le travail se concentre sur des points tissulaires, permettant une libération des tissus et un développement synchronisé. Des points d'appui sont essentiels, notamment pour obliger le **diaphragme** à travailler différemment, en cherchant d'autres espaces et ouvertures.
 
 Le praticien peut alors aborder des zones spécifiques comme l'hépatique et le sigmoïdien, permettant une détente complète.
-` },
-    {
-        id: "oeil-1",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "3db2fd4744dc9ac3e144f0cedeefa701",
-        duration: "16:19",
-        title: "1. Une nouvelle Vision",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-1",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "3db2fd4744dc9ac3e144f0cedeefa701",
+    duration: "16:19",
+    title: "1. Une nouvelle Vision",
+    shortSummary:
+      "Découvrez comment une nouvelle perception de la réalité peut transformer votre pratique thérapeutique! Apprenez à transcender les illusions et à embrasser l'interdépendance pour une guérison authentique.",
+    fullSummary:
+      "Dans cette vidéo captivante, il est question d'une nouvelle vision de notre relation avec la Terre et de la manière dont elle devrait influencer notre pratique en tant que thérapeutes. En s'appuyant sur des concepts tels que l'illusion des perceptions et l'interconnexion, l'orateur propose un renouveau de la conscience qui permet non seulement de soulager la souffrance des patients, mais aussi de contribuer à leur éveil spirituel. Les trois éléments essentiels à intégrer sont la mobilisation, la création et le travail spirituel, chacun servant à faire émerger de nouvelles perspectives et à encourager une vie plus simple et plus consciente. Une invitation à abandonner les plaisirs sensoriels au profit d'une joie authentique se dégage durablement de cette approche, apportant ainsi une nouvelle dimension à la thérapie.",
+    transcriptMarkdown: `
 # Une Nouvelle Vision
 
 La perception que nous avons de la réalité peut souvent être une **énorme illusion**. Par exemple, vous avez l'impression que j'existe ici devant vous, mais en réalité, je suis un **mirage**. Yona Messi a écrit un livre qui nous invite à considérer la **Terre** comme une extension de nous-mêmes, dans un esprit de **respect** et d'amour.
@@ -7404,15 +8896,20 @@ Je vous encourage à apprendre à vous observer et à examiner vos comportements
 Le **contentement** peut émerger d'une certaine **neutralité**. La joie du renoncement est un concept que l'on retrouve dans les textes bouddhistes. Le Bouddha lui-même a exprimé que, bien qu'il ait d'abord ressenti de la colère à l'idée de renoncer, il a finalement trouvé une immense joie dans ce **relâchement**.
 
 Je vous invite à réfléchir à ce que vous pourriez abandonner pour réduire la souffrance dans votre vie et celle des autres. En tant que thérapeutes, nous avons la responsabilité d'ouvrir cette conscience et de nous diriger vers une forme de **simplicité**. Cela peut même signifier trouver de la joie à renoncer à certains de nos **privilèges**.
-` },
-    {
-        id: "oeil-2",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "0a7f17ccda40f87f071b25ef58a80315",
-        duration: "06:56",
-        title: "2. Introduction à L'Oeil",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-2",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "0a7f17ccda40f87f071b25ef58a80315",
+    duration: "06:56",
+    title: "2. Introduction à L'Oeil",
+    shortSummary:
+      "Découvrez comment l'œil, au-delà de la vision, influence notre corps et nos émotions. Apprenez à 'regarder avec le cœur' pour modifier votre perception et améliorer votre pratique thérapeutique.",
+    fullSummary:
+      "Cette vidéo offre une plongée fascinante dans l'anatomie et la physiologie de l'œil, révélant son rôle vital non seulement dans la vision, mais aussi dans l'équilibre et la perception émotionnelle. Les concepts clés incluent la relation étroite entre l'œil et le cœur, les influences des tensions oculaires sur le foie et la nécessité d'une approche multidisciplinaire qui combine embryologie, anatomie et dimensions spirituelles. En apprenant à adresser l'œil dans un contexte global, les thérapeutes pourront mieux comprendre les impacts des émotions sur la perception et, par extension, améliorer leur pratique en prenant en compte les liens entre la structure physique et les informations environnementales qui influencent notre vision.",
+    transcriptMarkdown: `
 # Introduction à l'Œil
 
 L'**œil** est une structure fascinante qui joue un rôle crucial dans notre perception du monde. Une partie de notre **cerveau**, la rétine, est capable de détecter la plus petite particule de lumière, le **photon**. L'œil est en réalité une **extension** de notre cerveau, avec une grande activité cérébrale.
@@ -7434,15 +8931,20 @@ L'œil est un **conformateur** qui subit l'influence de son environnement. Il es
 Lorsque la lumière touche l'œil, elle subit une **transduction**, transformant la lumière en électricité. Cette information est ensuite transmise au **cerveau**, notamment au corps genouillé latéral, influençant notre perception. Il est important de noter que nous perdons environ **80%** de la réalité dans notre façon de voir, car notre perception est fortement influencée par notre vécu et nos émotions.
 
 En tant qu'ostéopathe, il est crucial de recevoir ces informations environnementales et faciales. Traiter l'œil implique de traiter l'ensemble du corps, car l'œil fonctionne comme une **balance** entre la structure corporelle et les problèmes qui peuvent s'exprimer.
-` },
-    {
-        id: "oeil-3",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "edd22cc09d795275641b00e6a57f3427",
-        duration: "07:12",
-        title: "3. Origine de l'oeil",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-3",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "edd22cc09d795275641b00e6a57f3427",
+    duration: "07:12",
+    title: "3. Origine de l'oeil",
+    shortSummary:
+      "Découvrez comment l'œil se forme dès les premiers jours de la vie embryonnaire et son lien crucial avec le système nerveux et l'équilibre corporel. Une compréhension qui transformera votre approche en ostéopathie et embryologie biodynamique.",
+    fullSummary:
+      "Cette vidéo explore en profondeur l'origine de l'œil, qui se développe à partir du diancéphalique, dès le huitième jour du développement embryonnaire. L'accent est mis sur l'importance de la cavité amniotique et du liquide céphalorachidien (LCR), ainsi que sur la manière dont ces éléments influencent la formation de l'œil et son équilibre dynamique avec l'environnement. La relation entre la cavité amniotique, le système ventriculaire, et l'œil est mise en avant, tout en soulignant les implications cliniques et génétiques qui peuvent affecter la santé de l'individu et se manifester à travers l'œil. Cette compréhension peut aider les thérapeutes à évaluer et à rétablir l'équilibre chez leurs patients, rendant l'enseignement essentiel pour ceux qui pratiquent l'ostéopathie et l'embryologie biodynamique.",
+    transcriptMarkdown: `
 # Origine de l'Œil
 
 L'œil présente une **ressemblance** fascinante avec sa formation au huitième jour du développement embryonnaire, moment où apparaît une petite cavité appelée **cavité amniotique**. Cette cavité est fondamentale pour le développement de l'œil, qui provient du **cerveau**, plus précisément du **diéencéphale**, une expansion du troisième ventricule.
@@ -7462,15 +8964,20 @@ Il est crucial d'observer les yeux après un traitement. Si la position des yeux
 Cette relation entre la cavité amniotique, l'œil et le système ventriculaire est fondamentale. L'œil, en tant qu'expansion du troisième ventricule, commence à se développer avant la fermeture du **neuroport antérieur**. De plus, il existe des implications génétiques intéressantes, avec des co-localisations d'informations sur des zones d'impact, telles que le système hépatopancréatique, cardiaque et thyroïdien.
 
 Des pathologies comme le **diabète**, les problèmes cardiaques et thyroïdiens peuvent se manifester à travers l'œil, révélant ainsi l'importance de la **crête neurale** dans l'organisation de l'axe médian et la latéralité.
-` },
-    {
-        id: "oeil-4",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "d261f59c9eecbacb61d7da2fa1e4bec6",
-        duration: "08:39",
-        title: "4. Mise en place de l'oeil",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-4",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "d261f59c9eecbacb61d7da2fa1e4bec6",
+    duration: "08:39",
+    title: "4. Mise en place de l'oeil",
+    shortSummary:
+      "Découvrez comment l'équilibre entre tissus embryonnaires influence le développement de l'œil et le rôle crucial de la notochorde et du tube neural. Plongez dans les mécanismes de la séphalisation et leur impact sur la santé oculaire.",
+    fullSummary:
+      "Cette vidéo explore la mise en place de l'œil dans le cadre de l'embryologie biodynamique et de l'ostéopathie. Vous apprendrez comment l'interaction entre l'endoderme et le mésoderme, ainsi que le rôle primordial de la notochorde et du tube neural, participent à la formation de structures essentielles comme l'œil. Les mouvements de perméation et d'infusion, ainsi que la notion de polarité, sont des concepts clés qui sous-tendent le développement embryonnaire. De plus, il sera abordé comment des techniques de rééquilibrage, en réponse aux whiplash émotionnels ou physiques, peuvent restaurer les mouvements nécessaires au développement optimal de l'œil, le liant ainsi à des événements tels que le premier battement cardiaque.",
+    transcriptMarkdown: `
 # Mise en place de l'œil
 
 L'**endoderme** est un épithélium, tandis que le **mésoderme** est un tissu conjonctif. Il est essentiel de comprendre l'équilibre entre ces deux grands types de tissus : un tissu d'intérieur et un tissu d'extérieur. Par exemple, l'épithélium digestif, bien qu'il soit à l'intérieur, agit comme un tissu de limite.
@@ -7496,15 +9003,20 @@ Avant la fermeture du tube neural, un phénomène d'induction se produit pour fo
 Il est possible de rééquilibrer l'œil en travaillant sur une zone spécifique, souvent affectée par des **whiplash**. Ces whiplash peuvent être d'origine émotionnelle ou physique. Traiter un whiplash implique de restaurer les mouvements de **séphalisation**, **cardialisation**, **diaphragmatisation** et **hépatisation**, qui sont essentiels pour le développement embryonnaire.
 
 L'émergence de l'œil commence avec le premier battement cardiaque, vers le 22ème jour. La première transformation cellulaire épiblastique se produit en synchronisation avec ces battements cardiaques primitifs, établissant une correspondance significative entre le développement de l'œil et l'activité cardiaque.
-` },
-    {
-        id: "oeil-5",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "631e68d99768fc5b68e17d5cfde53fd1",
-        duration: "03:50",
-        title: "5. Influence Notochorde",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-5",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "631e68d99768fc5b68e17d5cfde53fd1",
+    duration: "03:50",
+    title: "5. Influence Notochorde",
+    shortSummary:
+      "Découvrez comment la notochorde influence le développement embryonnaire et dirige la formation des organes clés grâce à un champ électromagnétique vital. Plongez dans les secrets qui unissent génétique et embryologie!",
+    fullSummary:
+      "Cette vidéo explore le rôle essentiel de la notochorde dans le développement embryonnaire, notamment son influence sur le tube neural par le biais de systèmes sonétiques S-hatch, des éléments cruciaux comme la 40A et la 40T. Les étudiants apprendront comment la notochorde émet des signaux électromagnétiques qui agissent comme un GPS pour la formation des organes, utilisant des éléments nutritifs comme le bêta-carotène et l'acide rétinoïque. À travers l’observation des dynamiques cellulaire et de la latéralisation, cette vidéo met en lumière l'importance de percevoir la notochorde non seulement comme une structure, mais comme une fonction essentielle à l'organisation embryonnaire, jouant un rôle clé dans la formation du cerveau et des yeux.",
+    transcriptMarkdown: `
 # Influence de la Notochorde sur le Développement Embryonnaire
 
 La **notochorde** joue un rôle crucial dans le développement embryonnaire, influençant notamment le **tube neural**. Il est essentiel de comprendre que cette notochorde émet des signaux, appelés **systèmes sonétiques S-hatch**, qui incluent des éléments comme la **40A** et la **40T**. Ces phénomènes d'induction sont significatifs, notamment en ce qui concerne le **bêta-carotène** et les **vitamines A**, qui sont intégrées avec la 40T et sont vitales pour le développement de l'**œil**. L'**acide rétinoïque** est également important à ce stade, impliquant de grands gènes.
@@ -7516,15 +9028,20 @@ Le champ électrique émis par cet axe notochordal s'étend entre la gauche et l
 Il est important de noter qu'il n'existe pas de symétrie, mais plutôt une **harmonie** dans la structuration de l'information génétique par rapport à la notochorde. Si l'on considère les cellules comme des **molécules**, alors des **protéines** seront produites et libérées. Ces informations proviennent du **génome**, qui active divers gènes selon l'espace-temps, notamment dans le cadre des **sonetic edges** et de l'**espace-temps PAX**.
 
 Il est crucial de comprendre que la notochorde n'est pas simplement une structure, mais une **fonction**. Cette distinction est fondamentale : percevoir la notochorde comme une fonction permet d'appréhender ses forces et ses réponses, ce qui est essentiel pour l'organisation du **cerveau** et de l'**œil**.
-` },
-    {
-        id: "oeil-6",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "b9cb3ffe6e8ec6b71f0ad960d9786dc1",
-        duration: "05:42",
-        title: "6. Ihnibition et colocalisations",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-6",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "b9cb3ffe6e8ec6b71f0ad960d9786dc1",
+    duration: "05:42",
+    title: "6. Ihnibition et colocalisations",
+    shortSummary:
+      "Découvrez comment l'inhibition et les colocalisations influencent le développement embryonnaire, en particulier la formation de l'œil et les interactions entre les systèmes organiques clés.",
+    fullSummary:
+      "Cette vidéo explore les mécanismes complexes de l'inhibition et des colocalisations dans le développement embryonnaire, mettant en lumière l'importance de la latéralité gauche et le rôle crucial de la fermeture du tube neural. Les concepts clés abordés incluent la formation des vésicules optiques, l'interaction entre la crête neurale et divers systèmes organiques tels que le système hépato-pancréatique et le cœur, et comment ces interactions influencent l'évolution de l'œil. En intégrant des principes de la théorie électromagnétique, la vidéo démontre l'impact de ces processus sur la morphologie embryonnaire et l'expression génomique.",
+    transcriptMarkdown: `
 # Inhibition et Colocalisations dans le Développement Embryonnaire
 
 Les **informations latéralisées**, sonétiques et hutch, sont essentielles dans le développement embryonnaire, notamment dans la dynamique gauche-droite. Une **latéralité gauche** commence à s'installer, mais un phénomène inhibiteur empêche l'expression de la sonétique et hutch vers l'avant, favorisant une expression latérale. 
@@ -7540,15 +9057,20 @@ Dans l'anotocorte, les cellules en avant reçoivent une information que l'on app
 Sans inhibition, l'œil se développe au centre, entraînant la formation d'un œil de cyclope. La fermeture du tube neural est cruciale pour que la crête neurale s'exprime latéralement. Une fois la fermeture réalisée, l'inhibition négative influence l'œil, en lien avec des phénomènes de colocalisation **thyroïdiens**, **cardiaques** et **hépatopancréatiques**. Ces grands organes ont un impact direct sur l'œil, qui est fortement relié à la **choroïde**, un tissu mésenchymateux vasculaire.
 
 Il est important de considérer comment l'œil interagit dans l'espace. La grande flexion de l'embryon est liée à l'apparition des **vésicules optiques**, qui se forment en raison de la croissance et de cette flexion. Cette flexion est induite par l'**axe vasculaire aortique primitif**, autour duquel le système vasculaire s'enroule.
-` },
-    {
-        id: "oeil-7",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "c674a5271bfd68abe701db51abc24268",
-        duration: "04:28",
-        title: "7. Formation de la Placode optique",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-7",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "c674a5271bfd68abe701db51abc24268",
+    duration: "04:28",
+    title: "7. Formation de la Placode optique",
+    shortSummary:
+      "Découvrez comment la placode optique se forme à partir de l'ectoblast et du tube neural, un processus fascinant crucial pour le développement oculaire. Plongez dans les mécanismes de communication cellulaire qui façonnent cette structure essentielle !",
+    fullSummary:
+      "Dans cette vidéo, nous abordons en profondeur la formation de la placode optique, un événement clé du développement embryonnaire. À partir de l'ectoblast et du tube neural, la première ébauche optique émerge, révélant l'importance de la communication cellulaire sous diverses formes, notamment autocrine, paracrine et justacrine, et son interaction avec des phénomènes génétiques comme le sonique hedgehog (HH). Nous explorons la formation de la vésicule optique et la transformation de l'épiblaste en placode optique primitive, en soulignant l'influence des structures environnantes comme la notocorde et la fente colombomique dans la morphogenèse oculaire. Ce contenu est essentiel pour tout étudiant ou thérapeute désirant approfondir la compréhension du développement embryologique de l'œil.",
+    transcriptMarkdown: `
 # Formation de la Placode Optique
 
 Dans cette section, nous allons explorer la **formation de la placode optique** à partir de l'ectoblast de surface et du tube neural.
@@ -7582,15 +9104,20 @@ Les petites vésicules latérales se gonflent et, grâce à un contact molécula
 ### Fente Colombomique
 
 Il est important de noter qu'il existe une **fente colombomique** dans laquelle passe une artère, connue sous le nom d'**artère hyaloïdienne**. Cette fente joue un rôle crucial dans le développement de la placode optique et des structures environnantes.
-` },
-    {
-        id: "oeil-8",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "fbdb11e937d31ff7104476751c701451",
-        duration: "04:24",
-        title: "8. Origine de la retine et du cristallin",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-8",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "fbdb11e937d31ff7104476751c701451",
+    duration: "04:24",
+    title: "8. Origine de la retine et du cristallin",
+    shortSummary:
+      "Explorez l'origine fascinante de la rétine et du cristallin dans cette vidéo captivante ! Découvrez comment ces structures essentielles de l'œil se forment et interagissent, enrichissant votre compréhension de l'embryologie oculaire.",
+    fullSummary:
+      "Cette vidéo approfondit la complexité de l'embryologie de l'œil, en commençant par l'évolution structurelle de la rétine et du cristallin. On y découvre l'importance des communications juxtacrine et les interactions entre l'épiblaste, le liquide céphalorachidien et le liquide amniotique. Les notions clés incluent la formation de la vésicule optique primaire et secondaire, ainsi que les transformations cruciales des vaisseaux hyéloïdiens en vaisseaux rétiniens, tout en soulignant que la rétine est une extension du cerveau influencée par des gradients chimiques.\n\nLe processus de création du cristallin est abordé en lien avec l'épithélium de surface et la formation des différentes chambres du cristallin. En explorant les couches de tissus de l'œil, cette vidéo offre une vue d'ensemble précieuse pour les thérapeutes et étudiants souhaitant approfondir leur compréhension de l'anatomie et de l'embryologie oculaire.",
+    transcriptMarkdown: `
 # Origine de la Rétine et du Cristallin
 
 L'évolution de l'œil commence par l'observation d'un **espace** entre les différentes structures. L'**épiblaste** s'attache et change de forme, tandis qu'à l'intérieur, on retrouve du **liquide céphalorachidien (LCR)** et du **liquide amniotique**, qui ont une origine commune.
@@ -7604,15 +9131,20 @@ Les anatomistes et embryologistes considèrent que la rétine est une extension 
 Le cristallin se forme à l'intérieur, tandis que l'épithélium de surface reste en place, suivant un schéma similaire à celui de la formation du **tube neural**. La peau, en surface, se divise en différentes couches. Le tissu cristallin constitue la première couche de l'œil. 
 
 La **conjonctive** est la première membrane qui recouvre l'œil, tapissant également les futures paupières. À l'intérieur du cristallin, un espace se divise en deux chambres : **antérieure** et **postérieure**. La rétine, quant à elle, est extrêmement fine, semblable à une feuille de papier de cigarette.
-` },
-    {
-        id: "oeil-9",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "3b50792facb8c59f8443241b2e32c66e",
-        duration: "05:01",
-        title: "9. Les differentes Couches de l'Oeil 1",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-9",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "3b50792facb8c59f8443241b2e32c66e",
+    duration: "05:01",
+    title: "9. Les differentes Couches de l'Oeil 1",
+    shortSummary:
+      "Découvrez l'incroyable architecture de l'œil et démarrez votre voyage vers une compréhension approfondie de cet organe fascinant ! Apprenez comment chaque couche contribue à la vision dans une leçon captivante et essentielle.",
+    fullSummary:
+      "Dans cette vidéo, vous explorerez les différentes couches de l'œil, comparées à des chaussettes superposées, et leur spécificité fonctionnelle. À travers une analyse détaillée, vous découvrirez la sclérotique, la choroïde, les processus ciliaires et la rétine, ainsi que leur rôle essentiel dans la physiologie de la vision. L'iridologie est également introduite comme une méthode fascinante pour lire la santé à travers l'iris, tandis que le fonctionnement des photorécepteurs et de la couche pigmentaire est expliqué en profondeur, mettant en lumière le processus complexe de la transduction visuelle. Cette leçon est indispensable pour tout étudiant ou thérapeute désireux d'approfondir ses connaissances en anatomie et physiologie de l'œil.",
+    transcriptMarkdown: `
 # Les Différentes Couches de l'Œil
 
 L'**œil** est constitué de plusieurs couches, souvent décrites comme des chaussettes superposées. 
@@ -7640,15 +9172,20 @@ La rétine contient également une **couche pigmentaire** et des **photorécepte
 ## Conclusion
 
 Ces différentes couches de l'œil travaillent ensemble pour permettre la vision, chacune ayant un rôle spécifique et crucial dans le fonctionnement de cet organe complexe.
-` },
-    {
-        id: "oeil-10",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "46ec74ea3dc30cbf46112e19d3d4b42e",
-        duration: "06:13",
-        title: "10. Rappel du mouvement developpemental",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-10",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "46ec74ea3dc30cbf46112e19d3d4b42e",
+    duration: "06:13",
+    title: "10. Rappel du mouvement developpemental",
+    shortSummary:
+      "Découvrez comment le mouvement développemental du crâne et de l'œil influe sur votre pratique thérapeutique ! Apprenez à intégrer la force embryonnaire pour optimiser la régénération corporelle.",
+    fullSummary:
+      "Cette vidéo propose un éclairage essentiel sur le mouvement développemental, en mettant l'accent sur l'intégration du crâne et le développement du cerveau, ainsi que leur impact sur la fonction oculaire. Les concepts de céphalisation, cardialisation, et l'importance du palatin sont examinés pour illustrer la synergie entre structure et fonction. En soulignant le rôle des mécanismes d'auto-régulation et de la force embryonnaire, la formation permet une compréhension approfondie de la cartographie de développement et des axes anatomiques. Cela aboutit à une nouvelle perspective sur le traitement des pathologies comme la tendinite, en considérant les interactions électriques et les mouvements dynamiques au sein des champs électromagnétiques du corps. Les implications en neurophysiologie et en thérapeutique sont également discutées, ouvrant de nouvelles voies pour les praticiens.",
+    transcriptMarkdown: `
 # Rappel du Mouvement Développemental
 
 L'intégration du **crâne** et du **développement du cerveau** est essentielle pour comprendre le mouvement développemental. L'œil, qui se développe initialement de manière très latérale, se dirige progressivement vers la partie antérieure. Ce processus fait partie d'un développement global du corps, impliquant des mécanismes tels que la **céphalisation**, la **cardialisation**, l'**ascensus** du cerveau et la **descente viscérale**.
@@ -7664,15 +9201,20 @@ L'importance du cerveau est cruciale, et il est nécessaire de revisiter les **a
 L'œil est enraciné dans une sphère d'énergie pure, cherchant un axe électrique. Cette notion de **polarité** est intégrée dès le départ dans l'organisme, avec des cellules nourricières et folliculaires, ainsi que des concentrations métaboliques spécifiques. Ces niveaux électromoléculaires créent des mouvements dynamiques.
 
 En travaillant sur l'œil, il est important de considérer ces aspects électriques. L'axe des yeux est enraciné, et les mouvements des racines illustrent comment les champs électromagnétiques fonctionnent. Ces mouvements ne sont pas linéaires, mais plutôt des mouvements moléculaires et ioniques. La **transduction** d'un photon en un champ électrique implique des changements de perméabilité membranaire, qui seront explorés dans le cadre de la **neurophysiologie**, notamment avec des éléments comme la **rhodopsine** et les **métarhodopsines**. Ces changements d'intégration montrent comment les informations énergétiques modifient la forme membranaire.
-` },
-    {
-        id: "oeil-11",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "bc9530d25eb6364cb165f9d9dd6dc0f1",
-        duration: "07:04",
-        title: "11. Pratique: Compression V4 et Zone B",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-11",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "bc9530d25eb6364cb165f9d9dd6dc0f1",
+    duration: "07:04",
+    title: "11. Pratique: Compression V4 et Zone B",
+    shortSummary:
+      "Découvrez la technique de compression ventriculaire CV4 pour équilibrer l'espace intra- et extra-encéphalique. Apprenez à harmoniser votre approche ostéopathique en écoutant votre corps et en favorisant le processus de guérison.",
+    fullSummary:
+      "Cette vidéo explore la pratique de la compression ventriculaire du quatrième ventricule (CV4), en lien avec le trou de Mangali et l'équilibre entre les milieux intra- et extra-encéphalique. Les participants apprendront comment travailler efficacement avec cette technique pour favoriser la circulation du liquide céphalo-rachidien et l'harmonie corporelle, en intégrant des concepts clés comme l'attitude de neutralité et l'importance de l'attention spacieuse. À travers des exemples cliniques et des instructions précises, la séance guide les thérapeutes dans l'art de la compression, soulignant l'importance de la patience et de la connexion corps-esprit dans le processus de guérison.",
+    transcriptMarkdown: `
 # Pratique : Compression V4 et Zone B
 
 Au cours de cette séance, nous allons aborder la **compression ventriculaire du quatrième ventricule** (CV4). Cette technique est en relation avec **Mangali**, un concept clé qui représente l'exploration de l'espace **extra-encéphalique**.
@@ -7694,15 +9236,20 @@ Le CV4 nécessite l'implication de tout votre corps, pas seulement de vos mains.
 Il est crucial de ne pas compresser avec votre regard. Une attention trop focalisée peut entraîner une perte de conscience. Cherchez à maintenir une **attention spacieuse**, équilibrant votre zone B et votre liquide interne.
 
 Lorsque vous sentez une réponse, cela indique un **EV4**, une ouverture qui représente le rééquilibrage entre les compartiments extra-encéphalique et intra-encéphalique, en lien avec **Maljandi**.
-` },
-    {
-        id: "oeil-12",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "3d05a4787c99048146cccb38269ee6de",
-        duration: "09:08",
-        title: "12. L'Impermanence",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-12",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "3d05a4787c99048146cccb38269ee6de",
+    duration: "09:08",
+    title: "12. L'Impermanence",
+    shortSummary:
+      "Découvrez comment élargir votre perception et appréhender l'impermanence pour mieux comprendre vos émotions et schémas internes. Transformez votre pratique grâce à des outils concrets comme la méditation et l'alignement avec votre énergie vitale.",
+    fullSummary:
+      "Cette vidéo offre une exploration profonde de l'impermanence et de son impact sur notre perception et nos émotions. L'enseignement insiste sur l'importance de reconnaître nos propres schémas à travers des pratiques comme la méditation, nous apprenant à observer nos pensées et à revenir à un état de neutralité. Par ailleurs, elle aborde le fonctionnement du système visuel et comment nos préjugés affectent notre perception de la réalité. En développant une compréhension de l'interdépendance des expériences et en travaillant sur notre centre de gravité, nous pouvons aligner notre énergie vitale et favoriser une approche axée sur la santé plutôt que sur la maladie. Apprenez à interroger vos perceptions et à vous libérer de vos fausses interprétations pour un cheminement thérapeutique plus conscient.",
+    transcriptMarkdown: `
 # L'Impermanence
 
 Apprendre petit à petit à **agrandir notre perception** est essentiel. Cela implique de vivre avec les yeux un peu plus ouverts et d'apprendre à repérer nos propres **schémas**. Observez un schéma : si vous parvenez à l'observer, vous pouvez le **nettoyer**. Souvent, nous utilisons les autres comme des chiffons pour nettoyer nos propres vitres.
@@ -7728,15 +9275,20 @@ Nous allons travailler avec votre **centre de gravité**. L'énergie vitale se t
 Nous allons explorer trois grands types d'énergie et de mouvements : le **mouvement induit**, le **mouvement permis**, et le **mouvement présent**. Accepter sa force et sa faiblesse est essentiel, tout comme ouvrir son cœur à de nombreuses possibilités.
 
 Lorsque des personnes viennent avec des problèmes aigus, je leur pose souvent la question : "Quand tu seras guéri, qu'est-ce que tu pourras faire ?" Cela crée une nouvelle direction, car il est important de travailler avec la **santé**, et non contre la maladie. Diriger notre attention vers la santé est crucial.
-` },
-    {
-        id: "oeil-13",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "c0210aabca5f73ea190f74787a678b28",
-        duration: "03:34",
-        title: "13. axe cranio sacré primitif",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-13",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "c0210aabca5f73ea190f74787a678b28",
+    duration: "03:34",
+    title: "13. axe cranio sacré primitif",
+    shortSummary:
+      "Découvrez comment l'axe cranio-sacré primitif façonne le développement embryonnaire et son impact sur la dynamique cranio-sacrale. Ce cours révèle des concepts clés pour libérer la mobilité et l'équilibre au sein du corps.",
+    fullSummary:
+      "Dans cette vidéo, nous explorons en profondeur l'axe cranio-sacré primitif, qui émerge lors de la deuxième semaine du développement embryonnaire avec la formation de la notochorde. L'enseignement met en lumière l'importance de cette structure pour le crâne et le sacrum, notamment en soulignant comment un sacrum libre est essentiel pour assurer la fonctionnalité de la colonne vertébrale et la flexion-extension de la base du crâne. En outre, la vidéo traite des implications que ces dynamiques embryonnaires ont sur les pathologies urogénitales, et comment la libération de certains blocages émotionnels ou énergétiques entre le sigmoïde et la vessie peut contribuer à un meilleur équilibre global. Les étudiants apprendront à manipuler ces concepts pour améliorer leur pratique en ostéopathie et en embryologie biodynamique.",
+    transcriptMarkdown: `
 # Axe Cranio-Sacré Primitif
 
 Au cours de la deuxième semaine de développement embryonnaire, la **forme en S** du processus épiblastique commence à former la **notochorde**. Le **nœud d'Ensens**, ou dépression primitive, devient un point d'appui fixe et se déplace progressivement vers l'arrière. 
@@ -7750,15 +9302,20 @@ L'axe notochordal est fondamental, car il influence la liberté de mouvement du 
 Cette dynamique est liée à la force d'ascension du crâne, où l'œil s'installe, et à la mise en place d'un **tissu mésodermique**. La croissance ectodermique tire vers le haut, tandis que le nœud primitif descend vers le sacrum. Cela crée une zone d'importance pour l'information protéinique en relation avec la mère. 
 
 De nombreuses **images ancestrales** bloquées se situent entre le sigmoïde et la vessie, où il est crucial de dégager ces informations. Les problèmes urogénitaux peuvent être transmis par ces informations, et la force de migration descendante sacrale joue un rôle clé dans ce processus.
-` },
-    {
-        id: "oeil-14",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "1b2bf98654da472324fb09168b510213",
-        duration: "05:25",
-        title: "14. Differentes couches de l'Oeil 2",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-14",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "1b2bf98654da472324fb09168b510213",
+    duration: "05:25",
+    title: "14. Differentes couches de l'Oeil 2",
+    shortSummary:
+      "Découvrez les couches fascinantes de l'œil et leur développement embryologique ! Cette vidéo vous plonge dans les détails clés sur le cristallin et la rétine - un must pour tout thérapeute cherchant à approfondir sa compréhension de l'anatomie de l'œil.",
+    fullSummary:
+      "Cette vidéo explore en profondeur les différentes couches de l'œil, notamment le canal de Cloquet, l'humeur aqueuse, l'humeur vitrée, et le développement du cristallin à partir de l'ectoderme. Les concepts clés incluent l'importance de l'invagination dans la formation du cristallin et la distinction entre les parties antérieure et postérieure de l'œil, comprenant la vésicule cristalline et la rétine. En dévoilant les connexions entre les structures oculaires, la vidéo met en lumière des processus embryologiques complexes qui enrichissent la pratique des thérapeutes et leur compréhension des pathologies oculaires.",
+    transcriptMarkdown: `
 # Les Différentes Couches de l'Œil
 
 Il reste un **fin canal** dans l'œil, appelé le **canal de Cloquet**. Ce canal est un vestige dans l'humeur vitrée. 
@@ -7778,15 +9335,20 @@ La **conjonctive** et la **cornée** sont en continuité, la cornée étant tran
 L'**iris** est maintenu par un **ligament suspenseur** et des **muscles ciliaires**. 
 
 Enfin, la **rétine** est la couche la plus interne de l'œil. Elle provient de la première vésicule, la **vésicule optique primaire**, qui se développe en formant une structure en forme de calice. La rétine est composée de deux couches, interne et externe, et c'est ici que se produit un **décollement de la rétine**.
-` },
-    {
-        id: "oeil-15",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "6edbb4d1c6face70baaf99c49fa3ff76",
-        duration: "03:29",
-        title: "15. cretes neurales",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-15",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "6edbb4d1c6face70baaf99c49fa3ff76",
+    duration: "03:29",
+    title: "15. cretes neurales",
+    shortSummary:
+      "Découvrez comment le mouvement de la crête neurale influence la formation du corps humain. Apprenez à décoder les messages du corps à travers ses structures et leur développement essentiel pour les thérapeutes.",
+    fullSummary:
+      "Cette vidéo se concentre sur le mouvement de la crête neurale, un processus clé en embryologie qui engendre diverses structures corporelles après la neurulation. Elle explore les types de mouvements, notamment prosencéphales, mésencéphales et rombocéphales, et explique comment la crête neurale remet en question notre compréhension des interactions génétiques et métaboliques lors du développement embryonnaire. En apprenant à identifier les signes dans les structures du corps, notamment au niveau de la face, les thérapeutes peuvent mieux interpréter l'état interne des patients. La vidéo met également l'accent sur l'importance des migrations cellulaires et des influences ambiantes dans la formation des tissus, en soulignant le rôle des micro-vaisseaux et des micro-nerfs, afin de fournir une vision intégrée de l'embryologie biodynamique.",
+    transcriptMarkdown: `
 # Mouvement de la Crête Neurale
 
 Le **mouvement de la crête neurale** est un processus complexe impliquant différents types de **différenciation** et de **facteurs d'induction**. Ces facteurs peuvent être de nature **métabolique** ou **passive**, et interviennent après la **neurulation**. 
@@ -7818,15 +9380,20 @@ La crête neurale joue un rôle fondamental dans la **migration** et la **coloni
 Ce processus permet de créer des points d'appui et d'émergence, fournissant une **force ambiante embryonnaire** qui restructure les micro-nerfs en croissance. Il est important de noter que ces interactions se déroulent à un niveau **électrique**.
 
 Au niveau de l'œil, une zone en vert englobe et façonne le tissu antérieur, qui est de l'**ectoderme**, en relation avec cette coulée mésodermique, notamment autour de la **sclérotique**.
-` },
-    {
-        id: "oeil-16",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "2c65df17047d248b1e73175bb3f38655",
-        duration: "05:02",
-        title: "16. L'oeil el les memoires",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-16",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "2c65df17047d248b1e73175bb3f38655",
+    duration: "05:02",
+    title: "16. L'oeil el les memoires",
+    shortSummary:
+      "Découvrez comment l'œil et les mémoires influencent notre santé physique et émotionnelle. Cette vidéo propose des techniques fascinantes pour libérer des mémoires tissulaires et rétablir un équilibre entre corps et esprit !",
+    fullSummary:
+      "Dans cette vidéo, nous plongeons dans les concepts de mémorisation neuronale et tissulaire, détaillant comment notre corps enregistre des expériences et les conséquences sur la santé physique lorsque ces mémoires restent non intégrées. À travers des exemples concrets, tels que les impacts émotionnels sur les enfants, nous explorons le rôle crucial des glandes comme les surrénales et la thyroïde dans ce processus. Des techniques thérapeutiques telles que le Mouvement Rapide des Yeux (MDR) et la cohérence cardiaque sont présentées comme des outils pour traiter ces mémoires enfouies et rétablir un équilibre entre les dimensions cognitivement discordantes de notre existence.",
+    transcriptMarkdown: `
 # L'Œil et les Mémoires
 
 La **mémorisation neuronale** et la **mémorisation tissulaire** sont des concepts essentiels dans la compréhension de la manière dont notre corps enregistre des expériences. Il est possible de stocker des **mémoires** dans différentes parties du corps, influencées par l'œil. Si ces mémoires ne sont pas intégrées, elles peuvent se **somatiser**. En d'autres termes, ce qui n'est pas intégré se manifeste physiquement.
@@ -7842,15 +9409,20 @@ Il existe des personnes qui peuvent être bloquées dans le temps, revivant des 
 Les mouvements des yeux aident à rétablir l'équilibre entre le **rationnel** et l'**irrationnel**, ainsi qu'entre l'**intuitif** et le **rationnel**. Un déséquilibre dans ces domaines peut entraîner des problèmes hypophysaires. L'hypophyse joue un rôle clé dans la transmission de l'information entre les différentes aires du cerveau, notamment lors des mouvements oculaires.
 
 Le rêve et les mouvements des yeux sont donc essentiels pour la **rationalisation** et la réorganisation des expériences vécues. Des pratiques comme la **cohérence cardiaque** peuvent également contribuer à cet équilibre.
-` },
-    {
-        id: "oeil-17",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "f9665975d3bf83f9510936f610add2d7",
-        duration: "08:22",
-        title: "17. l'Oeil et le mouvement de corticalisation",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-17",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "f9665975d3bf83f9510936f610add2d7",
+    duration: "08:22",
+    title: "17. l'Oeil et le mouvement de corticalisation",
+    shortSummary:
+      "Découvrez comment l'œil et le cerveau interagissent dans un mouvement fascinant de corticalisation, un processus clé pour comprendre le développement embryonnaire et son impact sur le corps entier. Un savoir essentiel pour tous les thérapeutes en quête d'harmonie corporelle.",
+    fullSummary:
+      "Cette vidéo explore le lien dynamique entre l'œil et le mouvement de corticalisation dans le développement du cerveau. Le processus de flexion céphalique et cervicale est examiné, ainsi que la réorganisation des tissus cérébraux en relation avec les structures faciales et viscérales. L'œil est présenté comme un acteur central dans ce mouvement, influençant la formation de la faux du cerveau et de la tente du cervelet, tout en intégrant des aspects psychiques et émotionnels à travers son lien avec le système hormonal. Les concepts de diaphragme d'équilibre et de fulcrum terminal sont introduits, soulignant l'importance de la stabilisation des suture crissiforme pour rééquilibrer les yeux et favoriser l'harmonie corporelle. Cette leçon offre des clés pratiques et théoriques pour les praticiens désireux de mieux appréhender le développement embryologique et ses implications thérapeutiques.",
+    transcriptMarkdown: `
 # L'Œil et le Mouvement de Corticalisation
 
 Le **cerveau**, initialement perçu comme un tissu plat, subit une transformation significative au cours de son développement. Imaginez un individu allongé sur une table, avec son cerveau en main. La première information à retenir est celle de l'**expansion** et de la **formation du tube neural**.
@@ -7876,15 +9448,20 @@ L'œil suit cette phase de développement, se rapprochant de la ligne médiane p
 Il est crucial de noter que le point d'appui, ou **fulcrum terminal**, de la mise en place des yeux est essentiel. Pour rééquilibrer les yeux, il est recommandé de placer un doigt dans la bouche, au niveau de la petite **suture crissiforme**. Cela permet aux deux yeux de trouver leur espace au moment où cette suture se stabilise.
 
 La **margelle frontale**, la **margelle zygomatique** et la **margelle maxillaire supérieure** sont des points d'appui importants. La montée et la descente des structures contribuent à la fermeture de la ligne médiane, ce qui est également lié à la fermeture du palais. Lorsque le palais trouve son point d'appui, les yeux trouvent également leur place, marquant un **fulcrum d'arrivée** dans le développement.
-` },
-    {
-        id: "oeil-18",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "56a7f34c087db9de453ca9d0b8bb89e7",
-        duration: "01:12",
-        title: "18. Note:Wiplash",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-18",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "56a7f34c087db9de453ca9d0b8bb89e7",
+    duration: "01:12",
+    title: "18. Note:Wiplash",
+    shortSummary:
+      "Découvrez comment les tensions oculaires influencent le développement crânien et émotionnel ! Plongez dans l'ascensus et apprenez à rétablir l'harmonie entre les yeux et le cerveau.",
+    fullSummary:
+      "Cette vidéo explore l'impact des tensions oculaires sur le développement crânien et émotionnel. Elle met en lumière le concept d'ascensus comme méthode pour rééquilibrer les tensions liées aux yeux, tout en révélant les liens entre l'état des globes oculaires, les émotions et la santé mentale. Vous apprendrez comment ces tensions peuvent refléter des déséquilibres au niveau du système nerveux et comment ils peuvent être liés à des manifestations physiques, comme des torsions et des dissociations. En étudiant ces aspects, cette vidéo ouvre la voie à une meilleure compréhension du développement cérébral et crânien, offrant ainsi une approche précieuse pour les thérapeutes et étudiants en ostéopathie et embryologie biodynamique.",
+    transcriptMarkdown: `
 # Les Tensions Oculaires et leur Impact sur le Développement Crânien
 
 Le **cerveau** peut être affecté par différents types de **tensions** qui se manifestent au niveau des **yeux**. Ces tensions peuvent être rééquilibrées par un processus d'**ascensus**. Bien que cela puisse sembler complexe, il est important de comprendre que notre mémoire et nos émotions s'expriment à travers notre corps, notamment dans la **zone B**.
@@ -7894,15 +9471,20 @@ Lorsqu'on parle d'**ascensus** et de **descensus**, il est essentiel de noter qu
 Les yeux jouent un rôle exceptionnel dans l'expression de notre état émotionnel et physique. Ils reflètent la position et l'état de notre **système nerveux**. De plus, il existe une relation significative entre le développement du **crâne** et celui des yeux. 
 
 Ainsi, en étudiant l'œil, nous pouvons mieux comprendre le développement du cerveau et, par extension, le développement crânien.
-` },
-    {
-        id: "oeil-19",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "d7216a4633d865d4f3099d9fc0c0b291",
-        duration: "03:44",
-        title: "19. Lignes de Force et electrique",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-19",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "d7216a4633d865d4f3099d9fc0c0b291",
+    duration: "03:44",
+    title: "19. Lignes de Force et electrique",
+    shortSummary:
+      "Découvrez comment les lignes de force et l'électricité influencent la structure osseuse et le mouvement dans le corps. Apprenez des concepts clés pour rééquilibrer les charges électromagnétiques et améliorer votre pratique ostéopathique.",
+    fullSummary:
+      "Cette vidéo explore l'impact des lignes de force et des charges électriques sur la structure osseuse et le mouvement. Les enseignants expliquent comment l'œil, en tant que conformateur, joue un rôle crucial dans la formation des os, tout en insistant sur les contre-mouvements et la céphalisation qui se produisent en réponse aux charges électromagnétiques. Les complexes de poutres, incluant la poutre canino-nasale frontale et la ligne maxillaire frontale, sont présentés avec des détails anatomiques pertinents. De plus, l'importance de ressentir les variations de fréquence et d'équilibre entre les côtés gauche et droit du corps est soulignée, ouvrant la voie à des ajustements efficaces pour traiter les micro-lésions et améliorer la dynamique corporelle. Les praticiens apprendront également à évaluer l'impact des axes oculaires sur l'équilibre global du corps, afin d'optimiser leurs interventions thérapeutiques.",
+    transcriptMarkdown: `
 # Lignes de Force et Électrique
 
 Les **lignes de force** sont formées par le chargement des **électrons** du côté convex au niveau positif, créant ainsi des charges au niveau de l'os. Cela se répercute vers des lignes de force en profondeur, appelées **poutres**, qui jouent un rôle crucial dans la structure osseuse.
@@ -7916,15 +9498,20 @@ Il est essentiel de travailler sur la **fréquence** de ces lignes de force, en 
 Une autre ligne de force intéressante est la **ligne maxillaire frontale**, qui passe au niveau de l'ingus. De plus, la **ligne zygomatique** est à noter, reliant le même côté au niveau frontal et l'opposé au niveau de la suture coronale. 
 
 Enfin, au niveau de l'œil et de l'orbite, il est important d'ajouter les axes de l'œil pour évaluer leur équilibre. Des changements peuvent survenir, nécessitant une attention particulière à ces structures.
-` },
-    {
-        id: "oeil-20",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "005e46ce16f307fb93b91bdf96ec1f9c",
-        duration: "04:35",
-        title: "20. l'Oeil et le developpement crane",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-20",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "005e46ce16f307fb93b91bdf96ec1f9c",
+    duration: "04:35",
+    title: "20. l'Oeil et le developpement crane",
+    shortSummary:
+      "Découvrez comment le développement de l'œil influence la formation du crâne et comment cette interconnexion est essentielle à la stabilité oculaire et à la réflexion visuelle. Une plongée fascinante au cœur de l'embryologie crânienne !",
+    fullSummary:
+      "Dans cette vidéo, on explore en détail les liens complexes entre le développement de l'œil et la formation du crâne. L'accent est mis sur les processus embryologiques, tels que la flexion céphalique primitive et leur impact sur la structure osseuse, notamment le rôle central du sphénoïde dans la stabilité de l'œil. Les concepts de croissance céphalique et de spasme de l'orbite sont abordés, soulignant l'importance de maintenir l'harmonie entre l'œil, le nez, et la formation du palais. De plus, la vidéo illustre les spirales de développement qui influencent la structure crânienne et leur répercussions sur la fonction visuelle, fournissant ainsi des outils pratiques pour les étudiants et les thérapeutes souhaitant approfondir leur compréhension en ostéopathie et embryologie biodynamique.",
+    transcriptMarkdown: `
 # L'Œil et le Développement Crânien
 
 Le développement de l'**œil** est intimement lié à la formation du **crâne**. Lors de la **flexion céphalique primitive**, le **mésenchyme sous-mésencéphalique** se comprime entre la partie antérieure et postérieure de la **vésicule cérébrale**. Ce processus entraîne une perte d'eau et une transformation du mésenchyme en **tissu cartilagineux**, formant ainsi la base du crâne.
@@ -7938,15 +9525,20 @@ Au fur et à mesure que le nez se développe, l'œil apparaît sur le côté. Si
 La croissance céphalique est primordiale. C'est à ce moment que les yeux se rapprochent de la **ligne médiane**. Un point d'appui se forme au niveau du **nasion**. À mesure que le développement cortical progresse, l'œil s'oriente dans sa position finale. 
 
 On observe deux spirales : une spirale de l'œil et une contre-spirale osseuse, visibles dans la forme des **sutures** crâniennes. L'orientation de ces sutures est essentielle à l'étude de la tridimensionnalité du **prémaxillaire**, qui présente une forme complexe, contribuant à la structure orbitaire et oculaire.
-` },
-    {
-        id: "oeil-21",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "9e55cc4677e6a87b210cd57d5a557da8",
-        duration: "07:37",
-        title: "21. le Lig Liliequist's",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-21",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "9e55cc4677e6a87b210cd57d5a557da8",
+    duration: "07:37",
+    title: "21. le Lig Liliequist's",
+    shortSummary:
+      "Découvrez comment le ligament liliequist influence le drainage cérébral et l'équilibre des systèmes nerveux et hormonal. Une opportunité d'approfondir vos connaissances en embryologie biodynamique et en ostéopathie!",
+    fullSummary:
+      "Cette vidéo explore l'anatomie et les mécanismes du ligament liliequist, une structure essentielle qui agit comme un diaphragme au niveau du troisième ventricule. On y apprend comment ce ligament interagit avec le nerf oculomoteur et le tronc basilaire, influençant ainsi le système ventriculaire et l'hypophyse. Les concepts de tensions membraneuses, d'axes de mouvement crânien et de leur impact sur les systèmes facial et hormonal sont abordés, tout en soulignant l'importance des mouvements crânio-sterno-sacrés et mandibulaires. L'analyse des tensions peut également aider à diagnostiquer des dysfonctionnements au niveau occlusal, offrant des clés thérapeutiques pour rétablir l'harmonie corporelle.",
+    transcriptMarkdown: `
 # Le Ligament Liliequist : Anatomie et Mécanismes
 
 Le **ligament liliequist** est une structure anatomique qui agit comme un petit diaphragme, communément appelé **membrane de l'iliquiste**. Ce ligament s'insère au niveau du **troisième ventricule** et descend jusqu'au **sphénoïde**. À cet endroit, il joue un rôle crucial en relation avec le **nerf oculomoteur** et le passage artériel, notamment le **tronc basilaire**, qui est responsable de la formation des **artères cérébrales**.
@@ -7966,15 +9558,20 @@ Le **sternum** monte en réponse à ces mouvements, convergeant vers la ligne m�
 Les mouvements crânio-sterno-sacrés et mandibulaires sont interconnectés. Les axes canins sont également importants, car ils influencent l'**occlusion**. Si la rencontre canine supérieure et inférieure n'est pas correcte, cela entraîne une perte d'information au niveau du cerveau, car ces champs électriques doivent s'unir.
 
 L'**occlusion** est donc le reflet des tensions présentes sur la **symphyse phénobasilaire**. En observant les dents, il est possible de déterminer la présence de **strain** (tension), qu'il soit vertical, latéral ou autre. Cela permet de comprendre les contraintes et d'ajuster les traitements nécessaires pour rétablir l'équilibre.
-` },
-    {
-        id: "oeil-22",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "5342c8914f2be4f9afafd638ee798cfd",
-        duration: "08:41",
-        title: "22. Pratique : les lignes de forces",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-22",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "5342c8914f2be4f9afafd638ee798cfd",
+    duration: "08:41",
+    title: "22. Pratique : les lignes de forces",
+    shortSummary:
+      "Découvrez comment les lignes de forces et l'énergie vitale impactent la guérison. Apprenez des techniques pratiques pour améliorer le bien-être de vos patients grâce à l'ostéopathie biodynamique.",
+    fullSummary:
+      "Dans cette vidéo, on plonge dans l'étude des lignes de forces à travers la gaine durale coronale, la symphyse et le maxillaire, tout en adoptant une approche électrique pour traiter efficacement les tendons et les tendinites. Les connexions entre le neurocrâne et le viscérocrâne sont explorées, mettant l'accent sur l'importance de la suture coronale et son rôle dans la vitalité du corps. Les participants apprendront à palper et à détecter des pertes d'énergie, à travailler sur des systèmes cardiaques et endothéliaux, et à utiliser des techniques d'induction pour rétablir l'équilibre. Cette séance enseigne comment harmoniser les différentes structures pour améliorer la circulation énergétique et favoriser le bien-être du patient.",
+    transcriptMarkdown: `
 # Pratique : Les Lignes de Forces
 
 Dans cette séance, nous allons explorer les **lignes de forces** en relation avec la **gaine durale coronale**, la **symphyse** et le **maxillaire**. Il est essentiel de se placer sur un **niveau électrique** pour comprendre comment ces champs interagissent. Cette approche est également applicable au traitement des **tendons** et des **tendinites**. 
@@ -8006,15 +9603,20 @@ Il est essentiel d'observer la respiration du patient lors de ces manipulations.
 ### Conclusion
 
 Ces techniques permettent de rétablir l'équilibre énergétique et de favoriser la guérison. En travaillant sur les lignes de forces et en établissant des connexions entre les différentes structures, nous pouvons améliorer la vitalité et le bien-être du patient.
-` },
-    {
-        id: "oeil-23",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "ffa60f4e662b05b68455171d44a6033c",
-        duration: "21:58",
-        title: "23. Anatomie de",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-23",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "ffa60f4e662b05b68455171d44a6033c",
+    duration: "21:58",
+    title: "23. Anatomie de",
+    shortSummary:
+      "Plongez dans l'univers complexe de l'anatomie de l'œil et du neurocrâne ! Découvrez comment ces structures interconnectées influencent la vision et la santé neurologique, tout en perfectionnant vos compétences en thérapie.",
+    fullSummary:
+      "Cette vidéo offre une exploration approfondie de l'anatomie de l'œil et du neurocrâne, en expliquant les relations entre les différentes structures comme le neurocrâne, le viscérocrâne, et leurs fonctions intégrées. Vous apprendrez les caractéristiques clés des tuniques de l'œil, notamment la sclérotique, l'uvée et la rétine, ainsi que l’importance des muscles oculomoteurs et de leur innervation. La discussion intègre également la vascularisation complexe de l'œil, essentielle pour le maintien de sa santé. Cette connaissance est vitale pour les professionnels de la santé, en particulier les ostéopathes, qui cherchent à mieux comprendre les fondements anatomiques de la vision et leur impact sur la santé globale.",
+    transcriptMarkdown: `
 # Anatomie de l'Œil et du Neurocrâne
 
 L'anatomie de l'œil et du neurocrâne est un sujet fascinant qui implique une compréhension approfondie des structures et de leur fonction.
@@ -8056,15 +9658,20 @@ L'innervation de l'œil comprend des voies sensitives, motrices et végétatives
 ## Conclusion
 
 L'anatomie de l'œil et du neurocrâne est complexe et interconnectée, impliquant des structures variées qui jouent des rôles essentiels dans la vision et la fonction neurologique. La compréhension de ces éléments est fondamentale pour les professionnels de la santé, notamment en médecine et en ostéopathie.
-` },
-    {
-        id: "oeil-24",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "8ea8085803643aa4a06faaaeba1c7e3b",
-        duration: "08:26",
-        title: "24. Le monde de l'intention",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-24",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "8ea8085803643aa4a06faaaeba1c7e3b",
+    duration: "08:26",
+    title: "24. Le monde de l'intention",
+    shortSummary:
+      "Découvrez comment la compréhension des Cinq Agrégats peut libérer votre esprit et favoriser le mouvement naturel de la vie. Une exploration essentielle pour tous les thérapeutes et étudiants en quête d'une transformation intérieure.",
+    fullSummary:
+      "Dans cette vidéo, l'enseignant aborde la notion de souffrance liée à la fixation et l'importance de la liberté d'être. Les Cinq Agrégats – la Forme, les Sensations, les Perceptions, la Volition et la Conscience – sont examinés en profondeur, chaque agrégat représentant une dimension de notre existence et de notre expérience subjective. En prenant conscience de ces éléments, les étudiants apprendront à lâcher prise et à mieux gérer leurs sensations et émotions, en évitant l'attachement qui mène à la souffrance. Des concepts clés tels que l'impermanence, l'interdépendance et la responsabilité personnelle sont également explorés, tout en soulignant l'importance de réfléchir sur ses intentions pour créer une existence plus alignée et harmonieuse.",
+    transcriptMarkdown: `
 # Le Monde de l'Intention
 
 La **souffrance** est souvent liée à notre tendance à figer les choses, empêchant ainsi le **mouvement** naturel de la vie. Il est essentiel de prendre conscience de la nécessité de laisser la **liberté** s'exprimer.
@@ -8092,15 +9699,20 @@ Le dernier agrégat est celui de la **conscience**. Cette conscience peut être 
 
 ## Conclusion
 Les agrégats – l'écume, les bulles, les perceptions, le bananier et la conscience – sont interconnectés et en constante superposition. Il est bénéfique de prendre le temps de réfléchir à chacun de ces agrégats, même en consacrant une retraite d'une semaine ou d'un mois à leur étude. Cela permet d'approfondir notre compréhension de nous-mêmes et de notre expérience.
-` },
-    {
-        id: "oeil-25",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "6ea8838076122dc5d229e087e7fbe80c",
-        duration: "01:05",
-        title: "25. Revision",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-25",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "6ea8838076122dc5d229e087e7fbe80c",
+    duration: "01:05",
+    title: "25. Revision",
+    shortSummary:
+      "Découvrez les secrets de la rétine et son développement fascinant ! Cette vidéo vous plonge dans les mécanismes embryologiques qui sous-tendent les pathologies oculaires courantes, vous armant de connaissances essentielles pour votre pratique.",
+    fullSummary:
+      "Cette vidéo aborde en profondeur l'anatomie de la rétine en expliquant son enveloppe, qui comprend l'uvée, la choroïde, l'iris et les corps ciliaires. Vous apprendrez comment la rétine, composée de la rétine externe et interne, se développe à partir de la cupule optique primitive et de son interaction juxtacrine avec l'épiblase. Un des points clés discutés est le décollement de la rétine, un phénomène essentiel à comprendre tant sur le plan théorique que dans un contexte clinique. En outre, il est souligné que la rétine est un tissu dérivé du cerveau, une notion qui enrichit votre compréhension embryologique et ouvre des perspectives sur les pathologies oculaires.",
+    transcriptMarkdown: `
 # Révision de l'Anatomie de la Rétine
 
 L'**enveloppe** de l'œil comprend l'**uvée**, qui est constituée de la **choroïde**, de l'**iris** et des **corps ciliaires**. En retirant cette enveloppe, nous accédons à la **rétine**, qui se compose de deux grandes couches principales : la **rétine externe** et la **rétine interne**.
@@ -8110,15 +9722,20 @@ C'est au niveau de la rétine que se produit le **décollement**, un phénomène
 Cette dynamique donne naissance à une **dépression primitive**. La rétine, en se développant, s'entoure et forme ce que l'on appelle la **rétine externe** et la **rétine interne**. C'est ici que se produit le décollement de la rétine, un problème que beaucoup de personnes ont déjà rencontré.
 
 Il est essentiel de noter que la rétine est en réalité un tissu dérivé du **cerveau**, plus précisément du **tissu ventriculaire**.
-` },
-    {
-        id: "oeil-26",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "0d3fa317616709a201c1178682d421b2",
-        duration: "04:43",
-        title: "26. Neurophysiologie de l'oeil: Intro",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-26",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "0d3fa317616709a201c1178682d421b2",
+    duration: "04:43",
+    title: "26. Neurophysiologie de l'oeil: Intro",
+    shortSummary:
+      "Découvrez comment les émotions et la physiologie se reflètent dans nos yeux ! Cette vidéo offre une plongée fascinante dans la neurophysiologie de l'œil, révélant des concepts inédits qui transformeront votre compréhension de la vision.",
+    fullSummary:
+      "Cette introduction à la neurophysiologie de l'œil explore les interconnexions entre la souffrance, la perception et les spécificités anatomiques de l'œil. Vous apprendrez comment les mouvements oculaires et la géométrie de l'iris peuvent signaler des états émotionnels, ainsi que les distinctions entre voyance, clairvoyance et polyvoyance. La vidéo détaille ensuite les différentes structures de l'œil, de la conjonctive à la rétine, et explique comment la lumière est convertie en signaux électriques. En intégrant des concepts tels que l'importance de l'orientation de l'œil et la transduction des photons, cette présentation enrichit votre approche théorique et pratique de l'ostéopathie et de la biodynamique.",
+    transcriptMarkdown: `
 # Neurophysiologie de l'Œil : Introduction
 
 Lorsqu'une personne traverse une **souffrance**, qu'elle soit **physique**, **émotionnelle** ou d'une autre nature, cela peut se refléter dans ses yeux. L'œil peut effectuer des mouvements spécifiques, et il existe une **géométrie** dans l'iris qui peut se manifester de différentes manières. 
@@ -8142,15 +9759,20 @@ Il est essentiel d'apprendre à utiliser ces deux types de vision. La fréquence
 Cette orientation spécifique influence la **rétine**, où se produit le phénomène de **transduction**. Les photons sont convertis en signaux électriques, envoyés sous forme de flux nerveux à gauche et à droite. Chaque œil transmet ces informations au **corps genouillé latéral (CGL)**, qui les interprète à travers des cellules **cagnocellulaires** et **magnocellulaires**.
 
 Une fois intégrées, ces informations empruntent les **radiations optiques** pour atteindre le **cortex visuel**, situé au-dessus et en dessous de l'œil, près de la **cissure calcarine**. Ce parcours de l'œil et l'interprétation des signaux visuels sont cruciaux pour comprendre la neurophysiologie de la vision.
-` },
-    {
-        id: "oeil-27",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "b613e0ac10dabaa6ae14da5f0cc67bd4",
-        duration: "08:39",
-        title: "27. Mécanisme de la  transduction",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-27",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "b613e0ac10dabaa6ae14da5f0cc67bd4",
+    duration: "08:39",
+    title: "27. Mécanisme de la  transduction",
+    shortSummary:
+      "Découvrez comment les rayons lumineux se transforment en signaux nerveux grâce à des processus fascinants dans la rétine ! Apprenez des concepts clés sur la vision qui transformeront votre compréhension de l'œil.",
+    fullSummary:
+      "Cette vidéo explore en profondeur le mécanisme de la transduction visuelle, en détaillant le parcours de la lumière à travers les différentes couches de la rétine, depuis les photorécepteurs jusqu'au nerf optique. Les diverses cellules de la rétine, notamment les cônes, les bâtonnets, les cellules bipolaires, et les cellules ganglionaires, sont examinées pour comprendre leur rôle dans le traitement de l'information visuelle. La transformation chimique de la rhodopsine et de l'iodopsine lors de l'absorption de lumière, ainsi que l'importance de la vitamine A, sont également abordées, mettant en lumière les conséquences d'une carence sur la vision.",
+    transcriptMarkdown: `
 # Mécanisme de la Transduction
 
 Les **rayons lumineux** traversent d'abord toutes les couches de la rétine pour atteindre les **photorécepteurs**. Ces photorécepteurs sont actifs grâce à leur localisation dans une zone appelée la **zone pigmentaire**, qui constitue la première couche. Les photorécepteurs se divisent en deux types : les **cônes** et les **bâtonnets**. 
@@ -8172,15 +9794,20 @@ Les bâtonnets se composent de trois parties : le segment externe, le segment in
 Lorsque la lumière atteint ces disques, la rhodopsine se transforme en métarhodopsine, entraînant une cascade chimique qui modifie la polarité de la membrane, la rendant imperméable au sodium. Ce changement crée un courant électrique, essentiel pour la transmission de l'information visuelle.
 
 La **transduction** de l'énergie lumineuse se produit dans les photorécepteurs grâce à l'absorption de lumière par l'opsine, qui change de forme en fonction de la lumière reçue. Ce processus est crucial pour la vision, et la vitamine A joue un rôle fondamental dans la synthèse du rétinène. Une déficience en vitamine A peut entraîner une perte de la vision, notamment nocturne.
-` },
-    {
-        id: "oeil-28",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "9b2743b24fea9950de9145e44c1226b2",
-        duration: "17:52",
-        title: "28. Le corps genouillé lateral",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-28",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "9b2743b24fea9950de9145e44c1226b2",
+    duration: "17:52",
+    title: "28. Le corps genouillé lateral",
+    shortSummary:
+      "Découvrez comment le corps genouillé latéral intègre l'information visuelle et ses liens fascinants avec l'audition et la mémoire, pour mieux comprendre la perception humaine !",
+    fullSummary:
+      "Dans cette vidéo, vous apprendrez le rôle essentiel du corps genouillé latéral dans le traitement des informations visuelles, en explorant ses différentes couches de cellules, comme les cellules parvocellulaires et magnocellulaires, qui traitent respectivement la couleur et le mouvement. La transmission de l'information via le nerf optique jusqu'aux aires visuelles et son interaction avec le pulvinar sont également abordées. En outre, la vidéo met en lumière l'intégration multisensorielle et le lien entre le corps genouillé latéral et le circuit de Papez, essentiel pour la mémoire et l'interprétation des réalités. Vous découvrirez comment notre perception est façonnée par des souvenirs et une réinterprétation constante de notre environnement.",
+    transcriptMarkdown: `
 # Le Corps Genouillé Latéral : Intégration et Traitement de l'Information Visuelle
 
 Le **corps genouillé latéral** joue un rôle crucial dans le traitement de l'information visuelle. Il reçoit les influx nerveux provenant de la rétine et effectue un triage de ces informations avant de les transmettre aux aires visuelles.
@@ -8216,15 +9843,20 @@ Il est important de noter que lorsque nous percevons une information, nous ne re
 ## Conclusion
 
 Le corps genouillé latéral est une structure clé dans le traitement de l'information visuelle, intégrant des données provenant de différentes sources sensorielles et jouant un rôle crucial dans notre perception de la réalité. Sa capacité à trier et à interpréter les informations est essentielle pour notre interaction avec le monde qui nous entoure.
-` },
-    {
-        id: "oeil-29",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "8b85976f94198905d11c6162c2383826",
-        duration: "03:20",
-        title: "29. Dissociation des souvenirs",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-29",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "8b85976f94198905d11c6162c2383826",
+    duration: "03:20",
+    title: "29. Dissociation des souvenirs",
+    shortSummary:
+      "Découvrez comment dissocier vos souvenirs émotionnels peut transformer votre expérience intérieure et libérer vos angoisses profondément enracinées. Une démarche essentielle pour les thérapeutes et ceux en quête de mieux comprendre leurs émotions!",
+    fullSummary:
+      "Cette vidéo explore la dissociation des souvenirs émotionnels à travers le témoignage d'une expérience personnelle marquante. L'intervenant partage comment des événements stressants liés à sa famille ont influencé ses perceptions et sa santé physique. Grâce à l'intervention d'une psychiatre, il a appris à dissocier les émotions des événements, offrant une nouvelle perspective sur ses peurs et douleurs corporelles. L'enseignement se concentre sur l'importance de libérer des associations émotionnelles et de réaligner ses expériences pour favoriser la compréhension de soi et agir en tant que thérapeute. Ce processus de réévaluation est fondamental pour atteindre une véritable libération émotionnelle.",
+    transcriptMarkdown: `
 # Dissociation des Souvenirs
 
 Lors d'une expérience marquante, j'ai vécu une situation où mon père partait à l'hôpital. Tout le monde était inquiet, mais en tant que plus jeune, je me sentais presque détaché. Mes parents venaient de se séparer, et bien que j'apprenne que ma mère prenait un avion pour venir, je ressentais une certaine **satisfaction** face à leurs disputes.
@@ -8238,15 +9870,20 @@ Cette prise de conscience a été libératrice. J'avais accumulé toutes ces ém
 Cette expérience illustre comment nos **peurs** peuvent être liées à des désirs refoulés. Par exemple, demander à un parent si l'on peut faire du vélo peut être teinté de la peur de tomber. Chaque peur cache une envie. C'est un processus de mémorisation complexe. 
 
 Il est essentiel de se libérer de ces associations émotionnelles et de réévaluer nos expériences. C'est un chemin vers la **libération** et la compréhension de soi.
-` },
-    {
-        id: "oeil-30",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "749ec86c991222e7390bb35a4ca94d0f",
-        duration: "04:11",
-        title: "30. les paires d'oeils",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-30",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "749ec86c991222e7390bb35a4ca94d0f",
+    duration: "04:11",
+    title: "30. les paires d'oeils",
+    shortSummary:
+      "Découvrez comment l'exploration des 'Yeux' au-delà de la vision physique peut transformer votre compréhension de la conscience et des interactions humaines, notamment à travers la polyvoyance et la clairvoyance.",
+    fullSummary:
+      "Cette vidéo aborde la thématique fascinante des paires d'yeux comme des fenêtres non seulement vers l'âme, mais aussi vers divers aspects de notre être, allant de la physiologie à la spiritualité. Elle explore comment des éléments culturels, comme l'activation de la glande hypophyse en Asie, se lient à des notions de clairvoyance et de perception. Les connexions entre les yeux, les organes internes, et même les articulations tels que les coudes et les genoux sont décryptées, offrant une nouvelle perspective sur le corps humain et ses mémoires. Les concepts de l'harmonie entre corps physique et corps énergétique sont essentiels pour comprendre notre cheminement personnel et comment nos histoires influencent notre perception du monde.",
+    transcriptMarkdown: `
 # Les Paires d'Yeux : Une Exploration des Sens et de la Conscience
 
 La **polyvoyance** est décrite comme la capacité de voir **Dieu** en chaque chose, tandis que l'**hypophyse** est le siège de la **clairvoyance**. En Asie, on évoque souvent le **troisième œil**, qui permet d'accéder à la face cachée des choses. Cette glande joue un rôle crucial en sécrétant les hormones nécessaires au corps.
@@ -8266,15 +9903,20 @@ Les **coudes** sont perçus comme les yeux permettant de regarder en arrière du
 Le **talon** est également un œil, permettant de regarder en arrière du corps physique. Il est considéré comme le premier œil de la terre, un symbole de paix. Chaque œil est relié aux autres et porte des **mémoires** dans les corps physique, éthérique, astral et mental.
 
 Ces mémoires véhiculent des informations qui influencent notre interprétation et nos expériences. Ainsi, il est essentiel de réfléchir à ce que nous faisons de ces images qui nous appartiennent, influencées par notre histoire **génétique**, **karmique**, actuelle et par la **mémoire pure**.
-` },
-    {
-        id: "oeil-31",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "6bcceb56b34f439759787acf7be6f136",
-        duration: "10:39",
-        title: "31. Pratique: Epiphyse et hypophyse",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-31",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "6bcceb56b34f439759787acf7be6f136",
+    duration: "10:39",
+    title: "31. Pratique: Epiphyse et hypophyse",
+    shortSummary:
+      "Découvrez comment l'épiphyse et l'hypophyse, véritables chefs d'orchestre de notre équilibre hormonal, interagissent pour améliorer la santé et la mémoire grâce à des techniques innovantes d'embryologie biodynamique.",
+    fullSummary:
+      "Cette vidéo propose une exploration approfondie des rôles fondamentaux de l'épiphyse et de l'hypophyse dans la régulation hormonale et la mémoire. Elle présente des techniques de rééquilibrage énergétique inspirées du voyage embryonnaire, spécifiquement en ce qui concerne la motilité de l'hypophyse. Les étudiants apprendront à identifier les interactions entre lumière divine et actuelle, ainsi qu'à utiliser des observations cliniques comme la respiration et les mouvements oculaires pour restaurer l'équilibre entre ces deux glandes cruciales. Le cours met aussi en lumière l'importance de l'épiphyse dans la régulation de fonctions vitales comme la respiration, la digestion et le sommeil.",
+    transcriptMarkdown: `
 # Pratique : Épiphyse et Hypophyse
 
 L'épiphyse et l'hypophyse jouent un rôle crucial dans la **régulation hormonale** et la **mémoire**. L'épiphyse, souvent appelée la glande pinéale, est le **lien entre les neurones** et le système hormonal. Elle est influencée par la lumière et contient des micro-organismes qui transforment la **sérotonine** en **mélatonine**. Lorsque l'intensité lumineuse diminue, la mélatonine commence à être produite.
@@ -8292,15 +9934,20 @@ Dans la pratique, il est possible d'utiliser des techniques internes pour travai
 Le **système nerveux**, incluant l'hypothalamus et le thalamus, joue un rôle clé dans cette dynamique. En relançant la motilité embryonnaire, il est possible de rééquilibrer l'hypophyse antérieure et postérieure. Les mouvements des yeux peuvent indiquer un retour vers l'hara, favorisant ainsi la stabilité.
 
 L'épiphyse est essentielle pour la régulation de la **respiration**, de la **digestion** et du **sommeil**. Elle produit de la mélatonine, une hormone qui influence les ondes cérébrales, facilitant ainsi l'endormissement, le sommeil profond et les rêves. Bien que l'hypophyse contrôle presque toutes les glandes, l'épiphyse est considérée comme la glande maîtresse, jouant un rôle central dans l'équilibre hormonal et énergétique du corps.
-` },
-    {
-        id: "oeil-32",
-        categoryId: "oeil",
-        youtubeId: "_bnk-aQx3d8",
-        cloudflareId: "d679cdd7c122edc08b20dd8590eff6cb",
-        duration: "24:37",
-        title: "31-bis. Influences sur l'oeil",
-        transcriptMarkdown: `
+`,
+  },
+  {
+    id: "oeil-32",
+    categoryId: "oeil",
+    youtubeId: "_bnk-aQx3d8",
+    cloudflareId: "d679cdd7c122edc08b20dd8590eff6cb",
+    duration: "24:37",
+    title: "31-bis. Influences sur l'oeil",
+    shortSummary:
+      "Découvrez comment l'œil, véritable acteur de notre tonus postural, influence notre bien-être physique et émotionnel! Apprenez à décoder les interactions entre la vision, le corps et l'énergie pour améliorer vos pratiques thérapeutiques.",
+    fullSummary:
+      "Cette vidéo explore en profondeur le rôle de l'œil dans le cadre d'un programme neurosensoriel, soulignant son lien avec la capsule de Tenon et le système hypotalamo-ventriculaire. En abordant des concepts comme la chimie posturale, le feedback corporel et les mécanismes énergétiques, elle révèle comment l'intégration des informations visuelles peut affecter la tonicité corporelle et l'état émotionnel. Les étudiants découvriront également l'importance de la méditation pour libérer les schémas de perception déformés et seront introduits à des concepts comme le rôle du fascia comme mémoire corporelle, ainsi que l'influence du cœur sur notre énergie électromagnétique.",
+    transcriptMarkdown: `
 # Influences sur l'Œil
 
 La **capsule de Tenon** est reliée à l'ensemble du corps et joue un rôle crucial dans un **programme neurosensoriel**. Cela signifie qu'elle intègre des informations sur le **tonus postural**, qui peut être considéré comme une **chimie posturale**. Au niveau de l'**hypothalamus**, de nombreuses informations sont intégrées, notamment par le biais du **thalamus** et du **pulvinar**, ainsi que d'autres noyaux autour du système ventriculaire.
@@ -8330,30 +9977,31 @@ Les réflexes oculaires, tels que le réflexe fronto-orbitaire et le réflexe au
 Les mouvements oculaires sont essentiels pour le rééquilibrage. Les axes visuels et les angles d'inclinaison jouent un rôle dans l'intégration lumineuse neurosensorielle. L'œil a une liberté d'intégration lumineuse d'environ 23 degrés, un chiffre qui se retrouve dans divers contextes, comme l'inclinaison de la Terre.
 
 Enfin, les axes d'information, tels que l'axe pétreux, montrent comment les déstabilisations oculaires peuvent affecter l'équilibre. Les mémoires intégrées dans les os ou les schémas électriques peuvent également influencer notre perception et notre équilibre.
-` }
+`,
+  },
 ];
 
 export const getCategoryTotalDuration = (categoryId: string): string => {
-    const courses = videoCourses.filter(v => v.categoryId === categoryId);
-    let totalSeconds = 0;
-    courses.forEach(c => {
-        if (!c.duration) return;
-        const parts = c.duration.split(':').map(Number);
-        if (parts.length === 3) {
-            totalSeconds += parts[0] * 3600 + parts[1] * 60 + parts[2];
-        } else if (parts.length === 2) {
-            totalSeconds += parts[0] * 60 + parts[1];
-        }
-    });
-
-    if (totalSeconds === 0) return "";
-
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-
-    if (hours > 0) {
-        // If minutes is 0, we can just say "Xh". Otherwise "Xh YYm"
-        return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`;
+  const courses = videoCourses.filter((v) => v.categoryId === categoryId);
+  let totalSeconds = 0;
+  courses.forEach((c) => {
+    if (!c.duration) return;
+    const parts = c.duration.split(":").map(Number);
+    if (parts.length === 3) {
+      totalSeconds += parts[0] * 3600 + parts[1] * 60 + parts[2];
+    } else if (parts.length === 2) {
+      totalSeconds += parts[0] * 60 + parts[1];
     }
-    return `${minutes}m`;
+  });
+
+  if (totalSeconds === 0) return "";
+
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+  if (hours > 0) {
+    // If minutes is 0, we can just say "Xh". Otherwise "Xh YYm"
+    return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`;
+  }
+  return `${minutes}m`;
 };

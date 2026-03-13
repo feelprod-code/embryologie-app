@@ -214,6 +214,11 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                             )}>
                                                 {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}- ` : '') + course.title.replace(/^\d+[.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
                                             </h3>
+                                            {course.shortSummary && (
+                                                <p className="text-[11px] sm:text-xs text-slate-400 mt-1 line-clamp-2 leading-relaxed px-0.5 group-hover:text-slate-500 transition-colors">
+                                                    {course.shortSummary}
+                                                </p>
+                                            )}
                                             <div className="flex items-center gap-2 mt-1 md:mt-0.5 lg:mt-0.5 opacity-70 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                                                 <span className="text-[10px] sm:text-[10px] md:text-[9px] lg:text-[9px] text-slate-400 font-medium font-sans flex items-center gap-1">
                                                     <BookOpen className="w-3 h-3 sm:w-3 sm:h-3 md:w-2.5 md:h-2.5 lg:w-2.5 lg:h-2.5" />

@@ -67,6 +67,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [optimisticLayer, setOptimisticLayer] = useState<string | null>(null);
   const isPending = false;
 
+  const [contentMode, setContentMode] = useState<'summary' | 'transcript'>('summary');
+
   // Reset optimistic layer when actual course changes
   useEffect(() => {
     setOptimisticLayer(null);
@@ -590,8 +592,33 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 "prose-a:text-slate-800 hover:prose-a:text-slate-900 prose-blockquote:border-slate-800 prose-blockquote:bg-slate-100",
         "[&>*:first-child]:!mt-0"
       )}>
+        <div className="flex justify-center mt-2 mb-6">
+          <div className="inline-flex bg-slate-100/80 p-1 rounded-lg">
+            <button
+              onClick={() => setContentMode('summary')}
+              className={cn(
+                "px-4 md:px-6 py-1.5 text-[13px] md:text-sm font-medium rounded-md transition-all duration-200",
+                contentMode === 'summary' ? "bg-white text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-700"
+              )}
+            >
+              Résumé
+            </button>
+            <button
+              onClick={() => setContentMode('transcript')}
+              className={cn(
+                "px-4 md:px-6 py-1.5 text-[13px] md:text-sm font-medium rounded-md transition-all duration-200",
+                contentMode === 'transcript' ? "bg-white text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-700"
+              )}
+            >
+              Retranscription
+            </button>
+          </div>
+        </div>
+
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-          {course.transcriptMarkdown.replace(/^#\s.*$/gm, '').trim().replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
+          {contentMode === 'summary' && course.fullSummary
+            ? course.fullSummary.replace(/\n/g, '\n\n')
+            : course.transcriptMarkdown.replace(/^#\s.*$/gm, '').trim().replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
         </ReactMarkdown>
       </div>
     </div>
