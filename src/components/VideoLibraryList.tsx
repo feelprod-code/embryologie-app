@@ -84,7 +84,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                 {/* Category Pills (identical spacing to Timeline) */}
                 <div className="w-full pb-2 mb-2 sm:mb-0 border-t border-slate-100 pt-2 sm:pt-2 md:pt-1">
-                    <div className="grid grid-cols-4 items-stretch gap-1.5 sm:gap-2 w-full max-w-4xl mx-auto px-2 md:px-0">
+                    <div className="grid grid-cols-2 md:grid-cols-4 items-stretch gap-1.5 sm:gap-2 w-full max-w-4xl mx-auto px-2 md:px-0">
                         {tabs.map(layer => {
                             const isSelected = activeTab === layer;
 
@@ -121,11 +121,6 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 <button
                                     key={layer}
                                     onClick={handleLayerSelect}
-                                    onTouchStart={() => {
-                                        // On mobile, fire immediately and don't wait for click
-                                        // We don't preventDefault here because it might block vertical scrolling
-                                        handleLayerSelect();
-                                    }}
                                     className={cn(
                                         "relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-1 sm:px-4 md:px-4 lg:px-3 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0",
                                         isSelected
@@ -134,7 +129,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     )}
                                 >
                                     <span className={cn(
-                                        "font-bebas text-[15px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
+                                        "font-bebas text-[15px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 w-full text-center",
                                         isSelected ? "text-white" : style.unselectedText
                                     )}>
                                         {t(`videoLibrary.layers.${tKeys[layer as keyof typeof tKeys]}`)}
@@ -189,7 +184,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         onTouchEnd={() => setTimeout(() => setTouchedCourseId(null), 150)}
                                         onTouchCancel={() => setTouchedCourseId(null)}
                                         style={{
-                                            backgroundColor: isTouched ? activeListStyle.tapBg : 'transparent',
+                                            backgroundColor: isTouched ? activeListStyle.tapBg : undefined,
                                             transform: isTouched ? 'scale(0.96)' : 'scale(1)',
                                             transition: 'transform 0.15s ease-out, background-color 0.15s ease-out',
                                         }}

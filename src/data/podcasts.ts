@@ -1562,7 +1562,7 @@ A bientôt Philippe, très bientôt.
         id: "link-marc-site",
         title: "Le Site de Marc Damoiseaux",
         author: "Site Web Officiel",
-        description: "Découvrez l'intégralité des travaux, textes et parcours de Marc Damoiseaux. Explorez la source originelle de cette approche biodynamique.",
+        description: "L'intégralité des travaux, textes et parcours de Marc Damoiseaux. Explorez la source originelle de cette approche biodynamique.",
         thumbnailUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=400&h=400&auto=format&fit=crop", // Image de livres/étude par défaut
         externalLink: "https://www.marcdamoiseaux.com"
     }

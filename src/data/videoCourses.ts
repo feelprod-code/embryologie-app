@@ -8353,7 +8353,7 @@ Nous inscrivons ces corrections dans le cerveau du patient, en accédant au **sy
     duration: "04:27",
     title: "34- Synchronique Globale_Rappel et Intro pour Duodenum",
     shortSummary: "Analyse des relations entre embryologie et biodynamique en ostéopathie. Exploration des interconnexions organiques et du développement synchronisé, avec des implications pour la pratique thérapeutique.",
-    fullSummary: "Dans cette vidéo, nous explorons la complexité du développement embryonnaire, en mettant l'accent sur l'interconnexion des systèmes tels que le cortex, le cœur, les poumons, le foie et le pancréas. Apprenez comment ces éléments évoluent simultanément selon un timing spécifique, et découvrez l'importance de la polarité et de l'axe notocordal dans la morphogenèse. L'enseignement aborde également les implications cliniques de cette dynamique embryonnaire en ostéopathie, en soulignant la nécessité de rétablir des points d'appui et d'identifier les fulcrums embryonnaires pour optimiser les soins. Enfin, le développement du duodénum, avec ses processus de rotation et d'organisation, est présenté comme essentiel à la compréhension de l'interaction entre les intestins et les organes associés.",
+    fullSummary: "Étude de la complexité du développement embryonnaire, avec une mise en évidence de l'interconnexion des systèmes (cortex, cœur, poumons, foie, pancréas). Analyse de leur évolution simultanée et de l'importance de la polarité ainsi que de l'axe notocordal dans la morphogenèse. Les implications cliniques en ostéopathie sont abordées, soulignant la nécessité de rétablir des points d'appui et d'identifier les fulcrums embryonnaires. Le développement du duodénum (rotation et organisation) est présenté dans le cadre de son interaction avec les intestins.",
     transcriptMarkdown: `
 # Synchronique Globale : Rappel et Introduction pour le Duodénum
 
@@ -8444,7 +8444,7 @@ Dans cette phase de développement, nous observons comment tout cela organise co
     duration: "08:37",
     title: "37- Développement du Foie & Vesicule",
     shortSummary: "Développement du foie et de la vésicule biliaire, avec étude des interactions entre le cerveau, le cœur et l'embryon. Cible les étudiants en médecine intéressés par l'embryologie appliquée en ostéopathie.",
-    fullSummary: "Cette vidéo offre une exploration approfondie du développement du foie, enracinée dans le contexte endodermique, et révèle comment la notocorde et le cerveau influencent cette formation. Les concepts clés incluent les relations entre les différentes parties de l'intestin, l'importance de la congestion vasculaire primitive, et la structuration complexe des canaux biliaires. Vous découvrirez également comment le foie sert de point d'appui central dans l'organisation embryologique et son rôle fondamental dans la détoxication. L'éclairage sur le flux sanguin veineux et artériel apporte une dimension essentielle à votre compréhension des fonctions hépatiques et de leur régénération. Une ressource précieuse pour tout étudiant ou thérapeute cherchant à intégrer l'embryologie à sa pratique ostéopathique.",
+    fullSummary: "Analyse approfondie du développement du foie dans son contexte endodermique, démontrant l'influence de la notocorde et du cerveau. Mise en évidence des relations inter-intestinales, de la congestion vasculaire primitive et de la structuration des canaux biliaires. Le foie est présenté comme un point d'appui central dans l'organisation embryologique, essentiel pour la détoxication. L'étude du flux sanguin veineux et artériel apporte une perspective fondamentale sur les fonctions hépatiques et leur régénération spatiale.",
     transcriptMarkdown: `
 # Développement du Foie et de la Vésicule
 
@@ -8572,7 +8572,7 @@ Enfin, en redescendant, j'aborde la **recherche de mon indépendance**, un proce
     duration: "03:23",
     title: "41- Pratique 2 Le Cadre Colique",
     shortSummary: "Techniques de palpation avancées et étude du cadre colique pour favoriser la récupération après une césarienne, avec focus sur l'accompagnement post-chirurgical.",
-    fullSummary: "Cette vidéo explore les techniques de redynamisation corporelle après une césarienne, mettant l'accent sur le cadre colique et l'importance du péritoine. Les participants apprendront à effectuer une palpation approfondie du ventre, en prennent en compte la réponse tissulaire et thermique, tout en restaurant l'homogénéité du corps. Des concepts clés comme le fulcrum terminal, la nécessité de libérer des tissus et l'ajustement dynamique après des interventions comme l'hystérectomie sont abordés. Les praticiens découvriront comment travailler efficacement sur des zones spécifiques pour encourager une réintégration harmonieuse et un processus thérapeutique holistique.",
+    fullSummary: "Présentation des techniques de redynamisation corporelle post-césarienne, centrées sur le cadre colique et le péritoine. Examen palpatoire de l'abdomen incluant la réponse tissulaire et thermique pour restaurer l'homogénéité fasciale. Analyse du fulcrum terminal, des libérations tissulaires et de l'ajustement dynamique requis après des interventions pelviennes (ex. hystérectomie). Méthodologie clinique pour favoriser une réintégration tissulaire harmonieuse.",
     transcriptMarkdown: `
 # Pratique 2 : Le Cadre Colique
 
@@ -8830,7 +8830,7 @@ Il est important de noter qu'il existe une **fente colombomique** dans laquelle 
     duration: "04:24",
     title: "8. Origine de la retine et du cristallin",
     shortSummary: "Examen de l'origine et de la formation de la rétine et du cristallin, avec un focus sur leurs interactions dans l'embryologie oculaire.",
-    fullSummary: "Cette vidéo approfondit la complexité de l'embryologie de l'œil, en commençant par l'évolution structurelle de la rétine et du cristallin. On y découvre l'importance des communications juxtacrine et les interactions entre l'épiblaste, le liquide céphalorachidien et le liquide amniotique. Les notions clés incluent la formation de la vésicule optique primaire et secondaire, ainsi que les transformations cruciales des vaisseaux hyéloïdiens en vaisseaux rétiniens, tout en soulignant que la rétine est une extension du cerveau influencée par des gradients chimiques.\n\nLe processus de création du cristallin est abordé en lien avec l'épithélium de surface et la formation des différentes chambres du cristallin. En explorant les couches de tissus de l'œil, cette vidéo offre une vue d'ensemble précieuse pour les thérapeutes et étudiants souhaitant approfondir leur compréhension de l'anatomie et de l'embryologie oculaire.",
+    fullSummary: "Examen de l'embryologie oculaire, de l'évolution de la rétine au cristallin. Mise en évidence des communications juxtacrines et des interactions entre l'épiblaste, le LCR et le liquide amniotique. Étude de la vésicule optique primaire et secondaire, et de la transformation des vaisseaux hyaloïdiens en réseau rétinien (extension du cerveau modulée par des gradients chimiques). L'organogenèse du cristallin est reliée à l'épithélium de surface et au partitionnement des chambres oculaires.",
     transcriptMarkdown: `
 # Origine de la Rétine et du Cristallin
 
@@ -8855,7 +8855,7 @@ La **conjonctive** est la première membrane qui recouvre l'œil, tapissant éga
     duration: "05:01",
     title: "9. Les differentes Couches de l'Oeil 1",
     shortSummary: "Analyse de l'architecture de l'œil, y compris les différentes couches et leurs fonctions dans la physiologie de la vision.",
-    fullSummary: "Dans cette vidéo, vous explorerez les différentes couches de l'œil, comparées à des chaussettes superposées, et leur spécificité fonctionnelle. À travers une analyse détaillée, vous découvrirez la sclérotique, la choroïde, les processus ciliaires et la rétine, ainsi que leur rôle essentiel dans la physiologie de la vision. L'iridologie est également introduite comme une méthode fascinante pour lire la santé à travers l'iris, tandis que le fonctionnement des photorécepteurs et de la couche pigmentaire est expliqué en profondeur, mettant en lumière le processus complexe de la transduction visuelle. Cette leçon est indispensable pour tout étudiant ou thérapeute désireux d'approfondir ses connaissances en anatomie et physiologie de l'œil.",
+    fullSummary: "Analyse de l'histologie oculaire (sclérotique, choroïde, processus ciliaires, rétine) et de ses spécificités fonctionnelles. Introduction aux principes d'iridologie en tant qu'approche diagnostique tissulaire. Explication détaillée de l'activité des photorécepteurs et de la couche pigmentaire, illustrant les mécanismes biochimiques de la transduction visuelle.",
     transcriptMarkdown: `
 # Les Différentes Couches de l'Œil
 
@@ -9480,7 +9480,7 @@ La **transduction** de l'énergie lumineuse se produit dans les photorécepteurs
     duration: "17:52",
     title: "28. Le corps genouillé lateral",
     shortSummary: "Rôle du corps genouillé latéral dans le traitement visuel et ses interactions avec les systèmes auditifs et mémoriels, essentiel à la perception humaine.",
-    fullSummary: "Dans cette vidéo, vous apprendrez le rôle essentiel du corps genouillé latéral dans le traitement des informations visuelles, en explorant ses différentes couches de cellules, comme les cellules parvocellulaires et magnocellulaires, qui traitent respectivement la couleur et le mouvement. La transmission de l'information via le nerf optique jusqu'aux aires visuelles et son interaction avec le pulvinar sont également abordées. En outre, la vidéo met en lumière l'intégration multisensorielle et le lien entre le corps genouillé latéral et le circuit de Papez, essentiel pour la mémoire et l'interprétation des réalités. Vous découvrirez comment notre perception est façonnée par des souvenirs et une réinterprétation constante de notre environnement.",
+    fullSummary: "Étude du rôle du corps genouillé latéral dans le traitement des informations visuelles, via ses couches parvocellulaires et magnocellulaires (traitement de la couleur et du mouvement). Analyse de la transmission synaptique via le nerf optique vers les aires corticales et l'interaction avec le pulvinar. La présentation illustre l'intégration multisensorielle et ses liens avec le circuit de Papez, démontrant comment la perception visuelle est modulée par les schémas mnésiques.",
     transcriptMarkdown: `
 # Le Corps Genouillé Latéral : Intégration et Traitement de l'Information Visuelle
 
@@ -9612,7 +9612,7 @@ L'épiphyse est essentielle pour la régulation de la **respiration**, de la **d
     duration: "24:37",
     title: "31-bis. Influences sur l'oeil",
     shortSummary: "Rôle de l'œil dans le tonus postural et impact sur le bien-être physique et émotionnel. Interactions entre vision, corps et énergie dans les thérapies.",
-    fullSummary: "Cette vidéo explore en profondeur le rôle de l'œil dans le cadre d'un programme neurosensoriel, soulignant son lien avec la capsule de Tenon et le système hypotalamo-ventriculaire. En abordant des concepts comme la chimie posturale, le feedback corporel et les mécanismes énergétiques, elle révèle comment l'intégration des informations visuelles peut affecter la tonicité corporelle et l'état émotionnel. Les étudiants découvriront également l'importance de la méditation pour libérer les schémas de perception déformés et seront introduits à des concepts comme le rôle du fascia comme mémoire corporelle, ainsi que l'influence du cœur sur notre énergie électromagnétique.",
+    fullSummary: "Examen du rôle de l'œil dans le cadre du programme neurosensoriel et de son lien avec la capsule de Tenon / système hypothalamo-ventriculaire. Intégration de la chimie posturale, du feedback somatique et des mécanismes énergétiques pour démontrer comment les afférences visuelles affectent le tonus et l'état psychique. Analyse du tissu fascial comme vecteur de mémoire corporelle et de l'influence du système cardiovasculaire sur l'équilibre électromagnétique.",
     transcriptMarkdown: `
 # Influences sur l'Œil
 
