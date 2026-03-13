@@ -174,7 +174,7 @@ export const AuthScreen: React.FC = () => {
                                 required
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
-                                className="w-1/2 px-4 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-sm sm:text-base shadow-inner"
+                                className="w-1/2 px-4 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-[16px] shadow-inner"
                                 placeholder="Prénom"
                             />
                             <input
@@ -182,7 +182,7 @@ export const AuthScreen: React.FC = () => {
                                 required
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
-                                className="w-1/2 px-4 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-sm sm:text-base shadow-inner"
+                                className="w-1/2 px-4 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-[16px] shadow-inner"
                                 placeholder="Nom"
                             />
                         </div>
@@ -196,7 +196,7 @@ export const AuthScreen: React.FC = () => {
                                 required
                                 value={profession}
                                 onChange={(e) => setProfession(e.target.value)}
-                                className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-sm sm:text-base shadow-inner"
+                                className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-[16px] shadow-inner"
                                 placeholder="Profession (ex: Ostéopathe)"
                             />
                         </div>
@@ -210,7 +210,7 @@ export const AuthScreen: React.FC = () => {
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-sm sm:text-base shadow-inner"
+                                className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-[16px] shadow-inner"
                                 placeholder="votre@email.com"
                             />
                         </div>

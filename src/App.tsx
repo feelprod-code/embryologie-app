@@ -77,7 +77,6 @@ const getDeviceId = () => {
 };
 
 const ADMIN_EMAILS = [
-  'guillaumephilippe@me.com',
   'feelprod@free.fr',
   'fillprod@free.fr', // In case of typos
   'guillaumephilippe1968@gmail.com'
