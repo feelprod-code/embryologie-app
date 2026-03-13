@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { type VideoCourse, videoCourses as videoCoursesFr, getCategoryTotalDuration } from '../data/videoCourses';
 import { videoCourses as videoCoursesEn } from '../data/videoCourses_en';
 import { videoCourses as videoCoursesEs } from '../data/videoCourses_es';
@@ -37,6 +37,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
     // UI state for immediate button feedback
     const [activeTab, setActiveTab] = useState<string>("L'Ectoderme");
     const [touchedCourseId, setTouchedCourseId] = useState<string | null>(null);
+    const touchStartPos = useRef<{ x: number, y: number } | null>(null);
 
     // Deferred state for the heavy list rendering
     const [selectedLayer, setSelectedLayer] = useState<string>("L'Ectoderme");
@@ -120,6 +121,21 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 <button
                                     key={layer}
                                     onClick={handleLayerSelect}
+                                    onTouchStart={(e) => {
+                                        touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                                    }}
+                                    onTouchEnd={(e) => {
+                                        if (!touchStartPos.current) return;
+                                        const dx = Math.abs(e.changedTouches[0].clientX - touchStartPos.current.x);
+                                        const dy = Math.abs(e.changedTouches[0].clientY - touchStartPos.current.y);
+                                        touchStartPos.current = null;
+                                        if (dx < 10 && dy < 10) {
+                                            if (activeTab !== layer) {
+                                                if (e.cancelable) e.preventDefault();
+                                                handleLayerSelect();
+                                            }
+                                        }
+                                    }}
                                     className={cn(
                                         "relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-0 min-[375px]:px-1 sm:px-4 md:px-4 lg:px-3 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0 active:scale-[0.98]",
                                         isSelected
@@ -128,14 +144,14 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     )}
                                 >
                                     <span className={cn(
-                                        "font-bebas text-[12px] min-[375px]:text-[14px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-[1.1] mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
+                                        "pointer-events-none font-bebas text-[12px] min-[375px]:text-[14px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-[1.1] mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
                                         isSelected ? "text-white" : style.unselectedText
                                     )}>
                                         {t(`videoLibrary.layers.${tKeys[layer as keyof typeof tKeys]}`)}
                                     </span>
 
                                     <span className={cn(
-                                        "text-[9px] sm:text-[10px] md:text-[10px] uppercase font-bold truncate w-full px-0 sm:px-1 opacity-80 text-center",
+                                        "pointer-events-none text-[9px] sm:text-[10px] md:text-[10px] uppercase font-bold truncate w-full px-0 sm:px-1 opacity-80 text-center",
                                         isSelected ? "text-white/80" : style.unselectedText
                                     )}>
                                         <Clock size={10} className="hidden lg:inline mr-1 mb-[1px]" />
@@ -171,6 +187,16 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                             const isHighlighted = touchedCourseId === course.id;
 
+                            const handleVideoTap = () => {
+                                if (window.matchMedia("(pointer: coarse)").matches) {
+                                    if (touchedCourseId !== course.id) {
+                                        setTouchedCourseId(course.id);
+                                        return;
+                                    }
+                                }
+                                onSelectVideo(course);
+                            };
+
                             return (
                                 <motion.div
                                     key={course.id}
@@ -178,14 +204,19 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     className="w-full"
                                 >
                                     <button
-                                        onClick={() => {
-                                            if (window.matchMedia("(pointer: coarse)").matches) {
-                                                if (touchedCourseId !== course.id) {
-                                                    setTouchedCourseId(course.id);
-                                                    return;
-                                                }
+                                        onClick={handleVideoTap}
+                                        onTouchStart={(e) => {
+                                            touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                                        }}
+                                        onTouchEnd={(e) => {
+                                            if (!touchStartPos.current) return;
+                                            const dx = Math.abs(e.changedTouches[0].clientX - touchStartPos.current.x);
+                                            const dy = Math.abs(e.changedTouches[0].clientY - touchStartPos.current.y);
+                                            touchStartPos.current = null;
+                                            if (dx < 10 && dy < 10) {
+                                                if (e.cancelable) e.preventDefault();
+                                                handleVideoTap();
                                             }
-                                            onSelectVideo(course);
                                         }}
                                         style={{
                                             backgroundColor: isHighlighted ? activeListStyle.tapBg : undefined,
