@@ -165,8 +165,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         document.addEventListener('fullscreenchange', handleFullscreenChange);
         document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 
-        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-
         if (isFullscreen) {
             document.documentElement.classList.add('video-fullscreen-active');
             document.body.style.overflow = 'hidden';
@@ -175,7 +173,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 // Ensure no transform constraint clips the fixed child
                 rootElement.style.setProperty('transform', 'none', 'important');
             }
-            if (metaThemeColor) metaThemeColor.setAttribute('content', '#000000');
             window.scrollTo(0, 0);
         } else {
             document.documentElement.classList.remove('video-fullscreen-active');
@@ -184,7 +181,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (rootElement) {
                 rootElement.style.removeProperty('transform');
             }
-            if (metaThemeColor) metaThemeColor.setAttribute('content', '#FAF6ED');
         }
 
         if (onFullscreenChange) {
@@ -200,8 +196,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (rootElement) {
                 rootElement.style.removeProperty('transform');
             }
-            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-            if (metaThemeColor) metaThemeColor.setAttribute('content', '#FAF6ED');
         };
     }, [isFullscreen, onFullscreenChange]);
 
@@ -314,6 +308,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         return () => {
             document.body.classList.remove('fullscreen-locked');
             document.documentElement.classList.remove('fullscreen-locked');
+            // Restore original values when unmounting
+            if (themeColorMeta) themeColorMeta.setAttribute('content', '#FAF6ED');
+            if (viewportMeta) viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover');
         }
     }, [isFullscreen]);
 
