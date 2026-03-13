@@ -14,6 +14,7 @@ import { podcastsData as podcastsDataEn } from '../data/podcasts_en';
 import { podcastsData as podcastsDataEs } from '../data/podcasts_es';
 import { cn } from '../utils';
 import { useTranslation } from 'react-i18next';
+import { supabase } from '../lib/supabase';
 
 // Helper to stringify context
 const getCourseContext = (lang: string) => {
@@ -62,7 +63,7 @@ const getCourseContext = (lang: string) => {
     return text;
 };
 
-const getSystemPrompt = (lang: string) => `Tu es "Assistant IA", un assistant virtuel expert en embryologie biodynamique, basé prioritairement sur les enseignements de Marc Damoiseaux, mais disposant d'une vaste connaissance externe sur le domaine (Blechschmidt, Jealous, Freeman, etc.).
+const getSystemPrompt = (lang: string, customContext?: string) => `Tu es "Assistant IA", un assistant virtuel expert en embryologie biodynamique, basé prioritairement sur les enseignements de Marc Damoiseaux, mais disposant d'une vaste connaissance externe sur le domaine (Blechschmidt, Jealous, Freeman, etc.).
 Ton rôle est d'aider les étudiants ou praticiens en répondant à leurs questions de façon précise et clinique.
 
 RÈGLE ABSOLUE NUMÉRO 1 : Tu dois D'ABORD chercher la réponse dans le contexte de Marc Damoiseaux fourni ci-dessous. Si tu la trouves, utilise-la et cite le stade (ex: "Source: J28 - Plis Céphalique").
@@ -74,7 +75,7 @@ RÈGLE ABSOLUE NUMÉRO 5 : Lorsque tu cites ou fais référence à un cours vid�
 RÈGLE ABSOLUE NUMÉRO 6 : Tu réponds IMPÉRATIVEMENT dans la langue de l'utilisateur. Langue actuelle: ${lang}.
 
 CONTEXTE DU COURS :
-${getCourseContext(lang)}
+${customContext !== undefined ? customContext : getCourseContext(lang)}
 `;
 
 type Message = {
@@ -102,6 +103,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [isFastMode, setIsFastMode] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     // Prevent body vertical bounce on iOS devices
@@ -240,8 +242,24 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
         }
 
         try {
+            let currentContext: string | undefined = undefined;
+
+            if (isFastMode) {
+                const { data: pineconeData, error: pineconeError } = await supabase.functions.invoke('ask-pinecone', {
+                    body: { query: userMessage, topK: 5 }
+                });
+
+                if (pineconeError) {
+                    console.error("Pinecone search error:", pineconeError);
+                } else if (pineconeData && pineconeData.results) {
+                    currentContext = "EXTRAITS PERTINENTS DE LA BASE DE CONNAISSANCES:\n---\n" +
+                        pineconeData.results.map((r: any) => `Document: ${r.metadata.title || 'Inconnu'}\nAuteur: ${r.metadata.author || 'Inconnu'}\nContenu: ${r.text || r.metadata.text}`).join('\n\n') +
+                        "\n---";
+                }
+            }
+
             const apiMessages = [
-                { role: 'system', content: getSystemPrompt(i18n.language) },
+                { role: 'system', content: getSystemPrompt(i18n.language, currentContext) },
                 ...messages.filter(m => m.role !== 'system'),
                 { role: 'user', content: userMessage }
             ];
@@ -290,16 +308,47 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                             {t('chatbot.assistantRole')}
                         </p>
                     </div>
-                    {messages.length > 1 && (
-                        <button
-                            onClick={handleClearChat}
-                            className="absolute right-4 text-slate-400 hover:text-slate-600 transition-colors p-2 md:bg-[#FAF6ED] md:border md:border-slate-200 md:rounded-full md:shadow-sm hover:bg-transparent active:scale-95 flex items-center justify-center shrink-0"
-                            title={t('chatbot.clearConversationTitle')}
-                        >
-                            <X size={18} />
-                            <span className="hidden md:inline ml-2 text-sm font-bold uppercase tracking-widest pt-0.5">{t('chatbot.clear')}</span>
-                        </button>
-                    )}
+                    <div className="absolute right-4 flex items-center gap-2">
+                        <div className="flex bg-slate-100 p-0.5 md:p-1 rounded-full border border-slate-200/60 shadow-sm -mb-0.5 ml-8 xs:ml-0">
+                            <button
+                                type="button"
+                                onClick={() => setIsFastMode(true)}
+                                className={cn(
+                                    "flex items-center justify-center px-3 md:px-4 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all",
+                                    isFastMode
+                                        ? "bg-[#A06C50] text-white shadow-sm"
+                                        : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
+                                )}
+                                title="Mode Rapide (RAG Pinecone) : Recherche uniquement la pertinence"
+                            >
+                                FAST
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setIsFastMode(false)}
+                                className={cn(
+                                    "flex items-center justify-center px-3 md:px-4 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all",
+                                    !isFastMode
+                                        ? "bg-slate-800 text-white shadow-sm"
+                                        : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
+                                )}
+                                title="Mode Profond : Donne le cours intégral à lire à l'IA (- rapide)"
+                            >
+                                DEEP
+                            </button>
+                        </div>
+                        {messages.length > 1 && (
+                            <button
+                                type="button"
+                                onClick={handleClearChat}
+                                className="text-slate-400 hover:text-slate-600 transition-colors p-2 md:bg-[#FAF6ED] md:border md:border-slate-200 md:rounded-full md:shadow-sm hover:bg-transparent active:scale-95 flex items-center justify-center shrink-0"
+                                title={t('chatbot.clearConversationTitle')}
+                            >
+                                <X size={18} />
+                                <span className="hidden md:inline ml-2 text-sm font-bold uppercase tracking-widest pt-0.5">{t('chatbot.clear')}</span>
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
 
