@@ -130,13 +130,13 @@ export const AuthScreen: React.FC = () => {
                             value={otpCode}
                             onChange={(e) => setOtpCode(e.target.value)}
                             className="w-full text-center tracking-[0.5em] px-5 py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-300 font-bold text-2xl shadow-inner"
-                            placeholder="00000000"
-                            maxLength={8}
+                            placeholder="000000"
+                            maxLength={6}
                         />
 
                         <button
                             type="submit"
-                            disabled={isLoading || otpCode.length < 8}
+                            disabled={isLoading || otpCode.length < 6}
                             className="w-full bg-[#A06C50] text-white py-4 rounded-2xl font-bold tracking-[0.2em] text-lg uppercase flex items-center justify-center transition-all hover:bg-[#85543c] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none mt-2 shadow-lg shadow-[#A06C50]/30"
                         >
                             {isLoading ? (
