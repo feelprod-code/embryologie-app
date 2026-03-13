@@ -65,6 +65,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   // Transition state for UI fluidity
   const [optimisticLayer, setOptimisticLayer] = useState<string | null>(null);
+  const [touchedTab, setTouchedTab] = useState<string | null>(null);
   const isPending = false;
 
   const [contentMode, setContentMode] = useState<'summary' | 'transcript'>('summary');
@@ -116,7 +117,18 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         if (lastActiveNodeRef.current !== activeIndex) {
           lastActiveNodeRef.current = activeIndex;
           if (isVideoPlaying && isAutoScrollEnabled) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const container = el.closest('.overflow-y-auto') as HTMLElement;
+            if (container) {
+              const elTop = (el as HTMLElement).offsetTop;
+              const elHeight = (el as HTMLElement).offsetHeight;
+              const containerHeight = container.offsetHeight;
+              container.scrollTo({
+                top: elTop - containerHeight / 2 + elHeight / 2,
+                behavior: 'smooth'
+              });
+            } else {
+              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
           }
         }
       } else {
@@ -234,30 +246,51 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   };
 
   // --- Effects ---
+  const [deviceClass] = useState<'mobile' | 'tablet' | 'desktop'>(() => {
+    if (typeof window === 'undefined') return 'desktop';
+
+    const ua = navigator.userAgent || '';
+    const isIOSMobile = /iPhone|iPod/i.test(ua);
+    const isIOSPad = /iPad/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isAndroidMobile = /android.*mobile/i.test(ua);
+    const isAndroidTablet = /android(?!.*mobile)/i.test(ua);
+
+    if (isIOSMobile || isAndroidMobile) return 'mobile';
+    if (isIOSPad || isAndroidTablet) return 'tablet';
+
+    const isTouch = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+    const shortSide = window.screen ? Math.min(window.screen.width, window.screen.height) : Math.min(window.innerWidth, window.innerHeight);
+
+    if (isTouch) {
+      if (shortSide <= 550) return 'mobile';
+      if (shortSide <= 1024) return 'tablet';
+    }
+
+    return 'desktop';
+  });
+
   const [activeLayout, setActiveLayout] = useState<'mobile' | 'tablet' | 'desktop'>(() => {
     if (typeof window === 'undefined') return 'desktop';
-    const isMobileUserAgent = /iPhone|iPod|android.*mobile/i.test(navigator.userAgent);
-    const isSmallScreen = window.screen ? Math.min(window.screen.width, window.screen.height) < 700 : false;
-    if (isMobileUserAgent || isSmallScreen) return 'mobile';
+    if (deviceClass === 'mobile') return 'mobile';
+    if (deviceClass === 'tablet') return 'tablet';
     return window.innerWidth < 1024 ? 'tablet' : 'desktop';
   });
 
   useEffect(() => {
-    // We lock the layout state while in fullscreen so rotating an iPhone to landscape
-    // doesn't cause its width (>768px) to trigger the Tablet layout and unmount the player.
     if (isFullscreen) return;
 
-    const isMobileUserAgent = /iPhone|iPod|android.*mobile/i.test(navigator.userAgent);
-    const isSmallScreen = window.screen ? Math.min(window.screen.width, window.screen.height) < 700 : false;
-
-    if (isMobileUserAgent || isSmallScreen) {
+    if (deviceClass === 'mobile') {
       setActiveLayout('mobile');
-    } else if (windowSize.width < 1024) {
+    } else if (deviceClass === 'tablet') {
       setActiveLayout('tablet');
     } else {
-      setActiveLayout('desktop');
+      if (windowSize.width < 1024) {
+        setActiveLayout('tablet');
+      } else {
+        setActiveLayout('desktop');
+      }
     }
-  }, [windowSize, isFullscreen]);
+  }, [windowSize, isFullscreen, deviceClass]);
 
   const isMobileLayout = activeLayout === 'mobile';
   const isTabletLayout = activeLayout === 'tablet';
@@ -750,21 +783,29 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 };
                 const style = layerStyles[layer];
 
+                const isTouched = touchedTab === layer;
+
                 return (
                   <button
                     key={layer}
                     onClick={handleLayerClick}
+                    onTouchStart={() => setTouchedTab(layer)}
+                    onTouchEnd={() => setTimeout(() => setTouchedTab(null), 150)}
+                    onTouchCancel={() => setTouchedTab(null)}
                     className={cn(
-                      "relative px-4 sm:px-6 md:px-7 lg:px-8 py-2.5 sm:py-3 lg:py-3.5 rounded-xl sm:rounded-2xl transition-all duration-300 flex-1 sm:flex-none min-w-[120px] flex flex-col items-center justify-center",
+                      "relative px-4 sm:px-6 md:px-7 lg:px-8 py-2.5 sm:py-3 lg:py-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 flex-1 sm:flex-none min-w-[120px] flex flex-col items-center justify-center touch-manipulation",
                       isSelected
-                        ? "bg-white text-slate-900 shadow-md shadow-black/5 ring-1 ring-black/5 scale-[1.02]"
+                        ? "bg-white text-slate-900 shadow-md shadow-black/5 ring-1 ring-black/5"
                         : "bg-white/50 hover:bg-white text-slate-500 hover:text-slate-800 border border-transparent hover:border-slate-200/50"
                     )}
                     style={isSelected ? {
                       backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''),
                       borderColor: style.activeBorder.replace('border-[', '').replace(']', ''),
-                      color: 'white'
-                    } : {}}
+                      color: 'white',
+                      transform: isTouched ? 'scale(0.96)' : 'scale(1.02)'
+                    } : {
+                      transform: isTouched ? 'scale(0.96)' : 'scale(1)'
+                    }}
                   >
                     <span className={cn(
                       "block text-[15px] sm:text-base lg:text-lg whitespace-nowrap text-center font-bebas tracking-wide w-full leading-[1.1] mb-1",

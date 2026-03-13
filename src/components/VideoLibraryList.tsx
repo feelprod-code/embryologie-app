@@ -35,9 +35,9 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                             : videoCoursesFr;
 
     // UI state for immediate button feedback
-    // UI state for immediate button feedback
     const [activeTab, setActiveTab] = useState<string>("L'Ectoderme");
     const [touchedCourseId, setTouchedCourseId] = useState<string | null>(null);
+    const [touchedLayerId, setTouchedLayerId] = useState<string | null>(null);
 
     // Deferred state for the heavy list rendering
     const [selectedLayer, setSelectedLayer] = useState<string>("L'Ectoderme");
@@ -117,17 +117,22 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 setSelectedLayer(layer);
                             };
 
+                            const isTouchedLayer = touchedLayerId === layer;
+
                             return (
                                 <button
                                     key={layer}
                                     onClick={handleLayerSelect}
+                                    onTouchStart={() => setTouchedLayerId(layer)}
+                                    onTouchEnd={() => setTimeout(() => setTouchedLayerId(null), 150)}
+                                    onTouchCancel={() => setTouchedLayerId(null)}
                                     className={cn(
                                         "relative flex flex-col items-center justify-center py-3 min-[375px]:py-4 lg:py-3 px-0 min-[375px]:px-0.5 sm:px-3 md:px-4 lg:px-3 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0",
                                         !isSelected && style.hover
                                     )}
                                     style={isSelected
-                                        ? { backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''), borderColor: style.activeBorder.replace('border-[', '').replace(']', ''), color: 'white', zIndex: 10, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }
-                                        : { borderColor: '#e2e8f0', color: '#475569', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }
+                                        ? { backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''), borderColor: style.activeBorder.replace('border-[', '').replace(']', ''), color: 'white', zIndex: 10, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', transform: isTouchedLayer ? 'scale(0.96)' : 'scale(1)' }
+                                        : { borderColor: '#e2e8f0', color: '#475569', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', backgroundColor: isTouchedLayer ? style.unselectedBg?.replace('bg-[', '').replace(']', '') : undefined, transform: isTouchedLayer ? 'scale(0.96)' : 'scale(1)' }
                                     }
                                 >
                                     <span className={cn(
