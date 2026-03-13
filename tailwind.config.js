@@ -5,6 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'sm': '640px',
+      // Block mobile landscape from triggering tablet mode
+      'md': { 'raw': '(min-width: 768px) and (min-height: 500px)' },
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         background: '#FAF6ED', // beige premium TDT (exact icon color)

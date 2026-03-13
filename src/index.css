@@ -171,28 +171,12 @@
 }
 
 /* Cloudflare Stream / WebVTT Subtitle Overrides */
-/* EXTREME HIDING of native subtitles for Safari/iOS that ignore display: none */
-video::-webkit-media-text-track-container {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-}
-
-video::-webkit-media-text-track-display {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-}
-
 video::cue {
-  color: transparent !important;
-  background-color: transparent !important;
-  background: transparent !important;
-  text-shadow: none !important;
-  opacity: 0 !important;
-  font-size: 0px !important;
-  line-height: 0 !important;
-  height: 0 !important;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-family: sans-serif;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 /* Couleurs de sous-titres par catégorie (ciblées via les div parents) */
