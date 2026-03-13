@@ -207,15 +207,15 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         </div>
 
                                         {/* Minimalist Info */}
-                                        <div className="flex-1 min-w-0 pr-4">
+                                        <div className="flex-1 min-w-0 pr-2 sm:pr-4">
                                             <h3 className={cn(
-                                                "text-sm sm:text-base md:text-[14px] lg:text-[13px] font-sans font-medium tracking-wide truncate transition-transform duration-300 uppercase md:group-hover:translate-x-1",
+                                                "text-sm sm:text-base md:text-[14px] lg:text-[13px] font-sans font-medium tracking-wide transition-transform duration-300 uppercase md:group-hover:translate-x-1 leading-snug",
                                                 "text-slate-700", activeListStyle.textHover
                                             )}>
                                                 {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}- ` : '') + course.title.replace(/^\d+[.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
                                             </h3>
                                             {course.shortSummary && (
-                                                <p className="text-[11px] sm:text-xs text-slate-400 mt-1 line-clamp-2 leading-relaxed px-0.5 group-hover:text-slate-500 transition-colors">
+                                                <p className="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed px-0.5 group-hover:text-slate-500 transition-colors">
                                                     {course.shortSummary}
                                                 </p>
                                             )}
