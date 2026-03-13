@@ -18,13 +18,14 @@ async function fetchFromOpenRouter(apiKey, prompt, retries = 3) {
                     messages: [
                         {
                             role: "system",
-                            content: `Tu es un assistant réviseur pour une académie médicale. Ton rôle est de réécrire des résumés de cours pour qu'ils soient purement descriptifs, neutres et académiques.
-INTERDIT ABSOLU d'utiliser des termes marketing, d'injonction ou d'accroche comme "Découvrez", "Plongez", "Explorez", "Apprenez".
-Le ton doit être formel (exemples: "Ce cours aborde les concepts de...", "Étude détaillée de...", "Synthèse sur la mise en place de...").
+                            content: `Tu es un assistant pour une académie médicale. Ton rôle est de réécrire des descriptions de vidéos pour qu'elles soient simples, ultra-directes et variées.
+INTERDIT ABSOLU d'utiliser des formules d'introduction répétitives comme "Ce cours...", "Cette vidéo...", "Cette session aborde...", "Dans ce cours...".
+Rentre IMMÉDIATEMENT dans le vif du sujet, de préférence avec une phrase nominale (ex: "Analyse de la chronologie...", "Présentation de...", "Principes de...", "Mécanismes de la gamétogénèse...").
+Fais simple, direct, sans en faire des caisses. Aucune formulation publicitaire ou d'accroche.
 
 Réponds TOUJOURS au format JSON strict :
 {
-    "shortSummary": "résumé factuel et très concis de 2 lignes maximum."
+    "shortSummary": "description très directe et variée de 1 à 2 lignes maximum."
 }`
                         },
                         {
