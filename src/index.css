@@ -236,14 +236,11 @@ body.video-fullscreen-active nav {
   }
 }
 
-/* DEVICE ORIENTATION LOCK - IPHONE ONLY */
+/* DEVICE ORIENTATION LOCK - PORTRAIT FORCED MODE */
 @media screen and (max-height: 500px) and (orientation: landscape) {
-  #root {
-    display: none !important;
-  }
 
-  body,
-  html {
+  body:not(.video-fullscreen-active),
+  html:not(.video-fullscreen-active) {
     background-color: #FAF6ED !important;
     background-image: none !important;
     width: 100vw !important;
@@ -252,50 +249,20 @@ body.video-fullscreen-active nav {
     position: fixed !important;
   }
 
-  body::before {
-    content: "Veuillez pivoter votre appareil en mode portrait";
-    position: fixed;
-    top: 30%;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 2rem;
-    color: #0f172a;
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 0.05em;
-    font-size: 2rem;
-    line-height: 1.2;
-    z-index: 99999999;
-  }
-
-  body::after {
-    content: "📱 🔄";
-    position: fixed;
-    top: 60%;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    z-index: 99999999;
-    animation: rotatePhone 2s infinite ease-in-out;
-  }
-}
-
-@keyframes rotatePhone {
-  0% {
-    transform: rotate(90deg);
-  }
-
-  50% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(90deg);
+  body:not(.video-fullscreen-active) #root {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 100vh !important;
+    /* map physical vertical space to logical width */
+    height: 100vw !important;
+    /* map physical horizontal space to logical height */
+    max-height: none !important;
+    max-width: none !important;
+    transform: translate(-50%, -50%) rotate(var(--landscape-rotation, -90deg)) !important;
+    transform-origin: center center !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
   }
 }
