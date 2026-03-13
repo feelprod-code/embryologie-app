@@ -203,8 +203,12 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     console.error("Error attempting to enable fullscreen:", err);
                     setIsFullscreen(true); // fallback to CSS
                 }
+            } else if (isAppleMobile && playerRef.current && (playerRef.current as any).webkitEnterFullscreen) {
+                // Use native iOS fullscreen for iPhone
+                (playerRef.current as any).webkitEnterFullscreen();
+                // do not set isFullscreen(true) because native player takes over the screen
             } else {
-                // Apple Mobile or Fullscreen not enabled
+                // Apple Mobile without native fullscreen or Fullscreen not enabled
                 setIsFullscreen(true);
             }
 

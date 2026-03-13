@@ -34,8 +34,14 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                             ? videoCoursesJa
                             : videoCoursesFr;
 
-    // Default state to L'Ectoderme to skip 'Tous'
+    // UI state for immediate button feedback
+    // UI state for immediate button feedback
+    const [activeTab, setActiveTab] = useState<string>("L'Ectoderme");
+    const [touchedCourseId, setTouchedCourseId] = useState<string | null>(null);
+
+    // Deferred state for the heavy list rendering
     const [selectedLayer, setSelectedLayer] = useState<string>("L'Ectoderme");
+    const isPending = false;
 
     const filteredCourses = videoCourses.filter((v: VideoCourse) => {
         let mappedCategory: string = v.categoryId;
@@ -80,7 +86,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                 <div className="w-full pb-2 mb-2 sm:mb-0 border-t border-slate-100 pt-2 sm:pt-2 md:pt-1">
                     <div className="grid grid-cols-4 items-stretch gap-1.5 sm:gap-2 w-full max-w-4xl mx-auto px-2 md:px-0">
                         {tabs.map(layer => {
-                            const isSelected = selectedLayer === layer;
+                            const isSelected = activeTab === layer;
 
                             const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
                             const cId = lmap[layer as keyof typeof lmap];
@@ -105,12 +111,23 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                             };
                             const style = layerStyles[layer];
 
+                            const handleLayerSelect = () => {
+                                if (activeTab === layer) return;
+                                setActiveTab(layer);
+                                setSelectedLayer(layer);
+                            };
+
                             return (
                                 <button
                                     key={layer}
-                                    onClick={() => setSelectedLayer(layer)}
+                                    onClick={handleLayerSelect}
+                                    onTouchStart={() => {
+                                        // On mobile, fire immediately and don't wait for click
+                                        // We don't preventDefault here because it might block vertical scrolling
+                                        handleLayerSelect();
+                                    }}
                                     className={cn(
-                                        "relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-1 sm:px-4 md:px-4 lg:px-3 rounded-xl sm:rounded-2xl border transition-transform duration-200 cursor-pointer touch-manipulation active:scale-[0.98] w-full min-w-0",
+                                        "relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-1 sm:px-4 md:px-4 lg:px-3 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0",
                                         isSelected
                                             ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
                                             : `${style.unselectedBg} ${style.unselectedBorder} ${style.unselectedText} shadow-sm ${style.hover}`
@@ -140,7 +157,10 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
             {/* Video List */}
             <motion.div
                 key={selectedLayer}
-                className="flex flex-col gap-1 sm:gap-2 w-full max-w-4xl lg:max-w-6xl xl:max-w-[90%] mx-auto px-4 lg:px-0"
+                className={cn(
+                    "flex flex-col gap-1 sm:gap-2 w-full max-w-4xl lg:max-w-6xl xl:max-w-[90%] mx-auto px-4 lg:px-0 transition-opacity duration-200",
+                    isPending ? "opacity-70" : "opacity-100"
+                )}
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
@@ -149,11 +169,13 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                     filteredCourses.length > 0 ? (
                         filteredCourses.map((course) => {
                             const activeListStyle = {
-                                "L'Ectoderme": { textHover: "group-hover:text-[#5A9C51]", bgHover: "group-hover:bg-[#5A9C51]/10", rowBgHover: "hover:bg-[#5A9C51]/5 border-l-2 border-transparent hover:border-[#5A9C51]", textColor: "text-[#5A9C51]" },
-                                "Le Mésoderme": { textHover: "group-hover:text-[#F27D33]", bgHover: "group-hover:bg-[#F27D33]/10", rowBgHover: "hover:bg-[#F27D33]/5 border-l-2 border-transparent hover:border-[#F27D33]", textColor: "text-[#F27D33]" },
-                                "L'Endoderme": { textHover: "group-hover:text-[#4171B5]", bgHover: "group-hover:bg-[#4171B5]/10", rowBgHover: "hover:bg-[#4171B5]/5 border-l-2 border-transparent hover:border-[#4171B5]", textColor: "text-[#4171B5]" },
-                                "L'Oeil": { textHover: "group-hover:text-[#F2B729]", bgHover: "group-hover:bg-[#F2B729]/10", rowBgHover: "hover:bg-[#F2B729]/5 border-l-2 border-transparent hover:border-[#F2B729]", textColor: "text-[#F2B729]" },
-                            }[selectedLayer] || { textHover: "group-hover:text-[#8B1111]", bgHover: "group-hover:bg-red-50", rowBgHover: "hover:bg-black/[0.02]", textColor: "text-slate-300" };
+                                "L'Ectoderme": { textHover: "md:group-hover:text-[#5A9C51]", hoverBg: "md:hover:bg-[#5A9C51]/5", tapBg: "rgba(90, 156, 81, 0.15)", textColor: "text-[#5A9C51]" },
+                                "Le Mésoderme": { textHover: "md:group-hover:text-[#F27D33]", hoverBg: "md:hover:bg-[#F27D33]/5", tapBg: "rgba(242, 125, 51, 0.15)", textColor: "text-[#F27D33]" },
+                                "L'Endoderme": { textHover: "md:group-hover:text-[#4171B5]", hoverBg: "md:hover:bg-[#4171B5]/5", tapBg: "rgba(65, 113, 181, 0.15)", textColor: "text-[#4171B5]" },
+                                "L'Oeil": { textHover: "md:group-hover:text-[#F2B729]", hoverBg: "md:hover:bg-[#F2B729]/5", tapBg: "rgba(242, 183, 41, 0.15)", textColor: "text-[#F2B729]" },
+                            }[selectedLayer] || { textHover: "md:group-hover:text-[#8B1111]", hoverBg: "md:hover:bg-black/[0.02]", tapBg: "rgba(0, 0, 0, 0.05)", textColor: "text-slate-300" };
+
+                            const isTouched = touchedCourseId === course.id;
 
                             return (
                                 <motion.div
@@ -161,21 +183,25 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     variants={itemVariants}
                                     className="w-full"
                                 >
-                                    <div
-                                        role="button"
-                                        tabIndex={0}
+                                    <button
                                         onClick={() => onSelectVideo(course)}
+                                        onTouchStart={() => setTouchedCourseId(course.id)}
+                                        onTouchEnd={() => setTimeout(() => setTouchedCourseId(null), 150)}
+                                        onTouchCancel={() => setTouchedCourseId(null)}
+                                        style={{
+                                            backgroundColor: isTouched ? activeListStyle.tapBg : 'transparent',
+                                            transform: isTouched ? 'scale(0.96)' : 'scale(1)',
+                                            transition: 'transform 0.15s ease-out, background-color 0.15s ease-out',
+                                        }}
                                         className={cn(
-                                            "group relative w-full text-left flex flex-row items-center py-4 sm:py-3 md:py-3 lg:py-2 border-b border-slate-200/60 last:border-0 active:scale-[0.99] transition-all duration-300 cursor-pointer overflow-hidden touch-manipulation px-2 sm:px-3 md:px-4 lg:px-3 rounded-xl sm:rounded-xl md:rounded-xl lg:rounded-xl",
-                                            activeListStyle.rowBgHover
+                                            "group relative w-full text-left flex flex-row items-center py-4 sm:py-3 md:py-3 lg:py-2 border-b border-slate-200/60 last:border-0 cursor-pointer overflow-hidden touch-manipulation px-2 sm:px-3 md:px-4 lg:px-3 rounded-xl",
+                                            activeListStyle.hoverBg
                                         )}
                                     >
-                                        {/* Effet de tap natif pour mobile */}
-                                        <div className="absolute inset-0 bg-slate-900 opacity-0 active:opacity-[0.03] transition-opacity duration-[50ms]"></div>
 
                                         {/* Minimalist Play Icon */}
                                         <div className="flex-shrink-0 w-10 h-10 sm:w-10 sm:h-10 md:w-8 md:h-8 lg:w-7 lg:h-7 flex items-center justify-center mr-3 sm:mr-4 md:mr-4 lg:mr-3">
-                                            <div className={cn("w-8 h-8 sm:w-8 sm:h-8 md:w-6 md:h-6 lg:w-6 lg:h-6 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] bg-[#FAF6ED] transition-all duration-300 group-hover:scale-110", activeListStyle.bgHover)}>
+                                            <div className={cn("w-8 h-8 sm:w-8 sm:h-8 md:w-6 md:h-6 lg:w-6 lg:h-6 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] transition-all duration-300 md:group-hover:scale-110", isTouched ? 'bg-transparent scale-90' : 'bg-[#FAF6ED]')}>
                                                 <Play className={cn("w-4 h-4 sm:w-4 sm:h-4 md:w-3 md:h-3 lg:w-3 lg:h-3 transition-colors translate-x-[1px]", activeListStyle.textColor)} fill="currentColor" strokeWidth={1} />
                                             </div>
                                         </div>
@@ -183,12 +209,12 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         {/* Minimalist Info */}
                                         <div className="flex-1 min-w-0 pr-4">
                                             <h3 className={cn(
-                                                "text-sm sm:text-base md:text-[14px] lg:text-[13px] font-sans font-medium tracking-wide truncate transition-transform duration-300 uppercase sm:group-hover:translate-x-1",
+                                                "text-sm sm:text-base md:text-[14px] lg:text-[13px] font-sans font-medium tracking-wide truncate transition-transform duration-300 uppercase md:group-hover:translate-x-1",
                                                 "text-slate-700", activeListStyle.textHover
                                             )}>
                                                 {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}- ` : '') + course.title.replace(/^\d+[.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
                                             </h3>
-                                            <div className="flex items-center gap-2 mt-1 md:mt-0.5 lg:mt-0.5 opacity-70 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
+                                            <div className="flex items-center gap-2 mt-1 md:mt-0.5 lg:mt-0.5 opacity-70 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                                                 <span className="text-[10px] sm:text-[10px] md:text-[9px] lg:text-[9px] text-slate-400 font-medium font-sans flex items-center gap-1">
                                                     <BookOpen className="w-3 h-3 sm:w-3 sm:h-3 md:w-2.5 md:h-2.5 lg:w-2.5 lg:h-2.5" />
                                                     {t('videoLibrary.includedTranscript')}
@@ -198,11 +224,11 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                                         {/* Sleek Duration */}
                                         {course.duration && (
-                                            <div className={cn("flex-shrink-0 flex flex-col items-end justify-center text-slate-400 transition-transform duration-300 sm:group-hover:-translate-x-1", activeListStyle.textHover)}>
+                                            <div className={cn("flex-shrink-0 flex flex-col items-end justify-center text-slate-400 transition-transform duration-300 md:group-hover:-translate-x-1", activeListStyle.textHover)}>
                                                 <span className="font-bebas text-lg sm:text-lg md:text-sm lg:text-base tracking-wider pt-1">{course.duration}</span>
                                             </div>
                                         )}
-                                    </div>
+                                    </button>
                                 </motion.div>
                             );
                         })

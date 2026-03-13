@@ -62,6 +62,16 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [isConfirmingDelete, setIsConfirmingDelete] = useState<boolean>(false);
   const videoUrl = course.cloudflareId ? `/cf-stream/${course.cloudflareId}/downloads/default.mp4` : '';
 
+
+  // Transition state for UI fluidity
+  const [optimisticLayer, setOptimisticLayer] = useState<string | null>(null);
+  const isPending = false;
+
+  // Reset optimistic layer when actual course changes
+  useEffect(() => {
+    setOptimisticLayer(null);
+  }, [course.categoryId]);
+
   useEffect(() => {
     let objectUrl: string | null = null;
 
@@ -117,8 +127,9 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
     setIsCaching(true);
     try {
-      // On passe par le proxy Vite / Vercel pour éviter l'erreur CORS sur la redirection 302 native de Cloudflare
-      const response = await fetch(videoUrl);
+      // On passe par le proxy Vite / Vercel pour éviter l'erreur CORS sur le téléchargement de Cloudflare
+      const fetchUrl = videoUrl.replace('https://customer-6i2z59dst7q6iswv.cloudflarestream.com', '/cf-stream');
+      const response = await fetch(fetchUrl);
 
       if (!response.ok) {
         if (response.status === 404) {
@@ -369,7 +380,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 key={speed}
                 onClick={() => handleSpeedChange(speed)}
                 className={cn(
-                  "flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-3 sm:px-3 md:px-4 lg:px-4 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg text-xs sm:text-xs md:text-sm lg:text-sm font-bold transition-all shadow-sm border cursor-pointer touch-manipulation active:scale-95 min-w-[40px]",
+                  "flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-3 sm:px-3 md:px-4 lg:px-4 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg text-xs sm:text-xs md:text-sm lg:text-sm font-bold transition-all shadow-sm border cursor-pointer touch-manipulation md:active:scale-95 min-w-[40px]",
                   currentSpeed === speed
                     ? (course.categoryId === 'ectoderme' ? "bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20" :
                       course.categoryId === 'endoderme' ? "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/20" :
@@ -388,7 +399,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             <button
               onClick={() => prevVideo && onSelectVideo(prevVideo)}
               disabled={!prevVideo}
-              className="flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-5 sm:px-5 md:px-6 lg:px-6 bg-transparent active:bg-[#F5F1E8] md:hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+              className="flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-5 sm:px-5 md:px-6 lg:px-6 bg-transparent active:bg-slate-200 md:hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
               title={t('videoLibrary.previous')}
             >
               <ChevronLeft className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5" />
@@ -396,7 +407,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             <button
               onClick={() => nextVideo && onSelectVideo(nextVideo)}
               disabled={!nextVideo}
-              className="flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-5 sm:px-5 md:px-6 lg:px-6 bg-transparent active:bg-[#F5F1E8] md:hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-95 text-slate-600 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+              className="flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-5 sm:px-5 md:px-6 lg:px-6 bg-transparent active:bg-slate-200 md:hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
               title={t('videoLibrary.next')}
             >
               <ChevronRight className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5" />
@@ -409,7 +420,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               <button
                 onClick={handleOfflineCache}
                 disabled={isCaching}
-                className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-transparent text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-[#F5F1E8]'} disabled:opacity-50 touch-manipulation active:scale-95 shrink-0`}
+                className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-transparent text-slate-500 border-slate-200 md:hover:text-slate-700 md:hover:bg-[#F5F1E8] active:bg-slate-200'} disabled:opacity-50 touch-manipulation active:scale-[0.98] shrink-0`}
                 title={isCaching ? "Enregistrement en cours..." : isCached ? "Supprimer la vidéo de cet appareil" : "Enregistrer pour accès hors-ligne"}
               >
                 <div className="relative flex items-center justify-center w-4 h-4 sm:w-4 sm:h-4">
@@ -470,7 +481,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 <button
                   onClick={() => prevVideo && onSelectVideo(prevVideo)}
                   disabled={!prevVideo}
-                  className="flex items-center justify-center p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="flex items-center justify-center p-1 sm:p-1.5 text-slate-400 md:hover:text-slate-700 active:text-slate-600 active:bg-slate-200 rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   title={t('videoLibrary.previous')}
                 >
                   <ChevronLeft className="w-4 h-4 sm:w-4 sm:h-4" />
@@ -478,7 +489,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
                 <button
                   onClick={() => videoPlayerRef.current?.togglePlay()}
-                  className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-800 text-white hover:bg-slate-700 active:scale-95 transition-all shadow-sm mx-1"
+                  className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-800 text-white md:hover:bg-slate-700 active:scale-95 transition-all shadow-sm mx-1"
                   title={isVideoPlaying ? "Pause" : "Play"}
                 >
                   {isVideoPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-[1px]" />}
@@ -487,7 +498,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 <button
                   onClick={() => nextVideo && onSelectVideo(nextVideo)}
                   disabled={!nextVideo}
-                  className="flex items-center justify-center p-1 sm:p-1.5 text-slate-400 hover:text-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="flex items-center justify-center p-1 sm:p-1.5 text-slate-400 md:hover:text-slate-700 active:text-slate-600 active:bg-slate-200 rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   title={t('videoLibrary.next')}
                 >
                   <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4" />
@@ -546,7 +557,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
           <button
             onClick={() => setIsVideoVisible(!isVideoVisible)}
-            className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-transparent hover:bg-[#FAF6ED] active:bg-slate-100 rounded-md sm:rounded-lg text-slate-500 hover:text-slate-700 transition-colors border border-slate-200 shadow-sm shrink-0"
+            className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-transparent md:hover:bg-[#FAF6ED] active:bg-slate-200 active:scale-95 rounded-md sm:rounded-lg text-slate-500 md:hover:text-slate-700 transition-all border border-slate-200 shadow-sm shrink-0"
             title={isVideoVisible ? "Masquer la vidéo" : "Afficher la vidéo"}
           >
             {isVideoVisible ? <VideoOff className="w-4 h-4" /> : <Video className="w-4 h-4" />}
@@ -589,8 +600,9 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   return (
     <>
       <div className={cn(
-        "w-full mx-auto flex flex-col bg-[#FAF6ED]",
-        isFullscreen ? "h-screen z-50 fixed inset-0" : "max-w-5xl h-full overflow-hidden relative mx-auto"
+        "w-full mx-auto flex flex-col bg-[#FAF6ED] transition-opacity duration-200",
+        isFullscreen ? "h-screen z-50 fixed inset-0" : "max-w-5xl h-full overflow-hidden relative mx-auto",
+        isPending ? "opacity-70" : "opacity-100"
       )}>
 
         <div className={cn(
@@ -602,13 +614,16 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
                 const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
                 const cId = lmap[layer as keyof typeof lmap];
-                const isSelected = course.categoryId === cId;
+                const isSelected = (optimisticLayer || course.categoryId) === cId;
                 const tKeys: Record<string, string> = { "L'Ectoderme": "ectoderm", "L'Endoderme": "endoderm", "Le Mésoderme": "mesoderm", "L'Oeil": "eye" };
 
                 const handleLayerClick = () => {
                   if (isSelected) return;
+                  setOptimisticLayer(cId);
                   const firstCourse = videoCourses.find((v: VideoCourse) => v.categoryId === cId);
-                  if (firstCourse) onSelectVideo(firstCourse);
+                  if (firstCourse) {
+                    onSelectVideo(firstCourse);
+                  }
                 };
 
                 // Colors based on layer mapping exactly matched with VideoLibraryList
@@ -624,12 +639,16 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   <button
                     key={layer}
                     onClick={handleLayerClick}
+                    onTouchStart={() => {
+                      handleLayerClick();
+                    }}
                     className={cn(
-                      "relative flex flex-col items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-1 sm:px-3 md:px-4 lg:px-3 rounded-xl sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-300 cursor-pointer touch-manipulation active:scale-[0.98] w-full min-w-0",
-                      isSelected
-                        ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
-                        : `bg-transparent border-slate-200 text-slate-600 shadow-sm ${style.hover}`
+                      "relative flex flex-col items-center justify-center py-2 sm:py-2 md:py-2 lg:py-2 px-1 sm:px-3 md:px-4 lg:px-3 rounded-xl sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0"
                     )}
+                    style={isSelected
+                      ? { backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''), borderColor: style.activeBorder.replace('border-[', '').replace(']', ''), color: 'white', zIndex: 10, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }
+                      : { backgroundColor: 'transparent', borderColor: '#e2e8f0', color: '#475569', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }
+                    }
                   >
                     <span className={cn(
                       "font-bebas text-[15px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-none mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",

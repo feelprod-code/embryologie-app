@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useTransition } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video, Shield, LogOut } from 'lucide-react';
 import { detailedStages as detailedStagesFr, type StageDataV2, type EmbryoLayer } from './data/embryologie';
@@ -76,8 +76,12 @@ const getDeviceId = () => {
   return deviceId;
 };
 
-const ADMIN_EMAILS = ['guillaumephilippe@me.com', 'feelprod@free.fr', 'guillaumephilippe1968@gmail.com'];
-
+const ADMIN_EMAILS = [
+  'guillaumephilippe@me.com',
+  'feelprod@free.fr',
+  'fillprod@free.fr', // In case of typos
+  'guillaumephilippe1968@gmail.com'
+];
 function App() {
   const { t, i18n } = useTranslation();
 
@@ -134,7 +138,7 @@ function App() {
       while (retries > 0 && !profile) {
         const { data, error } = await supabase
           .from('profiles')
-          .select('device_id, is_active, first_name, last_name, profession')
+          .select('device_id, is_active, first_name, last_name, profession, email')
           .eq('id', currentSession.user.id)
           .single();
 
@@ -199,7 +203,9 @@ function App() {
             (dbDevice.includes('-') && localDeviceId === dbDevice.substring(dbDevice.indexOf('-') + 1));
 
           if (!isMatch) {
-            const isAdminUser = currentSession?.user?.email && ADMIN_EMAILS.includes(currentSession.user.email);
+            const isAdminUser =
+              (currentSession?.user?.email && ADMIN_EMAILS.includes(currentSession.user.email.toLowerCase())) ||
+              (profile.email && ADMIN_EMAILS.includes(profile.email.toLowerCase()));
 
             if (isAdminUser) {
               // Bypassing the device check for administrators so they can use multiple devices
@@ -216,6 +222,11 @@ function App() {
             }
           }
         }
+
+        // Extra check for admin using profile email (fixes Apple Hide My Email if Apple email is linked to real email in profile)
+        if (profile.email && ADMIN_EMAILS.includes(profile.email.toLowerCase())) {
+          setIsAdmin(true);
+        }
       } else {
         // Trigger failed or profile not found
         console.error("Profile not found after retries. Proceeding without device check.");
@@ -228,7 +239,7 @@ function App() {
     };
 
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email)) {
+      if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
         setIsAdmin(true);
       } else {
         setIsAdmin(false);
@@ -244,7 +255,7 @@ function App() {
 
       if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
         setIsAdmin(true);
-      } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email)) {
+      } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
         setIsAdmin(true);
       } else {
         setIsAdmin(false);
@@ -279,9 +290,21 @@ function App() {
 
   const [activeStageId, setActiveStageId] = useState<string>(detailedStages[0].id);
 
-  type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'podcast-player' | 'podcasts' | 'admin';
+  type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'podcast-player' | 'podcasts' | 'admin' | 'admin-users' | 'admin-prompts';
   const [currentView, setCurrentView] = useState<View>('home');
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
+  const [optimisticView, setOptimisticView] = useState<View | null>(null);
+  const [isPending, startTransition] = useTransition();
+
+  const handleViewChange = (view: View) => {
+    if (currentView === view) return;
+    setOptimisticView(view);
+    startTransition(() => {
+      setCurrentView(view);
+    });
+  };
+
+  const activeNav = optimisticView || currentView;
 
   const activeStage = detailedStages.find(s => s.id === activeStageId) as StageDataV2 || detailedStages[0];
   // Use original index for timeline visual order
@@ -289,7 +312,7 @@ function App() {
   const activeIndex = getOriginalIndex(activeStageId);
 
   if (isInitializing) {
-    return <div className="h-[100dvh] w-full flex items-center justify-center bg-[#F5F1E8]"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-800"></div></div>;
+    return <div className="h-[100dvh] w-full flex items-center justify-center bg-[#FAF6ED]"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-800"></div></div>;
   }
 
   if (!session) {
@@ -297,11 +320,11 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col items-center h-[100dvh] w-full max-w-full relative bg-[#FAF6ED] text-slate-800 overflow-hidden">
+    <div className={cn("flex flex-col items-center h-[100dvh] w-full max-w-full relative bg-[#FAF6ED] text-slate-800 overflow-hidden", isPending && "transition-all duration-300")}>
       {/* Cinematic Background Gradients (Global) */}
-      {currentView !== 'video-player' && (
+      {activeNav !== 'video-player' && (
         <>
-          <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,_#F5F1E8_0%,_#FAF6ED_60%)] pointer-events-none z-0"></div>
+          <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,_#FAF6ED_0%,_#FAF6ED_60%)] pointer-events-none z-0"></div>
           <div className="fixed inset-0 bg-gradient-to-b from-transparent via-[#FAF6ED]/50 to-[#FAF6ED] pointer-events-none z-0"></div>
         </>
       )}
@@ -310,74 +333,73 @@ function App() {
       <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} isAdmin={isAdmin} onLogout={handleLogout} />
 
       {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
-      {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
-      {currentView !== 'podcast-player' && (
+      {activeNav !== 'podcast-player' && (
         <nav
           className={cn(
-            "fixed bottom-0 z-50 w-full bg-[#FAF6ED]/95 backdrop-blur-xl border-t border-slate-200 md:hidden pb-[env(safe-area-inset-bottom,16px)] shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
+            "fixed bottom-0 z-50 w-full bg-[#FAF6ED]/95 backdrop-blur-xl border-t border-slate-200 lg:hidden pb-[env(safe-area-inset-bottom,16px)] shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
             isAdmin ? "grid-cols-7" : "grid-cols-6"
           )}
         >
           <button
-            onClick={() => setCurrentView('home')}
-            onTouchStart={(e) => { e.preventDefault(); setCurrentView('home'); }}
+            onClick={() => handleViewChange('home')}
+            onTouchStart={(e) => { e.preventDefault(); handleViewChange('home'); }}
             className={cn(
-              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden w-full",
-              currentView === 'home' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
+              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation md:active:scale-95 group overflow-hidden w-full",
+              activeNav === 'home' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
             )}
           >
-            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", currentView === 'home' ? "scale-105" : "group-hover:scale-105")}>
+            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", activeNav === 'home' ? "scale-105" : "group-hover:scale-105")}>
               <HomeIcon size={24} />
             </div>
-            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'home' ? "font-medium" : "font-normal")}>{t('nav.home')}</span>
+            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'home' ? "font-medium" : "font-normal")}>{t('nav.home')}</span>
           </button>
 
           <button
-            onClick={() => setCurrentView('timeline')}
-            onTouchStart={(e) => { e.preventDefault(); setCurrentView('timeline'); }}
+            onClick={() => handleViewChange('timeline')}
+            onTouchStart={(e) => { e.preventDefault(); handleViewChange('timeline'); }}
             className={cn(
-              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden w-full",
-              currentView === 'timeline' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
+              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation md:active:scale-95 group overflow-hidden w-full",
+              activeNav === 'timeline' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
             )}
           >
-            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", currentView === 'timeline' ? "scale-105" : "group-hover:scale-105")}>
+            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", activeNav === 'timeline' ? "scale-105" : "group-hover:scale-105")}>
               <Clock size={24} />
             </div>
-            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'timeline' ? "font-medium" : "font-normal")}>{t('nav.timeline')}</span>
+            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'timeline' ? "font-medium" : "font-normal")}>{t('nav.timeline')}</span>
           </button>
 
           <button
-            onClick={() => setCurrentView('video-library')}
-            onTouchStart={(e) => { e.preventDefault(); setCurrentView('video-library'); }}
+            onClick={() => handleViewChange('video-library')}
+            onTouchStart={(e) => { e.preventDefault(); handleViewChange('video-library'); }}
             className={cn(
-              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden w-full",
-              currentView === 'video-library' || currentView === 'video-player' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
+              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation md:active:scale-95 group overflow-hidden w-full",
+              activeNav === 'video-library' || activeNav === 'video-player' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
             )}
           >
-            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", currentView === 'video-library' || currentView === 'video-player' ? "scale-105" : "group-hover:scale-105")}>
+            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", activeNav === 'video-library' || activeNav === 'video-player' ? "scale-105" : "group-hover:scale-105")}>
               <Video size={24} />
             </div>
-            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'video-library' || currentView === 'video-player' ? "font-medium" : "font-normal")}>{t('nav.videos')}</span>
+            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'video-library' || activeNav === 'video-player' ? "font-medium" : "font-normal")}>{t('nav.videos')}</span>
           </button>
 
           <button
-            onClick={() => setCurrentView('embryo-ai')}
-            onTouchStart={(e) => { e.preventDefault(); setCurrentView('embryo-ai'); }}
+            onClick={() => handleViewChange('embryo-ai')}
+            onTouchStart={(e) => { e.preventDefault(); handleViewChange('embryo-ai'); }}
             className={cn(
-              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden w-full",
-              currentView === 'embryo-ai' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
+              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation md:active:scale-95 group overflow-hidden w-full",
+              activeNav === 'embryo-ai' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
             )}
           >
-            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", currentView === 'embryo-ai' ? "scale-105" : "group-hover:scale-105")}>
+            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", activeNav === 'embryo-ai' ? "scale-105" : "group-hover:scale-105")}>
               <Brain size={24} />
             </div>
-            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('nav.ai_assistant')}</span>
+            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('nav.ai_assistant')}</span>
           </button>
 
           <button
             onClick={handleLogout}
             onTouchStart={(e) => { e.preventDefault(); handleLogout(); }}
-            className="flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden text-slate-600 hover:text-red-500 w-full"
+            className="flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation md:active:scale-95 group overflow-hidden text-slate-600 hover:text-red-500 w-full"
           >
             <div className="h-[24px] flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
               <LogOut size={24} className="text-red-400 group-hover:text-red-500" />
@@ -387,17 +409,17 @@ function App() {
 
           {isAdmin && (
             <button
-              onClick={() => setCurrentView('admin')}
-              onTouchStart={(e) => { e.preventDefault(); setCurrentView('admin'); }}
+              onClick={() => handleViewChange('admin')}
+              onTouchStart={(e) => { e.preventDefault(); handleViewChange('admin'); }}
               className={cn(
-                "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation active:scale-95 group overflow-hidden w-full",
-                currentView === 'admin' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
+                "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation md:active:scale-95 group overflow-hidden w-full",
+                activeNav === 'admin' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
               )}
             >
-              <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", currentView === 'admin' ? "scale-105" : "group-hover:scale-105")}>
+              <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", activeNav === 'admin' ? "scale-105" : "group-hover:scale-105")}>
                 <Shield size={24} />
               </div>
-              <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", currentView === 'admin' ? "font-medium" : "font-normal")}>Admin</span>
+              <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'admin' ? "font-medium" : "font-normal")}>Admin</span>
             </button>
           )}
 
