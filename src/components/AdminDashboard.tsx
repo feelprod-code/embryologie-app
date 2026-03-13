@@ -75,20 +75,20 @@ export function AdminDashboard() {
     );
 
     return (
-        <div className="w-full max-w-6xl mx-auto p-4 md:p-8 animate-fade-in">
-            <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2">
+        <div className="w-full max-w-6xl mx-auto p-4 md:p-8 animate-fade-in relative">
+            <div className="sticky top-0 z-20 bg-[#FAF6ED]/95 backdrop-blur-md -mx-4 px-4 pt-4 pb-4 mb-6 md:relative md:top-auto md:bg-transparent md:-mx-0 md:px-0 md:pt-2 md:pb-0 md:mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200/50 md:border-none shadow-sm md:shadow-none">
                 <div>
                     <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase">Gestion des élèves</h1>
                     <p className="text-slate-500 font-medium">Administration du CRM et des accès.</p>
                 </div>
 
-                <div className="relative">
+                <div className="relative w-full md:w-auto">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <Search className="h-5 w-5 text-slate-400" />
                     </div>
                     <input
                         type="text"
-                        className="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm font-medium"
+                        className="block w-full md:w-64 pl-10 pr-3 py-2 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm font-medium transition-all"
                         placeholder="Rechercher un élève..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -96,7 +96,7 @@ export function AdminDashboard() {
                 </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-24">
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-24 relative z-10">
                 {/* Desktop Table View */}
                 <div className="hidden md:block overflow-x-auto">
                     <table className="min-w-full divide-y divide-slate-200">
