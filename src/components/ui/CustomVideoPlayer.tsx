@@ -41,7 +41,6 @@ interface CustomVideoPlayerProps {
     onTimeUpdate?: (currentTime: number, duration: number) => void;
     onFullscreenChange?: (isFullscreen: boolean) => void;
     onPlayStateChange?: (isPlaying: boolean) => void;
-    onCuesLoaded?: (cues: { start: number, end: number, text: string }[]) => void;
 }
 
 export interface CustomVideoPlayerRef {
@@ -61,7 +60,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     onTimeUpdate,
     onFullscreenChange,
     onPlayStateChange,
-    onCuesLoaded,
 }, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
@@ -333,12 +331,14 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 try {
                     const response = await fetch(vttUrl);
                     if (response.ok) {
-                        vttText = await response.text();
+                        const buffer = await response.arrayBuffer();
+                        vttText = new TextDecoder('utf-8').decode(buffer);
                     } else {
                         // Fallback
                         const localVttRes = await fetch(`/vtt/${cloudflareId}_${langCode}.vtt`);
                         if (localVttRes.ok) {
-                            vttText = await localVttRes.text();
+                            const buffer = await localVttRes.arrayBuffer();
+                            vttText = new TextDecoder('utf-8').decode(buffer);
                         } else {
                             throw new Error('Not found locally either');
                         }
@@ -348,7 +348,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     try {
                         const localVttRes = await fetch(`/cf-stream/${cloudflareId}/downloads/default.vtt?lang=fr`);
                         if (localVttRes.ok) {
-                            vttText = await localVttRes.text();
+                            const buffer = await localVttRes.arrayBuffer();
+                            vttText = new TextDecoder('utf-8').decode(buffer);
                         }
                     } catch {
                         // ignore
@@ -423,7 +424,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 cuesRef.current = parsedCues;
                 if (parsedCues.length > 0) {
                     setHasSubtitles(cuesRef.current.length > 0); // Keep tracking it properly based on cues
-                    if (onCuesLoaded) onCuesLoaded(cuesRef.current);
                 }
             } catch (err) {
                 console.error("VTT Parse err", err);
