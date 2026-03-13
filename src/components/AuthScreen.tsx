@@ -86,35 +86,35 @@ export const AuthScreen: React.FC = () => {
         <div className="fixed inset-0 z-50 flex justify-center bg-[#FBF7EC] overflow-y-auto no-scrollbar">
             <div className="absolute inset-0 bg-[url('https://feelprod.com/wp-content/uploads/2023/11/bg-texture.jpg')] opacity-[0.03] bg-cover mix-blend-multiply pointer-events-none"></div>
 
-            <div className="relative w-full max-w-md px-6 sm:px-8 pt-12 md:pt-8 pb-32 bg-transparent flex flex-col items-center z-10 min-h-full justify-start md:justify-center">
+            <div className="relative w-full max-w-md px-4 sm:px-8 pt-8 md:pt-8 pb-24 sm:pb-32 bg-transparent flex flex-col items-center z-10 min-h-full justify-start md:justify-center">
 
-                <div className="w-[14rem] h-[14rem] mb-4 sm:mb-0 mt-8 md:mt-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
+                <div className="w-[10rem] h-[10rem] sm:w-[14rem] sm:h-[14rem] mb-2 sm:mb-0 mt-4 md:mt-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
                     <img src="/icon-emb.png" alt="Embryologie" className="w-full h-full object-contain rounded-full" />
                 </div>
 
                 <div className="w-full flex flex-col items-center">
-                    <div className="flex flex-col items-center justify-center w-full mb-4 sm:mb-6 mt-4 sm:mt-8">
-                        <h1 className="text-5xl sm:text-6xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center">
+                    <div className="flex flex-col items-center justify-center w-full mb-3 sm:mb-6 mt-2 sm:mt-8">
+                        <h1 className="text-4xl sm:text-6xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center">
                             L'EMBRYOLOGIE
                         </h1>
-                        <h2 className="text-4xl sm:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 sm:mt-2 text-center">
+                        <h2 className="text-3xl sm:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 sm:mt-2 text-center">
                             BIODYNAMIQUE
                         </h2>
                     </div>
 
-                    <h4 className="text-[11px] sm:text-sm font-light text-slate-500 mb-6 sm:mb-10 text-center uppercase tracking-widest">
+                    <h4 className="text-[10px] sm:text-sm font-light text-slate-500 mb-5 sm:mb-10 text-center uppercase tracking-widest">
                         le cours de Marc Damoiseaux, <span className="font-medium text-slate-700">Ostéopathe D.O</span>
                     </h4>
                 </div>
 
                 {isSent ? (
-                    <form onSubmit={handleVerifyOtp} className="w-full bg-white p-6 rounded-3xl flex flex-col items-center text-center animate-in fade-in zoom-in duration-300 border border-slate-200 shadow-sm gap-4">
-                        <div className="w-16 h-16 bg-[#10B981]/10 rounded-full flex items-center justify-center mb-2">
-                            <Mail className="text-[#10B981] w-8 h-8" />
+                    <form onSubmit={handleVerifyOtp} className="w-full bg-white p-5 sm:p-6 rounded-3xl flex flex-col items-center text-center animate-in fade-in zoom-in duration-300 border border-slate-200 shadow-sm gap-3 sm:gap-4">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#10B981]/10 rounded-full flex items-center justify-center mb-1 sm:mb-2">
+                            <Mail className="text-[#10B981] w-6 h-6 sm:w-8 sm:h-8" />
                         </div>
-                        <h3 className="text-slate-800 font-bold text-xl">Vérifiez vos emails</h3>
-                        <p className="text-slate-500 text-sm mb-2">
-                            Voici le code envoyé à <strong className="text-slate-800">{email}</strong> :
+                        <h3 className="text-slate-800 font-bold text-lg sm:text-xl">Vérifiez vos emails</h3>
+                        <p className="text-slate-500 text-xs sm:text-sm mb-1 sm:mb-2">
+                            Voici le code envoyé à <strong className="text-slate-800 break-all">{email}</strong> :
                         </p>
 
                         {error && (
@@ -129,15 +129,15 @@ export const AuthScreen: React.FC = () => {
                             required
                             value={otpCode}
                             onChange={(e) => setOtpCode(e.target.value)}
-                            className="w-full text-center tracking-[0.5em] px-5 py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-300 font-bold text-2xl shadow-inner"
-                            placeholder="000000"
-                            maxLength={6}
+                            className="w-full text-center tracking-[0.3em] sm:tracking-[0.5em] px-4 py-3 sm:px-5 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-300 font-bold text-xl sm:text-2xl shadow-inner"
+                            placeholder="00000000"
+                            maxLength={8}
                         />
 
                         <button
                             type="submit"
-                            disabled={isLoading || otpCode.length < 6}
-                            className="w-full bg-[#A06C50] text-white py-4 rounded-2xl font-bold tracking-[0.2em] text-lg uppercase flex items-center justify-center transition-all hover:bg-[#85543c] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none mt-2 shadow-lg shadow-[#A06C50]/30"
+                            disabled={isLoading || otpCode.length < 8}
+                            className="w-full bg-[#A06C50] text-white py-3 sm:py-4 rounded-2xl font-bold tracking-[0.2em] text-base sm:text-lg uppercase flex items-center justify-center transition-all hover:bg-[#85543c] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none mt-1 sm:mt-2 shadow-lg shadow-[#A06C50]/30"
                         >
                             {isLoading ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
