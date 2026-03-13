@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { type VideoCourse, videoCourses as videoCoursesFr, getCategoryTotalDuration } from '../data/videoCourses';
 import { videoCourses as videoCoursesEn } from '../data/videoCourses_en';
 import { videoCourses as videoCoursesEs } from '../data/videoCourses_es';
@@ -37,8 +37,6 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
     // UI state for immediate button feedback
     const [activeTab, setActiveTab] = useState<string>("L'Ectoderme");
     const [touchedCourseId, setTouchedCourseId] = useState<string | null>(null);
-    const touchStartPos = useRef<{ x: number, y: number } | null>(null);
-
     // Deferred state for the heavy list rendering
     const [selectedLayer, setSelectedLayer] = useState<string>("L'Ectoderme");
     const isPending = false;
@@ -121,21 +119,6 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 <button
                                     key={layer}
                                     onClick={handleLayerSelect}
-                                    onTouchStart={(e) => {
-                                        touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-                                    }}
-                                    onTouchEnd={(e) => {
-                                        if (!touchStartPos.current) return;
-                                        const dx = Math.abs(e.changedTouches[0].clientX - touchStartPos.current.x);
-                                        const dy = Math.abs(e.changedTouches[0].clientY - touchStartPos.current.y);
-                                        touchStartPos.current = null;
-                                        if (dx < 10 && dy < 10) {
-                                            if (activeTab !== layer) {
-                                                if (e.cancelable) e.preventDefault();
-                                                handleLayerSelect();
-                                            }
-                                        }
-                                    }}
                                     className={cn(
                                         "relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-0 min-[375px]:px-1 sm:px-4 md:px-4 lg:px-3 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0 active:scale-[0.98]",
                                         isSelected
@@ -205,19 +188,6 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 >
                                     <button
                                         onClick={handleVideoTap}
-                                        onTouchStart={(e) => {
-                                            touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-                                        }}
-                                        onTouchEnd={(e) => {
-                                            if (!touchStartPos.current) return;
-                                            const dx = Math.abs(e.changedTouches[0].clientX - touchStartPos.current.x);
-                                            const dy = Math.abs(e.changedTouches[0].clientY - touchStartPos.current.y);
-                                            touchStartPos.current = null;
-                                            if (dx < 10 && dy < 10) {
-                                                if (e.cancelable) e.preventDefault();
-                                                handleVideoTap();
-                                            }
-                                        }}
                                         style={{
                                             backgroundColor: isHighlighted ? activeListStyle.tapBg : undefined,
                                             transition: 'background-color 0.15s ease-out',
