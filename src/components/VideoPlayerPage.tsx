@@ -107,11 +107,20 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     elements.forEach((el, idx) => {
       el.style.transition = 'all 0.3s ease';
       if (idx === activeIndex) {
-        el.style.borderLeft = `3px solid ${themeColor}`;
-        el.style.backgroundColor = 'rgba(0,0,0,0.02)';
-        el.style.paddingLeft = '16px';
-        el.style.marginLeft = '-16px';
-        el.style.borderRadius = '0 8px 8px 0';
+        // Convert the theme hex color to a transparent rgba version for a nice highlight block
+        let bgHighlight = 'rgba(0,0,0,0.02)';
+        if (themeColor === '#5A9C51') bgHighlight = 'rgba(90, 156, 81, 0.15)'; // Ectoderme (green)
+        else if (themeColor === '#4171B5') bgHighlight = 'rgba(65, 113, 181, 0.15)'; // Endoderme (blue)
+        else if (themeColor === '#F27D33') bgHighlight = 'rgba(242, 125, 51, 0.15)'; // Mesoderme (orange)
+        else if (themeColor === '#F2B729') bgHighlight = 'rgba(242, 183, 41, 0.15)'; // Oeil (yellow)
+
+        el.style.backgroundColor = bgHighlight;
+        el.style.borderLeft = 'none';
+        el.style.paddingLeft = '8px';
+        el.style.paddingRight = '8px';
+        el.style.marginLeft = '-8px';
+        el.style.marginRight = '-8px';
+        el.style.borderRadius = '8px';
 
         if (lastActiveNodeRef.current !== activeIndex) {
           lastActiveNodeRef.current = activeIndex;
@@ -131,10 +140,12 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           }
         }
       } else {
-        el.style.borderLeft = '3px solid transparent';
+        el.style.borderLeft = 'none';
         el.style.backgroundColor = 'transparent';
         el.style.paddingLeft = '0px';
+        el.style.paddingRight = '0px';
         el.style.marginLeft = '0px';
+        el.style.marginRight = '0px';
         el.style.borderRadius = '0px';
       }
     });
