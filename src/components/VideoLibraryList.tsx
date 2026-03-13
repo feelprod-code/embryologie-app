@@ -92,20 +92,20 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                             const layerStyles: Record<string, { activeBg: string; activeBorder: string; activeText: string; dot: string; hover: string; unselectedBg?: string; unselectedText?: string; unselectedBorder?: string }> = {
                                 "L'Ectoderme": {
-                                    activeBg: "bg-[#5A9C51]", activeBorder: "border-[#5A9C51]", activeText: "text-white", dot: "bg-[#5A9C51]", hover: "md:hover:bg-slate-100",
-                                    unselectedBg: "bg-white", unselectedText: "text-slate-500", unselectedBorder: "border-slate-200"
+                                    activeBg: "bg-[#5A9C51]", activeBorder: "border-[#5A9C51]", activeText: "text-white", dot: "bg-[#5A9C51]", hover: "md:hover:bg-[#5A9C51]/20",
+                                    unselectedBg: "bg-[#5A9C51]/10", unselectedText: "text-[#5A9C51]", unselectedBorder: "border-[#5A9C51]/30"
                                 },
                                 "Le Mésoderme": {
-                                    activeBg: "bg-[#F27D33]", activeBorder: "border-[#F27D33]", activeText: "text-white", dot: "bg-[#F27D33]", hover: "md:hover:bg-slate-100",
-                                    unselectedBg: "bg-white", unselectedText: "text-slate-500", unselectedBorder: "border-slate-200"
+                                    activeBg: "bg-[#F27D33]", activeBorder: "border-[#F27D33]", activeText: "text-white", dot: "bg-[#F27D33]", hover: "md:hover:bg-[#F27D33]/20",
+                                    unselectedBg: "bg-[#F27D33]/10", unselectedText: "text-[#F27D33]", unselectedBorder: "border-[#F27D33]/30"
                                 },
                                 "L'Endoderme": {
-                                    activeBg: "bg-[#4171B5]", activeBorder: "border-[#4171B5]", activeText: "text-white", dot: "bg-[#4171B5]", hover: "md:hover:bg-slate-100",
-                                    unselectedBg: "bg-white", unselectedText: "text-slate-500", unselectedBorder: "border-slate-200"
+                                    activeBg: "bg-[#4171B5]", activeBorder: "border-[#4171B5]", activeText: "text-white", dot: "bg-[#4171B5]", hover: "md:hover:bg-[#4171B5]/20",
+                                    unselectedBg: "bg-[#4171B5]/10", unselectedText: "text-[#4171B5]", unselectedBorder: "border-[#4171B5]/30"
                                 },
                                 "L'Oeil": {
-                                    activeBg: "bg-[#F2B729]", activeBorder: "border-[#F2B729]", activeText: "text-white", dot: "bg-[#F2B729]", hover: "md:hover:bg-slate-100",
-                                    unselectedBg: "bg-white", unselectedText: "text-slate-500", unselectedBorder: "border-slate-200"
+                                    activeBg: "bg-[#F2B729]", activeBorder: "border-[#F2B729]", activeText: "text-white", dot: "bg-[#F2B729]", hover: "md:hover:bg-[#F2B729]/20",
+                                    unselectedBg: "bg-[#F2B729]/10", unselectedText: "text-[#F2B729]", unselectedBorder: "border-[#F2B729]/30"
                                 }
                             };
                             const style = layerStyles[layer];
@@ -121,24 +121,22 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     key={layer}
                                     onClick={handleLayerSelect}
                                     className={cn(
-                                        "relative flex flex-col items-center justify-center py-3 min-[375px]:py-4 lg:py-3 px-0 min-[375px]:px-0.5 sm:px-3 md:px-4 lg:px-3 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0 active:scale-[0.98]",
-                                        !isSelected && style.hover
+                                        "relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-0 min-[375px]:px-1 sm:px-4 md:px-4 lg:px-3 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0 active:scale-[0.98]",
+                                        isSelected
+                                            ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
+                                            : `${style.unselectedBg} ${style.unselectedBorder} ${style.unselectedText} shadow-sm ${style.hover}`
                                     )}
-                                    style={isSelected
-                                        ? { backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''), borderColor: style.activeBorder.replace('border-[', '').replace(']', ''), color: 'white', zIndex: 10, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }
-                                        : { borderColor: '#e2e8f0', color: '#475569', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', backgroundColor: style.unselectedBg?.replace('bg-[', '').replace(']', '') }
-                                    }
                                 >
                                     <span className={cn(
-                                        "font-bebas text-[12px] min-[375px]:text-[14px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-[1.1] mb-1 md:mb-1 w-full text-center",
-                                        isSelected ? "text-white" : "text-slate-800"
+                                        "font-bebas text-[12px] min-[375px]:text-[14px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-[1.1] mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
+                                        isSelected ? "text-white" : style.unselectedText
                                     )}>
                                         {t(`videoLibrary.layers.${tKeys[layer as keyof typeof tKeys]}`)}
                                     </span>
 
                                     <span className={cn(
                                         "text-[9px] sm:text-[10px] md:text-[10px] uppercase font-bold truncate w-full px-0 sm:px-1 opacity-80 text-center",
-                                        isSelected ? "text-white/80" : "text-slate-500"
+                                        isSelected ? "text-white/80" : style.unselectedText
                                     )}>
                                         <Clock size={10} className="hidden lg:inline mr-1 mb-[1px]" />
                                         {getCategoryTotalDuration(cId as "ectoderme" | "endoderme" | "mesoderme" | "oeil")}
