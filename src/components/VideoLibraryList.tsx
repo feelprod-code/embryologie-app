@@ -119,6 +119,14 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 <button
                                     key={layer}
                                     onClick={handleLayerSelect}
+                                    onTouchStart={(e) => {
+                                        // On mobile, onClick can be unreliable with scrolling contexts. 
+                                        // But if we preventDefault on touchStart, we break scrolling!
+                                        // Instead, we use onTouchStart with e.preventDefault to stop the double-tap zoom 
+                                        // while allowing normal swipes, then manually fire our logic.
+                                        e.preventDefault();
+                                        handleLayerSelect();
+                                    }}
                                     className={cn(
                                         "relative flex flex-col items-center justify-center py-3 min-[375px]:py-4 lg:py-3 px-0 min-[375px]:px-0.5 sm:px-3 md:px-4 lg:px-3 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0 active:opacity-80",
                                         !isSelected && style.hover
@@ -178,6 +186,10 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 >
                                     <button
                                         onClick={() => onSelectVideo(course)}
+                                        onTouchStart={(e) => {
+                                            e.preventDefault();
+                                            onSelectVideo(course);
+                                        }}
                                         className={cn(
                                             "group relative w-full text-left flex flex-row items-center py-4 sm:py-3 md:py-3 lg:py-2 border-b border-slate-200/60 last:border-0 cursor-pointer overflow-hidden touch-manipulation px-2 sm:px-3 md:px-4 lg:px-3 rounded-xl transition-all duration-150 active:bg-slate-100/50",
                                             activeListStyle.hoverBg
