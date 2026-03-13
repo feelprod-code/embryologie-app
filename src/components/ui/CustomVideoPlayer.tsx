@@ -78,6 +78,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const [duration, setDuration] = useState(0);
     const [localScrubTime, setLocalScrubTime] = useState<number | null>(null);
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const nativeFullscreenActive = useRef(false);
     const [showControls, setShowControls] = useState(true);
     const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -151,11 +152,18 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
         // Listen to native fullscreen changes to sync our state if they exit via ESC or native controls
         const handleFullscreenChange = () => {
-            if (!document.fullscreenElement && isFullscreen) {
+            const isNative = !!(document.fullscreenElement || (document as any).webkitFullscreenElement);
+
+            // Si on pensait être en plein écran natif, mais qu'on n'y est plus (ex: touche ESC)
+            if (nativeFullscreenActive.current && !isNative) {
+                nativeFullscreenActive.current = false;
                 setIsFullscreen(false);
             }
+            // IMPORTANT: Si on est en pseudo-fullscreen (nativeFullscreenActive == false), 
+            // on IGNORE les événements fullscreenchange intempestifs d'iOS Safari (lors des rotations par exemple).
         };
         document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 
         if (isFullscreen) {
             document.body.style.overflow = 'hidden';
@@ -179,6 +187,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
         return () => {
             document.removeEventListener('fullscreenchange', handleFullscreenChange);
+            document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
             document.body.style.overflow = '';
             document.body.classList.remove('video-fullscreen-active');
             if (rootElement) {
@@ -198,17 +207,20 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (playerContainer && document.fullscreenEnabled && !isAppleMobile) {
                 try {
                     await playerContainer.requestFullscreen();
+                    nativeFullscreenActive.current = true;
                     setIsFullscreen(true);
                 } catch (err) {
                     console.error("Error attempting to enable fullscreen:", err);
+                    nativeFullscreenActive.current = false;
                     setIsFullscreen(true); // fallback to CSS
                 }
             } else if (isAppleMobile && playerRef.current && (playerRef.current as any).webkitEnterFullscreen) {
-                // Use native iOS fullscreen for iPhone
+                // Use native iOS fullscreen for iPhone if available
                 (playerRef.current as any).webkitEnterFullscreen();
-                // do not set isFullscreen(true) because native player takes over the screen
+                // We keep nativeFullscreenActive false because webkitEnterFullscreen handles its own state
             } else {
                 // Apple Mobile without native fullscreen or Fullscreen not enabled
+                nativeFullscreenActive.current = false;
                 setIsFullscreen(true);
             }
 
@@ -225,14 +237,18 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 console.warn("Screen orientation lock failed or not supported:", err);
             }
         } else {
-            // Exiting Fullscreen
-            if (document.fullscreenElement) {
+            if (document.fullscreenElement || (document as any).webkitFullscreenElement) {
                 try {
-                    await document.exitFullscreen();
+                    if (document.exitFullscreen) {
+                        await document.exitFullscreen();
+                    } else if ((document as any).webkitExitFullscreen) {
+                        await (document as any).webkitExitFullscreen();
+                    }
                 } catch (err) {
                     console.error("Error attempting to exit fullscreen:", err);
                 }
             }
+            nativeFullscreenActive.current = false;
             setIsFullscreen(false);
 
             // Unlock orientation
