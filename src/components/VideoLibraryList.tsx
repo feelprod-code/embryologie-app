@@ -36,8 +36,6 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
     // UI state for immediate button feedback
     const [activeTab, setActiveTab] = useState<string>("L'Ectoderme");
-    const [touchedCourseId, setTouchedCourseId] = useState<string | null>(null);
-    const [touchedLayerId, setTouchedLayerId] = useState<string | null>(null);
 
     // Deferred state for the heavy list rendering
     const [selectedLayer, setSelectedLayer] = useState<string>("L'Ectoderme");
@@ -117,22 +115,17 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 setSelectedLayer(layer);
                             };
 
-                            const isTouchedLayer = touchedLayerId === layer;
-
                             return (
                                 <button
                                     key={layer}
                                     onClick={handleLayerSelect}
-                                    onTouchStart={() => setTouchedLayerId(layer)}
-                                    onTouchEnd={() => setTimeout(() => setTouchedLayerId(null), 150)}
-                                    onTouchCancel={() => setTouchedLayerId(null)}
                                     className={cn(
-                                        "relative flex flex-col items-center justify-center py-3 min-[375px]:py-4 lg:py-3 px-0 min-[375px]:px-0.5 sm:px-3 md:px-4 lg:px-3 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0",
+                                        "relative flex flex-col items-center justify-center py-3 min-[375px]:py-4 lg:py-3 px-0 min-[375px]:px-0.5 sm:px-3 md:px-4 lg:px-3 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0 active:scale-[0.96]",
                                         !isSelected && style.hover
                                     )}
                                     style={isSelected
-                                        ? { backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''), borderColor: style.activeBorder.replace('border-[', '').replace(']', ''), color: 'white', zIndex: 10, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', transform: isTouchedLayer ? 'scale(0.96)' : 'scale(1)' }
-                                        : { borderColor: '#e2e8f0', color: '#475569', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', backgroundColor: isTouchedLayer ? style.unselectedBg?.replace('bg-[', '').replace(']', '') : undefined, transform: isTouchedLayer ? 'scale(0.96)' : 'scale(1)' }
+                                        ? { backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''), borderColor: style.activeBorder.replace('border-[', '').replace(']', ''), color: 'white', zIndex: 10, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }
+                                        : { borderColor: '#e2e8f0', color: '#475569', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', backgroundColor: style.unselectedBg?.replace('bg-[', '').replace(']', '') }
                                     }
                                 >
                                     <span className={cn(
@@ -177,8 +170,6 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 "L'Oeil": { textHover: "md:group-hover:text-[#F2B729]", hoverBg: "md:hover:bg-[#F2B729]/5", tapBg: "rgba(242, 183, 41, 0.15)", textColor: "text-[#F2B729]" },
                             }[selectedLayer] || { textHover: "md:group-hover:text-[#8B1111]", hoverBg: "md:hover:bg-black/[0.02]", tapBg: "rgba(0, 0, 0, 0.05)", textColor: "text-slate-300" };
 
-                            const isTouched = touchedCourseId === course.id;
-
                             return (
                                 <motion.div
                                     key={course.id}
@@ -187,23 +178,15 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 >
                                     <button
                                         onClick={() => onSelectVideo(course)}
-                                        onTouchStart={() => setTouchedCourseId(course.id)}
-                                        onTouchEnd={() => setTimeout(() => setTouchedCourseId(null), 150)}
-                                        onTouchCancel={() => setTouchedCourseId(null)}
-                                        style={{
-                                            backgroundColor: isTouched ? activeListStyle.tapBg : undefined,
-                                            transform: isTouched ? 'scale(0.96)' : 'scale(1)',
-                                            transition: 'transform 0.15s ease-out, background-color 0.15s ease-out',
-                                        }}
                                         className={cn(
-                                            "group relative w-full text-left flex flex-row items-center py-4 sm:py-3 md:py-3 lg:py-2 border-b border-slate-200/60 last:border-0 cursor-pointer overflow-hidden touch-manipulation px-2 sm:px-3 md:px-4 lg:px-3 rounded-xl",
+                                            "group relative w-full text-left flex flex-row items-center py-4 sm:py-3 md:py-3 lg:py-2 border-b border-slate-200/60 last:border-0 cursor-pointer overflow-hidden touch-manipulation px-2 sm:px-3 md:px-4 lg:px-3 rounded-xl active:scale-[0.98] transition-all duration-150 active:bg-slate-100/50",
                                             activeListStyle.hoverBg
                                         )}
                                     >
 
                                         {/* Minimalist Play Icon */}
                                         <div className="flex-shrink-0 w-10 h-10 sm:w-10 sm:h-10 md:w-8 md:h-8 lg:w-7 lg:h-7 flex items-center justify-center mr-3 sm:mr-4 md:mr-4 lg:mr-3">
-                                            <div className={cn("w-8 h-8 sm:w-8 sm:h-8 md:w-6 md:h-6 lg:w-6 lg:h-6 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] transition-all duration-300 md:group-hover:scale-110", isTouched ? 'bg-transparent scale-90' : 'bg-[#FAF6ED]')}>
+                                            <div className={cn("w-8 h-8 sm:w-8 sm:h-8 md:w-6 md:h-6 lg:w-6 lg:h-6 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] transition-all duration-300 md:group-hover:scale-110 bg-[#FAF6ED]")}>
                                                 <Play className={cn("w-4 h-4 sm:w-4 sm:h-4 md:w-3 md:h-3 lg:w-3 lg:h-3 transition-colors translate-x-[1px]", activeListStyle.textColor)} fill="currentColor" strokeWidth={1} />
                                             </div>
                                         </div>
