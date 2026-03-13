@@ -41,6 +41,7 @@ interface CustomVideoPlayerProps {
     onTimeUpdate?: (currentTime: number, duration: number) => void;
     onFullscreenChange?: (isFullscreen: boolean) => void;
     onPlayStateChange?: (isPlaying: boolean) => void;
+    onCuesLoaded?: (cues: { start: number, end: number, text: string }[]) => void;
 }
 
 export interface CustomVideoPlayerRef {
@@ -60,6 +61,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     onTimeUpdate,
     onFullscreenChange,
     onPlayStateChange,
+    onCuesLoaded,
 }, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
@@ -421,6 +423,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 cuesRef.current = parsedCues;
                 if (parsedCues.length > 0) {
                     setHasSubtitles(cuesRef.current.length > 0); // Keep tracking it properly based on cues
+                    if (onCuesLoaded) onCuesLoaded(cuesRef.current);
                 }
             } catch (err) {
                 console.error("VTT Parse err", err);
@@ -615,7 +618,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 value={localScrubTime !== null ? localScrubTime : currentTime}
                                 onPointerDown={() => setLocalScrubTime(currentTime)}
                                 onChange={(e) => {
-                                    setLocalScrubTime(parseFloat(e.target.value));
+                                    const val = parseFloat(e.target.value);
+                                    setLocalScrubTime(val);
+                                    handleSeek({ target: { value: val.toString() } } as any);
                                 }}
                                 onPointerUp={(e) => {
                                     const val = parseFloat((e.currentTarget as HTMLInputElement).value);

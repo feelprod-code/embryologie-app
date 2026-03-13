@@ -67,7 +67,25 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [optimisticLayer, setOptimisticLayer] = useState<string | null>(null);
   const isPending = false;
 
-  const [contentMode, setContentMode] = useState<'summary' | 'transcript'>('summary');
+  const [contentMode, setContentMode] = useState<'summary' | 'transcript' | 'synced'>('summary');
+  const [videoCues, setVideoCues] = useState<{ start: number, end: number, text: string }[]>([]);
+
+  const activeCueIndex = React.useMemo(() => {
+    if (contentMode !== 'synced') return -1;
+    return videoCues.findIndex((cue, idx) =>
+      currentTime >= cue.start - 0.5 && (idx === videoCues.length - 1 || currentTime < videoCues[idx + 1].start - 0.5)
+    );
+  }, [currentTime, videoCues, contentMode]);
+
+  // Auto-scroll synchronisé
+  useEffect(() => {
+    if (contentMode === 'synced' && activeCueIndex >= 0) {
+      const el = document.getElementById(`cue-${activeCueIndex}`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  }, [activeCueIndex, contentMode]);
 
   // Reset optimistic layer when actual course changes
   useEffect(() => {
@@ -361,6 +379,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             onTimeUpdate={handleTimeUpdate}
             onFullscreenChange={handleFullscreenChange}
             onPlayStateChange={setIsVideoPlaying}
+            onCuesLoaded={setVideoCues}
             className={cn(
               isFullscreen ? "" : "rounded-2xl md:rounded-3xl shadow-xl border border-slate-800 w-full h-full object-cover mx-auto"
             )}
@@ -519,7 +538,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     max={videoDuration || 100}
                     value={localScrubTime !== null ? localScrubTime : currentTime}
                     onPointerDown={() => setLocalScrubTime(currentTime)}
-                    onChange={(e) => setLocalScrubTime(parseFloat(e.target.value))}
+                    onChange={(e) => {
+                      const val = parseFloat(e.target.value);
+                      setLocalScrubTime(val);
+                      videoPlayerRef.current?.seekTo(val);
+                    }}
                     onPointerUp={(e) => {
                       const val = parseFloat((e.currentTarget as HTMLInputElement).value);
                       videoPlayerRef.current?.seekTo(val);
@@ -610,16 +633,63 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 contentMode === 'transcript' ? "bg-white text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-700"
               )}
             >
-              Retranscription
+              Lecture
             </button>
+            {videoCues.length > 0 && (
+              <button
+                onClick={() => setContentMode('synced')}
+                className={cn(
+                  "px-4 md:px-6 py-1.5 text-[13px] md:text-sm font-medium rounded-md transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2",
+                  contentMode === 'synced' ? "bg-white text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-700"
+                )}
+                title="Texte synchronisé avec la vidéo"
+              >
+                <div className={cn("w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300", contentMode === 'synced' && isVideoPlaying ? "bg-red-500 animate-pulse" : contentMode === 'synced' ? "bg-red-300" : "bg-transparent")} />
+                Autoscroll
+              </button>
+            )}
           </div>
         </div>
 
-        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-          {contentMode === 'summary' && course.fullSummary
-            ? course.fullSummary.replace(/\n/g, '\n\n')
-            : course.transcriptMarkdown.replace(/^#\s.*$/gm, '').trim().replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
-        </ReactMarkdown>
+        {contentMode === 'synced' ? (
+          <div className="flex flex-col gap-2 md:gap-3 text-slate-600 pb-[30vh]">
+            {videoCues.map((cue, idx) => {
+              const isActive = idx === activeCueIndex;
+              return (
+                <p
+                  key={idx}
+                  id={`cue-${idx}`}
+                  onClick={() => {
+                    videoPlayerRef.current?.seekTo(cue.start);
+                    if (videoPlayerRef.current && !videoPlayerRef.current.isPlaying) {
+                      videoPlayerRef.current.togglePlay();
+                    }
+                  }}
+                  className={cn(
+                    "text-[15px] lg:text-[16px] leading-relaxed cursor-pointer transition-all duration-300 px-3 py-1.5 rounded-lg",
+                    isActive
+                      ? "text-slate-900 font-semibold bg-[#FAF6ED] border-l-4 border-[#5A9C51] scale-[1.01] shadow-sm shadow-[#5A9C51]/10 -ml-1 mr-1"
+                      : "hover:bg-slate-50 hover:text-slate-800 border-l-4 border-transparent"
+                  )}
+                  style={isActive ? {
+                    borderColor: course.categoryId === 'ectoderme' ? '#5A9C51' :
+                      course.categoryId === 'endoderme' ? '#4171B5' :
+                        course.categoryId === 'mesoderme' ? '#F27D33' :
+                          course.categoryId === 'oeil' ? '#F2B729' : ''
+                  } : {}}
+                >
+                  {cue.text}
+                </p>
+              )
+            })}
+          </div>
+        ) : (
+          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+            {contentMode === 'summary' && course.fullSummary
+              ? course.fullSummary.replace(/\n/g, '\n\n')
+              : course.transcriptMarkdown.replace(/^#\s.*$/gm, '').trim().replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
+          </ReactMarkdown>
+        )}
       </div>
     </div>
   );
