@@ -74,7 +74,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   // Auto-scroll synchronisé estimé (sur la balise markdown)
   useEffect(() => {
-    if (contentMode !== 'transcript' || !markdownContainerRef.current || !videoDuration) return;
+    if (!markdownContainerRef.current || !videoDuration) return;
 
     const progress = currentTime / videoDuration;
     const elements = Array.from(markdownContainerRef.current.children) as HTMLElement[];
@@ -783,20 +783,20 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 const style = layerStyles[layer];
 
                 return (
-                                <button
+                  <button
                     key={layer}
                     onClick={handleLayerClick}
                     className={cn(
-                                        "relative px-4 sm:px-6 md:px-7 lg:px-8 py-2.5 sm:py-3 lg:py-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 flex-1 sm:flex-none min-w-[120px] flex flex-col items-center justify-center touch-manipulation active:scale-[0.96]",
-                                        isSelected
-                                            ? "bg-white text-slate-900 shadow-md shadow-black/5 ring-1 ring-black/5 scale-[1.02]"
-                                            : "bg-white/50 hover:bg-white text-slate-500 hover:text-slate-800 border border-transparent hover:border-slate-200/50"
-                                    )}
-                                    style={isSelected ? {
-                                        backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''),
-                                        borderColor: style.activeBorder.replace('border-[', '').replace(']', ''),
-                                        color: 'white'
-                                    } : {}}
+                      "relative px-4 sm:px-6 md:px-7 lg:px-8 py-2.5 sm:py-3 lg:py-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 flex-1 sm:flex-none min-w-[120px] flex flex-col items-center justify-center touch-manipulation active:opacity-80",
+                      isSelected
+                        ? "bg-white text-slate-900 shadow-md shadow-black/5 ring-1 ring-black/5 scale-[1.02]"
+                        : "bg-white/50 hover:bg-white text-slate-500 hover:text-slate-800 border border-transparent hover:border-slate-200/50"
+                    )}
+                    style={isSelected ? {
+                      backgroundColor: style.activeBg.replace('bg-[', '').replace(']', ''),
+                      borderColor: style.activeBorder.replace('border-[', '').replace(']', ''),
+                      color: 'white'
+                    } : {}}
                   >
                     <span className={cn(
                       "block text-[15px] sm:text-base lg:text-lg whitespace-nowrap text-center font-bebas tracking-wide w-full leading-[1.1] mb-1",

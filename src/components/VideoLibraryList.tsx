@@ -120,7 +120,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     key={layer}
                                     onClick={handleLayerSelect}
                                     className={cn(
-                                        "relative flex flex-col items-center justify-center py-3 min-[375px]:py-4 lg:py-3 px-0 min-[375px]:px-0.5 sm:px-3 md:px-4 lg:px-3 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0 active:scale-[0.96]",
+                                        "relative flex flex-col items-center justify-center py-3 min-[375px]:py-4 lg:py-3 px-0 min-[375px]:px-0.5 sm:px-3 md:px-4 lg:px-3 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0 active:opacity-80",
                                         !isSelected && style.hover
                                     )}
                                     style={isSelected
@@ -179,7 +179,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     <button
                                         onClick={() => onSelectVideo(course)}
                                         className={cn(
-                                            "group relative w-full text-left flex flex-row items-center py-4 sm:py-3 md:py-3 lg:py-2 border-b border-slate-200/60 last:border-0 cursor-pointer overflow-hidden touch-manipulation px-2 sm:px-3 md:px-4 lg:px-3 rounded-xl active:scale-[0.98] transition-all duration-150 active:bg-slate-100/50",
+                                            "group relative w-full text-left flex flex-row items-center py-4 sm:py-3 md:py-3 lg:py-2 border-b border-slate-200/60 last:border-0 cursor-pointer overflow-hidden touch-manipulation px-2 sm:px-3 md:px-4 lg:px-3 rounded-xl transition-all duration-150 active:bg-slate-100/50",
                                             activeListStyle.hoverBg
                                         )}
                                     >
@@ -214,7 +214,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                                         {/* Sleek Duration */}
                                         {course.duration && (
-                                            <div className={cn("flex-shrink-0 flex flex-col items-end justify-center text-slate-400 transition-transform duration-300 md:group-hover:-translate-x-1", activeListStyle.textHover)}>
+                                            <div className={cn("flex-shrink-0 flex flex-col items-end justify-center transition-transform duration-300 md:group-hover:-translate-x-1", activeListStyle.textColor)}>
                                                 <span className="font-bebas text-lg sm:text-lg md:text-sm lg:text-base tracking-wider pt-1">{course.duration}</span>
                                             </div>
                                         )}
