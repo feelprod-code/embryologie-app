@@ -6,12 +6,13 @@ export default {
   ],
   theme: {
     screens: {
-      'sm': '640px',
-      // Block mobile landscape from triggering tablet mode
+      // Force Tailwind to completely ignore mobile landscape widths (often 844px+ on iPhones) 
+      // by demanding that screens MUST have a decent height to qualify for anything above a phone.
+      'sm': { 'raw': '(min-width: 640px) and (min-height: 500px)' },
       'md': { 'raw': '(min-width: 768px) and (min-height: 500px)' },
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px',
+      'lg': { 'raw': '(min-width: 1024px) and (min-height: 500px)' },
+      'xl': { 'raw': '(min-width: 1280px) and (min-height: 500px)' },
+      '2xl': { 'raw': '(min-width: 1536px) and (min-height: 500px)' },
     },
     extend: {
       colors: {
