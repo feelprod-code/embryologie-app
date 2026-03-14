@@ -75,29 +75,33 @@ export function AdminDashboard() {
     );
 
     return (
-        <div className="w-full max-w-6xl mx-auto p-4 md:p-8 animate-fade-in relative">
-            {/* Sticky Header */}
-            <div className="sticky top-0 z-30 bg-[#FAF6ED]/95 backdrop-blur-md -mx-4 px-4 pt-4 pb-4 mb-6 md:-mx-8 md:px-8 md:pt-6 md:pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 shadow-sm transition-all rounded-b-xl">
-                <div>
-                    <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase">Gestion des élèves</h1>
-                    <p className="text-slate-500 font-medium">Administration du CRM et des accès.</p>
-                </div>
-
-                <div className="relative w-full md:w-auto">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <Search className="h-5 w-5 text-slate-400" />
+        <div className="w-full h-full max-w-6xl mx-auto animate-fade-in relative z-10 flex flex-col bg-[#FAF6ED]">
+            {/* FIXED HEADER WITH BEIGE NOTCH */}
+            <div className="flex-none w-full bg-[#FAF6ED] pt-[max(env(safe-area-inset-top),16px)] px-4 pb-4 md:px-8 border-b border-slate-200 z-20 shrink-0 shadow-sm">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-2">
+                    <div>
+                        <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase leading-none">Gestion des élèves</h1>
+                        <p className="text-slate-500 font-medium text-xs md:text-sm mt-1">Administration du CRM et des accès.</p>
                     </div>
-                    <input
-                        type="text"
-                        className="block w-full md:w-64 pl-10 pr-3 py-2 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm font-medium transition-all"
-                        placeholder="Rechercher un élève..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+
+                    <div className="relative w-full md:w-auto mt-2 md:mt-0">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <Search className="h-5 w-5 text-slate-400" />
+                        </div>
+                        <input
+                            type="text"
+                            className="block w-full md:w-64 pl-10 pr-3 py-2 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm font-medium"
+                            placeholder="Rechercher un élève..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </div>
                 </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-24 relative z-10">
+            {/* List Container - SCROLLABLE */}
+            <div className="flex-1 w-full overflow-y-auto overscroll-y-contain px-4 md:px-8 pb-[120px] pt-6">
+                <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden relative z-10 w-full mb-8">
                 {/* Desktop Table View */}
                 <div className="hidden md:block overflow-x-auto">
                     <table className="min-w-full divide-y divide-slate-200">
@@ -310,6 +314,7 @@ export function AdminDashboard() {
                         ))
                     )}
                 </div>
+            </div>
             </div>
         </div>
     );

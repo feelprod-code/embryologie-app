@@ -427,10 +427,9 @@ function App() {
         </nav>
       )}
 
-      {/* INNER SCROLLABLE CANVAS - Scroll contained to let Safari rest */}
       <div className={cn(
         "flex-1 w-full min-h-0 flex flex-col items-center overflow-x-hidden relative z-10 overscroll-none no-scrollbar md:mt-[60px]",
-        currentView === 'video-player' || currentView === 'embryo-ai' ? "overflow-y-hidden" : "overflow-y-auto"
+        currentView === 'video-player' || currentView === 'embryo-ai' || currentView === 'admin' ? "overflow-y-hidden" : "overflow-y-auto"
       )} id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
 
         {/* Mobile Top App Bar (Supprimé) */}
@@ -493,11 +492,11 @@ function App() {
 
         <div className={cn(
           "flex flex-col items-center w-full flex-1 min-h-0",
-          currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai'
+          currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai' || currentView === 'admin'
             ? "p-0"
             : "px-2 sm:px-6 lg:px-8 w-full pb-[90px] md:pb-8",
-          currentView === 'home' ? "overflow-hidden h-[100dvh] md:h-full" : "",
-          currentView === 'video-player' ? "pt-0 md:pt-2 pb-[90px] md:pb-2 overflow-hidden h-full" : "pt-0"
+          currentView === 'home' || currentView === 'admin' ? "overflow-hidden h-[100dvh] md:h-full" : "",
+          currentView === 'video-player' ? "pt-0 pb-[90px] md:pb-2 overflow-hidden h-[100dvh] md:h-full" : "pt-0"
         )}>
 
           {/* Desktop Top Navigation Bar */}
