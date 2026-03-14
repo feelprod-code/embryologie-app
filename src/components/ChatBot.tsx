@@ -314,7 +314,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                 type="button"
                                 onClick={() => setIsFastMode(true)}
                                 className={cn(
-                                    "flex items-center justify-center px-3 md:px-4 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all",
+                                    "flex items-center justify-center px-4 md:px-5 py-2 md:py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all",
                                     isFastMode
                                         ? "bg-[#A06C50] text-white shadow-sm"
                                         : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
@@ -327,9 +327,9 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                 type="button"
                                 onClick={() => setIsFastMode(false)}
                                 className={cn(
-                                    "flex items-center justify-center px-3 md:px-4 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all",
+                                    "flex items-center justify-center px-4 md:px-5 py-2 md:py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all",
                                     !isFastMode
-                                        ? "bg-slate-800 text-white shadow-sm"
+                                        ? "bg-[#A06C50] text-white shadow-sm"
                                         : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
                                 )}
                                 title="Mode Profond : Donne le cours intégral à lire à l'IA (- rapide)"
