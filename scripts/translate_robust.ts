@@ -192,6 +192,12 @@ async function processVideos() {
             const item = targetData[lang.code][idx];
 
             item.title = await translateText(v.title, lang.name, `VideoTitle: \${v.title}`);
+            if (v.shortSummary) {
+                item.shortSummary = await translateText(v.shortSummary, lang.name, `VideoShort: \${v.title}`);
+            }
+            if (v.fullSummary) {
+                item.fullSummary = await translateText(v.fullSummary, lang.name, `VideoFull: \${v.title}`);
+            }
             if (v.transcriptMarkdown) {
                 item.transcriptMarkdown = await translateText(v.transcriptMarkdown, lang.name, `VideoTranscript: \${v.title}`);
             }

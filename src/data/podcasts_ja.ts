@@ -16,7 +16,7 @@ export const podcastsData: PodcastItem[] = [
         "id": "link-marc-site",
         "title": "マーク・ダモワゾーのサイト",
         "author": "Site Web Officiel",
-        "description": "マーク・ダモワゾーの全著作、論文、経歴をご覧ください。この生体力学的アプローチの原点を探求してください。",
+        "description": "マーク・ダモワゾーの全著作、テキスト、経歴。この生体力学的アプローチの原点を探る。",
         "thumbnailUrl": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=400&h=400&auto=format&fit=crop",
         "externalLink": "https://www.marcdamoiseaux.com"
     }

@@ -165,7 +165,13 @@ async function run() {
                     const transcriptIndex = index + transcriptMatch.index;
                     const blockStr = targetContent.substring(index, transcriptIndex);
                     
-                    if (!blockStr.includes('shortSummary') && !blockStr.includes('fullSummary')) {
+                    const targetShortMatch = blockStr.match(/shortSummary:\s*"([^"]*)"/);
+                    const targetFullMatch = blockStr.match(/fullSummary:\s*"([^"]*)"/);
+                    
+                    const targetShort = targetShortMatch ? targetShortMatch[1].replace(/\\"/g, '"') : "";
+                    const targetFull = targetFullMatch ? targetFullMatch[1].replace(/\\"/g, '"') : "";
+                    
+                    if (!blockStr.includes('shortSummary') || targetShort === record.shortSummary || targetFull === record.fullSummary) {
                         tasks.push({
                             record: record,
                             targetLang: targetLang

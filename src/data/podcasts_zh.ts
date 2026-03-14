@@ -16,7 +16,7 @@ export const podcastsData: PodcastItem[] = [
         "id": "link-marc-site",
         "title": "Marc Damoiseaux 的网站",
         "author": "Site Web Officiel",
-        "description": "探索 Marc Damoiseaux 的所有著作、文本和历程。深入了解这种生物动力学方法的原始来源。",
+        "description": "Marc Damoiseaux 的所有著作、文章和职业生涯。探索这种生物动力学方法的原始来源。",
         "thumbnailUrl": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=400&h=400&auto=format&fit=crop",
         "externalLink": "https://www.marcdamoiseaux.com"
     }

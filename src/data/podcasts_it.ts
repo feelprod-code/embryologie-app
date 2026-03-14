@@ -16,7 +16,7 @@ export const podcastsData: PodcastItem[] = [
         "id": "link-marc-site",
         "title": "Il sito di Marc Damoiseaux",
         "author": "Site Web Officiel",
-        "description": "Scopri l'intera opera, i testi e il percorso di Marc Damoiseaux. Esplora la fonte originale di questo approccio biodinamico.",
+        "description": "L'integralità dei lavori, testi e percorso di Marc Damoiseaux. Esplorate la fonte originale di questo approccio biodinamico.",
         "thumbnailUrl": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=400&h=400&auto=format&fit=crop",
         "externalLink": "https://www.marcdamoiseaux.com"
     }
