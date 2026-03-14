@@ -298,7 +298,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         themeColor: "bg-purple-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Ralentissement Notochordal]:::global --> B(Gouttière Neurale):::ecto\n  B --> C[Expansion Diencéphalique<br/>Futurs Yeux]:::ecto\n  D[Zone Apicale Mésodermique]:::meso --> E(Aortes Primitives):::meso\n  E --> F[Début Battements J21/J22]:::meso`,
+        mermaidCode: `graph TD\n${colors}\n  A[Ralentissement Notochordal]:::global --> B(Gouttière Neurale):::ecto\n  B --> C[Expansion Diencéphalique<br/>Futurs Yeux]:::ecto\n  B ~~~ D\n  D[Zone Apicale Mésodermique]:::meso --> E(Aortes Primitives):::meso\n  E --> F[Début Battements J21/J22]:::meso`,
         practicalIntegration: {
             fulcrums: "Symphyse Sphéno-Basilaire (SSB, Point Zéro), l'Insula (hitch point de la bascule cérébrale), le Neuropore Antérieur, et LE CŒUR.",
             generalPalpation: "Le 'Tai-Chi du Cerveau'. Perception d'une expansion foudroyante, suivie d'une première flexion céphalique d'enroulement paroxystique sur le point fixe central du cœur.",
@@ -418,7 +418,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         themeColor: "bg-amber-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Rapprochement Côtes Mi-ligne]:::meso --> B(Suture de l'Angle de Louis J45):::meso\n  A --> C[Fermeture du Médiastin]:::meso\n  D[Redressement Axial]:::global --> E(Tension Dure-Mérienne):::ecto\n  E --> F[Modélisation du Desmocrâne]:::ecto`
+        mermaidCode: `graph TD\n${colors}\n  A[Rapprochement Côtes Mi-ligne]:::meso --> B(Suture de l'Angle de Louis J45):::meso\n  A --> C[Fermeture du Médiastin]:::meso\n  A ~~~ D\n  D[Redressement Axial]:::global --> E(Tension Dure-Mérienne):::ecto\n  E --> F[Modélisation du Desmocrâne]:::ecto`
     },
     {
         id: "maturation-12ans",
@@ -459,6 +459,6 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         themeColor: "bg-emerald-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Dentition 6m]:::ecto --> B(Pivot de Redressement Neural):::ecto\n  C[Pneumatisation Maxillaire 3A]:::endo --> D(Engagement Appendice/Surrénales):::endo\n  E[Relais Thyroïdien 7A]:::global --> F(Autonomie Calorique):::global\n  G[Hypophyse Pubertaire 12A]:::global --> H(Pneumatisation Sphénoïdale):::global`
+        mermaidCode: `graph TD\n${colors}\n  A[Dentition 6m]:::ecto --> B(Pivot de Redressement Neural):::ecto\n  B ~~~ C\n  C[Pneumatisation Maxillaire 3A]:::endo --> D(Engagement Appendice/Surrénales):::endo\n  D ~~~ E\n  E[Relais Thyroïdien 7A]:::global --> F(Autonomie Calorique):::global\n  F ~~~ G\n  G[Hypophyse Pubertaire 12A]:::global --> H(Pneumatisation Sphénoïdale):::global`
     }
 ];

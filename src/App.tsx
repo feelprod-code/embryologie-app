@@ -749,12 +749,13 @@ function App() {
                                 <GitCommitHorizontal className="mr-3 text-primary" size={28} />
                                 {t('app.timeline_cine_dynamic')}
                               </h3>
-                              <div className="bg-white p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-hidden w-full flex justify-center items-center">
-                                <div className="w-full max-w-full flex justify-center mx-auto overflow-hidden [&>svg]:max-w-full [&>svg]:h-auto">
+                              <div className="bg-white p-2 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-x-auto w-full">
+                                <div className="min-w-fit w-full flex justify-center mx-auto [&>svg]:max-w-none sm:[&>svg]:max-w-full [&>svg]:h-auto flex-col sm:flex-row items-center gap-8">
                                   <Mermaid chart={activeStage.mermaidCode} />
                                 </div>
                               </div>
                             </div>
+
                           )}
 
                           {/* PRACTICAL INTEGRATION SECTION */}

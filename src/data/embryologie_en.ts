@@ -281,7 +281,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-purple-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Notochordal Slowdown]:::global --> B(Neural Groove):::ecto\n  B --> C[Diencephalic Expansion<br/>Future Eyes]:::ecto\n  D[Apical Mesodermal Zone]:::meso --> E(Primitive Aortae):::meso\n  E --> F[Heartbeats Start D21/D22]:::meso",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Notochordal Slowdown]:::global --> B(Neural Groove):::ecto\n  B --> C[Diencephalic Expansion<br/>Future Eyes]:::ecto\n  B ~~~ D\n  D[Apical Mesodermal Zone]:::meso --> E(Primitive Aortae):::meso\n  E --> F[Heartbeats Start D21/D22]:::meso",
         "practicalIntegration": {
             "fulcrums": "Sphenobasilar Synchondrosis (SBS, Still Point), the Insula (cerebral fulcrum hitch point), the Anterior Neuropore, and THE HEART.",
             "generalPalpation": "The 'Brain Tai-Chi'. Perception of a lightning-fast expansion, followed by a first paroxysmal coiling cephalic flexion around the central fixed point of the heart.",
@@ -416,7 +416,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-amber-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Midline Ribs Convergence]:::meso --> B(Louis Angle Suture D45):::meso\n  A --> C[Mediastinum Closure]:::meso\n  D[Axial Straightening]:::global --> E(Dural Tension):::ecto\n  E --> F[Desmocranium Modeling]:::ecto"
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Midline Ribs Convergence]:::meso --> B(Louis Angle Suture D45):::meso\n  A --> C[Mediastinum Closure]:::meso\n  A ~~~ D\n  D[Axial Straightening]:::global --> E(Dural Tension):::ecto\n  E --> F[Desmocranium Modeling]:::ecto"
     },
     {
         "id": "maturation-12ans",
@@ -457,6 +457,6 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-emerald-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Dentition 6m]:::ecto --> B(Neural Straightening Pivot):::ecto\n  C[Maxillary Pneumatization 3Y]:::endo --> D(Appendix/Adrenals Engagement):::endo\n  E[Thyroid Relay 7Y]:::global --> F(Caloric Autonomy):::global\n  G[Pubertal Pituitary 12Y]:::global --> H(Sphenoidal Pneumatization):::global"
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Dentition 6m]:::ecto --> B(Neural Straightening Pivot):::ecto\n  B ~~~ C\n  C[Maxillary Pneumatization 3Y]:::endo --> D(Appendix/Adrenals Engagement):::endo\n  D ~~~ E\n  E[Thyroid Relay 7Y]:::global --> F(Caloric Autonomy):::global\n  F ~~~ G\n  G[Pubertal Pituitary 12Y]:::global --> H(Sphenoidal Pneumatization):::global"
     }
 ];

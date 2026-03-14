@@ -281,7 +281,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-purple-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Ralentización Notocordal]:::global --> B(Canal Neural):::ecto\n  B --> C[Expansión Diencefálica<br/>Futuros Ojos]:::ecto\n  D[Zona Apical Mesodérmica]:::meso --> E(Aortas Primitivas):::meso\n  E --> F[Inicio de Latidos D21/D22]:::meso",
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Ralentización Notocordal]:::global --> B(Canal Neural):::ecto\n  B --> C[Expansión Diencefálica<br/>Futuros Ojos]:::ecto\n  B ~~~ D\n  D[Zona Apical Mesodérmica]:::meso --> E(Aortas Primitivas):::meso\n  E --> F[Inicio de Latidos D21/D22]:::meso",
         "practicalIntegration": {
             "fulcrums": "Sínfisis Esfenobasilar (SSB, Punto Cero), la Ínsula (punto de anclaje del balanceo cerebral), el Neuroporo Anterior, y EL CORAZÓN.",
             "generalPalpation": "El 'Tai-Chi del Cerebro'. Percepción de una expansión fulminante, seguida de una primera flexión cefálica de enrollamiento paroxístico sobre el punto fijo central del corazón.",
@@ -416,7 +416,7 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-amber-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Acercamiento de Costillas Línea Media]:::meso --> B(Sutura Ángulo de Louis D45):::meso\n  A --> C[Cierre del Mediastino]:::meso\n  D[Enderezamiento Axial]:::global --> E(Tensión Duramadre):::ecto\n  E --> F[Modelización del Desmocráneo]:::ecto"
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Acercamiento de Costillas Línea Media]:::meso --> B(Sutura Ángulo de Louis D45):::meso\n  A --> C[Cierre del Mediastino]:::meso\n  A ~~~ D\n  D[Enderezamiento Axial]:::global --> E(Tensión Duramadre):::ecto\n  E --> F[Modelización del Desmocráneo]:::ecto"
     },
     {
         "id": "maturation-12ans",
@@ -457,6 +457,6 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         "themeColor": "bg-emerald-900",
-        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Dentición 6m]:::ecto --> B(Pivote de Enderezamiento Neural):::ecto\n  C[Neumatización Maxilar 3A]:::endo --> D(Compromiso Apéndice/Suprarrenales):::endo\n  E[Relevo Tiroideo 7A]:::global --> F(Autonomía Calórica):::global\n  G[Hipófisis Puberal 12A]:::global --> H(Neumatización Esfenoidal):::global"
+        "mermaidCode": "graph TD\n\nclassDef ecto fill:transparent,stroke:#5A9C51,color:#5A9C51,stroke-width:2px,rx:10,ry:10;\nclassDef meso fill:transparent,stroke:#F27D33,color:#F27D33,stroke-width:2px,rx:10,ry:10;\nclassDef endo fill:transparent,stroke:#4171B5,color:#4171B5,stroke-width:2px,rx:10,ry:10;\nclassDef global fill:transparent,stroke:#94a3b8,color:#475569,stroke-width:1px,rx:10,ry:10;\n\n  A[Dentición 6m]:::ecto --> B(Pivote de Enderezamiento Neural):::ecto\n  B ~~~ C\n  C[Neumatización Maxilar 3A]:::endo --> D(Compromiso Apéndice/Suprarrenales):::endo\n  D ~~~ E\n  E[Relevo Tiroideo 7A]:::global --> F(Autonomía Calórica):::global\n  F ~~~ G\n  G[Hipófisis Puberal 12A]:::global --> H(Neumatización Esfenoidal):::global"
     }
 ];
