@@ -355,8 +355,10 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     if (response.ok) {
                         const buffer = await response.arrayBuffer();
                         vttText = new TextDecoder('utf-8').decode(buffer);
-                    } else {
-                        // Fallback
+                    }
+                    
+                    // Si l'API renvoie index.html (fallback SPA en local), vttText ne commence pas par WEBVTT
+                    if (!response.ok || !vttText.trim().startsWith('WEBVTT')) {
                         const localVttRes = await fetch(`/vtt/${cloudflareId}_${langCode}.vtt`);
                         if (localVttRes.ok) {
                             const buffer = await localVttRes.arrayBuffer();
@@ -365,10 +367,14 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             throw new Error('Not found locally either');
                         }
                     }
+                    
+                    if (!vttText.trim().startsWith('WEBVTT')) {
+                        throw new Error('Invalid VTT format');
+                    }
                 } catch {
                     // Try to fetch FR as a last resort just to see if we have ANY subtitles
                     try {
-                        const localVttRes = await fetch(`/cf-stream/${cloudflareId}/downloads/default.vtt?lang=fr`);
+                        const localVttRes = await fetch(`/vtt/${cloudflareId}_fr.vtt`);
                         if (localVttRes.ok) {
                             const buffer = await localVttRes.arrayBuffer();
                             vttText = new TextDecoder('utf-8').decode(buffer);
@@ -578,11 +584,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     {/* The big center play button has been removed by request. Playback is managed by the bottom bar. */}
                 </div>
 
-                {/* EXTRA LAYER: iOS specific exit fullscreen button at top right */}
                 {isFullscreen && (
                     <div
-                        className={`absolute top-0 right-0 z-[60] transition-opacity duration-300 ${showControls || !isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                        style={{ padding: 'max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))' }}
+                        className={`absolute top-0 right-0 z-[60] transition-opacity duration-300 ${showControls || !isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'} p-4`}
                     >
                         <button
                             onClick={toggleFullscreen}
@@ -601,7 +605,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         style={{
                             zIndex: 20,
                             bottom: showControls ? (isFullscreen ? '80px' : '60px') : '0px',
-                            paddingBottom: isFullscreen ? 'env(safe-area-inset-bottom)' : '6px'
+                            paddingBottom: isFullscreen ? '24px' : '6px'
                         }}
                     >
                         <span
@@ -618,15 +622,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     </div>
                 )}
 
-                {/* 4. LAYER 3: Bottom Custom Controls Bar */}
                 <div
-                    className={`absolute bottom-0 left-0 right-0 pt-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-40 transition-opacity duration-300 flex flex-col justify-end gap-1 ${showControls || !isPlaying ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                    className={`absolute bottom-0 left-0 right-0 p-4 pt-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-40 transition-opacity duration-300 flex flex-col justify-end gap-1 ${showControls || !isPlaying ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                         }`}
-                    style={{
-                        paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))',
-                        paddingLeft: 'max(1rem, env(safe-area-inset-left))',
-                        paddingRight: 'max(1rem, env(safe-area-inset-right))',
-                    }}
                     onClick={(e) => e.stopPropagation()} // Prevent bubble to play/pause wrapper
                 >
                     {/* Scrubber */}

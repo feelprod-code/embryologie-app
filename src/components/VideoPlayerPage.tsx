@@ -114,7 +114,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         else if (themeColor === '#F27D33') bgHighlight = 'rgba(242, 125, 51, 0.15)'; // Mesoderme (orange)
         else if (themeColor === '#F2B729') bgHighlight = 'rgba(242, 183, 41, 0.15)'; // Oeil (yellow)
 
-        el.style.backgroundColor = bgHighlight;
+        if (isAutoScrollEnabled && contentMode === 'transcript') {
+          el.style.backgroundColor = bgHighlight;
+        } else {
+          el.style.backgroundColor = 'transparent';
+        }
         el.style.borderLeft = 'none';
         el.style.paddingLeft = '8px';
         el.style.paddingRight = '8px';
@@ -473,26 +477,26 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       </div>
 
       <div className={cn(
-        "bg-transparent p-2 rounded-lg md:rounded-xl shadow-sm border border-slate-200 flex-shrink-0 w-full mt-2 lg:max-w-4xl mx-auto",
+        "bg-transparent p-1 sm:p-2 rounded-lg md:rounded-xl shadow-sm border border-slate-200 flex-shrink-0 w-full mt-2 lg:max-w-4xl mx-auto",
         isFullscreen ? "hidden" : ""
       )}>
         {/* COMPACT SINGLE-LINE CONTROLS */}
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center w-full gap-2 overflow-x-auto no-scrollbar">
+        <div className="flex justify-between items-center w-full gap-1 sm:gap-2 px-0.5 sm:px-1">
 
           {/* LEFT: SPEED CONTROLS */}
-          <div className="flex items-center gap-1 justify-start shrink-0">
+          <div className="flex items-center gap-1 shrink-0">
             {[1, 1.25].map((speed) => (
               <button
                 key={speed}
                 onClick={() => handleSpeedChange(speed)}
                 className={cn(
-                  "flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-3 sm:px-3 md:px-4 lg:px-4 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg text-xs sm:text-xs md:text-sm lg:text-sm font-bold transition-all shadow-sm border cursor-pointer touch-manipulation md:active:scale-95 min-w-[40px]",
+                  "flex items-center justify-center py-1 sm:py-1 md:py-1.5 px-2 sm:px-3 md:px-4 rounded-md md:rounded-lg text-[10px] sm:text-xs md:text-sm font-bold transition-all shadow-sm border cursor-pointer touch-manipulation md:active:scale-95 min-w-[32px] sm:min-w-[40px]",
                   currentSpeed === speed
                     ? (course.categoryId === 'ectoderme' ? "bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20" :
                       course.categoryId === 'endoderme' ? "bg-[#4171B5]/10 text-[#4171B5] border-[#4171B5]/20" :
                         course.categoryId === 'mesoderme' ? "bg-[#F27D33]/10 text-[#F27D33] border-[#F27D33]/20" :
                           course.categoryId === 'oeil' ? "bg-[#F2B729]/10 text-[#F2B729] border-[#F2B729]/20" : "bg-red-50 text-[#8B1111] border-red-200")
-                    : "bg-transparent border-slate-200 text-slate-500 md:hover:text-slate-700 md:hover:bg-[#F5F1E8] active:bg-[#F5F1E8]"
+                    : "bg-transparent border-slate-200 text-slate-500 hover:text-slate-700 hover:bg-[#F5F1E8] active:bg-[#F5F1E8]"
                 )}
               >
                 x{speed}
@@ -501,35 +505,35 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
 
           {/* CENTER: PREV/NEXT */}
-          <div className="flex items-center gap-2 justify-center shrink-0">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             <button
               onClick={() => prevVideo && onSelectVideo(prevVideo)}
               disabled={!prevVideo}
-              className="flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-5 sm:px-5 md:px-6 lg:px-6 bg-transparent active:bg-slate-200 md:hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+              className="flex items-center justify-center py-1 md:py-1.5 px-3 sm:px-5 md:px-6 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
               title={t('videoLibrary.previous')}
             >
-              <ChevronLeft className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             <button
               onClick={() => nextVideo && onSelectVideo(nextVideo)}
               disabled={!nextVideo}
-              className="flex items-center justify-center py-1 sm:py-1 md:py-1.5 lg:py-1.5 px-5 sm:px-5 md:px-6 lg:px-6 bg-transparent active:bg-slate-200 md:hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md sm:rounded-md md:rounded-lg lg:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+              className="flex items-center justify-center py-1 md:py-1.5 px-3 sm:px-5 md:px-6 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
               title={t('videoLibrary.next')}
             >
-              <ChevronRight className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
 
           {/* RIGHT: OFFLINE AND DOWNLOAD */}
-          <div className="flex items-center gap-2 justify-end shrink-0">
+          <div className="flex items-center justify-end shrink-0">
             {course.cloudflareId && (
               <button
                 onClick={handleOfflineCache}
                 disabled={isCaching}
-                className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-transparent text-slate-500 border-slate-200 md:hover:text-slate-700 md:hover:bg-[#F5F1E8] active:bg-slate-200'} disabled:opacity-50 touch-manipulation active:scale-[0.98] shrink-0`}
+                className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-transparent text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-[#F5F1E8] active:bg-slate-200'} disabled:opacity-50 touch-manipulation active:scale-[0.98] shrink-0`}
                 title={isCaching ? "Enregistrement en cours..." : isCached ? "Supprimer la vidéo de cet appareil" : "Enregistrer pour accès hors-ligne"}
               >
-                <div className="relative flex items-center justify-center w-4 h-4 sm:w-4 sm:h-4">
+                <div className="relative flex items-center justify-center w-3.5 h-3.5 sm:w-4 sm:h-4">
                   {isCaching ? (
                     <Loader2 className="w-full h-full animate-spin" strokeWidth={2.5} />
                   ) : isCached ? (
@@ -537,8 +541,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                       <Trash2 className="w-full h-full text-red-500 animate-in zoom-in duration-200" strokeWidth={2.5} />
                     ) : (
                       <>
-                        <CheckCircle2 className="w-full h-full text-[#5A9C51] md:group-hover:opacity-0 transition-opacity absolute" strokeWidth={2.5} />
-                        <Trash2 className="w-full h-full text-red-500 opacity-0 md:group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />
+                        <CheckCircle2 className="w-full h-full text-[#5A9C51] group-hover:opacity-0 transition-opacity absolute" strokeWidth={2.5} />
+                        <Trash2 className="w-full h-full text-red-500 opacity-0 group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />
                       </>
                     )
                   ) : (
@@ -764,11 +768,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       )}>
 
         <div className={cn(
-          "w-full pt-1 pb-2 md:pb-4 mb-2 shrink-0 overflow-x-auto no-scrollbar",
+          "w-full pt-2 pb-3 md:pb-4 mb-3 shrink-0",
           isFullscreen ? "hidden" : ""
         )}>
-          <div className="w-full max-w-full lg:max-w-4xl mx-auto px-2 md:px-4 lg:px-0">
-            <div className="flex gap-2 sm:gap-3 lg:gap-4 flex-nowrap min-w-max pb-0 items-stretch">
+          <div className="w-full max-w-full lg:max-w-4xl mx-auto px-1 sm:px-2 md:px-4 lg:px-0">
+            <div className="grid grid-cols-4 gap-1 sm:gap-2 md:gap-3 lg:gap-4 items-stretch justify-center w-full">
               {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
                 const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
                 const cId = lmap[layer as keyof typeof lmap];
@@ -798,7 +802,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     key={layer}
                     onClick={handleLayerClick}
                     className={cn(
-                      "relative px-4 sm:px-6 md:px-7 lg:px-8 py-2.5 sm:py-3 lg:py-3.5 rounded-xl sm:rounded-2xl transition-all duration-200 flex-1 sm:flex-none min-w-[120px] flex flex-col items-center justify-center touch-manipulation active:opacity-80",
+                      "relative px-0.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-2.5 lg:py-3.5 rounded-lg sm:rounded-xl md:rounded-2xl transition-all duration-200 flex flex-col items-center justify-center touch-manipulation active:opacity-80 min-w-0 w-full overflow-hidden",
                       isSelected
                         ? "bg-white text-slate-900 shadow-md shadow-black/5 ring-1 ring-black/5 scale-[1.02]"
                         : "bg-white/50 hover:bg-white text-slate-500 hover:text-slate-800 border border-transparent hover:border-slate-200/50"
@@ -810,17 +814,17 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     } : {}}
                   >
                     <span className={cn(
-                      "block text-[15px] sm:text-base lg:text-lg whitespace-nowrap text-center font-bebas tracking-wide w-full leading-[1.1] mb-1",
+                      "block text-[14px] min-[375px]:text-[15px] sm:text-[17px] md:text-[20px] lg:text-2xl whitespace-nowrap text-center font-bebas tracking-wider lg:tracking-widest w-full text-ellipsis overflow-hidden leading-tight mb-0.5",
                       isSelected ? "text-white" : "text-slate-800"
                     )}>
                       {t(`videoLibrary.layers.${tKeys[layer.replace("'", "")] || tKeys[layer]}`)}
                     </span>
 
                     <span className={cn(
-                      "flex justify-center items-center mt-0.5 text-[10px] sm:text-[11px] md:text-sm font-sans font-bold uppercase tracking-wider text-center",
-                      isSelected ? "text-white/80" : "text-slate-500"
+                      "flex justify-center items-center mt-0.5 sm:mt-1 text-[10px] min-[375px]:text-[11px] sm:text-[12px] md:text-[14px] lg:text-[16px] font-sans font-bold uppercase tracking-wider text-center w-full",
+                      isSelected ? "text-white/90" : "text-slate-500"
                     )}>
-                      <Clock size={10} className="inline mr-1 mb-[1px]" />
+                      <Clock size={12} className="hidden sm:inline mr-1 mb-[1px]" />
                       {getCategoryTotalDuration(cId as "ectoderme" | "endoderme" | "mesoderme" | "oeil")}
                     </span>
                   </button>

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Mail, AlertCircle, Loader2, ShieldAlert, Briefcase } from 'lucide-react';
+import { isLocalNetwork } from '../utils';
 
 export const AuthScreen: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -227,7 +228,7 @@ export const AuthScreen: React.FC = () => {
                             )}
                         </button>
 
-                        {import.meta.env.DEV && (
+                        {(import.meta.env.DEV || isLocalNetwork()) && (
                             <button
                                 type="button"
                                 onClick={() => {

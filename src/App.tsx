@@ -17,7 +17,7 @@ import { AuthScreen } from './components/AuthScreen';
 import { AdminDashboard } from './components/AdminDashboard';
 import { supabase } from './lib/supabase';
 import { type VideoCourse } from './data/videoCourses';
-import { cn } from './utils';
+import { cn, isLocalNetwork } from './utils';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './components/ui/LanguageSwitcher';
 import { DesktopMenu } from './components/DesktopMenu';
@@ -104,7 +104,7 @@ function App() {
     let mounted = true;
 
     // DEV BYPASS LOGIC (Only in local development)
-    if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+    if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
       setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
       setIsAdmin(true);
       setIsInitializing(false);
@@ -113,7 +113,7 @@ function App() {
 
     const checkProfileDevice = async (currentSession: any) => {
       // DEV BYPASS: If local dev AND bypass is enabled, don't check device ID
-      if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+      if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
         if (mounted) {
           setSession(currentSession);
           setIsInitializing(false);
