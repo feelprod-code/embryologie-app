@@ -481,10 +481,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         isFullscreen ? "hidden" : ""
       )}>
         {/* COMPACT SINGLE-LINE CONTROLS */}
-        <div className="flex justify-between items-center w-full gap-1 sm:gap-2 px-0.5 sm:px-1">
+        <div className="relative flex justify-between items-center w-full gap-1 sm:gap-2 px-0.5 sm:px-1 min-h-[36px] sm:min-h-[44px]">
 
           {/* LEFT: SPEED CONTROLS */}
-          <div className="flex items-center gap-1 shrink-0">
+          <div className="flex items-center gap-1 shrink-0 z-10">
             {[1, 1.25].map((speed) => (
               <button
                 key={speed}
@@ -505,11 +505,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
 
           {/* CENTER: PREV/NEXT */}
-          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-2 sm:gap-3 z-10 w-auto">
             <button
               onClick={() => prevVideo && onSelectVideo(prevVideo)}
               disabled={!prevVideo}
-              className="flex items-center justify-center py-1 md:py-1.5 px-3 sm:px-5 md:px-6 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+              className="flex items-center justify-center py-1 md:py-1.5 w-16 sm:w-24 md:w-32 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
               title={t('videoLibrary.previous')}
             >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -517,7 +517,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             <button
               onClick={() => nextVideo && onSelectVideo(nextVideo)}
               disabled={!nextVideo}
-              className="flex items-center justify-center py-1 md:py-1.5 px-3 sm:px-5 md:px-6 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+              className="flex items-center justify-center py-1 md:py-1.5 w-16 sm:w-24 md:w-32 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
               title={t('videoLibrary.next')}
             >
               <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -525,7 +525,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
 
           {/* RIGHT: OFFLINE AND DOWNLOAD */}
-          <div className="flex items-center justify-end shrink-0">
+          <div className="flex items-center justify-end shrink-0 z-10">
             {course.cloudflareId && (
               <button
                 onClick={handleOfflineCache}

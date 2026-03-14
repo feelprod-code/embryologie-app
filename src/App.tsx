@@ -750,11 +750,18 @@ function App() {
                                 {t('app.timeline_cine_dynamic')}
                               </h3>
                               <div className="bg-white p-2 sm:p-8 rounded-3xl border border-slate-200 shadow-inner overflow-x-auto w-full">
-                                <div className="min-w-fit w-full flex justify-center mx-auto [&>svg]:max-w-none sm:[&>svg]:max-w-full [&>svg]:h-auto flex-col sm:flex-row items-center gap-8">
-                                  <Mermaid chart={activeStage.mermaidCode} />
+                                <div className="min-w-fit w-full flex justify-center mx-auto [&>svg]:max-w-none sm:[&>svg]:max-w-full [&>svg]:h-auto flex-col items-center gap-8">
+                                  {Array.isArray(activeStage.mermaidCode) ? (
+                                    activeStage.mermaidCode.map((code, idx) => (
+                                      <Mermaid key={idx} chart={code} />
+                                    ))
+                                  ) : (
+                                    <Mermaid chart={activeStage.mermaidCode} />
+                                  )}
                                 </div>
                               </div>
                             </div>
+
 
                           )}
 

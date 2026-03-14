@@ -28,7 +28,7 @@ export interface StageDataV2 {
     generalDescription: string;
     events: EventDetail[];
     themeColor: string;
-    mermaidCode?: string;
+    mermaidCode?: string | string[];
     practicalIntegration?: PracticalIntegration;
 }
 
@@ -298,7 +298,10 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         themeColor: "bg-purple-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Ralentissement Notochordal]:::global --> B(Gouttière Neurale):::ecto\n  B --> C[Expansion Diencéphalique<br/>Futurs Yeux]:::ecto\n  B ~~~ D\n  D[Zone Apicale Mésodermique]:::meso --> E(Aortes Primitives):::meso\n  E --> F[Début Battements J21/J22]:::meso`,
+        mermaidCode: [
+            `graph TD\n${colors}\n  A[Ralentissement Notochordal]:::global --> B(Gouttière Neurale):::ecto\n  B --> C[Expansion Diencéphalique<br/>Futurs Yeux]:::ecto`,
+            `graph TD\n${colors}\n  D[Zone Apicale Mésodermique]:::meso --> E(Aortes Primitives):::meso\n  E --> F[Début Battements J21/J22]:::meso`
+        ],
         practicalIntegration: {
             fulcrums: "Symphyse Sphéno-Basilaire (SSB, Point Zéro), l'Insula (hitch point de la bascule cérébrale), le Neuropore Antérieur, et LE CŒUR.",
             generalPalpation: "Le 'Tai-Chi du Cerveau'. Perception d'une expansion foudroyante, suivie d'une première flexion céphalique d'enroulement paroxystique sur le point fixe central du cœur.",
@@ -361,7 +364,10 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         themeColor: "bg-orange-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Céphalisation Explosive Ectodermique]:::ecto -->|Frein des Aortes| B(Cardialisation et Fusion):::meso\n  B -->|Looping & Redressement| C{Compression de la masse et<br/>Diaphragmatisation}:::meso\n  C --> D[Congestion Veineuse Inférieure]:::meso\n  D -->|Loosing Field Aspiration| E(Fractalisation Endodermique<br/>Hépatisation):::endo\n  E -->|Croissance spatiale Droite| F[Basculement Estomac & Cavité Péritonéale]:::global\n  C -->|Nouveau Loosing Field| G(Pneumatisation Pulmonaire):::endo\n  F --> H[Poussée sur la Crête Génitale]:::meso`,
+        mermaidCode: [
+            `graph TD\n${colors}\n  A[Céphalisation Explosive Ectodermique]:::ecto -->|Frein des Aortes| B(Cardialisation et Fusion):::meso\n  B -->|Looping & Redressement| C{Compression de la masse et<br/>Diaphragmatisation}:::meso\n  C --> D[Congestion Veineuse Inférieure]:::meso`,
+            `graph TD\n${colors}\n  D[Congestion Veineuse Inférieure]:::meso -->|Loosing Field Aspiration| E(Fractalisation Endodermique<br/>Hépatisation):::endo\n  E -->|Croissance spatiale Droite| F[Basculement Estomac & Cavité Péritonéale]:::global\n  C{Compression de la masse et<br/>Diaphragmatisation}:::meso -->|Nouveau Loosing Field| G(Pneumatisation Pulmonaire):::endo\n  F --> H[Poussée sur la Crête Génitale]:::meso`
+        ],
         practicalIntegration: {
             fulcrums: "Le Septum Transversum (futur diaphragme/péricarde), le Centre de gravité hépatobiliaire (Foie), l'Hiatus de Winslow (Entrée cavité épiploon) et le Hile Pulmonaire (centre d'articulation asymétrique).",
             generalPalpation: "Palpation en cascade. Suivi du glissement spiralé de l'estomac dans l'arceau péritonéal, de la congestion hépatobiliaire, puis 'bulle d'air' des poumons en suivant leur bascule (rotation externe avec haut vers l'arrière et bas vers l'avant).",
@@ -418,7 +424,10 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         themeColor: "bg-amber-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Rapprochement Côtes Mi-ligne]:::meso --> B(Suture de l'Angle de Louis J45):::meso\n  A --> C[Fermeture du Médiastin]:::meso\n  A ~~~ D\n  D[Redressement Axial]:::global --> E(Tension Dure-Mérienne):::ecto\n  E --> F[Modélisation du Desmocrâne]:::ecto`
+        mermaidCode: [
+            `graph TD\n${colors}\n  A[Rapprochement Côtes Mi-ligne]:::meso --> B(Suture de l'Angle de Louis J45):::meso\n  A --> C[Fermeture du Médiastin]:::meso`,
+            `graph TD\n${colors}\n  D[Redressement Axial]:::global --> E(Tension Dure-Mérienne):::ecto\n  E --> F[Modélisation du Desmocrâne]:::ecto`
+        ]
     },
     {
         id: "maturation-12ans",
@@ -459,6 +468,11 @@ export const detailedStages: StageDataV2[] = [
             }
         ],
         themeColor: "bg-emerald-900",
-        mermaidCode: `graph TD\n${colors}\n  A[Dentition 6m]:::ecto --> B(Pivot de Redressement Neural):::ecto\n  B ~~~ C\n  C[Pneumatisation Maxillaire 3A]:::endo --> D(Engagement Appendice/Surrénales):::endo\n  D ~~~ E\n  E[Relais Thyroïdien 7A]:::global --> F(Autonomie Calorique):::global\n  F ~~~ G\n  G[Hypophyse Pubertaire 12A]:::global --> H(Pneumatisation Sphénoïdale):::global`
+        mermaidCode: [
+            `graph TD\n${colors}\n  A[Dentition 6m]:::ecto --> B(Pivot de Redressement Neural):::ecto`,
+            `graph TD\n${colors}\n  C[Pneumatisation Maxillaire 3A]:::endo --> D(Engagement Appendice/Surrénales):::endo`,
+            `graph TD\n${colors}\n  E[Relais Thyroïdien 7A]:::global --> F(Autonomie Calorique):::global`,
+            `graph TD\n${colors}\n  G[Hypophyse Pubertaire 12A]:::global --> H(Pneumatisation Sphénoïdale):::global`
+        ]
     }
 ];
