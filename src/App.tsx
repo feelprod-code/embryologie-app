@@ -210,14 +210,20 @@ function App() {
               // Bypassing the device check for administrators so they can use multiple devices
               console.log("Admin multi-device access granted. Ignoring mismatch.");
             } else {
-              // Mismatch for normal users
-              alert(t('auth.device_mismatch', 'Cet accès est déjà utilisé sur un autre appareil. Vous ne pouvez vous connecter que depuis votre appareil principal.'));
-              await supabase.auth.signOut();
-              if (mounted) {
-                setSession(null);
-                setIsInitializing(false);
+              // Automatically override the device ID to the new device
+              // This will kick out the other device because its local id won't match the DB anymore
+              console.log("New device detected. Overriding previous device session.");
+              
+              const { error: overrideError } = await supabase
+                .from('profiles')
+                .update({ device_id: localDeviceId })
+                .eq('id', currentSession.user.id);
+                
+              if (overrideError) {
+                 console.error("Failed to override device:", overrideError);
+              } else {
+                 alert("Vous avez été connecté sur ce nouvel appareil. Votre ancienne session sur l'autre appareil a été déconnectée.");
               }
-              return;
             }
           }
         }
@@ -267,11 +273,50 @@ function App() {
       }
     });
 
+    let profileSubscription: any = null;
+
+    if (session?.user?.id) {
+       profileSubscription = supabase
+        .channel('public:profiles')
+        .on(
+          'postgres_changes',
+          {
+            event: 'UPDATE',
+            schema: 'public',
+            table: 'profiles',
+            filter: `id=eq.${session.user.id}`
+          },
+          async (payload) => {
+             const newDeviceId = payload.new.device_id;
+             const localDeviceId = getDeviceId();
+             
+             // Check if the device id changed and it's not our local device
+             if (newDeviceId && newDeviceId !== localDeviceId) {
+                 const isMatch =
+                     (localDeviceId.includes('-') && newDeviceId === localDeviceId.substring(localDeviceId.indexOf('-') + 1)) ||
+                     (newDeviceId.includes('-') && localDeviceId === newDeviceId.substring(newDeviceId.indexOf('-') + 1));
+
+                 if (!isMatch && !isAdmin) {
+                     alert(t('auth.device_mismatch', "Cet accès est maintenant utilisé sur un autre appareil. Vous avez été déconnecté."));
+                     await supabase.auth.signOut();
+                     if (mounted) {
+                         setSession(null);
+                     }
+                 }
+             }
+          }
+        )
+        .subscribe();
+    }
+
     return () => {
       mounted = false;
       subscription.unsubscribe();
+      if (profileSubscription) {
+          supabase.removeChannel(profileSubscription);
+      }
     };
-  }, [t]);
+  }, [t, isAdmin, session?.user?.id]);
 
   const detailedStages = i18n.language.startsWith('en')
     ? detailedStagesEn
