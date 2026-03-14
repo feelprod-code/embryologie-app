@@ -76,7 +76,8 @@ export function AdminDashboard() {
 
     return (
         <div className="w-full max-w-6xl mx-auto p-4 md:p-8 animate-fade-in relative">
-            <div className="sticky top-0 z-20 bg-[#FAF6ED]/95 backdrop-blur-md -mx-4 px-4 pt-4 pb-4 mb-6 md:relative md:top-auto md:bg-transparent md:-mx-0 md:px-0 md:pt-2 md:pb-0 md:mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200/50 md:border-none shadow-sm md:shadow-none">
+            {/* Sticky Header */}
+            <div className="sticky top-0 z-30 bg-[#FAF6ED]/95 backdrop-blur-md -mx-4 px-4 pt-4 pb-4 mb-6 md:-mx-8 md:px-8 md:pt-6 md:pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 shadow-sm transition-all rounded-b-xl">
                 <div>
                     <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase">Gestion des élèves</h1>
                     <p className="text-slate-500 font-medium">Administration du CRM et des accès.</p>
