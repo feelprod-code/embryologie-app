@@ -285,7 +285,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   const [activeLayout, setActiveLayout] = useState<'mobile' | 'tablet' | 'desktop'>(() => {
     if (typeof window === 'undefined') return 'desktop';
-    if (deviceClass === 'mobile') return 'mobile';
+    if (Math.min(window.innerWidth, window.innerHeight) <= 450 || deviceClass === 'mobile') return 'mobile';
     if (deviceClass === 'tablet') return 'tablet';
     return window.innerWidth < 1024 ? 'tablet' : 'desktop';
   });
@@ -293,7 +293,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   useEffect(() => {
     if (isFullscreen) return;
 
-    if (deviceClass === 'mobile') {
+    if (Math.min(windowSize.width, windowSize.height) <= 450 || deviceClass === 'mobile') {
       setActiveLayout('mobile');
     } else if (deviceClass === 'tablet') {
       setActiveLayout('tablet');
