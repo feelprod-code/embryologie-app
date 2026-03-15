@@ -522,18 +522,33 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 e.touches[0].clientX - e.touches[1].clientX,
                 e.touches[0].clientY - e.touches[1].clientY
             );
-            // Limit zoom between 1x and 5x
-            const newScale = Math.max(1, Math.min(lastZoomScale.current * (dist / initialPinchDist.current), 5));
+            // Limit zoom between 1x and 3x
+            const newScale = Math.max(1, Math.min(lastZoomScale.current * (dist / initialPinchDist.current), 3));
             setZoomScale(newScale);
             
-            // Snap back to center if fully zoomed out
+            // Re-clamp panning based on new scale to avoid black borders
             if (newScale === 1) {
                 setPanPos({ x: 0, y: 0 });
+            } else {
+                const maxPanX = (window.innerWidth * (newScale - 1)) / 2;
+                const maxPanY = (window.innerHeight * (newScale - 1)) / 2;
+                setPanPos(prev => ({
+                    x: Math.max(-maxPanX, Math.min(prev.x, maxPanX)),
+                    y: Math.max(-maxPanY, Math.min(prev.y, maxPanY))
+                }));
             }
         } else if (e.touches.length === 1 && zoomScale > 1) {
             const newX = e.touches[0].clientX - touchStartPos.current.x;
             const newY = e.touches[0].clientY - touchStartPos.current.y;
-            setPanPos({ x: newX, y: newY });
+            
+            // Limit pan position based on current zoom scale
+            const maxPanX = (window.innerWidth * (zoomScale - 1)) / 2;
+            const maxPanY = (window.innerHeight * (zoomScale - 1)) / 2;
+            
+            setPanPos({
+                x: Math.max(-maxPanX, Math.min(newX, maxPanX)),
+                y: Math.max(-maxPanY, Math.min(newY, maxPanY))
+            });
         }
     };
 
