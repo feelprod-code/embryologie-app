@@ -163,30 +163,32 @@ function App() {
 
         if (!profile.first_name || !profile.last_name || !profile.profession) {
           // Attempt to rescue names from localStorage if they got lost during OTP auth
-          const pendingFirstName = localStorage.getItem('pending_first_name');
-          const pendingLastName = localStorage.getItem('pending_last_name');
-          const pendingProfession = localStorage.getItem('pending_profession');
+          const pendingFirstName = localStorage.getItem('pending_first_name') || 'Élève';
+          const pendingLastName = localStorage.getItem('pending_last_name') || 'Test';
+          const pendingProfession = localStorage.getItem('pending_profession') || 'Non renseignée';
 
-          if (pendingFirstName || pendingLastName || pendingProfession) {
-            const { error: updateError } = await supabase.from('profiles').update({
-              first_name: pendingFirstName || profile.first_name,
-              last_name: pendingLastName || profile.last_name,
-              profession: pendingProfession || profile.profession
-            }).eq('id', currentSession.user.id);
+          console.log("Profile missing details. Rescuing with:", { pendingFirstName, pendingLastName, pendingProfession });
 
-            if (!updateError) {
-              // Update local profile object so the rest of the app sees the rescued data
-              profile.first_name = pendingFirstName || profile.first_name;
-              profile.last_name = pendingLastName || profile.last_name;
-              profile.profession = pendingProfession || profile.profession;
-            }
+          const { error: updateError } = await supabase.from('profiles').update({
+            first_name: pendingFirstName,
+            last_name: pendingLastName,
+            profession: pendingProfession
+          }).eq('id', currentSession.user.id);
 
-            // Clean up to prevent stale data for other users on same device
-            localStorage.removeItem('pending_first_name');
-            localStorage.removeItem('pending_last_name');
-            localStorage.removeItem('pending_profession');
-            localStorage.removeItem('pending_email');
+          if (!updateError) {
+            // Update local profile object so the rest of the app sees the rescued data
+            profile.first_name = pendingFirstName;
+            profile.last_name = pendingLastName;
+            profile.profession = pendingProfession;
+          } else {
+             console.error("Failed to rescue profile details:", updateError);
           }
+
+          // Clean up to prevent stale data for other users on same device
+          localStorage.removeItem('pending_first_name');
+          localStorage.removeItem('pending_last_name');
+          localStorage.removeItem('pending_profession');
+          localStorage.removeItem('pending_email');
         }
 
         if (!profile.device_id) {
