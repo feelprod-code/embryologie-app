@@ -24,20 +24,20 @@ export function Home(_props: HomeProps) {
                 <div className="flex flex-col items-center w-full justify-center flex-none -mt-8 sm:-mt-0">
                     {/* Top Poster Credits */}
                     <div className="relative z-10 w-full text-center animate-fade-in-up -mt-2 sm:-mt-2">
-                        <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
+                        <div className="text-[10px] sm:text-xs md:text-sm font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
                             {t('home.training_by')}
                         </div>
-                        <div className="text-sm lg:text-base font-bold tracking-[0.2em] text-slate-800 mt-1 uppercase">
-                            Marc Damoiseaux <span className="opacity-70 text-xs font-normal">Ostéopathe D.O.</span>
+                        <div className="text-sm lg:text-base md:text-lg lg:text-xl font-bold tracking-[0.2em] text-slate-800 mt-1 uppercase">
+                            Marc Damoiseaux <span className="opacity-70 text-xs md:text-sm font-normal">Ostéopathe D.O.</span>
                         </div>
                     </div>
 
                     {/* Main Cinematic Title */}
                     <div className="relative z-10 w-full text-center flex flex-col items-center mt-6 sm:mt-8">
-                        <h1 className="text-4xl min-[380px]:text-5xl sm:text-6xl lg:text-7xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
+                        <h1 className="text-4xl min-[380px]:text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6rem] font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
                             {t('home.title_part1')}
                         </h1>
-                        <h2 className="text-3xl min-[380px]:text-4xl sm:text-4xl lg:text-5xl xl:text-6xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 pr-2">
+                        <h2 className="text-3xl min-[380px]:text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 pr-2">
                             {t('home.title_part2')}
                         </h2>
                     </div>
@@ -61,12 +61,12 @@ export function Home(_props: HomeProps) {
                     </div>
 
                     {/* Minimalist Player */}
-                    <div className="w-[92%] sm:w-2/3 max-w-[380px] z-20 mt-1 flex flex-col items-center">
+                    <div className="w-[92%] sm:w-2/3 md:w-3/4 max-w-[380px] md:max-w-[460px] lg:max-w-[380px] z-20 mt-1 flex flex-col items-center">
                         <CustomAudioPlayer
                             src={podcastAudioSrc}
                             className="w-full mb-1"
                         />
-                        <span className="font-handwriting text-3xl lg:text-4xl text-slate-600 mt-2 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                        <span className="font-handwriting text-3xl md:text-5xl lg:text-4xl text-slate-600 mt-2 md:mt-4 lg:mt-2 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                             {t('home.start')}
                         </span>
                     </div>
@@ -80,7 +80,7 @@ export function Home(_props: HomeProps) {
 
                 {/* Credits FeelProd */}
                 <div className="flex-none w-full flex flex-col items-center justify-end opacity-90 mt-auto pb-6 sm:pb-8">
-                    <span className="text-[10px] sm:text-[11px] lg:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20 mb-1">
+                    <span className="text-[10px] sm:text-[11px] md:text-sm lg:text-base text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20 mb-1">
                         {t('home.credits', 'RÉALISATION FEELPROD')}
                     </span>
                     <div className="w-12 h-[1px] bg-slate-300/50 mt-1 mb-0 sm:mb-1"></div>
