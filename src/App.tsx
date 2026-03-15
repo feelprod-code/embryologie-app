@@ -170,11 +170,18 @@ function App() {
           const pendingProfession = localStorage.getItem('pending_profession');
 
           if (pendingFirstName || pendingLastName || pendingProfession) {
-            await supabase.from('profiles').update({
+            const { error: updateError } = await supabase.from('profiles').update({
               first_name: pendingFirstName || profile.first_name,
               last_name: pendingLastName || profile.last_name,
               profession: pendingProfession || profile.profession
             }).eq('id', currentSession.user.id);
+
+            if (!updateError) {
+              // Update local profile object so the rest of the app sees the rescued data
+              profile.first_name = pendingFirstName || profile.first_name;
+              profile.last_name = pendingLastName || profile.last_name;
+              profile.profession = pendingProfession || profile.profession;
+            }
 
             // Clean up to prevent stale data for other users on same device
             localStorage.removeItem('pending_first_name');
