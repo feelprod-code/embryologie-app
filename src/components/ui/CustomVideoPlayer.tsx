@@ -200,14 +200,20 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 metaThemeColor.setAttribute('content', '#000000');
             }
 
-            // Force viewport to NOT cover notch so Safari fills it with body background (which is now black)
-            const metaViewport = document.querySelector('meta[name="viewport"]');
-            if (metaViewport) {
-                if (!metaViewport.hasAttribute('data-original-content')) {
-                     metaViewport.setAttribute('data-original-content', metaViewport.getAttribute('content') || '');
-                }
-                // Standard viewport without cover
-                metaViewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0');
+            // Create a physical black wall in the DOM that escapes all overflow:hidden constraints
+            let notchCover = document.getElementById('ios-notch-cover');
+            if (!notchCover) {
+                notchCover = document.createElement('div');
+                notchCover.id = 'ios-notch-cover';
+                notchCover.style.position = 'fixed';
+                notchCover.style.top = '-100vh';
+                notchCover.style.left = '-100vw';
+                notchCover.style.width = '300vw';
+                notchCover.style.height = '300vh';
+                notchCover.style.backgroundColor = '#000000'; // Pure black
+                notchCover.style.zIndex = '999990'; // Just below player (999999)
+                notchCover.style.pointerEvents = 'none'; // Don't block touches
+                document.body.appendChild(notchCover);
             }
 
             window.scrollTo(0, 0);
@@ -224,10 +230,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 metaThemeColor.setAttribute('content', metaThemeColor.getAttribute('data-original-color') || '#FAF6ED');
             }
 
-            // Restore viewport
-            const metaViewport = document.querySelector('meta[name="viewport"]');
-            if (metaViewport && metaViewport.hasAttribute('data-original-content')) {
-                metaViewport.setAttribute('content', metaViewport.getAttribute('data-original-content') || '');
+            const notchCover = document.getElementById('ios-notch-cover');
+            if (notchCover) {
+                notchCover.remove();
             }
         }
 
@@ -244,6 +249,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (rootElement) {
                 rootElement.style.removeProperty('transform');
             }
+            const notchCover = document.getElementById('ios-notch-cover');
+            if (notchCover) notchCover.remove();
         };
     }, [isFullscreen, onFullscreenChange]);
 
