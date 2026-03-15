@@ -200,9 +200,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 metaThemeColor.setAttribute('content', '#000000');
             }
 
-            if (rootElement) {
-                rootElement.style.display = 'none';
-            }
             window.scrollTo(0, 0);
         } else {
             document.documentElement.classList.remove('video-fullscreen-active');
@@ -215,10 +212,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             const metaThemeColor = document.querySelector('meta[name="theme-color"]');
             if (metaThemeColor && metaThemeColor.hasAttribute('data-original-color')) {
                 metaThemeColor.setAttribute('content', metaThemeColor.getAttribute('data-original-color') || '#FAF6ED');
-            }
-
-            if (rootElement) {
-                rootElement.style.display = '';
             }
         }
 
