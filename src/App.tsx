@@ -14,6 +14,7 @@ import { Home } from './components/Home';
 import { VideoLibraryList } from './components/VideoLibraryList';
 import { VideoPlayerPage } from './components/VideoPlayerPage';
 import { AuthScreen } from './components/AuthScreen';
+import { Paywall } from './components/Paywall';
 import { AdminDashboard } from './components/AdminDashboard';
 import { supabase } from './lib/supabase';
 import { type VideoCourse } from './data/videoCourses';
@@ -23,6 +24,7 @@ import { LanguageSwitcher } from './components/ui/LanguageSwitcher';
 import { DesktopMenu } from './components/DesktopMenu';
 import { FullscreenProvider } from './contexts/FullscreenContext';
 import { OrientationLock } from './components/OrientationLock';
+import { SuccessOverlay } from './components/SuccessOverlay';
 
 const iconMap: Record<string, React.ReactNode> = {
   "j-0": <CircleDot size={20} className="text-blue-400" />,
@@ -87,6 +89,7 @@ function App() {
   const [session, setSession] = useState<any>(null);
   const [isInitializing, setIsInitializing] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isPremium, setIsPremium] = useState(false);
 
   const handleLogout = async () => {
     localStorage.removeItem('DEV_BYPASS_AUTH');
@@ -97,6 +100,7 @@ function App() {
     }
     setSession(null);
     setIsAdmin(false);
+    setIsPremium(false);
     window.location.reload();
   };
 
@@ -107,6 +111,7 @@ function App() {
     if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
       setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
       setIsAdmin(true);
+      setIsPremium(true);
       setIsInitializing(false);
       return;
     }
@@ -137,7 +142,7 @@ function App() {
       while (retries > 0 && !profile) {
         const { data, error } = await supabase
           .from('profiles')
-          .select('device_id, is_active, first_name, last_name, profession, email')
+          .select('device_id, is_active, first_name, last_name, profession, email, is_premium')
           .eq('id', currentSession.user.id)
           .single();
 
@@ -161,6 +166,12 @@ function App() {
             setIsInitializing(false);
           }
           return;
+        }
+
+        if (profile.is_premium) {
+          setIsPremium(true);
+        } else {
+          setIsPremium(false);
         }
 
         if (!profile.first_name || !profile.last_name || !profile.profession) {
@@ -268,9 +279,11 @@ function App() {
         localStorage.removeItem('DEV_BYPASS_AUTH');
         if (mounted) setSession(null);
         setIsAdmin(false);
+        setIsPremium(false);
       } else {
         if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
           setIsAdmin(true);
+          setIsPremium(true);
         } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
           setIsAdmin(true);
         } else {
@@ -298,6 +311,10 @@ function App() {
             filter: `id=eq.${session.user.id}`
           },
           async (payload) => {
+             if (payload.new.is_premium !== undefined) {
+               setIsPremium(payload.new.is_premium);
+             }
+
              const newDeviceId = payload.new.device_id;
              const localDeviceId = getDeviceId();
              
@@ -377,6 +394,7 @@ function App() {
   return (
     <FullscreenProvider>
       <OrientationLock disabled={activeNav === 'video-player' || activeNav === 'podcast-player'} />
+      <SuccessOverlay />
       <div className={cn("flex flex-col items-center h-[100dvh] w-full max-w-full relative bg-[#FAF6ED] text-slate-800 overflow-hidden", isPending && "transition-all duration-300")}>
         {/* Cinematic Background Gradients (Global) */}
       {activeNav !== 'video-player' && (
@@ -571,12 +589,16 @@ function App() {
 
           {currentView === 'embryo-ai' && (
             <div className="w-full relative h-[calc(100vh-69px)] flex flex-col items-center md:items-stretch md:justify-start py-0 px-0 sm:px-4 md:px-0 pt-0">
-              <ChatBot
-                onNavigateToVideo={(video) => {
-                  setActiveVideo(video);
-                  setCurrentView('video-player');
-                }}
-              />
+              {(!isPremium && !isAdmin) ? (
+                <Paywall />
+              ) : (
+                <ChatBot
+                  onNavigateToVideo={(video) => {
+                    setActiveVideo(video);
+                    setCurrentView('video-player');
+                  }}
+                />
+              )}
             </div>
           )}
 
@@ -585,22 +607,30 @@ function App() {
           {currentView === 'video-library' && (
             <div className="w-full flex flex-col items-center animate-fade-in relative z-10 mx-auto">
               <div className="w-full">
-                <VideoLibraryList
-                  onSelectVideo={(video) => {
-                    setActiveVideo(video);
-                    setCurrentView('video-player');
-                  }}
-                />
+                {(!isPremium && !isAdmin) ? (
+                  <Paywall />
+                ) : (
+                  <VideoLibraryList
+                    onSelectVideo={(video) => {
+                      setActiveVideo(video);
+                      setCurrentView('video-player');
+                    }}
+                  />
+                )}
               </div>
             </div>
           )}
 
           {currentView === 'video-player' && activeVideo && (
             <div className="w-full animate-fade-in h-full">
-              <VideoPlayerPage
-                course={activeVideo}
-                onSelectVideo={setActiveVideo}
-              />
+              {(!isPremium && !isAdmin) ? (
+                <Paywall />
+              ) : (
+                <VideoPlayerPage
+                  course={activeVideo}
+                  onSelectVideo={setActiveVideo}
+                />
+              )}
             </div>
           )}
 

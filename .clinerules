@@ -1,0 +1,8 @@
+## iOS Fullscreen Video Player (DO NOT TOUCH)
+As of Mar 15, 2026, the specific configuration for the iOS CustomVideoPlayer in PWA mode has been finalized and **must not be altered under any circumstances**. Any attempts to "fix" the beige notch in fullscreen video on iOS Safari/PWA have caused catastrophic regressions (clipping the seek bar, breaking app layout).
+
+**Mandatory Immutable Rules:**
+1.  **NO `black-translucent`**: The `index.html` meta tag `<meta name="apple-mobile-web-app-status-bar-style">` MUST remain `default`. Setting it to `black-translucent` breaks the ENTIRE global app layout by pushing it up under the notch.
+2.  **NO `bottom: 0` constraints**: In `index.css`, the `.video-player-fullscreen-active` class MUST NOT contain `bottom: 0 !important;` or `height: 100dvh`.
+3.  **Use `window.visualViewport.height`**: The `CustomVideoPlayer.tsx` JS code MUST dynamically track and apply `visualViewport.height` to the player container in fullscreen to circumvent iOS Safari viewport measurement bugs and ensure the seek bar stays visible above the address bar/bottom safe area.
+4.  **Accept the Beige Notch**: The app's root background (`#FAF6ED`) showing in the portrait iPhone notch during fullscreen video is considered an accepted OS-level quirk that cannot be safely CSS-hacked without breaking vital video controls. Do not attempt to fix it.
