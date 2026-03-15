@@ -186,7 +186,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
         if (isFullscreen) {
             document.documentElement.classList.add('video-fullscreen-active');
+            document.documentElement.style.backgroundColor = '#000000'; // Force iOS background 
             document.body.style.overflow = 'hidden';
+            document.body.style.backgroundColor = '#000000'; // Force iOS background
             document.body.classList.add('video-fullscreen-active');
             
             // Adapt iOS Safari status bar / notch color to black
@@ -199,13 +201,14 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             }
 
             if (rootElement) {
-                // Ensure no transform constraint clips the fixed child
-                rootElement.style.setProperty('transform', 'none', 'important');
+                rootElement.style.display = 'none';
             }
             window.scrollTo(0, 0);
         } else {
             document.documentElement.classList.remove('video-fullscreen-active');
+            document.documentElement.style.backgroundColor = '';
             document.body.style.overflow = '';
+            document.body.style.backgroundColor = '';
             document.body.classList.remove('video-fullscreen-active');
             
             // Restore iOS Safari status bar / notch color
@@ -215,7 +218,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             }
 
             if (rootElement) {
-                rootElement.style.removeProperty('transform');
+                rootElement.style.display = '';
             }
         }
 
