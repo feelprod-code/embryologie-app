@@ -719,8 +719,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         className="absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300"
                         style={{
                             zIndex: 20,
-                            bottom: showControls ? (isFullscreen ? '80px' : '60px') : '0px',
-                            paddingBottom: isFullscreen ? '24px' : '6px'
+                            bottom: showControls ? (isFullscreen ? '50px' : '60px') : '0px',
+                            paddingBottom: isFullscreen ? '12px' : '6px'
                         }}
                     >
                         <span
