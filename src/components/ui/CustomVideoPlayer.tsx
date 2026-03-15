@@ -188,6 +188,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             document.documentElement.classList.add('video-fullscreen-active');
             document.body.style.overflow = 'hidden';
             document.body.classList.add('video-fullscreen-active');
+            
+            // Adapt iOS Safari status bar / notch color to black
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                if (!metaThemeColor.hasAttribute('data-original-color')) {
+                    metaThemeColor.setAttribute('data-original-color', metaThemeColor.getAttribute('content') || '#FAF6ED');
+                }
+                metaThemeColor.setAttribute('content', '#000000');
+            }
+
             if (rootElement) {
                 // Ensure no transform constraint clips the fixed child
                 rootElement.style.setProperty('transform', 'none', 'important');
@@ -197,6 +207,13 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             document.documentElement.classList.remove('video-fullscreen-active');
             document.body.style.overflow = '';
             document.body.classList.remove('video-fullscreen-active');
+            
+            // Restore iOS Safari status bar / notch color
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor && metaThemeColor.hasAttribute('data-original-color')) {
+                metaThemeColor.setAttribute('content', metaThemeColor.getAttribute('data-original-color') || '#FAF6ED');
+            }
+
             if (rootElement) {
                 rootElement.style.removeProperty('transform');
             }
