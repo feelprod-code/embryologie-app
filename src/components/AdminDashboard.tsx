@@ -242,18 +242,18 @@ export function AdminDashboard() {
                         filteredProfiles.map((profile) => (
                             <div key={profile.id} className="p-4 flex flex-col gap-4">
                                 <div className="flex items-start justify-between gap-2">
-                                    <div className="flex items-center">
+                                    <div className="flex items-center w-full">
                                         <div className="h-[42px] w-[42px] rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold uppercase shrink-0">
                                             {profile.first_name?.[0] || ''}{profile.last_name?.[0] || ''}
                                             {!profile.first_name && !profile.last_name && profile.email?.[0]}
                                         </div>
-                                        <div className="ml-3 overflow-hidden">
+                                        <div className="ml-3 overflow-hidden flex-1">
                                             <div className="text-sm font-bold text-slate-900 truncate">
                                                 {profile.first_name || profile.last_name ? `${profile.first_name || ''} ${profile.last_name || ''}` : <span className="italic text-slate-400">Nom inconnu</span>}
                                             </div>
                                             <div className="text-xs text-slate-500 font-medium truncate">{profile.email}</div>
                                             {profile.profession && (
-                                                <div className="text-xs text-slate-400 italic truncate">{profile.profession}</div>
+                                                <div className="text-xs text-slate-400 italic truncate mt-0.5">{profile.profession}</div>
                                             )}
                                         </div>
                                     </div>
