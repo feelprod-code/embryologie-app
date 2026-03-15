@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, ShieldOff, Search, KeyRound } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound } from 'lucide-react';
 import { cn } from '../utils';
 
 type Profile = {
@@ -51,22 +51,7 @@ export function AdminDashboard() {
         }
     };
 
-    const resetDevice = async (id: string) => {
-        if (!confirm('Êtes-vous sûr de vouloir réinitialiser l\'appareil de cet utilisateur ? Il pourra se connecter sur un nouvel ordinateur.')) {
-            return;
-        }
 
-        const { error } = await supabase
-            .from('profiles')
-            .update({ device_id: null })
-            .eq('id', id);
-
-        if (error) {
-            alert('Erreur lors de la réinitialisation : ' + error.message);
-        } else {
-            fetchProfiles();
-        }
-    };
 
     const filteredProfiles = profiles.filter(p =>
         p.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -201,21 +186,6 @@ export function AdminDashboard() {
                                                     {profile.is_active ? <UserX size={14} className="mr-1.5" /> : <UserCheck size={14} className="mr-1.5" />}
                                                     {profile.is_active ? 'Bloquer' : 'Activer'}
                                                 </button>
-
-                                                <button
-                                                    onClick={() => resetDevice(profile.id)}
-                                                    disabled={!profile.device_id}
-                                                    className={cn(
-                                                        "flex items-center px-3 py-1.5 rounded-lg border transition-colors text-xs font-bold",
-                                                        !profile.device_id
-                                                            ? "bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed opacity-50"
-                                                            : "bg-white border-amber-200 text-amber-600 hover:bg-amber-50"
-                                                    )}
-                                                    title="Permettre de se connecter sur un nouvel appareil"
-                                                >
-                                                    <ShieldOff size={14} className="mr-1.5" />
-                                                    Reset
-                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -294,20 +264,6 @@ export function AdminDashboard() {
                                     >
                                         {profile.is_active ? <UserX size={14} className="mr-1.5" /> : <UserCheck size={14} className="mr-1.5" />}
                                         {profile.is_active ? 'Bloquer' : 'Activer'}
-                                    </button>
-
-                                    <button
-                                        onClick={() => resetDevice(profile.id)}
-                                        disabled={!profile.device_id}
-                                        className={cn(
-                                            "flex-1 flex justify-center items-center px-3 py-2 rounded-[10px] border transition-colors text-xs font-bold",
-                                            !profile.device_id
-                                                ? "bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed opacity-50"
-                                                : "bg-white border-amber-200 text-amber-600 hover:bg-amber-50"
-                                        )}
-                                    >
-                                        <ShieldOff size={14} className="mr-1.5" />
-                                        Reset Appareil
                                     </button>
                                 </div>
                             </div>
