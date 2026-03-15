@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { Mail, AlertCircle, Loader2, ShieldAlert, Briefcase } from 'lucide-react';
+import { Mail, AlertCircle, Loader2, ShieldAlert, Briefcase, Trash2 } from 'lucide-react';
 import { isLocalNetwork } from '../utils';
 
 export const AuthScreen: React.FC = () => {
@@ -158,6 +158,18 @@ export const AuthScreen: React.FC = () => {
                         >
                             Modifier l'adresse email
                         </button>
+                        <p className="text-[10px] text-slate-400 text-center mt-3">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                   localStorage.clear();
+                                   window.location.reload();
+                                }}
+                                className="flex items-center justify-center gap-1 mx-auto hover:text-red-500 transition-colors"
+                            >
+                                <Trash2 className="w-3 h-3" /> Vider le cache de l'appareil
+                            </button>
+                        </p>
                     </form>
                 ) : (
                     <form onSubmit={handleLogin} className="w-full flex flex-col gap-4">
@@ -241,6 +253,19 @@ export const AuthScreen: React.FC = () => {
                                 DEV: Forcer l'accès Admin
                             </button>
                         )}
+                        
+                        <p className="text-[10px] text-slate-400 text-center mt-6">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                   localStorage.clear();
+                                   window.location.reload();
+                                }}
+                                className="flex items-center justify-center gap-1 mx-auto hover:text-red-500 transition-colors"
+                            >
+                                <Trash2 className="w-3 h-3" /> Vider le cache de l'appareil
+                            </button>
+                        </p>
                     </form>
                 )}
             </div>
