@@ -619,9 +619,9 @@ function App() {
                 </div>
 
                 {/* MOBILE TIMELINE NAVIGATION (Horizontal chip selection) */}
-                <div className="w-full lg:hidden overflow-x-auto no-scrollbar pb-2 pt-2 mt-1 border-t border-slate-100 snap-x">
-                  <div className="flex flex-nowrap items-stretch gap-2 w-max after:content-[''] after:w-4 before:content-[''] before:w-4 sm:before:w-6 sm:after:w-6">
-                    {/* Add an empty div for starting margin in scroller if needed, but px-4 on w-max usually works. Let's ensure gap-2 and px-4 applies to the content. */}
+                <div className="-mx-2 w-[calc(100%+16px)] sm:-mx-6 sm:w-[calc(100%+48px)] lg:hidden overflow-x-auto no-scrollbar pb-2 pt-2 mt-1 border-t border-slate-100 snap-x">
+                  <div className="flex flex-nowrap items-stretch gap-2 w-max after:content-[''] after:w-2 before:content-[''] before:w-2 sm:before:w-6 sm:after:w-6">
+                    {/* The padding pseudo-elements provide the start/end spacing inside the scrolling container instead of relying on parent margins, ensuring chips perfectly touch the screen edges on scroll */}
                     {detailedStages.map((stage) => {
                       const isActive = stage.id === activeStageId;
                       const idx = getOriginalIndex(stage.id);
