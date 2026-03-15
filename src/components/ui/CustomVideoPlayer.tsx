@@ -200,6 +200,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 metaThemeColor.setAttribute('content', '#000000');
             }
 
+            // Force viewport to NOT cover notch so Safari fills it with body background (which is now black)
+            const metaViewport = document.querySelector('meta[name="viewport"]');
+            if (metaViewport) {
+                if (!metaViewport.hasAttribute('data-original-content')) {
+                     metaViewport.setAttribute('data-original-content', metaViewport.getAttribute('content') || '');
+                }
+                // Standard viewport without cover
+                metaViewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0');
+            }
+
             window.scrollTo(0, 0);
         } else {
             document.documentElement.classList.remove('video-fullscreen-active');
@@ -212,6 +222,12 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             const metaThemeColor = document.querySelector('meta[name="theme-color"]');
             if (metaThemeColor && metaThemeColor.hasAttribute('data-original-color')) {
                 metaThemeColor.setAttribute('content', metaThemeColor.getAttribute('data-original-color') || '#FAF6ED');
+            }
+
+            // Restore viewport
+            const metaViewport = document.querySelector('meta[name="viewport"]');
+            if (metaViewport && metaViewport.hasAttribute('data-original-content')) {
+                metaViewport.setAttribute('content', metaViewport.getAttribute('data-original-content') || '');
             }
         }
 
