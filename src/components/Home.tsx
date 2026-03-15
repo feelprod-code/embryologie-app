@@ -18,7 +18,7 @@ export function Home(_props: HomeProps) {
         <div className="w-full h-full relative bg-[#FAF6ED] flex flex-col items-center overflow-hidden">
             {/* Inner responsive layout container */}
             {/* Inner responsive layout container */}
-            <div className="flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 pt-16 min-[380px]:pt-20 sm:pt-8 lg:pt-12 pb-28 lg:pb-12 mx-auto h-full">
+            <div className="flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 pt-16 min-[380px]:pt-20 sm:pt-8 lg:pt-12 pb-20 lg:pb-12 mx-auto h-full">
 
                 {/* Top Section: Credits & Title */}
                 <div className="flex flex-col items-center w-full justify-center flex-none -mt-8 sm:-mt-0">

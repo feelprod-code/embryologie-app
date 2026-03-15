@@ -133,8 +133,8 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
                             )}
 
                             {/* Credits FeelProd */}
-                            <div className="flex flex-col items-center mt-16 pb-4">
-                                <span className="text-[10px] sm:text-sm lg:text-base text-slate-400 font-medium uppercase tracking-[0.3em] text-center mb-1">
+                            <div className="flex flex-col items-center mt-16 pb-4 mb-20 lg:mb-4">
+                                <span className="text-[10px] sm:text-sm lg:text-base text-slate-400 font-light uppercase tracking-[0.3em] text-center mb-1">
                                     {t('home.credits', 'RÉALISATION FEELPROD')}
                                 </span>
                                 <div className="w-12 h-[1px] bg-slate-300/30 mt-1 mb-1"></div>
