@@ -142,6 +142,14 @@
 }
 
 /* Cloudflare Stream / WebVTT Subtitle Overrides */
+/* Extrême Hiding of native controls for Safari/iOS that might bleed through */
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
 /* EXTREME HIDING of native subtitles for Safari/iOS that ignore display: none */
 video::-webkit-media-text-track-container {
   display: none !important;
