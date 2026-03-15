@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff } from 'lucide-react';
 import { cn } from '../utils';
 
 type Profile = {
@@ -39,13 +39,46 @@ export function AdminDashboard() {
     };
 
     const toggleStatus = async (id: string, currentStatus: boolean) => {
-        const { error } = await supabase
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+            alert("Action impossible : vous utilisez le bouton 'DEV' (sans vraie connexion). Veuillez vous connecter avec e-mail/code pour modifier la base de données.");
+            return;
+        }
+
+        const { data, error } = await supabase
             .from('profiles')
             .update({ is_active: !currentStatus })
-            .eq('id', id);
+            .eq('id', id)
+            .select();
 
         if (error) {
             alert('Erreur lors de la mise à jour : ' + error.message);
+        } else if (!data || data.length === 0) {
+            alert('Mise à jour refusée par la base de données. Vous n\'avez pas les droits administrateur (erreur RLS).');
+        } else {
+            fetchProfiles();
+        }
+    };
+
+    const resetDevice = async (id: string) => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+            alert("Action impossible : vous utilisez le bouton 'DEV' (sans vraie connexion). Veuillez vous connecter avec e-mail/code pour modifier la base de données.");
+            return;
+        }
+
+        if (!confirm('Êtes-vous sûr de vouloir réinitialiser l\'appareil de cet élève ? Il devra se reconnecter et enregistrer son nouvel appareil.')) return;
+        
+        const { data, error } = await supabase
+            .from('profiles')
+            .update({ device_id: null })
+            .eq('id', id)
+            .select();
+
+        if (error) {
+            alert('Erreur lors de la réinitialisation : ' + error.message);
+        } else if (!data || data.length === 0) {
+            alert('Réinitialisation refusée par la base de données. Vous n\'avez pas les droits administrateur (erreur RLS).');
         } else {
             fetchProfiles();
         }
@@ -191,6 +224,20 @@ export function AdminDashboard() {
                                                     {profile.is_active ? <UserX size={14} className="mr-1.5" /> : <UserCheck size={14} className="mr-1.5" />}
                                                     {profile.is_active ? 'Bloquer' : 'Activer'}
                                                 </button>
+                                                <button
+                                                    onClick={() => resetDevice(profile.id)}
+                                                    disabled={!profile.device_id}
+                                                    className={cn(
+                                                        "flex items-center px-3 py-1.5 rounded-lg border transition-colors text-xs font-bold",
+                                                        profile.device_id
+                                                            ? "bg-white border-amber-200 text-amber-600 hover:bg-amber-50"
+                                                            : "bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed"
+                                                    )}
+                                                    title="Réinitialiser l'appareil"
+                                                >
+                                                    <MonitorOff size={14} className="mr-1.5" />
+                                                    Reset
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -263,7 +310,7 @@ export function AdminDashboard() {
                                     <button
                                         onClick={() => toggleStatus(profile.id, profile.is_active)}
                                         className={cn(
-                                            "flex-1 flex justify-center items-center px-3 py-2 rounded-[10px] border transition-colors text-xs font-bold",
+                                            "flex-[2] flex justify-center items-center px-3 py-2 rounded-[10px] border transition-colors text-xs font-bold",
                                             profile.is_active
                                                 ? "bg-white border-red-200 text-red-600 hover:bg-red-50"
                                                 : "bg-white border-green-200 text-green-600 hover:bg-green-50"
@@ -271,6 +318,19 @@ export function AdminDashboard() {
                                     >
                                         {profile.is_active ? <UserX size={14} className="mr-1.5" /> : <UserCheck size={14} className="mr-1.5" />}
                                         {profile.is_active ? 'Bloquer' : 'Activer'}
+                                    </button>
+                                    <button
+                                        onClick={() => resetDevice(profile.id)}
+                                        disabled={!profile.device_id}
+                                        className={cn(
+                                            "flex-1 flex justify-center items-center px-3 py-2 rounded-[10px] border transition-colors text-xs font-bold",
+                                            profile.device_id
+                                                ? "bg-white border-amber-200 text-amber-600 hover:bg-amber-50"
+                                                : "bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed"
+                                        )}
+                                        title="Réinitialiser l'appareil"
+                                    >
+                                        <MonitorOff size={14} className="mr-1.5" /> Reset
                                     </button>
                                 </div>
                             </div>

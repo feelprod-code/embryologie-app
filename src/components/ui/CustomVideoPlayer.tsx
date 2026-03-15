@@ -83,6 +83,13 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const [showControls, setShowControls] = useState(true);
     const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    // Zoom/Pan State for Fullscreen
+    const [zoomScale, setZoomScale] = useState(1);
+    const [panPos, setPanPos] = useState({ x: 0, y: 0 });
+    const initialPinchDist = useRef<number | null>(null);
+    const lastZoomScale = useRef<number>(1);
+    const touchStartPos = useRef({ x: 0, y: 0 });
+
     // Sync local fullscreen state with global context
     const { setIsVideoFullscreen } = useFullscreen();
     useEffect(() => {
@@ -234,21 +241,34 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 // We keep nativeFullscreenActive false because webkitEnterFullscreen handles its own state
             } else {
                 // Apple Mobile without native fullscreen or Fullscreen not enabled
-                nativeFullscreenActive.current = false;
                 setIsFullscreen(true);
-            }
-
-            // Try to force Landscape orientation using API
-            try {
-                if (window.screen && window.screen.orientation && (window.screen.orientation as any).lock) {
-                    await (window.screen.orientation as any).lock('landscape');
-                } else if (window.screen && (window.screen as any).mozLockOrientation) {
-                    (window.screen as any).mozLockOrientation('landscape');
-                } else if (window.screen && (window.screen as any).msLockOrientation) {
-                    (window.screen as any).msLockOrientation('landscape');
+                document.body.classList.add('video-fullscreen-active');
+            
+                // Try native fullscreen
+                try {
+                    const elem = containerRef.current;
+                    if (elem) {
+                        if (elem.requestFullscreen) {
+                            await elem.requestFullscreen();
+                        } else if ((elem as any).webkitRequestFullscreen) {
+                            await (elem as any).webkitRequestFullscreen();
+                        }
+                    }
+                } catch (err) {
+                    console.warn("Fullscreen API failed", err);
                 }
-            } catch (err) {
-                console.warn("Screen orientation lock failed or not supported:", err);
+
+                // iOS Fallback Fullscreen lock
+                nativeFullscreenActive.current = true;
+                
+                // Screen orientation API logic
+                if (window.screen && window.screen.orientation && (window.screen.orientation as any).lock) {
+                    try {
+                        await (window.screen.orientation as any).lock('landscape');
+                    } catch (err) {
+                        console.warn("Screen orientation lock failed or not supported:", err);
+                    }
+                }
             }
         } else {
             if (document.fullscreenElement || (document as any).webkitFullscreenElement) {
@@ -277,6 +297,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             } catch (err) {
                 console.warn("Screen orientation unlock failed:", err);
             }
+            
+            // Reset zoom when exiting fullscreen
+            setZoomScale(1);
+            setPanPos({ x: 0, y: 0 });
+            initialPinchDist.current = null;
         }
     };
 
@@ -472,6 +497,57 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         fetchVtt();
     }, [cloudflareId, i18n.language]);
 
+    // Zoom and Pan Handlers
+    const handleZoomTouchStart = (e: React.TouchEvent) => {
+        if (!isFullscreen) return;
+        if (e.touches.length === 2) {
+            const dist = Math.hypot(
+                e.touches[0].clientX - e.touches[1].clientX,
+                e.touches[0].clientY - e.touches[1].clientY
+            );
+            initialPinchDist.current = dist;
+            lastZoomScale.current = zoomScale;
+        } else if (e.touches.length === 1 && zoomScale > 1) {
+            touchStartPos.current = {
+                x: e.touches[0].clientX - panPos.x,
+                y: e.touches[0].clientY - panPos.y
+            };
+        }
+    };
+
+    const handleZoomTouchMove = (e: React.TouchEvent) => {
+        if (!isFullscreen) return;
+        if (e.touches.length === 2 && initialPinchDist.current) {
+            const dist = Math.hypot(
+                e.touches[0].clientX - e.touches[1].clientX,
+                e.touches[0].clientY - e.touches[1].clientY
+            );
+            // Limit zoom between 1x and 5x
+            const newScale = Math.max(1, Math.min(lastZoomScale.current * (dist / initialPinchDist.current), 5));
+            setZoomScale(newScale);
+            
+            // Snap back to center if fully zoomed out
+            if (newScale === 1) {
+                setPanPos({ x: 0, y: 0 });
+            }
+        } else if (e.touches.length === 1 && zoomScale > 1) {
+            const newX = e.touches[0].clientX - touchStartPos.current.x;
+            const newY = e.touches[0].clientY - touchStartPos.current.y;
+            setPanPos({ x: newX, y: newY });
+        }
+    };
+
+    const handleZoomTouchEnd = (e: React.TouchEvent) => {
+        if (!isFullscreen) return;
+        if (e.touches.length < 2) {
+            initialPinchDist.current = null;
+        }
+        if (zoomScale <= 1) {
+            setPanPos({ x: 0, y: 0 });
+            setZoomScale(1);
+        }
+    };
+
     // 1. PRIORITÉ ABSOLUE : Lecteur Stream Officiel customisé OU Fichier local
     if ((cloudflareId && cloudflareId !== "") || localVideoUrl) {
         return (
@@ -494,7 +570,13 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 onTouchStart={triggerControls}
             >
                 {/* 1. LAYER 0: The native stream player without controls */}
-                <div className="absolute inset-0 w-full h-full pointer-events-none">
+                <div 
+                    className="absolute inset-0 w-full h-full pointer-events-none transition-transform duration-75 ease-out"
+                    style={{
+                        transform: isFullscreen ? `translate(${panPos.x}px, ${panPos.y}px) scale(${zoomScale})` : 'none',
+                        transformOrigin: 'center center'
+                    }}
+                >
                     {localVideoUrl ? (
                         <video
                             ref={playerRef as any}
@@ -591,6 +673,10 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             triggerControls();
                         }
                     }}
+                    onTouchStart={handleZoomTouchStart}
+                    onTouchMove={handleZoomTouchMove}
+                    onTouchEnd={handleZoomTouchEnd}
+                    onTouchCancel={handleZoomTouchEnd}
                 >
                     {/* The big center play button has been removed by request. Playback is managed by the bottom bar. */}
                 </div>
