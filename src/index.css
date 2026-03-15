@@ -94,6 +94,13 @@
     object-fit: contain !important;
     background-color: transparent !important;
 }
+
+/* Force global backgrounds to black when fullscreen */
+html.video-fullscreen-active,
+body.video-fullscreen-active,
+#root:has(.video-player-fullscreen-active) {
+    background-color: #000000 !important;
+}
   /* Extreme lock on the body to prevent the Safari address bar gap in landscape */
   body.fullscreen-locked,
   html.fullscreen-locked {

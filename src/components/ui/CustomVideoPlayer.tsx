@@ -776,6 +776,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 <div
                     className={`absolute bottom-0 left-0 right-0 p-4 pt-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-40 transition-opacity duration-300 flex flex-col justify-end gap-1 ${showControls || !isPlaying ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                         }`}
+                    style={{ paddingBottom: isFullscreen ? 'calc(1rem + env(safe-area-inset-bottom))' : '1rem' }}
                     onClick={(e) => e.stopPropagation()} // Prevent bubble to play/pause wrapper
                 >
                     {/* Scrubber */}
