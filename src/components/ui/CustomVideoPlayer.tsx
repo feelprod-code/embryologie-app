@@ -3,6 +3,7 @@ import { Stream } from '@cloudflare/stream-react';
 import { useTranslation } from 'react-i18next';
 import { Play, Pause, Maximize, X, RotateCcw, RotateCw } from 'lucide-react';
 import { cn } from '../../utils';
+import { useFullscreen } from '../../contexts/FullscreenContext';
 
 // Supported subtitle languages
 const SUBTITLE_LANGS = [
@@ -81,6 +82,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const nativeFullscreenActive = useRef(false);
     const [showControls, setShowControls] = useState(true);
     const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    // Sync local fullscreen state with global context
+    const { setIsVideoFullscreen } = useFullscreen();
+    useEffect(() => {
+        setIsVideoFullscreen(isFullscreen);
+        return () => {
+            // Ensure global lock is released if video component unmounts unexpectedly
+            setIsVideoFullscreen(false);
+        };
+    }, [isFullscreen, setIsVideoFullscreen]);
 
     useImperativeHandle(ref, () => ({
         togglePlay,

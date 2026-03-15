@@ -21,6 +21,8 @@ import { cn, isLocalNetwork } from './utils';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './components/ui/LanguageSwitcher';
 import { DesktopMenu } from './components/DesktopMenu';
+import { FullscreenProvider } from './contexts/FullscreenContext';
+import { OrientationLock } from './components/OrientationLock';
 
 const iconMap: Record<string, React.ReactNode> = {
   "j-0": <CircleDot size={20} className="text-blue-400" />,
@@ -373,8 +375,10 @@ function App() {
   }
 
   return (
-    <div className={cn("flex flex-col items-center h-[100dvh] w-full max-w-full relative bg-[#FAF6ED] text-slate-800 overflow-hidden", isPending && "transition-all duration-300")}>
-      {/* Cinematic Background Gradients (Global) */}
+    <FullscreenProvider>
+      <OrientationLock />
+      <div className={cn("flex flex-col items-center h-[100dvh] w-full max-w-full relative bg-[#FAF6ED] text-slate-800 overflow-hidden", isPending && "transition-all duration-300")}>
+        {/* Cinematic Background Gradients (Global) */}
       {activeNav !== 'video-player' && (
         <>
           <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,_#FAF6ED_0%,_#FAF6ED_60%)] pointer-events-none z-0"></div>
@@ -895,7 +899,8 @@ function App() {
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </FullscreenProvider>
   );
 }
 
