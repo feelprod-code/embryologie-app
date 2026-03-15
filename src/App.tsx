@@ -620,7 +620,7 @@ function App() {
 
                 {/* MOBILE TIMELINE NAVIGATION (Horizontal chip selection) */}
                 <div className="w-full lg:hidden overflow-x-auto no-scrollbar pb-2 pt-2 mt-1 border-t border-slate-100 snap-x">
-                  <div className="flex flex-nowrap items-stretch gap-2 w-max px-4 sm:px-6">
+                  <div className="flex flex-nowrap items-stretch gap-2 w-max after:content-[''] after:w-4 before:content-[''] before:w-4 sm:before:w-6 sm:after:w-6">
                     {/* Add an empty div for starting margin in scroller if needed, but px-4 on w-max usually works. Let's ensure gap-2 and px-4 applies to the content. */}
                     {detailedStages.map((stage) => {
                       const isActive = stage.id === activeStageId;
@@ -633,16 +633,16 @@ function App() {
                           onClick={() => setActiveStageId(stage.id)}
                           onTouchStart={(e) => { e.preventDefault(); setActiveStageId(stage.id); }}
                           className={cn(
-                            "relative flex flex-col items-center justify-center py-2.5 px-2 md:px-3 rounded-xl min-w-[110px] sm:min-w-[130px] md:min-w-[120px] border shrink-0 snap-center transition-all duration-300",
+                            "relative flex flex-col items-center justify-center py-2.5 px-2 md:px-3 rounded-xl min-w-[110px] sm:min-w-[130px] md:min-w-[120px] shrink-0 snap-center transition-all duration-300",
                             isActive
-                              ? "bg-slate-900 border-slate-800 text-white shadow-md scale-100"
+                              ? "bg-slate-900 text-white scale-100"
                               : isPast
-                                ? "bg-white border-slate-200 text-slate-500 opacity-80"
-                                : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm"
+                                ? "bg-white text-slate-500 opacity-80"
+                                : "bg-white text-slate-600 hover:bg-slate-50"
                           )}
                         >
                           {isActive && (
-                            <div className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-amber-500 rounded-full shadow-sm animate-in zoom-in"></div>
+                            <div className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-amber-500 rounded-full animate-in zoom-in"></div>
                           )}
                           <span className={cn(
                             "font-bebas text-lg sm:text-xl md:text-base tracking-wider leading-none mb-1 whitespace-nowrap",
