@@ -269,14 +269,16 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     const isAndroidMobile = /android.*mobile/i.test(ua);
     const isAndroidTablet = /android(?!.*mobile)/i.test(ua);
 
-    if (isIOSMobile || isAndroidMobile) return 'mobile';
+    // iPad in portrait mode (width <= 820) should be treated as mobile layout
+    const isPortrait = window.innerHeight > window.innerWidth;
+    if (isIOSMobile || isAndroidMobile || (isIOSPad && isPortrait) || (isAndroidTablet && isPortrait && window.innerWidth <= 820)) return 'mobile';
     if (isIOSPad || isAndroidTablet) return 'tablet';
 
     const isTouch = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
     const shortSide = window.screen ? Math.min(window.screen.width, window.screen.height) : Math.min(window.innerWidth, window.innerHeight);
 
     if (isTouch) {
-      if (shortSide <= 550) return 'mobile';
+      if (shortSide <= 820) return 'mobile'; // Extended from 550 to 820 for iPad Mini / Air
       if (shortSide <= 1024) return 'tablet';
     }
 
@@ -287,7 +289,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     if (typeof window === 'undefined') return 'desktop';
     if (deviceClass === 'mobile') return 'mobile';
     if (deviceClass === 'tablet') return 'tablet';
-    return window.innerWidth < 1024 ? 'tablet' : 'desktop';
+    return window.innerWidth <= 820 ? 'mobile' : (window.innerWidth < 1024 ? 'tablet' : 'desktop');
   });
 
   useEffect(() => {
@@ -296,9 +298,16 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     if (deviceClass === 'mobile') {
       setActiveLayout('mobile');
     } else if (deviceClass === 'tablet') {
-      setActiveLayout('tablet');
+      // Even if tablet class, if portrait and narrow enough, drop to mobile layout
+      if (windowSize.height > windowSize.width && windowSize.width <= 820) {
+        setActiveLayout('mobile');
+      } else {
+        setActiveLayout('tablet');
+      }
     } else {
-      if (windowSize.width < 1024) {
+      if (windowSize.width <= 820) {
+        setActiveLayout('mobile');
+      } else if (windowSize.width < 1024) {
         setActiveLayout('tablet');
       } else {
         setActiveLayout('desktop');
