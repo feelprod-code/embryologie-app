@@ -18,7 +18,7 @@ export function Home(_props: HomeProps) {
         <div className="w-full h-full relative bg-[#FAF6ED] flex flex-col items-center overflow-hidden">
             {/* Inner responsive layout container */}
             {/* Inner responsive layout container */}
-            <div className="flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 pt-16 min-[380px]:pt-20 sm:pt-8 lg:pt-12 pb-24 sm:pb-6 lg:pb-12 mx-auto h-full">
+            <div className="flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 pt-16 min-[380px]:pt-20 sm:pt-8 lg:pt-12 pb-28 lg:pb-12 mx-auto h-full">
 
                 {/* Top Section: Credits & Title */}
                 <div className="flex flex-col items-center w-full justify-center flex-none -mt-8 sm:-mt-0">
@@ -80,7 +80,7 @@ export function Home(_props: HomeProps) {
 
                 {/* Credits FeelProd */}
                 <div className="flex-none w-full flex flex-col items-center justify-end opacity-90 mt-auto pb-6 sm:pb-8">
-                    <span className="text-[10px] sm:text-sm lg:text-base text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20 mb-1">
+                    <span className="text-[10px] sm:text-sm lg:text-base text-slate-500/80 font-light uppercase tracking-[0.3em] text-center relative z-20 mb-1">
                         {t('home.credits', 'RÉALISATION FEELPROD')}
                     </span>
                     <div className="w-12 h-[1px] bg-slate-300/50 mt-1 mb-0 sm:mb-1"></div>

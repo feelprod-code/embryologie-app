@@ -274,6 +274,14 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                     )
                 }
             </motion.div >
+
+            {/* Credits FeelProd */}
+            <div className="flex-none w-full flex flex-col items-center justify-end opacity-90 mt-12 mb-28 lg:mb-8">
+                <span className="text-[10px] sm:text-sm lg:text-base text-slate-500/80 font-light uppercase tracking-[0.3em] text-center mb-1">
+                    {t('home.credits', 'RÉALISATION FEELPROD')}
+                </span>
+                <div className="w-12 h-[1px] bg-slate-300/50 mt-1 mb-1"></div>
+            </div>
         </div >
     );
 };
