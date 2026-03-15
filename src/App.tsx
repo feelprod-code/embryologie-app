@@ -376,7 +376,7 @@ function App() {
 
   return (
     <FullscreenProvider>
-      <OrientationLock />
+      <OrientationLock disabled={activeNav === 'video-player' || activeNav === 'podcast-player'} />
       <div className={cn("flex flex-col items-center h-[100dvh] w-full max-w-full relative bg-[#FAF6ED] text-slate-800 overflow-hidden", isPending && "transition-all duration-300")}>
         {/* Cinematic Background Gradients (Global) */}
       {activeNav !== 'video-player' && (

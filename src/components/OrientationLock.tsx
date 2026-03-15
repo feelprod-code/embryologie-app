@@ -3,7 +3,7 @@ import { useFullscreen } from '../contexts/FullscreenContext';
 import { Smartphone } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-export const OrientationLock: React.FC = () => {
+export const OrientationLock: React.FC<{ disabled?: boolean }> = ({ disabled = false }) => {
     const { isVideoFullscreen } = useFullscreen();
     const [isLandscape, setIsLandscape] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -40,21 +40,16 @@ export const OrientationLock: React.FC = () => {
         };
     }, []);
 
-    // Do not show on desktop, or if it's portrait, or if a video is in fullscreen
-    if (!isMobile || !isLandscape || isVideoFullscreen) {
+    // Do not show on desktop, or if it's portrait, or if specifically disabled (e.g. video player view)
+    if (!isMobile || !isLandscape || isVideoFullscreen || disabled) {
         return null;
     }
 
     return (
-        <div className="fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-[#FAF6ED] p-6 text-center">
-            <div className="flex justify-center mb-8 relative">
-                <Smartphone className="w-24 h-24 text-[#4171B5] -rotate-90" strokeWidth={1.5} />
-                <div className="absolute inset-0 flex items-center justify-center animate-pulse">
-                    <Smartphone className="w-24 h-24 text-[#5A9C51]" strokeWidth={1.5} />
-                </div>
-            </div>
+        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FAF6ED] p-6 text-center">
+            <Smartphone className="w-24 h-24 mb-6 text-primary animate-pulse" strokeWidth={1.5} />
             
-            <h2 className="text-2xl md:text-3xl font-bold font-anton text-[#F27D33] tracking-wider uppercase mb-6 drop-shadow-sm">
+            <h2 className="text-2xl md:text-3xl font-bold font-poppins text-dark mb-4 drop-shadow-sm">
                 {t('common.orientationLockTitle', 'Mode Portrait Requis')}
             </h2>
             
