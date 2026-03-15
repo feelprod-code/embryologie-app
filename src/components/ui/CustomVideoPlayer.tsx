@@ -534,6 +534,46 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         fetchVtt();
     }, [cloudflareId, i18n.language]);
 
+    const [viewportHeight, setViewportHeight] = useState('100dvh');
+
+    // Real dynamic viewport height hook because mobile Safari PWA 100dvh is still bugged when combined with custom position fixed
+    useEffect(() => {
+        if (!isFullscreen) return;
+
+        const updateHeight = () => {
+            if (window.visualViewport) {
+                setViewportHeight(`${window.visualViewport.height}px`);
+                // Force scroll top for sanity
+                window.scrollTo(0, 0);
+            } else {
+                setViewportHeight(`${window.innerHeight}px`);
+            }
+        };
+
+        // Standard
+        window.addEventListener('resize', updateHeight);
+        // Visual Viewport (iOS keyboard, etc)
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', updateHeight);
+            window.visualViewport.addEventListener('scroll', updateHeight);
+        }
+
+        updateHeight();
+        
+        // Timeout to catch post-rotation layout thrashes
+        const t1 = setTimeout(updateHeight, 100);
+        const t2 = setTimeout(updateHeight, 300);
+
+        return () => {
+            window.removeEventListener('resize', updateHeight);
+            if (window.visualViewport) {
+                window.visualViewport.removeEventListener('resize', updateHeight);
+                window.visualViewport.removeEventListener('scroll', updateHeight);
+            }
+            clearTimeout(t1);
+            clearTimeout(t2);
+        };
+    }, [isFullscreen]);
     // Zoom and Pan Handlers
     const handleZoomTouchStart = (e: React.TouchEvent) => {
         if (!isFullscreen) return;
@@ -608,6 +648,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     "relative w-full bg-transparent overflow-hidden group",
                     isFullscreen ? 'video-player-fullscreen-active' : className || 'aspect-video rounded-xl shadow-2xl'
                 )}
+                style={isFullscreen ? { height: viewportHeight, minHeight: viewportHeight } : {}}
                 onMouseMove={() => {
                     // Only trigger mouse move if we are inside the window!
                     triggerControls();
@@ -774,9 +815,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 )}
 
                 <div
-                    className={`absolute bottom-0 left-0 right-0 p-4 pt-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-40 transition-opacity duration-300 flex flex-col justify-end gap-1 ${showControls || !isPlaying ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-                        }`}
-                    style={{ paddingBottom: isFullscreen ? 'calc(1rem + env(safe-area-inset-bottom))' : '1rem' }}
+                    className={cn(
+                        "absolute bottom-0 left-0 right-0 p-4 pt-12 bg-gradient-to-t from-black via-black/50 to-transparent z-40 transition-opacity duration-300 flex flex-col justify-end gap-1",
+                        showControls || !isPlaying ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
+                        isFullscreen ? 'pb-8 sm:pb-6' : 'pb-4' // Add explicit thick bottom padding on mobile when fullscreen
+                    )}
                     onClick={(e) => e.stopPropagation()} // Prevent bubble to play/pause wrapper
                 >
                     {/* Scrubber */}
