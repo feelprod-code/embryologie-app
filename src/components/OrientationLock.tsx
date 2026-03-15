@@ -47,7 +47,9 @@ export const OrientationLock: React.FC<{ disabled?: boolean }> = ({ disabled = f
 
     return (
         <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FAF6ED] p-6 text-center">
-            <Smartphone className="w-24 h-24 mb-6 text-primary animate-pulse" strokeWidth={1.5} />
+            <div className="mb-6 animate-pulse">
+                <Smartphone size={80} className="text-[#F27D33] -rotate-90" strokeWidth={1.5} />
+            </div>
             
             <h2 className="text-2xl md:text-3xl font-bold font-poppins text-dark mb-4 drop-shadow-sm">
                 {t('common.orientationLockTitle', 'Mode Portrait Requis')}
