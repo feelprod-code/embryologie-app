@@ -86,6 +86,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     // Zoom/Pan State for Fullscreen
     const [zoomScale, setZoomScale] = useState(1);
     const [panPos, setPanPos] = useState({ x: 0, y: 0 });
+    const [isPanning, setIsPanning] = useState(false);
     const initialPinchDist = useRef<number | null>(null);
     const lastZoomScale = useRef<number>(1);
     const touchStartPos = useRef({ x: 0, y: 0 });
@@ -500,6 +501,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     // Zoom and Pan Handlers
     const handleZoomTouchStart = (e: React.TouchEvent) => {
         if (!isFullscreen) return;
+        setIsPanning(true);
         if (e.touches.length === 2) {
             const dist = Math.hypot(
                 e.touches[0].clientX - e.touches[1].clientX,
@@ -551,6 +553,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
     const handleZoomTouchEnd = (e: React.TouchEvent) => {
         if (!isFullscreen) return;
+        setIsPanning(false);
         if (e.touches.length < 2) {
             initialPinchDist.current = null;
         }
@@ -583,7 +586,10 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             >
                 {/* 1. LAYER 0: The native stream player without controls */}
                 <div 
-                    className="absolute inset-0 w-full h-full pointer-events-none transition-transform duration-75 ease-out"
+                    className={cn(
+                        "absolute inset-0 w-full h-full pointer-events-none",
+                        !isPanning && "transition-transform duration-300 ease-out"
+                    )}
                     style={{
                         transform: isFullscreen ? `translate(${panPos.x}px, ${panPos.y}px) scale(${zoomScale})` : 'none',
                         transformOrigin: 'center center'
