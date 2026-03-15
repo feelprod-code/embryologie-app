@@ -262,21 +262,23 @@ function App() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      // Don't override if bypassed
-      if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') return;
-
-      if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
-        setIsAdmin(true);
-      } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
-        setIsAdmin(true);
-      } else {
-        setIsAdmin(false);
-      }
-      if (_event === 'SIGNED_IN') {
-        if (mounted) setIsInitializing(true);
-        checkProfileDevice(session);
-      } else if (_event === 'SIGNED_OUT') {
+      if (_event === 'SIGNED_OUT') {
+        localStorage.removeItem('DEV_BYPASS_AUTH');
         if (mounted) setSession(null);
+        setIsAdmin(false);
+      } else {
+        if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+          setIsAdmin(true);
+        } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+
+        if (_event === 'SIGNED_IN') {
+          if (mounted) setIsInitializing(true);
+          checkProfileDevice(session);
+        }
       }
     });
 
