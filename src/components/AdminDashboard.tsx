@@ -137,10 +137,15 @@ export function AdminDashboard() {
                                                     </div>
                                                     <div className="text-sm text-slate-500 font-medium flex items-center gap-2">
                                                         <span>{profile.email}</span>
-                                                        {profile.profession && (
+                                                        {profile.profession ? (
                                                             <>
                                                                 <span className="text-slate-300">•</span>
                                                                 <span className="text-slate-500 italic">{profile.profession}</span>
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <span className="text-slate-300">•</span>
+                                                                <span className="text-slate-400 italic">Profession non renseignée</span>
                                                             </>
                                                         )}
                                                     </div>
@@ -168,7 +173,7 @@ export function AdminDashboard() {
                                                     </span>
                                                 </div>
                                             ) : (
-                                                <span className="text-sm text-slate-400 italic">Aucun appareil lié</span>
+                                                <span className="text-sm text-slate-400 italic">Aucun appareil enregistré</span>
                                             )}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -222,8 +227,10 @@ export function AdminDashboard() {
                                                 {profile.first_name || profile.last_name ? `${profile.first_name || ''} ${profile.last_name || ''}` : <span className="italic text-slate-400">Nom inconnu</span>}
                                             </div>
                                             <div className="text-xs text-slate-500 font-medium truncate">{profile.email}</div>
-                                            {profile.profession && (
+                                            {profile.profession ? (
                                                 <div className="text-xs text-slate-400 italic truncate mt-0.5">{profile.profession}</div>
+                                            ) : (
+                                                <div className="text-xs text-slate-400 italic truncate mt-0.5">Profession non renseignée</div>
                                             )}
                                         </div>
                                     </div>
@@ -248,7 +255,7 @@ export function AdminDashboard() {
                                             </span>
                                         </div>
                                     ) : (
-                                        <span className="text-[11px] px-2.5 py-1 bg-slate-50 text-slate-400 italic rounded-full border border-slate-200">Sans appareil</span>
+                                        <span className="text-[11px] px-2.5 py-1 bg-slate-50 text-slate-400 italic rounded-full border border-slate-200">Aucun appareil enregistré</span>
                                     )}
                                 </div>
 
