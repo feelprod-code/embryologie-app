@@ -522,8 +522,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 e.touches[0].clientX - e.touches[1].clientX,
                 e.touches[0].clientY - e.touches[1].clientY
             );
-            // Limit zoom between 1x and 1.25x
-            const newScale = Math.max(1, Math.min(lastZoomScale.current * (dist / initialPinchDist.current), 1.25));
+            // Limit zoom between 1x and 1.20x
+            const newScale = Math.max(1, Math.min(lastZoomScale.current * (dist / initialPinchDist.current), 1.2));
             setZoomScale(newScale);
             
             // Re-clamp panning based on new scale to avoid black borders (keep X locked to 0)
