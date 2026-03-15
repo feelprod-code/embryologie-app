@@ -297,8 +297,8 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
     return (
         <div className="fixed inset-0 md:relative md:inset-auto z-40 md:z-10 w-full h-[100dvh] md:h-full bg-transparent flex flex-col overflow-hidden">
             {/* Header Fixed - Capsule Style */}
-            <div className="flex-none z-30 w-full bg-[#FAF6ED]/90 backdrop-blur-md pt-[env(safe-area-inset-top,4px)] md:pt-4 flex flex-col items-center pb-2 md:pb-4 px-2">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center animate-fade-in-up pb-1 md:pb-0 max-w-4xl mx-auto">
+            <div className="flex-none z-30 w-full bg-[#FAF6ED]/90 backdrop-blur-md pt-4 flex flex-col items-center pb-4 border-b border-transparent md:border-slate-100">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center pb-1 md:pb-0 max-w-4xl mx-auto">
                     <div className="inline-flex flex-col md:flex-row items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
                         <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-2xl lg:text-xl uppercase tracking-widest truncate leading-none md:leading-[1.1] pt-1 md:pt-0 drop-shadow-sm text-slate-800">
                             EMBRYO AI
