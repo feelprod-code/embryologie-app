@@ -87,6 +87,21 @@
     touch-action: none !important;
   }
 
+  /* Force a black background under the notch area explicitly */
+  .video-player-fullscreen-active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 150vh; /* Overshoot to guarantee coverage */
+    background-color: #000 !important;
+    z-index: -1;
+    pointer-events: none;
+  }
+
 
 
   /* Extreme lock on the body to prevent the Safari address bar gap in landscape */
