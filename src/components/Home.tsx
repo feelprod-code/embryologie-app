@@ -18,7 +18,7 @@ export function Home(_props: HomeProps) {
         <div className="w-full h-full relative bg-[#FAF6ED] flex flex-col items-center overflow-hidden">
             {/* Inner responsive layout container */}
             {/* Inner responsive layout container */}
-            <div className="flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 pt-16 min-[380px]:pt-20 sm:pt-8 md:pt-12 pb-24 sm:pb-6 md:pb-12 mx-auto h-full">
+            <div className="flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 pt-16 min-[380px]:pt-20 sm:pt-8 lg:pt-12 pb-24 sm:pb-6 lg:pb-12 mx-auto h-full">
 
                 {/* Top Section: Credits & Title */}
                 <div className="flex flex-col items-center w-full justify-center flex-none -mt-8 sm:-mt-0">
@@ -27,17 +27,17 @@ export function Home(_props: HomeProps) {
                         <div className="text-[10px] sm:text-xs font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
                             {t('home.training_by')}
                         </div>
-                        <div className="text-sm md:text-base font-bold tracking-[0.2em] text-slate-800 mt-1 uppercase">
+                        <div className="text-sm lg:text-base font-bold tracking-[0.2em] text-slate-800 mt-1 uppercase">
                             Marc Damoiseaux <span className="opacity-70 text-xs font-normal">Ostéopathe D.O.</span>
                         </div>
                     </div>
 
                     {/* Main Cinematic Title */}
                     <div className="relative z-10 w-full text-center flex flex-col items-center mt-6 sm:mt-8">
-                        <h1 className="text-4xl min-[380px]:text-5xl sm:text-6xl md:text-7xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
+                        <h1 className="text-4xl min-[380px]:text-5xl sm:text-6xl lg:text-7xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
                             {t('home.title_part1')}
                         </h1>
-                        <h2 className="text-3xl min-[380px]:text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 pr-2">
+                        <h2 className="text-3xl min-[380px]:text-4xl sm:text-4xl lg:text-5xl xl:text-6xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 pr-2">
                             {t('home.title_part2')}
                         </h2>
                     </div>
@@ -52,7 +52,7 @@ export function Home(_props: HomeProps) {
                 {/* Center - Vignette & Player */}
                 <div className="flex flex-col items-center justify-center w-full flex-none mt-2 sm:mt-0">
                     {/* Podcast Thumbnail/Vignette */}
-                    <div className="relative w-[86vw] max-w-[360px] sm:max-w-[340px] md:w-[25rem] lg:w-[29rem] aspect-square shrink-0 mb-4 mt-4 sm:mt-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                    <div className="relative w-[86vw] max-w-[360px] sm:max-w-[340px] lg:w-[25rem] xl:w-[29rem] aspect-square shrink-0 mb-4 mt-4 sm:mt-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
@@ -80,7 +80,7 @@ export function Home(_props: HomeProps) {
 
                 {/* Credits FeelProd */}
                 <div className="flex-none w-full flex flex-col items-center justify-end opacity-90 mt-auto pb-6 sm:pb-8">
-                    <span className="text-[10px] sm:text-[11px] md:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20 mb-1">
+                    <span className="text-[10px] sm:text-[11px] lg:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20 mb-1">
                         {t('home.credits', 'RÉALISATION FEELPROD')}
                     </span>
                     <div className="w-12 h-[1px] bg-slate-300/50 mt-1 mb-0 sm:mb-1"></div>
