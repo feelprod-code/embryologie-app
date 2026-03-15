@@ -186,53 +186,19 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
         if (isFullscreen) {
             document.documentElement.classList.add('video-fullscreen-active');
-            document.documentElement.style.backgroundColor = '#000000'; // Force iOS background 
             document.body.style.overflow = 'hidden';
-            document.body.style.backgroundColor = '#000000'; // Force iOS background
             document.body.classList.add('video-fullscreen-active');
-            
-            // Adapt iOS Safari status bar / notch color to black
-            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-            if (metaThemeColor) {
-                if (!metaThemeColor.hasAttribute('data-original-color')) {
-                    metaThemeColor.setAttribute('data-original-color', metaThemeColor.getAttribute('content') || '#FAF6ED');
-                }
-                metaThemeColor.setAttribute('content', '#000000');
+            if (rootElement) {
+                // Ensure no transform constraint clips the fixed child
+                rootElement.style.setProperty('transform', 'none', 'important');
             }
-
-            // Create a physical black wall in the DOM that escapes all overflow:hidden constraints
-            let notchCover = document.getElementById('ios-notch-cover');
-            if (!notchCover) {
-                notchCover = document.createElement('div');
-                notchCover.id = 'ios-notch-cover';
-                notchCover.style.position = 'fixed';
-                notchCover.style.top = '-100vh';
-                notchCover.style.left = '-100vw';
-                notchCover.style.width = '300vw';
-                notchCover.style.height = '300vh';
-                notchCover.style.backgroundColor = '#000000'; // Pure black
-                notchCover.style.zIndex = '999990'; // Just below player (999999)
-                notchCover.style.pointerEvents = 'none'; // Don't block touches
-                document.body.appendChild(notchCover);
-            }
-
             window.scrollTo(0, 0);
         } else {
             document.documentElement.classList.remove('video-fullscreen-active');
-            document.documentElement.style.backgroundColor = '';
             document.body.style.overflow = '';
-            document.body.style.backgroundColor = '';
             document.body.classList.remove('video-fullscreen-active');
-            
-            // Restore iOS Safari status bar / notch color
-            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-            if (metaThemeColor && metaThemeColor.hasAttribute('data-original-color')) {
-                metaThemeColor.setAttribute('content', metaThemeColor.getAttribute('data-original-color') || '#FAF6ED');
-            }
-
-            const notchCover = document.getElementById('ios-notch-cover');
-            if (notchCover) {
-                notchCover.remove();
+            if (rootElement) {
+                rootElement.style.removeProperty('transform');
             }
         }
 
@@ -249,8 +215,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (rootElement) {
                 rootElement.style.removeProperty('transform');
             }
-            const notchCover = document.getElementById('ios-notch-cover');
-            if (notchCover) notchCover.remove();
         };
     }, [isFullscreen, onFullscreenChange]);
 
@@ -534,46 +498,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         fetchVtt();
     }, [cloudflareId, i18n.language]);
 
-    const [viewportHeight, setViewportHeight] = useState('100dvh');
-
-    // Real dynamic viewport height hook because mobile Safari PWA 100dvh is still bugged when combined with custom position fixed
-    useEffect(() => {
-        if (!isFullscreen) return;
-
-        const updateHeight = () => {
-            if (window.visualViewport) {
-                setViewportHeight(`${window.visualViewport.height}px`);
-                // Force scroll top for sanity
-                window.scrollTo(0, 0);
-            } else {
-                setViewportHeight(`${window.innerHeight}px`);
-            }
-        };
-
-        // Standard
-        window.addEventListener('resize', updateHeight);
-        // Visual Viewport (iOS keyboard, etc)
-        if (window.visualViewport) {
-            window.visualViewport.addEventListener('resize', updateHeight);
-            window.visualViewport.addEventListener('scroll', updateHeight);
-        }
-
-        updateHeight();
-        
-        // Timeout to catch post-rotation layout thrashes
-        const t1 = setTimeout(updateHeight, 100);
-        const t2 = setTimeout(updateHeight, 300);
-
-        return () => {
-            window.removeEventListener('resize', updateHeight);
-            if (window.visualViewport) {
-                window.visualViewport.removeEventListener('resize', updateHeight);
-                window.visualViewport.removeEventListener('scroll', updateHeight);
-            }
-            clearTimeout(t1);
-            clearTimeout(t2);
-        };
-    }, [isFullscreen]);
     // Zoom and Pan Handlers
     const handleZoomTouchStart = (e: React.TouchEvent) => {
         if (!isFullscreen) return;
@@ -648,7 +572,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     "relative w-full bg-transparent overflow-hidden group",
                     isFullscreen ? 'video-player-fullscreen-active' : className || 'aspect-video rounded-xl shadow-2xl'
                 )}
-                style={isFullscreen ? { height: viewportHeight, minHeight: viewportHeight } : {}}
                 onMouseMove={() => {
                     // Only trigger mouse move if we are inside the window!
                     triggerControls();
@@ -796,8 +719,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         className="absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300"
                         style={{
                             zIndex: 20,
-                            bottom: showControls ? (isFullscreen ? '50px' : '60px') : '0px',
-                            paddingBottom: isFullscreen ? '12px' : '6px'
+                            bottom: showControls ? (isFullscreen ? '80px' : '60px') : '0px',
+                            paddingBottom: isFullscreen ? '24px' : '6px'
                         }}
                     >
                         <span
@@ -815,11 +738,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 )}
 
                 <div
-                    className={cn(
-                        "absolute bottom-0 left-0 right-0 p-4 pt-12 bg-gradient-to-t from-black via-black/50 to-transparent z-40 transition-opacity duration-300 flex flex-col justify-end gap-1",
-                        showControls || !isPlaying ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
-                        isFullscreen ? 'pb-8 sm:pb-6' : 'pb-4' // Add explicit thick bottom padding on mobile when fullscreen
-                    )}
+                    className={`absolute bottom-0 left-0 right-0 p-4 pt-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-40 transition-opacity duration-300 flex flex-col justify-end gap-1 ${showControls || !isPlaying ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                        }`}
                     onClick={(e) => e.stopPropagation()} // Prevent bubble to play/pause wrapper
                 >
                     {/* Scrubber */}
