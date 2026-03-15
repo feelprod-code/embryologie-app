@@ -300,21 +300,21 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             <div className="flex-none z-30 w-full bg-[#FAF6ED]/90 backdrop-blur-md pt-[env(safe-area-inset-top,4px)] md:pt-4 flex flex-col items-center pb-2 md:pb-4 px-2">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-1 relative w-full text-center animate-fade-in-up pb-1 md:pb-0 max-w-4xl mx-auto">
                     <div className="inline-flex flex-col md:flex-row items-center justify-center px-4 sm:px-8 md:px-8 py-2 sm:py-3 md:py-2 rounded-full mb-0 whitespace-nowrap max-w-[95vw] md:max-w-full overflow-hidden">
-                        <span className="font-bebas font-normal text-xl sm:text-2xl md:text-xl lg:text-xl uppercase tracking-widest truncate leading-none md:leading-[1.1] pt-1 md:pt-0 drop-shadow-sm text-slate-800">
+                        <span className="font-bebas font-normal text-xl min-[380px]:text-2xl sm:text-3xl md:text-2xl lg:text-xl uppercase tracking-widest truncate leading-none md:leading-[1.1] pt-1 md:pt-0 drop-shadow-sm text-slate-800">
                             EMBRYO AI
                         </span>
                         <span className="hidden md:inline text-slate-400 mx-2">•</span>
-                        <p className="text-[10px] sm:text-[11px] md:text-[11px] text-slate-500 uppercase tracking-widest mt-1 md:mt-1 font-medium">
+                        <p className="text-[10px] sm:text-[11px] md:text-[11px] text-slate-500 uppercase tracking-widest mt-1 md:mt-1 font-medium hidden sm:block">
                             {t('chatbot.assistantRole')}
                         </p>
                     </div>
-                    <div className="absolute right-4 flex items-center gap-2">
-                        <div className="flex bg-slate-100 p-0.5 md:p-1 rounded-full border border-slate-200/60 shadow-sm -mb-0.5 ml-8 xs:ml-0">
+                    <div className="absolute right-2 sm:right-4 flex items-center gap-1.5 sm:gap-2">
+                        <div className="flex bg-slate-100 p-0.5 rounded-full border border-slate-200/60 shadow-sm ml-8 xs:ml-0">
                             <button
                                 type="button"
                                 onClick={() => setIsFastMode(true)}
                                 className={cn(
-                                    "flex items-center justify-center px-4 md:px-5 py-2 md:py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all",
+                                    "flex items-center justify-center px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-all",
                                     isFastMode
                                         ? "bg-[#A06C50] text-white shadow-sm"
                                         : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
@@ -327,7 +327,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                 type="button"
                                 onClick={() => setIsFastMode(false)}
                                 className={cn(
-                                    "flex items-center justify-center px-4 md:px-5 py-2 md:py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all",
+                                    "flex items-center justify-center px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-all",
                                     !isFastMode
                                         ? "bg-[#A06C50] text-white shadow-sm"
                                         : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
@@ -341,11 +341,11 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                             <button
                                 type="button"
                                 onClick={handleClearChat}
-                                className="text-slate-400 hover:text-slate-600 transition-colors p-2 md:bg-[#FAF6ED] md:border md:border-slate-200 md:rounded-full md:shadow-sm hover:bg-transparent active:scale-95 flex items-center justify-center shrink-0"
+                                className="text-slate-400 hover:text-slate-600 transition-colors p-1.5 md:p-2 md:bg-[#FAF6ED] md:border md:border-slate-200 md:rounded-full md:shadow-sm hover:bg-transparent active:scale-95 flex items-center justify-center shrink-0"
                                 title={t('chatbot.clearConversationTitle')}
                             >
-                                <X size={18} />
-                                <span className="hidden md:inline ml-2 text-sm font-bold uppercase tracking-widest pt-0.5">{t('chatbot.clear')}</span>
+                                <X size={16} className="md:w-[18px] md:h-[18px]" />
+                                <span className="hidden md:inline ml-2 text-xs font-bold uppercase tracking-widest pt-0.5">{t('chatbot.clear')}</span>
                             </button>
                         )}
                     </div>
