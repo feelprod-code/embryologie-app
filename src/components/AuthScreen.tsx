@@ -87,35 +87,35 @@ export const AuthScreen: React.FC = () => {
         <div className="fixed inset-0 z-50 flex justify-center bg-[#FBF7EC] overflow-y-auto no-scrollbar">
             <div className="absolute inset-0 bg-[url('https://feelprod.com/wp-content/uploads/2023/11/bg-texture.jpg')] opacity-[0.03] bg-cover mix-blend-multiply pointer-events-none"></div>
 
-            <div className="relative w-full max-w-md px-4 sm:px-8 pt-8 md:pt-8 pb-24 sm:pb-32 bg-transparent flex flex-col items-center z-10 min-h-full justify-start md:justify-center">
+            <div className="relative w-full max-w-md px-4 sm:px-8 pt-8 md:pt-8 pb-32 sm:pb-40 bg-transparent flex flex-col items-center z-10 min-h-full justify-start md:justify-center">
 
-                <div className="w-[10rem] h-[10rem] sm:w-[14rem] sm:h-[14rem] mb-2 sm:mb-0 mt-4 md:mt-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
+                <div className="w-[10rem] h-[10rem] sm:w-[14rem] sm:h-[14rem] md:w-[11rem] md:h-[11rem] lg:w-[14rem] lg:h-[14rem] mb-2 sm:mb-0 mt-4 md:mt-2 lg:mt-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
                     <img src="/icon-emb.png" alt="Embryologie" className="w-full h-full object-contain rounded-full" />
                 </div>
 
                 <div className="w-full flex flex-col items-center">
-                    <div className="flex flex-col items-center justify-center w-full mb-3 sm:mb-6 mt-2 sm:mt-8">
-                        <h1 className="text-4xl sm:text-6xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center">
+                    <div className="flex flex-col items-center justify-center w-full mb-3 sm:mb-6 md:mb-4 lg:mb-6 mt-2 sm:mt-8 md:mt-4 lg:mt-8">
+                        <h1 className="text-4xl sm:text-6xl md:text-5xl lg:text-6xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center">
                             L'EMBRYOLOGIE
                         </h1>
-                        <h2 className="text-3xl sm:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 sm:mt-2 text-center">
+                        <h2 className="text-3xl sm:text-5xl md:text-4xl lg:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 sm:mt-2 text-center">
                             BIODYNAMIQUE
                         </h2>
                     </div>
 
-                    <h4 className="text-[10px] sm:text-sm font-light text-slate-500 mb-5 sm:mb-10 text-center uppercase tracking-widest">
+                    <h4 className="text-[10px] sm:text-sm md:text-xs lg:text-sm font-light text-slate-500 mb-5 sm:mb-10 md:mb-6 lg:mb-10 text-center uppercase tracking-widest">
                         le cours de Marc Damoiseaux, <span className="font-medium text-slate-700">Ostéopathe D.O</span>
                     </h4>
                 </div>
 
                 {isSent ? (
                     <form onSubmit={handleVerifyOtp} className="w-full bg-white p-5 sm:p-6 rounded-3xl flex flex-col items-center text-center animate-in fade-in zoom-in duration-300 border border-slate-200 shadow-sm gap-3 sm:gap-4">
-                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#10B981]/10 rounded-full flex items-center justify-center mb-1 sm:mb-2">
-                            <Mail className="text-[#10B981] w-6 h-6 sm:w-8 sm:h-8" />
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#5A9C51]/10 rounded-full flex items-center justify-center mb-1 sm:mb-2">
+                            <Mail className="text-[#5A9C51] w-6 h-6 sm:w-8 sm:h-8" />
                         </div>
                         <h3 className="text-slate-800 font-bold text-lg sm:text-xl">Vérifiez vos emails</h3>
-                        <p className="text-slate-500 text-xs sm:text-sm mb-1 sm:mb-2">
-                            Voici le code envoyé à <strong className="text-slate-800 break-all">{email}</strong> :
+                        <p className="text-slate-500 text-xs sm:text-sm mb-1 sm:mb-2 px-2">
+                            Voici le code envoyé à <strong className="text-slate-800 break-words block mt-1 sm:mt-0 sm:inline">{email}</strong> :
                         </p>
 
                         {error && (
@@ -158,18 +158,6 @@ export const AuthScreen: React.FC = () => {
                         >
                             Modifier l'adresse email
                         </button>
-                        <p className="text-[10px] text-slate-400 text-center mt-3">
-                            <button
-                                type="button"
-                                onClick={() => {
-                                   localStorage.clear();
-                                   window.location.reload();
-                                }}
-                                className="flex items-center justify-center gap-1 mx-auto hover:text-red-500 transition-colors"
-                            >
-                                <Trash2 className="w-3 h-3" /> Vider le cache de l'appareil
-                            </button>
-                        </p>
                     </form>
                 ) : (
                     <form onSubmit={handleLogin} className="w-full flex flex-col gap-4">
@@ -253,28 +241,23 @@ export const AuthScreen: React.FC = () => {
                                 DEV: Forcer l'accès Admin
                             </button>
                         )}
-                        
-                        <p className="text-[10px] text-slate-400 text-center mt-6">
-                            <button
-                                type="button"
-                                onClick={() => {
-                                   localStorage.clear();
-                                   window.location.reload();
-                                }}
-                                className="flex items-center justify-center gap-1 mx-auto hover:text-red-500 transition-colors"
-                            >
-                                <Trash2 className="w-3 h-3" /> Vider le cache de l'appareil
-                            </button>
-                        </p>
                     </form>
                 )}
+
             </div>
 
-            {/* Footer FeelProd */}
-            <div className="absolute bottom-8 w-full flex flex-col items-center justify-end opacity-90 z-0 pointer-events-none gap-2">
-                <h3 className="text-xs sm:text-sm font-bebas tracking-[0.15em] text-slate-400 text-center uppercase">
-                    Techniques Douces Tissulaires
-                </h3>
+            {/* Footer FeelProd et bouton Cache */}
+            <div className="absolute bottom-4 sm:bottom-8 w-full flex flex-col items-center justify-end opacity-90 z-20 gap-4">
+                <button
+                    type="button"
+                    onClick={() => {
+                       localStorage.clear();
+                       window.location.reload();
+                    }}
+                    className="flex items-center justify-center gap-1 text-[11px] sm:text-xs font-bold text-[#4171B5] hover:text-[#4171B5]/80 transition-colors px-3 py-1.5"
+                >
+                    <Trash2 className="w-3.5 h-3.5" /> Vider le cache de l'appareil
+                </button>
                 <div className="flex flex-col items-center justify-center gap-1">
                     <span className="text-[10px] sm:text-[11px] md:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20">
                         Réalisation Feelprod
