@@ -52,7 +52,7 @@ export function Home(_props: HomeProps) {
                 {/* Center - Vignette & Player */}
                 <div className="flex flex-col items-center justify-center w-full flex-none mt-2 sm:mt-0">
                     {/* Podcast Thumbnail/Vignette */}
-                    <div className="relative w-[86vw] max-w-[360px] sm:max-w-[340px] lg:w-[25rem] xl:w-[29rem] aspect-square shrink-0 mb-4 mt-4 sm:mt-6 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                    <div className="relative w-[92vw] max-w-[420px] sm:max-w-[400px] lg:w-[28rem] xl:w-[32rem] aspect-square shrink-0 mb-4 mt-2 sm:mt-4 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                         <img
                             src={`${import.meta.env.BASE_URL}PODCAST.png`}
                             alt="Podcast Embryologie Biodynamique"
@@ -66,7 +66,7 @@ export function Home(_props: HomeProps) {
                             src={podcastAudioSrc}
                             className="w-full mb-1"
                         />
-                        <span className="font-handwriting text-3xl sm:text-5xl lg:text-4xl text-slate-600 mt-2 sm:mt-4 lg:mt-2 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                        <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-2 sm:mt-3 lg:mt-2 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                             {t('home.start')}
                         </span>
                     </div>
