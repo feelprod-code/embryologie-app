@@ -5099,11 +5099,6 @@ Cela implique qu'une **déstabilisation** de la hanche peut déstabiliser le cœ
 Il existe une relation complexe à travers l'**endothélium**, ce tissu qui relie l'ensemble du système.
 
 
-![Circulation embryo liquide
-céphalo-rachidien](/images/schemas/mesoderme/meso-09/Mesoderme_60.jpeg)
-
-
-
 ![Pliage embryonnaire latéral](/images/schemas/mesoderme/meso-09/Mesoderme_149.jpeg)
 
 
@@ -5125,6 +5120,11 @@ céphalo-rachidien](/images/schemas/mesoderme/meso-09/Mesoderme_60.jpeg)
 
 
 ![Développement tube digestif embryonnaire](/images/schemas/mesoderme/meso-09/Mesoderme_16.jpeg)
+
+
+
+![Circulation embryo liquide
+céphalo-rachidien](/images/schemas/mesoderme/meso-09/Mesoderme_60.jpeg)
 
 `,
   },
@@ -8300,10 +8300,6 @@ Lorsque vous êtes bien ancré dans votre **règne minéral**, vous pouvez vous 
 Lorsque l'on demande à un maître combien de temps il faut rester dans cette méditation, il répondra : "Autant de temps que tu peux rester." 
 
 Finalement, relâchez-vous et bougez légèrement les mains pour amener un peu d'**énergie**. En fléchissant légèrement les genoux, vous pouvez stimuler la circulation de l'énergie dans votre corps.
-
-
-![Développement œil embryonnaire](/images/schemas/endoderme/endo-03/Endoderme_41.png)
-
 `,
   },
   {
