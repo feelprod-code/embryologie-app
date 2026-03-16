@@ -918,5 +918,209 @@
       "after_text": "Nous pouvons également travailler sur l'os hyoïde en lien avec son fulcrum embryonnaire.",
       "reasoning": "This schema illustrates porto-caval anastomoses, relevant to the broader discussion of the digestive system's embryological connections and vascularization, placing it after the mention of the hyoid bone's embryological fulcrum provides a logical transition."
     }
+  ],
+  "endo-35": [
+    {
+      "schema_src": "Endoderme_186.jpeg",
+      "after_text": "Cette phase de développement **duodénal** est caractérisée par une **rotation** et une **organisation** du cadre duodéno, de l'intestin grêle et du colon. Nous allons explorer cette dynamique en relation avec le duodénum.",
+      "reasoning": "Ce schéma illustre la rotation et l'organisation du duodénum, de l'intestin grêle et du côlon, ce qui correspond au début de la section."
+    },
+    {
+      "schema_src": "Endoderme_137.jpeg",
+      "after_text": "Le tissu qui se développe autour de cette dynamique est le **petit épiplon**, qui organise et rééquilibre le sphincter pylorique. L'ensemble de ce mouvement crée les **fonctions sphinctériennes**. En parallèle, deux ébauches pancréatiques se forment, une ventrale et une dorsale, suivant la même phase de rotation.",
+      "reasoning": "Après avoir parlé des fonctions sphinctériennes et du mouvement créant les fascias, ce schéma des fascias d'accolement duodénum s'insère logiquement."
+    },
+    {
+      "schema_src": "Endoderme_139.jpeg",
+      "after_text": "Le sphincter de D, en relation avec le développement du foie et du pancréas, est un point fixe essentiel. La motilité du foie est cruciale pour le bon fonctionnement du système digestif. Une déstabilisation du cadre duodénal peut également perturber la fertilité en affectant les artères ovariennes et spermatique.",
+      "reasoning": "L'ampoule de Vater est un point clé dans le duodénum et sa mention est pertinente après la discussion sur l'importance du sphinter de D et du foie/pancréas."
+    },
+    {
+      "schema_src": "Endoderme_140.jpeg",
+      "after_text": "Le muscle de Tretz, en tant que carrefour vasculaire, influence le débit sanguin intra-péritonéal et sus-mésocolique. Les viscérospasmes peuvent avoir des répercussions sur la circulation sanguine, affectant ainsi l'état métabolique et digestif.",
+      "reasoning": "Ce schéma illustre la terminaison des canaux bilio-pancréatiques qui se jette dans le duodénum, ce qui est pertinent après la discussion sur les spasmes digestifs et le débit sanguin."
+    },
+    {
+      "schema_src": "Endoderme_142.jpeg",
+      "after_text": "Le traitement des déséquilibres au niveau du duodénum nécessite une approche holistique, prenant en compte les interactions entre les différents systèmes. La compréhension de l'embryologie, de l'anatomie et de la physiologie est essentielle pour appréhender les liens entre le corps, l'esprit et la santé globale.",
+      "reasoning": "Ce schéma sur les rapports postérieurs du duodénum complète la discussion anatomique globale qui précède et conclut une partie du texte."
+    },
+    {
+      "schema_src": "Endoderme_143.jpeg",
+      "after_text": "Le traitement des déséquilibres au niveau du duodénum nécessite une approche holistique, prenant en compte les interactions entre les différents systèmes. La compréhension de l'embryologie, de l'anatomie et de la physiologie est essentielle pour appréhender les liens entre le corps, l'esprit et la santé globale.",
+      "reasoning": "La vascularisation est un aspect clé du duodénum et sa place en fin de texte résume l'importance de son rôle avec le pancréas, cohérent avec l'approche holistique."
+    }
+  ],
+  "endo-37": [
+    {
+      "schema_src": "Endoderme_147.png",
+      "after_text": "Ces cellules endodermiques jouent un rôle clé dans ce processus.",
+      "reasoning": "Cette image montre les étapes de l'hépatogenèse et est pertinente après la mention des cellules endodermiques et du processus."
+    },
+    {
+      "schema_src": "Endoderme_153.jpeg",
+      "after_text": "le développement du cerveau, du cœur et du diaphragme est interconnecté et essentiel à la formation du foie.",
+      "reasoning": "Cette image illustre la localisation et la taille relative du foie fœtal, en lien avec le cerveau et le coeur."
+    },
+    {
+      "schema_src": "Endoderme_155.jpeg",
+      "after_text": "Il représente un système exocrine qui sécrète des substances dans la lumière intestinale.",
+      "reasoning": "Cette image montre le système vasculaire primitif à 28 jours, pertinent après la discussion sur l'expansion du tube digestif et le rôle exocrine."
+    },
+    {
+      "schema_src": "Endoderme_156.jpeg",
+      "after_text": "le développement du foie est un des **fulcrums** principaux pour l'organisation de tout le tube digestif.",
+      "reasoning": "L'image illustre la circulation embryonnaire à 8 semaines, montrant le foie comme un point central, supportant l'idée du 'fulcrum'."
+    },
+    {
+      "schema_src": "Endoderme_157.jpeg",
+      "after_text": "Il est souvent décrit comme l'**usine d'épuration** du corps, travaillant en synergie avec les reins pour l'élimination des déchets.",
+      "reasoning": "Cette image de la circulation veineuse embryonnaire est pertinente après la mention des fonctions de nettoyage et l'importance du foie."
+    },
+    {
+      "schema_src": "Endoderme_159.png",
+      "after_text": "Ces vaisseaux forment des anastomoses qui établissent des liens hépatiques.",
+      "reasoning": "L'image du développement vasculaire embryonnaire est parfaitement adaptée après la description des veines vitellines et ombilicales et de leurs anastomoses."
+    },
+    {
+      "schema_src": "Endoderme_160.png",
+      "after_text": "Le foie, en tant que point d'appui central, joue un rôle crucial dans l'équilibre embryologique.",
+      "reasoning": "Cette image du système porte embryonnaire illustre le rôle central du foie dans le système vasculaire embryonnaire."
+    },
+    {
+      "schema_src": "Endoderme_166.jpeg",
+      "after_text": "Les tensions et les mouvements dans ces espaces de développement communs influencent la santé et le fonctionnement du foie.",
+      "reasoning": "Cette image de la circulation hépatique est une bonne introduction à la section suivante sur les spécificités de la circulation hépatique."
+    },
+    {
+      "schema_src": "Endoderme_167.png",
+      "after_text": "En revanche, pendant la nuit, la circulation s'inverse, permettant au foie de se régénérer sur le plan cellulaire.",
+      "reasoning": "Cette image du système biliaire intrahépatique est une conclusion visuelle appropriée au texte, expliquant une partie de la structure interne du foie, son fonctionnement et sa régénération."
+    }
+  ],
+  "endo-38": [
+    {
+      "schema_src": "Endoderme_125.png",
+      "after_text": "un pancréas exocrine et un pancréas endocrine. Le pancréas exocrine secrète des substances en rapport avec le système des sucs gastriques et sucs pancréatiques, tels que l'amylase, la lipase et la protéase.",
+      "reasoning": "Ce schéma illustrant l'irrigation des organes digestifs, y compris le pancréas, est pertinent après la description de ses fonctions exocrines pour montrer son contexte anatomique."
+    },
+    {
+      "schema_src": "Endoderme_141.jpeg",
+      "after_text": "Lors de la dissection, il est important de noter qu'il est très difficile de séparer le duodénome du pancréas, car ils sont profondément accolés.",
+      "reasoning": "Le schéma des vaisseaux duodénopancréatiques vient illustrer la connexion étroite et la difficulté de séparation entre le duodénum et le pancréas mentionnées dans le texte."
+    }
+  ],
+  "endo-39": [
+    {
+      "schema_src": "Endoderme_172.png",
+      "after_text": "Cette artère, qui se divise à partir de l'aorte, constitue l'axe de la rotation intestinale.",
+      "reasoning": "Cette image montre une anse intestinale en rotation, ce qui correspond au sujet du paragraphe précédent."
+    },
+    {
+      "schema_src": "Endoderme_174.jpeg",
+      "after_text": "On observe également une structure mésodermique, qui est enveloppée dans un tissu, correspondant à la tâche future au niveau ombilical, le canal ophalo-mésentérique.",
+      "reasoning": "L'image illustre l'appareil digestif embryonnaire qui se met en place selon la description."
+    },
+    {
+      "schema_src": "Endoderme_175.jpeg",
+      "after_text": "Le colon commence à se gonfler, et l'artère mésentérique supérieure devient le point d'appui fondamental pour le développement intestinal.",
+      "reasoning": "Cette image montre la rotation de l'intestin moyen autour de l'artère mésentérique supérieure."
+    },
+    {
+      "schema_src": "Endoderme_184.jpeg",
+      "after_text": "Ce point d'appui est essentiel pour le corps et influence la dynamique de croissance de l'intestin.",
+      "reasoning": "L'image illustre les troncs artériels embryonnaires, dont l'artère mésentérique supérieure mentionnée."
+    },
+    {
+      "schema_src": "Endoderme_176.jpeg",
+      "after_text": "Une concentration métabolique plus importante se développe vers le haut, tandis que la partie inférieure croît moins rapidement, formant ainsi l'ébauche de l'angle colique gauche.",
+      "reasoning": "L'image représente un intestin grêle vascularisé, illustrant la croissance et la vascularisation différentielle."
+    },
+    {
+      "schema_src": "Endoderme_122.jpeg",
+      "after_text": "Si l'apport trophique est insuffisant, cela peut entraîner des complications.",
+      "reasoning": "L'image montre la circulation des villosités intestinales, ce qui est directement lié à l'apport trophique discuté."
+    },
+    {
+      "schema_src": "Endoderme_133.jpeg",
+      "after_text": "La réintégration de l'intestin se produit au cours du développement, notamment autour du troisième mois de grossesse, lorsque le cordon ombilical commence à se former.",
+      "reasoning": "Cette image illustre le pli ventral/latéral de l'embryon, lié à la formation de la cavité corporelle et à la réintégration intestinale."
+    },
+    {
+      "schema_src": "Endoderme_135.jpeg",
+      "after_text": "Ce processus est crucial pour établir les connexions avec la mère, notamment à travers la cavité amniotique, qui permet des échanges électrolytiques et hormonaux.",
+      "reasoning": "L'image représente une amniocentèse, l'embryon et l'utérus, illustrant le contexte de la cavité amniotique et des échanges."
+    },
+    {
+      "schema_src": "Endoderme_187.jpeg",
+      "after_text": "Les problèmes intestinaux chez les enfants, tels que les appendicites, peuvent être liés à des phases de développement embryonnaire.",
+      "reasoning": "Cette image montre les variations de position de l'appendice et du cæcum, directement liées au sujet des appendicites."
+    },
+    {
+      "schema_src": "Endoderme_188.jpeg",
+      "after_text": "Les problèmes intestinaux chez les enfants, tels que les appendicites, peuvent être liés à des phases de développement embryonnaire.",
+      "reasoning": "L'image détaille les différentes positions possibles de l'appendice, appuyant l'explication sur les appendicites."
+    },
+    {
+      "schema_src": "Endoderme_189.jpeg",
+      "after_text": "Les problèmes intestinaux chez les enfants, tels que les appendicites, peuvent être liés à des phases de développement embryonnaire.",
+      "reasoning": "L'image illustre la vascularisation de l'appendice et du cæcum, un aspect important dans les problématiques d'appendicite."
+    },
+    {
+      "schema_src": "Endoderme_196.jpeg",
+      "after_text": "Le traitement des troubles intestinaux doit prendre en compte la dynamique péritonéale et les relations entre les différents organes.",
+      "reasoning": "Cette image, représentant un 'tourbillon embryologique', peut symboliser la dynamique et les relations complexes des organes digestifs."
+    }
+  ],
+  "endo-40": [
+    {
+      "schema_src": "Endoderme_173.jpeg",
+      "after_text": "Normalement, la tension épigastrique doit être légèrement supérieure à la tension hypogastrique.",
+      "reasoning": "Le schéma du tube digestif embryonnaire peut illustrer la base anatomique et développementale des tensions abdominales discutées."
+    }
+  ],
+  "endo-41": [
+    {
+      "schema_src": "Endoderme_183.jpeg",
+      "after_text": "Le praticien peut alors aborder des zones spécifiques comme l'hépatique et le sigmoïdien, permettant une détente complète.",
+      "reasoning": "Le schéma de l'anatomie du côlon est logiquement placé après la mention des zones hépatique et sigmoïdienne, qui sont des parties du côlon, pour illustrer ces points spécifiques."
+    }
+  ],
+  "meso-04": [
+    {
+      "schema_src": "Mesoderme_11.png",
+      "after_text": "On observe l'apparition de la ligne primitive et de l'axe notochordal.",
+      "reasoning": "This image illustrates the early embryonic development, showing the primitive streak and notochordal axis as mentioned in the preceding text."
+    },
+    {
+      "schema_src": "Mesoderme_2.png",
+      "after_text": "C'est ainsi que l'espace entre le tissu épiblastique et hypoblastique devient le tissu mésenchymateux primitif, futur mésoderme.",
+      "reasoning": "This image depicts human gastrulation at 3 weeks, which is when the mesenchymal tissue forms the mesoderm, directly following the explanation of this process."
+    },
+    {
+      "schema_src": "Mesoderme_5.jpeg",
+      "after_text": "La notochorde, positionnée ici, est liée au nœud d'Hensen.",
+      "reasoning": "This image illustrates human gastrulation including the Hensen's node and notochord, which is directly discussed in the preceding sentence."
+    },
+    {
+      "schema_src": "Mesoderme_13.png",
+      "after_text": "Cette ligne primitive se retrouve au niveau de la base sacro-coccygienne, constituant un vestige énergétique.",
+      "reasoning": "This image shows human embryonic gastrulation, which includes the primitive streak's regression towards the sacro-coccygeal region, as described."
+    },
+    {
+      "schema_src": "Mesoderme_3.png",
+      "after_text": "La première impulsion se produit sur le tissu hypoblastique. C'est à ce moment que l'épiblaste devient ectoderme et l'hypoblaste devient endoderme.",
+      "reasoning": "This image illustrates mesenchymal migration, which is part of the process when the epiblast and hypoblast differentiate into ectoderm and endoderm."
+    },
+    {
+      "schema_src": "Mesoderme_4.jpeg",
+      "after_text": "Ceci se passe entre le quatorzième et le seizième jour.",
+      "reasoning": "This image shows gastrulation at 16 days, which is the time frame for the mesoderm integration mentioned."
+    },
+    {
+      "schema_src": "Mesoderme_128.jpeg",
+      "after_text": "L'aspect présomptif du cœur est déterminé par ce champ d'action.",
+      "reasoning": "This image illustrates early neurulation, a stage that follows mesoderm formation and where key structures like the presumptive heart region begin to be determined by the notochordal influence."
+    }
   ]
 }
