@@ -268,6 +268,10 @@ Par exemple, un enfant qui présente un problème de développement moteur : il 
 Cela implique que votre **premier cerveau** est entérique, il n'est pas du tout ici (dans la tête). Le cerveau céphalique s'est développé dans la logique, au départ pour lui. Nous l'avons tellement développé que nous avons perdu de vue cette connexion, nous sommes coupés.
 
 Cette chronologie est importante et doit être apprise dans ce sens. Nous verrons que dans le développement ontogénétique, cela se suivra, même si nous ne le verrons pas toujours en apparence.
+
+![Systèmes biologiques et anatomiques](/images/schemas/ectoderme/ecto-03/Ectoderme_1.png)
+
+
 `,
   },
   {
@@ -300,6 +304,10 @@ En tant qu'**ostéopathes**, notre connaissance de l'anatomie et de sa fonction 
 ## La Cellule : Un Univers de Tenségrité
 
 Prenons l'exemple d'une **cellule**. Elle est reliée à d'autres cellules par des **molécules d'adhésion intercellulaire**, qui maintiennent la structure. Ce que nous avons découvert, c'est que la cellule possède un **cytosquelette**. Ce squelette interne est relié à la membrane et s'étend jusqu'au noyau, formant des lignes de force et des structures précises à l'intérieur de la cellule.
+
+![Cytosquelette cellulaire](/images/schemas/ectoderme/ecto-04/Ectoderme_3.png)
+
+
 
 ### Le Concept de Tenségrité
 
@@ -341,6 +349,22 @@ La **force électromagnétique** est particulièrement intéressante car elle pe
 C'est ce qui nous amène au concept de **l'homme polarisé**. La **loi de Maxwell** est très simple : si vous avez un champ électrique, vous avez toujours un champ électromagnétique autour. 
 
 En d'autres termes, un champ électrique génère inévitablement un champ électromagnétique environnant. Cette interaction est fondamentale pour comprendre comment notre corps fonctionne et interagit avec son environnement.
+
+
+![Protéine, Zinc, Sulfate](/images/schemas/ectoderme/ecto-04/Ectoderme_57.png)
+
+
+
+![Structure de tenségrité](/images/schemas/ectoderme/ecto-04/Ectoderme_4.jpeg)
+
+
+
+![Tensegrité](/images/schemas/ectoderme/ecto-04/Ectoderme_5.jpeg)
+
+
+
+![Système matriciel tissulaire](/images/schemas/ectoderme/ecto-04/Ectoderme_6.jpeg)
+
 `,
   },
   {
@@ -476,6 +500,14 @@ Si une cellule subit une contrainte trop forte, elle meurt. Ce processus est app
 Le corps utilise la multiplication, la différenciation et l'apoptose pour se développer et grandir. Si un groupe de cellules reçoit une contrainte mécanique de compression trop importante, il ne restera qu'un **exsudat cellulaire**.
 
 Ce cours nous a permis de poser les bases de la compréhension de l'embryologie biodynamique, en mettant en lumière l'importance des **champs métaboliques**, des **communications cellulaires** et des forces qui guident le développement de la vie.
+
+
+![Cellule eucaryote](/images/schemas/ectoderme/ecto-05/Ectoderme_7.png)
+
+
+
+![Structure histologique granulaire](/images/schemas/ectoderme/ecto-05/Ectoderme_2.jpeg)
+
 `,
   },
   {
@@ -517,6 +549,10 @@ Pour faciliter la compréhension, nous utiliserons un code couleur :
 
 Cette reconnaissance permet de se situer dans le système et de percevoir sa dynamique.
 
+![Feuillets embryonnaires](/images/schemas/ectoderme/ecto-06/Ectoderme_11.png)
+
+
+
 ## Le Lien entre Histologie, Embryologie et Biodynamique
 
 Cette approche établit un pont entre l'histologie, l'embryologie classique et l'embryologie biodynamique.
@@ -536,6 +572,10 @@ Le tympan est une illustration parfaite de cette organisation :
 ### La Dépendance des Tissus de Limite
 
 Le tissu de frontière (épithélial) est toujours dépendant du tissu d'intérieur (conjonctif). Les vaisseaux et la nutrition proviennent du tissu d'intérieur et sont distribués au tissu de frontière. En d'autres termes, le tissu mésodermique contient l'information trophique nécessaire à la croissance et au maintien des autres tissus.
+
+![Feuillets embryonnaires](/images/schemas/ectoderme/ecto-06/Ectoderme_12.png)
+
+
 
 ## Congestion et Assèchement des Tissus
 
@@ -766,6 +806,22 @@ Dès le début du **vingtième jour**, une forme commence déjà à se dessiner.
 Au départ, c'est simplement un **ovule** qui a reçu le patrimoine génétique du père, le **spermatozoïde**. Les deux patrimoines sont en train de se rencontrer. C'est à peu près la première image de votre vie.
 
 Nous observons alors ce qu'on appelle la **zone pellucida** et des **cellules nourricières**. Il y a plusieurs couches de cellules importantes qui se mettent en place.
+
+
+![Développement utérin fœtal](/images/schemas/ectoderme/ecto-07/Ectoderme_18.jpeg)
+
+
+
+![Développement embryonnaire humain](/images/schemas/ectoderme/ecto-07/Ectoderme_13.png)
+
+
+
+![Embryon neurulation sagittale](/images/schemas/ectoderme/ecto-07/Ectoderme_50.png)
+
+
+
+![Embryon, 6-7 semaines](/images/schemas/ectoderme/ecto-07/Ectoderme_61.png)
+
 `,
   },
   {
@@ -788,6 +844,10 @@ Lorsqu'une cellule a son noyau placé au centre, elle n'est pas **polarisée**. 
 Cette possibilité d'échange est valable pour tout l'environnement cellulaire. Il est crucial de retenir que dans toutes les cellules de notre corps, le noyau est toujours **excentré**. 
 
 Cette excentration est une image de la polarité. En effet, une cellule avec un noyau excentré présente une **activité métabolique** accrue à cet endroit. Cela augmente la force métabolique, ce qui est l'expression même de la polarité.
+
+![Microvillosités entérocytes](/images/schemas/ectoderme/ecto-08/Ectoderme_8.jpeg)
+
+
 
 ## La Polarisation de l'Ovocyte
 
@@ -1013,7 +1073,11 @@ Les spermatozoïdes doivent passer plusieurs couches pour atteindre la **zona pe
 
 ## La première cellule de vie
 
-La rencontre des patrimoines génétiques des deux cellules forme la première cellule de vie. Ce processus dynamique donne naissance aux deux premiers **blastomères**, qui sont les premières cellules germes-mères. 
+La rencontre des patrimoines génétiques des deux cellules forme la première cellule de vie. Ce processus dynamique donne naissance aux deux premiers **blastomères**, qui sont les premières cellules germes-mères.
+
+![Ovule fécondé](/images/schemas/ectoderme/ecto-11/Ectoderme_14.jpeg)
+
+ 
 
 Cette recherche sur la polarité et les premières phases de développement embryonnaire est essentielle pour comprendre les bases de la vie.
 `,
@@ -1063,6 +1127,10 @@ Au départ, nous avons deux cellules et deux noyaux, offrant une certaine capaci
 
 Le **potentiel énergétique** et métabolique est plus ou moins fort selon la position dans la cellule, avec des zones plus puissantes. Chaque division représente une transformation et une ouverture importantes.
 
+![Blastocyste en segmentation](/images/schemas/ectoderme/ecto-12/Ectoderme_24.jpeg)
+
+
+
 ## La Phase de Concentration et l'Éclosion
 
 Durant les trois à quatre premiers jours, l'ensemble se divise mais ne grandit pas, restant dans le même espace. C'est comme si une puissance interne se concentrait, créant une masse d'**énergie métabolique** prête à "exploser" et à rechercher de nouvelles forces trophiques.
@@ -1079,6 +1147,10 @@ Juste avant l'éclosion, au sein de cette couche, chaque division cellulaire pro
 
 La toute première cavité qui apparaît, remplie d'eau, se joint et forme une petite cavité.
 
+![Blastocyste cavitation](/images/schemas/ectoderme/ecto-12/Ectoderme_20.jpeg)
+
+
+
 ## Le Blastocèle : Première Cavité Fluide
 
 Cette petite cavité est appelée le **blastocèle**. Le terme "blastocèle" signifie littéralement "germe du ciel", et cette cavité aura une grande importance pour la future **cavité péritonéale**.
@@ -1089,6 +1161,10 @@ L'excentricité de cette cavité entraîne une concentration de cellules à un p
 
 Entre cette phase et la suivante, se produit l'éclosion. La membrane périphérique ne peut plus contenir l'ensemble. Une rupture se produit, et l'embryon commence à quitter cet espace.
 
+![Pincement embryonnaire par contraction](/images/schemas/ectoderme/ecto-12/Ectoderme_29.jpeg)
+
+
+
 Le passage de cette première cavité contenant l'exsudat, formant le blastocèle, va grandir. La différence avec la phase précédente est que maintenant, l'embryon est beaucoup plus grand car il est sorti de la membrane.
 
 Il est crucial de retenir que pendant les trois premiers jours, l'embryon ne grandit pas. Mais à l'intérieur, une puissance s'accumule, jusqu'à la rupture du tissu environnant et l'éclosion.
@@ -1096,6 +1172,30 @@ Il est crucial de retenir que pendant les trois premiers jours, l'embryon ne gra
 L'embryon quitte son "œuf" et se retrouve dans le milieu extérieur. Dans ce milieu extérieur, il s'organise très rapidement en une zone concentrée de cellules et une cavité.
 
 C'est toujours la même image du blastocèle, mais cette fois-ci, il va développer ce que l'on appelle un **pôle embryonnaire**, avec une concentration de cellules plus importante d'un côté que de l'autre. Ce pôle est un pôle d'assimilation, cherchant à "prendre l'intérieur".
+
+
+![Développement embryonnaire précoce](/images/schemas/ectoderme/ecto-12/Ectoderme_16.jpeg)
+
+
+
+![Embryon 2 cellules](/images/schemas/ectoderme/ecto-12/Ectoderme_19.jpeg)
+
+
+
+![Coque embryonnaire déformée](/images/schemas/ectoderme/ecto-12/Ectoderme_79.jpeg)
+
+
+
+![Blastocyste cavitation NaKATPase](/images/schemas/ectoderme/ecto-12/Ectoderme_26.png)
+
+
+
+![Blastula Micromères PV](/images/schemas/ectoderme/ecto-12/Ectoderme_21.jpeg)
+
+
+
+![Embryon de gastéropode](/images/schemas/ectoderme/ecto-12/Ectoderme_23.jpeg)
+
 `,
   },
   {
@@ -1122,6 +1222,10 @@ Je vais rechercher la **muqueuse utérine**. Qu'a-t-elle fait ? Elle est devenue
 Le **zygote** arrive dans l'utérus. Il est là, et moi, le zygote, qu'est-ce dont j'ai besoin ? J'ai besoin de chaleur, de **sucre**, d'**activité électrolytique**, et d'un début d'**oxygène** pour le futur développement.
 
 Nous allons aborder le moment de l'**implantation** après la pause.
+
+
+![Éclosion blastocyste](/images/schemas/ectoderme/ecto-13/Ectoderme_22.png)
+
 `,
   },
   {
@@ -1169,6 +1273,10 @@ Des cellules s'organisent autour de cette cavité. Les cellules en regard de la 
 
 En d'autres termes, des cellules regardent la cavité amniotique et d'autres regardent la cavité du blastocèle. Ces dernières participeront plus tard à une autre formation, que nous expliquerons.
 
+![Embryon humain 9 jours](/images/schemas/ectoderme/ecto-14/Ectoderme_35.jpeg)
+
+
+
 Il est important d'imaginer qu'à ce stade, une **différenciation cellulaire** apparaît déjà. Deux cavités se forment :
 - Tout ce qui sera hypoblastique donnera le futur **système digestif**.
 - Tout ce qui sera épiblastique donnera le futur **système neuronal**.
@@ -1195,6 +1303,10 @@ L'information de **pression interne et externe** est cruciale. L'intégration du
 
 Ici, nous avons encore un zygote. Le **fœtus** apparaît avec le processus axial primitif, c'est-à-dire la **gastrulation**. C'est alors qu'il y a une forme fœtale.
 
+![Développement embryonnaire précoce](/images/schemas/ectoderme/ecto-14/Ectoderme_38.jpeg)
+
+
+
 En attendant, la femme offre un "paysage lunaire" riche en muqueuses, glandes et nourriture. C'est le moment du choix, où l'embryon peut pénétrer la muqueuse.
 
 L'embryon cherche à adhérer, envoyant de l'acide. Il y a une activité métabolique très importante.
@@ -1203,7 +1315,35 @@ Au huitième jour, l'embryon pénètre la muqueuse. Des pressions à droite et �
 
 Dans le bouton embryonnaire, au moment où cette cavité apparaît, des cellules s'organisent et s'orientent vers elle. C'est là qu'apparaissent l'épiblaste et l'hypoblaste.
 
+![Néphron en développement](/images/schemas/ectoderme/ecto-14/Ectoderme_43.jpeg)
+
+
+
 À ce stade, nous avons déjà une préparation pour un tissu de type digestif et un tissu de type neurologique.
+
+![Neurulation</td></tr></table>](/images/schemas/ectoderme/ecto-14/Ectoderme_34.jpeg)
+
+
+
+
+![Implantation du blastocyste](/images/schemas/ectoderme/ecto-14/Ectoderme_17.jpeg)
+
+
+
+![Implantation du blastocyste](/images/schemas/ectoderme/ecto-14/Ectoderme_30.jpeg)
+
+
+
+![8ème jour embryonnaire](/images/schemas/ectoderme/ecto-14/Ectoderme_31.jpeg)
+
+
+
+![Développement embryonnaire précoce](/images/schemas/ectoderme/ecto-14/Ectoderme_36.jpeg)
+
+
+
+![Embryon 14-15 jours](/images/schemas/ectoderme/ecto-14/Ectoderme_37.jpeg)
+
 `,
   },
   {
@@ -1412,6 +1552,10 @@ Ce mouvement transforme le tissu, qui au départ était plat, en un tissu avec u
 Il est crucial de noter l'erreur entre les représentations de ces deux dessins. Le cœlome externe doit être beaucoup plus grand. L'erreur réside dans la taille relative des structures. Il est nécessaire de redimensionner le dessin pour avoir une vision plus juste, car c'est dans ce passage entre le cœlome externe et la cavité vitelline que le pédicule se dessine.
 
 Dans ce pédicule, un mouvement de **perméation**, de **parméation** et d'**infusion** se développe, créant un mouvement vers l'avant de la cavité amniotique, légèrement moins marqué en dessous. Cela entraîne une bascule, et ce mouvement de bascule crée une forme de S au sein de l'épiblaste et de l'endoblaste.
+
+
+![Sels de calcium](/images/schemas/ectoderme/ecto-17/Ectoderme_28.jpeg)
+
 `,
   },
   {
@@ -1520,7 +1664,19 @@ La **notocorde** se forme en réponse à ce mouvement. À ce stade, une traction
 
 Le dessin illustré montre une coupe qui met en évidence le mouvement des **cellules épithéliales** de l'épiblaste. Ces cellules sont tirées vers le centre, remplissant ainsi l'espace qui se crée entre l'épiblaste et l'hypoblaste.
 
+![Gastrulation](/images/schemas/ectoderme/ecto-20/Ectoderme_56.jpeg)
+
+
+
 Cet espace, qui s'ouvre lors de la formation de la vague, est essentiel pour l'apparition du **tissu intermédiaire** connu sous le nom de **mésoblaste**, qui deviendra le futur **mésoderme**.
+
+
+![Gastrulation aviaire](/images/schemas/ectoderme/ecto-20/Ectoderme_53.png)
+
+
+
+![Gastrulation humaine 16 jours](/images/schemas/ectoderme/ecto-20/Ectoderme_55.jpeg)
+
 `,
   },
   {
@@ -1889,20 +2045,40 @@ Fais cela.
 
 Nous allons continuer le mouvement de l'embryon et aborder la **plicature**. Ce concept a été une révélation pour comprendre ce qu'est une **articulation**. C'est l'algorithme qui génère cette **vitesse de croissance différentielle**, conduisant à la flexion de l'embryon.
 
+![Embryon humain, stade jeune](/images/schemas/ectoderme/ecto-29/Ectoderme_15.jpeg)
+
+
+
 Une **dynamique fluide** organise l'embryon à ce niveau. La **notochorde**, essentielle à son développement, va maintenant influencer une structure située au-dessus d'elle : le **tube neural**, ou plutôt le futur tube neural.
 
 ## L'influence de la notochorde
 
-Nous nous situons entre le **dix-huitième** et le **vingtième jour** de développement. Nous avons le **processus axial**, c'est-à-dire la notochorde, et au-dessus, le tissu **ectodermique**. Nous progressons dans l'étude des stades embryonnaires.
+Nous nous situons entre le **dix-huitième** et le **vingtième jour** de développement.
+
+![Développement embryonnaire oiseau](/images/schemas/ectoderme/ecto-29/Ectoderme_33.jpeg)
+
+ Nous avons le **processus axial**, c'est-à-dire la notochorde, et au-dessus, le tissu **ectodermique**. Nous progressons dans l'étude des stades embryonnaires.
 
 La notochorde, qui a établi la **polarité** et créé un futur espace pour le **sacrum** et la **base du crâne**, influence le développement et l'organisation structurelle de l'ectoderme. Au-dessus de la notochorde, nous observons une **plaque neurale**.
+
+![Gastrulation](/images/schemas/ectoderme/ecto-29/Ectoderme_40.jpeg)
+
+
 
 Prenons une coupe. Les cellules ectodermiques directement au-dessus de la notochorde reçoivent une **information génétique d'inhibition**, entraînant un ralentissement de leur croissance.
 
 - Les cellules centrales au niveau de la notochorde sont inhibées dans leur croissance.
 - Les cellules ectodermiques latérales, par contre, n'ont pas ce frein et se développent même plus vite.
 
+![Gastrulation amphibien](/images/schemas/ectoderme/ecto-29/Ectoderme_44.jpeg)
+
+
+
 Ce processus engendre un **changement de forme** de l'ectoderme.
+
+![Embryon en coupe sagittale](/images/schemas/ectoderme/ecto-29/Ectoderme_41.png)
+
+
 
 ## Formation de la gouttière neurale et des vaisseaux préaortiques
 
@@ -1910,13 +2086,21 @@ Ce développement différentiel provoque la formation d'une **gouttière**, appe
 
 Simultanément, le **mésoderme** environnant, peu modifié et assez liquéfié, subit une réorganisation. On y observe la formation de fins **capillaires préaortiques** sous forme de vésicules, qui nécessitent une trajectoire et une concentration métabolique spécifique.
 
-Ces vaisseaux s'organisent en deux conduits fluidiques mésodermiques. La vitesse de croissance différenciée entre l'ectoderme et le mésoderme est cruciale. L'ectoderme, grand consommateur d'informations, grandit très rapidement.
+Ces vaisseaux s'organisent en deux conduits fluidiques mésodermiques.
+
+![Développement tube cardiaque](/images/schemas/ectoderme/ecto-29/Ectoderme_58.png)
+
+ La vitesse de croissance différenciée entre l'ectoderme et le mésoderme est cruciale. L'ectoderme, grand consommateur d'informations, grandit très rapidement.
 
 ## La flexion de l'embryon et la zone angélique
 
 À un moment donné, l'embryon va effectuer un **mouvement de flexion** vers l'avant. Ce mouvement est fondamental.
 
-La plaque neurale commence à s'organiser. De part et d'autre, apparaissent les vaisseaux mésodermiques précapillaires aortiques. Ils créent au-dessus de la plaque neurale une **zone congestive**, un petit "étang" devant, alimenté par deux petits vaisseaux latéraux. C'est ce qu'on appelle la **zone angélique supérieure**.
+La plaque neurale commence à s'organiser. De part et d'autre, apparaissent les vaisseaux mésodermiques précapillaires aortiques.
+
+![Embryon humain sagittal](/images/schemas/ectoderme/ecto-29/Ectoderme_48.jpeg)
+
+ Ils créent au-dessus de la plaque neurale une **zone congestive**, un petit "étang" devant, alimenté par deux petits vaisseaux latéraux. C'est ce qu'on appelle la **zone angélique supérieure**.
 
 Cette zone angélique subira de nombreuses modifications. Elle se déplace vers la ligne médiane pour former un tube en raison de la croissance de l'embryon. L'ectoderme (plaque neurale) est le moteur de cette croissance, tandis que la zone des capillaires aortiques et la zone précardiaque agissent comme un **frein relatif**.
 
@@ -1925,6 +2109,10 @@ Cette zone angélique subira de nombreuses modifications. Elle se déplace vers 
 L'embryon grandit, mais il rencontre un frein imposé par cette zone précardiaque. Qu'est-ce qui devient un point d'appui ? Le **cœur**.
 
 L'embryon se fléchit, s'enroulant autour de son système vasculaire, qui agit comme un **pivot**. Ce mouvement est souvent présenté comme une flexion ou une plicature, mais il s'agit en réalité d'une **expansion** autour de ce point d'ancrage vasculaire.
+
+![Embryon humain vascularisé](/images/schemas/ectoderme/ecto-29/Ectoderme_59.jpeg)
+
+
 
 Notre véritable axe postural initial est un **axe vasculaire**. Nous nous enroulons autour de lui. Ce principe organise toutes les articulations du corps. Si un chemin est bloqué (pas d'artère développée), la croissance s'adapte et emprunte une autre voie.
 
@@ -1939,12 +2127,20 @@ L'ectoderme est le **moteur de la croissance**. Il est alimenté par le **mésod
 
 L'enroulement global de l'embryon à ce stade va définir des aspects spécifiques du développement.
 
+![Développement embryonnaire précoce](/images/schemas/ectoderme/ecto-29/Ectoderme_62.png)
+
+
+
 ## La cascade de céphalisation
 
 La **céphalisation**, soit le développement de la tête, entraîne une série de processus :
 
 1. **Céphalisation** : Le processus de cérébralisation de la vésicule cérébrale s'enroule et déclenche la suite.
 2. **Cardialisation** : La cérébralisation initie la cardialisation, le mouvement de flexion positionnant le cœur. Le cœur, initialement plus haut, descend à cet emplacement grâce à la croissance.
+
+![Pliage embryonnaire latéral](/images/schemas/ectoderme/ecto-29/Ectoderme_63.jpeg)
+
+
 3. **Diaphragmatisation** : Le cœur appuie sur la partie supéro-interne de la vésicule vitelline, créant une pression qui forme le **septum transversum**, l'ébauche primitive du diaphragme.
 4. **Hépatisation** : Le septum transversum entraîne une phase de congestion sous-diaphragmatique, formant l'ébauche mésodermique de la zone hépatique.
 5. **Surrénalisation et Rénalisation** : Plus tard, lors du redressement, des espaces d'absorption créent les zones de surrénalisation et rénalisation.
@@ -1954,6 +2150,10 @@ La **céphalisation**, soit le développement de la tête, entraîne une série 
 La **congestion** représente le flux continu d'informations depuis le **pédicule embryonnaire**. Le foie est initialement formé uniquement par les déchets et exsudats de l'embryon. Une accumulation globale de ces exsudats crée la première impulsion de congestion.
 
 Le flot continu d'informations nutritives provenant du pédicule embryonnaire entraîne une phase de congestion plus importante sous le diaphragme, impulsant le développement du foie.
+
+![Schéma explicatif](/images/schemas/ectoderme/ecto-29/Ectoderme_7.jpeg)
+
+
 
 Le foie est composé de **mésoderme** (pour son plan vasculaire) et d'**endoderme** (pour son plan digestif). La rencontre de ces deux tissus forme un îlot. Cette congestion sous-diaphragmatique primitive est la première impulsion vasculaire.
 
@@ -2012,6 +2212,10 @@ Si le sacrum monte alors qu'il devrait descendre en flexion, cela crée un déca
 
 Le processus de **flexion de l'embryon** est fondamental. Il ne se contente pas d'organiser la mise en place des articulations, mais initie également une phase de délimitation de l'embryon. Ce processus implique quatre structures embryonnaires principales.
 
+![Ébauches digestives 30j](/images/schemas/ectoderme/ecto-30/Ectoderme_67.jpeg)
+
+
+
 ## Les Quatre Structures Embryonnaires du Diaphragme
 
 Les quatre structures embryonnaires qui contribuent à la formation du diaphragme sont :
@@ -2025,6 +2229,10 @@ Les quatre structures embryonnaires qui contribuent à la formation du diaphragm
 
 Au-delà de la plaque précordiale, dans la zone céphalique, les cellules **mésenchymateuses** du disque embryonnaire donnent naissance au péricarde et au septum transversum. Il est important de noter que votre cœur se développe déjà au-dessus de votre tête à ce stade. Cela s'explique par le mouvement de flexion de l'embryon, qui amène ces structures en place très tôt.
 
+![Développement embryonnaire humain](/images/schemas/ectoderme/ecto-30/Ectoderme_70.jpeg)
+
+
+
 ## La Dynamique du Mouvement Embryonnaire
 
 Contrairement à l'embryologie classique qui décrit une "descente" du cœur, c'est en réalité le reste du corps qui "monte" autour des structures qui sont déjà en place. De même, pour les reins, on parle d'ascension du rein, mais en réalité, le rein reste en place et c'est le reste qui descend.
@@ -2037,15 +2245,27 @@ Cette unité fonctionnelle est complètement reliée entre le cœur et le diaphr
 
 ## Intégration des Cellules Mésenchymateuses
 
-La flexion de l'embryon, induite par la **notochorde**, entraîne un mouvement spécifique au niveau du tube neural. Ce mouvement de gouttière neurale organise la structure latérale en petits vaisseaux, apportant des nutriments mais limitant la croissance. L'ectoderme environnant s'enroule, et c'est dans ce mouvement que les cellules mésenchymateuses s'intègrent pour former le futur tissu péricardique et les bouches diaphragmatiques.
+La flexion de l'embryon, induite par la **notochorde**, entraîne un mouvement spécifique au niveau du tube neural. Ce mouvement de gouttière neurale organise la structure latérale en petits vaisseaux, apportant des nutriments mais limitant la croissance.
+
+![Embryon 4 semaines](/images/schemas/ectoderme/ecto-30/Ectoderme_71.jpeg)
+
+ L'ectoderme environnant s'enroule, et c'est dans ce mouvement que les cellules mésenchymateuses s'intègrent pour former le futur tissu péricardique et les bouches diaphragmatiques.
 
 ## Évolution de la Vésicule Vitelline
 
 À mesure que l'embryon grandit, la **vésicule vitelline** cesse sa croissance et devient un simple reliquat. Elle s'insère avec les vaisseaux vitellins au niveau de ce que l'on appelle la liaison ombilicale. La vésicule s'intègre au pédicule pour former le cordon ombilical. Le péricarde s'intègre au septum transversum, dont l'origine se situe au-delà de la plaque précordiale.
 
+![Embryon, organes internes](/images/schemas/ectoderme/ecto-30/Ectoderme_72.jpeg)
+
+
+
 ## Croissance du Septum Transversum
 
 Le septum transversum, un tissu important, subit une croissance et une transformation significatives. À la quatrième semaine, il est initialement positionné. À la cinquième semaine, il s'horizontalise puis commence sa "descente". Cependant, cette "descente" est en réalité une conséquence de la croissance du reste de l'embryon.
+
+![Descente septum transversum](/images/schemas/ectoderme/ecto-30/Ectoderme_69.png)
+
+
 
 ## L'Origine du Nerf Phrénique et le Mouvement du Diaphragme
 
@@ -2055,9 +2275,17 @@ L'origine du septum transversum, lorsque l'embryon mesure 2 mm, se situe au nive
 
 La croissance de la partie postérieure de l'embryon crée un espace d'absorption. Cet espace s'ouvre et attire les poumons, qui sont un champ de succion. Les poumons sont en quelque sorte aspirés dans cet espace en formation. L'origine diaphragmatique se situe très haut, au niveau des deuxième et troisième cervicales.
 
+![Ductus pericardio-peritonealis](/images/schemas/ectoderme/ecto-30/Ectoderme_68.png)
+
+
+
 ## Le Redressement de l'Embryon et la Mise en Place du Diaphragme
 
 Le nerf phrénique n'est pas "tiré" mais plutôt "accompagné" par cette croissance. La mise en place du diaphragme est liée à une croissance excessive. À un certain moment, l'embryon s'arrête dans sa flexion et se redresse. Ce redressement est une question de fluides sur le sclérotome latéral, avec l'ascension du télencéphale, du tube neural et la descente du système digestif. Ce mouvement est crucial pour l'intégration et la création des espaces.
+
+![Embryon humain 6 semaines](/images/schemas/ectoderme/ecto-30/Ectoderme_73.jpeg)
+
+
 
 ## Les Différents Tissus du Diaphragme
 
@@ -2082,7 +2310,11 @@ Il existe une continuité fonctionnelle avec un petit muscle, le **muscle de Tre
 
 Le **ligament falciforme** et le **grand épiploon** sont des éléments dérivés du septum transversum. Il y a donc une continuité depuis les cellules mésenchymateuses, via le système péricardique et le septum transversum, et de ce dernier dérivent le ligament falciforme et le grand épiploon.
 
-Le grand épiploon fait partie intégrante de la fonction diaphragmatique. Il remonte vers la zone bronchique, s'oriente vers la rate, puis redescend au-dessus du côlon pour former une coalescence de quatre feuillets, créant un grand épiploon **mésangiolaire** (lymphatique B, T et M). Sa motilité est en relation avec le système diaphragmatique.
+Le grand épiploon fait partie intégrante de la fonction diaphragmatique.
+
+![Diaphragme muscle squelettique](/images/schemas/ectoderme/ecto-30/Ectoderme_74.jpeg)
+
+ Il remonte vers la zone bronchique, s'oriente vers la rate, puis redescend au-dessus du côlon pour former une coalescence de quatre feuillets, créant un grand épiploon **mésangiolaire** (lymphatique B, T et M). Sa motilité est en relation avec le système diaphragmatique.
 
 ## Relations avec les Ligaments Cintrés
 
@@ -2115,6 +2347,10 @@ Les **récessus costodiaphragmatiques** sont des sacs d'accumulation pour les ex
 ## L'Unité Cellulaire et Tissulaire du Corps
 
 Le corps humain est une **unité cellulaire et tissulaire**. Ses réactions de défense et d'intégration peuvent se manifester à n'importe quel niveau grâce à la continuité tissulaire de la splanchnopleure et de la somatopleure, comme nous l'avons vu avec le diaphragme.
+
+
+![Coupe sagittale thoracique abdominale](/images/schemas/ectoderme/ecto-30/Ectoderme_78.jpeg)
+
 `,
   },
   {
@@ -2592,7 +2828,11 @@ Nous commençons à distinguer les cellules qui formeront le tube neural, englob
 
 ## Les cellules de la crête neurale
 
-Une autre structure importante apparaît : l'ébauche du tissu de la **crête neurale**. Les cellules de la crête neurale, en rouge, bleu et noir, non seulement contribuent à la fermeture du tube neural, mais forment également le système nerveux périphérique. Elles interagissent avec le mésoderme pour créer des tissus ecto-mésodermiques, tels que la face et les os du crâne.
+Une autre structure importante apparaît : l'ébauche du tissu de la **crête neurale**. Les cellules de la crête neurale, en rouge, bleu et noir, non seulement contribuent à la fermeture du tube neural, mais forment également le système nerveux périphérique.
+
+![Crête neurale embryonnaire](/images/schemas/ectoderme/ecto-35/Ectoderme_42.jpeg)
+
+ Elles interagissent avec le mésoderme pour créer des tissus ecto-mésodermiques, tels que la face et les os du crâne.
 
 La crête neurale, en migration, aspire les crêtes neurales rhombocéphaliques pour former le système facial. Le cerveau céphalique se divise en **prosencéphale**, **mésencéphale** et **rhombocéphale**, chacun créant une crête neurale.
 
@@ -2607,6 +2847,10 @@ Les cellules du tissu se différencient en trois types :
 - Celles formant l'épiblaste épidermique.
 
 Ces tissus sont fondamentaux pour le développement du système nerveux périphérique, des plexus mésentériques et d'autres structures corporelles.
+
+![Développement villosités intestinales](/images/schemas/ectoderme/ecto-35/Ectoderme_82.jpeg)
+
+
 
 ## Liens entre liquide amniotique et développement
 
@@ -3031,6 +3275,10 @@ On observe une croissance énorme et toute l'attraction qui s'opère.
 Le processus de **cérébralisation** (ascensus cerebrali) influencera toutes les zones du palais, ce que nous expliquerons la prochaine fois. Il y a un point d'appui très important ici.
 
 Le développement télencéphalique entraîne le rapprochement du palatin, la flexion des choanes et la résultante postérieure. Il s'agit d'un changement simultané entre le développement du cerveau vers l'arrière, la corticalisation et la ventricularisation.
+
+
+![Circulation LCR rachidien](/images/schemas/ectoderme/ecto-38/Ectoderme_47.png)
+
 `,
   },
   {
@@ -3171,6 +3419,10 @@ Ce que l'on retient principalement, c'est que le tissu vasculaire est un tissu o
 Cependant, le système vasculaire est à la fois un **moteur** et une **résistance** pour la croissance des tissus qui se nourrissent de lui. Un vaisseau qui arrive est un moteur, car il fournit la force au tissu qu'il nourrit. Il transporte l'alimentation, il donne.
 
 Mais en même temps, il ne grandit pas à la même vitesse que les tissus qu'il alimente. Donc, c'est à la fois le moteur pour la croissance et le frein pour la croissance. Cela peut paraître paradoxal, mais ce n'est pas le cas.
+
+
+![Homéostasie par champs](/images/schemas/ectoderme/ecto-41/Ectoderme_81.jpeg)
+
 `,
   },
   {
@@ -3193,6 +3445,10 @@ Mais en même temps, il ne grandit pas à la même vitesse que les tissus qu'il 
 Au départ, nous avons **deux aortes primitives** au milieu, avec des tissus d'intérieur nutritifs pour l'embryon en développement. 
 
 Le référent influent **acneural**, qui devient une gouttière, crée une trajectoire pour l'embryon. Cette trajectoire initie la formation de deux petits conduits aortiques primitifs.
+
+![Somites et tube neural](/images/schemas/ectoderme/ecto-43/Ectoderme_46.png)
+
+
 
 L'embryon réalise un mouvement de **flexion**, de **rotation interne** et d'**adduction**, un mouvement développemental où il se rapproche du centre. Ce rapprochement est dû au développement des aortes et à un processus de **télencephalisation** qui tire vers l'arrière, rapprochant tout vers l'avant.
 
@@ -3317,6 +3573,10 @@ La **synchronisation** est essentielle. Le tube neural, par exemple, s'articule 
 L'axe **urogénital**, de par sa force mésodermique, est l'articulation entre l'endo et l'ecto. Le mésoderme est l'articulation entre l'endoderme et l'ectoderme.
 
 Il est nécessaire d'intégrer le **système vasculaire** pour comprendre pleinement ce schéma, mettant en évidence l'importance du cerveau, du foie, du cœur, des poumons, du plexus mésentérique et du système rénal.
+
+
+![EMT (Transition Épithélio-Mesenchymateuse)](/images/schemas/ectoderme/ecto-43/Ectoderme_54.png)
+
 `,
   },
   {

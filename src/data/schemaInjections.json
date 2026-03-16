@@ -1,0 +1,922 @@
+{
+  "ecto-03": [
+    {
+      "schema_src": "Ectoderme_1.png",
+      "after_text": "Cette chronologie est importante et doit être apprise dans ce sens. Nous verrons que dans le développement ontogénétique, cela se suivra, même si nous ne le verrons pas toujours en apparence.",
+      "reasoning": "Ce schéma récapitule l'ensemble de la chronologie des systèmes biologiques abordée dans la vidéo et doit être placé à la fin du cours pour offrir une vision globale."
+    }
+  ],
+  "ecto-04": [
+    {
+      "schema_src": "Ectoderme_57.png",
+      "after_text": "Imaginez une chaîne d'ADN, composée de molécules et d'acides aminés formant des codons génétiques qui permettent la production de protéines.",
+      "reasoning": "Ce schéma illustre la structure d'une protéine, du zinc et du sulfate, en lien direct avec la production de protéines mentionnée dans le texte."
+    },
+    {
+      "schema_src": "Ectoderme_3.png",
+      "after_text": "Ce squelette interne est relié à la membrane et s'étend jusqu'au noyau, formant des lignes de force et des structures précises à l'intérieur de la cellule.",
+      "reasoning": "Le schéma du cytosquelette cellulaire vient juste après la description de cette même structure interne de la cellule."
+    },
+    {
+      "schema_src": "Ectoderme_4.jpeg",
+      "after_text": "C'est ici qu'intervient le concept fondamental de la tenségrité en ostéopathie. Si je touche quelqu'un, je touche l'intégralité de son corps.",
+      "reasoning": "Le schéma d'une structure de tenségrité illustre parfaitement l'introduction de ce concept, montrant comment une entité est interconnectée."
+    },
+    {
+      "schema_src": "Ectoderme_5.jpeg",
+      "after_text": "Observons une cellule avec sa matrice extracellulaire et la jonction entre la cellule et son environnement extérieur.",
+      "reasoning": "Ce schéma complémentaire sur la tenségrité (peut-être à l'échelle cellulaire) approfondit la notion après la description de la jonction cellulaire."
+    },
+    {
+      "schema_src": "Ectoderme_6.jpeg",
+      "after_text": "Un champ électrique, un champ électromagnétique, la lumière, la température, le pH, le stress mécanique, les chocs, les déformations et les pressions hydrostatiques – tout cela influence le comportement cellulaire.",
+      "reasoning": "Ce schéma qui représente le système matriciel tissulaire illustre les interactions et influences environnementales sur les cellules mentionnées, montrant la complexité de leur environnement."
+    }
+  ],
+  "ecto-05": [
+    {
+      "schema_src": "Ectoderme_7.png",
+      "after_text": "Un centre structurel, composé des centrioles et des microtubules.",
+      "reasoning": "This image illustrates the structure of a eukaryotic cell, which is introduced in this section."
+    },
+    {
+      "schema_src": "Ectoderme_2.jpeg",
+      "after_text": "Si un groupe de cellules reçoit une contrainte mécanique de compression trop importante, il ne restera qu’un exsudat cellulaire.",
+      "reasoning": "This image depicts granular histological structure, which could represent cellular material or an 'exsudat cellulaire' as mentioned."
+    }
+  ],
+  "ecto-06": [
+    {
+      "schema_src": "Ectoderme_11.png",
+      "after_text": "Cette reconnaissance permet de se situer dans le système et de percevoir sa dynamique.",
+      "reasoning": "This schema introduces the color coding for the embryonic layers, making it a good fit after the explanation of the color scheme."
+    },
+    {
+      "schema_src": "Ectoderme_12.png",
+      "after_text": "En d'autres termes, le tissu mésodermique contient l'information trophique nécessaire à la croissance et au maintien des autres tissus.",
+      "reasoning": "This schema likely illustrates the relationship and dependence of the boundary tissues on the interior (mesodermal) tissue, following the explanation of their interdependency."
+    }
+  ],
+  "ecto-07": [
+    {
+      "schema_src": "Ectoderme_18.jpeg",
+      "after_text": "Lorsque je bouge mon bras, c'est très différent du mouvement intrinsèque au niveau de mon foie.",
+      "reasoning": "Cette image montre le développement fœtal, illustrant la 'puissance' et le 'mouvement' évoqués dans la section suivante."
+    },
+    {
+      "schema_src": "Ectoderme_13.png",
+      "after_text": "Regardez ce que nous sommes au premier jour : un petit bazar. Et regardez ce qui va se passer à la fin du deuxième mois. En seulement deux mois, une transformation incroyable a lieu.",
+      "reasoning": "Cette image illustre le 'bazar' initial et la transformation rapide mentionnée, montrant une vue d'ensemble du développement embryonnaire."
+    },
+    {
+      "schema_src": "Ectoderme_50.png",
+      "after_text": "Dès le début du vingtième jour, une forme commence déjà à se dessiner. Le potentiel de vie est là.",
+      "reasoning": "Cette image montre l'embryon à un stade précoce, comme le 20ème jour, où une forme commence à se dessiner, illustrant le potentiel de vie qui est là."
+    },
+    {
+      "schema_src": "Ectoderme_61.png",
+      "after_text": "Nous observons alors ce qu'on appelle la zone pellucida et des cellules nourricières. Il y a plusieurs couches de cellules importantes qui se mettent en place.",
+      "reasoning": "Cette image est la plus pertinente pour illustrer un embryon tel qu'observé au tout début, avec la zone pellucide mentionnée."
+    }
+  ],
+  "ecto-08": [
+    {
+      "schema_src": "Ectoderme_8.jpeg",
+      "after_text": "Cela augmente la force métabolique, ce qui est l'expression même de la polarité.",
+      "reasoning": "Discusses cellular polarity and specifically mentions metabolic activity which microvillosities exemplify."
+    }
+  ],
+  "ecto-11": [
+    {
+      "schema_src": "Ectoderme_14.jpeg",
+      "after_text": "Ce processus dynamique donne naissance aux deux premiers **blastomères**, qui sont les premières cellules germes-mères.",
+      "reasoning": "Ce schéma montre un ovule fécondé et des blastomères, illustrant parfaitement la première cellule de vie et sa division initiale, comme décrit dans le paragraphe."
+    }
+  ],
+  "ecto-12": [
+    {
+      "schema_src": "Ectoderme_16.jpeg",
+      "after_text": "Ce processus s'appuie sur les notions de croissance et de mouvement développemental au sein de cette croissance.",
+      "reasoning": "This image illustrates the early embryonic development mentioned right after the introduction of the fundamental algorithm."
+    },
+    {
+      "schema_src": "Ectoderme_19.jpeg",
+      "after_text": "Ces deux cellules possèdent chacune un noyau, jamais centré, toujours excentré.",
+      "reasoning": "This image shows the two-cell embryo, directly illustrating the 'two cells and two nuclei' concept at this point."
+    },
+    {
+      "schema_src": "Ectoderme_24.jpeg",
+      "after_text": "Chaque division représente une transformation et une ouverture importantes.",
+      "reasoning": "This image depicts segmenting blastocyst, showing the multiplication of cells without growth, aligning with the accumulating metabolic power."
+    },
+    {
+      "schema_src": "Ectoderme_79.jpeg",
+      "after_text": "Ceci contribue à la formation d'une masse de cellules, avec l'apparition d'une première petite cavité liquidienne en son sein.",
+      "reasoning": "This image likely shows the earliest sign of cavitation or fluid loss in the morula stage, fitting after the mention of exudat and liquid cavity."
+    },
+    {
+      "schema_src": "Ectoderme_20.jpeg",
+      "after_text": "La toute première cavité qui apparaît, remplie d'eau, se joint et forme une petite cavité.",
+      "reasoning": "This image directly illustrates the cavitation process within the blastocyst, forming the first cavity."
+    },
+    {
+      "schema_src": "Ectoderme_26.png",
+      "after_text": "Cette petite cavité est appelée le blastocèle. Le terme \"blastocèle\" signifie littéralement \"germe du ciel\", et cette cavité aura une grande importance pour la future cavité péritonéale.",
+      "reasoning": "This image likely depicts the blastocyst with its formed blastocoel, illustrating the concept of the first cavity and its importance."
+    },
+    {
+      "schema_src": "Ectoderme_21.jpeg",
+      "after_text": "L'excentricité de cette cavité entraîne une concentration de cellules à un pôle, que l'on appelle le pôle animal (par opposition au pôle végétal), ou pôle d'assimilation. À cet endroit, il y a une forte concentration de cellules, moins ailleurs.",
+      "reasoning": "This image illustrates the polarity and cell concentration at the animal pole within the blastula."
+    },
+    {
+      "schema_src": "Ectoderme_29.jpeg",
+      "after_text": "La membrane périphérique ne peut plus contenir l'ensemble. Une rupture se produit, et l'embryon commence à quitter cet espace.",
+      "reasoning": "This image shows the process of hatching or rupture of the membrane due to internal pressure, allowing the embryo to emerge."
+    },
+    {
+      "schema_src": "Ectoderme_23.jpeg",
+      "after_text": "C'est toujours la même image du blastocèle, mais cette fois-ci, il va développer ce que l'on appelle un pôle embryonnaire, avec une concentration de cellules plus importante d'un côté que de l'autre. Ce pôle est un pôle d'assimilation, cherchant à \"prendre l'intérieur\".",
+      "reasoning": "This image demonstrates the developed embryonic pole of the blastocyst after hatching, showing the asymmetry and concentration of cells."
+    }
+  ],
+  "ecto-13": [
+    {
+      "schema_src": "Ectoderme_22.png",
+      "after_text": "Nous allons aborder le moment de l'implantation après la pause.",
+      "reasoning": "Ce schéma illustrant l'éclosion du blastocyste introduit parfaitement la prochaine étape de l'implantation mentionnée juste après cette phrase."
+    }
+  ],
+  "ecto-14": [
+    {
+      "schema_src": "Ectoderme_17.jpeg",
+      "after_text": "Cette couche de cellules forme ce qu'on appelle la vésicule embryonnaire.",
+      "reasoning": "Ce schéma illustre l'implantation du blastocyste dans la muqueuse utérine, montrant la vésicule embryonnaire."
+    },
+    {
+      "schema_src": "Ectoderme_30.jpeg",
+      "after_text": "Observons maintenant cette image : nous voyons le blastocèle et les cellules du bouton embryonnaire. Les cellules du syncytiotrophoblaste, libérant un liquide, rongent et pénètrent la muqueuse.",
+      "reasoning": "Ce schéma convient pour visualiser le blastocèle, le bouton embryonnaire et l'action du syncytiotrophoblaste juste après cette explication détaillée."
+    },
+    {
+      "schema_src": "Ectoderme_31.jpeg",
+      "after_text": "L'embryon pénètre complètement la muqueuse. Au moment de son entrée, une petite cavité apparaît dans l'embryon : la cavité amniotique primitive.",
+      "reasoning": "Ce schéma intitulé '8ème jour embryonnaire' et 'Implantation du blastocyste' est parfait pour montrer l'apparition de la cavité amniotique primitive, qui est une étape clé au 8ème jour."
+    },
+    {
+      "schema_src": "Ectoderme_35.jpeg",
+      "after_text": "En d'autres termes, des cellules regardent la cavité amniotique et d'autres regardent la cavité du blastocèle. Ces dernières participeront plus tard à une autre formation, que nous expliquerons.",
+      "reasoning": "Ce schéma illustrant un embryon de 9 jours est bien placé pour montrer la différenciation cellulaire et les deux cavités (amniotique et blastocèle) à ce stade précoce."
+    },
+    {
+      "schema_src": "Ectoderme_36.jpeg",
+      "after_text": "À la fin, l'embryon nage et est baigné dans cette cavité. Des cellules, appelées amnions, se développeront pour nourrir et faire grandir cette cavité.",
+      "reasoning": "Ce schéma montre un développement embryonnaire précoce avec la cavité amniotique bien formée, illustrant l'embryon baigné dans le liquide."
+    },
+    {
+      "schema_src": "Ectoderme_37.jpeg",
+      "after_text": "Les cellules épiblastiques formeront le système nerveux (la plaque neurale). Au-dessus de cette plaque neurale, nous trouverons plus tard le liquide céphalo-rachidien primitif, issu de la cavité amniotique.",
+      "reasoning": "Ce cliché d'embryon de 14-15 jours est idéal pour visualiser la formation de la plaque neurale et la relation avec le liquide céphalo-rachidien primitif."
+    },
+    {
+      "schema_src": "Ectoderme_38.jpeg",
+      "after_text": "C'est alors qu'il y a une forme fœtale.",
+      "reasoning": "Ce schéma sur le développement embryonnaire précoce résume bien les différentes étapes menant à la forme fœtale après la gastrulation."
+    },
+    {
+      "schema_src": "Ectoderme_34.jpeg",
+      "after_text": "À ce stade, nous avons déjà une préparation pour un tissu de type digestif et un tissu de type neurologique.",
+      "reasoning": "Le schéma 'Neurulation' est pertinent ici car il montre le développement du système nerveux (tissu neurologique) et peut être lié aux premières phases de différenciation."
+    },
+    {
+      "schema_src": "Ectoderme_43.jpeg",
+      "after_text": "Dans le bouton embryonnaire, au moment où cette cavité apparaît, des cellules s'organisent et s'orientent vers elle. C'est là qu'apparaissent l'épiblaste et l'hypoblaste.",
+      "reasoning": "Bien que le néphron soit plus tardif, le fait que ce schéma de 'néphron en développement' soit le dernier disponible et qu'il illustre une différenciation cellulaire complexe le rend le plus approprié pour être placé après la discussion sur l'épiblaste/hypoblaste et la préparation des tissus."
+    }
+  ],
+  "ecto-17": [
+    {
+      "schema_src": "Ectoderme_28.jpeg",
+      "after_text": "le concepteur devait faire intervenir les forces de croissance à partir des sels de calcium.",
+      "reasoning": "Le schéma sur les sels de calcium doit être placé après cette phrase."
+    }
+  ],
+  "ecto-20": [
+    {
+      "schema_src": "Ectoderme_53.png",
+      "after_text": "Le mésoderme se forme à travers un mouvement de vague qui se dessine dans l'embryon.",
+      "reasoning": "La formation du mésoderme est un concept clé car il constitue le sujet du cours."
+    },
+    {
+      "schema_src": "Ectoderme_55.jpeg",
+      "after_text": "Cette dynamique est représentée par une vue supérieure, où l'on peut observer la cavité amniotique au-dessus.",
+      "reasoning": "Pour visualiser la régression de la ligne primitive et du nœud de Hensen et la formation des structures tel que la notocorde."
+    },
+    {
+      "schema_src": "Ectoderme_56.jpeg",
+      "after_text": "Ces cellules sont tirées vers le centre, remplissant ainsi l'espace qui se crée entre l'épiblaste et l'hypoblaste.",
+      "reasoning": "Pour visualiser et confirmer le mouvement des cellules épithéliales de l'épiblaste qui se déplacent et remplissent l'espace entre l'épiblaste et l'hypoblaste."
+    }
+  ],
+  "ecto-25": [],
+  "ecto-29": [
+    {
+      "schema_src": "Ectoderme_15.jpeg",
+      "after_text": "C'est l'algorithme qui génère cette **vitesse de croissance différentielle**, conduisant à la flexion de l'embryon.",
+      "reasoning": "Ce schéma illustre l'embryon à un stade jeune, correspondant à l'introduction du concept de plicature et de vitesse de croissance différentielle."
+    },
+    {
+      "schema_src": "Ectoderme_33.jpeg",
+      "after_text": "Nous nous situons entre le **dix-huitième** et le **vingtième jour** de développement.",
+      "reasoning": "Le schéma d'un embryon d'oiseau peut être utilisé pour visualiser les premiers stades de développement de manière générique, faisant le lien avec le stade embryonnaire mentionné."
+    },
+    {
+      "schema_src": "Ectoderme_40.jpeg",
+      "after_text": "Au-dessus de la notochorde, nous observons une **plaque neurale**.",
+      "reasoning": "Ce schéma sur la gastrulation montre les couches germinatives et la notochorde, illustrant comment la plaque neurale se forme au-dessus."
+    },
+    {
+      "schema_src": "Ectoderme_44.jpeg",
+      "after_text": "- Les cellules ectodermiques latérales, par contre, n'ont pas ce frein et se développent même plus vite.",
+      "reasoning": "Le schéma de gastrulation chez l'amphibien peut servir à illustrer les mouvements cellulaires et la différenciation de croissance qui mènent à la formation de la gouttière neurale."
+    },
+    {
+      "schema_src": "Ectoderme_41.png",
+      "after_text": "Ce processus engendre un **changement de forme** de l'ectoderme.",
+      "reasoning": "Une coupe sagittale peut montrer le début de l'invagination de l'ectoderme pour former la gouttière neurale, en lien avec le changement de forme dû au développement différentiel."
+    },
+    {
+      "schema_src": "Ectoderme_58.png",
+      "after_text": "Ces vaisseaux s'organisent en deux conduits fluidiques mésodermiques.",
+      "reasoning": "Ce schéma illustre la formation du tube cardiaque, qui est étroitement lié au développement des vaisseaux préaortiques et à la réorganisation du mésoderme."
+    },
+    {
+      "schema_src": "Ectoderme_48.jpeg",
+      "after_text": "La plaque neurale commence à s'organiser. De part et d'autre, apparaissent les vaisseaux mésodermiques précapillaires aortiques.",
+      "reasoning": "Ce schéma d'embryon humain en coupe sagittale peut montrer la plaque neurale et la position des futurs vaisseaux, illustrant le début de la flexion."
+    },
+    {
+      "schema_src": "Ectoderme_59.jpeg",
+      "after_text": "Ce mouvement est souvent présenté comme une flexion ou une plicature, mais il s'agit en réalité d'une **expansion** autour de ce point d'ancrage vasculaire.",
+      "reasoning": "Un schéma d'embryon humain vascularisé est pertinent ici pour montrer la place du système vasculaire comme pivot autour duquel l'embryon effectue sa flexion."
+    },
+    {
+      "schema_src": "Ectoderme_62.png",
+      "after_text": "L'enroulement global de l'embryon à ce stade va définir des aspects spécifiques du développement.",
+      "reasoning": "Ce schéma de développement embryonnaire précoce met en évidence l'enroulement global de l'embryon comme décrit par le texte."
+    },
+    {
+      "schema_src": "Ectoderme_63.jpeg",
+      "after_text": "Le cœur, initialement plus haut, descend à cet emplacement grâce à la croissance.",
+      "reasoning": "Ce schéma de pliage embryonnaire latéral va illustrer la cascade de céphalisation et le mouvement du cœur vers sa position finale, conséquence de la flexion."
+    },
+    {
+      "schema_src": "Ectoderme_7.jpeg",
+      "after_text": "Le flot continu d'informations nutritives provenant du pédicule embryonnaire entraîne une phase de congestion plus importante sous le diaphragme, impulsant le développement du foie.",
+      "reasoning": "Le schéma sur le développement du foie est pertinent ici, illustrant comment la congestion et l'apport informationnel du pédicule embryonnaire contribuent à sa formation."
+    }
+  ],
+  "ecto-30": [
+    {
+      "schema_src": "Ectoderme_67.jpeg",
+      "after_text": "Ce processus implique quatre structures embryonnaires principales.",
+      "reasoning": "This image shows early digestive primordia at 30 days, which aligns with the introduction of embryological structures involved in diaphragm formation."
+    },
+    {
+      "schema_src": "Ectoderme_70.jpeg",
+      "after_text": "Cela s'explique par le mouvement de flexion de l'embryon, qui amène ces structures en place très tôt.",
+      "reasoning": "This image depicts general human embryonic development, fitting the discussion of embryonic flexion and the early positioning of structures."
+    },
+    {
+      "schema_src": "Ectoderme_71.jpeg",
+      "after_text": "Ce mouvement de gouttière neurale organise la structure latérale en petits vaisseaux, apportant des nutriments mais limitant la croissance.",
+      "reasoning": "This image shows an embryo at 4 weeks, relevant to the integration of mesenchymal cells driven by embryonic flexion."
+    },
+    {
+      "schema_src": "Ectoderme_72.jpeg",
+      "after_text": "Le péricarde s'intègre au septum transversum, dont l'origine se situe au-delà de la plaque précordiale.",
+      "reasoning": "This image illustrates internal organs of an embryo, matching the description of pericardial integration with the septum transversum."
+    },
+    {
+      "schema_src": "Ectoderme_69.png",
+      "after_text": "Cependant, cette \"descente\" est en réalité une conséquence de la croissance du reste de l'embryon.",
+      "reasoning": "This image directly illustrates the 'descent' of the septum transversum, which is being discussed."
+    },
+    {
+      "schema_src": "Ectoderme_68.png",
+      "after_text": "L'origine diaphragmatique se situe très haut, au niveau des deuxième et troisième cervicales.",
+      "reasoning": "This image, showing the ductus pericardio-peritonealis, fits the concept of high diaphragmatic origin and the creation of spaces."
+    },
+    {
+      "schema_src": "Ectoderme_73.jpeg",
+      "after_text": "Ce mouvement est crucial pour l'intégration et la création des espaces.",
+      "reasoning": "This image of a 6-week human embryo aligns with the description of embryological straightening and spatial organization."
+    },
+    {
+      "schema_src": "Ectoderme_78.jpeg",
+      "after_text": "Travailler un diaphragme ne se limite pas à ces espaces, mais aussi à la libération de l'aorte, de la veine cave, de l'œsophage, et surtout de la jonction œsophagienne.",
+      "reasoning": "This image provides a sagittal view of the thoracic and abdominal cavities, showing the diaphragm, and is relevant to the discussion of diaphragm tissues and surrounding structures like the aorta, vena cava, and esophagus."
+    },
+    {
+      "schema_src": "Ectoderme_74.jpeg",
+      "after_text": "Le grand épiploon fait partie intégrante de la fonction diaphragmatique.",
+      "reasoning": "This image, showing the diaphragm as a skeletal muscle, fits the discussion of the diaphragm's role and its connections like the greater omentum."
+    }
+  ],
+  "ecto-35": [
+    {
+      "schema_src": "Ectoderme_42.jpeg",
+      "after_text": "Les cellules de la crête neurale, en rouge, bleu et noir, non seulement contribuent à la fermeture du tube neural, mais forment également le système nerveux périphérique.",
+      "reasoning": "La description des Neural Crest Cells (crêtes neurales) est faite ici, rendant ce point approprié pour l'insertion de ce schéma."
+    },
+    {
+      "schema_src": "Ectoderme_82.jpeg",
+      "after_text": "Ces tissus sont fondamentaux pour le développement du système nerveux périphérique, des plexus mésentériques et d'autres structures corporelles.",
+      "reasoning": "Ce schéma pourrait illustrer les 'structures corporelles' mentionnées, en particulier celles du développement intestinal en lien avec les plexus mésentériques."
+    }
+  ],
+  "ecto-38": [
+    {
+      "schema_src": "Ectoderme_47.png",
+      "after_text": "Il est également intéressant de se rappeler les connexions avec la pointe de la notochorde, le supraocciput, le basiocciput et le présphénoïde.",
+      "reasoning": "This diagram, showing CSF circulation, would logically follow the discussion of connections and points of support, particularly given the spinal component suggested by 'rachidien'."
+    }
+  ],
+  "ecto-41": [
+    {
+      "schema_src": "Ectoderme_81.jpeg",
+      "after_text": "Ce cours vise à comprendre le phénomène de tenségrité sur le plan développemental et l'équilibre des processus homéostatiques du corps, notamment l'organisation des champs métaboliques.",
+      "reasoning": "Le schéma 'Homéostasie par champs' doit être placé après la phrase introduisant les concepts d'homéostasie et de champs métaboliques, car cela sert d'illustration initiale du sujet."
+    }
+  ],
+  "ecto-43": [
+    {
+      "schema_src": "Ectoderme_46.png",
+      "after_text": "Cette trajectoire initie la formation de deux petits conduits aortiques primitifs.",
+      "reasoning": "Ce schéma illustre les premières structures embryonnaires mentionnées, notamment le tube neural et la formation des aortes primitives."
+    },
+    {
+      "schema_src": "Ectoderme_54.png",
+      "after_text": "Les poumons eux-mêmes peuvent être considérés comme une glande respiratoire, suivant le même algorithme de développement mais avec des espaces et une chronologie différents. Le vide pleural maintient leur forme.",
+      "reasoning": "Ce schéma représente la Transition Épithélio-Mesenchymateuse (EMT), un processus clé dans la formation des glandes et organes comme les poumons, qui découle du champ d'aspiration."
+    }
+  ],
+  "ecto-47": [
+    {
+      "schema_src": "Ectoderme_49.jpeg",
+      "after_text": "Les crêtes neurales sont des structures essentielles qui apparaissent lors de la fermeture du tube neural.",
+      "reasoning": "Ce schéma d'embryon humain sagittal illustre le contexte général du développement embryonnaire et la localisation des crêtes neurales au début de la vidéo."
+    }
+  ],
+  "ecto-48": [
+    {
+      "schema_src": "Ectoderme_51.jpeg",
+      "after_text": "le cerveau lui-même.",
+      "reasoning": "Cette image illustre le développement du cerveau et son influence sur la tête, comme mentionné dans le paragraphe."
+    },
+    {
+      "schema_src": "Ectoderme_52.jpeg",
+      "after_text": "C'est un schéma complet qui nous permet de nous projeter dans l'anticipation.",
+      "reasoning": "La base du crâne est un élément clé du développement crânien et est en lien avec l'anticipation et la ligne médiane."
+    }
+  ],
+  "ecto-50": [
+    {
+      "schema_src": "Ectoderme_80.jpeg",
+      "after_text": "C'est un point de convergence d'informations :",
+      "reasoning": "Bien que le schéma 'Vessie urinaire' ne soit pas directement lié au crâne, le texte mentionne la convergence de différentes informations (dont endodermiques) à la base du crâne. Étant le seul schéma fourni, on peut l'insérer juste avant l'énumération pour contextualiser la diversité des éléments embryologiques."
+    }
+  ],
+  "ecto-52": [
+    {
+      "schema_src": "Ectoderme_10.jpeg",
+      "after_text": "Cette ligne notocordale est le point de départ de l'établissement de la ligne médiane postérieure, qui, à son tour, donne lieu à la ligne médiane antérieure.",
+      "reasoning": "Le schéma 'Notocorde et Tube Neural' illustre parfaitement les concepts de lignes médianes et de notocorde juste après leur introduction."
+    }
+  ],
+  "endo-02": [
+    {
+      "schema_src": "Endoderme_63.jpeg",
+      "after_text": "Au départ, il s'agit d'un tissu ouvert qui se délimite et s'organise en espaces spécifiques. Nous allons explorer ces espaces un par un.",
+      "reasoning": "This image shows early embryonic development and the formation of spaces, fitting well after the description of the embryo reorganizing into specific spaces."
+    },
+    {
+      "schema_src": "Endoderme_59.jpeg",
+      "after_text": "Cette fois-ci, nous nous concentrerons sur la face en détail, depuis la partie périphérique jusqu'à la partie interne, en passant par la bouche.",
+      "reasoning": "This image of a fetal skull is appropriate when discussing the face and its components like the mouth, and the overall facial plan."
+    },
+    {
+      "schema_src": "Endoderme_3.png",
+      "after_text": "L'endoderme est toujours en relation avec le mésoderme, ce qui signifie que le système viscéral peut influencer le système cortical, le système pariétal, ou le système musculo-squelettique.",
+      "reasoning": "This image illustrating the embryonic layers (including endoderm and mesoderm) is suitable after mentioning the relationship between the endoderm and mesoderm."
+    },
+    {
+      "schema_src": "Endoderme_19.jpeg",
+      "after_text": "Par exemple, entre le 15 février et le 21 mars, nous entrons dans une phase d'ascension printanière.",
+      "reasoning": "This image can represent regenerative processes or the body's internal state aligning with the season, placed after discussing seasonal changes and regeneration through fasting."
+    },
+    {
+      "schema_src": "Endoderme_21.jpeg",
+      "after_text": "Le visage, tout comme le crâne, est constitué d'ectoderme de type neural crest, établissant un lien entre le système digestif et le système nerveux.",
+      "reasoning": "This image showing gastrulation and the trilaminar disc supports the discussion about the origin of different structures and their interconnections, mentioned when talking about the face and the neural crest."
+    }
+  ],
+  "endo-03": [
+    {
+      "schema_src": "Endoderme_41.png",
+      "after_text": "le sommeil.",
+      "reasoning": "Le schéma sur le développement oculaire embryonnaire s'insère logiquement après la mention de l'œil comme 'cerveau extériorisé' et de l'épiphyse, la structure embryonnaire de l'épiphyse étant directement liée à la formation de l'œil."
+    }
+  ],
+  "endo-04": [
+    {
+      "schema_src": "Endoderme_5.jpeg",
+      "after_text": "Ces points charnières sont essentiels pour l'organisation générale du corps.",
+      "reasoning": "Ce schéma illustre la notion de plan corporel et les points d'appui (Hitchpons) mentionnés."
+    },
+    {
+      "schema_src": "Endoderme_192.jpeg",
+      "after_text": "Ce développement est synchronisé avec le système digestif, et un phénomène dans une zone peut bloquer une fonction dans une autre.",
+      "reasoning": "Ce schéma illustre le lien entre le cerveau et l'intestin, en lien avec la synchronisation du développement."
+    },
+    {
+      "schema_src": "Endoderme_201.jpeg",
+      "after_text": "Le cordon ombilical, vestige de la vésicule viteline et du pédicule embryonnaire, symbolise cette phase primitive d'intégration.",
+      "reasoning": "Ce schéma est placé ici car il illustre l'organisation des tissus primaires, faisant écho à l'intégration embryonnaire via le cordon ombilical."
+    }
+  ],
+  "endo-05": [
+    {
+      "schema_src": "Endoderme_7.png",
+      "after_text": "Cela signifie que le premier cerveau est digestif ; l'entérique précède la cérébralisation.",
+      "reasoning": "Ce schéma énumère les systèmes corporels, et le texte précédent parle du développement du système digestif, entérique, parasympathique et orthosympathique."
+    },
+    {
+      "schema_src": "Endoderme_8.jpeg",
+      "after_text": "Chaque division ou clivage cellulaire entraîne une augmentation du système métabolique et de la membrane cellulaire, mais aussi une petite perte d'eau.",
+      "reasoning": "Le schéma d'un embryon à deux cellules illustre les premières divisions cellulaires (clivage) mentionnées dans le texte."
+    },
+    {
+      "schema_src": "Endoderme_190.png",
+      "after_text": "Cet humus est comparable à la flore intestinale, symbolisant la qualité vivante de l'intestin, nourri par l'extérieur.",
+      "reasoning": "Le texte introduit ici la notion d'humus comparé à la flore intestinale. Le schéma sur les fonctions du microbiote intestinal trouve sa place ici."
+    },
+    {
+      "schema_src": "Endoderme_191.jpeg",
+      "after_text": "Cet humus est comparable à la flore intestinale, symbolisant la qualité vivante de l'intestin, nourri par l'extérieur.",
+      "reasoning": "Étant donné que le schéma précédent est également sur le microbiote intestinal, le deuxième schéma sur la flore intestinale peut être placé à la suite pour renforcer l'explication."
+    }
+  ],
+  "endo-09": [
+    {
+      "schema_src": "Endoderme_16.jpeg",
+      "after_text": "L'importance de la plicature de l'embryon se manifeste au niveau de la partie supérieure de l'intestin.",
+      "reasoning": "Cette image introduit le sujet en montrant un cerveau embryonnaire, qui est un point clé de la plicature."
+    },
+    {
+      "schema_src": "Endoderme_23.jpeg",
+      "after_text": "Lors de la plicature, le mésenchyme, qui est le tissu mésenchymal sous les encéphales, devient perpendiculaire à l'axe longitudinal de l'embryon.",
+      "reasoning": "Cette section décrit la plicature ; une vue sagittale de l'embryon serait appropriée pour l'illustrer."
+    },
+    {
+      "schema_src": "Endoderme_17.jpeg",
+      "after_text": "L'étude de ce mouvement se fait de la périphérie vers l'intérieur, de la face visible, comme la bouche, jusqu'à l'intestin pharyngien.",
+      "reasoning": "Puisque la zone de la bouche est mentionnée, une image du bourgeon du goût, qui en fait partie, convient ici."
+    },
+    {
+      "schema_src": "Endoderme_18.jpeg",
+      "after_text": "La notochorde induit le tube neural et les artères, tandis que l'enroulement autour du système artériel s'organise.",
+      "reasoning": "La mention de la notochorde justifie l'insertion d'une image illustrant sa formation."
+    },
+    {
+      "schema_src": "Endoderme_31.jpeg",
+      "after_text": "Le foregut apparaît, représentant l'intestin supérieur en développement. Cette articulation est orientée et organisée dans l'espace-temps par le liquide amniotique, avec le système vasculaire comme point d'appui.",
+      "reasoning": "Ici, on parle de l'intestin supérieur (foregut) et du rôle du liquide amniotique, une vue sagittale d'embryon est pertinente."
+    },
+    {
+      "schema_src": "Endoderme_13.jpeg",
+      "after_text": "Le cœur, visible en position élevée, et l'enroulement des structures embryonnaires illustrent cette articulation.",
+      "reasoning": "L'image du développement fœtal du cœur correspond à la mention du cœur et de son rôle articulatoire."
+    },
+    {
+      "schema_src": "Endoderme_29.jpeg",
+      "after_text": "La cavité amniotique et le cœur créent un espace qui devient une articulation entre le cœur et le cerveau, propulsée par la croissance amniotique. Ce processus marque le début de la formation du tube digestif, qui s'organise sur un plan longitudinal. La délimitation de la partie supérieure de l'intestin commence, intégrant l'allontoïde et la membrane cloacale.",
+      "reasoning": "Cette section décrit la vascularisation en lien avec la plicature, une image d'embryon vascularisé est donc appropriée."
+    },
+    {
+      "schema_src": "Endoderme_33.jpeg",
+      "after_text": "Entre cette membrane et la membrane pharyngienne, les bouches au niveau buccal se développent.",
+      "reasoning": "Le développement du tube digestif est le sujet principal, et cette image illustre bien le tube digestif embryonnaire."
+    },
+    {
+      "schema_src": "Endoderme_22.jpeg",
+      "after_text": "L'influence de cette plicature est donc essentielle pour organiser la délimitation interne du tube digestif.",
+      "reasoning": "Cette image illustre le développement cérébral fœtal, en résonance avec la balance cœur-cerveau et le mésoderme."
+    }
+  ],
+  "endo-10": [
+    {
+      "schema_src": "Endoderme_15.jpeg",
+      "after_text": "transformant un sac en tube. La cavité amniotique joue un rôle clé dans ce mouvement, englobant complètement l'embryon et intégrant le tube digestif de l'extérieur vers l'intérieur, principalement orienté par le frein aortique primitif.",
+      "reasoning": "Ce schéma illustre le mouvement de l'endoderme et la transformation du sac en tube, décrit au début du texte."
+    },
+    {
+      "schema_src": "Endoderme_27.png",
+      "after_text": "Ce processus se déroule sur la ligne médiane, tandis que latéralement, le cellulose apparaît.",
+      "reasoning": "Ce schéma sur la neurulation du rat complète l'explication de la formation de l'intestin pharyngien sur la ligne médiane."
+    },
+    {
+      "schema_src": "Endoderme_150.jpeg",
+      "after_text": "L'intestin supérieur s'étend de la bouche jusqu'à la partie médiane, impliquant la formation de la face.",
+      "reasoning": "Ce schéma de coupe transversale de l'intestin met en image la structure de l'intestin supérieur mentionnée."
+    },
+    {
+      "schema_src": "Endoderme_197.jpeg",
+      "after_text": "Une déstabilisation de la mâchoire peut donc affecter l'organisation interne de l'oreille.",
+      "reasoning": "Ce schéma de l'oreille interne embryonnaire illustre la relation entre l'arc mandibulaire et l'oreille interne, comme décrit dans le paragraphe."
+    },
+    {
+      "schema_src": "Endoderme_151.jpeg",
+      "after_text": "L'apparition du nasal pit et de la cavité orale est également liée à cette dynamique.",
+      "reasoning": "Ce schéma sur la villification intestinale peut illustrer la dynamique de développement de l'embryon et la formation des cavités."
+    },
+    {
+      "schema_src": "Endoderme_152.jpeg",
+      "after_text": "Ce mouvement synchronisé entre le système digestif et le cœur, ainsi que l'ascension cérébrale, contribue à la formation du palais ogival.",
+      "reasoning": "Ce schéma des villosités intestinales peut être placé ici pour illustrer les mécanismes complexes de développement liés au système digestif et à la formation du palais."
+    }
+  ],
+  "endo-11": [
+    {
+      "schema_src": "Endoderme_1.jpeg",
+      "after_text": "Cette asymétrie s'étend entre le sacrum et la base du crâne, représentant l'organisation de la latéralité embryonnaire.",
+      "reasoning": "L'autostéréogramme est un bon moyen de représenter l'asymétrie physiologique du corps."
+    }
+  ],
+  "endo-13": [
+    {
+      "schema_src": "Endoderme_13.jpeg",
+      "after_text": "vésicule viteline joue un rôle crucial en tant que réserve d'informations nutritives au début du développement embryonnaire.",
+      "reasoning": "Ce schéma illustre le développement embryonnaire précoce qui inclut la vésicule viteline."
+    },
+    {
+      "schema_src": "Endoderme_14.jpeg",
+      "after_text": "le développement du système intestinal.",
+      "reasoning": "Ce schéma montre un embryon à un stade où le système intestinal commence à se développer."
+    },
+    {
+      "schema_src": "Endoderme_10.jpeg",
+      "after_text": "le biofeedback des systèmes est essentiel pour appréhender ces interactions.",
+      "reasoning": "La blastule d'oursin représente un stade précoce de développement embryonnaire et peut être placée après la discussion sur l'intégration des systèmes."
+    },
+    {
+      "schema_src": "Endoderme_9.jpeg",
+      "after_text": "l'angle de l'ouïe, formé par la rencontre du manubrium sternum et des barres sternales, représente une mémoire de la flexion embryonnaire.",
+      "reasoning": "Ce schéma illustre des aspects cellulaires des premiers stades embryonnaires, comme le blastocèle, cohérents avec la discussion sur la flexion embryonnaire."
+    },
+    {
+      "schema_src": "Endoderme_12.jpeg",
+      "after_text": "L'appendice syphoïde, qui se développe plus tard, est lié à l'intégration du sécum dans la fosse iliaque droite, marquant la phase terminale de la formation du cadre colique.",
+      "reasoning": "Ce schéma concerne l'implantation humaine à 9 jours, un stade où les bases de l'organisation intestinale sont en place, correspondant au développement du sécum."
+    },
+    {
+      "schema_src": "Endoderme_121.jpeg",
+      "after_text": "le développement intestinal est orchestré par un axe vasculaire mésentérique.",
+      "reasoning": "Ce schéma (coupe transversale d'un rein) peut être inséré après la discussion sur l'axe vasculaire mésentérique, car le système urinaire est étroitement lié au développement vasculaire et digestif."
+    },
+    {
+      "schema_src": "Endoderme_199.png",
+      "after_text": "La notochorde génère une vague qui crée le tube neural, essentiel pour le développement.",
+      "reasoning": "La circulation embryonnaire à 4 semaines est directement liée à la formation du tube neural et à la dynamique de la notochorde."
+    }
+  ],
+  "endo-14": [
+    {
+      "schema_src": "Endoderme_24.jpeg",
+      "after_text": "à la fois dans les zones **périphériques** et **viscérales**. Ainsi, la face exprime l'intérieur et, en retour, informe l'intérieur.",
+      "reasoning": "Cette image illustre la tête embryonnaire en relation avec la crête neurale et les zones périphériques/viscérales."
+    },
+    {
+      "schema_src": "Endoderme_40.jpeg",
+      "after_text": "le système **neurologique**. Il est essentiel de comprendre que cette base du crâne représente un équilibre entre le **neurocrâne** et le **viscérocrâne**, et que toute l'information y est intégrée.",
+      "reasoning": "Cette image est placée après la discussion sur l'intégration des informations faciales et l'équilibre entre neurocrâne et viscérocrâne, pour introduire l'innervation céphalique. "
+    },
+    {
+      "schema_src": "Endoderme_45.jpeg",
+      "after_text": "Les personnes qui souffrent de congestion sont souvent celles qui ne parviennent pas à donner.",
+      "reasoning": "Le paragraphe parle de rééquilibrer la synphyse sphénobasilaire et que le sujet est le développement facial."
+    },
+    {
+      "schema_src": "Endoderme_46.jpeg",
+      "after_text": "et des hémisphères gauche et droit.",
+      "reasoning": "Ce paragraphe décrit le développement du cerveau et la formation du frontal, ce qui correspond au développement facial précoce en lien avec le cerveau."
+    },
+    {
+      "schema_src": "Endoderme_48.jpeg",
+      "after_text": "s'intègrent vers la ligne médiane, formant ainsi une ligne médiane d'anticipation.",
+      "reasoning": "L'image illustre le développement facial embryonnaire, ce qui correspond à l'intégration des placotes optique et nasale vers la ligne médiane."
+    },
+    {
+      "schema_src": "Endoderme_50.jpeg",
+      "after_text": "Au fur et à mesure de ce développement, la face, initialement comprimée entre le cœur et le cerveau, s'ouvre dans l'espace. Les zones latérales, comme la **placote optique** et la **placote nasale**, s'intègrent vers la ligne médiane, formant ainsi une ligne médiane d'anticipation.",
+      "reasoning": "L'image illustre le développement facial embryonnaire, ce qui correspond à l'intégration des placotes optique et nasale vers la ligne médiane."
+    },
+    {
+      "schema_src": "Endoderme_51.jpeg",
+      "after_text": "Nous observons également la **coulée de la crête neurale**, qui s'étend depuis le **mésencéphale** postérieur et envahit le **mésoderme** pour former du **mésectoderme**. Ce processus d'intégration se produit simultanément avec le développement du cerveau et l'organisation des **gaines durales**.",
+      "reasoning": "Le paragraphe suivant parle du développement du pallais primaire, ce qui correspond à cette image. "
+    },
+    {
+      "schema_src": "Endoderme_54.jpeg",
+      "after_text": "Ce processus d'intégration se produit simultanément avec le développement du cerveau et l'organisation des **gaines durales**.",
+      "reasoning": "Le paragraphe suivant traite du développement de la crête neurale et du mésectoderme, ce qui explique l'organisation du développement facial."
+    },
+    {
+      "schema_src": "Endoderme_57.jpeg",
+      "after_text": "Ce processus d'intégration se produit simultanément avec le développement du cerveau et l'organisation des **gaines durales**.",
+      "reasoning": "Cette image illustre la migration de la crête neurale, qui est un point clé du paragraphe précédent et de celui-ci."
+    },
+    {
+      "schema_src": "Endoderme_58.png",
+      "after_text": "la cornée. Cette intégration est essentielle pour comprendre la complexité de la face et son rôle dans notre santé globale.",
+      "reasoning": "Cette image illustre les forces piézo-électriques crâniennes, un concept lié à la complexité de la face et à son rôle dans la santé globale."
+    }
+  ],
+  "endo-15": [
+    {
+      "schema_src": "Endoderme_26.jpeg",
+      "after_text": "En observant le palais, on remarque qu'il présente une forme ogivale, alors qu'auparavant, il était plutôt bas.",
+      "reasoning": "Ce schéma illustre la forme et la position du palais dans l'embryon, ce qui est directement mentionné dans le texte."
+    },
+    {
+      "schema_src": "Endoderme_37.jpeg",
+      "after_text": "Dans la coupe embryonnaire, on observe la partie endodermique ainsi que les arcs pharyngiens numérotés (1, 2, 3, 4).",
+      "reasoning": "Ce schéma montre le développement des arcs pharyngiens, en lien avec la description des arcs numérotés."
+    },
+    {
+      "schema_src": "Endoderme_38.jpeg",
+      "after_text": "Entre l'arc branchial numéro 2 et cette couche, se forme un tuberculum impair et un petit trou, le foramen sécum.",
+      "reasoning": "Ce schéma peut illustrer la formation du tuberculum impair et du foramen sécum, ainsi que la musculature associée aux arcs pharyngiens qui se développent à cet endroit."
+    },
+    {
+      "schema_src": "Endoderme_64.jpeg",
+      "after_text": "Le foramen sécum, qui se développe avec la langue, est essentiel pour la formation du système thyroïdien.",
+      "reasoning": "Ce schéma représente le développement thyroïdien embryonnaire, directement lié à la discussion du foramen sécum et de la thyroïde."
+    },
+    {
+      "schema_src": "Endoderme_47.jpeg",
+      "after_text": "Une autre coupe montre le cartilage de Meckel et la langue.",
+      "reasoning": "Ce schéma illustre le développement du palais et de la langue, ainsi que l'interaction avec des structures faciales, en lien avec la mention du cartilage de Meckel et de la langue."
+    },
+    {
+      "schema_src": "Endoderme_49.jpeg",
+      "after_text": "La langue cherche à boucher les petits trous lors de la déglutition, et son mouvement peut influencer l'axe longitudinal du corps, allant jusqu'au bassin.",
+      "reasoning": "Ce schéma peut illustrer le développement du palais, du nez et de la langue, qui sont essentiels pour la déglutition et l'occlusion mentionnées."
+    },
+    {
+      "schema_src": "Endoderme_65.jpeg",
+      "after_text": "Dans cette phase de développement, on observe également les tonsils palatins, la parathyroïde, le thymus, et le corps ultimo-branchial.",
+      "reasoning": "Ce schéma illustre le développement pharyngien, montrant les différentes structures mentionnées comme les tonsils, la parathyroïde, et le thymus."
+    },
+    {
+      "schema_src": "Endoderme_67.jpeg",
+      "after_text": "Cette dynamique est essentielle pour comprendre le développement de la langue, de la thyroïde et de la parathyroïde.",
+      "reasoning": "Ce schéma est spécifiquement sur le développement de la thyroïde et de la parathyroïde, résumant bien les derniers points abordés."
+    }
+  ],
+  "endo-17": [
+    {
+      "schema_src": "Endoderme_22.jpeg",
+      "after_text": "Ce processus commence avec une plaque neurale, entourée de liquide amniotique, qui forme une gouttière neurale. Ce liquide amniotique représente le liquide céphalo-rachidien primitif.",
+      "reasoning": "Ce schéma illustre la neurulation précoce, qui est le processus décrit dans le paragraphe précédent."
+    },
+    {
+      "schema_src": "Endoderme_105.jpeg",
+      "after_text": "Au moment de la formation de la crête neurale, celles-ci migrent dans tout le corps, notamment au niveau de la face et du système digestif, formant ainsi le système périphérique neurologique.",
+      "reasoning": "Ce schéma montre une coupe d'embryon humain, permettant de visualiser la migration des cellules de la crête neurale et la formation du système nerveux."
+    }
+  ],
+  "endo-18": [
+    {
+      "schema_src": "Endoderme_145.jpeg",
+      "after_text": "Des lignes horizontales sur les ongles peuvent signaler des difficultés d'absorption des nutriments",
+      "reasoning": "Le schéma des microvillosités et des mitochondries illustre les mécanismes d'absorption des nutriments, ce qui est directement lié au texte sur les difficultés d'absorption des nutriments signalées par les lignes horizontales sur les ongles."
+    }
+  ],
+  "endo-21": [
+    {
+      "schema_src": "Endoderme_25.jpeg",
+      "after_text": "Une bonne **mobilité de la symphyse sphéno-basilaire** est primordiale, car elle permet l'ouverture et la fermeture de petits canaux qui facilitent la reconnaissance immunitaire et les échanges.",
+      "reasoning": "Le schéma de la base crânienne est inséré après la mention de la symphyse sphéno-basilaire et de son rôle dans les échanges, offrant une illustration anatomique directe."
+    }
+  ],
+  "endo-22": [
+    {
+      "schema_src": "Endoderme_30.jpeg",
+      "after_text": "Votre cœur a commencé à battre après 21 jours de gestation.",
+      "reasoning": "Le schéma représente un embryon ou fœtus en gestation, illustrant le stade de développement mentionné dans le texte."
+    }
+  ],
+  "endo-23": [
+    {
+      "schema_src": "Endoderme_56.jpeg",
+      "after_text": "Entre ces deux éléments, le **cerveau** oriente le développement et le **cœur** sert de point d'appui.",
+      "reasoning": "Ce schéma illustre les étapes initiales du développement embryonnaire mentionnées, incluant la gastrulation et la neurulation."
+    },
+    {
+      "schema_src": "Endoderme_118.jpeg",
+      "after_text": "Ce mouvement de flexion engendre divers phénomènes digestifs.",
+      "reasoning": "Le sujet de la circulation fœtale est un bon complément à la discussion sur l'influence de la flexion de l'embryon et les phénomènes digestifs."
+    },
+    {
+      "schema_src": "Endoderme_119.jpeg",
+      "after_text": "Nous observons l'apparition du **tube digestif antérieur** avec des diverticules.",
+      "reasoning": "Ce schéma met en évidence la circulation fœtale qui est étroitement liée à la morphogenèse du tube digestif."
+    },
+    {
+      "schema_src": "Endoderme_76.jpeg",
+      "after_text": "L'épithélium forme la partie interne, tandis qu'autour se trouve un tissu qui contribue à sa structure.",
+      "reasoning": "Le schéma d'une coupe de l'œsophage aide à visualiser les différentes couches (endoblastique et mésenchyme) qui viennent d'être décrites."
+    },
+    {
+      "schema_src": "Endoderme_132.png",
+      "after_text": "Des éléments tels que la **pepsine** et l'**acide chlorhydrique** ont été retrouvés dans l'oreille moyenne de certains enfants, soulignant le lien entre reflux et problèmes ORL.",
+      "reasoning": "Le schéma du hiatus œsophagien est pertinent ici car il représente une zone clé pour les problèmes de reflux gastrique qui viennent d'être abordés."
+    },
+    {
+      "schema_src": "Endoderme_146.png",
+      "after_text": "Cela est souvent dû à une dysfonction au niveau de la jonction entre l'œsophage et l'estomac, au niveau diaphragmatique.",
+      "reasoning": "Le schéma du diaphragme en vue antérieure illustre la zone diaphragmatique, essentielle pour comprendre la jonction entre l'œsophage et l'estomac."
+    },
+    {
+      "schema_src": "Endoderme_75.jpeg",
+      "after_text": "Steele a dit : \"Si ton diaphragme n'est pas libre, la porte de ta vie n'est pas libre.\"",
+      "reasoning": "Ce schéma de l'œsophage abdominal est pertinent après la discussion sur le diaphragme et la jonction œsophagienne."
+    },
+    {
+      "schema_src": "Endoderme_39.jpeg",
+      "after_text": "L'**œsophage**, la **trachée** et l'**aorte** sont interconnectés, formant une zone rythmique.",
+      "reasoning": "Le schéma des arcs aortiques embryonnaires est idéal car il illustre l'interconnexion mentionnée entre l'aorte et les structures environnantes."
+    },
+    {
+      "schema_src": "Endoderme_71.png",
+      "after_text": "Cette zone est maintenue par un **fascia commun** et un **mésentaire postérieur**, qui s'insèrent sur la zone dorsale moyenne, autour de D3-D4.",
+      "reasoning": "Le schéma de l'aorte et des arcs (intercostaux) complète la discussion sur la zone rythmique et son maintien par des fascias."
+    },
+    {
+      "schema_src": "Endoderme_73.png",
+      "after_text": "Ces interactions se produisent des milliers de fois par jour, créant une dynamique rythmique complexe.",
+      "reasoning": "Ce schéma d'innervation thoracique et abdominale est utile pour illustrer la complexité des interactions rythmiques et nerveuses autour de l'œsophage, de la trachée et de l'aorte."
+    }
+  ],
+  "endo-24": [
+    {
+      "schema_src": "Endoderme_78.png",
+      "after_text": "qui inclut l'apparition de diverticules.",
+      "reasoning": "Ce segment introduit le début du développement pulmonaire et la formation de diverticules, ce qui correspond bien à un schéma général du développement embryonnaire pulmonaire."
+    },
+    {
+      "schema_src": "Endoderme_11.jpeg",
+      "after_text": "autour du 28ème jour.",
+      "reasoning": "Le texte décrit la fermeture du tube neural et les mouvements embryonnaires, ce qui est directement lié au processus de neurulation."
+    },
+    {
+      "schema_src": "Endoderme_81.jpeg",
+      "after_text": "entre le 18ème et le 22ème jour, avec la fermeture du tube neural et des neuro-ports antérieurs et postérieurs autour du 28ème jour.",
+      "reasoning": "L'image d'un embryon à 6 semaines (environ 28-42 jours) illustre bien cette période de développement mentionnée."
+    },
+    {
+      "schema_src": "Endoderme_77.png",
+      "after_text": "à partir de la trachée.",
+      "reasoning": "La phrase parle de l'apparition du diverticule laryngotrachéal et de la formation des bronches souches, ce qui est parfaitement illustré par l'arbre bronchique embryonnaire."
+    },
+    {
+      "schema_src": "Endoderme_14.jpeg",
+      "after_text": "environnement adéquat s'épanouira.",
+      "reasoning": "Bien qu'il n'y ait pas de schéma direct sur l'influence environnementale, l'image du coelome embryonnaire peut être placée ici pour introduire les cavités qui se forment autour des poumons et leur interaction avec l'environnement embryonnaire."
+    },
+    {
+      "schema_src": "Endoderme_111.jpeg",
+      "after_text": "qui est également extra-embryonnaire, joue un rôle essentiel dans le champ d'aspiration dès le début du développement.",
+      "reasoning": "L'image du coelome embryonnaire met en évidence les cavités et membranes qui se forment, y compris le péritoine et la plèvre, mentionnés dans le texte."
+    },
+    {
+      "schema_src": "Endoderme_74.jpeg",
+      "after_text": "d'origine sous-diaphragmatique.",
+      "reasoning": "Le texte se concentre sur l'origine et le développement du diaphragme, ce schéma est donc pertinent à cet endroit."
+    },
+    {
+      "schema_src": "Endoderme_82.jpeg",
+      "after_text": "de la plèvre.",
+      "reasoning": "Cette section parle de la formation de la colonne vertébrale, de la somatopleure et de la splanchnopleure, ainsi que de leurs contributions à la formation des cavités corporelles contenant les organes internes. L'image de l'embryon avec les organes internes est un bon complément."
+    },
+    {
+      "schema_src": "Endoderme_80.png",
+      "after_text": "facilitant l'échange de gaz.",
+      "reasoning": "Le hile pulmonaire est décrit comme un espace crucial pour les échanges. Une vue générale de l'anatomie pulmonaire, y compris le hile, est appropriée ici."
+    },
+    {
+      "schema_src": "Endoderme_91.png",
+      "after_text": "facilitant l'échange de gaz.",
+      "reasoning": "Le hile pulmonaire est décrit comme un espace crucial pour les échanges. Une vue en coupe frontale des poumons, montrant bien leur structure et leur relation avec cet espace, est appropriée ici."
+    },
+    {
+      "schema_src": "Endoderme_85.jpeg",
+      "after_text": "de gaz.",
+      "reasoning": "L'échange gazeux est mentionné, et cette image des lobes pulmonaires et des bronches détaille la structure impliquée dans cet échange."
+    },
+    {
+      "schema_src": "Endoderme_90.png",
+      "after_text": "d'améliorer son efficacité respiratoire.",
+      "reasoning": "Le texte évoque la liberté de mouvement des côtes et du fascia endothoracique pour la fonction pulmonaire, et le dôme pleural est directement lié à cette mécanique respiratoire."
+    }
+  ],
+  "endo-26": [
+    {
+      "schema_src": "Endoderme_87.jpeg",
+      "after_text": "où l'on recherche le point de fulcrum embryonnaire. Ce point représente un champ d'aspiration, permettant de se repotentialiser dans la fonction primaire des poumons, c'est-à-dire être prêt à prendre le souffle de vie.",
+      "reasoning": "Ce schéma illustre la position des mains et le champ embryonnaire lié au mouvement des poumons, concept introduit dans ce paragraphe."
+    },
+    {
+      "schema_src": "Endoderme_88.jpeg",
+      "after_text": "cinquième semaine de grossesse et se développe jusqu'à la 38e semaine, avec l'apparition du surfactant autour de la 25e semaine. Les pathologies pulmonaires, telles que la bronchite ou la bronchiolite, peuvent être des manifestations cherchant à résoudre des problèmes non exprimés durant le stade embryonnaire, se manifestant sous forme de liquide. On peut dire que l'on \"pleure dans les poumons\".",
+      "reasoning": "Ce schéma illustre une pathologie pulmonaire, la cystic lung disease, qui est mentionnée et mise en contexte avec les pathologies pulmonaires et le liquide amniotique dans ce paragraphe."
+    }
+  ],
+  "endo-29": [
+    {
+      "schema_src": "Endoderme_101.jpeg",
+      "after_text": "On observe la cavité amniotique, la cavité viteline, et le pédicule embryonnaire, entourés par le cellulome externe.",
+      "reasoning": "Cette image montre les cavités amniotique et viteline et le pédicule embryonnaire, illustrant la description du texte."
+    },
+    {
+      "schema_src": "Endoderme_100.jpeg",
+      "after_text": "Pour mieux comprendre, une coupe peut être réalisée.",
+      "reasoning": "Le texte introduit l'idée d'une coupe, et cette image est une coupe transversale de l'embryon."
+    },
+    {
+      "schema_src": "Endoderme_102.jpeg",
+      "after_text": "Au fur et à mesure que le tube neural se ferme, les aortes se rapprochent, car elles ne grandissent pas à la même vitesse.",
+      "reasoning": "Cette image illustre le développement du tube neural, le rapprochement des aortes et la formation des cavités."
+    },
+    {
+      "schema_src": "Endoderme_103.jpeg",
+      "after_text": "Ce mouvement, orchestré par les aortes et la notocorde, permet l'intégration du cellulome externe en un cellulome interne.",
+      "reasoning": "L'image montre le processus de pliage latéral et l'intégration du cœlome, correspondant à la description du mouvement et de l'intégration."
+    }
+  ],
+  "endo-31": [
+    {
+      "schema_src": "Endoderme_2.png",
+      "after_text": "À ce stade, nous pouvons voir l'intégration de la cavité péritonéale, tant dans le plan sagittal que transversal.",
+      "reasoning": "Cette image illustre le concept initial de l'embryon et la formation des feuillets, pertinent après avoir parlé de l'intégration du cellome."
+    },
+    {
+      "schema_src": "Endoderme_32.jpeg",
+      "after_text": "La croissance est le grand moteur de ce processus, avec la formation de notre corps dans un ordre primitif.",
+      "reasoning": "Cette image montre le pliage latéral de l'embryon, illustrant le grand mouvement de croissance et d'organisation primitive."
+    },
+    {
+      "schema_src": "Endoderme_94.jpeg",
+      "after_text": "le diaphragme, car c'est lui qui crée cette délimitation globale.",
+      "reasoning": "Cette image représente le pliage embryonnaire latéral et crânio-caudal, un aspect clé de la délimitation globale mentionnée."
+    },
+    {
+      "schema_src": "Endoderme_96.jpeg",
+      "after_text": "Le péritoine entoure un organe, ce qui est appelé un péritoine viscéral.",
+      "reasoning": "Cette image montre le diaphragme humain, qui est pertinent après la discussion sur son rôle dans la délimitation et le mouvement."
+    },
+    {
+      "schema_src": "Endoderme_104.jpeg",
+      "after_text": "Par exemple, pour l'estomac, cela s'appelle un mésogastre, pour le duodénum, un mésodiédénum, et pour le côlon, un mésocolon.",
+      "reasoning": "Cette image illustre le pliement embryonnaire et la relation des organes, ce qui est pertinent après la définition du péritoine viscéral et des mésos."
+    },
+    {
+      "schema_src": "Endoderme_165.png",
+      "after_text": "Par exemple, le petit épiplomb relie le foie à l'estomac, et il existe également un épiplomb reliant la rate à l'estomac.",
+      "reasoning": "Cette image de la projection antérieure de l'estomac et de ses relations aide à visualiser les épiplombs et les mésos décrits."
+    },
+    {
+      "schema_src": "Endoderme_169.png",
+      "after_text": "Un méso, en revanche, contient toujours un vaisseau, tandis qu'un ligament ou un fascia ne contient pas nécessairement de vaisseau.",
+      "reasoning": "Cette image de l'anatomie abdominale supérieure illustre l'organisation des différentes structures mentionnées (mésos, ligaments, péritoine)."
+    },
+    {
+      "schema_src": "Endoderme_200.png",
+      "after_text": "Tout cela constitue le péritoine, organisé dans la cavité péritonéale.",
+      "reasoning": "Cette image d'un embryon humain avec ses organes illustre la complexité de l'organisation du péritoine et des organes dans la cavité abdominale."
+    }
+  ],
+  "endo-33": [
+    {
+      "schema_src": "Endoderme_123.jpeg",
+      "after_text": "Nous avons identifié plusieurs fonctions de l'estomac : hormonale, mécanique, et fluidique.",
+      "reasoning": "This schema illustrates the arterial vascularization of the stomach, which is related to its mechanical and fluidic functions."
+    },
+    {
+      "schema_src": "Endoderme_131.jpeg",
+      "after_text": "Nous pouvons également travailler sur l'os hyoïde en lien avec son fulcrum embryonnaire.",
+      "reasoning": "This schema illustrates porto-caval anastomoses, relevant to the broader discussion of the digestive system's embryological connections and vascularization, placing it after the mention of the hyoid bone's embryological fulcrum provides a logical transition."
+    }
+  ]
+}
