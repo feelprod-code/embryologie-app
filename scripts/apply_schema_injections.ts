@@ -49,6 +49,12 @@ for (const [videoId, injections] of Object.entries(injectionsData)) {
     const publicImagePath = `/images/schemas/${categoryPrefix}/${videoId}/${schema_src}`;
     const injectionMarkdown = `\n\n![${caption}](${publicImagePath})\n\n`;
 
+    // Prevent duplicate injections
+    if (videoCoursesContent.includes(publicImagePath)) {
+      console.log(`  ⏭️ Skipped ${schema_src} (already injected)`);
+      continue;
+    }
+
     let injected = false;
 
     if (after_text) {
