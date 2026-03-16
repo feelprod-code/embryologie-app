@@ -61,13 +61,19 @@ for (const [videoId, injections] of Object.entries(injectionsData)) {
       // Escape regex special chars in after_text
       const escapedText = escapeRegExp(after_text);
       
-      // We look for the text. It might be at the end of a line or paragraph.
-      const searchRegex = new RegExp(`(${escapedText})`, 'g');
+      // We look for the video block and ONLY replace within its transcriptMarkdown
+      const videoBlockRegex = new RegExp(`(id:\\s*["']${videoId}["'][\\s\\S]*?transcriptMarkdown:\\s*\`)([\\s\\S]*?)(\`,)`, 'g');
 
-      // Perform replacement
-      if (searchRegex.test(videoCoursesContent)) {
-        videoCoursesContent = videoCoursesContent.replace(searchRegex, `$1${injectionMarkdown}`);
-        injected = true;
+      videoCoursesContent = videoCoursesContent.replace(videoBlockRegex, (match, prefix, transcriptContent, suffix) => {
+        const searchRegex = new RegExp(`(${escapedText})`, 'g');
+        if (searchRegex.test(transcriptContent)) {
+          injected = true;
+          return prefix + transcriptContent.replace(searchRegex, `$1${injectionMarkdown}`) + suffix;
+        }
+        return match;
+      });
+
+      if (injected) {
         totalInjected++;
         // Use a safe substring to prevent crashing on short texts
         const snippet = after_text.length > 30 ? after_text.substring(0, 30) : after_text;
@@ -79,19 +85,20 @@ for (const [videoId, injections] of Object.entries(injectionsData)) {
       if (after_text) {
          const snippet = after_text.length > 30 ? after_text.substring(0, 30) : after_text;
          console.warn(`  ❌ Anchor not found for ${schema_src}: "${snippet}..."`);
-         missingAnchors.push({ videoId, schema: schema_src, anchor: after_text });
+         if (!missingAnchors.some(m => m.schema === schema_src)) {
+            missingAnchors.push({ videoId, schema: schema_src, anchor: after_text });
+         }
       } else {
          console.warn(`  ⚠️ No anchor provided for ${schema_src}`);
       }
       
       // Fallback: Inject at the very end of the transcriptMarkdown string for that specific video
-      // Find the start of this video's block
-      const videoBlockRegex = new RegExp(`id:\\s*["']${videoId}["'][\\s\\S]*?transcriptMarkdown:\\s*\`([\\s\\S]*?)\`,`, 'g');
+      const videoBlockRegex = new RegExp(`(id:\\s*["']${videoId}["'][\\s\\S]*?transcriptMarkdown:\\s*\`)([\\s\\S]*?)(\`,)`, 'g');
       
-      videoCoursesContent = videoCoursesContent.replace(videoBlockRegex, (match, transcriptContent) => {
-         // Append the markdown to the end of the transcript content
+      videoCoursesContent = videoCoursesContent.replace(videoBlockRegex, (match, prefix, transcriptContent, suffix) => {
          injected = true;
-         return match.replace(transcriptContent, transcriptContent + injectionMarkdown);
+         // Append the markdown to the end of the transcript content
+         return prefix + transcriptContent + injectionMarkdown + suffix;
       });
 
       if (injected) {

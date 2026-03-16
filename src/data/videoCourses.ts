@@ -5099,6 +5099,11 @@ Cela implique qu'une **déstabilisation** de la hanche peut déstabiliser le cœ
 Il existe une relation complexe à travers l'**endothélium**, ce tissu qui relie l'ensemble du système.
 
 
+![Circulation embryo liquide
+céphalo-rachidien](/images/schemas/mesoderme/meso-09/Mesoderme_60.jpeg)
+
+
+
 ![Pliage embryonnaire latéral](/images/schemas/mesoderme/meso-09/Mesoderme_149.jpeg)
 
 
@@ -5120,11 +5125,6 @@ Il existe une relation complexe à travers l'**endothélium**, ce tissu qui reli
 
 
 ![Développement tube digestif embryonnaire](/images/schemas/mesoderme/meso-09/Mesoderme_16.jpeg)
-
-
-
-![Circulation embryo liquide
-céphalo-rachidien](/images/schemas/mesoderme/meso-09/Mesoderme_60.jpeg)
 
 `,
   },
@@ -8300,6 +8300,10 @@ Lorsque vous êtes bien ancré dans votre **règne minéral**, vous pouvez vous 
 Lorsque l'on demande à un maître combien de temps il faut rester dans cette méditation, il répondra : "Autant de temps que tu peux rester." 
 
 Finalement, relâchez-vous et bougez légèrement les mains pour amener un peu d'**énergie**. En fléchissant légèrement les genoux, vous pouvez stimuler la circulation de l'énergie dans votre corps.
+
+
+![Développement œil embryonnaire](/images/schemas/endoderme/endo-03/Endoderme_41.png)
+
 `,
   },
   {
@@ -11035,16 +11039,8 @@ Ces mémoires véhiculent des informations qui influencent notre interprétation
     cloudflareId: "6bcceb56b34f439759787acf7be6f136",
     duration: "10:39",
     title: "31. Pratique: Epiphyse et hypophyse",
-    shortSummary: "Fonctions de l'épiphyse et de l'hypophyse dans la régulation hormonale et la mémoire. Techniques d'embryologie biodynamique pour améliorer leur interaction, impact sur la respiration, la digestion et le sommeil.
-
-![Développement œil embryonnaire](/images/schemas/endoderme/endo-03/Endoderme_41.png)
-
-",
-    fullSummary: "Cette vidéo propose une exploration approfondie des rôles fondamentaux de l'épiphyse et de l'hypophyse dans la régulation hormonale et la mémoire. Elle présente des techniques de rééquilibrage énergétique inspirées du voyage embryonnaire, spécifiquement en ce qui concerne la motilité de l'hypophyse. Les étudiants apprendront à identifier les interactions entre lumière divine et actuelle, ainsi qu'à utiliser des observations cliniques comme la respiration et les mouvements oculaires pour restaurer l'équilibre entre ces deux glandes cruciales. Le cours met aussi en lumière l'importance de l'épiphyse dans la régulation de fonctions vitales comme la respiration, la digestion et le sommeil.
-
-![Développement œil embryonnaire](/images/schemas/endoderme/endo-03/Endoderme_41.png)
-
-",
+    shortSummary: "Fonctions de l'épiphyse et de l'hypophyse dans la régulation hormonale et la mémoire. Techniques d'embryologie biodynamique pour améliorer leur interaction, impact sur la respiration, la digestion et le sommeil.",
+    fullSummary: "Cette vidéo propose une exploration approfondie des rôles fondamentaux de l'épiphyse et de l'hypophyse dans la régulation hormonale et la mémoire. Elle présente des techniques de rééquilibrage énergétique inspirées du voyage embryonnaire, spécifiquement en ce qui concerne la motilité de l'hypophyse. Les étudiants apprendront à identifier les interactions entre lumière divine et actuelle, ainsi qu'à utiliser des observations cliniques comme la respiration et les mouvements oculaires pour restaurer l'équilibre entre ces deux glandes cruciales. Le cours met aussi en lumière l'importance de l'épiphyse dans la régulation de fonctions vitales comme la respiration, la digestion et le sommeil.",
     transcriptMarkdown: `
 # Pratique : Épiphyse et Hypophyse
 
