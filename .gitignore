@@ -25,3 +25,4 @@ dist-ssr
 .vercel
 *.mjs
 .env.vercel
+scripts/pdfs_cours/

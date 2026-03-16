@@ -216,11 +216,23 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             margin: 15,
             filename: 'embryo-ai-reponse.pdf',
             image: { type: 'jpeg' as const, quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true },
+            html2canvas: { scale: 2, useCORS: true, logging: false },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
         };
 
-        html2pdf().set(opt).from(container).save();
+        // For Chrome compatibility, sometimes the element needs to be in the DOM
+        container.style.position = 'absolute';
+        container.style.left = '-9999px';
+        document.body.appendChild(container);
+
+        html2pdf().set(opt).from(container).save().then(() => {
+            document.body.removeChild(container);
+        }).catch((err: any) => {
+            console.error("PDF Generation error:", err);
+            if (document.body.contains(container)) {
+                document.body.removeChild(container);
+            }
+        });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {

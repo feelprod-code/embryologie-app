@@ -8,6 +8,7 @@ export interface VideoCourse {
   shortSummary?: string;
   fullSummary?: string;
   transcriptMarkdown: string;
+  schemas?: string[];
 }
 
 export const videoCourses: VideoCourse[] = [
@@ -183,6 +184,7 @@ Nous allons étudier l'ontogenèse humaine, en recherchant surtout la forme et l
   },
   {
     id: "ecto-03",
+    schemas: ["Ectoderme_1.png"],
     categoryId: "ectoderme",
     youtubeId: "hNI6dBCQ6YY",
     cloudflareId: "8cdf090911343b771e44cb559d3e5aa0",
@@ -270,6 +272,7 @@ Cette chronologie est importante et doit être apprise dans ce sens. Nous verron
   },
   {
     id: "ecto-04",
+    schemas: ["Ectoderme_3.png","Ectoderme_4.jpeg","Ectoderme_5.jpeg","Ectoderme_57.png","Ectoderme_6.jpeg","Ectoderme_83.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "RdmPT_FrwZE",
     cloudflareId: "500b369d3203ed966d5c910662eb56c4",
@@ -342,6 +345,7 @@ En d'autres termes, un champ électrique génère inévitablement un champ élec
   },
   {
     id: "ecto-05",
+    schemas: ["Ectoderme_2.jpeg","Ectoderme_7.png"],
     categoryId: "ectoderme",
     youtubeId: "N3WwDAfcm6Y",
     cloudflareId: "1d0b5f5be2fba5c460ca67acffa64b65",
@@ -476,6 +480,7 @@ Ce cours nous a permis de poser les bases de la compréhension de l'embryologie 
   },
   {
     id: "ecto-06",
+    schemas: ["Ectoderme_11.png","Ectoderme_12.png"],
     categoryId: "ectoderme",
     youtubeId: "Xoc4Gah3lFA",
     cloudflareId: "b491fe14b38b0a524881066b9d247004",
@@ -705,6 +710,7 @@ En ostéopathie biodynamique, nous travaillons avec ces espaces. Le corps se ré
   },
   {
     id: "ecto-07",
+    schemas: ["Ectoderme_13.png","Ectoderme_18.jpeg","Ectoderme_50.png","Ectoderme_61.png"],
     categoryId: "ectoderme",
     youtubeId: "ZlOewEH8Uw8",
     cloudflareId: "18a059e5956b5c11d008caffb495f0b2",
@@ -764,6 +770,7 @@ Nous observons alors ce qu'on appelle la **zone pellucida** et des **cellules no
   },
   {
     id: "ecto-08",
+    schemas: ["Ectoderme_8.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "9n-9baCAaNA",
     cloudflareId: "abd4ad73b060e039dea2f34b04f48ddd",
@@ -947,6 +954,7 @@ La fertilité doit souvent être traitée plus haut, sur le cadre du **pentagone
   },
   {
     id: "ecto-11",
+    schemas: ["Ectoderme_14.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "69Pou_jhG3s",
     cloudflareId: "48b3c353021d12f670324743d767c826",
@@ -1012,6 +1020,7 @@ Cette recherche sur la polarité et les premières phases de développement embr
   },
   {
     id: "ecto-12",
+    schemas: ["Ectoderme_16.jpeg","Ectoderme_19.jpeg","Ectoderme_20.jpeg","Ectoderme_21.jpeg","Ectoderme_23.jpeg","Ectoderme_24.jpeg","Ectoderme_25.jpeg","Ectoderme_26.png","Ectoderme_27.jpeg","Ectoderme_29.jpeg","Ectoderme_32.jpeg","Ectoderme_79.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "bECRknTsbes",
     cloudflareId: "2feb2b0eabe44818f742473d26b29f8d",
@@ -1091,6 +1100,7 @@ C'est toujours la même image du blastocèle, mais cette fois-ci, il va dévelop
   },
   {
     id: "ecto-13",
+    schemas: ["Ectoderme_22.png"],
     categoryId: "ectoderme",
     youtubeId: "MEczyu4el-U",
     cloudflareId: "1050cd1cf29c6ff5c1e19378a9fc19f8",
@@ -1116,6 +1126,7 @@ Nous allons aborder le moment de l'**implantation** après la pause.
   },
   {
     id: "ecto-14",
+    schemas: ["Ectoderme_17.jpeg","Ectoderme_30.jpeg","Ectoderme_31.jpeg","Ectoderme_34.jpeg","Ectoderme_35.jpeg","Ectoderme_36.jpeg","Ectoderme_37.jpeg","Ectoderme_38.jpeg","Ectoderme_39.jpeg","Ectoderme_43.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "yI_FuzNhDQY",
     cloudflareId: "2c09e95f7a4bbd75c9ea863ef0d1ad7c",
@@ -1351,6 +1362,7 @@ L'axe crânio-sacré primitif se forme entre le **14ème** et le **21ème jour**
   },
   {
     id: "ecto-17",
+    schemas: ["Ectoderme_28.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "wRPZTw_Y1bg",
     cloudflareId: "81492486cc63961d13ad83e3efe181f6",
@@ -1489,6 +1501,7 @@ Au moment de la **nidation**, on peut dire que lorsque j'entre dans la muqueuse,
   },
   {
     id: "ecto-20",
+    schemas: ["Ectoderme_53.png","Ectoderme_55.jpeg","Ectoderme_56.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "WWt_6v51VMI",
     cloudflareId: "a76cdefd55ad66ced70d1707fc5a34b6",
@@ -1677,6 +1690,7 @@ Quelle est notre représentation mentale de ces processus ? Le corps l'utilise, 
   },
   {
     id: "ecto-25",
+    schemas: ["Ectoderme_45.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "aYi0MqpBPf4",
     cloudflareId: "0c49f5059d01d54e6f86059d71ac078c",
@@ -1862,6 +1876,7 @@ Fais cela.
   },
   {
     id: "ecto-29",
+    schemas: ["Ectoderme_15.jpeg","Ectoderme_33.jpeg","Ectoderme_40.jpeg","Ectoderme_41.png","Ectoderme_44.jpeg","Ectoderme_48.jpeg","Ectoderme_58.png","Ectoderme_59.jpeg","Ectoderme_62.png","Ectoderme_63.jpeg","Ectoderme_64.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "C01Mp-t08s8",
     cloudflareId: "8c0ebf367a20e3b637b394a0db9ed860",
@@ -1984,6 +1999,7 @@ Si le sacrum monte alors qu'il devrait descendre en flexion, cela crée un déca
   },
   {
     id: "ecto-30",
+    schemas: ["Ectoderme_67.jpeg","Ectoderme_68.png","Ectoderme_69.png","Ectoderme_70.jpeg","Ectoderme_71.jpeg","Ectoderme_72.jpeg","Ectoderme_73.jpeg","Ectoderme_74.jpeg","Ectoderme_78.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "PSaZeNgQAPY",
     cloudflareId: "229f78076bb9ad3da0d3e2c6eef4343d",
@@ -2516,6 +2532,7 @@ Son origine tissulaire était déjà présente (les cellules étaient là), mais
   },
   {
     id: "ecto-35",
+    schemas: ["Ectoderme_42.jpeg","Ectoderme_82.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "7X_Ay1zb-xw",
     cloudflareId: "4b2c5d414af085c442c475451b956104",
@@ -2889,6 +2906,7 @@ C'est une question de **synchronicité**. Il faut "se faire un synchronisme" pou
   },
   {
     id: "ecto-38",
+    schemas: ["Ectoderme_47.png"],
     categoryId: "ectoderme",
     youtubeId: "jzm-SvjNW08",
     cloudflareId: "5fb7477aef73a653e1faafff8795212a",
@@ -3110,6 +3128,7 @@ De plus, vous avez désormais une perspective enrichie. Le **système crânio-sa
   },
   {
     id: "ecto-41",
+    schemas: ["Ectoderme_81.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "UobBInr9dpA",
     cloudflareId: "c1956f647c7bebcb6e2c535cb0cc0208",
@@ -3156,6 +3175,7 @@ Mais en même temps, il ne grandit pas à la même vitesse que les tissus qu'il 
   },
   {
     id: "ecto-43",
+    schemas: ["Ectoderme_46.png","Ectoderme_54.png"],
     categoryId: "ectoderme",
     youtubeId: "-aVvS6Ekvew",
     cloudflareId: "5c1152d2337c2163b5053223f06165bb",
@@ -3509,6 +3529,7 @@ Vous percevez des structures telles que :
   },
   {
     id: "ecto-47",
+    schemas: ["Ectoderme_49.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "zPBVe0bfm60",
     cloudflareId: "57ed355916bd8571286a4337eb683348",
@@ -3587,6 +3608,7 @@ Cette compréhension de la migration des crêtes neurales, notamment au niveau d
   },
   {
     id: "ecto-48",
+    schemas: ["Ectoderme_51.jpeg","Ectoderme_52.jpeg","Ectoderme_65.jpeg","Ectoderme_66.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "UMJYZS_T9W8",
     cloudflareId: "eed24828641a97bf8f7f5fc203238f74",
@@ -3681,6 +3703,7 @@ Ainsi, nous pouvons commencer notre voyage vers la **méditation**.
   },
   {
     id: "ecto-50",
+    schemas: ["Ectoderme_80.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "AWG_vm3gqWQ",
     cloudflareId: "0f5f2ad7ccf431e2aecb67dc383151e4",
@@ -3893,6 +3916,7 @@ Je termine très souvent en vérifiant si le **"rebalancing"** est correct. Je t
   },
   {
     id: "ecto-52",
+    schemas: ["Ectoderme_10.jpeg"],
     categoryId: "ectoderme",
     youtubeId: "taZj1dczHX4",
     cloudflareId: "5f50cc46a3153578157e84b106ae3505",
@@ -4152,6 +4176,7 @@ J'aime bien l'idée de trajectoire car elle vous donne une aide thérapeutique e
   },
   {
     id: "meso-04",
+    schemas: ["Mesoderme_11.png","Mesoderme_128.jpeg","Mesoderme_13.png","Mesoderme_2.png","Mesoderme_3.png","Mesoderme_4.jpeg","Mesoderme_5.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "4bd3ba1e95f549e158bb96855cb55ba4",
@@ -4217,6 +4242,7 @@ L'aspect présomptif du cœur est déterminé par ce champ d'action.
   },
   {
     id: "meso-05",
+    schemas: ["Mesoderme_174.png","Mesoderme_64.png","Mesoderme_73.png","Mesoderme_9.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "45605bc798594f7f044f3ccc16385e13",
@@ -4272,6 +4298,7 @@ Une prise de sang effectuée dans un bras ne reflète pas la totalité du sang q
   },
   {
     id: "meso-06",
+    schemas: ["Mesoderme_76.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "b8f701a2d44df6931668db02f0e2ede4",
@@ -4360,6 +4387,7 @@ La rate est un grand moteur, mais pour avoir une rate fonctionnelle, le **foie**
   },
   {
     id: "meso-07",
+    schemas: ["Mesoderme_10.jpeg","Mesoderme_22.jpeg","Mesoderme_6.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "745898da9ea893ede3c6382f9f6e1cd1",
@@ -4499,6 +4527,7 @@ Et puis on va voir une chose qui est très importante, c'est tout ce mouvement d
   },
   {
     id: "meso-08",
+    schemas: ["Mesoderme_12.png","Mesoderme_138.jpeg","Mesoderme_14.png","Mesoderme_15.jpeg","Mesoderme_17.png","Mesoderme_18.png","Mesoderme_36.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "d6f435c7b1cda4e47ea4538a276c064f",
@@ -4588,6 +4617,7 @@ Cependant, à un moment donné, il n'y aura plus de croissance de cette cavité.
   },
   {
     id: "meso-09",
+    schemas: ["Mesoderme_129.jpeg","Mesoderme_143.png","Mesoderme_149.jpeg","Mesoderme_150.jpeg","Mesoderme_16.jpeg","Mesoderme_163.jpeg","Mesoderme_60.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "bb3df01f4c8052bd8780a2ae5e52f48e",
@@ -4754,6 +4784,7 @@ Cela est d'abord conçu pour recevoir, puis pour donner. Mais la fonction premi�
   },
   {
     id: "meso-11",
+    schemas: ["Mesoderme_171.png","Mesoderme_172.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "59295dcd057ecd4e9ed81b085f5c288e",
@@ -4825,6 +4856,7 @@ En fait, tout ceci forme un plan unitaire et pur. On constate que certaines path
   },
   {
     id: "meso-12",
+    schemas: ["Mesoderme_121.jpeg","Mesoderme_85.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "e21df653a2bdf4e865befd457ae4b7d7",
@@ -5089,6 +5121,7 @@ L'**ombilic** est le point de rencontre final, la jonction entre le pédicule em
   },
   {
     id: "meso-15",
+    schemas: ["Mesoderme_77.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "6eba5b2a7cfff106aab16b95eb4e621b",
@@ -5171,6 +5204,7 @@ Malgré cette sensation sur une artère, la question demeure : suis-je plus dans
   },
   {
     id: "meso-16",
+    schemas: ["Mesoderme_19.jpeg","Mesoderme_38.jpeg","Mesoderme_39.jpeg","Mesoderme_40.jpeg","Mesoderme_41.jpeg","Mesoderme_42.jpeg","Mesoderme_43.jpeg","Mesoderme_44.jpeg","Mesoderme_45.jpeg","Mesoderme_47.jpeg","Mesoderme_48.jpeg","Mesoderme_49.jpeg","Mesoderme_50.jpeg","Mesoderme_51.jpeg","Mesoderme_71.jpeg","Mesoderme_74.png","Mesoderme_75.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "e411fdbe2ff35ce87ef6faaa27441b94",
@@ -5275,6 +5309,7 @@ Les seuls vestiges finaux sont :
   },
   {
     id: "meso-17",
+    schemas: ["Mesoderme_173.png","Mesoderme_37.jpeg","Mesoderme_46.jpeg","Mesoderme_52.jpeg","Mesoderme_53.jpeg","Mesoderme_54.jpeg","Mesoderme_55.jpeg","Mesoderme_56.png","Mesoderme_57.png","Mesoderme_58.png","Mesoderme_59.jpeg","Mesoderme_61.jpeg","Mesoderme_62.png","Mesoderme_63.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "d982e245367f57387731a3228ce994da",
@@ -5380,6 +5415,7 @@ Dans le cordon ombilical, les vaisseaux en spirale dans le pédicule embryonnair
   },
   {
     id: "meso-18",
+    schemas: ["Mesoderme_23.jpeg","Mesoderme_24.png","Mesoderme_26.jpeg","Mesoderme_27.png","Mesoderme_28.png","Mesoderme_29.png","Mesoderme_30.png","Mesoderme_31.png","Mesoderme_33.jpeg","Mesoderme_34.jpeg","Mesoderme_35.png","Mesoderme_7.jpeg","Mesoderme_8.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "2caa045e81e4b3ae68342b2223e222f0",
@@ -5478,6 +5514,7 @@ Le grand plan d'équilibre réside dans les **lits capillaires**, lieu de rencon
   },
   {
     id: "meso-19",
+    schemas: ["Mesoderme_67.jpeg","Mesoderme_68.jpeg","Mesoderme_69.jpeg","Mesoderme_70.jpeg","Mesoderme_72.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "644a290bd2b816190edb9e139abcce62",
@@ -5560,6 +5597,7 @@ Les pariétaux, comme des **panneaux solaires**, doivent respirer et capter la l
   },
   {
     id: "meso-21",
+    schemas: ["Mesoderme_165.png","Mesoderme_66.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "508ae7b45e4abdd3e0825986c8e4b566",
@@ -5757,6 +5795,7 @@ C'est un mantra qui coupe le mental : Oum ! O yā ā O vénā Vēnā Sī Nē O.
   },
   {
     id: "meso-24",
+    schemas: ["Mesoderme_25.png","Mesoderme_65.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "9e4db38b61ee79715490cfa73e2c4988",
@@ -5999,6 +6038,7 @@ Je sais que l'envie est grande d'intervenir, mais cette pratique peut aussi se f
   },
   {
     id: "meso-27",
+    schemas: ["Mesoderme_127.jpeg","Mesoderme_78.jpeg","Mesoderme_92.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "eed34168127c89300829357d85830800",
@@ -6095,6 +6135,7 @@ Au début, la lame mésodermique est non différenciée. Mais pour avoir le rein
   },
   {
     id: "meso-28",
+    schemas: ["Mesoderme_81.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "31981e33d3c86e03b857c4e98a0a826f",
@@ -6154,6 +6195,7 @@ L'embryon possède une lame intermédiaire contenant tout le potentiel **mésode
   },
   {
     id: "meso-29",
+    schemas: ["Mesoderme_119.png","Mesoderme_131.jpeg","Mesoderme_80.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "5614a8fdffc60dad6447505e85e2937c",
@@ -6313,6 +6355,7 @@ Enfin, le **ligament suspenseur diaphragmatique** en haut et le **gubernaculum**
   },
   {
     id: "meso-32",
+    schemas: ["Mesoderme_100.jpeg","Mesoderme_103.jpeg","Mesoderme_110.png","Mesoderme_135.jpeg","Mesoderme_79.jpeg","Mesoderme_84.jpeg","Mesoderme_86.jpeg","Mesoderme_87.jpeg","Mesoderme_88.jpeg","Mesoderme_89.jpeg","Mesoderme_90.jpeg","Mesoderme_93.jpeg","Mesoderme_95.jpeg","Mesoderme_96.jpeg","Mesoderme_97.jpeg","Mesoderme_98.jpeg","Mesoderme_99.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "c77453bb83b115cb3362dcf6bb3f6bcc",
@@ -6378,6 +6421,7 @@ La suspension initiale des testicules jusqu'au plan diaphragmatique, et plus pr�
   },
   {
     id: "meso-33",
+    schemas: ["Mesoderme_102.jpeg","Mesoderme_104.jpeg","Mesoderme_107.jpeg","Mesoderme_108.jpeg","Mesoderme_111.jpeg","Mesoderme_112.jpeg","Mesoderme_91.png","Mesoderme_94.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "f92f262f253b6f715dae7efbed1495a5",
@@ -6463,6 +6507,7 @@ Un gros fibrome peut entraîner une cascade de conséquences dans tout le systè
   },
   {
     id: "meso-34",
+    schemas: ["Mesoderme_105.jpeg","Mesoderme_106.jpeg","Mesoderme_115.jpeg","Mesoderme_116.jpeg","Mesoderme_117.png","Mesoderme_83.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "d64448003de39974f1c60a3897fd2d8d",
@@ -6548,6 +6593,7 @@ La ligne blanche est la rencontre de toute l'histoire **urogénitale**.
   },
   {
     id: "meso-35",
+    schemas: ["Mesoderme_101.jpeg","Mesoderme_109.png","Mesoderme_113.png","Mesoderme_122.jpeg","Mesoderme_123.jpeg","Mesoderme_124.jpeg","Mesoderme_125.jpeg","Mesoderme_126.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "cfe1066f2c95adb6db0f64839e25e447",
@@ -6627,6 +6673,7 @@ Il est important de noter que notre corps **somatise** les conflits psychiques. 
   },
   {
     id: "meso-36",
+    schemas: ["Mesoderme_147.png","Mesoderme_158.png","Mesoderme_159.jpeg","Mesoderme_160.jpeg","Mesoderme_162.jpeg","Mesoderme_170.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "6175a59f302ae4e22d0ef7538f92324b",
@@ -6853,6 +6900,7 @@ Les techniques abordées ne doivent pas être perçues comme des techniques, mai
   },
   {
     id: "meso-39",
+    schemas: ["Mesoderme_1.png","Mesoderme_137.jpeg","Mesoderme_139.jpeg","Mesoderme_175.png","Mesoderme_176.png","Mesoderme_178.jpeg"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "1f58e2883679ef581ade7d9f5a04de57",
@@ -6999,6 +7047,7 @@ Revoir l'**embryologie** offre une meilleure compréhension de l'anatomie. L'emb
   },
   {
     id: "meso-41",
+    schemas: ["Mesoderme_132.jpeg","Mesoderme_133.jpeg","Mesoderme_134.jpeg","Mesoderme_140.jpeg","Mesoderme_141.jpeg","Mesoderme_151.png","Mesoderme_164.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "7a9f22f0989f39d951de2247e764a495",
@@ -7082,6 +7131,7 @@ J'ai donc une inversion. Au départ, l'os est fluide et grandit. Quand il tire e
   },
   {
     id: "meso-42",
+    schemas: ["Mesoderme_120.jpeg","Mesoderme_130.jpeg","Mesoderme_142.jpeg","Mesoderme_144.png","Mesoderme_145.png","Mesoderme_154.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "39eb07e1f55cb14494b0f4ad23bc4b56",
@@ -7119,6 +7169,7 @@ Par exemple, une dermalgie au niveau 9 peut être associée à des structures co
   },
   {
     id: "meso-43",
+    schemas: ["Mesoderme_136.png","Mesoderme_148.jpeg","Mesoderme_21.jpeg","Mesoderme_32.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "587f00d037ff2dd7ee3f92dad4745178",
@@ -7152,6 +7203,7 @@ Le travail sur cette zone implique de ramener la côte dans son mouvement d'insp
   },
   {
     id: "meso-44",
+    schemas: ["Mesoderme_146.png","Mesoderme_152.jpeg","Mesoderme_153.jpeg","Mesoderme_155.png","Mesoderme_156.png","Mesoderme_157.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "5bbf2d82e245a513e0e46e81342b19f4",
@@ -7212,6 +7264,7 @@ Pour aller plus loin, explorez le **plan atomique**, puis le **plan vibratoire**
   },
   {
     id: "meso-46",
+    schemas: ["Mesoderme_166.jpeg","Mesoderme_167.jpeg","Mesoderme_169.png"],
     categoryId: "mesoderme",
     youtubeId: "",
     cloudflareId: "ad346f1bf924125f22b885c96d2f4668",
@@ -7284,6 +7337,7 @@ En conclusion, la méditation et la conscience de la respiration sont des outils
   },
   {
     id: "endo-02",
+    schemas: ["Endoderme_19.jpeg","Endoderme_21.jpeg","Endoderme_3.png","Endoderme_59.jpeg","Endoderme_63.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "75bbf492798e3d4bc138169f47fd133e",
@@ -7330,6 +7384,7 @@ Ces éléments sont essentiels pour retrouver la vitalité et la fonction pour l
   },
   {
     id: "endo-03",
+    schemas: ["Endoderme_41.png"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "078d64df33c952dce1de291b8c8a5e06",
@@ -7364,6 +7419,7 @@ Finalement, relâchez-vous et bougez légèrement les mains pour amener un peu d
   },
   {
     id: "endo-04",
+    schemas: ["Endoderme_192.jpeg","Endoderme_201.jpeg","Endoderme_4.jpeg","Endoderme_5.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "2d5c16d1b0cce326cbbc308387b990da",
@@ -7409,6 +7465,7 @@ Enfin, l'intestin et le corps symbolisent l'intégration de l'individu. La reche
   },
   {
     id: "endo-05",
+    schemas: ["Endoderme_190.png","Endoderme_191.jpeg","Endoderme_7.png","Endoderme_8.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "476e5151e0b8d417836ac703566f93db",
@@ -7565,6 +7622,7 @@ En conclusion, la pratique de l'ombilic est une exploration profonde des liens e
   },
   {
     id: "endo-09",
+    schemas: ["Endoderme_112.jpeg","Endoderme_148.jpeg","Endoderme_154.jpeg","Endoderme_16.jpeg","Endoderme_162.jpeg","Endoderme_163.jpeg","Endoderme_17.jpeg","Endoderme_18.jpeg","Endoderme_198.png","Endoderme_20.png","Endoderme_23.jpeg","Endoderme_29.jpeg","Endoderme_31.jpeg","Endoderme_33.jpeg","Endoderme_35.jpeg","Endoderme_36.jpeg","Endoderme_44.jpeg","Endoderme_53.jpeg","Endoderme_55.jpeg","Endoderme_6.jpeg","Endoderme_60.jpeg","Endoderme_66.png","Endoderme_69.jpeg","Endoderme_70.png","Endoderme_83.jpeg","Endoderme_93.png","Endoderme_95.png","Endoderme_97.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "4ee71d2e62f7ea0e8a6d89ee24ec1faa",
@@ -7598,6 +7656,7 @@ L'influence de cette plicature est donc essentielle pour organiser la **délimit
   },
   {
     id: "endo-10",
+    schemas: ["Endoderme_116.jpeg","Endoderme_15.jpeg","Endoderme_150.jpeg","Endoderme_151.jpeg","Endoderme_152.jpeg","Endoderme_197.jpeg","Endoderme_27.png"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "41583d304832de740ad82c84985bbb92",
@@ -7637,6 +7696,7 @@ En conclusion, la formation de l'intestin supérieur et des structures faciales 
   },
   {
     id: "endo-11",
+    schemas: ["Endoderme_1.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "6481dc78aeb696228e7f667dd7b2f7dd",
@@ -7683,6 +7743,7 @@ Pratiquez cet exercice **trois fois**, en augmentant progressivement le nombre d
   },
   {
     id: "endo-13",
+    schemas: ["Endoderme_10.jpeg","Endoderme_12.jpeg","Endoderme_121.jpeg","Endoderme_13.jpeg","Endoderme_14.jpeg","Endoderme_199.png","Endoderme_9.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "11b4b7830b1ed72f55ad56dd4a1f1f0f",
@@ -7714,6 +7775,7 @@ Cette dynamique de développement est une **biodynamique cinétique**, reliant l
   },
   {
     id: "endo-14",
+    schemas: ["Endoderme_24.jpeg","Endoderme_40.jpeg","Endoderme_45.jpeg","Endoderme_46.jpeg","Endoderme_48.jpeg","Endoderme_50.jpeg","Endoderme_51.jpeg","Endoderme_54.jpeg","Endoderme_57.jpeg","Endoderme_58.png"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "6450b7e0428cfccd815437fb80f98283",
@@ -7743,6 +7805,7 @@ Enfin, il est important de noter que la zone de la superficie à la profondeur, 
   },
   {
     id: "endo-15",
+    schemas: ["Endoderme_26.jpeg","Endoderme_37.jpeg","Endoderme_38.jpeg","Endoderme_43.jpeg","Endoderme_47.jpeg","Endoderme_49.jpeg","Endoderme_52.jpeg","Endoderme_61.png","Endoderme_62.png","Endoderme_64.jpeg","Endoderme_65.jpeg","Endoderme_67.jpeg","Endoderme_68.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "608e30fd9ba81b5d9658452659955096",
@@ -7811,6 +7874,7 @@ L'évolution de la couleur de la langue peut refléter la profondeur d'une patho
   },
   {
     id: "endo-17",
+    schemas: ["Endoderme_105.jpeg","Endoderme_22.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "40df9e15b3735c3bf2d5ae29fc5be4dd",
@@ -7862,6 +7926,7 @@ La peau est un indicateur précieux de la santé interne. Les déséquilibres ho
   },
   {
     id: "endo-18",
+    schemas: ["Endoderme_145.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "1233874fc70e436843a64ac89ce38be7",
@@ -7951,6 +8016,7 @@ Est-ce que cela vous fait du bien ? Y a-t-il quelqu'un d'autre qui souhaite part
   },
   {
     id: "endo-21",
+    schemas: ["Endoderme_25.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "c58a4e2bad687a6c5e21c81cc8101913",
@@ -7988,6 +8054,7 @@ Les sensations dans la gorge ou le ventre ne sont pas nécessairement liées à 
   },
   {
     id: "endo-22",
+    schemas: ["Endoderme_30.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "10a715f1c4af1e7165caa04a589e7fc9",
@@ -8027,6 +8094,7 @@ Il est nécessaire de créer cet espace, car sans lui, il n'y a pas de développ
   },
   {
     id: "endo-23",
+    schemas: ["Endoderme_118.jpeg","Endoderme_119.jpeg","Endoderme_132.png","Endoderme_146.png","Endoderme_39.jpeg","Endoderme_56.jpeg","Endoderme_71.png","Endoderme_73.png","Endoderme_75.jpeg","Endoderme_76.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "c2d5df2ad03ab26ba55215cff2f8b834",
@@ -8062,6 +8130,7 @@ Enfin, nous allons aborder l'étude des **poumons**, en passant en revue les dif
   },
   {
     id: "endo-24",
+    schemas: ["Endoderme_11.jpeg","Endoderme_111.jpeg","Endoderme_74.jpeg","Endoderme_77.png","Endoderme_78.png","Endoderme_80.png","Endoderme_81.jpeg","Endoderme_82.jpeg","Endoderme_84.jpeg","Endoderme_85.jpeg","Endoderme_86.jpeg","Endoderme_89.jpeg","Endoderme_90.png","Endoderme_91.png","Endoderme_92.png"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "9320f0f86a69f246100ef2d91ee2c99a",
@@ -8093,6 +8162,7 @@ Il est essentiel de comprendre que les poumons reposent sur un volume résiduel 
   },
   {
     id: "endo-26",
+    schemas: ["Endoderme_87.jpeg","Endoderme_88.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "65aec50bd0a87dd7b85f7845cb3d27ab",
@@ -8174,6 +8244,7 @@ Le véritable silence est comparable à la **gratitude** : il implique une gratu
   },
   {
     id: "endo-29",
+    schemas: ["Endoderme_100.jpeg","Endoderme_101.jpeg","Endoderme_102.jpeg","Endoderme_103.jpeg","Endoderme_106.jpeg","Endoderme_107.jpeg","Endoderme_108.jpeg","Endoderme_113.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "455673ebcaca5c3d1b156f0cd19ca217",
@@ -8234,6 +8305,7 @@ Le tube digestif, considéré comme un tissu d'extérieur, peut également expri
   },
   {
     id: "endo-31",
+    schemas: ["Endoderme_104.jpeg","Endoderme_165.png","Endoderme_169.png","Endoderme_194.jpeg","Endoderme_195.png","Endoderme_2.png","Endoderme_200.png","Endoderme_28.png","Endoderme_32.jpeg","Endoderme_34.png","Endoderme_72.png","Endoderme_94.jpeg","Endoderme_96.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "544f507aba924aa01dab5ac3baf0a196",
@@ -8269,6 +8341,7 @@ L'intestin commence à grandir, le foie se développe, l'estomac veut s'exprimer
   },
   {
     id: "endo-32",
+    schemas: ["Endoderme_109.jpeg","Endoderme_114.jpeg","Endoderme_115.jpeg","Endoderme_124.jpeg","Endoderme_126.png","Endoderme_127.png","Endoderme_128.jpeg","Endoderme_129.jpeg","Endoderme_130.jpeg","Endoderme_136.jpeg","Endoderme_164.png","Endoderme_168.png","Endoderme_170.png","Endoderme_179.jpeg","Endoderme_182.jpeg","Endoderme_185.jpeg","Endoderme_193.png"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "90139b1c0b9aff8a0c20515b0cb94552",
@@ -8314,6 +8387,7 @@ La compréhension des interactions entre les différents organes et leur organis
   },
   {
     id: "endo-33",
+    schemas: ["Endoderme_123.jpeg","Endoderme_131.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "a05f9132bdf28b0da6d036aadfdf0893",
@@ -8374,6 +8448,7 @@ La phase de développement du duodénum est caractérisée par une **rotation** 
   },
   {
     id: "endo-35",
+    schemas: ["Endoderme_137.jpeg","Endoderme_139.jpeg","Endoderme_140.jpeg","Endoderme_142.jpeg","Endoderme_143.jpeg","Endoderme_186.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "3471e720f3f8f99efe93a48453354cad",
@@ -8438,6 +8513,7 @@ Dans cette phase de développement, nous observons comment tout cela organise co
   },
   {
     id: "endo-37",
+    schemas: ["Endoderme_147.png","Endoderme_153.jpeg","Endoderme_155.jpeg","Endoderme_156.jpeg","Endoderme_157.jpeg","Endoderme_159.png","Endoderme_160.png","Endoderme_161.jpeg","Endoderme_166.jpeg","Endoderme_167.png","Endoderme_79.png"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "d863a556097f77854954be26fe174f0c",
@@ -8473,6 +8549,7 @@ Enfin, il est essentiel de noter que pendant la phase digestive, le foie reçoit
   },
   {
     id: "endo-38",
+    schemas: ["Endoderme_125.png","Endoderme_141.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "ea8b6a3b7794840513c3453c7e6e6bb9",
@@ -8500,6 +8577,7 @@ Le développement anti-horaire du **côlon** et l'expression des **membres supé
   },
   {
     id: "endo-39",
+    schemas: ["Endoderme_117.jpeg","Endoderme_120.jpeg","Endoderme_122.jpeg","Endoderme_133.jpeg","Endoderme_134.jpeg","Endoderme_135.jpeg","Endoderme_144.jpeg","Endoderme_149.jpeg","Endoderme_158.jpeg","Endoderme_171.png","Endoderme_172.png","Endoderme_174.jpeg","Endoderme_175.jpeg","Endoderme_176.jpeg","Endoderme_177.jpeg","Endoderme_178.jpeg","Endoderme_180.jpeg","Endoderme_181.jpeg","Endoderme_184.jpeg","Endoderme_187.jpeg","Endoderme_188.jpeg","Endoderme_189.jpeg","Endoderme_196.jpeg","Endoderme_98.jpeg","Endoderme_99.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "f0306c1fa07d2ecdf28c396977eb09d1",
@@ -8535,6 +8613,7 @@ Le traitement des troubles intestinaux doit prendre en compte la dynamique péri
   },
   {
     id: "endo-40",
+    schemas: ["Endoderme_173.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "13d1e0e7a0444e0bd09fb45f638b4063",
@@ -8566,6 +8645,7 @@ Enfin, en redescendant, j'aborde la **recherche de mon indépendance**, un proce
   },
   {
     id: "endo-41",
+    schemas: ["Endoderme_183.jpeg"],
     categoryId: "endoderme",
     youtubeId: "",
     cloudflareId: "de6e5e48e167d03e66c99a3c18509270",

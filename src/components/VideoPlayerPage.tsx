@@ -12,6 +12,7 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { CustomVideoPlayer, type CustomVideoPlayerRef } from './ui/CustomVideoPlayer';
 import { useTranslation } from 'react-i18next';
+import schemaCaptionsData from '../data/schemaCaptions.json';
 
 const CACHE_NAME = 'video-offline-cache';
 
@@ -759,8 +760,47 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>
               {contentMode === 'summary' && course.fullSummary
                 ? course.fullSummary.replace(/\n/g, '\n\n')
-                : course.transcriptMarkdown.replace(/^#\s.*$/gm, '').trim().replace(/\n(?!#)/g, '\n\n').replace(/\n{3,}/g, '\n\n')}
+                : (course.transcriptMarkdown || "Transcription en cours de préparation...")}
             </ReactMarkdown>
+
+            {(() => {
+              // Priority: semantic captions from JSON, fallback: course.schemas array
+              let displaySchemas: {src: string, caption: string}[] = [];
+              const semanticSchemas = (schemaCaptionsData as any)[course.id];
+              
+              if (semanticSchemas && semanticSchemas.length > 0) {
+                displaySchemas = semanticSchemas;
+              } else if (course.schemas && course.schemas.length > 0) {
+                displaySchemas = course.schemas.map((s) => ({
+                  src: s as unknown as string, // Handle previous string[] type
+                  caption: course.title
+                }));
+              }
+
+              if (displaySchemas.length === 0) return null;
+
+              return (
+                <div className="flex flex-col gap-6 mt-12 mb-8">
+                  <hr className="border-slate-200/60 mb-8" />
+                  <h3 className="text-xl font-medium text-slate-800 font-display text-center mb-4">Schémas liés à ce cours</h3>
+                  {displaySchemas.map((schemaObj, idx) => (
+                    <div key={idx} className="relative w-full rounded-2xl overflow-hidden shadow-sm border border-slate-200/60 bg-white">
+                      <img
+                        src={`/images/schemas/${course.categoryId}/${course.id}/${schemaObj.src}`}
+                        alt={schemaObj.caption}
+                        className="w-full h-auto object-contain max-h-[85vh]"
+                        loading="lazy"
+                      />
+                      <div className="p-4 bg-slate-50 border-t border-slate-100/80 text-center">
+                        <p className="text-sm font-medium text-slate-600">
+                          {schemaObj.caption}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
           </div>
         </div>
       </div>
