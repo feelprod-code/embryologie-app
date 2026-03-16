@@ -851,7 +851,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     key={layer}
                     onClick={handleLayerClick}
                     className={cn(
-                      "relative px-0.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-2.5 lg:py-3.5 rounded-lg sm:rounded-xl md:rounded-2xl transition-all duration-200 flex flex-col items-center justify-center touch-manipulation active:opacity-80 min-w-0 w-full overflow-hidden",
+                      "relative px-0.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-1 lg:py-1 rounded-lg sm:rounded-xl md:rounded-2xl transition-all duration-200 flex flex-col items-center justify-center touch-manipulation active:opacity-80 min-w-0 w-full overflow-hidden",
                       isSelected
                         ? "bg-white text-slate-900 shadow-md shadow-black/5 ring-1 ring-black/5 scale-[1.02]"
                         : "bg-white/50 hover:bg-white text-slate-500 hover:text-slate-800 border border-transparent hover:border-slate-200/50"
@@ -863,14 +863,14 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     } : {}}
                   >
                     <span className={cn(
-                      "block text-[14px] min-[375px]:text-[15px] sm:text-[17px] md:text-[20px] lg:text-2xl whitespace-nowrap text-center font-bebas tracking-wider lg:tracking-widest w-full text-ellipsis overflow-hidden leading-tight mb-0.5",
+                      "block text-[14px] min-[375px]:text-[15px] sm:text-[17px] md:text-[20px] whitespace-nowrap text-center font-bebas tracking-wider w-full text-ellipsis overflow-hidden leading-tight mb-0",
                       isSelected ? "text-white" : "text-slate-800"
                     )}>
                       {t(`videoLibrary.layers.${tKeys[layer.replace("'", "")] || tKeys[layer]}`)}
                     </span>
 
                     <span className={cn(
-                      "flex justify-center items-center mt-0.5 sm:mt-1 text-[10px] min-[375px]:text-[11px] sm:text-[12px] md:text-[14px] lg:text-[16px] font-sans font-bold uppercase tracking-wider text-center w-full",
+                      "flex justify-center items-center mt-0.5 sm:mt-1 text-[10px] min-[375px]:text-[11px] sm:text-[12px] md:text-[14px] font-sans font-bold uppercase tracking-wider text-center w-full",
                       isSelected ? "text-white/90" : "text-slate-500"
                     )}>
                       <Clock size={12} className="hidden sm:inline mr-1 mb-[1px]" />
