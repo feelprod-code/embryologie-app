@@ -6196,30 +6196,66 @@ La vésicule vitelline est une grande source d'information. Le mouvement d'inté
 
 L'objectif est de redonner cette cavité et la zone B pour réintégrer la circulation interne.
 
+![Cette image semble être une vue d'ensemble, donc l'insérer après une phrase de contextualisation générale sur la réintégration du système circulaire semble approprié.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
+
+
+
 En visualisant le schéma comme une personne allongée :
 
 - En bleu, l'intégration en un tube neural.
+
+![L'image semble détailler l'intégration du système nerveux ou un aspect de la structuration embryonnaire.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
+
+
 - Le reste formant la peau, une couche **ectodermique**.
 
 Simultanément, l'intégration de la vésicule vitelline contribue à former une partie du système digestif, tandis que tout le système veineux s'intègre. Le mouvement à suivre est celui de la cavité amniotique qui grandit, menant à une fusion pour former la partie longitudinale, le tube digestif.
 
+![Probablement une étape de la formation du tube digestif ou une structure longitudinale.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
+
+
+
 L'intégration du cœlome externe en un futur cœlome interne est visualisée en jaune, où tout se rejoint sur la ligne médiane.
+
+![Probablement la convergence des structures vers la ligne médiane, cohérent avec la phrase.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
+
+
 
 ## Le Grand Moteur : Système Notochordal et Tube Neural
 
 Le moteur principal de ce processus est le **système notochordal**, qui influence le tube neural et organise le système vasculaire primitif aortique. Il redirige l'information avec l'intégration progressive de tout le système transversal, de la périphérie vers le centre.
 
+![Système notochordal ou une vue transversale de l'intégration, correspondant au texte.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_5.jpeg)
+
+
+
 Nous allons suivre ce mouvement pas à pas. Il est essentiel de "laisser faire" la respiration primaire.
+
+![L'image semble représenter la structure veineuse viscérale mentionnée dans le résumé, et cette phrase marque une transition vers la notion de 'mouvement'.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_6.jpeg)
+
+
 
 ## Mouvement Endovolontaire des Poumons et Conscience du Pédicule Ombilical
 
-Le **mouvement endovolontaire des poumons** part de l'endoderme et est orienté par le système vasculaire. La conscience du **pédicule ombilical** doit revenir dans cet espace, permettant de percevoir la force de la cavité amniotique qui grandit, tout en intégrant les processus de céphalisation, cardialisation, diaphragmatisation et hépatisation.
+Le **mouvement endovolontaire des poumons** part de l'endoderme et est orienté par le système vasculaire.
 
-Le retour se fait alors. La vésicule vitelline, poussée par la vitesse de croissance différentielle, sera reprise dans le schéma.
+![L'image correspond à la description de l'intégration des systèmes comme le vitellin et hépatique.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_7.jpeg)
+
+ La conscience du **pédicule ombilical** doit revenir dans cet espace, permettant de percevoir la force de la cavité amniotique qui grandit, tout en intégrant les processus de céphalisation, cardialisation, diaphragmatisation et hépatisation.
+
+Le retour se fait alors.
+
+![Régression de la vésicule vitelline et la formation du cordon ombilical, ce qui est logique après la mention du 'retour'.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_8.jpeg)
+
+ La vésicule vitelline, poussée par la vitesse de croissance différentielle, sera reprise dans le schéma.
 
 ![Cordon ombilical formation](/images/schemas/mesoderme/meso-21/Mesoderme_66.png)
 
  Elle va repousser le pédicule pour rejoindre la vésicule vitelline et former plus tard le cordon ombilical.
+
+![Cette image semble être une vue récapitulative ou une visualisation finale de l'intégration du système vitellin et de ses vestiges, cohérent avec la fin du paragraphe.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_9.png)
+
+
 
 Tout se rejoint ici, partant d'un pédicule pour revenir à un cordon.
 
@@ -6650,6 +6686,10 @@ Le tissu, dans sa mémoire embryonnaire, reçoit une compression et un mouvement
 
 Cette première information biodynamique de cinétique du développement est une concentration de mésoderme engendrée par la flexion et ce mouvement de rapprochement.
 
+![Concept de la formation du rein par compression et flexion, thème abordé juste avant dans le verbatim.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_11.jpeg)
+
+
+
 ![Embryon plan tridermique](/images/schemas/mesoderme/meso-27/Mesoderme_127.jpeg)
 
 
@@ -6686,6 +6726,10 @@ Le rein, dans sa phase de développement, se construit du **crânial** vers le *
     *   Il formera le rein définitif.
 
 Chaque partie permet l'émergence d'éléments qui seront repris dans le rein définitif.
+
+![Développement crânio-caudal du rein (Pronéphron, Mésonéphron, Métanéphron) qui est le sujet du paragraphe.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_12.jpeg)
+
+
 
 C'est une séquence de développement **crâniocaudale**. Le premier mouvement d'impulsion de la lame intermédiaire est une compression, due à la croissance différentielle entre le tube neural et l'aorte, qui comprime le système.
 
@@ -6915,7 +6959,11 @@ Parallèlement, le **système urogénital** se caractérise par la migration des
 
 Les surrénales, poussées par le développement du foie, repoussent les gonades latéralement. 
 
-Ce mouvement développemental engendre un **pli latéral** dans le tissu, causé par la pression des surrénales sur les gonades. Ce pli, visible dans le péritoine pariétal postérieur, est désigné sous le nom de **ductus de Müller**.
+Ce mouvement développemental engendre un **pli latéral** dans le tissu, causé par la pression des surrénales sur les gonades.
+
+![This image seems to depict the effect of adrenals pushing gonads laterally, forming the Mullerian duct, as described.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_16.jpeg)
+
+ Ce pli, visible dans le péritoine pariétal postérieur, est désigné sous le nom de **ductus de Müller**.
 
 ## Différences Sexuelles et Formation des Organes Génitaux
 
@@ -6975,6 +7023,10 @@ Le **canal de Wolff** est un canal collecteur, déjà formé puis disparu depuis
 
 Ces deux canaux, de Müller et de Wolff, jouent un rôle crucial dans le développement du système **urogénital**, tant chez l'homme que chez la femme.
 
+![Rôle général des canaux de Wolff et de Müller, en lien avec la section qui les introduit.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_17.jpeg)
+
+
+
 ### 2.1. Développement Chez l'Homme
 
 Chez l'homme, le canal de Wolff se différencie en **canal déférent** et, par bourgeonnement, en **uretère**. Il se connecte à la zone testiculaire en développement, formant des liens qui donneront naissance à l'**épididyme**.
@@ -6998,6 +7050,10 @@ Ce processus est lié à l'élongation du reste du système et aux vitesses de c
 ![Anatomie appareil génital masculin](/images/schemas/mesoderme/meso-32/Mesoderme_97.jpeg)
 
  Ainsi, la gonade, initialement en position haute, descend. Le gubernaculum, associé au **ligament inguinal**, entraîne le système testiculaire vers le bas.
+
+![Descente testiculaire, un concept clé expliqué dans ce paragraphe.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_18.jpeg)
+
+
 
 ## 4. L'Influence du Mouvement Hépatique
 
@@ -7333,6 +7389,10 @@ La différenciation des organes génitaux externes est clairement visible :
 
 Cette différenciation débute entre la **cinquième** et la **huitième semaine** de grossesse, en même temps que le développement hépatique et surrénalien.
 
+![Étapes du développement embryonnaire, ce qui correspond à la période de différenciation mentionnée dans le texte.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
+
+
+
 ## Ligne médiane et Analogies embryologiques
 
 Une perspective postérieure de l'embryon révèle le **ligament falciforme**, le **ligament terrestre** et le **pli médian**. La ligne blanche est la continuité de ce tissu, résultant de la fermeture le long de la ligne médiane. C'est l'aboutissement de tout ce mouvement de fusion.
@@ -7343,6 +7403,10 @@ Il existe une analogie entre la formation des organes génitaux et celle d'autre
 - Le sternum se développe comme un système utérin.
 
 Tous ces systèmes convergent vers la ligne médiane, qu'il s'agisse du sternum, de la face ou des organes génitaux.
+
+![Schéma général, cohérent avec la discussion sur la convergence vers la ligne médiane.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
+
+
 
 ![Vascularisation lèvre/palais fendu](/images/schemas/mesoderme/meso-35/Mesoderme_113.png)
 
@@ -7369,6 +7433,10 @@ Le développement des **canaux génitaux** dépend du sexe gonadique :
 
 
   - Le sinus urogénital se ferme.
+
+![Développement des organes génitaux externes, mentionné juste avant dans la discussion sur la fermeture du sinus urogénital.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
+
+
 
 Le tubercule génital chez l'homme devient le pénis, et chez la femme, le clitoris.
 
@@ -7579,7 +7647,11 @@ Là, vous pouvez ressentir une vibration dans votre corps, comme de petits **pé
 
 ## Le mouvement d'enroulement péritonéal et la ligne médiane
 
-Au niveau péritonéal, dans la fermeture de la **ligne médiane antérieure**, un **mouvement d'enroulement** se produit, allant de la partie postérieure vers la partie antérieure. 
+Au niveau péritonéal, dans la fermeture de la **ligne médiane antérieure**, un **mouvement d'enroulement** se produit, allant de la partie postérieure vers la partie antérieure.
+
+![L'image schématique générale s'insère au début du texte, après la description initiale du mouvement d'enroulement péritonéal.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.png)
+
+ 
 
 Cette dynamique entraîne une fermeture sur tout l'axe antérieur, spécifiquement la **ligne blanche antérieure**.
 
@@ -7947,9 +8019,21 @@ Le développement de l'**appareil locomoteur**, et plus spécifiquement des **ve
 
 La mise en place de la **notocorde** induit la formation du **tube neural**, qui s'organise progressivement sur l'axe longitudinal et structure le système des vaisseaux. Ce processus est accompagné d'une **croissance différentielle** qui devient antérieure, entraînant un mouvement de flexion. La partie antérieure crée ce qu'on appelle l'**anneau ectodermique**, un tissu d'épiblaste qui se fléchit, formant ainsi cet anneau.
 
+![Flexion et la formation de l'anneau ectodermique, qui est mentionnée dans le texte juste avant.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
+
+
+
 Cette flexion est essentielle, car elle entraîne des changements significatifs pour l'organisme, notamment la phase de **délimitation de l'embryon**. La présence du tube neural et des **crêtes neurales** est cruciale, car ces éléments interagissent avec l'anneau ectodermique, fournissant des informations importantes vers la notocorde.
 
+![Début du mouvement de développement autour de la notocorde, en lien avec les interactions mentionnées.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
+
+
+
 Le mouvement de l'anneau ectodermique génère une compression qui influence le développement autour de la notocorde. Ce processus est lié à la formation des **disques intervertébraux** et des **corps vertébraux**. La partie supérieure se transforme en disque, tandis que les parties inférieure et supérieure commencent à former le corps vertébral, sous l'influence de la notocorde et de la crête neurale.
+
+![Formation des disques intervertébraux et des corps vertébraux, directement après leur description.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
+
+
 
 La notocorde, vestige du **noyau pulposus**, joue un rôle clé dans la formation des corps vertébraux à partir du **sclérotome**, dérivé des somites. Ainsi, la notocorde induit la formation du corps vertébral et du disque vertébral, tandis que les structures environnantes, comme l'arc et l'épineuse, sont également influencées par la notocorde et le tube neural.
 
@@ -8061,7 +8145,15 @@ Une **tendinite** peut être le reflet d'un déficit de rotation du **péritone*
 
 En médecine chinoise, des points spécifiques de la périphérie sont stimulés pour traiter des problèmes internes. L'empreinte du péritone peut se réactiver pour réutiliser des fonctions antérieures. Les blessures majeures de la vie se produisent souvent avant l'âge de 5 ans, et certaines peuvent même remonter à la phase embryonnaire. Ce qui se passe dans le corps peut se refléter dans les membres.
 
+![L'image générale introduit la section sur les extrémités, et ce paragraphe conclut la discussion sur la relation entre les problèmes internes et les expressions.des membres](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
+
+
+
 Le **cellulome** et le **tube neural** jouent un rôle essentiel dans le développement. Un angle spécifique crée un champ d'aspiration, influençant la croissance. Un champ métabolique avec des zones de restriction et d'hypercroissance entraîne des mouvements de croissance différentielle, influencés par le système vasculaire.
+
+![Concept de champs d'aspiration et de restriction, se plaçant logiquement après l'explication de ces mécanismes dans les cellules et le tube neural.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.png)
+
+
 
 ![Bourgeon de membre](/images/schemas/mesoderme/meso-44/Mesoderme_155.png)
 
@@ -8071,7 +8163,11 @@ La main apparaît en premier dans le développement, suivie par l'allongement du
 
 ![Développement des membres](/images/schemas/mesoderme/meso-44/Mesoderme_156.png)
 
- La flexion de l'embryon est liée à la vitesse de croissance par rapport à l'aorte. Les articulations suivent un protocole similaire, où la présence de vaisseaux sanguins influence la densité et la forme des structures. Le mouvement de rotation externe est suivi d'une contre-rotation interne, orchestrée par le champ vasculaire.
+ La flexion de l'embryon est liée à la vitesse de croissance par rapport à l'aorte.
+
+![Premières phases du développement des membres, se connectant à la discussion sur l'allongement et la flexion des articulations.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
+
+ Les articulations suivent un protocole similaire, où la présence de vaisseaux sanguins influence la densité et la forme des structures. Le mouvement de rotation externe est suivi d'une contre-rotation interne, orchestrée par le champ vasculaire.
 
 ![Développement membre embryonnaire](/images/schemas/mesoderme/meso-44/Mesoderme_157.png)
 
@@ -8080,6 +8176,10 @@ La main apparaît en premier dans le développement, suivie par l'allongement du
 Le **mésoblaste** est responsable de l'induction des membres, qui sont une expansion du **sac cardio-pleuro-péritoneal**. Le traitement des lésions des membres nécessite leur rééquilibration avec le **pleuro-péricardio-péritoneal**. En libérant les membres, on permet une meilleure émergence des structures supérieures et inférieures.
 
 L'axe vasculaire est fondamental pour comprendre la métamérisation et la disposition des membres.
+
+![Développement ultérieur des membres et la rotation, correspondant à la description des mouvements de rotation interne/externe et de l'influence vasculaire.](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
+
+
 
 ![Rotation membre supérieur](/images/schemas/mesoderme/meso-44/Mesoderme_152.jpeg)
 
@@ -10058,9 +10158,17 @@ Nous sommes finalement une somme d'**agrégats**, une composition **momentanée*
 
 Cette notion d'**interprétation** est cruciale. Comment percevons-nous ce qui nous entoure ? Le jeu qui se construit autour de nous est également une interprétation des phénomènes. Nous sommes une **phénoménologie**, et il est peut-être temps de changer notre mode de perception, d'aspirer à un mirage plus vaste, aussi grand que notre planète. Si nous prenons conscience que nous sommes liés à la Terre, nous pourrions en prendre davantage soin.
 
+![L'image semble illustrer un concept général, et ce paragraphe, traitant de la conscience de notre lien avec la Terre, préfigure l'introduction et la nécessité d'une 'nouvelle vision' qui suivra.](/images/schemas/oeil/oeil-1/Oeil_2.png)
+
+
+
 Nous vivons dans une société axée sur la **croissance**, souvent perçue comme infinie, alors que notre monde est en réalité **fini**. Il est essentiel de reconnaître ce changement imminent. Je vous propose une **nouvelle vision** : soit nous faisons ce tournant, soit nous nous dirigeons vers un **effondrement** inévitable. 
 
 Les théories d'émergence nous enseignent que tout émerge puis s'effondre. La société actuelle est à un point de bascule, et en tant que **thérapeutes**, nous avons un rôle à jouer. Nous pouvons soulager la souffrance de nos patients tout en les aidant à s'ouvrir à de nouvelles perspectives.
+
+![Probablement un aspect des 'théories d'émergence' ou un concept visuel lié à la transition et au rôle des thérapeutes. La phrase précédente conclut cette idée générale.](/images/schemas/oeil/oeil-1/Oeil_3.jpeg)
+
+
 
 Andreas Messie a identifié trois éléments essentiels pour opérer ce tournant :
 
@@ -10068,7 +10176,11 @@ Andreas Messie a identifié trois éléments essentiels pour opérer ce tournant
    
 2. **Création** : Il est important de développer de nouvelles idées et formes, ce qui nous pousse à être des **créateurs** et des **penseurs**.
 
-3. **Travail spirituel** : Selon Iona Messie, sans ce travail, nous ne pourrons pas effectuer ce changement. 
+3. **Travail spirituel** : Selon Iona Messie, sans ce travail, nous ne pourrons pas effectuer ce changement.
+
+![Cette image pourrait résumer ou introduire visuellement les aspects liés au 'travail spirituel' et au 'changement' mentionnés dans le paragraphe précédent par Iona Messie, avant d'aborder des concepts plus concrets comme la conscience bienveillante.](/images/schemas/oeil/oeil-1/Oeil_4.jpeg)
+
+ 
 
 Ce travail consiste à développer une **conscience** bienveillante et un **bon cœur**. Nous devons nous interroger sur la manière de réduire la souffrance, pas seulement la nôtre, mais aussi celle des autres. Trop souvent, nous sommes absorbés par le plaisir de nos sens. 
 
@@ -10093,7 +10205,11 @@ Je vous invite à réfléchir à ce que vous pourriez abandonner pour réduire l
 
 L'**œil** est une structure fascinante qui joue un rôle crucial dans notre perception du monde. Une partie de notre **cerveau**, la rétine, est capable de détecter la plus petite particule de lumière, le **photon**. L'œil est en réalité une **extension** de notre cerveau, avec une grande activité cérébrale.
 
-L'importance de l'œil ne se limite pas à la vision. Il influence directement notre **centre de gravité**, et ce dernier, à son tour, affecte l'œil. En ce sens, l'œil agit comme un **phare** pour tous les **fascias** du corps. Les tensions oculaires que nous observons en consultation sont souvent liées au **foie**. Par exemple, un œil rouge ou jaune peut être une expression de problèmes hépatiques.
+L'importance de l'œil ne se limite pas à la vision. Il influence directement notre **centre de gravité**, et ce dernier, à son tour, affecte l'œil. En ce sens, l'œil agit comme un **phare** pour tous les **fascias** du corps.
+
+![Concept de l'œil comme 'phare des fascias' et son influence sur le centre de gravité, tel que décrit dans le texte.](/images/schemas/oeil/oeil-2/Oeil_1.png)
+
+ Les tensions oculaires que nous observons en consultation sont souvent liées au **foie**. Par exemple, un œil rouge ou jaune peut être une expression de problèmes hépatiques.
 
 Il est également intéressant de noter que, dès l'embryologie, l'œil se développe en relation avec le **cœur**. Il reçoit des informations rythmiques, tout comme la gorge et les mains. Ces différentes parties de notre corps transmettent des **charges électriques** et **électromagnétiques**. Par exemple, nous pouvons influencer quelqu'un par notre voix ou par le regard.
 
@@ -10126,13 +10242,33 @@ En tant qu'ostéopathe, il est crucial de recevoir ces informations environnemen
 
 L'œil présente une **ressemblance** fascinante avec sa formation au huitième jour du développement embryonnaire, moment où apparaît une petite cavité appelée **cavité amniotique**. Cette cavité est fondamentale pour le développement de l'œil, qui provient du **cerveau**, plus précisément du **diéencéphale**, une expansion du troisième ventricule.
 
-Au cours de ce développement, le système neuronal reçoit du **liquide amniotique primitif**, qui va former le **liquide céphalorachidien (LCR)**. Ce premier LCR, dérivé du liquide amniotique, va être enfermé dans le tube neural. Par la suite, ce tube s'ouvre vers l'avant, formant des **vésicules primitives**.
+![Schéma relatif à l'origine de l'oeil à partir du diencéphale, en lien avec le troisième ventricule.](/images/schemas/oeil/oeil-3/Oeil_1.png)
 
-Le vestige de cette cavité amniotique se retrouve dans ce qu'on appelle la **poche des os** ou **zone B**, où se trouve du liquide céphalo-rachidien. Il est intéressant de noter que le liquide à l'intérieur et à l'extérieur de l'embryon est le même. L'œil, en tant que membrane, cherche constamment à équilibrer cette zone B.
 
-La zone A est représentée par l'axe central du corps physique, tandis que la cavité amniotique commence à se former au huitième jour, marquant l'entrée dans la **muqueuse**. À ce stade, une perte de liquide centrale crée une petite cavité, et l'**ectoderme**, appelé à ce stade **épiblaste**, commence à se mettre en place. Cela constitue déjà la structure subtile qui formera l'œil et le cerveau.
 
-La cavité amniotique, qui entoure l'embryon pendant neuf mois, devient ensuite un espace vaporeux. Cet espace doit être en équilibre avec le liquide intérieur. Des déséquilibres peuvent survenir, notamment en cas d'accidents, affectant la position de l'œil. L'œil représente ainsi un équilibre entre la profondeur du liquide du système nerveux (LCR) et l'espace environnant.
+Au cours de ce développement, le système neuronal reçoit du **liquide amniotique primitif**, qui va former le **liquide céphalorachidien (LCR)**. Ce premier LCR, dérivé du liquide amniotique, va être enfermé dans le tube neural.
+
+![Schéma de l'apparition de la cavité amniotique, qui est mentionnée juste après cette phrase dans le résumé.](/images/schemas/oeil/oeil-3/Oeil_2.jpeg)
+
+ Par la suite, ce tube s'ouvre vers l'avant, formant des **vésicules primitives**.
+
+Le vestige de cette cavité amniotique se retrouve dans ce qu'on appelle la **poche des os** ou **zone B**, où se trouve du liquide céphalo-rachidien.
+
+![Expliquer le vestige de la cavité amniotique, désignée comme la zone B.](/images/schemas/oeil/oeil-3/Oeil_5.png)
+
+ Il est intéressant de noter que le liquide à l'intérieur et à l'extérieur de l'embryon est le même. L'œil, en tant que membrane, cherche constamment à équilibrer cette zone B.
+
+La zone A est représentée par l'axe central du corps physique, tandis que la cavité amniotique commence à se former au huitième jour, marquant l'entrée dans la **muqueuse**. À ce stade, une perte de liquide centrale crée une petite cavité, et l'**ectoderme**, appelé à ce stade **épiblaste**, commence à se mettre en place.
+
+![Processus d'implantation avec la formation de la cavité et la mise en place de l'ectoderme/épiblaste.](/images/schemas/oeil/oeil-3/Oeil_3.jpeg)
+
+ Cela constitue déjà la structure subtile qui formera l'œil et le cerveau.
+
+La cavité amniotique, qui entoure l'embryon pendant neuf mois, devient ensuite un espace vaporeux.
+
+![Cavité amniotique devenant un espace vaporeux, ce que l'image semble représenter.](/images/schemas/oeil/oeil-3/Oeil_4.jpeg)
+
+ Cet espace doit être en équilibre avec le liquide intérieur. Des déséquilibres peuvent survenir, notamment en cas d'accidents, affectant la position de l'œil. L'œil représente ainsi un équilibre entre la profondeur du liquide du système nerveux (LCR) et l'espace environnant.
 
 Observer la position des yeux peut révéler des informations sur l'équilibre d'une personne. Chaque individu a un œil légèrement différent, souvent en rapport avec l'architecture de son cerveau. La recherche d'une **horizontalité** par rapport à une **verticalité** est essentielle, tout comme l'équilibre entre le système digestif et le système péritonéal.
 
@@ -10165,7 +10301,27 @@ Le mouvement de perméation, un grand mouvement métabolique, se produit autour 
 
 Ce mouvement provoque un changement de forme de la notochorde, qui prend une forme en S. Cette croissance différentielle est liée à la polarité. L'axe primitif organise le tissu épithélial, qui réagit par des phénomènes d'induction et d'inhibition en relation avec la notochorde.
 
-La plaque neurale évolue pour devenir une **gouttière neurale**, qui enferme du liquide céphalo-rachidien, ou plutôt du liquide amniotique primitif. La fermeture de cette gouttière forme un **tube neural**. Les **crêtes neurales**, considérées comme un quatrième tissu embryonnaire, jouent un rôle crucial dans le développement de l'œil.
+![L'image semble illustrer la notion de croissance différentielle et de polarité de la notochorde juste après sa mise en place.](/images/schemas/oeil/oeil-4/Oeil_2.jpeg)
+
+
+
+La plaque neurale évolue pour devenir une **gouttière neurale**, qui enferme du liquide céphalo-rachidien, ou plutôt du liquide amniotique primitif.
+
+![Liquide amniotique primitif enfermé dans la gouttière neurale.](/images/schemas/oeil/oeil-4/Oeil_5.jpeg)
+
+
+
+![Cette image semble montrer une étape intermédiaire de la formation de la gouttière neurale, avant son enfermement.](/images/schemas/oeil/oeil-4/Oeil_4.jpeg)
+
+
+
+![Transformation de la plaque neurale en gouttière neurale, en corrélation avec le texte décrivant cette évolution.](/images/schemas/oeil/oeil-4/Oeil_3.jpeg)
+
+ La fermeture de cette gouttière forme un **tube neural**. Les **crêtes neurales**, considérées comme un quatrième tissu embryonnaire, jouent un rôle crucial dans le développement de l'œil.
+
+![Fermeture pour former le tube neural et la formation des crêtes neurales, qui correspondent au texte.](/images/schemas/oeil/oeil-4/Oeil_6.png)
+
+
 
 La notochorde est essentielle pour la mise en place de l'œil. Sans une notochorde équilibrée, il est impossible d'avoir un œil stable. De même, un sacrum libre est nécessaire pour garantir la stabilité du cerveau. Il est donc fondamental de rééquilibrer le sacrum pour assurer une bonne verticalité.
 
@@ -10244,6 +10400,10 @@ Il est important de considérer comment l'œil interagit dans l'espace. La grand
 
 Dans cette section, nous allons explorer la **formation de la placode optique** à partir de l'ectoblast de surface et du tube neural.
 
+![Tube neural et les ébauches optiques qui se forment, en accord avec l'introduction.](/images/schemas/oeil/oeil-7/Oeil_2.png)
+
+
+
 Nous observons d'abord le **tube neural** à l'intérieur, avec le **neuroport** et la **gouttière encéphalique** qui n'est pas encore fermée. C'est à ce stade que la première **ébauche optique** apparaît. Cette apparition est due à une **expansion** par des points d'appui vers l'extérieur.
 
 ### Types de Communication Cellulaire
@@ -10268,7 +10428,11 @@ Au départ, un tissu épiblastique apparaît entre le **septième et le huitièm
 
 Le liquide présent au-dessus de la placode optique est le même que celui à l'intérieur, c'est-à-dire le **liquide amniotique**, qui deviendra par la suite le **liquide céphalorachidien (LCR)**.
 
-Les petites vésicules latérales se gonflent et, grâce à un contact moléculaire **justacrine**, le tissu épithélial se modifie pour former la **placode optique**. Cette placode devient un **fulcrum**, donnant l'impression de s'enfoncer sur le dessin. Cela est dû à la croissance de l'extérieur, qui crée un point d'appui.
+Les petites vésicules latérales se gonflent et, grâce à un contact moléculaire **justacrine**, le tissu épithélial se modifie pour former la **placode optique**. Cette placode devient un **fulcrum**, donnant l'impression de s'enfoncer sur le dessin.
+
+![Placode optique qui s'épaissit et se comporte comme un fulcrum, correspondant à la description de sa modification.](/images/schemas/oeil/oeil-7/Oeil_5.png)
+
+ Cela est dû à la croissance de l'extérieur, qui crée un point d'appui.
 
 ### Fente Colombomique
 
@@ -10289,13 +10453,25 @@ Il est important de noter qu'il existe une **fente colombomique** dans laquelle 
 
 L'évolution de l'œil commence par l'observation d'un **espace** entre les différentes structures. L'**épiblaste** s'attache et change de forme, tandis qu'à l'intérieur, on retrouve du **liquide céphalorachidien (LCR)** et du **liquide amniotique**, qui ont une origine commune.
 
+![The initial stages of eye development, showing the epiblast and early fluid-filled spaces.](/images/schemas/oeil/oeil-8/Oeil_1.png)
+
+
+
 Une **communication juxtacrine** se met en place, permettant des connexions moléculaires. On observe également le parcours d'un vaisseau, qui représente la première vague de la **choroïde**, le tissu vasculaire de l'œil. Cette invasion est cruciale pour la formation d'une artère, impliquant divers composants tels que la présence de **vésicules** et un **gradient chimique**.
 
 La fente colombique permet le passage des **vaisseaux hyéloïdiens**, qui se transformeront plus tard en **vaisseaux rétiniens**. La communication entre l'épiblaste et cette zone donne naissance à la **vésicule optique primaire**, qui évolue en **vésicule optique secondaire**. Ce tissu se divise en **feuillet interne** et **feuillet externe** de la rétine, formant ainsi l'**espace rétinien**.
 
-Les anatomistes et embryologistes considèrent que la rétine est une extension du **cerveau**, influencée par le liquide céphalo-rachidien et les informations exudées sur un plan intercellulaire. La **vésicule cristalline**, qui donnera le **cristallin**, provient également de l'épiblaste de surface. Cette rencontre se fait par communication juxtacrine.
+Les anatomistes et embryologistes considèrent que la rétine est une extension du **cerveau**, influencée par le liquide céphalo-rachidien et les informations exudées sur un plan intercellulaire.
 
-Le cristallin se forme à l'intérieur, tandis que l'épithélium de surface reste en place, suivant un schéma similaire à celui de la formation du **tube neural**. La peau, en surface, se divise en différentes couches. Le tissu cristallin constitue la première couche de l'œil. 
+![This image probably illustrates the formation of the optic vesicle and the differentiation into retinal layers, and its connection to the brain.](/images/schemas/oeil/oeil-8/Oeil_2.png)
+
+ La **vésicule cristalline**, qui donnera le **cristallin**, provient également de l'épiblaste de surface. Cette rencontre se fait par communication juxtacrine.
+
+Le cristallin se forme à l'intérieur, tandis que l'épithélium de surface reste en place, suivant un schéma similaire à celui de la formation du **tube neural**.
+
+![This image likely shows the development of the lens from the surface epiblast and its invagination.](/images/schemas/oeil/oeil-8/Oeil_3.png)
+
+ La peau, en surface, se divise en différentes couches. Le tissu cristallin constitue la première couche de l'œil. 
 
 La **conjonctive** est la première membrane qui recouvre l'œil, tapissant également les futures paupières. À l'intérieur du cristallin, un espace se divise en deux chambres : **antérieure** et **postérieure**. La rétine, quant à elle, est extrêmement fine, semblable à une feuille de papier de cigarette.
 `,
@@ -10318,6 +10494,10 @@ L'**œil** est constitué de plusieurs couches, souvent décrites comme des chau
 
 La première couche, appelée **sclérotique**, est en continuité avec la **cornée** à l'avant. La cornée est une structure **transparente** qui permet à la lumière de pénétrer dans l'œil. Le **limbus** et la partie blanche de l'œil, connue sous le nom de **sclérotique**, constituent cette première chaussette.
 
+![Schéma général de l'œil et se place logiquement après la description des premières couches.](/images/schemas/oeil/oeil-9/Oeil_1.png)
+
+
+
 ## 2. La Choroïde
 
 En retirant la sclérotique, on découvre la **choroïde**, une couche extrêmement **vascularisée**. La choroïde se prolonge vers l'avant avec l'**iris**. L'**iridologie** est une pratique qui consiste à lire les informations sur la santé à travers l'iris, qui peut stocker divers éléments, comme le **soufre**.
@@ -10329,6 +10509,10 @@ Les **processus ciliaires** et les **muscles suspenseurs de l'iris** jouent un r
 ## 4. La Rétine
 
 La troisième chaussette est la **rétine**, qui est le tissu nerveux le plus profond et représente une extension du **cerveau**. Elle est formée de deux couches : une couche interne et une couche externe. Un **décollement de la rétine** se produit lorsque l'espace entre ces deux couches se développe.
+
+![Différentes tuniques de l'œil, y compris les processus ciliaires et la rétine, et intervient après la description de ces structures.](/images/schemas/oeil/oeil-9/Oeil_2.png)
+
+
 
 ## 5. La Couche Pigmentaire et les Photorécepteurs
 
@@ -10448,7 +10632,11 @@ Lorsque des personnes viennent avec des problèmes aigus, je leur pose souvent l
     transcriptMarkdown: `
 # Axe Cranio-Sacré Primitif
 
-Au cours de la deuxième semaine de développement embryonnaire, la **forme en S** du processus épiblastique commence à former la **notochorde**. Le **nœud d'Ensens**, ou dépression primitive, devient un point d'appui fixe et se déplace progressivement vers l'arrière. 
+Au cours de la deuxième semaine de développement embryonnaire, la **forme en S** du processus épiblastique commence à former la **notochorde**.
+
+![Début du processus épiblastique qui forme la notochorde, ce qui correspond à la description du texte verbatim.](/images/schemas/oeil/oeil-13/Oeil_1.jpeg)
+
+ Le **nœud d'Ensens**, ou dépression primitive, devient un point d'appui fixe et se déplace progressivement vers l'arrière. 
 
 Cette structure est essentielle car elle constitue la base du **crâne**, intégrant des éléments comme l'**hypophyse**, les **grandes ailes du sphénoïde**, le **système pétreux**, le **système occipital** et l'**ethmoïde**. En bas, le développement du **sacrum** commence, avec le processus de S2, qui représente le vestige de la ligne primitive. Ce processus devient un point d'appui crucial, soulignant l'importance d'un **sacrum libre** pour permettre une unité fonctionnelle.
 
@@ -10477,7 +10665,11 @@ Il reste un **fin canal** dans l'œil, appelé le **canal de Cloquet**. Ce canal
 
 L'**humeur aqueuse** et l'**humeur vitrée** sont deux types d'humeurs présentes dans l'œil. L'humeur vitrée peut être imaginée comme un **ballon d'eau gélatineuse** qui flotte dans l'œil, avec en son centre un fin canal qui se connecte directement au **cristallin**. Ce canal est également lié au **nerf optique** ou au **canal hyaloïde**.
 
-Le cristallin provient de l'**ectoderme** de surface. Au cours de la cinquième semaine de développement, une **invagination** forme une **vésicule cristalline** entourée de **mésenchyme vascularisé**. La placode s'invagine pour devenir le cristallin, un processus similaire à celui de la formation du **tube neural**. Ce mouvement laisse un espace à l'intérieur, qui devient le cristallin. 
+Le cristallin provient de l'**ectoderme** de surface. Au cours de la cinquième semaine de développement, une **invagination** forme une **vésicule cristalline** entourée de **mésenchyme vascularisé**. La placode s'invagine pour devenir le cristallin, un processus similaire à celui de la formation du **tube neural**. Ce mouvement laisse un espace à l'intérieur, qui devient le cristallin.
+
+![L'invagination de l'ectoderme et la formation de la vésicule cristalline, correspondant à la description de l'origine du cristallin.](/images/schemas/oeil/oeil-14/Oeil_3.png)
+
+ 
 
 Le cristallin subit une évolution qui forme des **lignes primitives**. Il est essentiel de comprendre comment il se développe comme un tube neural pour devenir la lentille de l'accommodation. 
 
@@ -10504,7 +10696,11 @@ Enfin, la **rétine** est la couche la plus interne de l'œil. Elle provient de 
     transcriptMarkdown: `
 # Mouvement de la Crête Neurale
 
-Le **mouvement de la crête neurale** est un processus complexe impliquant différents types de **différenciation** et de **facteurs d'induction**. Ces facteurs peuvent être de nature **métabolique** ou **passive**, et interviennent après la **neurulation**. 
+Le **mouvement de la crête neurale** est un processus complexe impliquant différents types de **différenciation** et de **facteurs d'induction**. Ces facteurs peuvent être de nature **métabolique** ou **passive**, et interviennent après la **neurulation**.
+
+![Schéma général du mouvement de la crête neurale et des facteurs d'induction, ce qui correspond bien à ce paragraphe initial qui les présente.](/images/schemas/oeil/oeil-15/Oeil_1.png)
+
+ 
 
 Les **vaisseaux sanguins** jouent un rôle crucial en guidant le système, tandis que des éléments **génétiques** influencent également l'orientation des cellules vers les zones appropriées.
 
@@ -10586,9 +10782,21 @@ Un autre aspect important est le **diaphragme de l'équilibre** et la **capsule 
 
 Traiter l'œil, c'est donc aborder le développement à la fois **péritonéal**, **périphérique** et **cortical**. L'œil est en relation avec la totalité du corps dans son expression et son développement. Chaque organe possède son propre point de vue, et chaque organe est un symbole.
 
-Aux environs du **26e jour**, un **sillon optique** apparaît, lié à une connexion interne. Ce sillon est stimulé par une vésicule qui touche la paroi superficielle. La flexion céphalique et cervicale entraîne une rencontre entre le cerveau et le cœur, avec l'œil se déposant sur le cœur. Cela crée un **pli postérieur**, connu sous le nom de **courbure pontique**, où se trouve le sacrum et la tente du cervelet.
+Aux environs du **26e jour**, un **sillon optique** apparaît, lié à une connexion interne. Ce sillon est stimulé par une vésicule qui touche la paroi superficielle.
+
+![L'image est placée après la description du 'sillon optique' et de la 'vésicule qui touche la paroi superficielle', comme indiqué dans le PDF pour la flexion céphalique.](/images/schemas/oeil/oeil-2/Oeil_1.jpeg)
+
+ La flexion céphalique et cervicale entraîne une rencontre entre le cerveau et le cœur, avec l'œil se déposant sur le cœur.
+
+![Rencontre du cerveau et du cœur, mentionnée en lien avec la flexion pontique dans le PDF, suivie de la télencéphalie.](/images/schemas/oeil/oeil-5/Oeil_1.jpeg)
+
+ Cela crée un **pli postérieur**, connu sous le nom de **courbure pontique**, où se trouve le sacrum et la tente du cervelet.
 
 La **tente du cervelet** est primordiale, car elle établit des synchronicités avec le péritoine et le cerveau. La **flexure submésencéphale** est en rapport avec la pointe de la **notocorde**, servant de point d'appui. Le **supraocciput** est également lié à la flexion cervicale, tandis que la flexure pontique est associée à la base occipitale.
+
+![L'image est insérée après la mention des différents points d'appui (notocorde, supraocciput, base occipitale) qui sont synthétisés dans le PDF avec cette image.](/images/schemas/oeil/oeil-5/Oeil_3.jpeg)
+
+
 
 L'ascension du tube neural influence le développement du système digestif et cardiaque, ainsi que d'autres espaces de développement. Les **colocalités** et **synchronicités** durant la morphogenèse aident à comprendre les points d'appui. L'ascension de l'**ectoderme** et la descente de l'**endoderme** sont essentielles pour l'intégration du cerveau.
 
@@ -10632,9 +10840,25 @@ Ainsi, en étudiant l'œil, nous pouvons mieux comprendre le développement du c
     transcriptMarkdown: `
 # Lignes de Force et Électrique
 
-Les **lignes de force** sont formées par le chargement des **électrons** du côté convex au niveau positif, créant ainsi des charges au niveau de l'os. Cela se répercute vers des lignes de force en profondeur, appelées **poutres**, qui jouent un rôle crucial dans la structure osseuse.
+Les **lignes de force** sont formées par le chargement des **électrons** du côté convex au niveau positif, créant ainsi des charges au niveau de l'os.
+
+![Cette image complète l'illustration du chargement électrique de l'os.](/images/schemas/oeil/oeil-19/Oeil_2.jpeg)
+
+
+
+![Concept de chargement des électrons et la création de charges positives et négatives sur l'os.](/images/schemas/oeil/oeil-19/Oeil_1.jpeg)
+
+ Cela se répercute vers des lignes de force en profondeur, appelées **poutres**, qui jouent un rôle crucial dans la structure osseuse.
+
+![Lignes de force en profondeur, appelées poutres, en relation avec la structure osseuse.](/images/schemas/oeil/oeil-19/Oeil_3.png)
+
+
 
 L'œil agit comme un **conformateur**, influençant la formation de l'os qui se construit autour de lui. Dans ce mouvement de descente, l'os effectue un **contre-mouvement**. Ce dernier est associé à la **céphalisation**, où l'os présente un mouvement de **contre-rotation**. Une poutre particulièrement intéressante est la **poutre canino-nasale frontale**, qui se développe de manière contralatérale.
+
+![Probablement l'une des poutres mentionnées, comme la poutre canino-nasale frontale.](/images/schemas/oeil/oeil-19/Oeil_4.png)
+
+
 
 Au niveau de la base du crâne, des lignes de force sont également présentes, représentant les grands axes de cette région. Sur le plan facial, une ligne de force s'étend de la canine jusqu'à la **bosse frontale** et la **suture coronale**. Il arrive parfois que de petites **micro-lésions** se forment au niveau de la suture coronale, entraînant des changements notables. Par exemple, une dent peut présenter un changement de biseau, et un ajustement peut provoquer un **changement électrique** significatif.
 
@@ -10668,6 +10892,10 @@ Au fur et à mesure que le nez se développe, l'œil apparaît sur le côté. Si
 La croissance céphalique est primordiale. C'est à ce moment que les yeux se rapprochent de la **ligne médiane**. Un point d'appui se forme au niveau du **nasion**. À mesure que le développement cortical progresse, l'œil s'oriente dans sa position finale. 
 
 On observe deux spirales : une spirale de l'œil et une contre-spirale osseuse, visibles dans la forme des **sutures** crâniennes. L'orientation de ces sutures est essentielle à l'étude de la tridimensionnalité du **prémaxillaire**, qui présente une forme complexe, contribuant à la structure orbitaire et oculaire.
+
+![Ce concept.](/images/schemas/oeil/oeil-20/Oeil_1.jpeg)
+
+
 `,
   },
   {
@@ -10682,19 +10910,35 @@ On observe deux spirales : une spirale de l'œil et une contre-spirale osseuse, 
     transcriptMarkdown: `
 # Le Ligament Liliequist : Anatomie et Mécanismes
 
-Le **ligament liliequist** est une structure anatomique qui agit comme un petit diaphragme, communément appelé **membrane de l'iliquiste**. Ce ligament s'insère au niveau du **troisième ventricule** et descend jusqu'au **sphénoïde**. À cet endroit, il joue un rôle crucial en relation avec le **nerf oculomoteur** et le passage artériel, notamment le **tronc basilaire**, qui est responsable de la formation des **artères cérébrales**.
+Le **ligament liliequist** est une structure anatomique qui agit comme un petit diaphragme, communément appelé **membrane de l'iliquiste**. Ce ligament s'insère au niveau du **troisième ventricule** et descend jusqu'au **sphénoïde**.
 
-Lorsque le ligament descend, il crée un **axe de tension** qui influence le **système ventriculaire**. Le troisième ventricule, le quatrième ventricule, ainsi que les **ventricules latéraux** sont tous interconnectés par cette dynamique. Un schéma de tension se met en place, ayant un impact significatif sur l'espace où se trouve l'**hypophyse**.
+![Ligament de Liliequist et le texte parle de son insertion et de son rôle.](/images/schemas/oeil/oeil-21/Oeil_1.png)
+
+ À cet endroit, il joue un rôle crucial en relation avec le **nerf oculomoteur** et le passage artériel, notamment le **tronc basilaire**, qui est responsable de la formation des **artères cérébrales**.
+
+Lorsque le ligament descend, il crée un **axe de tension** qui influence le **système ventriculaire**. Le troisième ventricule, le quatrième ventricule, ainsi que les **ventricules latéraux** sont tous interconnectés par cette dynamique.
+
+![Système ventriculaire et le texte explique l'interconnexion induite par la dynamique du ligament.](/images/schemas/oeil/oeil-21/Oeil_2.png)
+
+ Un schéma de tension se met en place, ayant un impact significatif sur l'espace où se trouve l'**hypophyse**.
 
 Au-dessus de l'hypophyse se trouve le **chiasma optique**, qui est orienté à environ 30 degrés, avec un mouvement postural de 5 degrés. Ce mouvement est essentiel pour le **drainage** entre le troisième ventricule, le sphénoïde et les **micro-vaisseaux** environnants. Les **péricytes**, présents dans les microcapillaires, interagissent avec les nerfs, créant des **espaces hémato-encéphaliques** qui agissent comme un point d'appui profond.
 
 En examinant les **présphénoïdes**, qui correspondent à l'**occiput**, on observe un espace de balance sur la membrane de l'iliquiste. Cette tension membraneuse affecte à la fois les nerfs et les vaisseaux sanguins, et se situe à proximité de l'hypophyse, où le système nerveux communique avec le système hormonal via l'**axe hypothalamo-hypophysio-thyroïdo-surenalo-gonadique**.
 
-Le mouvement crânien est également important à considérer. En observant un crâne, on peut noter les différents mouvements au niveau des **pariétaux** et d'autres structures. Ces mouvements suivent des lignes de force spécifiques. Par exemple, le mouvement de **flexion** au niveau frontal, associé à la **suture métopique**, représente deux points de balance qui influencent le mouvement de l'œil.
+Le mouvement crânien est également important à considérer. En observant un crâne, on peut noter les différents mouvements au niveau des **pariétaux** et d'autres structures.
+
+![Schéma qui s'insère logiquement avant l'explication des mouvements crâniens et des lignes de forces.](/images/schemas/oeil/oeil-21/Oeil_3.png)
+
+ Ces mouvements suivent des lignes de force spécifiques. Par exemple, le mouvement de **flexion** au niveau frontal, associé à la **suture métopique**, représente deux points de balance qui influencent le mouvement de l'œil.
 
 Il est crucial de comprendre que le **cerveau** conditionne le **système ventriculaire** et le **système facial**, tant sur le plan du **chondrocrâne** (cartilage) que du **desmocrâne** (membrane). Lors du développement, lorsque l'**occiput** descend, le **sacrum** descend également, et les **temporaux** jouent un rôle clé dans cette dynamique.
 
-Le **sternum** monte en réponse à ces mouvements, convergeant vers la ligne médiane antérieure. Tout cela est inscrit dans l'œil, et il est essentiel d'ajouter des éléments concernant le système facial et le système capsulaire de l'œil, qui s'insèrent autour et organisent l'ensemble avec une contre-rotation au niveau du développement de l'orbite.
+Le **sternum** monte en réponse à ces mouvements, convergeant vers la ligne médiane antérieure.
+
+![L'image et le texte décrivent les mouvements coordonnés du crâne, du sternum et du sacrum, convergents vers la ligne médiane.](/images/schemas/oeil/oeil-21/Oeil_4.png)
+
+ Tout cela est inscrit dans l'œil, et il est essentiel d'ajouter des éléments concernant le système facial et le système capsulaire de l'œil, qui s'insèrent autour et organisent l'ensemble avec une contre-rotation au niveau du développement de l'orbite.
 
 Les mouvements crânio-sterno-sacrés et mandibulaires sont interconnectés. Les axes canins sont également importants, car ils influencent l'**occlusion**. Si la rencontre canine supérieure et inférieure n'est pas correcte, cela entraîne une perte d'information au niveau du cerveau, car ces champs électriques doivent s'unir.
 
@@ -10760,17 +11004,41 @@ L'anatomie de l'œil et du neurocrâne est un sujet fascinant qui implique une c
 
 ## Neurocrâne et Viscérocrâne
 
-Le **neurocrâne** est un champ métabolique de détraction, tandis que le **viscérocrâne** est constitué de dérivés embryologiques. La forme tridimensionnelle du **zygoma** est particulièrement intéressante, avec ses petites facettes et sillons, notamment le **grand sillon** au-dessus, appelé **fente sphénoïdale**, où passent le nerf **oculomoteur** (nerf III) et les branches trigéminales. Le **canal optique** est crucial, car il abrite le nerf optique et l'artère ophtalmique.
+Le **neurocrâne** est un champ métabolique de détraction, tandis que le **viscérocrâne** est constitué de dérivés embryologiques. La forme tridimensionnelle du **zygoma** est particulièrement intéressante, avec ses petites facettes et sillons, notamment le **grand sillon** au-dessus, appelé **fente sphénoïdale**, où passent le nerf **oculomoteur** (nerf III) et les branches trigéminales.
 
-Le **palatin**, bien qu'il soit un petit processus, joue un rôle important dans l'équilibre du mouvement de flexion de l'embryon lors de la formation du palais. Il est associé au **zygomatique** et au **maxillaire**, qui sont également des os tridimensionnels. La fosse lacrymale, l'os lacrymal, l'**ethmoïde**, l'**os nasal**, le **frontal** et le **sphénoïde** forment une concentration d'informations osseuses.
+![Cette image détaille la fente sphénoïdale et les nerfs qui la traversent.](/images/schemas/oeil/oeil-23/Oeil_29.png)
+
+ Le **canal optique** est crucial, car il abrite le nerf optique et l'artère ophtalmique.
+
+Le **palatin**, bien qu'il soit un petit processus, joue un rôle important dans l'équilibre du mouvement de flexion de l'embryon lors de la formation du palais.
+
+![Neurocrâne et viscérocrâne, notamment l'importance du palatin et du zygoma mentionnés.](/images/schemas/oeil/oeil-23/Oeil_1.png)
+
+ Il est associé au **zygomatique** et au **maxillaire**, qui sont également des os tridimensionnels. La fosse lacrymale, l'os lacrymal, l'**ethmoïde**, l'**os nasal**, le **frontal** et le **sphénoïde** forment une concentration d'informations osseuses.
 
 ## Tuniques de l'Œil
 
 L'œil est constitué de trois grandes tuniques :
 
+![Vue d'ensemble des tuniques de l'œil, directement après l'introduction des tuniques.](/images/schemas/oeil/oeil-23/Oeil_2.png)
+
+
+
 1. **Sclérotique** : La sclérotique est la couche externe, qui se prolonge à l'avant par la **cornée**, une sclérotique transparente. Le blanc de l'œil est une sclérotique non transparente.
 
+![Cette image peut illustrer la structure de la cornée et de ses fréquences, faisant suite à la description de la sclérotique et cornée.](/images/schemas/oeil/oeil-23/Oeil_4.png)
+
+
+
+![Coupe de l'œil mettant en évidence la sclérotique et la cornée, détaillées dans le texte.](/images/schemas/oeil/oeil-23/Oeil_3.png)
+
+
+
 2. **UV (Uvéa)** : Composée de plusieurs parties, dont la **choroïde**, richement vascularisée, l'**iris** à l'avant, et le **corps ciliaire** entre les deux. Le corps ciliaire contient des ligaments et des muscles, appelés **ligaments suspenseurs**, qui maintiennent le cristallin.
+
+![Cette image peut illustrer la vascularisation liée à la choroïde et l'intégration des informations dans l'œil.](/images/schemas/oeil/oeil-23/Oeil_8.png)
+
+
 
 3. **Rétine** : La rétine contient le **canal de Cloquet** ou le **canal hyaloïdien**, ainsi que l'**ora serrata**. Elle est riche en photorécepteurs, notamment les **cônes** (vision diurne) et les **bâtonnets** (vision nocturne).
 
@@ -10778,19 +11046,99 @@ L'œil est constitué de trois grandes tuniques :
 
 Le **limbe** est la jonction entre la cornée et la sclérotique, également appelée **imbus corneoscléral**. Le **canal de Schlemm** est essentiel pour la résorption du liquide de la chambre antérieure. La **chambre antérieure** et la **chambre postérieure** de l'œil sont séparées par la pupille.
 
+![Pupille et sa fonction de régulation de la lumière.](/images/schemas/oeil/oeil-23/Oeil_9.png)
+
+
+
 L'**humeur aqueuse**, un liquide nutritif, est sécrétée par les processus ciliaires, filtrée par le trabéculum, et résorbée par le sinus veineux de la sclère et le canal de Schlemm. Elle maintient l'équilibre et nourrit la cornée et l'iris.
+
+![Cette image peut montrer une vue plus détaillée du canal de Schlemm et de la régulation de l'humeur aqueuse.](/images/schemas/oeil/oeil-23/Oeil_6.png)
+
+
 
 ## Musculature Oculaire
 
 Les muscles oculomoteurs, tels que le **droit supérieur**, le **droit inférieur**, et les muscles obliques, sont essentiels pour le mouvement des yeux. Le **muscle releveur de la paupière** est également important, et des ptoses de la paupière peuvent indiquer des problèmes de santé.
 
-Le **tendon de Zinn** est le point d'attache des muscles oculomoteurs, qui sont en relation avec les muscles de la nuque. Les nerfs optiques et les artères ophtalmiques jouent un rôle crucial dans la vascularisation et l'innervation de l'œil.
+![Cette image clarifie la jonction de la conjonctive avec les autres structures de l'œil.](/images/schemas/oeil/oeil-23/Oeil_22.png)
+
+
+
+![Glande lacrymale et son système de drainage.](/images/schemas/oeil/oeil-23/Oeil_21.png)
+
+
+
+![Glandes de sécrétions et la continuité du tarsus avec le muscle de Muller.](/images/schemas/oeil/oeil/oeil-23/Oeil_20.png)
+
+
+
+![Face muqueuse de la paupière (conjonctive).](/images/schemas/oeil/oeil-23/Oeil_19.png)
+
+
+
+![L'anatomie de la paupière, juste après la mention du muscle releveur.](/images/schemas/oeil/oeil-23/Oeil_18.png)
+
+
+
+Le **tendon de Zinn** est le point d'attache des muscles oculomoteurs, qui sont en relation avec les muscles de la nuque.
+
+![Relation de la capsule de Tenon avec les fascias du corps.](/images/schemas/oeil/oeil-23/Oeil_30.png)
+
+
+
+![Ces images (24 à 28) offrent différentes perspectives sur les muscles oculomoteurs et leur insertion.](/images/schemas/oeil/oeil-23/Oeil_28.png)
+
+
+
+![Ces images (24 à 28) offrent différentes perspectives sur les muscles oculomoteurs et leur insertion.](/images/schemas/oeil/oeil-23/Oeil_27.png)
+
+
+
+![Ces images (24 à 28) offrent différentes perspectives sur les muscles oculomoteurs et leur insertion.](/images/schemas/oeil/oeil-23/Oeil_26.png)
+
+
+
+![Ces images (24 à 28) offrent différentes perspectives sur les muscles oculomoteurs et leur insertion.](/images/schemas/oeil/oeil-23/Oeil_25.png)
+
+
+
+![Ces images (24 à 28) offrent différentes perspectives sur les muscles oculomoteurs et leur insertion.](/images/schemas/oeil/oeil-23/Oeil_24.png)
+
+
+
+![Musculature oculaire et le point d'attache du tendon de Zinn.](/images/schemas/oeil/oeil-23/Oeil_23.png)
+
+ Les nerfs optiques et les artères ophtalmiques jouent un rôle crucial dans la vascularisation et l'innervation de l'œil.
+
+![Relation entre la carotide et le nerf optique, expliquant les sensations de pulsation.](/images/schemas/oeil/oeil-23/Oeil_34.png)
+
+
+
+![Cette image peut illustrer un sinus veineux ou un aspect de la vascularisation.](/images/schemas/oeil/oeil-23/Oeil_33.png)
+
+
 
 ## Vascularisation et Innervation
 
-La vascularisation de l'œil provient de la carotide, avec des artères ophtalmiques et des branches pour la vascularisation de la rétine. Les **péricytes** ou cellules de Rouget modulent l'information au niveau des capillaires, en particulier dans la rétine.
+La vascularisation de l'œil provient de la carotide, avec des artères ophtalmiques et des branches pour la vascularisation de la rétine.
 
-L'innervation de l'œil comprend des voies sensitives, motrices et végétatives, avec le nerf optique captant l'information visuelle. La rencontre de ces systèmes au niveau de la rétine forme le nerf optique, qui transmet l'information sensorielle.
+![Vascularisation de l'œil, commençant par la carotide.](/images/schemas/oeil/oeil-23/Oeil_31.png)
+
+ Les **péricytes** ou cellules de Rouget modulent l'information au niveau des capillaires, en particulier dans la rétine.
+
+![Péricytes et leur rôle dans la modulation de l'information.](/images/schemas/oeil/oeil-23/Oeil_32.png)
+
+
+
+L'innervation de l'œil comprend des voies sensitives, motrices et végétatives, avec le nerf optique captant l'information visuelle.
+
+![L'innervation et la réunion des informations dans le canal optique.](/images/schemas/oeil/oeil-23/Oeil_35.png)
+
+ La rencontre de ces systèmes au niveau de la rétine forme le nerf optique, qui transmet l'information sensorielle.
+
+![Cette image peut compléter l'illustration de l'innervation et de la transmission de l'information via le nerf optique.](/images/schemas/oeil/oeil-23/Oeil_36.png)
+
+
 
 ## Conclusion
 
@@ -10879,7 +11227,11 @@ Il existe plusieurs niveaux de perception :
 - **Clairvoyance** : Capacité à percevoir le monde akashique de l'autre, permettant de comprendre son fonctionnement.
 - **Polyvoyance** : Vision de la divinité présente en chaque chose.
 
-L'œil reçoit une **information lumineuse** sous forme de photons. La première couche traversée est la **conjonctive**, suivie par la **cornée**, qui est la partie transparente de la sclérotique. Ensuite, la lumière passe par la **pupille**.
+L'œil reçoit une **information lumineuse** sous forme de photons. La première couche traversée est la **conjonctive**, suivie par la **cornée**, qui est la partie transparente de la sclérotique.
+
+![This image likely shows the different layers of the eye that light passes through, matching the detailed description of light's path.](/images/schemas/oeil/oeil-26/Oeil_2.png)
+
+ Ensuite, la lumière passe par la **pupille**.
 
 La chambre antérieure, qui contient de l'**humeur aqueuse**, est suivie par la chambre postérieure, qui contient également ce liquide. Les **corsilières** à l'avant fabriquent du liquide, tandis que le **canal de Schlemm** à l'arrière réabsorbe ce liquide. Ce processus permet une circulation continue de liquide qui nourrit l'œil.
 
@@ -10906,9 +11258,17 @@ Une fois intégrées, ces informations empruntent les **radiations optiques** po
 
 Les **rayons lumineux** traversent d'abord toutes les couches de la rétine pour atteindre les **photorécepteurs**. Ces photorécepteurs sont actifs grâce à leur localisation dans une zone appelée la **zone pigmentaire**, qui constitue la première couche. Les photorécepteurs se divisent en deux types : les **cônes** et les **bâtonnets**. 
 
-Après avoir traversé cette première couche, la lumière atteint les **cellules bipolaires**, puis les **cellules ganglionaires**. Ces dernières regroupent leurs axones pour former le **nerf optique**, où se produit la transduction. 
+Après avoir traversé cette première couche, la lumière atteint les **cellules bipolaires**, puis les **cellules ganglionaires**. Ces dernières regroupent leurs axones pour former le **nerf optique**, où se produit la transduction.
+
+![Parcours de la lumière jusqu'au nerf optique, correspondant au premier schéma.](/images/schemas/oeil/oeil-27/Oeil_1.png)
+
+ 
 
 En approfondissant, on observe également des **cellules horizontales** qui captent et redistribuent les informations vers les cellules bipolaires. En dessous, se trouvent les **cellules amacrines**, qui rassemblent les informations avant de les diriger vers les cellules ganglionaires. Ce système complexe permet de traiter une grande quantité d'informations visuelles.
+
+![Cette partie explique le rôle des cellules horizontales et amacrines, illustré par le second schéma.](/images/schemas/oeil/oeil-27/Oeil_2.png)
+
+
 
 Prenons l'exemple d'un photorécepteur en forme de cône. Celui-ci est constitué d'un **segment externe**, d'un **segment interne**, d'un **noyau** et d'une **terminaison synaptique**. Dans le segment externe, on trouve des **membranes plasmiques** et un empilement de petits disques contenant une protéine appelée **opsine**. Pour les bâtonnets, cette opsine est nommée **rhodopsine**, tandis que pour les cônes, elle est appelée **iodopsine**.
 
@@ -10937,7 +11297,11 @@ La **transduction** de l'énergie lumineuse se produit dans les photorécepteurs
     transcriptMarkdown: `
 # Le Corps Genouillé Latéral : Intégration et Traitement de l'Information Visuelle
 
-Le **corps genouillé latéral** joue un rôle crucial dans le traitement de l'information visuelle. Il reçoit les influx nerveux provenant de la rétine et effectue un triage de ces informations avant de les transmettre aux aires visuelles.
+Le **corps genouillé latéral** joue un rôle crucial dans le traitement de l'information visuelle.
+
+![This image introduces the CGL and its role in information processing, aligning with the introduction of the CGL in the verbatim transcript.](/images/schemas/oeil/oeil-28/Oeil_2.png)
+
+ Il reçoit les influx nerveux provenant de la rétine et effectue un triage de ces informations avant de les transmettre aux aires visuelles.
 
 ## Structure et Fonction
 
@@ -10949,27 +11313,71 @@ Le corps genouillé latéral est constitué de plusieurs couches, chacune spéci
 
 Chaque couche du corps genouillé latéral contribue à la formation d'une image en intégrant ces différentes informations.
 
+![This image details the specific functions of the parvocellular, magnocellular, and cagnocellulaire cells, matching the verbatim text's description of these cells.](/images/schemas/oeil/oeil-28/Oeil_3.png)
+
+
+
 ## Transmission de l'Information
 
 L'information visuelle est transmise à travers le nerf optique et arrive au corps genouillé latéral, où elle est triée avant d'être envoyée vers le thalamus et les aires visuelles. Environ **80%** des informations traitées par le corps genouillé latéral sont directement envoyées aux aires visuelles, tandis que **20%** passent par le pulvinar, une autre structure thalamique, pour un traitement plus subtil.
 
+![This image explains the distribution of information from the CGL to visual areas and the pulvinar, directly corresponding to the verbatim text.](/images/schemas/oeil/oeil-28/Oeil_5.png)
+
+
+
 Le pulvinar reçoit également des informations d'autres noyaux, tels que le **colliculus supérieur** et les **noyaux olivaires**, qui sont essentiels pour intégrer des informations auditives et visuelles.
+
+![The pulvinar's connections and its role in enriching context, which is discussed in the verbatim text's description of pulvinar inputs.](/images/schemas/oeil/oeil-28/Oeil_4.png)
+
+
+
+![The journey of visual information before reaching the CGL which is then explained by the text.](/images/schemas/oeil/oeil-28/Oeil_1.png)
+
+
 
 ## Intégration Multisensorielle
 
-Le corps genouillé latéral ne traite pas seulement les informations visuelles, mais il est également en lien avec des systèmes auditifs et vestibulaires. Cela permet une intégration des informations provenant des yeux, des oreilles et de la position du corps dans l'espace. Ce processus est essentiel pour des actions comme les **saccades** oculaires et l'orientation de la tête.
+Le corps genouillé latéral ne traite pas seulement les informations visuelles, mais il est également en lien avec des systèmes auditifs et vestibulaires.
+
+![This image illustrates the multisensory integration happening in connection with the CGL, fitting the verbatim text's explanation of integration with auditory and vestibular systems.](/images/schemas/oeil/oeil-28/Oeil_6.png)
+
+ Cela permet une intégration des informations provenant des yeux, des oreilles et de la position du corps dans l'espace. Ce processus est essentiel pour des actions comme les **saccades** oculaires et l'orientation de la tête.
+
+![This image continues with the multisensory integration, relevant to actions like saccades and head orientation.](/images/schemas/oeil/oeil-28/Oeil_7.png)
+
+
 
 ## Circuit de Papez et Mémoire
 
-Le corps genouillé latéral est également lié au **circuit de Papez**, qui joue un rôle dans la mémoire. Ce circuit comprend des structures telles que les **corps mammillaires**, le **thalamus antérieur** et le **cortex cingulaire**. Il est impliqué dans le stockage et la récupération des souvenirs, reliant les informations visuelles à des expériences passées.
+Le corps genouillé latéral est également lié au **circuit de Papez**, qui joue un rôle dans la mémoire.
+
+![This image directly references the Circuit de Papez and its role in memory, aligning with the verbatim text.](/images/schemas/oeil/oeil-28/Oeil_8.png)
+
+ Ce circuit comprend des structures telles que les **corps mammillaires**, le **thalamus antérieur** et le **cortex cingulaire**. Il est impliqué dans le stockage et la récupération des souvenirs, reliant les informations visuelles à des expériences passées.
+
+![This image further elaborates on the Circuit de Papez and its role in memory consolidation and retrieval, following the verbatim text's explanation.](/images/schemas/oeil/oeil-28/Oeil_9.png)
+
+
 
 ## Interprétation de la Réalité
 
-Il est important de noter que lorsque nous percevons une information, nous ne recevons qu'une fraction de la réalité. En effet, seulement **20%** des informations perçues sont réelles, le reste étant une réinterprétation basée sur notre vécu, nos émotions et nos expériences antérieures. Ce processus d'interprétation est influencé par les connexions entre les aires visuelles et le corps genouillé latéral.
+Il est important de noter que lorsque nous percevons une information, nous ne recevons qu'une fraction de la réalité. En effet, seulement **20%** des informations perçues sont réelles, le reste étant une réinterprétation basée sur notre vécu, nos émotions et nos expériences antérieures.
+
+![The reinterpretation of perceived information, directly matching the explanation in the verbatim text.](/images/schemas/oeil/oeil-28/Oeil_11.png)
+
+ Ce processus d'interprétation est influencé par les connexions entre les aires visuelles et le corps genouillé latéral.
+
+![The interpretation of reality and how only a fraction is perceived directly, which is next in the verbatim text.](/images/schemas/oeil/oeil-28/Oeil_10.png)
+
+
 
 ## Conclusion
 
 Le corps genouillé latéral est une structure clé dans le traitement de l'information visuelle, intégrant des données provenant de différentes sources sensorielles et jouant un rôle crucial dans notre perception de la réalité. Sa capacité à trier et à interpréter les informations est essentielle pour notre interaction avec le monde qui nous entoure.
+
+![The topic by reiterating the CGL's importance in perception and interaction with the world, matching the verbatim text's conclusion.](/images/schemas/oeil/oeil-28/Oeil_12.png)
+
+
 `,
   },
   {
@@ -11048,7 +11456,19 @@ Au moment de la formation de la base du crâne, un espace appelé la **poche de 
 
 La glande épiphyse se déplace de l'avant vers l'arrière, influencée par la lumière divine et l'hypophyse. Cette interaction entre la lumière divine et la lumière actuelle est essentielle pour la fonction de l'hypophyse.
 
-L'hypophyse se développe à partir de l'épithélium de surface, et le mouvement de flexion entraîne une aspiration vers le centre, formant ainsi la glande hypophyse antérieure. En parallèle, un mouvement d'aspiration dans le cerveau donne naissance à l'infidibulum, qui constitue la partie postérieure de l'hypophyse.
+![Schémas de la formation de la base du crâne, qui est introduite juste après ce texte, expliquant les mouvements embryonnaires.](/images/schemas/oeil/oeil-31/Oeil_1.png)
+
+
+
+L'hypophyse se développe à partir de l'épithélium de surface, et le mouvement de flexion entraîne une aspiration vers le centre, formant ainsi la glande hypophyse antérieure.
+
+![L'image 3 montre le développement de l'hypophyse à partir de l'épithélium de surface et l'aspiration, ce qui correspond à la description dans le texte.](/images/schemas/oeil/oeil-31/Oeil_3.png)
+
+ En parallèle, un mouvement d'aspiration dans le cerveau donne naissance à l'infidibulum, qui constitue la partie postérieure de l'hypophyse.
+
+![L'image 4 est contextuelle au développement de l'infidibulum et complète l'explication de la formation de l'hypophyse postérieure.](/images/schemas/oeil/oeil-31/Oeil_4.png)
+
+
 
 Dans la pratique, il est possible d'utiliser des techniques internes pour travailler sur l'axe énergétique entre l'hypophyse et l'épiphyse. Cela implique d'observer la respiration et le mouvement des yeux du patient, car ces éléments sont révélateurs de l'état énergétique.
 
@@ -11089,13 +11509,41 @@ Des facteurs tels que le stress énergétique peuvent dégrader notre état. La 
 
 L'œil subit un programme énergétique et d'interprétation, intégrant des informations sous forme de pré-programmes. Ce processus nous amène à un plan électrique et électromagnétique, où le cœur joue un rôle central. Le cœur émet un champ électromagnétique puissant, et l'œil, en tant que fulcrum mobile, est également influencé par des courants différents.
 
-Il existe des différences vasculaires significatives entre l'œil gauche et l'œil droit, influençant leur fonctionnement. Par exemple, l'œil droit est lié à des stases veineuses hépatiques, tandis que l'œil gauche est associé à une hyperpression artérielle. Ces différences anatomiques peuvent entraîner des interférences spécifiques sur le cortex visuel.
+Il existe des différences vasculaires significatives entre l'œil gauche et l'œil droit, influençant leur fonctionnement. Par exemple, l'œil droit est lié à des stases veineuses hépatiques, tandis que l'œil gauche est associé à une hyperpression artérielle.
 
-Les réflexes oculaires, tels que le réflexe fronto-orbitaire et le réflexe auriculo-cardiaque, montrent comment une pression légère sur les yeux peut rééquilibrer des problèmes cardiaques. Chaque œil a un rôle postural et un œil dominant, qui ne sont pas toujours les mêmes.
+![Schémas d'yeux en spirale, ce qui se connecte au paragraphe décrivant les différences vasculaires et les réflexes, juste avant l'explication des rôles posturaux.](/images/schemas/oeil/oeil-32/Oeil_1.png)
 
-Les mouvements oculaires sont essentiels pour le rééquilibrage. Les axes visuels et les angles d'inclinaison jouent un rôle dans l'intégration lumineuse neurosensorielle. L'œil a une liberté d'intégration lumineuse d'environ 23 degrés, un chiffre qui se retrouve dans divers contextes, comme l'inclinaison de la Terre.
+ Ces différences anatomiques peuvent entraîner des interférences spécifiques sur le cortex visuel.
 
-Enfin, les axes d'information, tels que l'axe pétreux, montrent comment les déstabilisations oculaires peuvent affecter l'équilibre. Les mémoires intégrées dans les os ou les schémas électriques peuvent également influencer notre perception et notre équilibre.
+Les réflexes oculaires, tels que le réflexe fronto-orbitaire et le réflexe auriculo-cardiaque, montrent comment une pression légère sur les yeux peut rééquilibrer des problèmes cardiaques.
+
+![Schéma de croisement sur une ligne lié au corps, ce qui est pertinent après la discussion des réflexes et de l'équilibre.](/images/schemas/oeil/oeil-32/Oeil_2.png)
+
+ Chaque œil a un rôle postural et un œil dominant, qui ne sont pas toujours les mêmes.
+
+![L'image concerne des axes et des angles d'intégration visuelle, correspondant à la phrase sur le rôle postural et les axes visuels.](/images/schemas/oeil/oeil-32/Oeil_3.png)
+
+
+
+Les mouvements oculaires sont essentiels pour le rééquilibrage.
+
+![L'image qui suit est liée à une zone cérébrale spécifique, donc elle s'intègre après cette phrase générale sur les mouvements oculaires.](/images/schemas/oeil/oeil-32/Oeil_7.png)
+
+ Les axes visuels et les angles d'inclinaison jouent un rôle dans l'intégration lumineuse neurosensorielle. L'œil a une liberté d'intégration lumineuse d'environ 23 degrés, un chiffre qui se retrouve dans divers contextes, comme l'inclinaison de la Terre.
+
+![Cette image est placée après l'explication des 23 degrés de liberté visuelle et son lien avec d'autres inclinaisons terrestres.](/images/schemas/oeil/oeil-32/Oeil_4.png)
+
+
+
+Enfin, les axes d'information, tels que l'axe pétreux, montrent comment les déstabilisations oculaires peuvent affecter l'équilibre.
+
+![Axes orbitaires/pyramidaux et est insérée après la mention des axes d'information et des déstabilisations oculaires.](/images/schemas/oeil/oeil-32/Oeil_5.png)
+
+ Les mémoires intégrées dans les os ou les schémas électriques peuvent également influencer notre perception et notre équilibre.
+
+![Capacité de retrouver des mémoires dans l'os, en lien avec la phrase qui fait référence aux mémoires intégrées dans les os.](/images/schemas/oeil/oeil-32/Oeil_6.png)
+
+
 `,
   },
 ];
