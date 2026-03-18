@@ -81,50 +81,58 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
     if (elements.length === 0) return;
 
     let totalChars = 0;
-    const charsPerElement = elements.map(el => {
-      const len = el.textContent?.length || 0;
-      totalChars += len;
-      return len;
+    const trackableElements: { el: HTMLElement; chars: number; originalIndex: number }[] = [];
+
+    elements.forEach((el, index) => {
+      // Check if this element is a standalone image wrapper (the schema ones we injected)
+      const isImgWrapper = el.querySelector('img') !== null;
+      // Also get text length. If it's an image wrapper, textContent is just the alt string or empty.
+      const textLen = el.textContent?.trim().length || 0;
+
+      if (isImgWrapper && textLen < 150) {
+        // Skip tracking this element completely so it never gets highlighted, 
+        // and its negligible text doesn't skew the video-to-transcript time calculation.
+        return; 
+      }
+
+      trackableElements.push({ el, chars: textLen, originalIndex: index });
+      totalChars += textLen;
     });
+
+    if (trackableElements.length === 0) return;
 
     const targetChar = progress * totalChars;
     let currentSum = 0;
-    let activeIndex = 0;
+    let activeTrackableIndex = 0;
 
-    for (let i = 0; i < elements.length; i++) {
-      if (currentSum + charsPerElement[i] >= targetChar) {
-        activeIndex = i;
+    for (let i = 0; i < trackableElements.length; i++) {
+      if (currentSum + trackableElements[i].chars >= targetChar) {
+        activeTrackableIndex = i;
         break;
       }
-      currentSum += charsPerElement[i];
+      currentSum += trackableElements[i].chars;
     }
+
+    const activeIndex = trackableElements[activeTrackableIndex].originalIndex;
 
     const themeColor = course.categoryId === 'ectoderme' ? '#5A9C51' :
       course.categoryId === 'endoderme' ? '#4171B5' :
         course.categoryId === 'mesoderme' ? '#F27D33' :
           course.categoryId === 'oeil' ? '#F2B729' : '#64748b';
 
-    elements.forEach((el, idx) => {
-      el.style.transition = 'all 0.3s ease';
-      if (idx === activeIndex) {
-        // Convert the theme hex color to a transparent rgba version for a nice highlight block
-        let bgHighlight = 'rgba(0,0,0,0.02)';
-        if (themeColor === '#5A9C51') bgHighlight = 'rgba(90, 156, 81, 0.15)'; // Ectoderme (green)
-        else if (themeColor === '#4171B5') bgHighlight = 'rgba(65, 113, 181, 0.15)'; // Endoderme (blue)
-        else if (themeColor === '#F27D33') bgHighlight = 'rgba(242, 125, 51, 0.15)'; // Mesoderme (orange)
-        else if (themeColor === '#F2B729') bgHighlight = 'rgba(242, 183, 41, 0.15)'; // Oeil (yellow)
+    let activeThemeClass = "bg-slate-100 rounded-lg px-2 -mx-2 transition-all duration-300";
+    if (themeColor === '#5A9C51') activeThemeClass = "bg-[#5A9C51]/15 rounded-lg px-2 -mx-2 transition-all duration-300";
+    if (themeColor === '#4171B5') activeThemeClass = "bg-[#4171B5]/15 rounded-lg px-2 -mx-2 transition-all duration-300";
+    if (themeColor === '#F27D33') activeThemeClass = "bg-[#F27D33]/15 rounded-lg px-2 -mx-2 transition-all duration-300";
+    if (themeColor === '#F2B729') activeThemeClass = "bg-[#F2B729]/15 rounded-lg px-2 -mx-2 transition-all duration-300";
 
-        if (isAutoScrollEnabled && contentMode === 'transcript') {
-          el.style.backgroundColor = bgHighlight;
-        } else {
-          el.style.backgroundColor = 'transparent';
-        }
-        el.style.borderLeft = 'none';
-        el.style.paddingLeft = '8px';
-        el.style.paddingRight = '8px';
-        el.style.marginLeft = '-8px';
-        el.style.marginRight = '-8px';
-        el.style.borderRadius = '8px';
+    elements.forEach((el, idx) => {
+      // Remove all dynamic background classes from unselected elements safely
+      el.classList.remove('bg-slate-100', 'bg-[#5A9C51]/15', 'bg-[#4171B5]/15', 'bg-[#F27D33]/15', 'bg-[#F2B729]/15', 'rounded-lg', 'px-2', '-mx-2', 'transition-all', 'duration-300');
+
+      if (idx === activeIndex && isAutoScrollEnabled && contentMode === 'transcript') {
+        const classesToAdd = activeThemeClass.split(' ');
+        el.classList.add(...classesToAdd);
 
         if (lastActiveNodeRef.current !== activeIndex) {
           lastActiveNodeRef.current = activeIndex;
@@ -143,14 +151,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             }
           }
         }
-      } else {
-        el.style.borderLeft = 'none';
-        el.style.backgroundColor = 'transparent';
-        el.style.paddingLeft = '0px';
-        el.style.paddingRight = '0px';
-        el.style.marginLeft = '0px';
-        el.style.marginRight = '0px';
-        el.style.borderRadius = '0px';
       }
     });
 
