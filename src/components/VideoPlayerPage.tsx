@@ -25,6 +25,29 @@ interface VideoPlayerPageProps {
   onSelectVideo: (video: VideoCourse) => void;
 }
 
+const CustomMarkdownComponents = {
+  img: ({ node, ...props }: any) => {
+    return (
+      <span className="block my-12 relative w-full sm:w-5/6 md:w-3/4 max-w-2xl mx-auto group">
+        <span className="block relative bg-white p-2 shadow-sm rounded-2xl border border-slate-200">
+          <img 
+            {...props} 
+            src={props.src}
+            className="w-full h-auto rounded-xl !my-0 shadow-sm" 
+            loading="lazy"
+            alt={props.alt || "Schéma embryologique"}
+          />
+        </span>
+        {props.alt && (
+          <span className="block text-center mt-3 sm:mt-4 text-[13px] sm:text-sm font-medium text-slate-500 max-w-xl mx-auto px-4 italic leading-relaxed">
+            {props.alt}
+          </span>
+        )}
+      </span>
+    );
+  }
+};
+
 export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initialCourse, onSelectVideo }) => {
   const { t, i18n } = useTranslation();
 
@@ -759,28 +782,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           <div ref={markdownContainerRef} className="pb-16 transition-all duration-500 overflow-visible px-0 sm:px-4">
             <ReactMarkdown 
               rehypePlugins={[rehypeRaw]}
-              components={{
-                img: ({ node, ...props }) => {
-                  return (
-                    <span className="block my-12 relative w-full sm:w-5/6 md:w-3/4 max-w-2xl mx-auto group">
-                      <span className="block relative bg-white p-2 shadow-sm rounded-2xl border border-slate-200">
-                        <img 
-                          {...props} 
-                          src={props.src}
-                          className="w-full h-auto rounded-xl !my-0 shadow-sm" 
-                          loading="lazy"
-                          alt={props.alt || "Schéma embryologique"}
-                        />
-                      </span>
-                      {props.alt && (
-                        <span className="block text-center mt-3 sm:mt-4 text-[13px] sm:text-sm font-medium text-slate-500 max-w-xl mx-auto px-4 italic leading-relaxed">
-                          {props.alt}
-                        </span>
-                      )}
-                    </span>
-                  );
-                }
-              }}
+              components={CustomMarkdownComponents}
             >
               {contentMode === 'summary' && course.fullSummary
                 ? course.fullSummary.replace(/\n/g, '\n\n')
