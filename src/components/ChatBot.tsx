@@ -496,7 +496,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    model: "google/gemini-3.1-pro-preview", // Modèle Pro beaucoup plus performant demandé
+                    model: "google/gemini-2.5-pro", // Modèle Pro beaucoup plus performant demandé
                     messages: apiMessages,
                 })
             });
