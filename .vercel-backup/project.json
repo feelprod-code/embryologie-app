@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_Jp4FQJ1Ghoc490oSpBrzSetmH9oo",
+  "orgId": "team_GKc7GLqNzp4I5rQmvhhHdvxG",
+  "projectName": "embryologie-app",
+  "settings": {
+    "createdAt": 1772406580476,
+    "framework": null,
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}

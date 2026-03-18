@@ -593,6 +593,7 @@ function App() {
                 <Paywall />
               ) : (
                 <ChatBot
+                  isAdmin={isAdmin}
                   onNavigateToVideo={(video) => {
                     setActiveVideo(video);
                     setCurrentView('video-player');

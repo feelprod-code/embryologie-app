@@ -1,0 +1,28 @@
+{
+    "name": "TDT Embryo",
+    "short_name": "TDT Embryo",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FAF9F6",
+    "theme_color": "#FAF9F6",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "icon-emb.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "icon-emb.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-emb.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ]
+}

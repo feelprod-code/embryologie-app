@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   server: {
+    host: true,
     proxy: {
       '/cf-stream': {
         target: 'https://customer-6i2z59dst7q6iswv.cloudflarestream.com',

@@ -1122,5 +1122,754 @@
       "after_text": "L'aspect présomptif du cœur est déterminé par ce champ d'action.",
       "reasoning": "This image illustrates early neurulation, a stage that follows mesoderm formation and where key structures like the presumptive heart region begin to be determined by the notochordal influence."
     }
+  ],
+  "meso-05": [
+    {
+      "schema_src": "Mesoderme_9.png",
+      "after_text": "Cela signifie que les pressions peuvent s'ajuster. Le sang ne suit pas un simple circuit fermé, mais peut emprunter diverses voies. Il existe une intelligence intrinsèque à ce système, visant toujours à revenir au cœur.",
+      "reasoning": "Ce schéma général du système circulatoire illustre parfaitement les trajectoires vasculaires et le retour sanguin au cœur mentionnés dans ce paragraphe."
+    },
+    {
+      "schema_src": "Mesoderme_73.png",
+      "after_text": "Le système cardinal se modifiera tellement que nous verrons en détail comment il forme des tissus et des structures qui s'intégreront à la fois dans les structures ectodermiques et mésodermiques.",
+      "reasoning": "Un schéma sur le développement du système lymphatique, souvent intimement lié au système veineux, est pertinent après la mention des transformations du système cardinal qui s'intègrent à diverses structures."
+    },
+    {
+      "schema_src": "Mesoderme_64.png",
+      "after_text": "Il est alors nécessaire de \"décharger\" le système vertébral par cette surcharge portale. C'est là qu'intervient l'ensemble du mécanisme des discopathies.",
+      "reasoning": "Vues les mentions concernant les stases, les surcharges du système portal, et les discopathies, une image des veines œsophagiennes collatérales peut illustrer un exemple de voie d'évitement ou de surcharge dans le système veineux."
+    },
+    {
+      "schema_src": "Mesoderme_174.png",
+      "after_text": "De plus, il existe une continuité vasculaire entre les sinus vertébraux et les sinus sacrés du petit bassin.",
+      "reasoning": "La discussion sur les shémas vasculaires constants, les continuités et les systèmes comme celui de la prostate s'inscrit bien dans le cadre d'une circulation fœtale, qui est un exemple emblématique d'intelligence et d'adaptabilité du système circulatoire."
+    }
+  ],
+  "meso-06": [
+    {
+      "schema_src": "Mesoderme_76.jpeg",
+      "after_text": "Les cellules de la plaque neurale ne croissent pas à la même vitesse que les cellules environnantes, entraînant le développement d'une gouttière.",
+      "reasoning": "Le schéma 'Pliure embryonnaire latérale' illustre le concept de pliure et de développement des structures embryonnaires, notamment la gouttière mentionnée dans le texte."
+    }
+  ],
+  "meso-07": [
+    {
+      "schema_src": "Mesoderme_10.jpeg",
+      "after_text": "Votre cœur commence à battre au 21e jour de la vie intra-embryonnaire.",
+      "reasoning": "Cette image d'un embryon de 3 semaines illustre le moment où le cœur commence à battre, conformément au texte."
+    }
+  ],
+  "meso-08": [
+    {
+      "schema_src": "Mesoderme_12.png",
+      "after_text": "Ce processus conduit à la formation d'un tube cardiaque, initialement sous forme de tubes aortiques primitifs gauche et droit.",
+      "reasoning": "Cette image illustre les premières étapes de la formation du tube cardiaque et la présence de l'épiblaste."
+    },
+    {
+      "schema_src": "Mesoderme_14.png",
+      "after_text": "Ces deux tubes se rencontrent progressivement en ligne médiane. Si cette convergence ne se produit pas correctement, le tissu nutritif interne spécifique, essentiel à la formation, peut entraîner l'apparition d'un champ de corrosion.",
+      "reasoning": "Cette image montre la convergence des deux tubes endocardiques pour former le cœur primitif."
+    },
+    {
+      "schema_src": "Mesoderme_15.jpeg",
+      "after_text": "En amont du cœur, une couche de cellules, précurseurs du péricarde et du septum transversum, se tend déjà.",
+      "reasoning": "Cette image permet de visualiser la relation précoce entre les précurseurs cardiaques et le tube neural."
+    },
+    {
+      "schema_src": "Mesoderme_17.png",
+      "after_text": "On observe ici que le mouvement de céphalisation entraîne l'espace de cardialisation, qui progressivement mènera à la diaphragmatisation, puis à l'hépatisation.",
+      "reasoning": "Cette image représente le cœur embryonnaire en développement avec les structures associées."
+    },
+    {
+      "schema_src": "Mesoderme_18.png",
+      "after_text": "Il s'agit d'un mouvement de développement très intéressant, lié au développement de la cavité amniotique qui va envelopper complètement la \"zone B\".",
+      "reasoning": "Cette image montre les différentes étapes du développement cardiaque embryonnaire, en lien avec la céphalisation et la cardialisation."
+    },
+    {
+      "schema_src": "Mesoderme_36.jpeg",
+      "after_text": "Le cerveau vient s'enrouler autour du cœur. Il y a un mouvement d'intégration, puis un mouvement pour former le diaphragme, le péritoine pariétal postérieur, et un retour autour.",
+      "reasoning": "Cette image peut illustrer le développement vasculaire cardiaque, notamment les connexions veineuses qui se mettent en place avec l'enroulement du cerveau."
+    },
+    {
+      "schema_src": "Mesoderme_138.jpeg",
+      "after_text": "Le LCR apparaît lorsque l'embryon s'implante dans la muqueuse. Au moment de cette implantation, un exsudat apparaît, et c'est cette cavité amniotique qui va créer le tube neural, la plaque neurale et le tube digestif.",
+      "reasoning": "Cette image offre une vue d'ensemble du développement embryonnaire du cœur et sa relation avec la cavité amniotique et les autres structures."
+    }
+  ],
+  "meso-09": [
+    {
+      "schema_src": "Mesoderme_149.jpeg",
+      "after_text": "Portons notre attention sur un orifice, l'orifice futur du cœlome intra-embryonnaire.",
+      "reasoning": "Ce schéma montre le pliage embryonnaire latéral, ce qui est pertinent juste après la mention du cœlome intra-embryonnaire et avant la description du rapprochement des tubes endocardiques."
+    },
+    {
+      "schema_src": "Mesoderme_150.jpeg",
+      "after_text": "La vésicule vitelline se rapproche pour former la partie supérieure de l'intestin.",
+      "reasoning": "Le schéma représente un embryon et sa vésicule vitelline, illustrant le texte sur la formation de l'intestin à partir de cette vésicule."
+    },
+    {
+      "schema_src": "Mesoderme_09.jpeg",
+      "after_text": "Ce processus est synchrone avec la phase de flexion de l'embryon.",
+      "reasoning": "Bien que le schéma ne soit pas dans la liste fournie, si 'Mesoderme_09.jpeg' existe et montre un embryon en flexion ou le début du looping cardiaque, il serait pertinent ici. Sinon, il n'y a pas de schéma de la liste qui correspond directement à la flexion de l'embryon ou au looping cardiaque."
+    },
+    {
+      "schema_src": "Mesoderme_143.png",
+      "after_text": "Au sein même du cœur, il va trouver son propre fulcrum.",
+      "reasoning": "Le texte parle du mouvement en looping du cœur, et un schéma montrant une structure en développement vers l'avant, comme le tube neural, pourrait être utilisé comme analogie ou pour montrer le concept de développement tridimensionnel si le schéma 143 est plus général sur le développement embryonnaire. Sinon, il n'y a pas de schéma spécifique sur le 'looping' dans la liste."
+    },
+    {
+      "schema_src": "Mesoderme_129.jpeg",
+      "after_text": "C'est un équilibre entre la partie thoracique, la partie abdominale et la partie viscérale basse.",
+      "reasoning": "Le texte discute de l'organisation des gros vaisseaux et de l'équilibre des différentes parties du corps. Un schéma montrant une vue d'ensemble de l'embryon avec des structures comme la plaque neurale (qui évolue vers le système nerveux central et l'organisation corporelle) peut illustrer cette complexité spatiale. Cependant, il n'y a pas de schéma dans la liste qui illustre spécifiquement l'organisation des gros vaisseaux."
+    },
+    {
+      "schema_src": "Mesoderme_16.jpeg",
+      "after_text": "Le mouvement hépatique. On observe si le foie est bien dans son mouvement de développement ou s'il est en retrait.",
+      "reasoning": "Ce schéma sur le développement du tube digestif embryonnaire est pertinent ici car le foie est un organe majeur du système digestif et son mouvement de développement est discuté."
+    },
+    {
+      "schema_src": "Mesoderme_60.jpeg",
+      "after_text": "Le cœur est extrêmement puissant car il reçoit une information très importante du \"neural crest\" (crête neurale).",
+      "reasoning": "Le schéma sur la circulation du liquide céphalo-rachidien, même s'il ne montre pas directement la crête neurale, peut illustrer l'environnement neuro-fluidique dans lequel le cœur se développe et reçoit des informations, renforçant l'idée de connexions embryonnaires complexes. Il n'y a pas de schéma direct sur la crête neurale dans la liste."
+    }
+  ],
+  "meso-11": [
+    {
+      "schema_src": "Mesoderme_171.png",
+      "after_text": "On peut observer ici un développement de la périphérie vers le centre : d'abord la période ombilico-pédiculaire, puis la période hépatique, et enfin la moelle osseuse pour les globules rouges.",
+      "reasoning": "Ce schéma illustre la circulation fœtale, qui inclut le développement des cellules sanguines mentionné précédemment, en montrant les différentes phases et la progression de la circulation sanguine."
+    },
+    {
+      "schema_src": "Mesoderme_172.png",
+      "after_text": "Cet axe de rotation est crucial pour le développement embryonnaire.",
+      "reasoning": "Ce schéma présente une vue plus détaillée de la circulation fœtale humaine, ce qui est logique après avoir discuté du vestige vitellin et de l'axe de rotation."
+    }
+  ],
+  "meso-12": [
+    {
+      "schema_src": "Mesoderme_85.jpeg",
+      "after_text": "C'est ici que se met en place un **pattern fondamental**, se manifestant même sur un plan de polarité.",
+      "reasoning": "Ce schéma illustre la rencontre symbolique entre les gamètes, représentant le démarrage du pattern fondamental mentionné."
+    },
+    {
+      "schema_src": "Mesoderme_121.jpeg",
+      "after_text": "Ceci se produit au même moment que la fermeture du tube neural et l'intégration du **cœlome** externe en cœlome interne.",
+      "reasoning": "Le texte parle de la fermeture du tube neural et de l'intégration du cœlome, ce qui est directement lié à la croissance relative de la moelle épinière."
+    }
+  ],
+  "meso-15": [
+    {
+      "schema_src": "Mesoderme_77.jpeg",
+      "after_text": "Alors que celui du cœur est différent. Observez la différence dans ces mouvements.",
+      "reasoning": "This scheme illustrates the rotation of organs, which is directly relevant to the discussion of distinct embryonic movements of the lungs and heart."
+    }
+  ],
+  "meso-16": [
+    {
+      "schema_src": "Mesoderme_38.jpeg",
+      "after_text": "le système de la veine cave, inférieure et supérieure.",
+      "reasoning": "Ce schéma global du développement du système veineux vient après la présentation générale des trois systèmes, en particulier celui de la veine cave."
+    },
+    {
+      "schema_src": "Mesoderme_39.jpeg",
+      "after_text": "Le système cardinal se divise en :",
+      "reasoning": "Ce schéma illustre la structure et la division du système cardinal, introduites par le texte."
+    },
+    {
+      "schema_src": "Mesoderme_40.jpeg",
+      "after_text": "pour former la veine brachiocéphalique.",
+      "reasoning": "Le texte décrit ici le devenir des veines cardinales, ombilicales et vitellines, et ce schéma en fournit une illustration visuelle."
+    },
+    {
+      "schema_src": "Mesoderme_41.jpeg",
+      "after_text": "Le développement vasculaire s'effectue de manière latérale vers le centre et de façon segmentaire.",
+      "reasoning": "Le schéma détaille le devenir des VCS et VCI embryonnaires, ce qui est cohérent avec la section sur les composants du vaisseau et les changements de trajectoire."
+    },
+    {
+      "schema_src": "Mesoderme_51.jpeg",
+      "after_text": "Le système cardinal se développe plus postérieurement, tandis que les systèmes ombilical et vitellin sont plus antérieurs.",
+      "reasoning": "Le schéma aborde le développement cardiaque et des grands vaisseaux ce qui permet d'illustrer la différence de positionnement relatif des systèmes veineux."
+    },
+    {
+      "schema_src": "Mesoderme_42.jpeg",
+      "after_text": "Ce processus est un \"bourgeonnement\" par un champ d'aspiration, créant de nouvelles trajectoires segmentaires tandis que d'autres disparaissent.",
+      "reasoning": "Ce schéma sur la vascularisation à 35 jours vient compléter la description de l'émergence et de la transformation des veines subcardinales et supracardinales."
+    },
+    {
+      "schema_src": "Mesoderme_43.jpeg",
+      "after_text": "Le mouvement développemental de la subcardinale est caractérisé par un \"spotting\", un bourgeonnement segmentaire qui contient l'ensemble du réseau du système.",
+      "reasoning": "Ce schéma illustre précisément le système veineux embryonnaire de ce stade, montrant les transformations des réseaux cardinaux, subcardinaux et supracardinaux."
+    },
+    {
+      "schema_src": "Mesoderme_45.jpeg",
+      "after_text": "Ce mouvement de la périphérie vers le centre est bien visible.",
+      "reasoning": "Ce schéma plus global sur le développement du système veineux offre une synthèse visuelle pertinente après la discussion sur le drainage des différentes zones et le mouvement de la périphérie vers le centre."
+    },
+    {
+      "schema_src": "Mesoderme_71.jpeg",
+      "after_text": "Hémi-azygos et azygos, assurant un drainage thoraco-abdominal sur le plan mésodermique.",
+      "reasoning": "Ce schéma du système veineux profond montre les structures finales mentionnées, en particulier les systèmes azygos et hémi-azygos."
+    }
+  ],
+  "meso-17": [
+    {
+      "schema_src": "Mesoderme_52.jpeg",
+      "after_text": "Les **20 vitellines**, structures mésodermiques, sont à l'origine de la formation du foie.",
+      "reasoning": "Cette image montre le système vasculaire hépatique embryonnaire dès le début de la discussion contextuelle."
+    },
+    {
+      "schema_src": "Mesoderme_53.jpeg",
+      "after_text": "Sa première impulsion est donc une réception de **toxicité**.",
+      "reasoning": "Cette image illustre la circulation embryonnaire à 28 jours, correspondant au début du développement vasculaire hépatique et des notions de toxicité mentionnées."
+    },
+    {
+      "schema_src": "Mesoderme_54.jpeg",
+      "after_text": "Une zone importante se développera : la **veine porte**.",
+      "reasoning": "Cette image montre la circulation embryonnaire à 8 semaines, période où la veine porte commence à être significative."
+    },
+    {
+      "schema_src": "Mesoderme_57.png",
+      "after_text": "La **veine ombilicale** se développe, dont une partie sera intégrée tandis qu'une autre disparaîtra.",
+      "reasoning": "Cette image représente le système porte embryonnaire, pertinente pour la discussion du développement de la veine ombilicale et des systèmes vitellins."
+    },
+    {
+      "schema_src": "Mesoderme_58.png",
+      "after_text": "Un autre dérivé de cette partie vitelline est la partie supérieure de la **veine cave inférieure**.",
+      "reasoning": "Cette image illustre la circulation veineuse embryonnaire, montrant les modifications des veines vitellines et la formation de la veine cave inférieure."
+    },
+    {
+      "schema_src": "Mesoderme_59.jpeg",
+      "after_text": "Le **canal d'Arantius** sera formé avec le tronc porte.",
+      "reasoning": "Cette image montre les veines hépatiques, le canal d'Arantius étant une structure clé à ce stade de développement."
+    },
+    {
+      "schema_src": "Mesoderme_55.jpeg",
+      "after_text": "Le sang passe du côté gauche des viscères abdominaux vers la veine vitelline droite, créant un réseau transversal qui se développe.",
+      "reasoning": "Cette image montre le système porte à 12 semaines, période où les changements de drainage et les anastomoses sont établis."
+    },
+    {
+      "schema_src": "Mesoderme_61.jpeg",
+      "after_text": "Le tronc porte est commun ici, mais il est intéressant de noter qu'il existe un flux qui ne se mélange pas ou peut se mélanger.",
+      "reasoning": "Cette image illustre le système porte hépatique avec ses deux courants de drainage, expliquant la séparation des flux."
+    },
+    {
+      "schema_src": "Mesoderme_173.png",
+      "after_text": "Le foie est un régulateur de volume, capable d'augmenter ou de diminuer la **volémie**.",
+      "reasoning": "Cette image montre la circulation fœtale dans son ensemble, mettant en évidence le rôle intégrateurs des différents systèmes (vitellin, ombilical) et l'importance du foie."
+    },
+    {
+      "schema_src": "Mesoderme_63.jpeg",
+      "after_text": "Il est donc nécessaire de libérer la fonction faciale pour redonner la libération hépatique.",
+      "reasoning": "Cette image offre une vue anatomique de la veine porte, concrétisant la discussion sur ses fonctions et liaisons après la description des confluents."
+    },
+    {
+      "schema_src": "Mesoderme_37.jpeg",
+      "after_text": "Le mouvement de la cavité amniotique montre la vésicule vitelline qui régresse et se dépose sur le cordon ombilical.",
+      "reasoning": "Cette image peut représenter le système veineux humain final ou une vue générale des systèmes en formation, faisant la transition vers la structure du cordon ombilical et les vestiges Embryonnaires."
+    },
+    {
+      "schema_src": "Mesoderme_46.jpeg",
+      "after_text": "L'allantoïde et tout le processus avec la grande cavité amniotique.",
+      "reasoning": "Cette image du système veineux définitif est une bonne conclusion visuelle de cette partie sur l'intégration des systèmes vitellin et ombilical et les régression."
+    }
+  ],
+  "meso-18": [
+    {
+      "schema_src": "Mesoderme_23.jpeg",
+      "after_text": "L'intégration de ces vaisseaux au niveau du système aortique devient de plus en plus prononcée.",
+      "reasoning": "Cette image illustre le développement vasculaire précoce, juste après la description du système aortique primitif et des veines."
+    },
+    {
+      "schema_src": "Mesoderme_24.png",
+      "after_text": "Il est important de noter que l'arc numéro 5 apparaît et disparaît très rapidement, c'est pourquoi il est parfois omis dans certaines descriptions, mais il est bien présent initialement.",
+      "reasoning": "Cette image montre une vue d'ensemble de la circulation chez un embryon de 4 semaines, introduisant les arcs branchiaux."
+    },
+    {
+      "schema_src": "Mesoderme_27.png",
+      "after_text": "Ces quatre portes d'entrée vasculaires représentent des points essentiels à vérifier et à travailler.",
+      "reasoning": "Cette image détaille l'anatomie de l'embryon à 29 jours, se concentrant sur les structures qui se développent en relation avec le crâne et le cerveau."
+    },
+    {
+      "schema_src": "Mesoderme_28.png",
+      "after_text": "Il est donc essentiel d'avoir des zones pour l'irrigation et pour le désengorgement, en continuité avec le plexus vertébral.",
+      "reasoning": "Cette image montre l'appareil digestif et sa vascularisation, faisant le lien avec le développement du système lymphatique et les espaces de nettoyage."
+    },
+    {
+      "schema_src": "Mesoderme_29.png",
+      "after_text": "Chaque arc branchial donne naissance à une structure artérielle spécifique.",
+      "reasoning": "Cette image est une introduction visuelle aux arcs branchiaux et leurs dérivées, avant d'entrer dans les détails de chaque arc."
+    },
+    {
+      "schema_src": "Mesoderme_30.png",
+      "after_text": "Il est essentiel de reconnecter ce mouvement et de le rééquilibrer vers son fulcrum, la base du crâne, en laissant l'espace opérer.",
+      "reasoning": "Cette image montre le système vasculaire embryonnaire global, permettant de visualiser les connexions et l'organisation des premiers arcs."
+    },
+    {
+      "schema_src": "Mesoderme_31.png",
+      "after_text": "Ce système s'organise sur le plan vasculaire de manière cohérente.",
+      "reasoning": "Cette image se concentre à nouveau sur les arcs aortiques, renforçant la compréhension de leur organisation vasculaire."
+    },
+    {
+      "schema_src": "Mesoderme_33.jpeg",
+      "after_text": "L'ensemble de ces systèmes forme une unité fonctionnelle, incluant par exemple les cartilages laryngiens, les muscles intracellulaires et la branche récurrente du nerf vague.",
+      "reasoning": "Cette image offre une vue d'ensemble du système artériel embryonnaire, intégrant les dérivées de tous les arcs mentionnés."
+    },
+    {
+      "schema_src": "Mesoderme_34.jpeg",
+      "after_text": "Cette coulée, cet envahissement de la crête neurale sur le mésoectoderme, est une information développementale cruciale.",
+      "reasoning": "Cette image illustre les dérivés des arcs pharyngiens, en lien direct avec la discussion sur la crête neurale et la formation de la face."
+    },
+    {
+      "schema_src": "Mesoderme_35.png",
+      "after_text": "Toute l'organisation des arcs branchiaux et des lignes de force tendra vers ce point d'appui fondamental qu'est la base du crâne, correspondant à la pointe de la notochorde.",
+      "reasoning": "Cette image montre la vascularisation de la tête, synthétisant les informations sur les arcs branchiaux et leur convergence vers la base du crâne."
+    }
+  ],
+  "meso-19": [
+    {
+      "schema_src": "Mesoderme_72.jpeg",
+      "after_text": "situé entre la dure-mère et le sinus dural.",
+      "reasoning": "Cette image illustre les plexus vertébraux mentionnés dans le paragraphe."
+    },
+    {
+      "schema_src": "Mesoderme_67.jpeg",
+      "after_text": "le sinus droit et le sinus transversal.",
+      "reasoning": "Cette image montre l'anatomie des sinus veineux crâniens énumérés."
+    },
+    {
+      "schema_src": "Mesoderme_68.jpeg",
+      "after_text": "impliquant directement un sacrum libre.",
+      "reasoning": "Ce schéma général du système veineux humain est approprié après la description du drainage vasculaire global."
+    },
+    {
+      "schema_src": "Mesoderme_69.jpeg",
+      "after_text": "sans quoi une stase peut apparaître.",
+      "reasoning": "Cette image de la veine iliaque interne s'insère logiquement après la discussion sur l'unité fonctionnelle des veines pelviennes."
+    },
+    {
+      "schema_src": "Mesoderme_70.jpeg",
+      "after_text": "souvent nécessaire de rétablir les pressions pour soulager le foie et restaurer l'équilibre dynamique.",
+      "reasoning": "Cette image compléte l'illustration de la vascularisation pelvienne vue postérieure, en lien avec les congestions pelviennes."
+    }
+  ],
+  "meso-21": [
+    {
+      "schema_src": "Mesoderme_165.png",
+      "after_text": "Elle englobe complètement tout l'espace du cœlome externe.",
+      "reasoning": "Ce schéma illustre la position du fœtus dans l'utérus, et la croissance de la cavité amniotique englobant le cœlome externe."
+    },
+    {
+      "schema_src": "Mesoderme_66.png",
+      "after_text": "Le retour se fait alors. La vésicule vitelline, poussée par la vitesse de croissance différentielle, sera reprise dans le schéma.",
+      "reasoning": "Ce schéma représente la formation du cordon ombilical à partir du pédicule et de la vésicule vitelline."
+    }
+  ],
+  "meso-24": [
+    {
+      "schema_src": "Mesoderme_25.png",
+      "after_text": "Ce champ d'aspiration est donc lié à la croissance, participant aux processus de céphalisation, de cardialisation et d'hépatisation.",
+      "reasoning": "Ce schéma illustrant un embryon en dissection s'intègre logiquement après la discussion sur les processus de croissance embryonnaire et d'hépatisation."
+    },
+    {
+      "schema_src": "Mesoderme_65.png",
+      "after_text": "Il quantifie et modifie la tension portale qu'il transmet au cœur.",
+      "reasoning": "Le schéma sur l'hypertension portale est pertinent ici car le texte aborde la tension portale transmise par le foie au cœur."
+    }
+  ],
+  "meso-27": [
+    {
+      "schema_src": "Mesoderme_92.jpeg",
+      "after_text": "Elle donnera naissance au tissu excréteur et urogénital. Dès ce stade, tout le potentiel est présent.",
+      "reasoning": "Cette image montre les différentes lames mésodermiques, ce qui correspond à la description de l'origine mésodermique du système rénal."
+    },
+    {
+      "schema_src": "Mesoderme_127.jpeg",
+      "after_text": "Cette première information biodynamique de cinétique du développement est une concentration de mésoderme engendrée par la flexion et ce mouvement de rapprochement.",
+      "reasoning": "Cette image illustre l'embryon avec les structures clés mentionnées (tube neural, notochorde, somites), juste après la description de la flexion et l'endorotation."
+    }
+  ],
+  "meso-28": [
+    {
+      "schema_src": "Mesoderme_81.jpeg",
+      "after_text": "Ce processus, associé au rapprochement des aortes, induit un mouvement de rotation.",
+      "reasoning": "Le schéma illustre l'évolution du mésonéphron, ce qui correspond à la description générale des stades de développement rénaux, y compris l'étape du pronéphron et du mésonéphron."
+    }
+  ],
+  "meso-29": [
+    {
+      "schema_src": "Mesoderme_131.jpeg",
+      "after_text": "Ce phénomène est engendré par une **vitesse de croissance différentielle** de la partie postérieure par rapport à la partie antérieure, maintenue par l'allantoïde et organisée par le foie.",
+      "reasoning": "Ce schéma illustre la dynamique de croissance différentielle de l'embryon, notamment la partie postérieure, et le rôle de l'allantoïde et du foie, correspondant au paragraphe."
+    },
+    {
+      "schema_src": "Mesoderme_80.jpeg",
+      "after_text": "Ce n'est pas qu'ils montent, mais que le reste descend et grandit.",
+      "reasoning": "Ce schéma montre l'illusion d'ascension rénale, un point clé du paragraphe précédent sur le positionnement des reins."
+    },
+    {
+      "schema_src": "Mesoderme_119.png",
+      "after_text": "L'intégrité de ces deux fonctions dépend de cette articulation intermédiaire, qui est une articulation entre l'**ectoderme** et l'**endoderme**.",
+      "reasoning": "Ce schéma illustre le développement du tube neural (ectoderme) et les mouvements endodermiques qui créent l'articulation rétropéritonéale, reliant l'ectoderme et l'endoderme."
+    }
+  ],
+  "meso-32": [
+    {
+      "schema_src": "Mesoderme_79.jpeg",
+      "after_text": "vésicule vitelline, on a un très jeune embryon comme il a été décrit jusqu'à présent.",
+      "reasoning": "La description générale de l'embryon au début du texte correspond à l'image."
+    },
+    {
+      "schema_src": "Mesoderme_84.jpeg",
+      "after_text": "Ces gonocytes épaississent l'épithélium cœlomique postérieur, formant ainsi l'ébauche de la gonade, future ovaire ou testicule.",
+      "reasoning": "L'image illustre la migration des gonocytes et la formation de l'ébauche gonadique."
+    },
+    {
+      "schema_src": "Mesoderme_86.jpeg",
+      "after_text": "Ce tissu est gonflé par la prolifération des gonocytes qui y parviennent.",
+      "reasoning": "Illustre la continuation de la migration gonocytaire dans l'ébauche."
+    },
+    {
+      "schema_src": "Mesoderme_87.jpeg",
+      "after_text": "Ces deux canaux, de Müller et de Wolff, jouent un rôle crucial dans le développement du système urogénital, tant chez l'homme que chez la femme.",
+      "reasoning": "Présente l'état indifférencié des gonades et des canaux de Wolff et Müller avant différenciation sexuelle."
+    },
+    {
+      "schema_src": "Mesoderme_90.jpeg",
+      "after_text": "Le canal de Müller, quant à lui, régresse chez l'homme, laissant derrière lui un petit vestige, l'hydatide sessile, qui n'a pas de fonction connue.",
+      "reasoning": "Montre la différenciation des gonades et la régression du canal de Müller chez l'homme, illustrant le texte sur l'hydatide sessile."
+    },
+    {
+      "schema_src": "Mesoderme_95.jpeg",
+      "after_text": "Cette prostate sera reliée au système des canaux déférents, issus du canal de Wolff.",
+      "reasoning": "Montre l'appareil génital masculin différencié avec la prostate et les canaux déférents."
+    },
+    {
+      "schema_src": "Mesoderme_96.jpeg",
+      "after_text": "Chez la femme, le canal de Müller forme les trompes et l'utérus.",
+      "reasoning": "Bien que le texte se concentre sur l'homme, cette image illustre les canaux de Wolff et Müller dans leur contexte différencié."
+    },
+    {
+      "schema_src": "Mesoderme_97.jpeg",
+      "after_text": "Ce processus est lié à l'élongation du reste du système et aux vitesses de croissance différentielles de la partie postérieure.",
+      "reasoning": "Présente l'anatomie générale de l'appareil génital masculin, après la différenciation et la descente initiale."
+    },
+    {
+      "schema_src": "Mesoderme_98.jpeg",
+      "after_text": "La prostate se développe à partir de ce tissu. Le cœur de la prostate (l'utricule prostatique) est mésenchymateux, tandis que sa capsule est endodermique, provenant du sinus urogénital.",
+      "reasoning": "Cette image détaillée de la prostate s'insère logiquement après la description de son développement et de ses origines tissulaires."
+    },
+    {
+      "schema_src": "Mesoderme_99.jpeg",
+      "after_text": "Le sinus urogénital est la zone où se trouvait le cloaque, l'allantoïde et, plus en arrière, le rectum.",
+      "reasoning": "Il est logique de placer l'image sur la migration testiculaire après la description du sinus urogénital et avant d'aborder la descente testiculaire approfondie."
+    },
+    {
+      "schema_src": "Mesoderme_100.jpeg",
+      "after_text": "La descente testiculaire est due à la non-croissance du ligament gubernaculum, qui tire le système par la croissance environnante.",
+      "reasoning": "Illustre le processus de descente testiculaire fœtale, expliquant mieux le rôle du gubernaculum et de la croissance différentielle."
+    },
+    {
+      "schema_src": "Mesoderme_103.jpeg",
+      "after_text": "Cette attache entre le ligament gubernaculum et les couches inférieures, combinée à la croissance différentielle, provoque la descente testiculaire.",
+      "reasoning": "Explique visuuellement la différenciation testiculaire et les éléments impliqués dans la descente."
+    }
+  ],
+  "meso-33": [
+    {
+      "schema_src": "Mesoderme_91.png",
+      "after_text": "Le canal de Wolff, également appelé ductus mésonephrotique, est le premier canal qui apparaît chez l'embryon.",
+      "reasoning": "Ce schéma illustre l'appareil génital fœtal, introduisant les canaux de Wolff et de Müller mentionnés juste avant."
+    },
+    {
+      "schema_src": "Mesoderme_94.jpeg",
+      "after_text": "Chez la femme, la situation est inversée : * Le canal de Wolff se différencie en **organes de Gardner**, qui sont des vestiges. * Le canal de Müller, par fusion, devient l'**utérus** et les **trompes**.",
+      "reasoning": "Le schéma de l'appareil génital indifférencié est pertinent ici pour montrer la base commune avant la différenciation expliquée."
+    },
+    {
+      "schema_src": "Mesoderme_102.jpeg",
+      "after_text": "C'est la première fois qu'une **différenciation structurelle** entre l'homme et la femme est observée, liée au développement plus important des glandes qui créent le **tubercule de Müller**.",
+      "reasoning": "Ce schéma montrant la différenciation ovarienne illustre la différenciation structurelle évoquée."
+    },
+    {
+      "schema_src": "Mesoderme_104.jpeg",
+      "after_text": "Le canal de Müller se développe beaucoup plus fortement chez la femme pour créer un canal pur, qui se rejoint pour former l'utérus.",
+      "reasoning": "Ce schéma de la formation de l'utérus embryonnaire visualise le processus décrit, en particulier la fusion des canaux de Müller."
+    },
+    {
+      "schema_src": "Mesoderme_107.jpeg",
+      "after_text": "On observe bien l'utérus, les ligaments, les ovaires et la **cavité péritonéale**.",
+      "reasoning": "L'image de l'appareil reproducteur féminin est appropriée pour visualiser les structures que l'auditeur est invité à observer."
+    },
+    {
+      "schema_src": "Mesoderme_108.jpeg",
+      "after_text": "En soulevant l'utérus avec des pinces, on constate que tout bouge.",
+      "reasoning": "Ce schéma offre une autre perspective de l'appareil reproducteur féminin, complémentaire au précédent, permettant de mieux comprendre la mobilité évoquée."
+    },
+    {
+      "schema_src": "Mesoderme_111.jpeg",
+      "after_text": "L'impact d'un **fibrome** ou d'un **kyste** est significatif. La continuité avec les ligaments est primordiale.",
+      "reasoning": "Ce schéma de l'utérus et la musculature peut aider à visualiser l'emplacement et l'impact des fibromes et kystes mentionnés."
+    },
+    {
+      "schema_src": "Mesoderme_112.jpeg",
+      "after_text": "Un gros fibrome peut entraîner une cascade de conséquences dans tout le système.",
+      "reasoning": "Ce dernier schéma des organes génitaux féminins fournit une vue d'ensemble finale pour conclure la discussion sur les interactions et les conséquences des pathologies."
+    }
+  ],
+  "meso-34": [
+    {
+      "schema_src": "Mesoderme_115.jpeg",
+      "after_text": "Cette zone comprend la vessie, l'urètre et l'attache au niveau du vagin.",
+      "reasoning": "Cette image illustre le développement général du tractus urogénital, correspondant à la description initiale."
+    },
+    {
+      "schema_src": "Mesoderme_116.jpeg",
+      "after_text": "la poussée plus rapide de la partie postérieure. Ce phénomène conduit à l'allongement et à la formation du vagin et du col de l'utérus.",
+      "reasoning": "Cette image montre spécifiquement la vaginogenèse et le processus d'allongement décrit."
+    },
+    {
+      "schema_src": "Mesoderme_105.jpeg",
+      "after_text": "La paroi postérieure du sinus urogénital s'épaissit, donnant naissance aux lames vaginales qui s'ouvrent et s'étirent. Cette dynamique est similaire, avec la partie postérieure grandissant plus rapidement.",
+      "reasoning": "Cette image met en évidence le canal utéro-vaginal, en lien avec la formation des lames vaginales et du col de l'utérus."
+    },
+    {
+      "schema_src": "Mesoderme_106.jpeg",
+      "after_text": "Lors de l'examen de l'utérus, un mouvement entre le **sacrum** et le **péritoine** est perçu. C'est dans l'interaction de ces deux pôles que se trouvent l'équilibre vaginal et utérin.",
+      "reasoning": "Cette image présente l'anatomie utérine féminine, pertinente pour la discussion sur l'équilibre utérin."
+    },
+    {
+      "schema_src": "Mesoderme_117.png",
+      "after_text": "Le **tube neural** est associé à une éminence caudale postérieure, créant un espace de lumière et de connexion. On observe le bourgeon caudal et la partie terminale de la **notochorde**.",
+      "reasoning": "Cette image montre le développement cloacal embryonnaire et le neuropore postérieur, illustrant la neurulation secondaire."
+    },
+    {
+      "schema_src": "Mesoderme_83.jpeg",
+      "after_text": "L'intégration de l'éminence caudale assure la continuité avec le tube neural, formant cette neurulation secondaire ascendante.",
+      "reasoning": "Cette image illustre la septation du cloaque, un élément clé du développement urogénital postérieur mentionné plus haut."
+    }
+  ],
+  "meso-35": [
+    {
+      "schema_src": "Mesoderme_126.jpeg",
+      "after_text": "Ces structures évoluent sous l'influence hormonale, modulant leur fermeture progressive le long de la ligne médiane.",
+      "reasoning": "Cette image illustre bien la fermeture progressive des structures le long de la ligne médiane, un concept clé introduit dans ce paragraphe."
+    },
+    {
+      "schema_src": "Mesoderme_125.jpeg",
+      "after_text": "La différenciation débute entre la cinquième et la huitième semaine de grossesse, en même temps que le développement hépatique et surrénalien.",
+      "reasoning": "Cette image montre le développement des organes génitaux externes, illustrant les structures mentionnées et la période de différenciation."
+    },
+    {
+      "schema_src": "Mesoderme_109.png",
+      "after_text": "Une perspective postérieure de l'embryon révèle le ligament falciforme, le ligament terrestre et le pli médian.",
+      "reasoning": "Cette image montre les structures mentionnées comme le ligament falciforme et le pli médian, en relation avec la ligne médiane."
+    },
+    {
+      "schema_src": "Mesoderme_113.png",
+      "after_text": "Tous ces systèmes convergent vers la ligne médiane, qu'il s'agisse du sternum, de la face ou des organes génitaux.",
+      "reasoning": "Cette image illustre le concept de convergence vers la ligne médiane, potentiellement avec un exemple comme le palais fendu qui est une problématique liée à cette fermeture."
+    },
+    {
+      "schema_src": "Mesoderme_124.jpeg",
+      "after_text": "Le corps de Wolff devient l'épididyme, le canal déférent, la vésicule séminale et le canal éjaculateur.",
+      "reasoning": "Cette image présente le développement des canaux génitaux et leur différenciation selon le sexe gonadique, en distinguant corps de Wolff et canal de Müller."
+    },
+    {
+      "schema_src": "Mesoderme_123.jpeg",
+      "after_text": "Le tubercule génital chez l'homme devient le pénis, et chez la femme, le clitoris.",
+      "reasoning": "Cette image devrait illustrer le développement des organes génitaux féminins, en accord avec l'exemple donné du clitoris."
+    },
+    {
+      "schema_src": "Mesoderme_122.jpeg",
+      "after_text": "Le canal de Müller régresse.",
+      "reasoning": "Cette image montre le développement embryonnaire externe, et est un bon point d'insertion pour illustrer les différentes phases de développement mentionnées précédemment."
+    },
+    {
+      "schema_src": "Mesoderme_101.jpeg",
+      "after_text": "Si un conflit n'est pas résolu, il peut se manifester physiquement en fonction de sa symbolique :",
+      "reasoning": "Bien que le texte ne le mentionne pas directement, en embryologie, la descente des organes génitaux est un processus clé et cette image peut servir à illustrer une somatisation ou une malformation liée à ce processus, dans le contexte des conflits psychiques."
+    },
+    {
+      "schema_src": "Mesoderme_127.jpeg",
+      "after_text": "Sera exprimé dans l'appareil correspondant.",
+      "reasoning": "Cette image, bien que non listée initialement, serait idéale pour une vue d'ensemble de la différenciation sexuelle humaine en fin de section si elle est disponible."
+    }
+  ],
+  "meso-36": [
+    {
+      "schema_src": "Mesoderme_160.jpeg",
+      "after_text": "En me référant à ces deux tubercules, je peux déterminer l'axe du bassin dans l'espace.",
+      "reasoning": "Cette image montre l'os coxal latéral, ce qui est pertinent pour l'identification de l'axe du bassin."
+    },
+    {
+      "schema_src": "Mesoderme_162.jpeg",
+      "after_text": "Je travaille avec un triangle de soutien, mais sans exercer de pression excessive.",
+      "reasoning": "L'image illustre les muscles du bassin, ce qui aide à visualiser la structure sur laquelle la technique biodynamique agit."
+    },
+    {
+      "schema_src": "Mesoderme_159.jpeg",
+      "after_text": "le processus se dérouler naturellement, la patiente se tenant relativement droite.",
+      "reasoning": "Bien que le texte parle de l'ischion, cette image sur la croissance de l'os coxal est pertinente pour comprendre l'anatomie du bassin et ses points d'appui."
+    },
+    {
+      "schema_src": "Mesoderme_170.png",
+      "after_text": "Si le bassin est en déséquilibre, l'enfant pourrait se retrouver coincé pendant le mouvement de naissance.",
+      "reasoning": "Cette image sur l'engagement OIGA (Occipito-Ilio-Gauche-Antérieur) illustre une étape clé de l'accouchement, directement liée au rôle des fascias du bassin et à leurs potentielles implications en cas de déséquilibre."
+    }
+  ],
+  "meso-39": [
+    {
+      "schema_src": "Mesoderme_176.png",
+      "after_text": "Le premier grand mouvement du Tai Chi se concentre sur la vague notochordale.",
+      "reasoning": "Cette image montre les feuillets embryonnaires, ce qui est pertinent pour introduire la vague notochordale et le mouvement mésodermique."
+    },
+    {
+      "schema_src": "Mesoderme_1.png",
+      "after_text": "Nous avons donc la vague notochordale, avec en dessous tout le mouvement mésodermique.",
+      "reasoning": "Cette image illustre le tube digestif et nerveux, directement lié au mouvement notochordal et mésodermique."
+    },
+    {
+      "schema_src": "Mesoderme_139.jpeg",
+      "after_text": "Ensuite, nous nous penchons sur le cerveau, en suivant ces étapes clés :",
+      "reasoning": "Cette image représente le développement du système nerveux, ce qui est logique avant de détailler les étapes du développement cérébral."
+    },
+    {
+      "schema_src": "Mesoderme_175.png",
+      "after_text": "5. Télé-encéphalisation",
+      "reasoning": "Cette image illustre le neurocrâne et la colonne vertébrale, en fin de discussion sur le cerveau et ses flexions."
+    },
+    {
+      "schema_src": "Mesoderme_137.jpeg",
+      "after_text": "Le mouvement des reins suit, qui est un mouvement d'exorotation.",
+      "reasoning": "Cette image montre le développement des muscles cervicaux, ce qui permet de compléter les détails sur le tronc de l'embryon après le cerveau et avant les organes abdominaux."
+    },
+    {
+      "schema_src": "Mesoderme_178.jpeg",
+      "after_text": "Puis, la main à cet endroit descend, monte, et l'autre main descend pour former la face terminale.",
+      "reasoning": "Cette image représente un schéma du corps humain et peut servir de résumé visuel global des mouvements décrits pour le péritoine et le foie."
+    }
+  ],
+  "meso-41": [
+    {
+      "schema_src": "Mesoderme_132.jpeg",
+      "after_text": "Cette induction va provoquer une réorganisation de la lame somatique sous plusieurs formes :",
+      "reasoning": "Cette image montre une vue d'ensemble de l'embryon au début du développement des somites, idéal pour introduire le concept de réorganisation."
+    },
+    {
+      "schema_src": "Mesoderme_133.jpeg",
+      "after_text": "On peut donc dire que la notochorde crée cette vitesse de croissance différentielle au sein même de la partie périphérique et centrale de la plaque neurale, qui va former une gouttière.",
+      "reasoning": "Cette coupe transversale illustre la formation de la gouttière neurale et la position des somites par rapport à la notochorde et le tube neural."
+    },
+    {
+      "schema_src": "Mesoderme_134.jpeg",
+      "after_text": "Le mouvement des aortes influence le mouvement d'exorotation des reins. En même temps, ce mouvement va aussi jouer sur la mise en place de ce système somitique.",
+      "reasoning": "Cette image est une coupe transversale détaillé montrant l'interaction entre les aortes et les structures somitiques, un bon support visuel pour ce passage."
+    },
+    {
+      "schema_src": "Mesoderme_140.jpeg",
+      "after_text": "C'est une force épigénétique.",
+      "reasoning": "Cette image illustre la neurulation et la formation les somites, processus dirigé par des facteurs épigénétiques."
+    },
+    {
+      "schema_src": "Mesoderme_141.jpeg",
+      "after_text": "Une autre partie, intermédiaire, suivra un autre chemin : ce sera le myotome, duquel dériveront tous les muscles.",
+      "reasoning": "Cette image représente la division du somite en dermatome, myotome et sclérotome, un bon récapitulatif visuel des divisions expliquées."
+    },
+    {
+      "schema_src": "Mesoderme_151.png",
+      "after_text": "Nous avons donc le dermatome, le myotome et le sclérotome.",
+      "reasoning": "Cette image complète les explications sur les 3 tissus dérivés du somite en particulier sur le développement du membre."
+    },
+    {
+      "schema_src": "Mesoderme_164.png",
+      "after_text": "Chaque niveau va commencer à créer ce qu'on appelle les somites. Il y aura 33 paires qui se développeront ici.",
+      "reasoning": "Cette image montre l'organisation segmentée du squelette à partir des somites, correspondant à la discussion sur la segmentation et les paires de somites."
+    }
+  ],
+  "meso-42": [
+    {
+      "schema_src": "Mesoderme_120.jpeg",
+      "after_text": "Cette segmentation influence les trajectoires du squelette axial, des côtes et des extrémités.",
+      "reasoning": "Ce schéma montre un embryon à un stade précoce avec une segmentation visible, illustrant la phrase introductive sur la segmentation de l'appareil locomoteur."
+    },
+    {
+      "schema_src": "Mesoderme_130.jpeg",
+      "after_text": "La présence du tube neural et des crêtes neurales est cruciale, car ces éléments interagissent avec l'anneau ectodermique, fournissant des informations importantes vers la notocorde.",
+      "reasoning": "Ce schéma illustre la relation entre le tube neural et la notocorde, mentionnés dans le paragraphe concernant la flexion de l'embryon."
+    },
+    {
+      "schema_src": "Mesoderme_144.png",
+      "after_text": "La notocorde, vestige du noyau pulposus, joue un rôle clé dans la formation des corps vertébraux à partir du sclérotome, dérivé des somites.",
+      "reasoning": "Ce schéma montre les somites, le tube neural et la notocorde, consolidant la description de la formation des corps vertébraux et des disques intervertébraux."
+    },
+    {
+      "schema_src": "Mesoderme_142.jpeg",
+      "after_text": "Pour l'épineuse, l'information provient directement du tube neural, tandis que pour le disque, elle est liée à la notocorde.",
+      "reasoning": "Ce schéma détaille le sclérotome, les vertèbres et les nerfs, permettant de visualiser les différentes informations qui forment la vertèbre."
+    },
+    {
+      "schema_src": "Mesoderme_145.png",
+      "after_text": "Dans la formation complète, on observe la mise en place des somites pour former le sclérotome autour du tube neural et de la notocorde.",
+      "reasoning": "Ce schéma montre la structure embryonnaire avec la notocorde et les somites, illustrant la formation du sclérotome."
+    },
+    {
+      "schema_src": "Mesoderme_154.png",
+      "after_text": "Par exemple, une dermalgie au niveau 9 peut être associée à des structures comme la vésicule biliaire, le pancréas, ou le système pylorique.",
+      "reasoning": "Ce schéma illustre les liens entre les dermatomes et les viscères, en cohérence avec l'exemple de dermalgie donné."
+    }
+  ],
+  "meso-43": [
+    {
+      "schema_src": "Mesoderme_21.jpeg",
+      "after_text": "Ce phénomène est souvent décrit par les théories de l'émergence, qui suggèrent qu'un processus simple peut donner naissance à des structures plus complexes.",
+      "reasoning": "Cette image semble illustrer le concept d'émergence et de complexité, potentiellement via la tensegrité."
+    },
+    {
+      "schema_src": "Mesoderme_32.png",
+      "after_text": "Les côtes se forment comme des densifications entre les vaisseaux thoraciques segmentés, commençant vers le 35ème jour de développement.",
+      "reasoning": "L'image montre un embryon à 7 semaines avec des vaisseaux, ce qui correspond au timing de formation des côtes mentionné (35e jour = 5e semaine)."
+    },
+    {
+      "schema_src": "Mesoderme_136.png",
+      "after_text": "Après la naissance, le sécum termine sa descente, et l'embryon continue de se développer dans une dynamique similaire.",
+      "reasoning": "L'image du système nerveux de l'embryon est mieux placée après la description des myotomes, dermatomes et sclérotome qui sont étroitement liés au développement nerveux."
+    },
+    {
+      "schema_src": "Mesoderme_148.jpeg",
+      "after_text": "Le travail sur la motilité de la côte est essentiel. En approfondissant cette approche, on peut établir une connexion entre la plèvre pariétale et la plèvre viscérale, notamment au niveau du hile pulmonaire.",
+      "reasoning": "Cette image illustre le développement des côtes et du sternum, éléments clés autour de la motilité costale et de la relation avec la plèvre."
+    }
+  ],
+  "meso-44": [
+    {
+      "schema_src": "Mesoderme_155.png",
+      "after_text": "Un champ métabolique avec des zones de restriction et d'hypercroissance entraîne des mouvements de croissance différentielle, influencés par le système vasculaire.",
+      "reasoning": "Ce paragraphe décrit la dynamique de croissance influencée par le système vasculaire, ce qui correspond bien au concept de bourgeon de membre."
+    },
+    {
+      "schema_src": "Mesoderme_156.png",
+      "after_text": "La main apparaît en premier dans le développement, suivie par l'allongement du système.",
+      "reasoning": "Ce paragraphe introduit l'émergence des membres, ce schéma montre le développement général des membres."
+    },
+    {
+      "schema_src": "Mesoderme_157.png",
+      "after_text": "Le mouvement de rotation externe est suivi d'une contre-rotation interne, orchestrée par le champ vasculaire.",
+      "reasoning": "Ce paragraphe décrit les rotations précoces des membres, qui sont illustrées par le développement du membre embryonnaire"
+    },
+    {
+      "schema_src": "Mesoderme_146.png",
+      "after_text": "Le mésoblaste est responsable de l'induction des membres, qui sont une expansion du sac cardio-pleuro-péritoneal.",
+      "reasoning": "Ce paragraphe parle de l'induction des membres et des tissus impliqués, les lignes de Langer sont pertinentes pour comprendre l'organisation tissulaire."
+    },
+    {
+      "schema_src": "Mesoderme_152.jpeg",
+      "after_text": "L'axe vasculaire est fondamental pour comprendre la métamérisation et la disposition des membres.",
+      "reasoning": "Ce paragraphe parle de la métamérisation et de l'importance des vaisseaux, ce schéma illustre la rotation du membre supérieur, un aspect clé de la disposition des membres."
+    },
+    {
+      "schema_src": "Mesoderme_153.jpeg",
+      "after_text": "Avec le temps, le muscle prend le relais, définissant la forme des membres.",
+      "reasoning": "Ce paragraphe décrit l'évolution de la forme des membres; ce schéma illustre la rotation du membre inférieur, un facteur déterminant de cette forme."
+    }
   ]
 }
