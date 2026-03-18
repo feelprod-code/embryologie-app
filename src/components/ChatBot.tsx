@@ -192,16 +192,49 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
 
         const clonedAnswer = answerNode.cloneNode(true) as HTMLElement;
         
-        // Clean up video buttons for print rendering
+        // Clean up video buttons for print rendering and preserve color codes
         const buttons = clonedAnswer.querySelectorAll('button');
         buttons.forEach(btn => {
             const span = document.createElement('span');
+            const className = btn.className;
+            let bgColor = '#f1f5f9'; // fallback gray
+            let textColor = '#475569';
+            let borderColor = '#cbd5e1';
+
+            if (className.includes('bg-green-100')) {
+                bgColor = 'rgba(220, 252, 231, 0.8)';
+                textColor = '#166534';
+                borderColor = '#bbf7d0';
+            } else if (className.includes('bg-[#FFEBCC]')) {
+                bgColor = '#FFEBCC';
+                textColor = '#B36B00';
+                borderColor = '#FFD699';
+            } else if (className.includes('bg-[#CCF2FF]')) {
+                bgColor = '#CCF2FF';
+                textColor = '#006699';
+                borderColor = '#99EBFF';
+            } else if (className.includes('bg-[#FFFFCC]')) {
+                bgColor = '#FFFFCC';
+                textColor = '#999900';
+                borderColor = '#FFFF99';
+            }
+
             const textContent = btn.textContent || 'Source Vidéo';
-            span.innerHTML = `<strong>[Référence : ${textContent.trim()}]</strong>`;
-            span.style.color = '#AE7D5C'; // Charte: Brun Terre
-            span.style.display = 'inline-block';
-            span.style.margin = '6px 0';
-            span.style.fontSize = '13px';
+            span.textContent = `▶ ${textContent.trim()}`;
+            span.setAttribute('style', `
+                display: inline-block;
+                background-color: ${bgColor};
+                color: ${textColor};
+                padding: 4px 12px;
+                border-radius: 20px;
+                text-decoration: none;
+                font-family: 'Roboto', sans-serif;
+                font-size: 13px;
+                font-weight: 700;
+                margin: 4px 2px;
+                border: 1px solid ${borderColor};
+                vertical-align: middle;
+            `);
             btn.parentNode?.replaceChild(span, btn);
         });
 
@@ -416,9 +449,12 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             </head>
             <body>
                 <div id="fixed-scroll-wrapper">
-                    <div class="no-print" style="position: fixed; top: 24px; right: 24px; z-index: 999999;">
-                        <button onclick="window.print()" style="background-color: #AE7D5C; color: white; border: none; padding: 16px 32px; border-radius: 50px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 900; cursor: pointer; box-shadow: 0 10px 25px rgba(174, 125, 92, 0.4); text-transform: uppercase; letter-spacing: 1.5px; transition: transform 0.2s ease, box-shadow 0.2s ease; outline: none;">
-                            🖨️ IMPRIMER EN PDF
+                    <div class="no-print" style="position: fixed; top: 16px; left: 16px; right: 16px; z-index: 999999; display: flex; justify-content: flex-end; gap: 12px; pointer-events: none;">
+                        <button onclick="window.close()" style="pointer-events: auto; background-color: white; color: #1E2A33; border: 1px solid #cbd5e1; padding: 12px 24px; border-radius: 50px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-transform: uppercase;">
+                            ✕ RETOUR
+                        </button>
+                        <button onclick="window.print()" style="pointer-events: auto; background-color: #AE7D5C; color: white; border: none; padding: 12px 24px; border-radius: 50px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 900; cursor: pointer; box-shadow: 0 10px 25px rgba(174, 125, 92, 0.4); text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s ease, box-shadow 0.2s ease; outline: none;">
+                            🖨️ IMPRIMER
                         </button>
                     </div>
                     
