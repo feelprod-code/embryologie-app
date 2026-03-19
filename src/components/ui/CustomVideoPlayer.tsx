@@ -612,7 +612,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 const player = playerRef.current;
                                 if (!player) return;
                                 const time = player.currentTime || 0;
-                                setCurrentTime(time);
+                                
+                                // Protect current time if user is scrubbing
+                                if (localScrubTime === null) {
+                                    setCurrentTime(time);
+                                }
 
                                 if (player.duration && player.duration > 0 && duration === 0) {
                                     setDuration(player.duration);
@@ -651,7 +655,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 const player = playerRef.current;
                                 if (!player) return;
                                 const time = player.currentTime || 0;
-                                setCurrentTime(time);
+                                
+                                // Protect current time if user is scrubbing
+                                if (localScrubTime === null) {
+                                    setCurrentTime(time);
+                                }
 
                                 // Initialize duration cleanly
                                 if (player.duration && player.duration > 0 && duration === 0) {
@@ -755,7 +763,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 onChange={(e) => {
                                     const val = parseFloat(e.target.value);
                                     setLocalScrubTime(val);
-                                    handleSeek({ target: { value: val.toString() } } as any);
                                 }}
                                 onPointerUp={(e) => {
                                     const val = parseFloat((e.currentTarget as HTMLInputElement).value);
