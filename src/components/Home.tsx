@@ -23,7 +23,7 @@ export function Home({}: HomeProps) {
     const currentLang = (typeof i18n.language === 'string' ? i18n.language.split('-')[0] : 'fr') || 'fr';
     const isEnglish = currentLang === 'en';
     const podcastAudioSrc = isEnglish
-        ? "https://s3.eu-west-3.amazonaws.com/embryologie-biodynamique.com/001+Philippe+Guillaume+EN.mp3"
+        ? `${import.meta.env.BASE_URL}podcasts/full_podcast_english_final.mp3`
         : "https://audio.ausha.co/6r2X8f6LVNAp.mp3";
 
     const getPodcastData = () => {

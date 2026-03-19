@@ -188,11 +188,9 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                             const isHighlighted = touchedCourseId === course.id;
 
                             const handleVideoTap = () => {
-                                if (window.matchMedia("(pointer: coarse)").matches) {
-                                    if (touchedCourseId !== course.id) {
-                                        setTouchedCourseId(course.id);
-                                        return;
-                                    }
+                                if (touchedCourseId !== course.id) {
+                                    setTouchedCourseId(course.id);
+                                    return;
                                 }
                                 onSelectVideo(course);
                             };
