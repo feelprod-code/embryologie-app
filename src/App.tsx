@@ -263,7 +263,7 @@ function App() {
             if (isAdminUser) {
               // Bypassing the device check for administrators so they can use multiple devices
               console.log("Admin multi-device access granted. Ignoring mismatch.");
-            } else if (deviceIds.length < 3) {
+            } else if (deviceIds.length < 2) {
               // Add this new device
               deviceIds.push(localDeviceId);
               const { error: updateError } = await supabase
@@ -274,11 +274,11 @@ function App() {
               if (updateError) {
                 console.error("Failed to add device:", updateError);
               } else {
-                console.log(`Device added. Total devices: ${deviceIds.length}/3`);
+                console.log(`Device added. Total devices: ${deviceIds.length}/2`);
               }
             } else {
               // Limit reached!
-              alert(t('auth.device_limit_reached', "Vous avez atteint la limite de 3 appareils pour ce compte. Veuillez vous déconnecter d'un de vos autres appareils pour pouvoir utiliser celui-ci."));
+              alert(t('auth.device_limit_reached', "Vous avez atteint la limite de 2 appareils pour ce compte. Veuillez vous déconnecter d'un de vos autres appareils pour pouvoir utiliser celui-ci."));
               await supabase.auth.signOut();
               if (mounted) {
                 setSession(null);
