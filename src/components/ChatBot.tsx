@@ -640,15 +640,15 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                 ) : (
                                     <>
                                         <div id={`msg-${idx}`} className="prose prose-slate max-w-none text-base 
-                                        prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-[#AE7D5C] prose-headings:mb-3 prose-headings:mt-6 first:prose-headings:mt-0
-                                        prose-h1:font-bebas prose-h1:text-[#AE7D5C] prose-h1:text-3xl md:prose-h1:text-4xl
+                                        prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-slate-700 prose-headings:mb-3 prose-headings:mt-6 first:prose-headings:mt-0
+                                        prose-h1:font-bebas prose-h1:text-slate-700 prose-h1:text-3xl md:prose-h1:text-4xl
                                         prose-h2:text-2xl md:prose-h2:text-3xl 
-                                        prose-h3:text-xl md:prose-h3:text-2xl prose-h3:text-[#AE7D5C] prose-h3:font-montserrat prose-h3:font-bold
+                                        prose-h3:text-xl md:prose-h3:text-2xl prose-h3:text-slate-700 prose-h3:font-montserrat prose-h3:font-bold
                                         prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4 last:prose-p:mb-0
-                                        prose-strong:text-slate-800 prose-strong:font-bold
+                                        prose-strong:text-slate-500 prose-strong:font-bold
                                         prose-ul:text-slate-700 prose-ul:my-4 prose-li:my-1
-                                        prose-a:text-[#AE7D5C] hover:prose-a:text-[#8D6144] prose-a:font-bold prose-a:underline-offset-4
-                                        prose-code:font-mono prose-code:text-[#AE7D5C] prose-code:bg-[#AE7D5C]/10 prose-code:px-2 prose-code:py-0.5 prose-code:rounded-md
+                                        prose-a:text-slate-700 hover:prose-a:text-slate-500 prose-a:font-bold prose-a:underline-offset-4
+                                        prose-code:font-mono prose-code:text-slate-700 prose-code:bg-slate-100 prose-code:px-2 prose-code:py-0.5 prose-code:rounded-md
                                         prose-pre:bg-slate-900 prose-pre:text-slate-50 prose-pre:rounded-xl prose-pre:p-5 prose-pre:my-6 prose-pre:overflow-x-auto prose-pre:shadow-sm">
                                             <ReactMarkdown
                                                 rehypePlugins={[rehypeRaw]}
