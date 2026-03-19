@@ -140,6 +140,11 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
     const [isFastMode, setIsFastMode] = useState(!isAdmin);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
+    // Sync isFastMode if isAdmin prop changes dynamically
+    useEffect(() => {
+        setIsFastMode(!isAdmin);
+    }, [isAdmin]);
+
     // Prevent body vertical bounce on iOS devices
     useEffect(() => {
         if (window.innerWidth < 768) {
