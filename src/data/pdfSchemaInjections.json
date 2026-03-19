@@ -254,12 +254,12 @@
       "reasoning": "L'image montre le ligament de Liliequist et le texte parle de son insertion et de son rôle."
     },
     {
-      "schema_tag": "![Schéma](/images/schemas/oeil/oeil-21/Oeil_2.png)",
+      "schema_tag": "![Schéma](/images/schemas/oeil/oeil-21/Oeil_2_clean.jpg)",
       "after_text": "Le troisième ventricule, le quatrième ventricule, ainsi que les **ventricules latéraux** sont tous interconnectés par cette dynamique.",
       "reasoning": "L'image illustre le système ventriculaire et le texte explique l'interconnexion induite par la dynamique du ligament."
     },
     {
-      "schema_tag": "![Schéma](/images/schemas/oeil/oeil-21/Oeil_3.png)",
+      "schema_tag": "![Schéma](/images/schemas/oeil/oeil-21/Oeil_3_clean.jpg)",
       "after_text": "Le mouvement crânien est également important à considérer. En observant un crâne, on peut noter les différents mouvements au niveau des **pariétaux** et d'autres structures.",
       "reasoning": "L'image est un schéma qui s'insère logiquement avant l'explication des mouvements crâniens et des lignes de forces."
     },

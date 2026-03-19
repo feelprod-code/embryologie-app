@@ -193,48 +193,53 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
         const clonedAnswer = answerNode.cloneNode(true) as HTMLElement;
         
         // Clean up video buttons for print rendering and preserve color codes
-        const buttons = clonedAnswer.querySelectorAll('button');
+        const buttons = clonedAnswer.querySelectorAll('button.inline-flex');
         buttons.forEach(btn => {
             const span = document.createElement('span');
             const className = btn.className;
-            let bgColor = '#f1f5f9'; // fallback gray
-            let textColor = '#475569';
-            let borderColor = '#cbd5e1';
+            
+            let category = 'default';
+            if (className.includes('bg-[#5A9C51]')) { category = 'ectoderme'; }
+            else if (className.includes('bg-[#F27D33]')) { category = 'mesoderme'; }
+            else if (className.includes('bg-[#4171B5]')) { category = 'endoderme'; }
+            else if (className.includes('bg-[#F2B729]')) { category = 'oeil'; }
 
-            if (className.includes('bg-green-100')) {
-                bgColor = 'rgba(220, 252, 231, 0.8)';
-                textColor = '#166534';
-                borderColor = '#bbf7d0';
-            } else if (className.includes('bg-[#FFEBCC]')) {
-                bgColor = '#FFEBCC';
-                textColor = '#B36B00';
-                borderColor = '#FFD699';
-            } else if (className.includes('bg-[#CCF2FF]')) {
-                bgColor = '#CCF2FF';
-                textColor = '#006699';
-                borderColor = '#99EBFF';
-            } else if (className.includes('bg-[#FFFFCC]')) {
-                bgColor = '#FFFFCC';
-                textColor = '#999900';
-                borderColor = '#FFFF99';
-            }
+            const isEcto = category === 'ectoderme';
+            const isMeso = category === 'mesoderme';
+            const isEndo = category === 'endoderme';
+            const isOeil = category === 'oeil';
+
+            // Solid identity colors with white text for the PDF export print script
+            const bgColor = isEcto ? '#5A9C51' : isMeso ? '#F27D33' : isEndo ? '#4171B5' : isOeil ? '#F2B729' : '#64748b';
+            const textColor = '#ffffff';
 
             const textContent = btn.textContent || 'Source Vidéo';
             span.textContent = `▶ ${textContent.trim()}`;
             span.setAttribute('style', `
                 display: inline-block;
-                background-color: ${bgColor};
-                color: ${textColor};
-                padding: 4px 12px;
-                border-radius: 20px;
+                background-color: ${bgColor} !important;
+                color: ${textColor} !important;
+                padding: 4px 10px;
+                border-radius: 6px;
                 text-decoration: none;
                 font-family: 'Roboto', sans-serif;
-                font-size: 13px;
+                font-size: 11px;
                 font-weight: 700;
-                margin: 4px 2px;
-                border: 1px solid ${borderColor};
+                margin: 2px 2px;
+                border: none;
                 vertical-align: middle;
             `);
+            
+            // To remove surrounding parentheses in the printed DOM if they exist around the button
+            const prevSibling = btn.previousSibling;
+            const nextSibling = btn.nextSibling;
+            if (prevSibling && prevSibling.nodeType === Node.TEXT_NODE && prevSibling.textContent?.trim().endsWith('(')) {
+                prevSibling.textContent = prevSibling.textContent.replace(/\(\s*$/, '');
+            }
+            if (nextSibling && nextSibling.nodeType === Node.TEXT_NODE && nextSibling.textContent?.trim().startsWith(')')) {
+                nextSibling.textContent = nextSibling.textContent.replace(/^\s*\)/, '');
+            }
+
             btn.parentNode?.replaceChild(span, btn);
         });
 
@@ -320,10 +325,10 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                     /* Typography Overrides (Charte Graphique TDT - Haute qualité) */
                     .prose { color: #1E2A33; max-width: none; line-height: 1.8; }
                     
-                    /* Tous les titres en Bebas Neue, Gris Foncé, épais */
+                    /* Tous les titres en Bebas Neue, Brun Terre, épais */
                     .prose h1, .prose h2, .prose h3 { 
                         font-family: 'Bebas Neue', cursive; 
-                        color: #475569; /* Vrai gris, pas noir */
+                        color: #AE7D5C; /* Brun Terre */
                         letter-spacing: 1px; 
                         margin-top: 2.5em; 
                         margin-bottom: 0.8em; 
@@ -349,7 +354,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                     
                     /* "Ce qui doit être en gras tu le mets en gras" */
                     .prose strong, .prose b { 
-                        color: #AE7D5C; 
+                        color: #475569; 
                         font-weight: 900 !important; /* Plus épais ! */
                     }
 
@@ -449,12 +454,12 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             </head>
             <body>
                 <div id="fixed-scroll-wrapper">
-                    <div class="no-print" style="position: fixed; top: 16px; left: 16px; right: 16px; z-index: 999999; display: flex; justify-content: flex-end; gap: 12px; pointer-events: none;">
-                        <button onclick="window.close()" style="pointer-events: auto; background-color: white; color: #1E2A33; border: 1px solid #cbd5e1; padding: 12px 24px; border-radius: 50px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-transform: uppercase;">
-                            ✕ RETOUR
+                    <div class="no-print" style="position: fixed; top: 20px; right: 20px; z-index: 999999; display: flex; gap: 10px; pointer-events: none;">
+                        <button onclick="window.close()" style="pointer-events: auto; background-color: #FAF6ED; color: #AE7D5C; border: none; padding: 8px 16px; border-radius: 6px; font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                            ✕ Retour
                         </button>
-                        <button onclick="window.print()" style="pointer-events: auto; background-color: #AE7D5C; color: white; border: none; padding: 12px 24px; border-radius: 50px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 900; cursor: pointer; box-shadow: 0 10px 25px rgba(174, 125, 92, 0.4); text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s ease, box-shadow 0.2s ease; outline: none;">
-                            🖨️ IMPRIMER
+                        <button onclick="window.print()" style="pointer-events: auto; background-color: #FAF6ED; color: #AE7D5C; border: none; padding: 8px 18px; border-radius: 6px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                            🖨️ Imprimer
                         </button>
                     </div>
                     
@@ -616,7 +621,11 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             {/* Messages */}
             <div className="flex-1 overflow-y-auto overscroll-none p-4 md:p-8 space-y-6 bg-transparent" id="chatbot-messages" style={{ WebkitOverflowScrolling: 'touch' }}>
                 <div className="max-w-4xl mx-auto w-full space-y-6">
-                    {messages.map((msg, idx) => (
+                    {messages.map((msg, idx) => {
+                        // Strip any parentheses or brackets tightly wrapping video links
+                        const processedContent = msg.content.replace(/[\(\[]\s*(\[[^\]]+\]\(#video-[a-zA-Z0-9_-]+\))\s*[\)\]]/g, '$1');
+                        
+                        return (
                         <div key={idx} className={cn("flex", msg.role === 'user' ? "justify-end" : "justify-start")}>
                             <div className={cn(
                                 "max-w-[90%] md:max-w-[85%] rounded-3xl p-4 md:p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]",
@@ -626,17 +635,17 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                             )}>
                                 {msg.role === 'user' ? (
                                     <p id={`msg-${idx}`} className="text-base md:text-lg font-medium whitespace-pre-wrap leading-relaxed">
-                                        {msg.content}
+                                        {processedContent}
                                     </p>
                                 ) : (
                                     <>
                                         <div id={`msg-${idx}`} className="prose prose-slate max-w-none text-base 
-                                        prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-slate-900 prose-headings:mb-3 prose-headings:mt-6 first:prose-headings:mt-0
-                                        prose-h1:font-bebas prose-h1:text-slate-900 prose-h1:text-3xl md:prose-h1:text-4xl
+                                        prose-headings:font-bebas prose-headings:tracking-wide prose-headings:text-[#AE7D5C] prose-headings:mb-3 prose-headings:mt-6 first:prose-headings:mt-0
+                                        prose-h1:font-bebas prose-h1:text-[#AE7D5C] prose-h1:text-3xl md:prose-h1:text-4xl
                                         prose-h2:text-2xl md:prose-h2:text-3xl 
-                                        prose-h3:text-xl md:prose-h3:text-2xl prose-h3:text-slate-800 prose-h3:font-montserrat prose-h3:font-bold
+                                        prose-h3:text-xl md:prose-h3:text-2xl prose-h3:text-[#AE7D5C] prose-h3:font-montserrat prose-h3:font-bold
                                         prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4 last:prose-p:mb-0
-                                        prose-strong:text-slate-900 prose-strong:font-bold
+                                        prose-strong:text-slate-800 prose-strong:font-bold
                                         prose-ul:text-slate-700 prose-ul:my-4 prose-li:my-1
                                         prose-a:text-[#AE7D5C] hover:prose-a:text-[#8D6144] prose-a:font-bold prose-a:underline-offset-4
                                         prose-code:font-mono prose-code:text-[#AE7D5C] prose-code:bg-[#AE7D5C]/10 prose-code:px-2 prose-code:py-0.5 prose-code:rounded-md
@@ -654,11 +663,11 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                                                 const isEndo = course.categoryId === 'endoderme';
                                                                 const isOeil = course.categoryId === 'oeil';
 
-                                                                const colorClass = isEcto ? "bg-[#5A9C51]/10 text-[#5A9C51] hover:bg-[#5A9C51]/20 border-[#5A9C51]/30" :
-                                                                    isMeso ? "bg-[#F27D33]/10 text-[#F27D33] hover:bg-[#F27D33]/20 border-[#F27D33]/30" :
-                                                                        isEndo ? "bg-[#4171B5]/10 text-[#4171B5] hover:bg-[#4171B5]/20 border-[#4171B5]/30" :
-                                                                            isOeil ? "bg-[#F2B729]/10 text-[#F2B729] hover:bg-[#F2B729]/20 border-[#F2B729]/30" :
-                                                                                "bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300";
+                                                                const colorClass = isEcto ? "bg-[#5A9C51] text-white hover:bg-[#4a8443] border-[#5A9C51]" :
+                                                                    isMeso ? "bg-[#F27D33] text-white hover:bg-[#e06c27] border-[#F27D33]" :
+                                                                        isEndo ? "bg-[#4171B5] text-white hover:bg-[#345d96] border-[#4171B5]" :
+                                                                            isOeil ? "bg-[#F2B729] text-white hover:bg-[#d9a321] border-[#F2B729]" :
+                                                                                "bg-slate-600 text-white hover:bg-slate-700 border-slate-600";
 
                                                                 let categoryName: string = course.categoryId;
                                                                 if (isEcto) categoryName = t('categories.ectoderm', { defaultValue: i18n.language.startsWith('en') ? 'Ectoderm' : i18n.language.startsWith('es') ? 'Ectodermo' : i18n.language.startsWith('it') ? 'Ectoderma' : i18n.language.startsWith('de') ? 'Ektoderm' : i18n.language.startsWith('zh') ? '外胚层' : i18n.language.startsWith('ja') ? '外胚葉' : "L'Ectoderme" });
@@ -685,14 +694,14 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                                     }
                                                 }}
                                             >
-                                                {msg.content}
+                                                {processedContent}
                                             </ReactMarkdown>
                                         </div>
                                         {idx > 0 && (
                                             <div className="mt-4 pt-3 flex justify-end">
                                                 <button
                                                     onClick={() => handleExportPDF(idx)}
-                                                    className="flex items-center justify-center gap-1.5 text-xs text-slate-400 hover:text-slate-600 hover:bg-slate-200/50 px-3 py-1.5 rounded-md transition-all active:scale-95"
+                                                    className="flex items-center justify-center gap-1.5 text-xs text-[#AE7D5C] hover:bg-[#FAF6ED] px-3 py-1.5 rounded-md transition-all active:scale-95 opacity-80 hover:opacity-100"
                                                     title={t('chatbot.exportPdfTitle')}
                                                 >
                                                     <Download size={14} />
@@ -704,7 +713,8 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                 )}
                             </div>
                         </div>
-                    ))}
+                    );
+                })}
                     {isLoading && (
                         <div className="flex justify-start">
                             <div className="bg-white border border-slate-200 rounded-2xl rounded-bl-md p-4 md:p-6 shadow-sm flex items-center gap-3">

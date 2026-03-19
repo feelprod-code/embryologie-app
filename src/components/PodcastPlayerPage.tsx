@@ -42,7 +42,7 @@ export const PodcastPlayerPage: React.FC<PodcastPlayerPageProps> = ({ podcast: i
             {/* Bouton de Retour Global */}
             <button
                 onClick={onBack}
-                className="absolute top-4 left-4 md:top-6 md:left-6 z-50 w-12 h-12 flex items-center justify-center bg-transparent/90 backdrop-blur-md text-slate-700 hover:text-primary rounded-full shadow-lg border border-slate-200 hover:scale-105 transition-all"
+                className="absolute top-4 left-4 md:top-6 md:left-6 z-50 w-12 h-12 flex items-center justify-center bg-[#FAF6ED] text-[#AE7D5C] hover:opacity-80 rounded-full transition-all"
                 aria-label={t('podcasts.backToLibrary')}
                 title={t('podcasts.backToLibrary')}
             >
