@@ -93,6 +93,37 @@ function App() {
 
   const handleLogout = async () => {
     localStorage.removeItem('DEV_BYPASS_AUTH');
+
+    // Remove device from 3-device limit list
+    if (session?.user?.id) {
+      try {
+        const localDeviceId = getDeviceId();
+        const { data } = await supabase
+          .from('profiles')
+          .select('device_id')
+          .eq('id', session.user.id)
+          .single();
+        
+        if (data?.device_id) {
+          const deviceIds = data.device_id.split(',').filter(Boolean);
+          const newDeviceIds = deviceIds.filter((id: string) => 
+            id !== localDeviceId &&
+            !(localDeviceId.includes('-') && id === localDeviceId.substring(localDeviceId.indexOf('-') + 1)) &&
+            !(id.includes('-') && localDeviceId === id.substring(id.indexOf('-') + 1))
+          );
+          
+          if (newDeviceIds.length !== deviceIds.length) {
+            await supabase
+              .from('profiles')
+              .update({ device_id: newDeviceIds.join(',') })
+              .eq('id', session.user.id);
+          }
+        }
+      } catch (err) {
+        console.error("Error removing device on logout:", err);
+      }
+    }
+
     try {
       await supabase.auth.signOut();
     } catch (error) {
@@ -215,11 +246,14 @@ function App() {
             console.error("Failed to bind device:", updateError);
           }
         } else {
-          const dbDevice = profile.device_id;
-          const isMatch =
+          const dbDevicesStr = profile.device_id;
+          const deviceIds = dbDevicesStr.split(',').filter(Boolean);
+          
+          const isMatch = deviceIds.some((dbDevice: string) => 
             dbDevice === localDeviceId ||
             (localDeviceId.includes('-') && dbDevice === localDeviceId.substring(localDeviceId.indexOf('-') + 1)) ||
-            (dbDevice.includes('-') && localDeviceId === dbDevice.substring(dbDevice.indexOf('-') + 1));
+            (dbDevice.includes('-') && localDeviceId === dbDevice.substring(dbDevice.indexOf('-') + 1))
+          );
 
           if (!isMatch) {
             const isAdminUser =
@@ -229,21 +263,28 @@ function App() {
             if (isAdminUser) {
               // Bypassing the device check for administrators so they can use multiple devices
               console.log("Admin multi-device access granted. Ignoring mismatch.");
-            } else {
-              // Automatically override the device ID to the new device
-              // This will kick out the other device because its local id won't match the DB anymore
-              console.log("New device detected. Overriding previous device session.");
-              
-              const { error: overrideError } = await supabase
+            } else if (deviceIds.length < 3) {
+              // Add this new device
+              deviceIds.push(localDeviceId);
+              const { error: updateError } = await supabase
                 .from('profiles')
-                .update({ device_id: localDeviceId })
+                .update({ device_id: deviceIds.join(',') })
                 .eq('id', currentSession.user.id);
-                
-              if (overrideError) {
-                 console.error("Failed to override device:", overrideError);
+
+              if (updateError) {
+                console.error("Failed to add device:", updateError);
               } else {
-                 alert("Vous avez été connecté sur ce nouvel appareil. Votre ancienne session sur l'autre appareil a été déconnectée.");
+                console.log(`Device added. Total devices: ${deviceIds.length}/3`);
               }
+            } else {
+              // Limit reached!
+              alert(t('auth.device_limit_reached', "Vous avez atteint la limite de 3 appareils pour ce compte. Veuillez vous déconnecter d'un de vos autres appareils pour pouvoir utiliser celui-ci."));
+              await supabase.auth.signOut();
+              if (mounted) {
+                setSession(null);
+                setIsInitializing(false);
+              }
+              return; // Halt login
             }
           }
         }
@@ -315,21 +356,22 @@ function App() {
                setIsPremium(payload.new.is_premium);
              }
 
-             const newDeviceId = payload.new.device_id;
+             const newDeviceIdsStr = payload.new.device_id || "";
+             const deviceIds = newDeviceIdsStr.split(',').filter(Boolean);
              const localDeviceId = getDeviceId();
              
-             // Check if the device id changed and it's not our local device
-             if (newDeviceId && newDeviceId !== localDeviceId) {
-                 const isMatch =
-                     (localDeviceId.includes('-') && newDeviceId === localDeviceId.substring(localDeviceId.indexOf('-') + 1)) ||
-                     (newDeviceId.includes('-') && localDeviceId === newDeviceId.substring(newDeviceId.indexOf('-') + 1));
+             // Check if our local device is STILL in the authorized list
+             const isStillAuthorized = deviceIds.some((dbDevice: string) => 
+                  dbDevice === localDeviceId ||
+                  (localDeviceId.includes('-') && dbDevice === localDeviceId.substring(localDeviceId.indexOf('-') + 1)) ||
+                  (dbDevice.includes('-') && localDeviceId === dbDevice.substring(dbDevice.indexOf('-') + 1))
+             );
 
-                 if (!isMatch && !isAdmin) {
-                     alert(t('auth.device_mismatch', "Cet accès est maintenant utilisé sur un autre appareil. Vous avez été déconnecté."));
-                     await supabase.auth.signOut();
-                     if (mounted) {
-                         setSession(null);
-                     }
+             if (!isStillAuthorized && !isAdmin) {
+                 alert(t('auth.device_removed', "Votre appareil a été déconnecté car votre session a été révoquée."));
+                 await supabase.auth.signOut();
+                 if (mounted) {
+                     setSession(null);
                  }
              }
           }
@@ -362,7 +404,7 @@ function App() {
 
   const [activeStageId, setActiveStageId] = useState<string>(detailedStages[0].id);
 
-  type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'podcast-player' | 'podcasts' | 'admin' | 'admin-users' | 'admin-prompts';
+  type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'admin' | 'admin-users' | 'admin-prompts';
   const [currentView, setCurrentView] = useState<View>('home');
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
   const [optimisticView, setOptimisticView] = useState<View | null>(null);
@@ -393,7 +435,7 @@ function App() {
 
   return (
     <FullscreenProvider>
-      <OrientationLock disabled={activeNav === 'video-player' || activeNav === 'podcast-player'} />
+      <OrientationLock disabled={activeNav === 'video-player'} />
       <SuccessOverlay />
       <div className={cn("flex flex-col items-center h-[100dvh] w-full max-w-full relative bg-[#FAF6ED] text-slate-800 overflow-hidden", isPending && "transition-all duration-300")}>
         {/* Cinematic Background Gradients (Global) */}
@@ -408,7 +450,7 @@ function App() {
       <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} isAdmin={isAdmin} onLogout={handleLogout} />
 
       {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
-      {activeNav !== 'podcast-player' && (
+      {(
         <nav
           className={cn(
             "fixed bottom-0 z-50 w-full bg-[#FAF6ED]/95 backdrop-blur-xl border-t border-slate-200 lg:hidden pb-[env(safe-area-inset-bottom,16px)] shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
@@ -505,7 +547,7 @@ function App() {
 
       <div className={cn(
         "flex-1 w-full min-h-0 flex flex-col items-center overflow-x-hidden relative z-10 overscroll-none no-scrollbar md:mt-[60px]",
-        currentView === 'video-player' || currentView === 'embryo-ai' || currentView === 'admin' ? "overflow-y-hidden" : "overflow-y-auto"
+        currentView === 'video-player' || currentView === 'embryo-ai' || currentView === 'admin' || currentView === 'home' ? "overflow-y-hidden" : "overflow-y-auto"
       )} id="main-scroll-canvas" style={{ WebkitOverflowScrolling: 'touch' }}>
 
         {/* Mobile Top App Bar (Supprimé) */}

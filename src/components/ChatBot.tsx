@@ -654,7 +654,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                         prose-ul:text-slate-700 prose-ul:my-4 prose-li:my-1
                                         prose-a:text-slate-700 hover:prose-a:text-slate-500 prose-a:font-bold prose-a:underline-offset-4
                                         prose-code:font-mono prose-code:text-slate-700 prose-code:bg-slate-100 prose-code:px-2 prose-code:py-0.5 prose-code:rounded-md
-                                        prose-pre:bg-slate-900 prose-pre:text-slate-50 prose-pre:rounded-xl prose-pre:p-5 prose-pre:my-6 prose-pre:overflow-x-auto prose-pre:shadow-sm">
+                                        prose-pre:bg-slate-100 prose-pre:text-slate-800 prose-pre:border prose-pre:border-slate-200 prose-pre:rounded-xl prose-pre:p-5 prose-pre:my-6 prose-pre:overflow-x-auto prose-pre:shadow-sm">
                                             <ReactMarkdown
                                                 rehypePlugins={[rehypeRaw]}
                                                 components={{

@@ -1,77 +1,65 @@
 {
-    "home": {
-        "training_by": "FORMACIÓN POR",
-        "title_part1": "EMBRIOLOGÍA",
-        "title_part2": "BIODINÁMICA",
-        "start": "¡Empecemos!",
-        "ai_assistant": "Asistente AI",
-        "credits": "RÉALISATION FEELPROD"
-    },
-    "nav": {
-        "timeline": "Cronología",
-        "videos": "Cursos en Video"
-    },
-    "chatbot": {
-        "apiKeyMissing": "Falta la clave API.",
-        "assistantRole": "Asistente",
-        "backToHome": "Volver al inicio",
-        "clear": "Borrar",
-        "clearConversationTitle": "Borrar conversación",
-        "detailedAnswer": "Respuesta detallada",
-        "exportPdfTitle": "Exportar a PDF",
-        "generalError": "Ocurrió un error.",
-        "inputPlaceholder": "Haga su pregunta sobre embriología...",
-        "networkError": "Error de red: ",
-        "pdf": "PDF",
-        "question": "Pregunta",
-        "searching": "Buscando...",
-        "summaryDocument": "Documento de síntesis",
-        "welcomeMessage": "¡Hola! Soy el Asistente IA, tu asistente dedicado al curso de embriología de Marc Damoiseaux.\n\nHazme tus preguntas sobre **cascadas cinéticas**, **capas** o **práctica biodinámica**."
-    },
-    "podcasts": {
-        "allResources": "Todos los recursos",
-        "audioNotConfigured": "Audio no configurado",
-        "backToHome": "Volver al inicio",
-        "backToLibrary": "Volver a la biblioteca",
-        "browserNoAudioSupport": "Su navegador no soporta el elemento de audio.",
-        "clickToReadSummary": "Haga clic para leer el resumen completo",
-        "close": "Cerrar",
-        "closeSummary": "Cerrar resumen",
-        "episodeSummary": "Resumen del episodio:",
-        "highlight": "DESTACADO",
-        "listenAndLearn": "Escuchar y Aprender",
-        "podcastType": "PODCAST",
-        "readSummary": "Leer resumen",
-        "resourcesAndPodcasts": "Recursos y Podcasts",
-        "transcript": "Transcripción",
-        "transcriptNotAvailable": "Transcripción no disponible para este podcast."
-    },
-    "videoLibrary": {
-        "backToHome": "Volver al inicio",
-        "completeFormation": "Formación Completa",
-        "download": "Descargar VTT",
-        "includedTranscript": "Transcripción incluida",
-        "next": "Siguiente",
-        "noVideoSub": "Este módulo aún no está disponible.",
-        "noVideoTitle": "Video no disponible",
-        "previous": "Anterior",
-        "layers": {
-            "ectoderm": "Ectodermo",
-            "endoderm": "Endodermo",
-            "mesoderm": "Mesodermo",
-            "eye": "El Ojo"
-        }
-    },
-    "app": {
-        "developmental_movement": "Movimiento de Desarrollo",
-        "timeline_processes": "Procesos por Capa",
-        "timeline_cine_dynamic": "Cine-dinámica",
-        "timeline_practical": "Integración Práctica",
-        "timeline_no_data": "Seleccione un período para ver los detalles.",
-        "timeline_palpation": "Palpación",
-        "timeline_therapist_posture": "Postura del terapeuta",
-        "timeline_psychosomatic": "Psicosomática",
-        "timeline_layer_perceptions": "Percepciones de las capas",
-        "timeline_fulcrums": "Fulcros"
+  "home": {
+    "training_by": "FORMACIÓN POR",
+    "title_part1": "EMBRIOLOGÍA",
+    "title_part2": "BIODINÁMICA",
+    "start": "¡Empecemos!",
+    "ai_assistant": "Asistente AI",
+    "credits": "RÉALISATION FEELPROD"
+  },
+  "nav": {
+    "timeline": "Cronología",
+    "videos": "Cursos en Video"
+  },
+  "chatbot": {
+    "apiKeyMissing": "Falta la clave API.",
+    "assistantRole": "Asistente",
+    "backToHome": "Volver al inicio",
+    "clear": "Borrar",
+    "clearConversationTitle": "Borrar conversación",
+    "detailedAnswer": "Respuesta detallada",
+    "exportPdfTitle": "Exportar a PDF",
+    "generalError": "Ocurrió un error.",
+    "inputPlaceholder": "Haga su pregunta sobre embriología...",
+    "networkError": "Error de red: ",
+    "pdf": "PDF",
+    "question": "Pregunta",
+    "searching": "Buscando...",
+    "summaryDocument": "Documento de síntesis",
+    "welcomeMessage": "¡Hola! Soy el Asistente IA, tu asistente dedicado al curso de embriología de Marc Damoiseaux.\n\nHazme tus preguntas sobre **cascadas cinéticas**, **capas** o **práctica biodinámica**."
+  },
+  "podcasts": {
+    "showTranscript": "Mostrar transcripción",
+    "hideTranscript": "Ocultar transcripción",
+    "transcriptNotAvailable": "Transcripción no disponible en este momento.",
+    "transcript": "Transcripción"
+  },
+  "videoLibrary": {
+    "backToHome": "Volver al inicio",
+    "completeFormation": "Formación Completa",
+    "download": "Descargar VTT",
+    "includedTranscript": "Transcripción incluida",
+    "next": "Siguiente",
+    "noVideoSub": "Este módulo aún no está disponible.",
+    "noVideoTitle": "Video no disponible",
+    "previous": "Anterior",
+    "layers": {
+      "ectoderm": "Ectodermo",
+      "endoderm": "Endodermo",
+      "mesoderm": "Mesodermo",
+      "eye": "El Ojo"
     }
+  },
+  "app": {
+    "developmental_movement": "Movimiento de Desarrollo",
+    "timeline_processes": "Procesos por Capa",
+    "timeline_cine_dynamic": "Cine-dinámica",
+    "timeline_practical": "Integración Práctica",
+    "timeline_no_data": "Seleccione un período para ver los detalles.",
+    "timeline_palpation": "Palpación",
+    "timeline_therapist_posture": "Postura del terapeuta",
+    "timeline_psychosomatic": "Psicosomática",
+    "timeline_layer_perceptions": "Percepciones de las capas",
+    "timeline_fulcrums": "Fulcros"
+  }
 }

@@ -67,7 +67,7 @@ export function AdminDashboard() {
             return;
         }
 
-        if (!confirm('Êtes-vous sûr de vouloir réinitialiser l\'appareil de cet élève ? Il devra se reconnecter et enregistrer son nouvel appareil.')) return;
+        if (!confirm('Êtes-vous sûr de vouloir réinitialiser les appareils de cet élève ? Il devra se reconnecter et enregistrer à nouveau ses appareils.')) return;
         
         const { data, error } = await supabase
             .from('profiles')
@@ -197,16 +197,23 @@ export function AdminDashboard() {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             {profile.device_id ? (
-                                                <div className="flex items-center text-sm text-slate-600 font-medium">
-                                                    <KeyRound size={14} className="mr-1.5 text-amber-500" />
-                                                    <span className="truncate w-24" title={profile.device_id}>
-                                                        {profile.device_id.includes('-') && profile.device_id.split('-').length > 4 ?
-                                                            (profile.device_id.split('-').length === 5 ? profile.device_id.split('-')[0] : `${profile.device_id.split('-')[0]}-${profile.device_id.split('-')[1]}`)
-                                                            : profile.device_id}
-                                                    </span>
+                                                <div className="flex flex-col gap-1.5">
+                                                    {profile.device_id.split(',').filter(Boolean).map((dev, idx) => {
+                                                        const shortName = dev.includes('-') && dev.split('-').length > 4 ?
+                                                            (dev.split('-').length === 5 ? dev.split('-')[0] : `${dev.split('-')[0]}-${dev.split('-')[1]}`)
+                                                            : dev;
+                                                        return (
+                                                            <div key={idx} className="flex items-center text-[11px] text-slate-600 font-medium bg-slate-50 px-2 py-1 rounded-md border border-slate-200">
+                                                                <KeyRound size={12} className="mr-1.5 text-amber-500 shrink-0" />
+                                                                <span className="truncate w-24" title={dev}>
+                                                                    {shortName}
+                                                                </span>
+                                                            </div>
+                                                        );
+                                                    })}
                                                 </div>
                                             ) : (
-                                                <span className="text-sm text-slate-400 italic">Aucun appareil enregistré</span>
+                                                <span className="text-sm text-slate-400 italic">Aucun appareil</span>
                                             )}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -233,7 +240,7 @@ export function AdminDashboard() {
                                                             ? "bg-white border-amber-200 text-amber-600 hover:bg-amber-50"
                                                             : "bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed"
                                                     )}
-                                                    title="Réinitialiser l'appareil"
+                                                    title="Réinitialiser les appareils"
                                                 >
                                                     <MonitorOff size={14} className="mr-1.5" />
                                                     Reset
@@ -293,16 +300,23 @@ export function AdminDashboard() {
                                         {profile.is_active ? '✅ Actif' : '🚫 Bloqué'}
                                     </span>
                                     {profile.device_id ? (
-                                        <div className="flex items-center text-[11px] text-slate-600 font-medium px-2.5 py-1 bg-slate-50 rounded-full border border-slate-200">
-                                            <KeyRound size={12} className="mr-1 text-amber-500" />
-                                            <span className="truncate max-w-[80px]" title={profile.device_id}>
-                                                {profile.device_id.includes('-') && profile.device_id.split('-').length > 4 ?
-                                                    (profile.device_id.split('-').length === 5 ? profile.device_id.split('-')[0] : `${profile.device_id.split('-')[0]}-${profile.device_id.split('-')[1]}`)
-                                                    : profile.device_id}
-                                            </span>
+                                        <div className="flex flex-wrap items-center gap-1.5">
+                                            {profile.device_id.split(',').filter(Boolean).map((dev, idx) => {
+                                                const shortName = dev.includes('-') && dev.split('-').length > 4 ?
+                                                    (dev.split('-').length === 5 ? dev.split('-')[0] : `${dev.split('-')[0]}-${dev.split('-')[1]}`)
+                                                    : dev;
+                                                return (
+                                                    <div key={idx} className="flex items-center text-[10px] text-slate-600 font-medium px-2 py-0.5 bg-slate-50 rounded-full border border-slate-200">
+                                                        <KeyRound size={10} className="mr-1 text-amber-500" />
+                                                        <span className="truncate max-w-[70px]" title={dev}>
+                                                            {shortName}
+                                                        </span>
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
                                     ) : (
-                                        <span className="text-[11px] px-2.5 py-1 bg-slate-50 text-slate-400 italic rounded-full border border-slate-200">Aucun appareil enregistré</span>
+                                        <span className="text-[11px] px-2.5 py-1 bg-slate-50 text-slate-400 italic rounded-full border border-slate-200">Aucun appareil</span>
                                     )}
                                 </div>
 
@@ -328,7 +342,7 @@ export function AdminDashboard() {
                                                 ? "bg-white border-amber-200 text-amber-600 hover:bg-amber-50"
                                                 : "bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed"
                                         )}
-                                        title="Réinitialiser l'appareil"
+                                        title="Réinitialiser les appareils"
                                     >
                                         <MonitorOff size={14} className="mr-1.5" /> Reset
                                     </button>
