@@ -134,6 +134,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         if (playerRef.current) {
             playerRef.current.currentTime = val;
         }
+        if (onTimeUpdate) onTimeUpdate(val, duration || 0);
+        let active = null;
+        for (let i = 0; i < cuesRef.current.length; i++) {
+            const c = cuesRef.current[i];
+            if (val >= c.start && val <= c.end) {
+                active = c;
+                break;
+            }
+        }
+        setActiveSubtitle(active ? active.text : null);
         triggerControls();
     };
 
@@ -143,6 +153,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             const newTime = Math.max(0, Math.min(currentTime + secondsOffset, duration));
             playerRef.current.currentTime = newTime;
             setCurrentTime(newTime);
+            if (onTimeUpdate) onTimeUpdate(newTime, duration || 0);
+            let active = null;
+            for (let i = 0; i < cuesRef.current.length; i++) {
+                const c = cuesRef.current[i];
+                if (newTime >= c.start && newTime <= c.end) {
+                    active = c;
+                    break;
+                }
+            }
+            setActiveSubtitle(active ? active.text : null);
         }
         triggerControls();
     };
@@ -612,27 +632,26 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 const player = playerRef.current;
                                 if (!player) return;
                                 const time = player.currentTime || 0;
-                                
-                                // Protect current time if user is scrubbing
-                                if (localScrubTime === null) {
-                                    setCurrentTime(time);
-                                }
 
                                 if (player.duration && player.duration > 0 && duration === 0) {
                                     setDuration(player.duration);
                                 }
 
-                                if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
+                                // Protect current time if user is scrubbing
+                                if (localScrubTime === null) {
+                                    setCurrentTime(time);
+                                    if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
 
-                                let active = null;
-                                for (let i = 0; i < cuesRef.current.length; i++) {
-                                    const c = cuesRef.current[i];
-                                    if (time >= c.start && time <= c.end) {
-                                        active = c;
-                                        break;
+                                    let active = null;
+                                    for (let i = 0; i < cuesRef.current.length; i++) {
+                                        const c = cuesRef.current[i];
+                                        if (time >= c.start && time <= c.end) {
+                                            active = c;
+                                            break;
+                                        }
                                     }
+                                    setActiveSubtitle(active ? active.text : null);
                                 }
-                                setActiveSubtitle(active ? active.text : null);
                             }}
                         />
                     ) : (
@@ -656,30 +675,26 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 if (!player) return;
                                 const time = player.currentTime || 0;
                                 
-                                // Protect current time if user is scrubbing
-                                if (localScrubTime === null) {
-                                    setCurrentTime(time);
-                                }
-
                                 // Initialize duration cleanly
                                 if (player.duration && player.duration > 0 && duration === 0) {
                                     setDuration(player.duration);
                                 }
 
-                                // Trigger controls on unpause or active scrubbing not required here continuously
+                                // Protect current time if user is scrubbing
+                                if (localScrubTime === null) {
+                                    setCurrentTime(time);
+                                    if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
 
-                                if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
-
-                                let active = null;
-                                // Use cuesRef mapping
-                                for (let i = 0; i < cuesRef.current.length; i++) {
-                                    const c = cuesRef.current[i];
-                                    if (time >= c.start && time <= c.end) {
-                                        active = c;
-                                        break;
+                                    let active = null;
+                                    for (let i = 0; i < cuesRef.current.length; i++) {
+                                        const c = cuesRef.current[i];
+                                        if (time >= c.start && time <= c.end) {
+                                            active = c;
+                                            break;
+                                        }
                                     }
+                                    setActiveSubtitle(active ? active.text : null);
                                 }
-                                setActiveSubtitle(active ? active.text : null);
                             }}
                         />
                     )}
@@ -763,6 +778,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 onChange={(e) => {
                                     const val = parseFloat(e.target.value);
                                     setLocalScrubTime(val);
+                                    if (onTimeUpdate) onTimeUpdate(val, duration || 0);
+                                    let active = null;
+                                    for (let i = 0; i < cuesRef.current.length; i++) {
+                                        const c = cuesRef.current[i];
+                                        if (val >= c.start && val <= c.end) {
+                                            active = c;
+                                            break;
+                                        }
+                                    }
+                                    setActiveSubtitle(active ? active.text : null);
                                 }}
                                 onPointerUp={(e) => {
                                     const val = parseFloat((e.currentTarget as HTMLInputElement).value);
