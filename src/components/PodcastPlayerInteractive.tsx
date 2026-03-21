@@ -173,18 +173,19 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                                 onChange={(e) => {
                                     const val = parseFloat(e.target.value);
                                     setLocalScrubTime(val);
-                                    if (audioRef.current) audioRef.current.currentTime = val;
                                 }}
                                 onPointerUp={(e) => {
                                     const val = parseFloat(e.currentTarget.value);
                                     handleSeek(val);
                                     setLocalScrubTime(null);
                                 }}
+                                onPointerCancel={() => setLocalScrubTime(null)}
                                 onTouchEnd={(e) => {
                                     const val = parseFloat(e.currentTarget.value);
                                     handleSeek(val);
                                     setLocalScrubTime(null);
                                 }}
+                                onTouchCancel={() => setLocalScrubTime(null)}
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
                                 aria-label="Seek podcast"
                             />
@@ -259,7 +260,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                                             }}
                                             className={cn(
                                                 "p-4 rounded-2xl cursor-pointer transition-all duration-300 border",
-                                                isActive 
+                                                (isActive && isAutoScrollEnabled) 
                                                     ? "bg-[#FFF8F0] border-[#E87C3E]/30 shadow-md transform scale-[1.01]" 
                                                     : "border-transparent hover:bg-slate-50",
                                                 !isActive && isPlaying && isAutoScrollEnabled ? "opacity-50" : "opacity-100"
@@ -297,7 +298,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                                                             }}
                                                             className={cn(
                                                                 "transition-colors duration-300 rounded px-1 -mx-1",
-                                                                isSentenceActive 
+                                                                (isSentenceActive && isAutoScrollEnabled) 
                                                                     ? "bg-[#E87C3E]/20 text-slate-900" 
                                                                     : "hover:bg-slate-100 cursor-pointer"
                                                             )}

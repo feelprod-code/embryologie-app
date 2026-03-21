@@ -705,14 +705,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     className="absolute inset-0 z-10 cursor-pointer flex items-center justify-center touch-manipulation"
                     onClick={(e) => {
                         e.stopPropagation();
-                        if (showControls) {
-                            if (isPlaying) {
-                                setShowControls(false); // Hide immediately if playing and controls are tapped
-                            }
-                            if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-                        } else {
-                            triggerControls();
-                        }
+                        togglePlay(e);
+                        triggerControls();
                     }}
                     onTouchStart={handleZoomTouchStart}
                     onTouchMove={handleZoomTouchMove}
@@ -794,11 +788,13 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                     handleSeek({ target: { value: val.toString() } } as any);
                                     setLocalScrubTime(null);
                                 }}
+                                onPointerCancel={() => setLocalScrubTime(null)}
                                 onTouchEnd={(e) => {
                                     const val = parseFloat((e.currentTarget as HTMLInputElement).value);
                                     handleSeek({ target: { value: val.toString() } } as any);
                                     setLocalScrubTime(null);
                                 }}
+                                onTouchCancel={() => setLocalScrubTime(null)}
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
                             />
                             {/* Visual Progress Track */}

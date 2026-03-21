@@ -513,10 +513,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         isFullscreen ? "hidden" : ""
       )}>
         {/* COMPACT SINGLE-LINE CONTROLS */}
-        <div className="relative flex justify-between items-center w-full gap-1 sm:gap-2 px-0.5 sm:px-1 min-h-[36px] sm:min-h-[44px]">
+        <div className="flex justify-between items-center w-full gap-1 sm:gap-2 px-0.5 sm:px-1 min-h-[36px] sm:min-h-[44px]">
 
           {/* LEFT: SPEED CONTROLS */}
-          <div className="flex items-center gap-1 shrink-0 z-10">
+          <div className="flex flex-1 items-center gap-1 z-10">
             {[1, 1.25].map((speed) => (
               <button
                 key={speed}
@@ -537,7 +537,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
 
           {/* CENTER: PREV/NEXT */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-2 sm:gap-3 z-10 w-auto">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 z-10 shrink-0">
             <button
               onClick={() => prevVideo && onSelectVideo(prevVideo)}
               disabled={!prevVideo}
@@ -557,7 +557,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
 
           {/* RIGHT: OFFLINE AND DOWNLOAD */}
-          <div className="flex items-center justify-end shrink-0 z-10">
+          <div className="flex flex-1 items-center justify-end z-10">
             {course.cloudflareId && (
               <button
                 onClick={handleOfflineCache}
@@ -662,18 +662,19 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                     onChange={(e) => {
                       const val = parseFloat(e.target.value);
                       setLocalScrubTime(val);
-                      videoPlayerRef.current?.seekTo(val);
                     }}
                     onPointerUp={(e) => {
                       const val = parseFloat((e.currentTarget as HTMLInputElement).value);
                       videoPlayerRef.current?.seekTo(val);
                       setLocalScrubTime(null);
                     }}
+                    onPointerCancel={() => setLocalScrubTime(null)}
                     onTouchEnd={(e) => {
                       const val = parseFloat((e.currentTarget as HTMLInputElement).value);
                       videoPlayerRef.current?.seekTo(val);
                       setLocalScrubTime(null);
                     }}
+                    onTouchCancel={() => setLocalScrubTime(null)}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
                   />
                   <div className="w-full h-1 sm:h-1.5 bg-slate-200/80 rounded-full overflow-hidden pointer-events-none">
