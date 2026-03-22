@@ -1,0 +1,272 @@
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Play, Clock, BookOpen, RotateCcw } from 'lucide-react';
+
+const tabs = [
+  { id: "L'Ectoderme", time: "9H 05M", bg: "bg-[#5A9C51]", text: "text-white", border: "border-[#5A9C51]/20", label: "text-white/90" },
+  { id: "L'Endoderme", time: "5H 43M", bg: "bg-[#4171B5]", text: "text-white", border: "border-[#4171B5]/20", label: "text-white/90" },
+  { id: "Le Mésoderme", time: "4H 56M", bg: "bg-[#F27D33]", text: "text-white", border: "border-[#F27D33]/20", label: "text-white/90" },
+  { id: "L'Oeil", time: "4H 02M", bg: "bg-[#F2B729]", text: "text-white", border: "border-[#F2B729]/20", label: "text-white/90" }
+];
+
+const categoryColors: Record<string, any> = {
+  ectoderme: { text: "text-[#5A9C51]", bg: "bg-[#5A9C51]", circleBg: "bg-[#5A9C51]/10" },
+  endoderme: { text: "text-[#4171B5]", bg: "bg-[#4171B5]", circleBg: "bg-[#4171B5]/10" },
+  mesoderme: { text: "text-[#F27D33]", bg: "bg-[#F27D33]", circleBg: "bg-[#F27D33]/10" },
+  oeil: { text: "text-[#F2B729]", bg: "bg-[#F2B729]", circleBg: "bg-[#F2B729]/10" }
+};
+
+const videos = [
+  { id: "01", category: "ectoderme", title: "01- INTRODUCTION", desc: "Étude de l'embryologie biodynamique en ostéopathie et observation des tissus.", time: "04:33", hasTranscript: true },
+  { id: "02", category: "ectoderme", title: "02- GÉNÉRALITÉS", desc: "Interaction entre l'environnement et l'embryologie dans le développement.", time: "08:38" },
+  { id: "03", category: "mesoderme", title: "03- CHRONOLOGIE...", desc: "Évolution des systèmes de communication cellulaire en embryologie.", time: "07:33" },
+  { id: "04", category: "oeil", title: "04- ÉPIGÉNÉTIQUE...", desc: "Exploration des concepts d'épigénétique et de tenségrité dans le corps humain.", time: "06:25" },
+  { id: "05", category: "endoderme", title: "05- THE CELL", desc: "Mechanisms of cellular development and the impact of polarisation.", time: "11:37" },
+  { id: "06", category: "mesoderme", title: "06- LE COEUR", desc: "Développement cardiaque et flux sanguins.", time: "09:45" },
+  { id: "07", category: "endoderme", title: "07- LE SYSTÈME NERVEUX", desc: "Neuro-embryologie et tube neural.", time: "12:20" }
+];
+
+export function Trailer3DParallax() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [colorsActive, setColorsActive] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [overflowHidden, setOverflowHidden] = useState(false); // Activé en toute fin pour bloquer le scroll !
+
+  useEffect(() => {
+    let timer1: ReturnType<typeof setTimeout>;
+    timer1 = setTimeout(() => {
+      setIsPlaying(true);
+    }, 500);
+
+    return () => clearTimeout(timer1);
+  }, []);
+
+  useEffect(() => {
+    if (isPlaying) {
+      // Éclairage (il y'en a tellement, on fait un code couleur !)
+      const colorTimer = setTimeout(() => { setColorsActive(true); }, 8000); 
+
+      // On verrouille la boite en overflow hiddden à la fin du mouvement 3D (pour le clip 2D du scroll)
+      const overflowTimer = setTimeout(() => { setOverflowHidden(true); }, 10500); 
+
+      // Début du scroll list (hop on scroll)
+      const scrollTimer = setTimeout(() => { setScrollY(-380); }, 11000); 
+
+      return () => { clearTimeout(colorTimer); clearTimeout(scrollTimer); clearTimeout(overflowTimer); };
+    } else {
+      setColorsActive(false);
+      setScrollY(0);
+      setOverflowHidden(false);
+    }
+  }, [isPlaying]);
+
+  // CAMÉRA MASTER - VUE DE DESSOUS PUIS SWING AU DESSUS
+  const cameraVariants = {
+    hidden: { 
+      rotateX: -60, rotateZ: -10, y: "10%", scale: 0.7 
+    },
+    visible: {
+      rotateX: [-60, -60,   45,  45,  0],  // Vue dessous, attente 3s, swing haut, attente, plat.
+      rotateZ: [-10, -10,   5,   5,  0],  // petit roll dynamique
+      y:       ["10%","10%","3%","3%","0%"],
+      scale:   [0.7, 0.7, 0.85, 0.85, 1],
+      transition: {
+        duration: 10.5,
+        times: [0, 3.0/10.5, 4.5/10.5, 9.0/10.5, 1], // Timing de la caméra maîtresse
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  // ANIMATION DES ONGLETS DE COULEURS ("Le vert puis le bleu qui passent")
+  const getTabAnimation = (idx: number) => {
+    const startFly = 0.5 + (idx * 0.4);
+    const endFly = startFly + 1.8;
+    const startFall = 6.0 + (idx * 0.2);
+    const endFall = startFall + 1.2;
+    
+    return {
+      z:       [2000, 3000, -2000,  1500, 1500,   0, 0], // Passe devant le nez, puis part très loin
+      y:       [2000,  800, -3000,     0,    0,   0, 0], // Monte en flèche !
+      rotateX: [   0, -720, -1080,-1080,-1080,   0, 0], // Saltos arrières violents
+      rotateY: [   0,  180,   360,  360,  360,   0, 0], // Vrilles latérales
+      rotateZ: [   0,   15,     0,    0,    0,   0, 0], // Roulis
+      opacity: [   0,    1,     0,    0,    1,   1, 1],
+      scale:   [ 2.0,  3.5,   0.5,  2.5,  2.5,   1, 1], // Énorme devant la cam
+      transition: {
+        duration: 10.5,
+        times: [0, startFly/10.5, endFly/10.5, (startFall-0.1)/10.5, startFall/10.5, endFall/10.5, 1],
+        ease: "easeInOut"
+      }
+    };
+  };
+
+  const itemVariants = {
+    hidden: { z: 1500, rotateX: 90, rotateY: 30, opacity: 0, scale: 1.4 },
+    visible: (custom: { zPos: number, delay: number }) => ({
+      z: custom.zPos,  
+      rotateX: 0,
+      rotateY: 0,
+      opacity: 1,
+      scale: 1,
+      transition: { type: "spring", stiffness: 100, damping: 18, mass: 1.1, delay: custom.delay }
+    })
+  };
+
+  const handlePlay = () => {
+    setIsPlaying(false);
+    setTimeout(() => setIsPlaying(true), 100);
+  };
+
+  return (
+    <div className="absolute inset-0 w-full h-[100dvh] overflow-hidden bg-[#00FF00] font-sans z-[300] flex flex-col items-center justify-center">
+      
+      <div className="w-full h-full flex items-center justify-center pointer-events-none absolute inset-0" style={{ perspective: "3500px" }}>
+        
+        {/* LE CHASSIS iPHONE (Animé par la caméra) */}
+        <motion.div 
+          className="relative w-[375px] max-w-[100vw] h-[812px] max-h-[85vh] shrink-0 bg-[#FAF6ED] rounded-[48px] shadow-[0_0_0_14px_#111,_0_0_0_16px_#333,_0_40px_100px_rgba(0,0,0,0.5)] flex flex-col border-[6px] border-black"
+          style={{ transformStyle: "preserve-3d" }}
+          variants={cameraVariants}
+          initial="hidden"
+          animate={isPlaying ? "visible" : "hidden"}
+        >
+          {/* Encoche */}
+          <div className="absolute top-0 inset-x-0 w-[140px] h-[30px] bg-black rounded-b-3xl mx-auto z-[500] shadow-sm transform-gpu"></div>
+
+          {/* HEADER FIXE (Squelette permanent en haut) */}
+          <div className="w-full pt-14 flex flex-col items-center pb-4 border-b border-transparent shrink-0 bg-[#FAF6ED] z-[400] relative" style={{ transformStyle: "preserve-3d" }}>
+            
+            {/* L'Écriture COMPLETE FORMATION tombe à t=4.0 */}
+            <motion.div 
+              custom={{ zPos: 120, delay: 4.0 }} 
+              variants={itemVariants as any} 
+              initial="hidden" 
+              animate={isPlaying ? "visible" : "hidden"} 
+              className="inline-flex items-center justify-center px-8 py-2 rounded-full mb-0 border-b border-slate-100 w-full"
+            >
+                <span className="font-bebas font-normal text-3xl uppercase tracking-widest leading-none drop-shadow-sm text-slate-800">
+                    COMPLETE FORMATION
+                </span>
+            </motion.div>
+
+            {/* LES BOUTONS VOLANTS (Vert, Bleu...) */}
+            <div className="w-full mt-4 pt-2 px-2" style={{ transformStyle: "preserve-3d" }}>
+              <div className="grid grid-cols-4 items-stretch gap-1 w-full" style={{ transformStyle: "preserve-3d" }}>
+                {tabs.map((tab, idx) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0 }}
+                    animate={isPlaying ? getTabAnimation(idx) : { opacity: 0 }}
+                    style={{ transformStyle: "preserve-3d" }}
+                    className={`relative flex flex-col items-center justify-center py-2.5 px-0.5 rounded-xl shadow-md border ${tab.bg} ${tab.border}`}
+                  >
+                    <span className={`pointer-events-none font-bebas text-[11px] min-[375px]:text-[13px] tracking-wider leading-[1.1] w-full text-center block ${tab.label}`}>
+                        {tab.id.toUpperCase()}
+                    </span>
+                    <span className={`pointer-events-none text-[8px] uppercase font-bold truncate w-full px-0 opacity-80 text-center flex items-center justify-center gap-1 block mt-1 ${tab.label}`}>
+                        <Clock size={8} className="inline mb-[1px]" /> {tab.time}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* INNER WRAPPER (Vidéo List) - Le overflow hidden s'active en fin de vol ! */}
+          <div 
+            className="w-full flex flex-col flex-1 relative z-[100]" 
+            style={{ 
+              transformStyle: "preserve-3d",
+              overflow: overflowHidden ? "hidden" : "visible", 
+              borderBottomLeftRadius: "42px", borderBottomRightRadius: "42px" 
+            }}
+          >
+
+            <motion.div 
+              className="absolute inset-x-0 top-0 flex flex-col gap-1 w-full px-4 pt-2 pb-20" 
+              style={{ transformStyle: "preserve-3d" }}
+              animate={isPlaying ? { y: scrollY } : { y: 0 }}
+              transition={{ duration: 5, ease: "easeInOut" }}
+            >
+              {videos.map((vid, idx) => {
+                const isFirst = idx === 0;
+                const containerDelay = isFirst ? 4.5 : 5.2 + (idx * 0.15); // Hop, vidéos qui tombent
+                const colorObj = categoryColors[vid.category];
+
+                return (
+                  <motion.div 
+                    key={idx}
+                    custom={{ zPos: 70 - (idx * 5), delay: containerDelay }} 
+                    variants={itemVariants as any}
+                    initial="hidden"
+                    animate={isPlaying ? "visible" : "hidden"}
+                    className="group relative w-full text-left flex flex-row items-center py-4 border-b border-slate-200/60 last:border-0 rounded-xl bg-transparent"
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
+                    {/* Icône Play */}
+                    <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center mr-3">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] transition-colors duration-500 ${colorsActive ? colorObj.circleBg : 'bg-slate-200'}`}>
+                            <Play className={`w-4 h-4 translate-x-[1px] transition-colors duration-500 ${colorsActive ? colorObj.text : 'text-slate-400'}`} fill="currentColor" strokeWidth={1} />
+                        </div>
+                    </div>
+
+                    {/* Textes List */}
+                    <div className="flex-1 min-w-0 pr-2 block" style={{ transformStyle: "preserve-3d" }}>
+                        <h3 className="text-[14px] font-sans font-medium tracking-wide uppercase text-slate-700 leading-snug block">
+                          {vid.title}
+                        </h3>
+                        
+                        {/* Résumé qui atterrit à part (hop le petit résumé) à 8.5s */}
+                        <motion.p 
+                          custom={{ zPos: 80 - (idx * 5), delay: 8.5 }} 
+                          variants={itemVariants as any}
+                          initial="hidden"
+                          animate={isPlaying ? "visible" : "hidden"}
+                          className="text-[11px] text-slate-400 mt-1 leading-relaxed px-0.5 line-clamp-1 block"
+                        >
+                          {vid.desc}
+                        </motion.p>
+                        
+                        {/* Retranscription (hop) à 5.0s */}
+                        {vid.hasTranscript && (
+                          <motion.div 
+                            custom={{ zPos: 85, delay: 5.0 }} 
+                            variants={itemVariants as any}
+                            initial="hidden"
+                            animate={isPlaying ? "visible" : "hidden"}
+                            className="flex items-center gap-1.5 text-slate-400 text-[9px] font-semibold mt-1.5 block"
+                          >
+                              <BookOpen size={10} className="inline" /> Included Transcript
+                          </motion.div>
+                        )}
+                    </div>
+
+                    {/* Durée */}
+                    <div className={`flex-shrink-0 flex flex-col items-end justify-center transition-colors duration-500 ${colorsActive ? colorObj.text : 'text-slate-400'} block`}>
+                        <span className="font-bebas text-[16px] tracking-wider pt-1">{vid.time}</span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+          </div> {/* Fin Inner Wrapper Auto-Scroll */}
+
+        </motion.div>
+      </div>
+
+      {/* Controls */}
+      <div className="absolute bottom-6 inset-x-0 w-full flex justify-center pointer-events-none z-[400]">
+        <button 
+          onClick={handlePlay}
+          className="pointer-events-auto bg-[#F27D33] hover:bg-[#E56A20] text-white px-8 py-4 rounded-full text-base font-bebas tracking-widest shadow-[0_10px_40px_rgba(242,125,51,0.4)] transition-transform hover:scale-105 flex items-center gap-2"
+        >
+          {isPlaying ? <RotateCcw size={18} /> : <Play size={18} className="fill-white" />}
+          {isPlaying ? "REJOUER SCÈNE 1" : "LANCER SCÈNE 1"}
+        </button>
+      </div>
+
+    </div>
+  );
+}

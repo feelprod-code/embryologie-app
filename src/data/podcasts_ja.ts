@@ -4,7 +4,7 @@ export const podcastsData: PodcastItem[] = [
     {
         "id": "pod-tdt-1",
         "title": "フィリップ・ギヨームによるソフトティッシュテクニック",
-        "author": "Marc Damoiseaux",
+        "author": "Marc Damoiseau",
         "description": "オ",
         "aushaId": "6r2X8f6LVNAp",
         "audioUrl": "https://audio.ausha.co/6r2X8f6LVNAp.mp3",

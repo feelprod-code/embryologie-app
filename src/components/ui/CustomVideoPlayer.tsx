@@ -783,17 +783,13 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                     }
                                     setActiveSubtitle(active ? active.text : null);
                                 }}
-                                onPointerUp={(e) => {
-                                    const val = parseFloat((e.currentTarget as HTMLInputElement).value);
-                                    handleSeek({ target: { value: val.toString() } } as any);
-                                    setLocalScrubTime(null);
+                                onPointerUp={() => {
+                                    if (localScrubTime !== null) {
+                                        handleSeek({ target: { value: localScrubTime.toString() } } as any);
+                                        setLocalScrubTime(null);
+                                    }
                                 }}
                                 onPointerCancel={() => setLocalScrubTime(null)}
-                                onTouchEnd={(e) => {
-                                    const val = parseFloat((e.currentTarget as HTMLInputElement).value);
-                                    handleSeek({ target: { value: val.toString() } } as any);
-                                    setLocalScrubTime(null);
-                                }}
                                 onTouchCancel={() => setLocalScrubTime(null)}
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
                             />

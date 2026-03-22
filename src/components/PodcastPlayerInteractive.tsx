@@ -174,17 +174,13 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                                     const val = parseFloat(e.target.value);
                                     setLocalScrubTime(val);
                                 }}
-                                onPointerUp={(e) => {
-                                    const val = parseFloat(e.currentTarget.value);
-                                    handleSeek(val);
-                                    setLocalScrubTime(null);
+                                onPointerUp={() => {
+                                    if (localScrubTime !== null) {
+                                        handleSeek(localScrubTime);
+                                        setLocalScrubTime(null);
+                                    }
                                 }}
                                 onPointerCancel={() => setLocalScrubTime(null)}
-                                onTouchEnd={(e) => {
-                                    const val = parseFloat(e.currentTarget.value);
-                                    handleSeek(val);
-                                    setLocalScrubTime(null);
-                                }}
                                 onTouchCancel={() => setLocalScrubTime(null)}
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
                                 aria-label="Seek podcast"

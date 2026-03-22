@@ -1,0 +1,193 @@
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Play, BookOpen, RotateCcw } from 'lucide-react';
+
+import { videoCourses } from '../../data/videoCourses';
+
+const videos = videoCourses
+  .filter(v => v.categoryId === 'oeil')
+  .map(v => ({
+    id: v.id,
+    title: v.title,
+    desc: v.shortSummary,
+    time: v.duration,
+    hasTranscript: true
+  }));
+
+export function TrailerOeilParallax() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    let timer1: ReturnType<typeof setTimeout>;
+    timer1 = setTimeout(() => {
+      setIsPlaying(true);
+    }, 1000); // Démarre le scroll après 1 seconde
+
+    return () => clearTimeout(timer1);
+  }, []);
+
+  const handlePlay = () => {
+    setIsPlaying(false);
+    setTimeout(() => setIsPlaying(true), 100);
+  };
+
+  return (
+    <div className="absolute inset-0 w-full h-[100dvh] overflow-hidden bg-[#00FF00] font-sans z-[300] flex flex-col items-center justify-center">
+      
+      <div className="w-full h-full flex items-center justify-center pointer-events-none absolute inset-0" style={{ perspective: "2000px" }}>
+        
+        {/* LE CHASSIS iPHONE (Légèrement de biais en 3D AVEC ÉPAISSEUR PHYSIQUE) */}
+        <motion.div 
+          className="relative w-[375px] max-w-[100vw] h-[812px] max-h-[85vh] shrink-0"
+          style={{ transformStyle: "preserve-3d" }}
+          initial={{
+            rotateX: 20,
+            rotateY: -20,
+            rotateZ: 5,
+            scale: 0.9,
+            x: 0
+          }}
+          animate={isPlaying ? {
+            rotateY: [-20, -20, 160, 340], // Tourne sur lui-même (+360°)
+            rotateX: [20, 20, 0, -10],     // Roulis dynamique
+            rotateZ: [5, 5, 0, 0],         
+            x: [0, 0, 300, 1500],          // Sort de l'écran à droite
+            scale: [0.9, 0.9, 0.7, 0.4]    // Se rapetisse
+          } : {
+            rotateY: -20,
+            rotateX: 20,
+            rotateZ: 5,
+            x: 0,
+            scale: 0.9
+          }}
+          transition={isPlaying ? {
+            duration: 38,
+            times: [0, 35/38, 36.5/38, 1], // Le scroll dure 35s, puis la rotation/sortie s'enchaîne
+            ease: "easeInOut"
+          } : { duration: 0.3 }}
+        >
+          {/* LES TRANCHES DU VOLUME 3D (EXTRUSION PHYSIQUE) */}
+          {Array.from({ length: 20 }).map((_, i) => (
+             <div 
+               key={`volume-${i}`}
+               className="absolute inset-0 rounded-[48px] border-[6px] border-[#222] pointer-events-none"
+               style={{ 
+                 // Dégradé de couleur pour simuler l'ombre sur la tranche (plus on s'enfonce, plus c'est sombre)
+                 backgroundColor: i > 15 ? "#888" : "#A3A096",
+                 transform: `translateZ(${-i * 1.5}px)`, // Chaque couche recule de 1.5px
+                 // L'ombre portée finale est mise sur la dernière couche tout au fond
+                 boxShadow: i === 19 ? '-30px 50px 80px rgba(0,0,0,0.6), 0 0 0 8px #111' : 'none'
+               }}
+             />
+          ))}
+
+          {/* LA FACE AVANT (L'ÉCRAN RÉEL DU TÉLÉPHONE) */}
+          <div 
+            className="absolute inset-0 bg-[#FAF6ED] rounded-[48px] flex flex-col border-[6px] border-black overflow-hidden"
+            style={{ 
+              transform: "translateZ(0px)", // Posé tout devant
+              transformStyle: "preserve-3d" 
+            }}
+          >
+            {/* Encoche (Notch) */}
+            <div className="absolute top-0 inset-x-0 w-[140px] h-[30px] bg-black rounded-b-3xl mx-auto z-[500] shadow-sm transform-gpu"></div>
+
+            {/* HEADER (L'Oeil en jaune) */}
+            <div className="w-full pt-12 flex flex-col items-center pb-2 border-b border-slate-200 shrink-0 bg-[#FAF6ED] z-[400] relative shadow-sm">
+              <div className="inline-flex items-center justify-center px-4 py-2 mb-0 w-full overflow-hidden">
+                  <span className="font-bebas font-normal text-3xl whitespace-nowrap uppercase tracking-widest leading-none drop-shadow-sm text-slate-800">
+                      FORMATION COMPLÈTE
+                  </span>
+              </div>
+              
+              {/* Category Pills */}
+              <div className="w-full pb-2 mb-0 border-t border-slate-100 pt-2">
+                  <div className="grid grid-cols-4 items-stretch gap-1 w-full px-2">
+                      <div className="relative flex flex-col items-center justify-center py-2 px-1 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer w-full bg-[#5A9C51]/10 border-[#5A9C51]/30 text-[#5A9C51] shadow-sm">
+                          <span className="font-bebas text-[11px] tracking-wider leading-[1.1] mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">L'Ectoderme</span>
+                          <span className="text-[8px] uppercase font-bold truncate opacity-80 text-center text-[#5A9C51]">04:47:04</span>
+                      </div>
+                      <div className="relative flex flex-col items-center justify-center py-2 px-1 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer w-full bg-[#4171B5]/10 border-[#4171B5]/30 text-[#4171B5] shadow-sm">
+                          <span className="font-bebas text-[11px] tracking-wider leading-[1.1] mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">L'Endoderme</span>
+                          <span className="text-[8px] uppercase font-bold truncate opacity-80 text-center text-[#4171B5]">05:22:15</span>
+                      </div>
+                      <div className="relative flex flex-col items-center justify-center py-2 px-1 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer w-full bg-[#F27D33]/10 border-[#F27D33]/30 text-[#F27D33] shadow-sm">
+                          <span className="font-bebas text-[11px] tracking-wider leading-[1.1] mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">Le Mésoderme</span>
+                          <span className="text-[8px] uppercase font-bold truncate opacity-80 text-center text-[#F27D33]">08:14:30</span>
+                      </div>
+                      <div className="relative flex flex-col items-center justify-center py-2 px-1 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer w-full shadow-md scale-100 bg-[#F2B729] border-[#F2B729] text-white z-10">
+                          <span className="font-bebas text-[11px] tracking-wider leading-[1.1] mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap text-white">L'ŒIL</span>
+                          <span className="text-[8px] uppercase font-bold truncate text-center text-white/80">03:52:16</span>
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+
+            {/* INNER WRAPPER (Vidéo List en Overflow Hidden) */}
+            <div className="w-full flex flex-col flex-1 relative z-[100]" style={{ overflow: "hidden", borderBottomLeftRadius: "42px", borderBottomRightRadius: "42px" }}>
+
+              <motion.div 
+                className="absolute inset-x-0 top-0 flex flex-col gap-1 w-full px-4 pt-2 pb-20" 
+                animate={isPlaying ? { y: -2500 } : { y: 0 }} // Scroll géant vers le bas
+                transition={{ duration: 35, ease: "linear" }}  // Lent et fluide pendant 35 secondes
+              >
+                {videos.map((vid, idx) => {
+                  return (
+                    <div 
+                      key={idx}
+                      className="group relative w-full text-left flex flex-row items-center py-4 border-b border-slate-200/60 last:border-0 rounded-xl bg-transparent"
+                    >
+                      {/* Icône Play Jaune */}
+                      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center mr-3">
+                          <div className="w-8 h-8 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] transition-colors duration-500 bg-[#F2B729]/10">
+                              <Play className="w-4 h-4 translate-x-[1px] transition-colors duration-500 text-[#F2B729]" fill="currentColor" strokeWidth={1} />
+                          </div>
+                      </div>
+
+                      {/* Textes List */}
+                      <div className="flex-1 min-w-0 pr-2 block">
+                          <h3 className="text-[14px] font-sans font-bold tracking-wide uppercase text-slate-700 leading-snug block">
+                            {vid.title}
+                          </h3>
+                          
+                          <p className="text-[11px] text-slate-400 mt-1 leading-relaxed px-0.5 line-clamp-1 block">
+                            {vid.desc}
+                          </p>
+                          
+                          {vid.hasTranscript && (
+                            <div className="flex items-center gap-1.5 text-slate-400 text-[9px] font-semibold mt-1.5 block">
+                                <BookOpen size={10} className="inline" /> Included Transcript
+                            </div>
+                          )}
+                      </div>
+
+                      {/* Durée */}
+                      <div className="flex-shrink-0 flex flex-col items-end justify-center text-[#F2B729] block">
+                          <span className="font-bebas text-[16px] tracking-wider pt-1">{vid.time}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </motion.div>
+
+            </div> {/* Fin Inner Wrapper Auto-Scroll */}
+          </div> {/* Fin FACE AVANT */}
+
+        </motion.div>
+      </div>
+
+      {/* Controls */}
+      <div className="absolute bottom-6 inset-x-0 w-full flex justify-center pointer-events-none z-[400]">
+        <button 
+          onClick={handlePlay}
+          className="pointer-events-auto bg-[#F2B729] hover:bg-[#DCA420] text-white px-8 py-4 rounded-full text-base font-bebas tracking-widest shadow-[0_10px_40px_rgba(242,183,41,0.4)] transition-transform hover:scale-105 flex items-center gap-2"
+        >
+          {isPlaying ? <RotateCcw size={18} /> : <Play size={18} className="fill-white" />}
+          {isPlaying ? "REJOUER SCROLL (L'ŒIL)" : "LANCER SCROLL"}
+        </button>
+      </div>
+
+    </div>
+  );
+}

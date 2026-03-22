@@ -596,9 +596,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       isFullscreen && "hidden"
     )}>
       {/* STICKY TRANSCRIPT HEADER */}
-      <div className="sticky top-0 z-30 bg-[#FAF6ED] border-b border-slate-200 p-2 shadow-sm w-full flex items-center justify-between shrink-0">
-        <div className="flex flex-row items-center px-2 flex-1 min-w-0 pr-2 gap-2">
-          <h3 className={cn("font-anton text-sm md:text-sm lg:text-[15px] tracking-wide uppercase leading-tight truncate",
+      <div className="sticky top-0 z-30 bg-[#FAF6ED] border-b border-slate-200 shadow-sm w-full flex flex-col shrink-0">
+        <div className="p-2 w-full flex items-center justify-between shrink-0">
+          <div className="flex flex-row items-center px-2 flex-1 min-w-0 pr-2 gap-2">
+            <h3 className={cn("font-anton text-sm md:text-sm lg:text-[15px] tracking-wide uppercase leading-tight truncate",
             course.categoryId === 'ectoderme' ? "text-[#5A9C51]" :
               course.categoryId === 'endoderme' ? "text-[#4171B5]" :
                 course.categoryId === 'mesoderme' ? "text-[#F27D33]" :
@@ -615,92 +616,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         </div>
 
         <div className="flex items-center shrink-0 ml-1 gap-2 sm:gap-3">
-          {/* Audio Controls (Only visible when video is hidden) */}
-          {!isVideoVisible && (
-            <div className="flex items-center bg-[#FAF6ED]/90 backdrop-blur-md rounded-full border border-slate-200/70 p-1 sm:pr-3 shadow-sm fade-in w-[200px] sm:w-[320px] md:w-[420px] gap-1 sm:gap-2 transition-all relative">
-              {/* Playback Buttons */}
-              <div className="flex items-center justify-center shrink-0">
-                <button
-                  onClick={() => prevVideo && onSelectVideo(prevVideo)}
-                  disabled={!prevVideo}
-                  className="flex items-center justify-center p-1 sm:p-1.5 text-slate-400 md:hover:text-slate-700 active:text-slate-600 active:bg-slate-200 rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                  title={t('videoLibrary.previous')}
-                >
-                  <ChevronLeft className="w-4 h-4 sm:w-4 sm:h-4" />
-                </button>
-
-                <button
-                  onClick={() => videoPlayerRef.current?.togglePlay()}
-                  className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-800 text-white md:hover:bg-slate-700 active:scale-95 transition-all shadow-sm mx-1"
-                  title={isVideoPlaying ? "Pause" : "Play"}
-                >
-                  {isVideoPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-[1px]" />}
-                </button>
-
-                <button
-                  onClick={() => nextVideo && onSelectVideo(nextVideo)}
-                  disabled={!nextVideo}
-                  className="flex items-center justify-center p-1 sm:p-1.5 text-slate-400 md:hover:text-slate-700 active:text-slate-600 active:bg-slate-200 rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                  title={t('videoLibrary.next')}
-                >
-                  <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4" />
-                </button>
-              </div>
-
-              {/* Scrubber Area */}
-              <div className="flex flex-1 items-center gap-1.5 sm:gap-3 shrink-0">
-                <span className="text-[9px] sm:text-[11px] text-slate-400 font-medium tabular-nums text-right min-w-[24px] sm:min-w-[32px]">
-                  {formatTime(localScrubTime !== null ? localScrubTime : currentTime)}
-                </span>
-                <div className="relative flex-1 h-3 flex items-center group cursor-pointer touch-manipulation">
-                  <input
-                    type="range"
-                    min="0"
-                    max={videoDuration || 100}
-                    value={localScrubTime !== null ? localScrubTime : currentTime}
-                    onPointerDown={() => setLocalScrubTime(currentTime)}
-                    onChange={(e) => {
-                      const val = parseFloat(e.target.value);
-                      setLocalScrubTime(val);
-                    }}
-                    onPointerUp={(e) => {
-                      const val = parseFloat((e.currentTarget as HTMLInputElement).value);
-                      videoPlayerRef.current?.seekTo(val);
-                      setLocalScrubTime(null);
-                    }}
-                    onPointerCancel={() => setLocalScrubTime(null)}
-                    onTouchEnd={(e) => {
-                      const val = parseFloat((e.currentTarget as HTMLInputElement).value);
-                      videoPlayerRef.current?.seekTo(val);
-                      setLocalScrubTime(null);
-                    }}
-                    onTouchCancel={() => setLocalScrubTime(null)}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
-                  />
-                  <div className="w-full h-1 sm:h-1.5 bg-slate-200/80 rounded-full overflow-hidden pointer-events-none">
-                    <div
-                      className={cn(
-                        "h-full transition-all duration-75",
-                        course.categoryId === 'ectoderme' ? "bg-[#5A9C51]" :
-                          course.categoryId === 'endoderme' ? "bg-[#4171B5]" :
-                            course.categoryId === 'mesoderme' ? "bg-[#F27D33]" :
-                              course.categoryId === 'oeil' ? "bg-[#F2B729]" : "bg-slate-500"
-                      )}
-                      style={{ width: `${((localScrubTime !== null ? localScrubTime : currentTime) / (videoDuration || 100)) * 100}%` }}
-                    />
-                  </div>
-                  {/* Custom Thumb */}
-                  <div
-                    className="absolute h-2.5 w-2.5 sm:h-3 sm:w-3 bg-transparent rounded-full shadow border border-slate-300 pointer-events-none transform -translate-x-1/2 transition-all duration-75"
-                    style={{ left: `${((localScrubTime !== null ? localScrubTime : currentTime) / (videoDuration || 100)) * 100}%` }}
-                  />
-                </div>
-                <span className="text-[9px] sm:text-[11px] text-slate-400 font-medium tabular-nums text-left min-w-[24px] sm:min-w-[32px]">
-                  {formatTime(videoDuration)}
-                </span>
-              </div>
-            </div>
-          )}
+          {/* Audio Controls moved to dedicated row below */}
 
           <button
             onClick={() => setIsVideoVisible(!isVideoVisible)}
@@ -719,6 +635,96 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             {course.duration || '00:00'}
           </span>
         </div>
+        </div>
+
+        {/* Audio Controls (Expanded Row when video is hidden) */}
+        {!isVideoVisible && (
+          <div className="w-full px-2 pb-2 sm:px-4 sm:pb-3 flex justify-center fade-in">
+            <div className="flex items-center bg-[#FAF6ED]/90 backdrop-blur-md rounded-full border border-slate-200/70 p-1.5 sm:p-2 sm:pr-4 shadow-sm w-full max-w-4xl gap-2 sm:gap-3 lg:gap-4 transition-all relative">
+              {/* Playback Buttons */}
+              <div className="flex items-center justify-center shrink-0">
+                <button
+                  onClick={() => prevVideo && onSelectVideo(prevVideo)}
+                  disabled={!prevVideo}
+                  className="flex items-center justify-center p-1 sm:p-2 text-slate-400 md:hover:text-slate-700 active:text-slate-600 active:bg-slate-200 rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  title={t('videoLibrary.previous')}
+                >
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+
+                <button
+                  onClick={() => videoPlayerRef.current?.togglePlay()}
+                  className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-800 text-white md:hover:bg-slate-700 active:scale-95 transition-all shadow-sm mx-1 sm:mx-2"
+                  title={isVideoPlaying ? "Pause" : "Play"}
+                >
+                  {isVideoPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="ml-[1px] sm:ml-[2px]" />}
+                </button>
+
+                <button
+                  onClick={() => nextVideo && onSelectVideo(nextVideo)}
+                  disabled={!nextVideo}
+                  className="flex items-center justify-center p-1 sm:p-2 text-slate-400 md:hover:text-slate-700 active:text-slate-600 active:bg-slate-200 rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  title={t('videoLibrary.next')}
+                >
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+              </div>
+
+              {/* Scrubber Area */}
+              <div className="flex flex-1 items-center gap-2 sm:gap-4 shrink-0">
+                <span className="text-[10px] sm:text-xs text-slate-500 font-medium tabular-nums text-right min-w-[32px] sm:min-w-[40px]">
+                  {formatTime(localScrubTime !== null ? localScrubTime : currentTime)}
+                </span>
+                <div className="relative flex-1 h-5 flex items-center group cursor-pointer touch-manipulation">
+                  <input
+                    type="range"
+                    min="0"
+                    max={videoDuration || 100}
+                    value={localScrubTime !== null ? localScrubTime : currentTime}
+                    onPointerDown={() => setLocalScrubTime(currentTime)}
+                    onChange={(e) => {
+                      const val = parseFloat(e.target.value);
+                      setLocalScrubTime(val);
+                    }}
+                    onPointerUp={() => {
+                      if (localScrubTime !== null) {
+                        videoPlayerRef.current?.seekTo(localScrubTime);
+                        setLocalScrubTime(null);
+                      }
+                    }}
+                    onPointerCancel={() => setLocalScrubTime(null)}
+                    onTouchCancel={() => setLocalScrubTime(null)}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
+                  />
+                  <div className="w-full h-1.5 sm:h-2 bg-slate-200/80 rounded-full overflow-hidden pointer-events-none">
+                    <div
+                      className={cn(
+                        "h-full",
+                        localScrubTime === null ? "transition-all duration-75" : "",
+                        course.categoryId === 'ectoderme' ? "bg-[#5A9C51]" :
+                          course.categoryId === 'endoderme' ? "bg-[#4171B5]" :
+                            course.categoryId === 'mesoderme' ? "bg-[#F27D33]" :
+                              course.categoryId === 'oeil' ? "bg-[#F2B729]" : "bg-slate-500"
+                      )}
+                      style={{ width: `${((localScrubTime !== null ? localScrubTime : currentTime) / (videoDuration || 100)) * 100}%` }}
+                    />
+                  </div>
+                  {/* Custom Thumb */}
+                  <div
+                    className={cn(
+                        "absolute h-3.5 w-3.5 sm:h-4 sm:w-4 bg-white shadow-md border-2 border-slate-300 pointer-events-none transform -translate-x-1/2 rounded-full",
+                        localScrubTime === null ? "transition-all duration-75" : ""
+                    )}
+                    style={{ left: `${((localScrubTime !== null ? localScrubTime : currentTime) / (videoDuration || 100)) * 100}%` }}
+                  />
+                </div>
+                <span className="text-[10px] sm:text-xs text-slate-500 font-medium tabular-nums text-left min-w-[32px] sm:min-w-[40px]">
+                  {formatTime(videoDuration)}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <div className="flex flex-col h-full w-full relative">
         <div className="flex-none flex justify-center py-2 mb-2 bg-[#FAF6ED]/95 backdrop-blur-md z-20 sticky top-0 border-b border-transparent">
