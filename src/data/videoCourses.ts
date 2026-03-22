@@ -269,7 +269,7 @@ Cela implique que votre **premier cerveau** est entérique, il n'est pas du tout
 
 Cette chronologie est importante et doit être apprise dans ce sens. Nous verrons que dans le développement ontogénétique, cela se suivra, même si nous ne le verrons pas toujours en apparence.
 
-![Systèmes biologiques et anatomiques](/images/schemas/ectoderme/ecto-03/Ectoderme_1.png)
+![Systèmes biologiques et anatomiques](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-03/Ectoderme_1.png)
 
 
 `,
@@ -305,7 +305,7 @@ En tant qu'**ostéopathes**, notre connaissance de l'anatomie et de sa fonction 
 
 Prenons l'exemple d'une **cellule**. Elle est reliée à d'autres cellules par des **molécules d'adhésion intercellulaire**, qui maintiennent la structure. Ce que nous avons découvert, c'est que la cellule possède un **cytosquelette**. Ce squelette interne est relié à la membrane et s'étend jusqu'au noyau, formant des lignes de force et des structures précises à l'intérieur de la cellule.
 
-![Cytosquelette cellulaire](/images/schemas/ectoderme/ecto-04/Ectoderme_3.png)
+![Cytosquelette cellulaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-04/Ectoderme_3.png)
 
 
 
@@ -351,19 +351,19 @@ C'est ce qui nous amène au concept de **l'homme polarisé**. La **loi de Maxwel
 En d'autres termes, un champ électrique génère inévitablement un champ électromagnétique environnant. Cette interaction est fondamentale pour comprendre comment notre corps fonctionne et interagit avec son environnement.
 
 
-![Protéine, Zinc, Sulfate](/images/schemas/ectoderme/ecto-04/Ectoderme_57.png)
+![Protéine, Zinc, Sulfate](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-04/Ectoderme_57.png)
 
 
 
-![Structure de tenségrité](/images/schemas/ectoderme/ecto-04/Ectoderme_4.jpeg)
+![Structure de tenségrité](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-04/Ectoderme_4.jpeg)
 
 
 
-![Tensegrité](/images/schemas/ectoderme/ecto-04/Ectoderme_5.jpeg)
+![Tensegrité](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-04/Ectoderme_5.jpeg)
 
 
 
-![Système matriciel tissulaire](/images/schemas/ectoderme/ecto-04/Ectoderme_6.jpeg)
+![Système matriciel tissulaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-04/Ectoderme_6.jpeg)
 
 `,
   },
@@ -502,11 +502,11 @@ Le corps utilise la multiplication, la différenciation et l'apoptose pour se d�
 Ce cours nous a permis de poser les bases de la compréhension de l'embryologie biodynamique, en mettant en lumière l'importance des **champs métaboliques**, des **communications cellulaires** et des forces qui guident le développement de la vie.
 
 
-![Cellule eucaryote](/images/schemas/ectoderme/ecto-05/Ectoderme_7.png)
+![Cellule eucaryote](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-05/Ectoderme_7.png)
 
 
 
-![Structure histologique granulaire](/images/schemas/ectoderme/ecto-05/Ectoderme_2.jpeg)
+![Structure histologique granulaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-05/Ectoderme_2.jpeg)
 
 `,
   },
@@ -549,7 +549,7 @@ Pour faciliter la compréhension, nous utiliserons un code couleur :
 
 Cette reconnaissance permet de se situer dans le système et de percevoir sa dynamique.
 
-![Feuillets embryonnaires](/images/schemas/ectoderme/ecto-06/Ectoderme_11.png)
+![Feuillets embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-06/Ectoderme_11.png)
 
 
 
@@ -573,7 +573,7 @@ Le tympan est une illustration parfaite de cette organisation :
 
 Le tissu de frontière (épithélial) est toujours dépendant du tissu d'intérieur (conjonctif). Les vaisseaux et la nutrition proviennent du tissu d'intérieur et sont distribués au tissu de frontière. En d'autres termes, le tissu mésodermique contient l'information trophique nécessaire à la croissance et au maintien des autres tissus.
 
-![Feuillets embryonnaires](/images/schemas/ectoderme/ecto-06/Ectoderme_12.png)
+![Feuillets embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-06/Ectoderme_12.png)
 
 
 
@@ -808,19 +808,19 @@ Au départ, c'est simplement un **ovule** qui a reçu le patrimoine génétique 
 Nous observons alors ce qu'on appelle la **zone pellucida** et des **cellules nourricières**. Il y a plusieurs couches de cellules importantes qui se mettent en place.
 
 
-![Développement utérin fœtal](/images/schemas/ectoderme/ecto-07/Ectoderme_18.jpeg)
+![Développement utérin fœtal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-07/Ectoderme_18.jpeg)
 
 
 
-![Développement embryonnaire humain](/images/schemas/ectoderme/ecto-07/Ectoderme_13.png)
+![Développement embryonnaire humain](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-07/Ectoderme_13.png)
 
 
 
-![Embryon neurulation sagittale](/images/schemas/ectoderme/ecto-07/Ectoderme_50.png)
+![Embryon neurulation sagittale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-07/Ectoderme_50.png)
 
 
 
-![Embryon, 6-7 semaines](/images/schemas/ectoderme/ecto-07/Ectoderme_61.png)
+![Embryon, 6-7 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-07/Ectoderme_61.png)
 
 `,
   },
@@ -845,7 +845,7 @@ Cette possibilité d'échange est valable pour tout l'environnement cellulaire. 
 
 Cette excentration est une image de la polarité. En effet, une cellule avec un noyau excentré présente une **activité métabolique** accrue à cet endroit. Cela augmente la force métabolique, ce qui est l'expression même de la polarité.
 
-![Microvillosités entérocytes](/images/schemas/ectoderme/ecto-08/Ectoderme_8.jpeg)
+![Microvillosités entérocytes](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-08/Ectoderme_8.jpeg)
 
 
 
@@ -1075,7 +1075,7 @@ Les spermatozoïdes doivent passer plusieurs couches pour atteindre la **zona pe
 
 La rencontre des patrimoines génétiques des deux cellules forme la première cellule de vie. Ce processus dynamique donne naissance aux deux premiers **blastomères**, qui sont les premières cellules germes-mères.
 
-![Ovule fécondé](/images/schemas/ectoderme/ecto-11/Ectoderme_14.jpeg)
+![Ovule fécondé](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-11/Ectoderme_14.jpeg)
 
  
 
@@ -1127,7 +1127,7 @@ Au départ, nous avons deux cellules et deux noyaux, offrant une certaine capaci
 
 Le **potentiel énergétique** et métabolique est plus ou moins fort selon la position dans la cellule, avec des zones plus puissantes. Chaque division représente une transformation et une ouverture importantes.
 
-![Blastocyste en segmentation](/images/schemas/ectoderme/ecto-12/Ectoderme_24.jpeg)
+![Blastocyste en segmentation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-12/Ectoderme_24.jpeg)
 
 
 
@@ -1147,7 +1147,7 @@ Juste avant l'éclosion, au sein de cette couche, chaque division cellulaire pro
 
 La toute première cavité qui apparaît, remplie d'eau, se joint et forme une petite cavité.
 
-![Blastocyste cavitation](/images/schemas/ectoderme/ecto-12/Ectoderme_20.jpeg)
+![Blastocyste cavitation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-12/Ectoderme_20.jpeg)
 
 
 
@@ -1161,7 +1161,7 @@ L'excentricité de cette cavité entraîne une concentration de cellules à un p
 
 Entre cette phase et la suivante, se produit l'éclosion. La membrane périphérique ne peut plus contenir l'ensemble. Une rupture se produit, et l'embryon commence à quitter cet espace.
 
-![Pincement embryonnaire par contraction](/images/schemas/ectoderme/ecto-12/Ectoderme_29.jpeg)
+![Pincement embryonnaire par contraction](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-12/Ectoderme_29.jpeg)
 
 
 
@@ -1174,27 +1174,27 @@ L'embryon quitte son "œuf" et se retrouve dans le milieu extérieur. Dans ce mi
 C'est toujours la même image du blastocèle, mais cette fois-ci, il va développer ce que l'on appelle un **pôle embryonnaire**, avec une concentration de cellules plus importante d'un côté que de l'autre. Ce pôle est un pôle d'assimilation, cherchant à "prendre l'intérieur".
 
 
-![Développement embryonnaire précoce](/images/schemas/ectoderme/ecto-12/Ectoderme_16.jpeg)
+![Développement embryonnaire précoce](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-12/Ectoderme_16.jpeg)
 
 
 
-![Embryon 2 cellules](/images/schemas/ectoderme/ecto-12/Ectoderme_19.jpeg)
+![Embryon 2 cellules](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-12/Ectoderme_19.jpeg)
 
 
 
-![Coque embryonnaire déformée](/images/schemas/ectoderme/ecto-12/Ectoderme_79.jpeg)
+![Coque embryonnaire déformée](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-12/Ectoderme_79.jpeg)
 
 
 
-![Blastocyste cavitation NaKATPase](/images/schemas/ectoderme/ecto-12/Ectoderme_26.png)
+![Blastocyste cavitation NaKATPase](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-12/Ectoderme_26.png)
 
 
 
-![Blastula Micromères PV](/images/schemas/ectoderme/ecto-12/Ectoderme_21.jpeg)
+![Blastula Micromères PV](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-12/Ectoderme_21.jpeg)
 
 
 
-![Embryon de gastéropode](/images/schemas/ectoderme/ecto-12/Ectoderme_23.jpeg)
+![Embryon de gastéropode](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-12/Ectoderme_23.jpeg)
 
 `,
   },
@@ -1224,7 +1224,7 @@ Le **zygote** arrive dans l'utérus. Il est là, et moi, le zygote, qu'est-ce do
 Nous allons aborder le moment de l'**implantation** après la pause.
 
 
-![Éclosion blastocyste](/images/schemas/ectoderme/ecto-13/Ectoderme_22.png)
+![Éclosion blastocyste](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-13/Ectoderme_22.png)
 
 `,
   },
@@ -1273,7 +1273,7 @@ Des cellules s'organisent autour de cette cavité. Les cellules en regard de la 
 
 En d'autres termes, des cellules regardent la cavité amniotique et d'autres regardent la cavité du blastocèle. Ces dernières participeront plus tard à une autre formation, que nous expliquerons.
 
-![Embryon humain 9 jours](/images/schemas/ectoderme/ecto-14/Ectoderme_35.jpeg)
+![Embryon humain 9 jours](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-14/Ectoderme_35.jpeg)
 
 
 
@@ -1303,7 +1303,7 @@ L'information de **pression interne et externe** est cruciale. L'intégration du
 
 Ici, nous avons encore un zygote. Le **fœtus** apparaît avec le processus axial primitif, c'est-à-dire la **gastrulation**. C'est alors qu'il y a une forme fœtale.
 
-![Développement embryonnaire précoce](/images/schemas/ectoderme/ecto-14/Ectoderme_38.jpeg)
+![Développement embryonnaire précoce](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-14/Ectoderme_38.jpeg)
 
 
 
@@ -1315,34 +1315,34 @@ Au huitième jour, l'embryon pénètre la muqueuse. Des pressions à droite et �
 
 Dans le bouton embryonnaire, au moment où cette cavité apparaît, des cellules s'organisent et s'orientent vers elle. C'est là qu'apparaissent l'épiblaste et l'hypoblaste.
 
-![Néphron en développement](/images/schemas/ectoderme/ecto-14/Ectoderme_43.jpeg)
+![Néphron en développement](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-14/Ectoderme_43.jpeg)
 
 
 
 À ce stade, nous avons déjà une préparation pour un tissu de type digestif et un tissu de type neurologique.
 
-![Neurulation</td></tr></table>](/images/schemas/ectoderme/ecto-14/Ectoderme_34.jpeg)
+![Neurulation</td></tr></table>](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-14/Ectoderme_34.jpeg)
 
 
 
 
-![Implantation du blastocyste](/images/schemas/ectoderme/ecto-14/Ectoderme_17.jpeg)
+![Implantation du blastocyste](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-14/Ectoderme_17.jpeg)
 
 
 
-![Implantation du blastocyste](/images/schemas/ectoderme/ecto-14/Ectoderme_30.jpeg)
+![Implantation du blastocyste](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-14/Ectoderme_30.jpeg)
 
 
 
-![8ème jour embryonnaire](/images/schemas/ectoderme/ecto-14/Ectoderme_31.jpeg)
+![8ème jour embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-14/Ectoderme_31.jpeg)
 
 
 
-![Développement embryonnaire précoce](/images/schemas/ectoderme/ecto-14/Ectoderme_36.jpeg)
+![Développement embryonnaire précoce](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-14/Ectoderme_36.jpeg)
 
 
 
-![Embryon 14-15 jours](/images/schemas/ectoderme/ecto-14/Ectoderme_37.jpeg)
+![Embryon 14-15 jours](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-14/Ectoderme_37.jpeg)
 
 `,
   },
@@ -1554,7 +1554,7 @@ Il est crucial de noter l'erreur entre les représentations de ces deux dessins.
 Dans ce pédicule, un mouvement de **perméation**, de **parméation** et d'**infusion** se développe, créant un mouvement vers l'avant de la cavité amniotique, légèrement moins marqué en dessous. Cela entraîne une bascule, et ce mouvement de bascule crée une forme de S au sein de l'épiblaste et de l'endoblaste.
 
 
-![Sels de calcium](/images/schemas/ectoderme/ecto-17/Ectoderme_28.jpeg)
+![Sels de calcium](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-17/Ectoderme_28.jpeg)
 
 `,
   },
@@ -1664,18 +1664,18 @@ La **notocorde** se forme en réponse à ce mouvement. À ce stade, une traction
 
 Le dessin illustré montre une coupe qui met en évidence le mouvement des **cellules épithéliales** de l'épiblaste. Ces cellules sont tirées vers le centre, remplissant ainsi l'espace qui se crée entre l'épiblaste et l'hypoblaste.
 
-![Gastrulation](/images/schemas/ectoderme/ecto-20/Ectoderme_56.jpeg)
+![Gastrulation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-20/Ectoderme_56.jpeg)
 
 
 
 Cet espace, qui s'ouvre lors de la formation de la vague, est essentiel pour l'apparition du **tissu intermédiaire** connu sous le nom de **mésoblaste**, qui deviendra le futur **mésoderme**.
 
 
-![Gastrulation aviaire](/images/schemas/ectoderme/ecto-20/Ectoderme_53.png)
+![Gastrulation aviaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-20/Ectoderme_53.png)
 
 
 
-![Gastrulation humaine 16 jours](/images/schemas/ectoderme/ecto-20/Ectoderme_55.jpeg)
+![Gastrulation humaine 16 jours](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-20/Ectoderme_55.jpeg)
 
 `,
   },
@@ -2045,7 +2045,7 @@ Fais cela.
 
 Nous allons continuer le mouvement de l'embryon et aborder la **plicature**. Ce concept a été une révélation pour comprendre ce qu'est une **articulation**. C'est l'algorithme qui génère cette **vitesse de croissance différentielle**, conduisant à la flexion de l'embryon.
 
-![Embryon humain, stade jeune](/images/schemas/ectoderme/ecto-29/Ectoderme_15.jpeg)
+![Embryon humain, stade jeune](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_15.jpeg)
 
 
 
@@ -2055,13 +2055,13 @@ Une **dynamique fluide** organise l'embryon à ce niveau. La **notochorde**, ess
 
 Nous nous situons entre le **dix-huitième** et le **vingtième jour** de développement.
 
-![Développement embryonnaire oiseau](/images/schemas/ectoderme/ecto-29/Ectoderme_33.jpeg)
+![Développement embryonnaire oiseau](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_33.jpeg)
 
  Nous avons le **processus axial**, c'est-à-dire la notochorde, et au-dessus, le tissu **ectodermique**. Nous progressons dans l'étude des stades embryonnaires.
 
 La notochorde, qui a établi la **polarité** et créé un futur espace pour le **sacrum** et la **base du crâne**, influence le développement et l'organisation structurelle de l'ectoderme. Au-dessus de la notochorde, nous observons une **plaque neurale**.
 
-![Gastrulation](/images/schemas/ectoderme/ecto-29/Ectoderme_40.jpeg)
+![Gastrulation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_40.jpeg)
 
 
 
@@ -2070,13 +2070,13 @@ Prenons une coupe. Les cellules ectodermiques directement au-dessus de la notoch
 - Les cellules centrales au niveau de la notochorde sont inhibées dans leur croissance.
 - Les cellules ectodermiques latérales, par contre, n'ont pas ce frein et se développent même plus vite.
 
-![Gastrulation amphibien](/images/schemas/ectoderme/ecto-29/Ectoderme_44.jpeg)
+![Gastrulation amphibien](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_44.jpeg)
 
 
 
 Ce processus engendre un **changement de forme** de l'ectoderme.
 
-![Embryon en coupe sagittale](/images/schemas/ectoderme/ecto-29/Ectoderme_41.png)
+![Embryon en coupe sagittale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_41.png)
 
 
 
@@ -2088,7 +2088,7 @@ Simultanément, le **mésoderme** environnant, peu modifié et assez liquéfié,
 
 Ces vaisseaux s'organisent en deux conduits fluidiques mésodermiques.
 
-![Développement tube cardiaque](/images/schemas/ectoderme/ecto-29/Ectoderme_58.png)
+![Développement tube cardiaque](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_58.png)
 
  La vitesse de croissance différenciée entre l'ectoderme et le mésoderme est cruciale. L'ectoderme, grand consommateur d'informations, grandit très rapidement.
 
@@ -2098,7 +2098,7 @@ Ces vaisseaux s'organisent en deux conduits fluidiques mésodermiques.
 
 La plaque neurale commence à s'organiser. De part et d'autre, apparaissent les vaisseaux mésodermiques précapillaires aortiques.
 
-![Embryon humain sagittal](/images/schemas/ectoderme/ecto-29/Ectoderme_48.jpeg)
+![Embryon humain sagittal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_48.jpeg)
 
  Ils créent au-dessus de la plaque neurale une **zone congestive**, un petit "étang" devant, alimenté par deux petits vaisseaux latéraux. C'est ce qu'on appelle la **zone angélique supérieure**.
 
@@ -2110,7 +2110,7 @@ L'embryon grandit, mais il rencontre un frein imposé par cette zone précardiaq
 
 L'embryon se fléchit, s'enroulant autour de son système vasculaire, qui agit comme un **pivot**. Ce mouvement est souvent présenté comme une flexion ou une plicature, mais il s'agit en réalité d'une **expansion** autour de ce point d'ancrage vasculaire.
 
-![Embryon humain vascularisé](/images/schemas/ectoderme/ecto-29/Ectoderme_59.jpeg)
+![Embryon humain vascularisé](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_59.jpeg)
 
 
 
@@ -2127,7 +2127,7 @@ L'ectoderme est le **moteur de la croissance**. Il est alimenté par le **mésod
 
 L'enroulement global de l'embryon à ce stade va définir des aspects spécifiques du développement.
 
-![Développement embryonnaire précoce](/images/schemas/ectoderme/ecto-29/Ectoderme_62.png)
+![Développement embryonnaire précoce](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_62.png)
 
 
 
@@ -2138,7 +2138,7 @@ La **céphalisation**, soit le développement de la tête, entraîne une série 
 1. **Céphalisation** : Le processus de cérébralisation de la vésicule cérébrale s'enroule et déclenche la suite.
 2. **Cardialisation** : La cérébralisation initie la cardialisation, le mouvement de flexion positionnant le cœur. Le cœur, initialement plus haut, descend à cet emplacement grâce à la croissance.
 
-![Pliage embryonnaire latéral](/images/schemas/ectoderme/ecto-29/Ectoderme_63.jpeg)
+![Pliage embryonnaire latéral](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_63.jpeg)
 
 
 3. **Diaphragmatisation** : Le cœur appuie sur la partie supéro-interne de la vésicule vitelline, créant une pression qui forme le **septum transversum**, l'ébauche primitive du diaphragme.
@@ -2151,7 +2151,7 @@ La **congestion** représente le flux continu d'informations depuis le **pédicu
 
 Le flot continu d'informations nutritives provenant du pédicule embryonnaire entraîne une phase de congestion plus importante sous le diaphragme, impulsant le développement du foie.
 
-![Schéma explicatif](/images/schemas/ectoderme/ecto-29/Ectoderme_7.jpeg)
+![Schéma explicatif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-29/Ectoderme_7.jpeg)
 
 
 
@@ -2212,7 +2212,7 @@ Si le sacrum monte alors qu'il devrait descendre en flexion, cela crée un déca
 
 Le processus de **flexion de l'embryon** est fondamental. Il ne se contente pas d'organiser la mise en place des articulations, mais initie également une phase de délimitation de l'embryon. Ce processus implique quatre structures embryonnaires principales.
 
-![Ébauches digestives 30j](/images/schemas/ectoderme/ecto-30/Ectoderme_67.jpeg)
+![Ébauches digestives 30j](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-30/Ectoderme_67.jpeg)
 
 
 
@@ -2229,7 +2229,7 @@ Les quatre structures embryonnaires qui contribuent à la formation du diaphragm
 
 Au-delà de la plaque précordiale, dans la zone céphalique, les cellules **mésenchymateuses** du disque embryonnaire donnent naissance au péricarde et au septum transversum. Il est important de noter que votre cœur se développe déjà au-dessus de votre tête à ce stade. Cela s'explique par le mouvement de flexion de l'embryon, qui amène ces structures en place très tôt.
 
-![Développement embryonnaire humain](/images/schemas/ectoderme/ecto-30/Ectoderme_70.jpeg)
+![Développement embryonnaire humain](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-30/Ectoderme_70.jpeg)
 
 
 
@@ -2247,7 +2247,7 @@ Cette unité fonctionnelle est complètement reliée entre le cœur et le diaphr
 
 La flexion de l'embryon, induite par la **notochorde**, entraîne un mouvement spécifique au niveau du tube neural. Ce mouvement de gouttière neurale organise la structure latérale en petits vaisseaux, apportant des nutriments mais limitant la croissance.
 
-![Embryon 4 semaines](/images/schemas/ectoderme/ecto-30/Ectoderme_71.jpeg)
+![Embryon 4 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-30/Ectoderme_71.jpeg)
 
  L'ectoderme environnant s'enroule, et c'est dans ce mouvement que les cellules mésenchymateuses s'intègrent pour former le futur tissu péricardique et les bouches diaphragmatiques.
 
@@ -2255,7 +2255,7 @@ La flexion de l'embryon, induite par la **notochorde**, entraîne un mouvement s
 
 À mesure que l'embryon grandit, la **vésicule vitelline** cesse sa croissance et devient un simple reliquat. Elle s'insère avec les vaisseaux vitellins au niveau de ce que l'on appelle la liaison ombilicale. La vésicule s'intègre au pédicule pour former le cordon ombilical. Le péricarde s'intègre au septum transversum, dont l'origine se situe au-delà de la plaque précordiale.
 
-![Embryon, organes internes](/images/schemas/ectoderme/ecto-30/Ectoderme_72.jpeg)
+![Embryon, organes internes](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-30/Ectoderme_72.jpeg)
 
 
 
@@ -2263,7 +2263,7 @@ La flexion de l'embryon, induite par la **notochorde**, entraîne un mouvement s
 
 Le septum transversum, un tissu important, subit une croissance et une transformation significatives. À la quatrième semaine, il est initialement positionné. À la cinquième semaine, il s'horizontalise puis commence sa "descente". Cependant, cette "descente" est en réalité une conséquence de la croissance du reste de l'embryon.
 
-![Descente septum transversum](/images/schemas/ectoderme/ecto-30/Ectoderme_69.png)
+![Descente septum transversum](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-30/Ectoderme_69.png)
 
 
 
@@ -2275,7 +2275,7 @@ L'origine du septum transversum, lorsque l'embryon mesure 2 mm, se situe au nive
 
 La croissance de la partie postérieure de l'embryon crée un espace d'absorption. Cet espace s'ouvre et attire les poumons, qui sont un champ de succion. Les poumons sont en quelque sorte aspirés dans cet espace en formation. L'origine diaphragmatique se situe très haut, au niveau des deuxième et troisième cervicales.
 
-![Ductus pericardio-peritonealis](/images/schemas/ectoderme/ecto-30/Ectoderme_68.png)
+![Ductus pericardio-peritonealis](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-30/Ectoderme_68.png)
 
 
 
@@ -2283,7 +2283,7 @@ La croissance de la partie postérieure de l'embryon crée un espace d'absorptio
 
 Le nerf phrénique n'est pas "tiré" mais plutôt "accompagné" par cette croissance. La mise en place du diaphragme est liée à une croissance excessive. À un certain moment, l'embryon s'arrête dans sa flexion et se redresse. Ce redressement est une question de fluides sur le sclérotome latéral, avec l'ascension du télencéphale, du tube neural et la descente du système digestif. Ce mouvement est crucial pour l'intégration et la création des espaces.
 
-![Embryon humain 6 semaines](/images/schemas/ectoderme/ecto-30/Ectoderme_73.jpeg)
+![Embryon humain 6 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-30/Ectoderme_73.jpeg)
 
 
 
@@ -2312,7 +2312,7 @@ Le **ligament falciforme** et le **grand épiploon** sont des éléments dériv�
 
 Le grand épiploon fait partie intégrante de la fonction diaphragmatique.
 
-![Diaphragme muscle squelettique](/images/schemas/ectoderme/ecto-30/Ectoderme_74.jpeg)
+![Diaphragme muscle squelettique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-30/Ectoderme_74.jpeg)
 
  Il remonte vers la zone bronchique, s'oriente vers la rate, puis redescend au-dessus du côlon pour former une coalescence de quatre feuillets, créant un grand épiploon **mésangiolaire** (lymphatique B, T et M). Sa motilité est en relation avec le système diaphragmatique.
 
@@ -2349,7 +2349,7 @@ Les **récessus costodiaphragmatiques** sont des sacs d'accumulation pour les ex
 Le corps humain est une **unité cellulaire et tissulaire**. Ses réactions de défense et d'intégration peuvent se manifester à n'importe quel niveau grâce à la continuité tissulaire de la splanchnopleure et de la somatopleure, comme nous l'avons vu avec le diaphragme.
 
 
-![Coupe sagittale thoracique abdominale](/images/schemas/ectoderme/ecto-30/Ectoderme_78.jpeg)
+![Coupe sagittale thoracique abdominale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-30/Ectoderme_78.jpeg)
 
 `,
   },
@@ -2830,7 +2830,7 @@ Nous commençons à distinguer les cellules qui formeront le tube neural, englob
 
 Une autre structure importante apparaît : l'ébauche du tissu de la **crête neurale**. Les cellules de la crête neurale, en rouge, bleu et noir, non seulement contribuent à la fermeture du tube neural, mais forment également le système nerveux périphérique.
 
-![Crête neurale embryonnaire](/images/schemas/ectoderme/ecto-35/Ectoderme_42.jpeg)
+![Crête neurale embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-35/Ectoderme_42.jpeg)
 
  Elles interagissent avec le mésoderme pour créer des tissus ecto-mésodermiques, tels que la face et les os du crâne.
 
@@ -2848,7 +2848,7 @@ Les cellules du tissu se différencient en trois types :
 
 Ces tissus sont fondamentaux pour le développement du système nerveux périphérique, des plexus mésentériques et d'autres structures corporelles.
 
-![Développement villosités intestinales](/images/schemas/ectoderme/ecto-35/Ectoderme_82.jpeg)
+![Développement villosités intestinales](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-35/Ectoderme_82.jpeg)
 
 
 
@@ -3277,7 +3277,7 @@ Le processus de **cérébralisation** (ascensus cerebrali) influencera toutes le
 Le développement télencéphalique entraîne le rapprochement du palatin, la flexion des choanes et la résultante postérieure. Il s'agit d'un changement simultané entre le développement du cerveau vers l'arrière, la corticalisation et la ventricularisation.
 
 
-![Circulation LCR rachidien](/images/schemas/ectoderme/ecto-38/Ectoderme_47.png)
+![Circulation LCR rachidien](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-38/Ectoderme_47.png)
 
 `,
   },
@@ -3421,7 +3421,7 @@ Cependant, le système vasculaire est à la fois un **moteur** et une **résista
 Mais en même temps, il ne grandit pas à la même vitesse que les tissus qu'il alimente. Donc, c'est à la fois le moteur pour la croissance et le frein pour la croissance. Cela peut paraître paradoxal, mais ce n'est pas le cas.
 
 
-![Homéostasie par champs](/images/schemas/ectoderme/ecto-41/Ectoderme_81.jpeg)
+![Homéostasie par champs](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-41/Ectoderme_81.jpeg)
 
 `,
   },
@@ -3446,7 +3446,7 @@ Au départ, nous avons **deux aortes primitives** au milieu, avec des tissus d'i
 
 Le référent influent **acneural**, qui devient une gouttière, crée une trajectoire pour l'embryon. Cette trajectoire initie la formation de deux petits conduits aortiques primitifs.
 
-![Somites et tube neural](/images/schemas/ectoderme/ecto-43/Ectoderme_46.png)
+![Somites et tube neural](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-43/Ectoderme_46.png)
 
 
 
@@ -3575,7 +3575,7 @@ L'axe **urogénital**, de par sa force mésodermique, est l'articulation entre l
 Il est nécessaire d'intégrer le **système vasculaire** pour comprendre pleinement ce schéma, mettant en évidence l'importance du cerveau, du foie, du cœur, des poumons, du plexus mésentérique et du système rénal.
 
 
-![EMT (Transition Épithélio-Mesenchymateuse)](/images/schemas/ectoderme/ecto-43/Ectoderme_54.png)
+![EMT (Transition Épithélio-Mesenchymateuse)](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-43/Ectoderme_54.png)
 
 `,
   },
@@ -3866,7 +3866,7 @@ Le point d'articulation entre le **péritoine pariétal** et le **péritoine vis
 Cette compréhension de la migration des crêtes neurales, notamment au niveau du crâne et de l'épaule, offre des pistes de réflexion pour le travail thérapeutique.
 
 
-![Embryon humain sagittal](/images/schemas/ectoderme/ecto-47/Ectoderme_49.jpeg)
+![Embryon humain sagittal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-47/Ectoderme_49.jpeg)
 
 `,
   },
@@ -3899,7 +3899,7 @@ Sur cette ligne, on retrouve le **processus de gonadisation**, essentiel à la r
 
 C'est un schéma complet qui nous permet de nous projeter dans l'anticipation.
 
-![Base du crâne foetal](/images/schemas/ectoderme/ecto-48/Ectoderme_52.jpeg)
+![Base du crâne foetal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-48/Ectoderme_52.jpeg)
 
 
 
@@ -3944,7 +3944,7 @@ Souvent, ce sont ces freins qui nous retiennent. Il faut savoir faire confiance.
 C'est là qu'il faut laisser émerger un mot, un geste ou un regard spécifique pour donner cette voie de confiance à la personne.
 
 
-![Développement tête embryonnaire](/images/schemas/ectoderme/ecto-48/Ectoderme_51.jpeg)
+![Développement tête embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-48/Ectoderme_51.jpeg)
 
 `,
   },
@@ -4115,7 +4115,7 @@ Les noyaux d'ossification se forment en périphérie. Le développement du cerve
 Les fenêtres frontales, pariétales et occipitales sont les futures sutures.
 
 
-![Vessie urinaire](/images/schemas/ectoderme/ecto-50/Ectoderme_80.jpeg)
+![Vessie urinaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-50/Ectoderme_80.jpeg)
 
 `,
   },
@@ -4240,7 +4240,7 @@ Quand je suis dans mon discernement, je suis bien dans mes rythmes. Quand je sui
 Je reviens alors pleinement sur ma Terre, en parfaite harmonie avec mes émotions.
 
 
-![Notocorde et Tube Neural](/images/schemas/ectoderme/ecto-52/Ectoderme_10.jpeg)
+![Notocorde et Tube Neural](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/ectoderme/ecto-52/Ectoderme_10.jpeg)
 
 `,
   },
@@ -4519,32 +4519,32 @@ On peut se positionner sur le sacrum ou sur le coccyx. Par la suite, nous aborde
 
 L'aspect présomptif du cœur est déterminé par ce champ d'action.
 
-![Début neurulation](/images/schemas/mesoderme/meso-04/Mesoderme_128.jpeg)
+![Début neurulation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-04/Mesoderme_128.jpeg)
 
 
 
 
-![Développement embryonnaire précoce](/images/schemas/mesoderme/meso-04/Mesoderme_11.png)
+![Développement embryonnaire précoce](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-04/Mesoderme_11.png)
 
 
 
-![Gastrulation humaine 3 semaines](/images/schemas/mesoderme/meso-04/Mesoderme_2.png)
+![Gastrulation humaine 3 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-04/Mesoderme_2.png)
 
 
 
-![Gastulation humaine](/images/schemas/mesoderme/meso-04/Mesoderme_5.jpeg)
+![Gastulation humaine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-04/Mesoderme_5.jpeg)
 
 
 
-![Gastrulation embryonnaire humaine](/images/schemas/mesoderme/meso-04/Mesoderme_13.png)
+![Gastrulation embryonnaire humaine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-04/Mesoderme_13.png)
 
 
 
-![Migration mésenchymateuse](/images/schemas/mesoderme/meso-04/Mesoderme_3.png)
+![Migration mésenchymateuse](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-04/Mesoderme_3.png)
 
 
 
-![Gastrulation 16 jours](/images/schemas/mesoderme/meso-04/Mesoderme_4.jpeg)
+![Gastrulation 16 jours](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-04/Mesoderme_4.jpeg)
 
 `,
   },
@@ -4604,19 +4604,19 @@ Dans les problèmes de **prostate**, on peut retrouver ce même schéma. De plus
 Une prise de sang effectuée dans un bras ne reflète pas la totalité du sang qui pourrait être prélevé dans un système veineux, artériel ou autre.
 
 
-![Système cardiovasculaire](/images/schemas/mesoderme/meso-05/Mesoderme_9.png)
+![Système cardiovasculaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-05/Mesoderme_9.png)
 
 
 
-![Développement système lymphatique](/images/schemas/mesoderme/meso-05/Mesoderme_73.png)
+![Développement système lymphatique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-05/Mesoderme_73.png)
 
 
 
-![Veines œsophagiennes collatérales](/images/schemas/mesoderme/meso-05/Mesoderme_64.png)
+![Veines œsophagiennes collatérales](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-05/Mesoderme_64.png)
 
 
 
-![Circulation fœtale humaine](/images/schemas/mesoderme/meso-05/Mesoderme_174.png)
+![Circulation fœtale humaine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-05/Mesoderme_174.png)
 
 `,
   },
@@ -4709,7 +4709,7 @@ L'ectoderme réorganise le plan vasculaire, mais le premier champ d'aspiration e
 La rate est un grand moteur, mais pour avoir une rate fonctionnelle, le **foie** est essentiel. Le foie, par sa croissance et son orientation, est le moteur de l'organisation. Il est un centre d'organisation global (sous-diaphragmatique) et gauche-droite, structurant l'espace gastro-hépato-pancréatico-splénique. Le système splénique dépend du foie.
 
 
-![Pliure embryonnaire latérale](/images/schemas/mesoderme/meso-06/Mesoderme_76.jpeg)
+![Pliure embryonnaire latérale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-06/Mesoderme_76.jpeg)
 
 `,
   },
@@ -4853,7 +4853,7 @@ Après, on la retrouve au niveau de la ligne primitive. Puis, une information d�
 Et puis on va voir une chose qui est très importante, c'est tout ce mouvement développemental.
 
 
-![Embryon humain 3 semaines](/images/schemas/mesoderme/meso-07/Mesoderme_10.jpeg)
+![Embryon humain 3 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-07/Mesoderme_10.jpeg)
 
 `,
   },
@@ -4900,7 +4900,7 @@ On observe ici que le mouvement de **céphalisation** entraîne l'espace de **ca
 
 Cette hépatisation entraînera ensuite la **surrénalisation**, puis la **gonadisation**. Il s'agit d'un mouvement de développement très intéressant, lié au développement de la cavité amniotique qui va envelopper complètement la "zone B".
 
-![Développement cardiaque embryonnaire](/images/schemas/mesoderme/meso-08/Mesoderme_18.png)
+![Développement cardiaque embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-08/Mesoderme_18.png)
 
 
 
@@ -4920,7 +4920,7 @@ Tout cela constitue un mouvement développemental organisé par la cavité amnio
 
 Le cerveau vient s'enrouler autour du cœur. Il y a un mouvement d'intégration, puis un mouvement pour former le diaphragme, le péritoine pariétal postérieur, et un retour autour.
 
-![Développement veineux cardiaque](/images/schemas/mesoderme/meso-08/Mesoderme_36.jpeg)
+![Développement veineux cardiaque](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-08/Mesoderme_36.jpeg)
 
 
 
@@ -4955,23 +4955,23 @@ Le **canal neuro-entérique** est une information entre la vésicule vitelline e
 Cependant, à un moment donné, il n'y aura plus de croissance de cette cavité. On a l'impression qu'elle est repoussée, mais il s'agit en réalité d'un exsudat, car la cavité amniotique grandit tellement vite qu'elle a intégré le cœlome interne.
 
 
-![Épiblaste, streak, cœur](/images/schemas/mesoderme/meso-08/Mesoderme_12.png)
+![Épiblaste, streak, cœur](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-08/Mesoderme_12.png)
 
 
 
-![Développement cellulaire cardiaque](/images/schemas/mesoderme/meso-08/Mesoderme_14.png)
+![Développement cellulaire cardiaque](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-08/Mesoderme_14.png)
 
 
 
-![Tube neural précoce](/images/schemas/mesoderme/meso-08/Mesoderme_15.jpeg)
+![Tube neural précoce](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-08/Mesoderme_15.jpeg)
 
 
 
-![Développement cardiaque embryonnaire](/images/schemas/mesoderme/meso-08/Mesoderme_17.png)
+![Développement cardiaque embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-08/Mesoderme_17.png)
 
 
 
-![Développement embryonnaire coeur](/images/schemas/mesoderme/meso-08/Mesoderme_138.jpeg)
+![Développement embryonnaire coeur](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-08/Mesoderme_138.jpeg)
 
 `,
   },
@@ -5099,32 +5099,32 @@ Cela implique qu'une **déstabilisation** de la hanche peut déstabiliser le cœ
 Il existe une relation complexe à travers l'**endothélium**, ce tissu qui relie l'ensemble du système.
 
 
-![Pliage embryonnaire latéral](/images/schemas/mesoderme/meso-09/Mesoderme_149.jpeg)
+![Pliage embryonnaire latéral](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-09/Mesoderme_149.jpeg)
 
 
 
-![Embryon avec allantoïde](/images/schemas/mesoderme/meso-09/Mesoderme_150.jpeg)
+![Embryon avec allantoïde](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-09/Mesoderme_150.jpeg)
 
 
 
-![Schéma explicatif](/images/schemas/mesoderme/meso-09/Mesoderme_09.jpeg)
+![Schéma explicatif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-09/Mesoderme_09.jpeg)
 
 
 
-![Développement du tube neural](/images/schemas/mesoderme/meso-09/Mesoderme_143.png)
+![Développement du tube neural](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-09/Mesoderme_143.png)
 
 
 
-![Plaque neurale, gouttière](/images/schemas/mesoderme/meso-09/Mesoderme_129.jpeg)
+![Plaque neurale, gouttière](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-09/Mesoderme_129.jpeg)
 
 
 
-![Développement tube digestif embryonnaire](/images/schemas/mesoderme/meso-09/Mesoderme_16.jpeg)
+![Développement tube digestif embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-09/Mesoderme_16.jpeg)
 
 
 
 ![Circulation embryo liquide
-céphalo-rachidien](/images/schemas/mesoderme/meso-09/Mesoderme_60.jpeg)
+céphalo-rachidien](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-09/Mesoderme_60.jpeg)
 
 `,
   },
@@ -5206,7 +5206,7 @@ Au moment où la **cavité amniotique** se forme tout autour, la vésicule vitel
 
 Pour une partie, avec la vésicule vitelline, le **pédicule embryonnaire** formera le **côlon ombilical** avec le placenta. Le vestige qui va se relier est le **système mésentérique** (la vésicule supérieure). Cet axe de rotation est crucial pour le développement embryonnaire.
 
-![Circulation fœtale humaine](/images/schemas/mesoderme/meso-11/Mesoderme_172.png)
+![Circulation fœtale humaine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-11/Mesoderme_172.png)
 
 
 
@@ -5247,7 +5247,7 @@ On a l'aorte, le cœur, et en bas, une bifurcation très importante : les **art�
 En fait, tout ceci forme un plan unitaire et pur. On constate que certaines pathologies de type **coxo-fémoral** ou autres peuvent déstabiliser le cœur. Inversement, ce qui se passe dans ces phases de rotation peut se manifester jusqu'au niveau du cœur.
 
 
-![Circulation foetale](/images/schemas/mesoderme/meso-11/Mesoderme_171.png)
+![Circulation foetale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-11/Mesoderme_171.png)
 
 `,
   },
@@ -5268,7 +5268,7 @@ En fait, tout ceci forme un plan unitaire et pur. On constate que certaines path
 
 Le **cœur** est considéré comme le point de rencontre symbolique entre le **spermatozoïde** et l'**ovule**. C'est ici que se met en place un **pattern fondamental**, se manifestant même sur un plan de polarité.
 
-![Embryon bicellulaire](/images/schemas/mesoderme/meso-12/Mesoderme_85.jpeg)
+![Embryon bicellulaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-12/Mesoderme_85.jpeg)
 
 
 
@@ -5292,7 +5292,7 @@ Nous retrouverons cette lame présomptive. Un mouvement de croissance est suivi 
 
 Ceci se produit au même moment que la fermeture du tube neural et l'intégration du **cœlome** externe en cœlome interne.
 
-![Croissance relative moelle épinière](/images/schemas/mesoderme/meso-12/Mesoderme_121.jpeg)
+![Croissance relative moelle épinière](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-12/Mesoderme_121.jpeg)
 
 
 
@@ -5583,7 +5583,7 @@ Je vous rappelle que le **mouvement embryonnaire** des poumons est distinct.
 
 Alors que celui du cœur est différent. Observez la différence dans ces mouvements.
 
-![Rotation des organes](/images/schemas/mesoderme/meso-15/Mesoderme_77.jpeg)
+![Rotation des organes](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-15/Mesoderme_77.jpeg)
 
 
 
@@ -5632,7 +5632,7 @@ On identifie trois **systèmes veineux** principaux au sein de l'organisme :
 *   **Le système viscérocrânien :** Lié au système porte.
 *   **Le système interne (homme interne) :** Représenté par le système de la veine cave, inférieure et supérieure.
 
-![Développement coeur système veineux](/images/schemas/mesoderme/meso-16/Mesoderme_38.jpeg)
+![Développement coeur système veineux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-16/Mesoderme_38.jpeg)
 
 
 
@@ -5648,7 +5648,7 @@ D'un point de vue **embryologique**, la formation de ces systèmes est liée à 
 
 Le système cardinal se divise en :
 
-![Système veineux embryonnaire](/images/schemas/mesoderme/meso-16/Mesoderme_39.jpeg)
+![Système veineux embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-16/Mesoderme_39.jpeg)
 
 
 
@@ -5674,7 +5674,7 @@ Pour qu'un vaisseau existe, quatre composants sont nécessaires :
 
 La disparition d'une partie d'une veine indique la perte de l'un de ces composants. Une nouvelle trajectoire se dessine alors. Le développement vasculaire s'effectue de manière latérale vers le centre et de façon segmentaire.
 
-![VCS et VCI embryonnaires](/images/schemas/mesoderme/meso-16/Mesoderme_41.jpeg)
+![VCS et VCI embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-16/Mesoderme_41.jpeg)
 
 
 
@@ -5686,7 +5686,7 @@ Le cœur se développe depuis la **ligne primitive**, s'appuyant sur un mouvemen
 
 Le système cardinal se développe plus postérieurement, tandis que les systèmes ombilical et vitellin sont plus antérieurs.
 
-![Développement embryonnaire cardiaque](/images/schemas/mesoderme/meso-16/Mesoderme_51.jpeg)
+![Développement embryonnaire cardiaque](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-16/Mesoderme_51.jpeg)
 
 
 
@@ -5701,7 +5701,7 @@ Les dérivés de ces subcardinales incluent la veine **supra-rénale**, les vein
 
 Ce processus est un "bourgeonnement" par un champ d'aspiration, créant de nouvelles trajectoires segmentaires tandis que d'autres disparaissent.
 
-![Embryon 35 jours vascularisation](/images/schemas/mesoderme/meso-16/Mesoderme_42.jpeg)
+![Embryon 35 jours vascularisation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-16/Mesoderme_42.jpeg)
 
  Les subcardinales se rebourgeonnent pour former un deuxième réseau, et le processus se répète avec les supracardinales.
 
@@ -5716,7 +5716,7 @@ Ce développement se fait selon un mouvement transversal. Il en résulte que cer
 
 Le mouvement développemental de la subcardinale est caractérisé par un "spotting", un bourgeonnement segmentaire qui contient l'ensemble du réseau du système.
 
-![Système veineux embryonnaire](/images/schemas/mesoderme/meso-16/Mesoderme_43.jpeg)
+![Système veineux embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-16/Mesoderme_43.jpeg)
 
 
 
@@ -5739,16 +5739,16 @@ Les seuls vestiges finaux sont :
 *   **Au centre :** La rencontre sur le plan cave avec des structures rénales, supra-rénales (de type mésodermique) et azygos.
 *   **À gauche et à droite :** Hémi-azygos et azygos, assurant un drainage thoraco-abdominal sur le plan mésodermique.
 
-![Système veineux profond](/images/schemas/mesoderme/meso-16/Mesoderme_71.jpeg)
+![Système veineux profond](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-16/Mesoderme_71.jpeg)
 
 
 
 
-![Développement veine cave inférieure](/images/schemas/mesoderme/meso-16/Mesoderme_40.jpeg)
+![Développement veine cave inférieure](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-16/Mesoderme_40.jpeg)
 
 
 
-![Développement Système Veineux](/images/schemas/mesoderme/meso-16/Mesoderme_45.jpeg)
+![Développement Système Veineux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-16/Mesoderme_45.jpeg)
 
 `,
   },
@@ -5776,7 +5776,7 @@ Mon tube endodermique présente un intestin supérieur, moyen et inférieur. Le 
 
 Les **20 vitellines**, structures mésodermiques, sont à l'origine de la formation du foie.
 
-![Embryon système vasculaire hépatique](/images/schemas/mesoderme/meso-17/Mesoderme_52.jpeg)
+![Embryon système vasculaire hépatique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_52.jpeg)
 
 
 
@@ -5788,7 +5788,7 @@ Le mouvement de céphalisation entraîne celui de cardialisation, puis de diaphr
 
 Sa première impulsion est donc une réception de **toxicité**.
 
-![Circulation embryonnaire 28 jours](/images/schemas/mesoderme/meso-17/Mesoderme_53.jpeg)
+![Circulation embryonnaire 28 jours](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_53.jpeg)
 
  Le foie, en tant qu'organe, a pour fonction première de recevoir et de transformer cette toxicité, avant d'avoir une impulsion régénératrice plus tard.
 
@@ -5798,7 +5798,7 @@ Nous avons la **veine vitelline droite** et la **veine vitelline gauche**, avec 
 
 Entre ces deux veines vitellines, un réseau entier se forme, se congestionne et s'organise. Ce réseau finira par former le conduit veineux et, plus tard, des structures telles que la **veine gastrique** et la **veine gastro-épiploïque**. Une zone importante se développera : la **veine porte**.
 
-![Circulation embryonnaire 8 semaines](/images/schemas/mesoderme/meso-17/Mesoderme_54.jpeg)
+![Circulation embryonnaire 8 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_54.jpeg)
 
 
 
@@ -5814,7 +5814,7 @@ Le développement se déroule sous le **septum transversum**. La veine vitelline
 
 Un autre dérivé de cette partie vitelline est la partie supérieure de la **veine cave inférieure**.
 
-![Circulation veineuse embryonnaire](/images/schemas/mesoderme/meso-17/Mesoderme_58.png)
+![Circulation veineuse embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_58.png)
 
 
 
@@ -5824,13 +5824,13 @@ Des régressions se produisent. La veine ombilicale gauche régresse, mais une p
 
 La veine vitelline ombilicale est ici. La veine ombilicale gauche forme un lien, puis disparaît progressivement dans sa partie supérieure. Le **canal d'Arantius** sera formé avec le tronc porte.
 
-![Embryon, veines hépatiques](/images/schemas/mesoderme/meso-17/Mesoderme_59.jpeg)
+![Embryon, veines hépatiques](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_59.jpeg)
 
 
 
 Dans la région infrahépatique, la veine vitelline gauche régresse, mais développe une anastomose avec la veine vitelline droite, entraînant un changement de drainage du sang. Le sang passe du côté gauche des viscères abdominaux vers la veine vitelline droite, créant un réseau transversal qui se développe.
 
-![Système porte 12 semaines](/images/schemas/mesoderme/meso-17/Mesoderme_55.jpeg)
+![Système porte 12 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_55.jpeg)
 
  Cela entraîne un **switch** du côté gauche vers le côté droit sur le plan veineux, favorisant la croissance à droite.
 
@@ -5847,7 +5847,7 @@ Le foie joue un rôle digestif et métabolique, mais également moteur et émoti
 
 Le tronc porte est commun ici, mais il est intéressant de noter qu'il existe un flux qui ne se mélange pas ou peut se mélanger.
 
-![Système porte hépatique](/images/schemas/mesoderme/meso-17/Mesoderme_61.jpeg)
+![Système porte hépatique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_61.jpeg)
 
 
 
@@ -5869,7 +5869,7 @@ Un rééquilibrage se produit entre le cœur, le foie, la rate et le système m�
 
 Le foie est un régulateur de volume, capable d'augmenter ou de diminuer la **volémie**.
 
-![Circulation fœtale](/images/schemas/mesoderme/meso-17/Mesoderme_173.png)
+![Circulation fœtale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_173.png)
 
  Il joue un rôle capital dans le développement de l'embryon et à la naissance.
 
@@ -5883,7 +5883,7 @@ Il est essentiel de ne pas surcharger le cœur sur le plan du retour veineux. Le
 
 Il est donc nécessaire de libérer la fonction faciale pour redonner la libération hépatique.
 
-![Veine Portale Anatomie](/images/schemas/mesoderme/meso-17/Mesoderme_63.jpeg)
+![Veine Portale Anatomie](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_63.jpeg)
 
  N'oubliez pas la liaison cœur-foie-rate.
 
@@ -5891,18 +5891,18 @@ Il est donc nécessaire de libérer la fonction faciale pour redonner la libéra
 
 Le mouvement de la cavité amniotique montre la vésicule vitelline qui régresse et se dépose sur le cordon ombilical.
 
-![Système veineux humain](/images/schemas/mesoderme/meso-17/Mesoderme_37.jpeg)
+![Système veineux humain](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_37.jpeg)
 
  Une anse se développera, intégrant l'anse intestinale à l'intérieur.
 
 Dans le cordon ombilical, les vaisseaux en spirale dans le pédicule embryonnaire se lient, avec le vestige du **yolk sac**. Le tube intestinal et le pédicule embryonnaire se rejoignent, intégrant l'allantoïde et tout le processus avec la grande cavité amniotique.
 
 
-![Système porte embryonnaire](/images/schemas/mesoderme/meso-17/Mesoderme_57.png)
+![Système porte embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_57.png)
 
 
 
-![Système veineux définitif](/images/schemas/mesoderme/meso-17/Mesoderme_46.jpeg)
+![Système veineux définitif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-17/Mesoderme_46.jpeg)
 
 `,
   },
@@ -5925,7 +5925,7 @@ Nous allons explorer l'origine et le développement du **système circulatoire**
 
 On observe l'apparition d'un système que l'on nomme le **système aortique primitif**, incluant le futur cœur en développement, ainsi que les **veines cardinales**. Ces dernières, également appelées **veines mésonéphrotiques**, jouent un rôle épurateur très important en lien avec les premiers reins en formation. L'intégration de ces vaisseaux au niveau du système aortique devient de plus en plus prononcée.
 
-![Développement vasculaire embryonnaire](/images/schemas/mesoderme/meso-18/Mesoderme_23.jpeg)
+![Développement vasculaire embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-18/Mesoderme_23.jpeg)
 
 
 
@@ -5937,7 +5937,7 @@ Les **veines vitellines** formeront initialement un plexus appelé le **plexus d
 
 Notre tube digestif est adjacent à des structures appelées **arcs branchiaux**. Il en existe six, de la poche pharyngienne numéro 1 à la 6. Il est important de noter que l'arc numéro 5 apparaît et disparaît très rapidement, c'est pourquoi il est parfois omis dans certaines descriptions, mais il est bien présent initialement.
 
-![Circulation embryon 4 semaines](/images/schemas/mesoderme/meso-18/Mesoderme_24.png)
+![Circulation embryon 4 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-18/Mesoderme_24.png)
 
 
 
@@ -5945,7 +5945,7 @@ Notre tube digestif est adjacent à des structures appelées **arcs branchiaux**
 
 Il est fascinant d'observer les transformations de ce système vasculaire. L'une des idées clés à retenir est que la **crosse de l'aorte** dérive de multiples segments. Lorsqu'on travaille sur le crâne, en relation avec le cerveau et son système vasculaire, il est crucial de comprendre que le cerveau est principalement vascularisé par les **carotides** et les **artères vertébrales postérieures**. Ces quatre portes d'entrée vasculaires représentent des points essentiels à vérifier et à travailler.
 
-![Embryon 29 jours](/images/schemas/mesoderme/meso-18/Mesoderme_27.png)
+![Embryon 29 jours](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-18/Mesoderme_27.png)
 
 
 
@@ -5961,7 +5961,7 @@ Le système artériel et veineux, combiné à la résultante au niveau des lits 
 
 Chaque arc branchial donne naissance à une structure artérielle spécifique.
 
-![Arcs aortiques embryonnaires](/images/schemas/mesoderme/meso-18/Mesoderme_29.png)
+![Arcs aortiques embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-18/Mesoderme_29.png)
 
 
 
@@ -5982,7 +5982,7 @@ Voici un aperçu des dérivés vasculaires et cartilagineux des arcs branchiaux 
   * Cartilage de Meckel, important pour la stabilisation du conduit tympanique.
   * Il est essentiel de reconnecter ce mouvement et de le rééquilibrer vers son fulcrum, la base du crâne, en laissant l'espace opérer.
 
-![Système vasculaire embryonnaire](/images/schemas/mesoderme/meso-18/Mesoderme_30.png)
+![Système vasculaire embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-18/Mesoderme_30.png)
 
 
   
@@ -5990,7 +5990,7 @@ Voici un aperçu des dérivés vasculaires et cartilagineux des arcs branchiaux 
   * Le système hyoïdien, de l'artère stapédienne et tympanique (qui donne l'artère stapédienne), aux cartilages de l'anneau supérieur juste au niveau thymique.
   * Ce système s'organise sur le plan vasculaire de manière cohérente.
 
-![Arcs aortiques embryonnaires](/images/schemas/mesoderme/meso-18/Mesoderme_31.png)
+![Arcs aortiques embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-18/Mesoderme_31.png)
 
 
   
@@ -6012,7 +6012,7 @@ L'ensemble de ces systèmes forme une unité fonctionnelle, incluant par exemple
 
 La face possède une **vascularisation** énorme. Vos os faciaux, votre peau, vos cartilages faciaux sont tous issus de la **crête neurale**, du **mésoectoderme**. En plus des points d'appui, on observe ce que l'on appelle la **coulée de la crête neurale** : prosencéphale, mésencéphale, rhombocéphale, suivi des rhombocéphales 1 à 7. Cette coulée, cet envahissement de la crête neurale sur le mésoectoderme, est une information développementale cruciale.
 
-![Dérivés arcs pharyngiens](/images/schemas/mesoderme/meso-18/Mesoderme_34.jpeg)
+![Dérivés arcs pharyngiens](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-18/Mesoderme_34.jpeg)
 
 
 
@@ -6033,15 +6033,15 @@ Le **liquide céphalo-rachidien** (LCR) est le contrôleur. Il assure l'équilib
 Le grand plan d'équilibre réside dans les **lits capillaires**, lieu de rencontre entre les systèmes artériel et veineux. À ce niveau, il y a une transformation d'énergie, un rééquilibrage des zones rythmiques et un ajustement de la **vasorégulation** des différents plans. Ces lits capillaires sont les "gardiens de la balance homéostasique" sur le plan fluide, correspondant à des zones de copula, des zones rythmiques spécifiques, essentielles à l'équilibre corporel.
 
 
-![Embryon 7 semaines, appareil digestif](/images/schemas/mesoderme/meso-18/Mesoderme_28.png)
+![Embryon 7 semaines, appareil digestif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-18/Mesoderme_28.png)
 
 
 
-![Système artériel embryonnaire](/images/schemas/mesoderme/meso-18/Mesoderme_33.jpeg)
+![Système artériel embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-18/Mesoderme_33.jpeg)
 
 
 
-![Vascularisation tête humaine](/images/schemas/mesoderme/meso-18/Mesoderme_35.png)
+![Vascularisation tête humaine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-18/Mesoderme_35.png)
 
 `,
   },
@@ -6065,7 +6065,7 @@ Au niveau neurologique, les **plexus vertébraux** se composent de plusieurs par
 - Le **système médullaire profond**.
 - Le **système veineux vertébral interne**, situé entre la dure-mère et le sinus dural.
 
-![Plexus vertébraux](/images/schemas/mesoderme/meso-19/Mesoderme_72.jpeg)
+![Plexus vertébraux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-19/Mesoderme_72.jpeg)
 
 
 - Le **plexus veineux vertébral externe**.
@@ -6085,7 +6085,7 @@ Ces systèmes sont en lien avec le **quatrième ventricule**, notamment le **tro
 
 Ce drainage se fait des **carotides**, des **artères vertébrales**, et de tous les sinus via le plexus vertébral, impliquant directement un sacrum libre.
 
-![Système veineux humain](/images/schemas/mesoderme/meso-19/Mesoderme_68.jpeg)
+![Système veineux humain](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-19/Mesoderme_68.jpeg)
 
 
 
@@ -6095,7 +6095,7 @@ Les **veines pelviennes** et celles des **membres inférieurs** constituent une 
 
 Par exemple, la marche active un drainage grâce à la **semelle de Lejars** et à l'articulation **scaphoïde-cuboïde**, qui fonctionne comme un diaphragme. En cas de troubles du petit bassin chez la femme, il est essentiel de vérifier et de libérer le pied pour restaurer cette force de retour, sans quoi une stase peut apparaître.
 
-![Veine iliaque interne](/images/schemas/mesoderme/meso-19/Mesoderme_69.jpeg)
+![Veine iliaque interne](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-19/Mesoderme_69.jpeg)
 
 
 
@@ -6107,7 +6107,7 @@ Des **rétroversions utérines** peuvent entraîner des congestions fréquentes.
 
 La **pression abdominale** influence le trajet du sang veineux. Une augmentation de cette pression peut diriger le sang vers les plexus vertébraux, entraînant des congestions vertébrales et des **lombalgies** d'origine digestive. Il est souvent nécessaire de rétablir les pressions pour soulager le foie et restaurer l'équilibre dynamique.
 
-![Vascularisation pelvienne vue postérieure](/images/schemas/mesoderme/meso-19/Mesoderme_70.jpeg)
+![Vascularisation pelvienne vue postérieure](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-19/Mesoderme_70.jpeg)
 
 
 
@@ -6144,7 +6144,7 @@ Nous considérons qu'il existe **sept diaphragmes** cruciaux pour le corps :
 Les pariétaux, comme des **panneaux solaires**, doivent respirer et capter la lumière, tout comme les **radius** sont des "os solaires". L'intégration de ces systèmes au cerveau, en lien avec les systèmes **vitellin** et **ombilical** et le **choc apexien**, permet de relâcher le cerveau.
 
 
-![Sinus veineux crâniens](/images/schemas/mesoderme/meso-19/Mesoderme_67.jpeg)
+![Sinus veineux crâniens](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-19/Mesoderme_67.jpeg)
 
 `,
   },
@@ -6196,7 +6196,7 @@ La vésicule vitelline est une grande source d'information. Le mouvement d'inté
 
 L'objectif est de redonner cette cavité et la zone B pour réintégrer la circulation interne.
 
-![Cette image semble être une vue d'ensemble, donc l'insérer après une phrase de contextualisation générale sur la réintégration du système circulaire semble approprié](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
+![Cette image semble être une vue d'ensemble, donc l'insérer après une phrase de contextualisation générale sur la réintégration du système circulaire semble approprié](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
 
 
 
@@ -6204,20 +6204,20 @@ En visualisant le schéma comme une personne allongée :
 
 - En bleu, l'intégration en un tube neural.
 
-![L'image semble détailler l'intégration du système nerveux ou un aspect de la structuration embryonnaire](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
+![L'image semble détailler l'intégration du système nerveux ou un aspect de la structuration embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
 
 
 - Le reste formant la peau, une couche **ectodermique**.
 
 Simultanément, l'intégration de la vésicule vitelline contribue à former une partie du système digestif, tandis que tout le système veineux s'intègre. Le mouvement à suivre est celui de la cavité amniotique qui grandit, menant à une fusion pour former la partie longitudinale, le tube digestif.
 
-![Probablement une étape de la formation du tube digestif ou une structure longitudinale](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
+![Probablement une étape de la formation du tube digestif ou une structure longitudinale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
 
 
 
 L'intégration du cœlome externe en un futur cœlome interne est visualisée en jaune, où tout se rejoint sur la ligne médiane.
 
-![Probablement la convergence des structures vers la ligne médiane, cohérent avec la phrase](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
+![Probablement la convergence des structures vers la ligne médiane, cohérent avec la phrase](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
 
 
 
@@ -6225,13 +6225,13 @@ L'intégration du cœlome externe en un futur cœlome interne est visualisée en
 
 Le moteur principal de ce processus est le **système notochordal**, qui influence le tube neural et organise le système vasculaire primitif aortique. Il redirige l'information avec l'intégration progressive de tout le système transversal, de la périphérie vers le centre.
 
-![Système notochordal ou une vue transversale de l'intégration, correspondant au texte](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_5.jpeg)
+![Système notochordal ou une vue transversale de l'intégration, correspondant au texte](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_5.jpeg)
 
 
 
 Nous allons suivre ce mouvement pas à pas. Il est essentiel de "laisser faire" la respiration primaire.
 
-![L'image la structure veineuse viscérale mentionnée dans le résumé, et cette phrase marque une transition vers la notion de 'mouvement'](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_6.jpeg)
+![L'image la structure veineuse viscérale mentionnée dans le résumé, et cette phrase marque une transition vers la notion de 'mouvement'](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_6.jpeg)
 
 
 
@@ -6239,28 +6239,28 @@ Nous allons suivre ce mouvement pas à pas. Il est essentiel de "laisser faire" 
 
 Le **mouvement endovolontaire des poumons** part de l'endoderme et est orienté par le système vasculaire.
 
-![L'image correspond à la description de l'intégration des systèmes comme le vitellin et hépatique](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_7.jpeg)
+![L'image correspond à la description de l'intégration des systèmes comme le vitellin et hépatique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_7.jpeg)
 
  La conscience du **pédicule ombilical** doit revenir dans cet espace, permettant de percevoir la force de la cavité amniotique qui grandit, tout en intégrant les processus de céphalisation, cardialisation, diaphragmatisation et hépatisation.
 
 Le retour se fait alors.
 
-![Régression de la vésicule vitelline et la formation du cordon ombilical, ce qui est logique après la mention du 'retour'](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_8.jpeg)
+![Régression de la vésicule vitelline et la formation du cordon ombilical, ce qui est logique après la mention du 'retour'](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_8.jpeg)
 
  La vésicule vitelline, poussée par la vitesse de croissance différentielle, sera reprise dans le schéma.
 
-![Cordon ombilical formation](/images/schemas/mesoderme/meso-21/Mesoderme_66.png)
+![Cordon ombilical formation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-21/Mesoderme_66.png)
 
  Elle va repousser le pédicule pour rejoindre la vésicule vitelline et former plus tard le cordon ombilical.
 
-![Cette image semble être une vue récapitulative ou une visualisation finale de l'intégration du système vitellin et de ses vestiges, cohérent avec la fin du paragraphe](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_9.png)
+![Cette image semble être une vue récapitulative ou une visualisation finale de l'intégration du système vitellin et de ses vestiges, cohérent avec la fin du paragraphe](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_9.png)
 
 
 
 Tout se rejoint ici, partant d'un pédicule pour revenir à un cordon.
 
 
-![Fœtus dans l'utérus](/images/schemas/mesoderme/meso-21/Mesoderme_165.png)
+![Fœtus dans l'utérus](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-21/Mesoderme_165.png)
 
 `,
   },
@@ -6490,7 +6490,7 @@ Le foie gère les qualités des **liquides** échangés, notamment pour la diges
 
 Il quantifie et modifie la tension portale qu'il transmet au cœur.
 
-![Hypertension portale](/images/schemas/mesoderme/meso-24/Mesoderme_65.png)
+![Hypertension portale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-24/Mesoderme_65.png)
 
  En réalité, le foie est une spécialisation du **duodénum**, qui reçoit une multitude d'informations (autocrines, paracrines, neurocrines, endocrines).
 
@@ -6518,7 +6518,7 @@ L'axe entre le foie et le cœur est la **veine cave**, dont la construction est 
 Il y a une relation immunitaire importante impliquant le **système thymique**. Le foie est impliqué dans le passage des **lymphocytes T** avec le thymus, et le retour des informations immunitaires via la rate. Ce processus contribue à l'équilibre thymique et à la maturation des lymphocytes T.
 
 
-![Embryon humain dissection](/images/schemas/mesoderme/meso-24/Mesoderme_25.png)
+![Embryon humain dissection](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-24/Mesoderme_25.png)
 
 `,
   },
@@ -6686,11 +6686,11 @@ Le tissu, dans sa mémoire embryonnaire, reçoit une compression et un mouvement
 
 Cette première information biodynamique de cinétique du développement est une concentration de mésoderme engendrée par la flexion et ce mouvement de rapprochement.
 
-![Concept de la formation du rein par compression et flexion](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_11.jpeg)
+![Concept de la formation du rein par compression et flexion](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_11.jpeg)
 
 
 
-![Embryon plan tridermique](/images/schemas/mesoderme/meso-27/Mesoderme_127.jpeg)
+![Embryon plan tridermique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-27/Mesoderme_127.jpeg)
 
 
 
@@ -6727,7 +6727,7 @@ Le rein, dans sa phase de développement, se construit du **crânial** vers le *
 
 Chaque partie permet l'émergence d'éléments qui seront repris dans le rein définitif.
 
-![Développement crânio-caudal du rein (Pronéphron, Mésonéphron, Métanéphron) qui est le sujet du paragraphe](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_12.jpeg)
+![Développement crânio-caudal du rein (Pronéphron, Mésonéphron, Métanéphron) qui est le sujet du paragraphe](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_12.jpeg)
 
 
 
@@ -6750,7 +6750,7 @@ Puis, la troisième partie sera le rein définitif, appelé rein métanéphron.
 Au début, la lame mésodermique est non différenciée. Mais pour avoir le rein définitif, il faut d'abord ce premier petit système, cervical, qui suit presque le trajet d'un **méridien**. Le système de la **vessie** se développera également à partir d'un petit canal.
 
 
-![Anatomie embryonnaire vertébrée](/images/schemas/mesoderme/meso-27/Mesoderme_92.jpeg)
+![Anatomie embryonnaire vertébrée](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-27/Mesoderme_92.jpeg)
 
 `,
   },
@@ -6809,7 +6809,7 @@ L'embryon possède une lame intermédiaire contenant tout le potentiel **mésode
 
 1. **Pronéphron** : La partie postérieure de cette lame, par compression de sa partie antérieure, forme un tube, une concentration mésodermique. Ce processus, associé au rapprochement des aortes, induit un mouvement de rotation.
 
-![Évolution du mésonéphros](/images/schemas/mesoderme/meso-28/Mesoderme_81.jpeg)
+![Évolution du mésonéphros](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-28/Mesoderme_81.jpeg)
 
  Dès le niveau cervical, la flexion induit un pronéphron qui se segmente en petites poches, laissant un petit canal descendant appelé canal mésonéphrotique.
    
@@ -6837,7 +6837,7 @@ La partie **postérieure** de l'embryon connaît une **croissance** beaucoup plu
 
 Ce phénomène est engendré par une **vitesse de croissance différentielle** de la partie postérieure par rapport à la partie antérieure, maintenue par l'allantoïde et organisée par le foie.
 
-![Coupe embryon sagittal](/images/schemas/mesoderme/meso-29/Mesoderme_131.jpeg)
+![Coupe embryon sagittal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-29/Mesoderme_131.jpeg)
 
 
 
@@ -6853,7 +6853,7 @@ Les reins semblent **"monter"** de leur origine sacrée vers la région lombaire
 
 Il est important de penser au développement embryonnaire en termes de **références changeantes**. La croissance des structures postérieures positionne les reins. Ce n'est pas qu'ils montent, mais que le reste descend et grandit.
 
-![Ascension rénale embryonnaire](/images/schemas/mesoderme/meso-29/Mesoderme_80.jpeg)
+![Ascension rénale embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-29/Mesoderme_80.jpeg)
 
 
 
@@ -6881,7 +6881,7 @@ La région rétropéritonéale devient une **articulation** créée par deux mou
 
 L'intégrité de ces deux fonctions dépend de cette articulation intermédiaire, qui est une articulation entre l'**ectoderme** et l'**endoderme**.
 
-![Développement éminence/canal neural](/images/schemas/mesoderme/meso-29/Mesoderme_119.png)
+![Développement éminence/canal neural](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-29/Mesoderme_119.png)
 
  Le système pariétal est dépendant du système **mésodermique**, ce qui fait du mésoderme une voie royale dans le développement embryonnaire.
 `,
@@ -6961,7 +6961,7 @@ Les surrénales, poussées par le développement du foie, repoussent les gonades
 
 Ce mouvement développemental engendre un **pli latéral** dans le tissu, causé par la pression des surrénales sur les gonades.
 
-![This image seems to depict the effect of adrenals pushing gonads laterally, forming the Mullerian duct, as described](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_16.jpeg)
+![This image seems to depict the effect of adrenals pushing gonads laterally, forming the Mullerian duct, as described](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_16.jpeg)
 
  Ce pli, visible dans le péritoine pariétal postérieur, est désigné sous le nom de **ductus de Müller**.
 
@@ -7013,7 +7013,7 @@ La **crête génitale** est une structure influencée par la migration des **gon
 
 Ces gonocytes épaississent l'épithélium cœlomique postérieur, formant ainsi l'ébauche de la gonade, future **ovaire** ou **testicule**. Ce tissu est gonflé par la prolifération des gonocytes qui y parviennent.
 
-![Migration gonocytaire](/images/schemas/mesoderme/meso-32/Mesoderme_86.jpeg)
+![Migration gonocytaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_86.jpeg)
 
 
 
@@ -7023,7 +7023,7 @@ Le **canal de Wolff** est un canal collecteur, déjà formé puis disparu depuis
 
 Ces deux canaux, de Müller et de Wolff, jouent un rôle crucial dans le développement du système **urogénital**, tant chez l'homme que chez la femme.
 
-![Rôle général des canaux de Wolff et de Müller, en lien avec la section qui les introduit](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_17.jpeg)
+![Rôle général des canaux de Wolff et de Müller, en lien avec la section qui les introduit](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_17.jpeg)
 
 
 
@@ -7033,7 +7033,7 @@ Chez l'homme, le canal de Wolff se différencie en **canal déférent** et, par 
 
 Le canal de Müller, quant à lui, régresse chez l'homme, laissant derrière lui un petit vestige, l'**hydatide sessile**, qui n'a pas de fonction connue. Cependant, il donne l'**utricule prostatique**, qui sera plus tard englobé par un tissu endodermique pour former la **prostate**. Cette prostate sera reliée au système des canaux déférents, issus du canal de Wolff.
 
-![Génital mâle différencié](/images/schemas/mesoderme/meso-32/Mesoderme_95.jpeg)
+![Génital mâle différencié](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_95.jpeg)
 
 
 
@@ -7047,11 +7047,11 @@ Chez l'homme, un ligament crucial est le **gubernaculum testis**. Il se raccourc
 
 Ce processus est lié à l'élongation du reste du système et aux vitesses de croissance différentielles de la partie postérieure.
 
-![Anatomie appareil génital masculin](/images/schemas/mesoderme/meso-32/Mesoderme_97.jpeg)
+![Anatomie appareil génital masculin](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_97.jpeg)
 
  Ainsi, la gonade, initialement en position haute, descend. Le gubernaculum, associé au **ligament inguinal**, entraîne le système testiculaire vers le bas.
 
-![Descente testiculaire, un concept clé expliqué dans ce paragraphe](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_18.jpeg)
+![Descente testiculaire, un concept clé expliqué dans ce paragraphe](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_18.jpeg)
 
 
 
@@ -7073,7 +7073,7 @@ Le sinus urogénital est la zone où se trouvait le **cloaque**, l'**allantoïde
 
 La position initiale des testicules est très haute. La descente testiculaire est due à la non-croissance du ligament gubernaculum, qui tire le système par la croissance environnante.
 
-![Descente testiculaire fœtale](/images/schemas/mesoderme/meso-32/Mesoderme_100.jpeg)
+![Descente testiculaire fœtale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_100.jpeg)
 
 
 
@@ -7081,38 +7081,38 @@ Pendant ce temps, l'autre ligament, le **ligament suspenseur gonadique** (ancien
 
 Cette attache entre le ligament gubernaculum et les couches inférieures, combinée à la croissance différentielle, provoque la descente testiculaire.
 
-![Différenciation testiculaire](/images/schemas/mesoderme/meso-32/Mesoderme_103.jpeg)
+![Différenciation testiculaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_103.jpeg)
 
  Il s'agit en fait d'une croissance globale qui donne l'impression d'une réduction du ligament, alors que c'est le reste qui grandit.
 
 La suspension initiale des testicules jusqu'au plan diaphragmatique, et plus précisément au carrefour **duodéno-pancréatique**, est un point crucial à revoir.
 
 
-![Embryon 27 jours](/images/schemas/mesoderme/meso-32/Mesoderme_79.jpeg)
+![Embryon 27 jours](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_79.jpeg)
 
 
 
-![Migration des gonocytes](/images/schemas/mesoderme/meso-32/Mesoderme_84.jpeg)
+![Migration des gonocytes](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_84.jpeg)
 
 
 
-![Gonade indifférenciée](/images/schemas/mesoderme/meso-32/Mesoderme_87.jpeg)
+![Gonade indifférenciée](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_87.jpeg)
 
 
 
-![Différenciation gonadique embryonnaire](/images/schemas/mesoderme/meso-32/Mesoderme_90.jpeg)
+![Différenciation gonadique embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_90.jpeg)
 
 
 
-![Canaux de Wolff](/images/schemas/mesoderme/meso-32/Mesoderme_96.jpeg)
+![Canaux de Wolff](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_96.jpeg)
 
 
 
-![Anatomie prostate masculine](/images/schemas/mesoderme/meso-32/Mesoderme_98.jpeg)
+![Anatomie prostate masculine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_98.jpeg)
 
 
 
-![Migration testiculaire](/images/schemas/mesoderme/meso-32/Mesoderme_99.jpeg)
+![Migration testiculaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-32/Mesoderme_99.jpeg)
 
 `,
   },
@@ -7171,7 +7171,7 @@ Ces proportions évoluent au cours du développement. Le foie joue un rôle impo
 
 C'est la première fois qu'une **différenciation structurelle** entre l'homme et la femme est observée, liée au développement plus important des glandes qui créent le **tubercule de Müller**.
 
-![Différenciation ovarienne](/images/schemas/mesoderme/meso-33/Mesoderme_102.jpeg)
+![Différenciation ovarienne](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-33/Mesoderme_102.jpeg)
 
 
 
@@ -7183,7 +7183,7 @@ Le cerveau influence la mise en place du cœur, qui à son tour met en place la 
 
 Le canal de Müller se développe beaucoup plus fortement chez la femme pour créer un canal pur, qui se rejoint pour former l'utérus.
 
-![Formation utérus embryonnaire](/images/schemas/mesoderme/meso-33/Mesoderme_104.jpeg)
+![Formation utérus embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-33/Mesoderme_104.jpeg)
 
 
 
@@ -7199,19 +7199,19 @@ Cette continuité fasciale entre l'utérus et toute la partie du fascia, de la p
 
 On observe bien l'utérus, les ligaments, les ovaires et la **cavité péritonéale**.
 
-![Appareil reproducteur féminin](/images/schemas/mesoderme/meso-33/Mesoderme_107.jpeg)
+![Appareil reproducteur féminin](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-33/Mesoderme_107.jpeg)
 
 
 
 En soulevant l'utérus avec des pinces, on constate que tout bouge.
 
-![Appareil reproducteur féminin](/images/schemas/mesoderme/meso-33/Mesoderme_108.jpeg)
+![Appareil reproducteur féminin](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-33/Mesoderme_108.jpeg)
 
  
 
 L'impact d'un **fibrome** ou d'un **kyste** est significatif. La continuité avec les ligaments est primordiale.
 
-![Utérus et musculature](/images/schemas/mesoderme/meso-33/Mesoderme_111.jpeg)
+![Utérus et musculature](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-33/Mesoderme_111.jpeg)
 
 
 
@@ -7221,16 +7221,16 @@ Le péritoine est un tissu très intelligent. L'influence d'un fibrome, par exem
 
 Un gros fibrome peut entraîner une cascade de conséquences dans tout le système.
 
-![Organes génitaux féminins](/images/schemas/mesoderme/meso-33/Mesoderme_112.jpeg)
+![Organes génitaux féminins](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-33/Mesoderme_112.jpeg)
 
 
 
 
-![Appareil génital fœtal](/images/schemas/mesoderme/meso-33/Mesoderme_91.png)
+![Appareil génital fœtal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-33/Mesoderme_91.png)
 
 
 
-![Appareil génital indifférencié](/images/schemas/mesoderme/meso-33/Mesoderme_94.jpeg)
+![Appareil génital indifférencié](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-33/Mesoderme_94.jpeg)
 
 `,
   },
@@ -7251,7 +7251,7 @@ Un gros fibrome peut entraîner une cascade de conséquences dans tout le systè
 
 L'insertion de la **vessie** au niveau du **tubercule de Müller**, situé dans le sinus urogénital, est essentielle. Cette zone comprend la vessie, l'urètre et l'attache au niveau du vagin.
 
-![Développement tractus urogénital femelle](/images/schemas/mesoderme/meso-34/Mesoderme_115.jpeg)
+![Développement tractus urogénital femelle](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-34/Mesoderme_115.jpeg)
 
 
 
@@ -7261,13 +7261,13 @@ La vitesse de croissance différentielle de cette partie postérieure crée l'es
 
 Le tubercule de Müller s'épaissit puis est étiré, non par une traction superficielle, mais par la poussée plus rapide de la partie postérieure. Ce phénomène conduit à l'allongement et à la formation du vagin et du col de l'utérus.
 
-![Vaginogenèse](/images/schemas/mesoderme/meso-34/Mesoderme_116.jpeg)
+![Vaginogenèse](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-34/Mesoderme_116.jpeg)
 
 
 
 La paroi postérieure du sinus urogénital s'épaissit, donnant naissance aux lames vaginales qui s'ouvrent et s'étirent. Cette dynamique est similaire, avec la partie postérieure grandissant plus rapidement.
 
-![Canal utéro-vaginal](/images/schemas/mesoderme/meso-34/Mesoderme_105.jpeg)
+![Canal utéro-vaginal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-34/Mesoderme_105.jpeg)
 
 
 
@@ -7275,7 +7275,7 @@ La paroi postérieure du sinus urogénital s'épaissit, donnant naissance aux la
 
 Lors de l'examen de l'utérus, un mouvement entre le **sacrum** et le **péritoine** est perçu. C'est dans l'interaction de ces deux pôles que se trouvent l'équilibre vaginal et utérin.
 
-![Anatomie utérine féminine](/images/schemas/mesoderme/meso-34/Mesoderme_106.jpeg)
+![Anatomie utérine féminine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-34/Mesoderme_106.jpeg)
 
 
 
@@ -7313,7 +7313,7 @@ L'embryon illustre parfaitement cette notion : à chaque stade de développement
 
 Le **tube neural** est associé à une éminence caudale postérieure, créant un espace de lumière et de connexion. On observe le bourgeon caudal et la partie terminale de la **notochorde**.
 
-![Développement cloacal embryonnaire](/images/schemas/mesoderme/meso-34/Mesoderme_117.png)
+![Développement cloacal embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-34/Mesoderme_117.png)
 
 
 
@@ -7325,7 +7325,7 @@ C'est ce que l'on nomme la **neurulation secondaire**. La manipulation du sacrum
 
 L'intégration de l'éminence caudale assure la continuité avec le tube neural, formant cette neurulation secondaire ascendante.
 
-![Septation du cloaque](/images/schemas/mesoderme/meso-34/Mesoderme_83.jpeg)
+![Septation du cloaque](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-34/Mesoderme_83.jpeg)
 
 
 
@@ -7389,7 +7389,7 @@ La différenciation des organes génitaux externes est clairement visible :
 
 Cette différenciation débute entre la **cinquième** et la **huitième semaine** de grossesse, en même temps que le développement hépatique et surrénalien.
 
-![Étapes du développement embryonnaire](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
+![Étapes du développement embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
 
 
 
@@ -7404,11 +7404,11 @@ Il existe une analogie entre la formation des organes génitaux et celle d'autre
 
 Tous ces systèmes convergent vers la ligne médiane, qu'il s'agisse du sternum, de la face ou des organes génitaux.
 
-![Schéma général, cohérent avec la discussion sur la convergence vers la ligne médiane](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
+![Schéma général, cohérent avec la discussion sur la convergence vers la ligne médiane](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
 
 
 
-![Vascularisation lèvre/palais fendu](/images/schemas/mesoderme/meso-35/Mesoderme_113.png)
+![Vascularisation lèvre/palais fendu](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-35/Mesoderme_113.png)
 
  Il s'agit de la fermeture de la ligne médiane antérieure.
 
@@ -7424,23 +7424,23 @@ Le développement des **canaux génitaux** dépend du sexe gonadique :
 - **En présence de sécrétion d'androgènes (homme) :**
   - Le corps de Wolff devient l'épididyme, le canal déférent, la vésicule séminale et le canal éjaculateur.
 
-![Développement organes génitaux](/images/schemas/mesoderme/meso-35/Mesoderme_124.jpeg)
+![Développement organes génitaux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-35/Mesoderme_124.jpeg)
 
 
   - Le canal de Müller régresse.
 
-![Développement embryonnaire externe](/images/schemas/mesoderme/meso-35/Mesoderme_122.jpeg)
+![Développement embryonnaire externe](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-35/Mesoderme_122.jpeg)
 
 
   - Le sinus urogénital se ferme.
 
-![Développement des organes génitaux externes, mentionné juste avant dans la discussion sur la fermeture du sinus urogénital](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
+![Développement des organes génitaux externes, mentionné juste avant dans la discussion sur la fermeture du sinus urogénital](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
 
 
 
 Le tubercule génital chez l'homme devient le pénis, et chez la femme, le clitoris.
 
-![Organes génitaux féminins](/images/schemas/mesoderme/meso-35/Mesoderme_123.jpeg)
+![Organes génitaux féminins](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-35/Mesoderme_123.jpeg)
 
  Les bourrelets génitaux forment les petites et grandes lèvres chez la femme.
 
@@ -7448,27 +7448,27 @@ Le tubercule génital chez l'homme devient le pénis, et chez la femme, le clito
 
 Il est important de noter que notre corps **somatise** les conflits psychiques. Si un conflit n'est pas résolu, il peut se manifester physiquement en fonction de sa symbolique :
 
-![Descente organes génitaux](/images/schemas/mesoderme/meso-35/Mesoderme_101.jpeg)
+![Descente organes génitaux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-35/Mesoderme_101.jpeg)
 
 
 
 - **Séparation :** Peut affecter la peau.
 - **Conflit urogénital, métabolique, rythmique ou neurosensoriel :** Sera exprimé dans l'appareil correspondant.
 
-![Schéma explicatif](/images/schemas/mesoderme/meso-35/Mesoderme_127.jpeg)
+![Schéma explicatif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-35/Mesoderme_127.jpeg)
 
 
 
 
-![Différenciation sexuelle humaine](/images/schemas/mesoderme/meso-35/Mesoderme_126.jpeg)
+![Différenciation sexuelle humaine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-35/Mesoderme_126.jpeg)
 
 
 
-![Développement génital externe](/images/schemas/mesoderme/meso-35/Mesoderme_125.jpeg)
+![Développement génital externe](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-35/Mesoderme_125.jpeg)
 
 
 
-![Paroi abdominale antérieure](/images/schemas/mesoderme/meso-35/Mesoderme_109.png)
+![Paroi abdominale antérieure](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-35/Mesoderme_109.png)
 
 `,
   },
@@ -7503,7 +7503,7 @@ Je travaille avec un **triangle de soutien**, mais sans exercer de pression exce
 
 Si cette méthode ne suffit pas, je peux utiliser un autre point d'appui. En palpant, je peux déjà déterminer l'axe de naissance, qui est crucial. Si le bassin reste déséquilibré, je me place derrière la patiente et je prends appui sur l'**ischion**. Je laisse alors le processus se dérouler naturellement, la patiente se tenant relativement droite.
 
-![Croissance os coxal](/images/schemas/mesoderme/meso-36/Mesoderme_159.jpeg)
+![Croissance os coxal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-36/Mesoderme_159.jpeg)
 
  Avec un bon point d'appui de mes mains, je laisse le corps travailler pour rééquilibrer les problèmes du petit bassin.
 
@@ -7525,16 +7525,16 @@ Lors d'une grossesse, je vérifie systématiquement l'axe de naissance et la lib
 
 Il est fondamental de savoir que lors de la naissance, l'enfant est guidé par les **fascias du bassin**. Si le bassin est en déséquilibre, l'enfant pourrait se retrouver coincé pendant le mouvement de naissance.
 
-![Engagement OIGA](/images/schemas/mesoderme/meso-36/Mesoderme_170.png)
+![Engagement OIGA](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-36/Mesoderme_170.png)
 
 
 
 
-![Os coxal latéral](/images/schemas/mesoderme/meso-36/Mesoderme_160.jpeg)
+![Os coxal latéral](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-36/Mesoderme_160.jpeg)
 
 
 
-![Muscles du bassin](/images/schemas/mesoderme/meso-36/Mesoderme_162.jpeg)
+![Muscles du bassin](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-36/Mesoderme_162.jpeg)
 
 `,
   },
@@ -7649,7 +7649,7 @@ Là, vous pouvez ressentir une vibration dans votre corps, comme de petits **pé
 
 Au niveau péritonéal, dans la fermeture de la **ligne médiane antérieure**, un **mouvement d'enroulement** se produit, allant de la partie postérieure vers la partie antérieure.
 
-![L'image schématique générale s'insère au début du texte, après la description initiale du mouvement d'enroulement péritonéal](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.png)
+![L'image schématique générale s'insère au début du texte, après la description initiale du mouvement d'enroulement péritonéal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.png)
 
  
 
@@ -7736,7 +7736,7 @@ Le premier grand mouvement du **Tai Chi** se concentre sur la **vague notochorda
 
 Nous avons donc la vague notochordale, avec en dessous tout le mouvement mésodermique.
 
-![Tube digestif et nerveux](/images/schemas/mesoderme/meso-39/Mesoderme_1.png)
+![Tube digestif et nerveux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-39/Mesoderme_1.png)
 
 
 
@@ -7761,23 +7761,23 @@ Je tire cette main et viens chercher l'anse ici pour la ramener vers mon **foie*
 Puis, la main à cet endroit descend, monte, et l'autre main descend pour former la **face terminale**.
 
 
-![Feuillets embryonnaires](/images/schemas/mesoderme/meso-39/Mesoderme_176.png)
+![Feuillets embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-39/Mesoderme_176.png)
 
 
 
-![Développement du système nerveux](/images/schemas/mesoderme/meso-39/Mesoderme_139.jpeg)
+![Développement du système nerveux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-39/Mesoderme_139.jpeg)
 
 
 
-![Neurocrâne et colonne vertébrale](/images/schemas/mesoderme/meso-39/Mesoderme_175.png)
+![Neurocrâne et colonne vertébrale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-39/Mesoderme_175.png)
 
 
 
-![Développement des muscles cervicaux](/images/schemas/mesoderme/meso-39/Mesoderme_137.jpeg)
+![Développement des muscles cervicaux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-39/Mesoderme_137.jpeg)
 
 
 
-![Schéma corps humain](/images/schemas/mesoderme/meso-39/Mesoderme_178.jpeg)
+![Schéma corps humain](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-39/Mesoderme_178.jpeg)
 
 `,
   },
@@ -7911,7 +7911,7 @@ La lame latérale, qui constitue finalement le **système rénal**, **surrénal*
 
 Cette induction va provoquer une réorganisation de la lame somatique sous plusieurs formes :
 
-![Embryon Carnegie stade 10](/images/schemas/mesoderme/meso-41/Mesoderme_132.jpeg)
+![Embryon Carnegie stade 10](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-41/Mesoderme_132.jpeg)
 
 
 
@@ -7978,27 +7978,27 @@ Je ne peux pas amener un vaisseau qui est ainsi. Non, cela commence à se faire 
 J'ai donc une inversion. Au départ, l'os est fluide et grandit. Quand il tire et qu'il s'allonge, cela crée un champ métabolique autour de lui, qui est un champ de dilatation. C'est l'os qui va devenir actif dans un premier temps. Et puis, ce sera seulement le muscle qui sera actif dans un deuxième temps.
 
 
-![Embryon: coupe transversale](/images/schemas/mesoderme/meso-41/Mesoderme_133.jpeg)
+![Embryon: coupe transversale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-41/Mesoderme_133.jpeg)
 
 
 
-![Embryon humain, coupe transversale, stade Carnegie 12](/images/schemas/mesoderme/meso-41/Mesoderme_134.jpeg)
+![Embryon humain, coupe transversale, stade Carnegie 12](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-41/Mesoderme_134.jpeg)
 
 
 
-![Neurulation et somites](/images/schemas/mesoderme/meso-41/Mesoderme_140.jpeg)
+![Neurulation et somites](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-41/Mesoderme_140.jpeg)
 
 
 
-![Somite myotome dermatome](/images/schemas/mesoderme/meso-41/Mesoderme_141.jpeg)
+![Somite myotome dermatome](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-41/Mesoderme_141.jpeg)
 
 
 
-![Développement embryonnaire membre](/images/schemas/mesoderme/meso-41/Mesoderme_151.png)
+![Développement embryonnaire membre](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-41/Mesoderme_151.png)
 
 
 
-![Origine mésenchyme squelette](/images/schemas/mesoderme/meso-41/Mesoderme_164.png)
+![Origine mésenchyme squelette](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-41/Mesoderme_164.png)
 
 `,
   },
@@ -8019,19 +8019,19 @@ Le développement de l'**appareil locomoteur**, et plus spécifiquement des **ve
 
 La mise en place de la **notocorde** induit la formation du **tube neural**, qui s'organise progressivement sur l'axe longitudinal et structure le système des vaisseaux. Ce processus est accompagné d'une **croissance différentielle** qui devient antérieure, entraînant un mouvement de flexion. La partie antérieure crée ce qu'on appelle l'**anneau ectodermique**, un tissu d'épiblaste qui se fléchit, formant ainsi cet anneau.
 
-![Flexion et la formation de l'anneau ectodermique, qui est mentionnée dans le texte juste avant](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
+![Flexion et la formation de l'anneau ectodermique, qui est mentionnée dans le texte juste avant](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
 
 
 
 Cette flexion est essentielle, car elle entraîne des changements significatifs pour l'organisme, notamment la phase de **délimitation de l'embryon**. La présence du tube neural et des **crêtes neurales** est cruciale, car ces éléments interagissent avec l'anneau ectodermique, fournissant des informations importantes vers la notocorde.
 
-![Début du mouvement de développement autour de la notocorde, en lien avec les interactions mentionnées](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
+![Début du mouvement de développement autour de la notocorde, en lien avec les interactions mentionnées](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
 
 
 
 Le mouvement de l'anneau ectodermique génère une compression qui influence le développement autour de la notocorde. Ce processus est lié à la formation des **disques intervertébraux** et des **corps vertébraux**. La partie supérieure se transforme en disque, tandis que les parties inférieure et supérieure commencent à former le corps vertébral, sous l'influence de la notocorde et de la crête neurale.
 
-![Formation des disques intervertébraux et des corps vertébraux, directement après leur description](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
+![Formation des disques intervertébraux et des corps vertébraux, directement après leur description](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
 
 
 
@@ -8039,13 +8039,13 @@ La notocorde, vestige du **noyau pulposus**, joue un rôle clé dans la formatio
 
 Il existe deux types d'informations dans la formation d'une vertèbre. Pour l'épineuse, l'information provient directement du tube neural, tandis que pour le disque, elle est liée à la notocorde.
 
-![Sclérotome, vertèbres, nerfs](/images/schemas/mesoderme/meso-42/Mesoderme_142.jpeg)
+![Sclérotome, vertèbres, nerfs](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-42/Mesoderme_142.jpeg)
 
  La notocorde induit également la formation des **chlores vertébraux** issus du sclérotome, tandis que le tube neural contribue à la formation du mésoblaste qui l'entoure.
 
 Dans la formation complète, on observe la mise en place des somites pour former le sclérotome autour du tube neural et de la notocorde.
 
-![Circulation LCR rachidien](/images/schemas/mesoderme/meso-42/Mesoderme_145.png)
+![Circulation LCR rachidien](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-42/Mesoderme_145.png)
 
  Le sclérotome est principalement responsable de la formation du corps vertébral, tandis qu'une forme de sclérotome mésoblastique contribue à l'arc vertébral et à l'épineuse.
 
@@ -8060,19 +8060,19 @@ Lorsque le développement s'intensifie, cela déclenche des inductions spécifiq
 Par exemple, une dermalgie au niveau 9 peut être associée à des structures comme la **vésicule biliaire**, le **pancréas**, ou le **système pylorique**. Dans ces cas, il est pertinent d'explorer la vertèbre associée pour mieux comprendre les implications cliniques.
 
 
-![Embryon 4e semaine](/images/schemas/mesoderme/meso-42/Mesoderme_120.jpeg)
+![Embryon 4e semaine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-42/Mesoderme_120.jpeg)
 
 
 
-![Somites et tube neural](/images/schemas/mesoderme/meso-42/Mesoderme_130.jpeg)
+![Somites et tube neural](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-42/Mesoderme_130.jpeg)
 
 
 
-![Somites et tube neural](/images/schemas/mesoderme/meso-42/Mesoderme_144.png)
+![Somites et tube neural](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-42/Mesoderme_144.png)
 
 
 
-![Développement tube digestif](/images/schemas/mesoderme/meso-42/Mesoderme_154.png)
+![Développement tube digestif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-42/Mesoderme_154.png)
 
 `,
   },
@@ -8110,19 +8110,19 @@ Un point important à noter est l'impact émotionnel de la **quatrième côte à
 Le travail sur cette zone implique de ramener la côte dans son mouvement d'inspiration et d'expiration, en corrigeant sa position et en équilibrant le hile pulmonaire. Ce processus est essentiel pour restaurer l'équilibre et la fonctionnalité du système costal.
 
 
-![Tensegrité](/images/schemas/mesoderme/meso-43/Mesoderme_21.jpeg)
+![Tensegrité](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-43/Mesoderme_21.jpeg)
 
 
 
-![Embryon 7 semaines, vaisseaux](/images/schemas/mesoderme/meso-43/Mesoderme_32.png)
+![Embryon 7 semaines, vaisseaux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-43/Mesoderme_32.png)
 
 
 
-![Embryon système nerveux](/images/schemas/mesoderme/meso-43/Mesoderme_136.png)
+![Embryon système nerveux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-43/Mesoderme_136.png)
 
 
 
-![Développement côtes et sternum](/images/schemas/mesoderme/meso-43/Mesoderme_148.jpeg)
+![Développement côtes et sternum](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-43/Mesoderme_148.jpeg)
 
 `,
   },
@@ -8145,31 +8145,31 @@ Une **tendinite** peut être le reflet d'un déficit de rotation du **péritone*
 
 En médecine chinoise, des points spécifiques de la périphérie sont stimulés pour traiter des problèmes internes. L'empreinte du péritone peut se réactiver pour réutiliser des fonctions antérieures. Les blessures majeures de la vie se produisent souvent avant l'âge de 5 ans, et certaines peuvent même remonter à la phase embryonnaire. Ce qui se passe dans le corps peut se refléter dans les membres.
 
-![L'image générale introduit la section sur les extrémités, et ce paragraphe conclut la discussion sur la relation entre les problèmes internes et les expressions.des membres](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
+![L'image générale introduit la section sur les extrémités, et ce paragraphe conclut la discussion sur la relation entre les problèmes internes et les expressions.des membres](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
 
 
 
 Le **cellulome** et le **tube neural** jouent un rôle essentiel dans le développement. Un angle spécifique crée un champ d'aspiration, influençant la croissance. Un champ métabolique avec des zones de restriction et d'hypercroissance entraîne des mouvements de croissance différentielle, influencés par le système vasculaire.
 
-![Concept de champs d'aspiration et de restriction, se plaçant logiquement après l'explication de ces mécanismes dans les cellules et le tube neural](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.png)
+![Concept de champs d'aspiration et de restriction, se plaçant logiquement après l'explication de ces mécanismes dans les cellules et le tube neural](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.png)
 
 
 
-![Bourgeon de membre](/images/schemas/mesoderme/meso-44/Mesoderme_155.png)
+![Bourgeon de membre](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-44/Mesoderme_155.png)
 
  Un métabolisme actif génère un flux puissant dans le tissu **mésenchymateux**, favorisant la croissance du tissu **ectodermique**.
 
 La main apparaît en premier dans le développement, suivie par l'allongement du système.
 
-![Développement des membres](/images/schemas/mesoderme/meso-44/Mesoderme_156.png)
+![Développement des membres](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-44/Mesoderme_156.png)
 
  La flexion de l'embryon est liée à la vitesse de croissance par rapport à l'aorte.
 
-![Premières phases du développement des membres, se connectant à la discussion sur l'allongement et la flexion des articulations](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
+![Premières phases du développement des membres, se connectant à la discussion sur l'allongement et la flexion des articulations](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
 
  Les articulations suivent un protocole similaire, où la présence de vaisseaux sanguins influence la densité et la forme des structures. Le mouvement de rotation externe est suivi d'une contre-rotation interne, orchestrée par le champ vasculaire.
 
-![Développement membre embryonnaire](/images/schemas/mesoderme/meso-44/Mesoderme_157.png)
+![Développement membre embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-44/Mesoderme_157.png)
 
 
 
@@ -8177,17 +8177,17 @@ Le **mésoblaste** est responsable de l'induction des membres, qui sont une expa
 
 L'axe vasculaire est fondamental pour comprendre la métamérisation et la disposition des membres.
 
-![Développement ultérieur des membres et la rotation](/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
+![Développement ultérieur des membres et la rotation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
 
 
 
-![Rotation membre supérieur](/images/schemas/mesoderme/meso-44/Mesoderme_152.jpeg)
+![Rotation membre supérieur](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-44/Mesoderme_152.jpeg)
 
  Chaque métamère est organisé par les vaisseaux et la crête neurale, et chaque vertèbre correspond à un organe. Les dermalgies vertébrales sont liées à des organes spécifiques, comme le foie ou la vésicule biliaire.
 
 L'induction du cellulome est orientée par le champ vasculaire, influençant la croissance des membres. La dynamique entre l'os et le muscle est essentielle : au début, l'os est actif, tandis que le muscle est passif. Avec le temps, le muscle prend le relais, définissant la forme des membres.
 
-![Rotation membre inférieur](/images/schemas/mesoderme/meso-44/Mesoderme_153.jpeg)
+![Rotation membre inférieur](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-44/Mesoderme_153.jpeg)
 
 
 
@@ -8196,7 +8196,7 @@ Le développement des membres, tant supérieurs qu'inférieurs, est lié à la *
 Traiter les lésions des membres implique de les réintégrer dans leur cavité péritonelle, ce qui est une clé pour comprendre le fulcrum embryonnaire.
 
 
-![Lignes de Langer embryonnaires](/images/schemas/mesoderme/meso-44/Mesoderme_146.png)
+![Lignes de Langer embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/meso-44/Mesoderme_146.png)
 
 `,
   },
@@ -8317,7 +8317,7 @@ Nous allons étudier un **tissu embryonnaire** appelé l'**endoderme**, en relat
 
 Il est important de noter que le développement du cerveau présente des phénomènes synchrones. Nous commencerons par étudier la **face**. L'embryon subit une **flexion**, entraînant une réorganisation globale. Au départ, il s'agit d'un tissu ouvert qui se délimite et s'organise en espaces spécifiques. Nous allons explorer ces espaces un par un.
 
-![Développement embryonnaire précoce](/images/schemas/endoderme/endo-02/Endoderme_63.jpeg)
+![Développement embryonnaire précoce](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-02/Endoderme_63.jpeg)
 
 
 
@@ -8335,7 +8335,7 @@ Il est crucial de prêter attention à la **respiration** et à l'**alimentation
 
 La **fermentation** dépend également des saisons. Il existe quatre saisons et quatre inter-saisons, où le **jeûne** est particulièrement bénéfique. Ce dernier est une période de régénération pour le corps. Par exemple, entre le 15 février et le 21 mars, nous entrons dans une phase d'ascension printanière.
 
-![Processus notochordal](/images/schemas/endoderme/endo-02/Endoderme_19.jpeg)
+![Processus notochordal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-02/Endoderme_19.jpeg)
 
  
 
@@ -8355,15 +8355,15 @@ Il existe quatre niveaux thérapeutiques importants :
 Ces éléments sont essentiels pour retrouver la vitalité et la fonction pour laquelle chacun est venu. La présence d'une personne peut illuminer une pièce, tout comme son absence peut créer une ombre.
 
 
-![Crâne fœtal](/images/schemas/endoderme/endo-02/Endoderme_59.jpeg)
+![Crâne fœtal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-02/Endoderme_59.jpeg)
 
 
 
-![Feuillets embryonnaires](/images/schemas/endoderme/endo-02/Endoderme_3.png)
+![Feuillets embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-02/Endoderme_3.png)
 
 
 
-![Gastrulatoin, disque embryonnaire trilaminaire](/images/schemas/endoderme/endo-02/Endoderme_21.jpeg)
+![Gastrulatoin, disque embryonnaire trilaminaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-02/Endoderme_21.jpeg)
 
 `,
   },
@@ -8433,7 +8433,7 @@ Le système hormonal s'étend profondément dans le corps et est fortement dépe
 
 Ces points charnières sont essentiels pour l'organisation générale du corps.
 
-![Plan du corps](/images/schemas/endoderme/endo-04/Endoderme_5.jpeg)
+![Plan du corps](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-04/Endoderme_5.jpeg)
 
  Le corps sait ce qu'il doit faire, mais il est crucial de soutenir ce processus en revenant sur des qualités **ontogénétiques**. Un **fulcrum** est un point de création de forme, servant de point de balance lors des changements.
 
@@ -8445,7 +8445,7 @@ Les articulations du corps sont des répétitions séquentielles de ce même pro
 
 Au début, l'embryon s'enroule autour de sa zone cardiaque, et le développement du cerveau suit les champs vasculaires. Ce développement est synchronisé avec le système digestif, et un phénomène dans une zone peut bloquer une fonction dans une autre.
 
-![Axe cerveau-intestin](/images/schemas/endoderme/endo-04/Endoderme_192.jpeg)
+![Axe cerveau-intestin](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-04/Endoderme_192.jpeg)
 
 
 
@@ -8456,7 +8456,7 @@ Le cordon ombilical, vestige de la **vésicule viteline** et du **pédicule embr
 Enfin, l'intestin et le corps symbolisent l'intégration de l'individu. La recherche du symbole personnel est essentielle pour éviter la dispersion et favoriser la concentration et le rassemblement.
 
 
-![Derme et épiderme](/images/schemas/endoderme/endo-04/Endoderme_201.jpeg)
+![Derme et épiderme](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-04/Endoderme_201.jpeg)
 
 `,
   },
@@ -8477,7 +8477,7 @@ Dans la **chronologie d'apparition des systèmes de communication**, le **systè
 
 Le **système conjonctif circulatoire endocrinien** apparaît ensuite. Le système endocrinien dépend du système circulatoire. D'abord, le **système entérique** se développe, suivi par le **système parasympathique** et ensuite le **système orthosympathique**. Cela signifie que le premier cerveau est digestif ; l'entérique précède la cérébralisation.
 
-![Systèmes corporels énumérés](/images/schemas/endoderme/endo-05/Endoderme_7.png)
+![Systèmes corporels énumérés](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-05/Endoderme_7.png)
 
 
 
@@ -8506,15 +8506,15 @@ La flexion de l'embryon et la dynamique fluidique sont essentielles pour compren
 Il est crucial d'écouter le mouvement du tissu et de trouver son point de balance pour entrer dans son histoire. Ce processus peut révéler des images ou des mots liés à des points embryonnaires ou à des capacités transgénérationnelles.
 
 
-![Embryon 2 cellules](/images/schemas/endoderme/endo-05/Endoderme_8.jpeg)
+![Embryon 2 cellules](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-05/Endoderme_8.jpeg)
 
 
 
-![Microbiote intestinal fonctions](/images/schemas/endoderme/endo-05/Endoderme_190.png)
+![Microbiote intestinal fonctions](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-05/Endoderme_190.png)
 
 
 
-![Microbiote flore intestinale](/images/schemas/endoderme/endo-05/Endoderme_191.jpeg)
+![Microbiote flore intestinale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-05/Endoderme_191.jpeg)
 
 `,
   },
@@ -8654,7 +8654,7 @@ La **cavité amniotique** et la **cavité viteline** jouent un rôle crucial dan
 
 L'étude de ce mouvement se fait de la périphérie vers l'intérieur, de la face visible, comme la bouche, jusqu'à l'intestin pharyngien.
 
-![Bourgeon du goût](/images/schemas/endoderme/endo-09/Endoderme_17.jpeg)
+![Bourgeon du goût](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-09/Endoderme_17.jpeg)
 
  Ce mouvement de flexion organise la **particularité de la face**. La **notochorde** induit le tube neural et les artères, tandis que l'enroulement autour du système artériel s'organise.
 
@@ -8662,7 +8662,7 @@ La partie supérieure de l'intestin se forme comme une **articulation** entre le
 
 Le cœur, visible en position élevée, et l'enroulement des structures embryonnaires illustrent cette articulation.
 
-![Schéma explicatif](/images/schemas/endoderme/endo-09/Endoderme_13.jpeg)
+![Schéma explicatif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-09/Endoderme_13.jpeg)
 
  Plus le développement progresse, plus l'organisation se renforce. Le grand sac vitellin et son vestige se forment, tandis que la partie supérieure s'organise à travers des mouvements de flexion.
 
@@ -8670,7 +8670,7 @@ La **cavité amniotique** et le cœur créent un espace qui devient une articula
 
 Entre cette membrane et la membrane pharyngienne, les bouches au niveau buccal se développent.
 
-![Tube digestif embryonnaire](/images/schemas/endoderme/endo-09/Endoderme_33.jpeg)
+![Tube digestif embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-09/Endoderme_33.jpeg)
 
  Cette articulation entre le cerveau, le sac amniotique et le cœur est organisée par la vitesse de croissance différentielle du système vasculaire, établissant un équilibre entre le cerveau et le cœur, orienté par le **mésoderme**.
 
@@ -8679,27 +8679,27 @@ L'apparition d'un vaisseau dépend de divers composants : un champ, une concentr
 L'influence de cette plicature est donc essentielle pour organiser la **délimitation interne** du tube digestif. Nous allons maintenant entrer dans les détails de ce processus.
 
 
-![Cerveau embryonnaire humain](/images/schemas/endoderme/endo-09/Endoderme_16.jpeg)
+![Cerveau embryonnaire humain](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-09/Endoderme_16.jpeg)
 
 
 
-![Embryon humain sagittal](/images/schemas/endoderme/endo-09/Endoderme_23.jpeg)
+![Embryon humain sagittal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-09/Endoderme_23.jpeg)
 
 
 
-![Formation de la notochorde](/images/schemas/endoderme/endo-09/Endoderme_18.jpeg)
+![Formation de la notochorde](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-09/Endoderme_18.jpeg)
 
 
 
-![Embryon humain sagital](/images/schemas/endoderme/endo-09/Endoderme_31.jpeg)
+![Embryon humain sagital](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-09/Endoderme_31.jpeg)
 
 
 
-![Embryon vascularisé](/images/schemas/endoderme/endo-09/Endoderme_29.jpeg)
+![Embryon vascularisé](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-09/Endoderme_29.jpeg)
 
 
 
-![Schéma explicatif](/images/schemas/endoderme/endo-09/Endoderme_22.jpeg)
+![Schéma explicatif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-09/Endoderme_22.jpeg)
 
 `,
   },
@@ -8722,7 +8722,7 @@ En se concentrant sur le plan **vasculaire**, on observe que les tubes endocardi
 
 La croissance différentielle du **tissu épithélial** par rapport au **tissu conjonctif** permet le rapprochement des deux aortes sur l'axe central, délimitant ainsi l'axe longitudinal et créant l'intestin pharyngien. L'intestin supérieur s'étend de la bouche jusqu'à la partie médiane, impliquant la formation de la face.
 
-![Coupe transversale intestin](/images/schemas/endoderme/endo-10/Endoderme_150.jpeg)
+![Coupe transversale intestin](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-10/Endoderme_150.jpeg)
 
 
 
@@ -8734,7 +8734,7 @@ Chaque arc branchial est orienté vers la base du crâne. Les arcs mandibulaires
 
 On peut identifier quatre grands arcs branchiaux fonctionnels : l'**arc mandibulaire**, l'**arc hyoïdien**, l'**arc laryngien supérieur** et l'**arc laryngien inférieur**. Chaque arc, qu'il soit ectodermique, mesodermique ou endodermique, contient une information spécifique. L'arc mandibulaire, par exemple, est lié au cartilage mandibulaire et à des structures de l'**oreille interne**. Une déstabilisation de la mâchoire peut donc affecter l'organisation interne de l'oreille.
 
-![Oreille interne embryonnaire](/images/schemas/endoderme/endo-10/Endoderme_197.jpeg)
+![Oreille interne embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-10/Endoderme_197.jpeg)
 
 
 
@@ -8746,7 +8746,7 @@ Le développement du cerveau est en rapport avec le processus de **téléencéph
 
 Le développement des **ptérigoïdes** et du **palais** est influencé par la traction du cerveau et la descente viscérale. Ce mouvement synchronisé entre le système digestif et le cœur, ainsi que l'ascension cérébrale, contribue à la formation du palais ogival.
 
-![Tissu intestinal villosités](/images/schemas/endoderme/endo-10/Endoderme_152.jpeg)
+![Tissu intestinal villosités](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-10/Endoderme_152.jpeg)
 
 
 
@@ -8755,15 +8755,15 @@ Les forces occlusales, les pressions du massif lingual et les effets piézoélec
 En conclusion, la formation de l'intestin supérieur et des structures faciales est un processus complexe, impliquant des interactions dynamiques entre les différents tissus embryonnaires et leur développement synchronisé.
 
 
-![Développement embryonnaire oiseau](/images/schemas/endoderme/endo-10/Endoderme_15.jpeg)
+![Développement embryonnaire oiseau](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-10/Endoderme_15.jpeg)
 
 
 
-![Embryon rat neurulation](/images/schemas/endoderme/endo-10/Endoderme_27.png)
+![Embryon rat neurulation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-10/Endoderme_27.png)
 
 
 
-![Villification intestinale](/images/schemas/endoderme/endo-10/Endoderme_151.jpeg)
+![Villification intestinale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-10/Endoderme_151.jpeg)
 
 `,
   },
@@ -8793,7 +8793,7 @@ Bien que le corps semble symétrique à l'extérieur, une grande asymétrie exis
 Une cascade de ces petites molécules libère des **protéines spécifiques**, connues sous le nom de **sonotique HETCH**, ainsi que des gènes spécifiques contenant du **zinc**. Ces éléments activent un côté du système de la **corrompté** et de l'**hypercalcium**. Cette activité calcique joue un rôle crucial dans le développement des cellules, favorisant un développement plus rapide d'un côté par rapport à l'autre.
 
 
-![Autostéréogramme](/images/schemas/endoderme/endo-11/Endoderme_1.jpeg)
+![Autostéréogramme](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-11/Endoderme_1.jpeg)
 
 `,
   },
@@ -8850,31 +8850,31 @@ Les **globules rouges** et les **gonades** sont des éléments clés qui émerge
 Cette dynamique de développement est une **biodynamique cinétique**, reliant le cerveau et les lignes de force aux axes durmériens et aux arcs branchiaux. Tout cela se répercute sur la **symphyse phénobasilaire**, un point crucial dans le développement embryonnaire. La compréhension de ces processus est essentielle pour appréhender la complexité du développement humain.
 
 
-![Développement embryonnaire précoce](/images/schemas/endoderme/endo-13/Endoderme_13.jpeg)
+![Développement embryonnaire précoce](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-13/Endoderme_13.jpeg)
 
 
 
-![Embryon 14-15 jours](/images/schemas/endoderme/endo-13/Endoderme_14.jpeg)
+![Embryon 14-15 jours](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-13/Endoderme_14.jpeg)
 
 
 
-![Blastule oursin](/images/schemas/endoderme/endo-13/Endoderme_10.jpeg)
+![Blastule oursin](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-13/Endoderme_10.jpeg)
 
 
 
-![Blastocèle et cellules](/images/schemas/endoderme/endo-13/Endoderme_9.jpeg)
+![Blastocèle et cellules](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-13/Endoderme_9.jpeg)
 
 
 
-![Implantation humaine 9 jours](/images/schemas/endoderme/endo-13/Endoderme_12.jpeg)
+![Implantation humaine 9 jours](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-13/Endoderme_12.jpeg)
 
 
 
-![Coupe transversale rein](/images/schemas/endoderme/endo-13/Endoderme_121.jpeg)
+![Coupe transversale rein](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-13/Endoderme_121.jpeg)
 
 
 
-![Circulation embryonnaire 4 semaines](/images/schemas/endoderme/endo-13/Endoderme_199.png)
+![Circulation embryonnaire 4 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-13/Endoderme_199.png)
 
 `,
   },
@@ -8895,55 +8895,55 @@ Dans ce cours, nous allons explorer la **pratique ostéopathique** de la face, e
 
 La **face** est un reflet indirect de la **crête neurale**, un tissu qui reçoit et transmet des informations à travers un réseau complexe dans le corps. Ce réseau est présent à la fois dans les zones **périphériques** et **viscérales**. Ainsi, la face exprime l'intérieur et, en retour, informe l'intérieur.
 
-![Tête embryonnaire vertébré](/images/schemas/endoderme/endo-14/Endoderme_24.jpeg)
+![Tête embryonnaire vertébré](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-14/Endoderme_24.jpeg)
 
 
 
 Lors de la formation embryonnaire, les **arcs mandibulaires** se développent à partir de poches branquiales, créant des lignes de force qui s'orientent vers la **base du crâne**. Cette base reçoit une convergence d'informations faciales, influençant le système **glandulaire**, **circulatoire**, **lymphatique**, et même le système **neurologique**. Il est essentiel de comprendre que cette base du crâne représente un équilibre entre le **neurocrâne** et le **viscérocrâne**, et que toute l'information y est intégrée.
 
-![Développement innervation céphalique](/images/schemas/endoderme/endo-14/Endoderme_40.jpeg)
+![Développement innervation céphalique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-14/Endoderme_40.jpeg)
 
 
 
 Nous allons également examiner comment rééquilibrer la **symphyse phénobasilaire** sur un plan tensionnel et ostéopathique. Une thyroïde dysfonctionnelle peut entraîner des **hypomobilités**. Il est important de se rappeler que dans le processus de guérison, il s'agit toujours de **prendre** et de **donner**. Les personnes qui souffrent de congestion sont souvent celles qui ne parviennent pas à donner.
 
-![Développement facial embryonnaire](/images/schemas/endoderme/endo-14/Endoderme_45.jpeg)
+![Développement facial embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-14/Endoderme_45.jpeg)
 
 
 
 La dynamique de la face est liée au développement du **cerveau**. Au départ, le cerveau se compose d'un **prosencéphale** et d'autres structures. Le prosencéphale se développe en formant deux boules latérales qui s'hypertrophient, créant un mouvement dynamique. Ce mouvement permet la formation du **frontal** et des hémisphères gauche et droit.
 
-![Développement facial précoce](/images/schemas/endoderme/endo-14/Endoderme_46.jpeg)
+![Développement facial précoce](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-14/Endoderme_46.jpeg)
 
 
 
 Au fur et à mesure de ce développement, la face, initialement comprimée entre le cœur et le cerveau, s'ouvre dans l'espace. Les zones latérales, comme la **placote optique** et la **placote nasale**, s'intègrent vers la ligne médiane, formant ainsi une ligne médiane d'anticipation.
 
-![Développement palais primaire](/images/schemas/endoderme/endo-14/Endoderme_50.jpeg)
+![Développement palais primaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-14/Endoderme_50.jpeg)
 
 
 
-![Développement facial embryonnaire](/images/schemas/endoderme/endo-14/Endoderme_48.jpeg)
+![Développement facial embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-14/Endoderme_48.jpeg)
 
 
 
 Nous observons également la **coulée de la crête neurale**, qui s'étend depuis le **mésencéphale** postérieur et envahit le **mésoderme** pour former du **mésectoderme**. Ce processus d'intégration se produit simultanément avec le développement du cerveau et l'organisation des **gaines durales**.
 
-![Migration crête neurale](/images/schemas/endoderme/endo-14/Endoderme_57.jpeg)
+![Migration crête neurale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-14/Endoderme_57.jpeg)
 
 
 
-![Morphogenèse faciale développement humain](/images/schemas/endoderme/endo-14/Endoderme_54.jpeg)
+![Morphogenèse faciale développement humain](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-14/Endoderme_54.jpeg)
 
 
 
-![Développement facial embryonnaire](/images/schemas/endoderme/endo-14/Endoderme_51.jpeg)
+![Développement facial embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-14/Endoderme_51.jpeg)
 
 
 
 Enfin, il est important de noter que la zone de la superficie à la profondeur, représentée par le mésectoderme, comprend la peau, les muscles, les os, et d'autres structures comme la cornée. Cette intégration est essentielle pour comprendre la complexité de la face et son rôle dans notre santé globale.
 
-![Forces piézo-électriques crâniennes](/images/schemas/endoderme/endo-14/Endoderme_58.png)
+![Forces piézo-électriques crâniennes](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-14/Endoderme_58.png)
 
 
 `,
@@ -8967,7 +8967,7 @@ Ce processus de développement est crucial pour la formation de la **langue** et
 
 Le foramen sécum, qui se développe avec la langue, est essentiel pour la formation du système thyroïdien.
 
-![Développement thyroïdien embryonnaire](/images/schemas/endoderme/endo-15/Endoderme_64.jpeg)
+![Développement thyroïdien embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-15/Endoderme_64.jpeg)
 
  Ce développement est marqué par une **croissance globale**, avec un point fixe qui agit comme un point d'appui. La profondeur de la langue est liée à la **profondeur de l'encéphalisation**.
 
@@ -8983,34 +8983,34 @@ Le développement embryonnaire se déroule sur une période spécifique, avec la
 
 Les tissus embryonnaires s'influencent mutuellement : l'**ectoderme** et l'**endoderme** dépendent du **mésoderme**, qui assure la transmission des informations nutritives. Cette dynamique est essentielle pour comprendre le développement de la langue, de la thyroïde et de la parathyroïde.
 
-![Développement thyroïde et parathyroïde](/images/schemas/endoderme/endo-15/Endoderme_67.jpeg)
+![Développement thyroïde et parathyroïde](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-15/Endoderme_67.jpeg)
 
 
 
 Il est crucial de suivre les **fulcrums** dans le corps, car ils se manifestent dans la pratique. Le **nombril** est un grand fulcrum, et il est essentiel que le bassin soit dégagé et libre pour un bon fonctionnement. Dans la pratique ostéopathique, le traitement du bassin est souvent une priorité, car il est lié à la **symphyse phénobasilaire**. Travailler sur le sacrum ou le bassin influence directement cette synphyse, permettant ainsi une approche holistique du corps.
 
 
-![Embryon humain sagittal](/images/schemas/endoderme/endo-15/Endoderme_26.jpeg)
+![Embryon humain sagittal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-15/Endoderme_26.jpeg)
 
 
 
-![Développement arcs pharyngiens](/images/schemas/endoderme/endo-15/Endoderme_37.jpeg)
+![Développement arcs pharyngiens](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-15/Endoderme_37.jpeg)
 
 
 
-![Musculature arcs pharyngiens](/images/schemas/endoderme/endo-15/Endoderme_38.jpeg)
+![Musculature arcs pharyngiens](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-15/Endoderme_38.jpeg)
 
 
 
-![Développement palais embryon](/images/schemas/endoderme/endo-15/Endoderme_47.jpeg)
+![Développement palais embryon](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-15/Endoderme_47.jpeg)
 
 
 
-![Développement palais et nez](/images/schemas/endoderme/endo-15/Endoderme_49.jpeg)
+![Développement palais et nez](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-15/Endoderme_49.jpeg)
 
 
 
-![Développement pharyngien](/images/schemas/endoderme/endo-15/Endoderme_65.jpeg)
+![Développement pharyngien](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-15/Endoderme_65.jpeg)
 
 `,
   },
@@ -9068,7 +9068,7 @@ Traiter la peau revient à relibérer tout le système du liquide céphalo-rachi
 
 Un déséquilibre peut se manifester sur la peau, que ce soit par des problèmes cutanés ou des déséquilibres vitaminiques et minéraux, notamment dans les zones intégrées avec la crête neurale. Au moment de la formation de la crête neurale, celles-ci migrent dans tout le corps, notamment au niveau de la face et du système digestif, formant ainsi le système périphérique neurologique.
 
-![Coupe embryon humaine](/images/schemas/endoderme/endo-17/Endoderme_105.jpeg)
+![Coupe embryon humaine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-17/Endoderme_105.jpeg)
 
 
 
@@ -9105,7 +9105,7 @@ Les couleurs de la peau peuvent également indiquer des déséquilibres :
 La peau est un indicateur précieux de la santé interne. Les déséquilibres hormonaux, notamment ceux liés à la thyroïde, peuvent se manifester par des changements cutanés. Il est essentiel de considérer l'ensemble du système, y compris les interactions entre les organes, pour comprendre et traiter les problèmes de peau.
 
 
-![Neurulation précoce](/images/schemas/endoderme/endo-17/Endoderme_22.jpeg)
+![Neurulation précoce](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-17/Endoderme_22.jpeg)
 
 `,
   },
@@ -9137,7 +9137,7 @@ Les mains moites et froides peuvent indiquer un **déséquilibre thyroïdien** o
 Les frilosités peuvent être le signe d'un épuisement de l'**énergie ancestrale** des reins ou d'un problème d'**hypothyroïdie**. Les **cheveux gris** chez une personne jeune peuvent indiquer un déséquilibre dans l'**absorption** de certains **acides aminés**, ce qui nécessite une évaluation de l'intestin et du foie. De plus, la décoloration des **sourcils** peut être un signe d'**allergie alimentaire** ou d'autres problèmes.
 
 
-![Microvillosités apicales et mitochondries](/images/schemas/endoderme/endo-18/Endoderme_145.jpeg)
+![Microvillosités apicales et mitochondries](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-18/Endoderme_145.jpeg)
 
 `,
   },
@@ -9220,7 +9220,7 @@ Les **amygdales pharyngiennes** jouent un rôle crucial dans le système immunit
 
 Une bonne **mobilité de la symphyse sphéno-basilaire** est primordiale, car elle permet l'ouverture et la fermeture de petits canaux qui facilitent la reconnaissance immunitaire et les échanges.
 
-![Base crânienne vue sup](/images/schemas/endoderme/endo-21/Endoderme_25.jpeg)
+![Base crânienne vue sup](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-21/Endoderme_25.jpeg)
 
  Le traitement du système **craniosacré** dans son ensemble améliore également le système immunitaire.
 
@@ -9285,7 +9285,7 @@ Pour entrer en contact avec cette présence, il est essentiel d'accepter d'aller
 Il est nécessaire de créer cet espace, car sans lui, il n'y a pas de développement. Ce silence spacieux permet au tissu de retrouver sa capacité à se réorganiser. Le corps sait comment se réorganiser lorsqu'il est dans cet espace, car il peut utiliser son **potentiel** inné. En redonnant cette possibilité au système, nous lui permettons de retrouver son équilibre.
 
 
-![Embryogénèse, fœtus, mère](/images/schemas/endoderme/endo-22/Endoderme_30.jpeg)
+![Embryogénèse, fœtus, mère](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-22/Endoderme_30.jpeg)
 
 `,
   },
@@ -9304,59 +9304,59 @@ Il est nécessaire de créer cet espace, car sans lui, il n'y a pas de développ
 
 Le développement de l'**œsophage** est une articulation entre le **mental** et le **cœur**. L'**aorte** joue un rôle central dans ce système, tandis que la **cavité amniotique** exerce une pression externe. Entre ces deux éléments, le **cerveau** oriente le développement et le **cœur** sert de point d'appui.
 
-![Gastruation neurulation invagination](/images/schemas/endoderme/endo-23/Endoderme_56.jpeg)
+![Gastruation neurulation invagination](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_56.jpeg)
 
 
 
 Nous avons précédemment étudié l'influence de l'applicature du mouvement de flexion de l'embryon au niveau de la tête. À présent, nous allons examiner l'influence de cette applicature au niveau du **tronc**. Ce mouvement de flexion engendre divers phénomènes digestifs.
 
-![Circulation fœtale](/images/schemas/endoderme/endo-23/Endoderme_118.jpeg)
+![Circulation fœtale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_118.jpeg)
 
 
 
 Un des premiers phénomènes digestifs à étudier est le développement des **poumons**, que l'on peut considérer comme une glande. Ce mouvement de flexion implique la **cavité amniotique**, la **cavité vitelline** et le **cœur**. Nous observons l'apparition du **tube digestif antérieur** avec des diverticules.
 
-![Circulation foetale](/images/schemas/endoderme/endo-23/Endoderme_119.jpeg)
+![Circulation foetale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_119.jpeg)
 
  Progressivement, une zone pulmonaire et une zone digestive se dessinent.
 
 L'**œsophage** se développe à partir du segment de l'**intestin primitif**, situé entre le **diverticule respiratoire** et la dilatation de l'**estomac**. Il est constitué d'une partie **endoblastique** (tissu interne) et d'un **mésenchyme** (tissu conjonctif, musculaire et fibreux). L'épithélium forme la partie interne, tandis qu'autour se trouve un tissu qui contribue à sa structure.
 
-![Coupe œsophage](/images/schemas/endoderme/endo-23/Endoderme_76.jpeg)
+![Coupe œsophage](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_76.jpeg)
 
 
 
 L'**œsophage** présente une certaine adaptabilité à son environnement. Cependant, de nombreux problèmes au niveau de la jonction œsophagienne sont liés à la relation avec le **diaphragme**. Ces dysfonctionnements peuvent entraîner des problèmes **ORL**, tels que des otites, des rhinites, et même des reflux gastriques. Des éléments tels que la **pepsine** et l'**acide chlorhydrique** ont été retrouvés dans l'oreille moyenne de certains enfants, soulignant le lien entre reflux et problèmes ORL.
 
-![Hiato esofágico](/images/schemas/endoderme/endo-23/Endoderme_132.png)
+![Hiato esofágico](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_132.png)
 
 
 
 Il est important de noter que les reflux ne se manifestent pas toujours par des brûlures. En effet, certains reflux sont de type gazeux, impliquant des molécules de gaz qui remontent dans le système. Cela est souvent dû à une dysfonction au niveau de la jonction entre l'œsophage et l'estomac, au niveau diaphragmatique.
 
-![Diaphragme en vue antérieure](/images/schemas/endoderme/endo-23/Endoderme_146.png)
+![Diaphragme en vue antérieure](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_146.png)
 
 
 
 La **jonction diaphragmatique** est cruciale, car elle est en rapport avec les **fibres de Juvara** et l'espace **péri-œsophagien**, qui est adaptatif. Une dysfonction à ce niveau peut bloquer la qualité et l'ouverture du diaphragme. Steele a dit : "Si ton diaphragme n'est pas libre, la porte de ta vie n'est pas libre."
 
-![Œsophage abdominal](/images/schemas/endoderme/endo-23/Endoderme_75.jpeg)
+![Œsophage abdominal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_75.jpeg)
 
 
 
 Le **plexus vagal** est également très important. L'**œsophage**, la **trachée** et l'**aorte** sont interconnectés, formant une zone rythmique.
 
-![Arcs aortiques embryonnaires](/images/schemas/endoderme/endo-23/Endoderme_39.jpeg)
+![Arcs aortiques embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_39.jpeg)
 
  Cette zone est maintenue par un **fascia commun** et un **mésentaire postérieur**, qui s'insèrent sur la zone dorsale moyenne, autour de D3-D4.
 
-![Aorte, arc, intercostales](/images/schemas/endoderme/endo-23/Endoderme_71.png)
+![Aorte, arc, intercostales](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_71.png)
 
  
 
 L'**œsophage** est impliqué dans la déglutition, la **trachée** dans la respiration, et l'**aorte** dans le mouvement du cœur. Ces interactions se produisent des milliers de fois par jour, créant une dynamique rythmique complexe.
 
-![Innervation thoracique et abdominale](/images/schemas/endoderme/endo-23/Endoderme_73.png)
+![Innervation thoracique et abdominale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_73.png)
 
 
 
@@ -9380,68 +9380,68 @@ Enfin, nous allons aborder l'étude des **poumons**, en passant en revue les dif
 
 Le développement des **poumons** peut être considéré comme un phénomène complexe lié à la croissance embryonnaire. Ce processus commence par l'organisation de la **cavité amniotique** et la formation du **tube digestif antérieur**, qui inclut l'apparition de diverticules.
 
-![Développement pulmonaire embryonnaire](/images/schemas/endoderme/endo-24/Endoderme_78.png)
+![Développement pulmonaire embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_78.png)
 
  Au fur et à mesure de cette évolution, une zone pulmonaire se dessine, accompagnée de l'apparition des **bouches pulmonaires** et d'un champ d'aspiration.
 
 Au cours du développement, plusieurs mouvements se produisent. Après un mouvement de flexion, l'embryon subit un **allongement** et une **étiration**, suivi d'un mouvement de redressement. Ce processus est marqué par un enroulement qui se produit entre le 18ème et le 22ème jour, avec la fermeture du **tube neural** et des neuro-ports antérieurs et postérieurs autour du 28ème jour.
 
-![Neurulation (embryologie)](/images/schemas/endoderme/endo-24/Endoderme_11.jpeg)
+![Neurulation (embryologie)](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_11.jpeg)
 
 
 
 Vers le 26ème jour, un **diverticule laryngotrachéal** apparaît, ainsi que les ébauches bronchiques. Ce développement est lié à un processus biodynamique d'aspiration, où toutes les glandes se forment à partir d'un tissu épithélial, qu'il soit **endodermique** ou **ectodermique**. Les poumons, issus d'un tissu de type digestif, commencent à se développer en formant les **bronches souches** à partir de la trachée.
 
-![Arbre bronchique embryonnaire (6e semaine)](/images/schemas/endoderme/endo-24/Endoderme_77.png)
+![Arbre bronchique embryonnaire (6e semaine)](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_77.png)
 
 
 
 Il est important de noter que ce développement est une réponse génétique, mais l'environnement joue un rôle crucial en stimulant le système. Par exemple, une graine placée dans un environnement inapproprié ne germera pas, tandis qu'une graine dans un environnement adéquat s'épanouira.
 
-![Schéma explicatif](/images/schemas/endoderme/endo-24/Endoderme_14.jpeg)
+![Schéma explicatif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_14.jpeg)
 
 
 
 Autour des poumons, un **péritoine**, une **plèvre viscérale** et une **plèvre pariétale** se forment, enveloppant le tissu pulmonaire. Ce tissu mésodermique, qui est également extra-embryonnaire, joue un rôle essentiel dans le champ d'aspiration dès le début du développement.
 
-![Coelome embryonnaire](/images/schemas/endoderme/endo-24/Endoderme_111.jpeg)
+![Coelome embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_111.jpeg)
 
 
 
 Le **diaphragme** prend son origine neurologique au niveau de la troisième cervicale. Le nerf phrénique, initialement très haut, s'allonge avec la croissance globale du système. Des douleurs de type pariétal peuvent se répercuter dans les membres supérieurs, en lien avec cette relation phrénique, ce qui peut être interprété comme des douleurs référées d'origine sous-diaphragmatique.
 
-![Diaphragme humain](/images/schemas/endoderme/endo-24/Endoderme_74.jpeg)
+![Diaphragme humain](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_74.jpeg)
 
 
 
 La formation de la colonne vertébrale et la densification des tissus sont également des éléments clés dans ce processus. La **somatopleure** et la **splancnopleure** jouent un rôle dans l'intégration des tissus, contribuant à la formation du péritoine et de la plèvre.
 
-![Embryon humain, organes internes](/images/schemas/endoderme/endo-24/Endoderme_82.jpeg)
+![Embryon humain, organes internes](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_82.jpeg)
 
 
 
 Le **hile pulmonaire** est un espace crucial où se rencontrent les tissus de la plèvre viscérale et pariétale. Cet espace est à la fois aérien, fluidique, lymphatique et neurologique, permettant des échanges gazeux sous pression partielle. Lors de l'inspiration, les poumons effectuent un mouvement de rotation et d'allongement, facilitant l'échange de gaz.
 
-![Lobe pulmonaire, bronches](/images/schemas/endoderme/endo-24/Endoderme_85.jpeg)
+![Lobe pulmonaire, bronches](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_85.jpeg)
 
 
 
-![Coupe frontale poumons](/images/schemas/endoderme/endo-24/Endoderme_91.png)
+![Coupe frontale poumons](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_91.png)
 
 
 
-![Anatomie Pulmonaire](/images/schemas/endoderme/endo-24/Endoderme_80.png)
+![Anatomie Pulmonaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_80.png)
 
 
 
 Il est essentiel de comprendre que les poumons reposent sur un volume résiduel d'air, permettant des mouvements de bascule lors de l'inspiration. La liberté de mouvement des côtes et du fascia endothoracique est primordiale pour optimiser la fonction pulmonaire. Travailler sur le poumon dans sa phase d'aspiration permet de restaurer son mouvement embryonnaire et d'améliorer son efficacité respiratoire.
 
-![Dôme pleural et ligaments](/images/schemas/endoderme/endo-24/Endoderme_90.png)
+![Dôme pleural et ligaments](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_90.png)
 
 
 
 
-![Embryon 6 semaines](/images/schemas/endoderme/endo-24/Endoderme_81.jpeg)
+![Embryon 6 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-24/Endoderme_81.jpeg)
 
 `,
   },
@@ -9473,11 +9473,11 @@ Il est également crucial de dégager les poumons par rapport à leurs points d'
 La production de liquide amniotique commence dès la **cinquième semaine** de grossesse et se développe jusqu'à la **38e semaine**, avec l'apparition du surfactant autour de la **25e semaine**. Les pathologies pulmonaires, telles que la bronchite ou la bronchiolite, peuvent être des manifestations cherchant à résoudre des problèmes non exprimés durant le stade embryonnaire, se manifestant sous forme de **liquide**. On peut dire que l'on "pleure dans les poumons".
 
 
-![Lobe supérieur oblique](/images/schemas/endoderme/endo-26/Endoderme_87.jpeg)
+![Lobe supérieur oblique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-26/Endoderme_87.jpeg)
 
 
 
-![Cystic lung disease](/images/schemas/endoderme/endo-26/Endoderme_88.jpeg)
+![Cystic lung disease](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-26/Endoderme_88.jpeg)
 
 `,
   },
@@ -9554,7 +9554,7 @@ Le péritone répond à ce développement et en est l'expression. On observe la 
 
 L'utérus est une concentration de péritone pariétal, où les trompes se condensent et forment une ouverture vers la cavité péritonienne. La croissance de l'ensemble est significative, et tout s'organise et se délimite. Pour mieux comprendre, une coupe peut être réalisée.
 
-![Coupe transversale embryon](/images/schemas/endoderme/endo-29/Endoderme_100.jpeg)
+![Coupe transversale embryon](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-29/Endoderme_100.jpeg)
 
 
 
@@ -9562,13 +9562,13 @@ En tournant cette coupe vers nous, on observe la cavité amniotique et la cavit�
 
 Au fur et à mesure que le tube neural se ferme, les aortes se rapprochent, car elles ne grandissent pas à la même vitesse.
 
-![Développement coelome embryonnaire](/images/schemas/endoderme/endo-29/Endoderme_102.jpeg)
+![Développement coelome embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-29/Endoderme_102.jpeg)
 
  Ce rapprochement réorganise l'axe longitudinal de l'embryon, créant un espace entre la **somatopleure** et la **splanchnopleure**. En même temps, le tube digestif se développe, et le liquide commence à s'intégrer dans un espace défini. 
 
 Il est crucial de visualiser ce processus de croissance. La cavité amniotique enveloppe progressivement l'espace, comme un ballon de baudruche. Ce mouvement, orchestré par les aortes et la notocorde, permet l'intégration du cellulome externe en un cellulome interne.
 
-![Pliage embryonnaire latéral](/images/schemas/endoderme/endo-29/Endoderme_103.jpeg)
+![Pliage embryonnaire latéral](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-29/Endoderme_103.jpeg)
 
  
 
@@ -9579,7 +9579,7 @@ Les gènes présents dans la flore interagissent avec le cerveau et influencent 
 La première image de la cavité péritonienne montre un péritone qui a des fonctions **métaboliques**, **protectrices**, et **mécaniques**. Il participe à la motricité et à la mobilité, étant intégré par la motilité. Son origine est le **mésoderme**, ce qui lui confère des fonctions de soutien et de mobilité. Les cellules **mésotéliales** spécialisées au niveau du mésoderme permettent au péritone de capter des informations inter- et intra-péritoniales. Cette membrane séreuse est très large, mesurant environ 2 mètres carrés.
 
 
-![Embryon, cœlome, amnios](/images/schemas/endoderme/endo-29/Endoderme_101.jpeg)
+![Embryon, cœlome, amnios](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-29/Endoderme_101.jpeg)
 
 `,
   },
@@ -9629,13 +9629,13 @@ Nous allons étudier la **mise en place** du **tractus gastro-intestinal**, de l
 
 Commençons par comprendre le développement de l'estomac en relation avec le **foie**, la **rate** et le **pancréas**. Il est essentiel de saisir la phase initiale, que l'on appelle la **délimitation de l'embryon**. Nous avons observé l'intégration du **cellome externe** en un **cellome interne**. À ce stade, nous pouvons voir l'intégration de la cavité péritonéale, tant dans le plan sagittal que transversal.
 
-![Feuilles embryonnaires](/images/schemas/endoderme/endo-31/Endoderme_2.png)
+![Feuilles embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-31/Endoderme_2.png)
 
  
 
 N'oubliez pas la **synchronicité** du développement. La croissance est le grand moteur de ce processus, avec la formation de notre corps dans un ordre primitif.
 
-![Pliage embryonnaire latéral](/images/schemas/endoderme/endo-31/Endoderme_32.jpeg)
+![Pliage embryonnaire latéral](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-31/Endoderme_32.jpeg)
 
  La croissance globale de l'embryon, son enroulement et son retour vers la ligne médiane sont des mouvements tridimensionnels, et même à la **cinquième dimension**. La quatrième dimension représente le temps, tandis que la cinquième dimension fait référence à la composante **énergétique** et **électrique** qui sous-tend tout le système.
 
@@ -9649,34 +9649,34 @@ Le péritoine entoure un organe, ce qui est appelé un **péritoine viscéral**.
 
 Le péritoine à la partie postérieure est appelé **péritoine pariétal postérieur**, tandis qu'à la partie latérale, il est désigné comme **péritoine pariétal antérieur**. Si un péritoine relie un organe à un autre organe, cela s'appelle un **épiplomb**. Par exemple, le petit épiplomb relie le foie à l'estomac, et il existe également un épiplomb reliant la rate à l'estomac.
 
-![Projection estomac antérieure](/images/schemas/endoderme/endo-31/Endoderme_165.png)
+![Projection estomac antérieure](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-31/Endoderme_165.png)
 
 
 
 Un épiplomb ou un méso est toujours une double lame qui contient un vaisseau au milieu. Dans le mouvement développemental, des replis et une réorganisation se produisent, permettant à l'épiplomb, par exemple le méso, de se déplacer sur le côté. Cela forme un **fascia d'accolement**, qui peut être réséqué par les chirurgiens sans problème, car il n'y a pas de vaisseau. Un méso, en revanche, contient toujours un vaisseau, tandis qu'un ligament ou un fascia ne contient pas nécessairement de vaisseau.
 
-![Anatomie abdominale supérieure](/images/schemas/endoderme/endo-31/Endoderme_169.png)
+![Anatomie abdominale supérieure](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-31/Endoderme_169.png)
 
 
 
 Au niveau du péritoine, nous avons le **mésoderme**, la **somatopleure**, la **splanchnopleure**, ainsi que le **mésogastrome** ventral et dorsal. Nous avons également des méso, des fascia, des **omentums** (épiplombs) et des ligaments. Tout cela constitue le péritoine, organisé dans la cavité péritonéale.
 
-![Embryon humain, organes](/images/schemas/endoderme/endo-31/Endoderme_200.png)
+![Embryon humain, organes](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-31/Endoderme_200.png)
 
  
 
 L'intestin commence à grandir, le foie se développe, l'estomac veut s'exprimer et les poumons poussent. Tout cela doit trouver sa place.
 
 
-![Pliage embryonnaire latéral/crânio-caudal](/images/schemas/endoderme/endo-31/Endoderme_94.jpeg)
+![Pliage embryonnaire latéral/crânio-caudal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-31/Endoderme_94.jpeg)
 
 
 
-![Diaphragme humain](/images/schemas/endoderme/endo-31/Endoderme_96.jpeg)
+![Diaphragme humain](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-31/Endoderme_96.jpeg)
 
 
 
-![Pliement embryonnaire latéral](/images/schemas/endoderme/endo-31/Endoderme_104.jpeg)
+![Pliement embryonnaire latéral](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-31/Endoderme_104.jpeg)
 
 `,
   },
@@ -9760,11 +9760,11 @@ Une **transmutation** douce se produit, et il est possible de ressentir une odeu
 Nous inscrivons ces corrections dans le cerveau du patient, en accédant au **système limbique** pour qu'il retienne ce moment comme une **éternité**.
 
 
-![Vascularisation artérielle estomac](/images/schemas/endoderme/endo-33/Endoderme_123.jpeg)
+![Vascularisation artérielle estomac](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-33/Endoderme_123.jpeg)
 
 
 
-![Anastomoses porto-caves](/images/schemas/endoderme/endo-33/Endoderme_131.jpeg)
+![Anastomoses porto-caves](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-33/Endoderme_131.jpeg)
 
 `,
   },
@@ -9810,7 +9810,7 @@ La phase de développement du duodénum est caractérisée par une **rotation** 
 
 Cette phase de développement **duodénal** est caractérisée par une **rotation** et une **organisation** du cadre duodéno, de l'intestin grêle et du colon. Nous allons explorer cette dynamique en relation avec le duodénum.
 
-![Duodénum et mésentère](/images/schemas/endoderme/endo-35/Endoderme_186.jpeg)
+![Duodénum et mésentère](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-35/Endoderme_186.jpeg)
 
 
 
@@ -9820,7 +9820,7 @@ Au cours de cette phase, le duodénum subit une **rotation de 90 degrés** de la
 
 Le tissu qui se développe autour de cette dynamique est le **petit épiplon**, qui organise et rééquilibre le sphincter pylorique. L'ensemble de ce mouvement crée les **fonctions sphinctériennes**. En parallèle, deux ébauches pancréatiques se forment, une ventrale et une dorsale, suivant la même phase de rotation.
 
-![Fascias d'accolement duodénum](/images/schemas/endoderme/endo-35/Endoderme_137.jpeg)
+![Fascias d'accolement duodénum](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-35/Endoderme_137.jpeg)
 
 
 
@@ -9840,23 +9840,23 @@ Le duodénum est un lieu concentré d'informations métaboliques, où la malabso
 
 Le sphincter de D, en relation avec le développement du foie et du pancréas, est un point fixe essentiel. La motilité du foie est cruciale pour le bon fonctionnement du système digestif. Une déstabilisation du cadre duodénal peut également perturber la fertilité en affectant les artères ovariennes et spermatique.
 
-![Ampoule de Vater](/images/schemas/endoderme/endo-35/Endoderme_139.jpeg)
+![Ampoule de Vater](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-35/Endoderme_139.jpeg)
 
 
 
 Le muscle de Tretz, en tant que carrefour vasculaire, influence le débit sanguin intra-péritonéal et sus-mésocolique. Les viscérospasmes peuvent avoir des répercussions sur la circulation sanguine, affectant ainsi l'état métabolique et digestif.
 
-![Terminaison canaux bilio-pancréatiques](/images/schemas/endoderme/endo-35/Endoderme_140.jpeg)
+![Terminaison canaux bilio-pancréatiques](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-35/Endoderme_140.jpeg)
 
 
 
 Le traitement des déséquilibres au niveau du duodénum nécessite une approche holistique, prenant en compte les interactions entre les différents systèmes. La compréhension de l'embryologie, de l'anatomie et de la physiologie est essentielle pour appréhender les liens entre le corps, l'esprit et la santé globale.
 
-![Vascularisation duodénale et pancréatique](/images/schemas/endoderme/endo-35/Endoderme_143.jpeg)
+![Vascularisation duodénale et pancréatique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-35/Endoderme_143.jpeg)
 
 
 
-![Duodénum rapports postérieurs](/images/schemas/endoderme/endo-35/Endoderme_142.jpeg)
+![Duodénum rapports postérieurs](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-35/Endoderme_142.jpeg)
 
 
 `,
@@ -9901,7 +9901,7 @@ Le développement du **foie** s'inscrit dans un contexte **endodermique**. La pr
 
 L'intestin se divise en trois parties primitives : **intestin supérieur**, **intestin moyen** et **intestin inférieur**. La jonction entre l'intestin supérieur et le début de l'intestin moyen est cruciale pour le développement de la région du foie. Ces cellules endodermiques jouent un rôle clé dans ce processus.
 
-![Hépatogenèse embryonnaire régulée](/images/schemas/endoderme/endo-37/Endoderme_147.png)
+![Hépatogenèse embryonnaire régulée](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-37/Endoderme_147.png)
 
 
 
@@ -9909,49 +9909,49 @@ Sur un plan dynamique, l'influence du développement du **cerveau** est détermi
 
 Le développement du cerveau induit un mouvement de flexion de l'embryon vers l'avant, soutenu par un point d'appui cardiaque. Ce mouvement entraîne une congestion dans une zone spécifique, qui sera l'ébauche du foie. Ainsi, le développement du cerveau, du cœur et du diaphragme est interconnecté et essentiel à la formation du foie.
 
-![Embryon et foie fœtal](/images/schemas/endoderme/endo-37/Endoderme_153.jpeg)
+![Embryon et foie fœtal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-37/Endoderme_153.jpeg)
 
 
 
 Le foie émerge comme une **expansion** du tube digestif fragmenté, constitué d'un réseau de **canaux biliaires**. Il représente un système exocrine qui sécrète des substances dans la lumière intestinale.
 
-![Embryon 28 jours système veineux](/images/schemas/endoderme/endo-37/Endoderme_155.jpeg)
+![Embryon 28 jours système veineux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-37/Endoderme_155.jpeg)
 
  La structure **mésodermique** du foie, comprenant la vascularisation, joue un rôle fondamental dans son orientation et son développement.
 
 Il est important de retenir que le développement du foie est un des **fulcrums** principaux pour l'organisation de tout le tube digestif.
 
-![Circulation embryonnaire 8 semaines](/images/schemas/endoderme/endo-37/Endoderme_156.jpeg)
+![Circulation embryonnaire 8 semaines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-37/Endoderme_156.jpeg)
 
  Ce processus est orchestré par le cœur, lui-même influencé par le cerveau en développement. 
 
 Le foie se développe à partir des produits de désassimilation, ce qui lui confère sa fonction de **nettoyage**. Il est souvent décrit comme l'**usine d'épuration** du corps, travaillant en synergie avec les reins pour l'élimination des déchets.
 
-![Embryon, circulation veineuse](/images/schemas/endoderme/endo-37/Endoderme_157.jpeg)
+![Embryon, circulation veineuse](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-37/Endoderme_157.jpeg)
 
 
 
 La structure vasculaire du foie est complexe, comprenant les **veines vitellines** et les **veines ombilicales**. Ces vaisseaux forment des anastomoses qui établissent des liens hépatiques.
 
-![Développement vasculaire embryonnaire](/images/schemas/endoderme/endo-37/Endoderme_159.png)
+![Développement vasculaire embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-37/Endoderme_159.png)
 
  Le foie contient également la structure viteline endothéliale de la vésicule viteline primitive.
 
 Le foie, en tant que point d'appui central, joue un rôle crucial dans l'équilibre embryologique.
 
-![Système porte embryonnaire](/images/schemas/endoderme/endo-37/Endoderme_160.png)
+![Système porte embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-37/Endoderme_160.png)
 
  Il est en relation avec le **péricarde**, le **diaphragme** et le **ligament falciforme**. Ces structures interagissent pour créer une **synchronicité** dans le développement embryonnaire.
 
 Le développement hépatique est synchronisé avec d'autres structures, telles que le **cerveau** et le **cervelet**. Les tensions et les mouvements dans ces espaces de développement communs influencent la santé et le fonctionnement du foie.
 
-![Circulation hépatique](/images/schemas/endoderme/endo-37/Endoderme_166.jpeg)
+![Circulation hépatique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-37/Endoderme_166.jpeg)
 
 
 
 Enfin, il est essentiel de noter que pendant la phase digestive, le foie reçoit une grande quantité de **sang veineux** et peu de **sang artériel**. En revanche, pendant la nuit, la circulation s'inverse, permettant au foie de se régénérer sur le plan cellulaire.
 
-![Système biliaire intrahépatique](/images/schemas/endoderme/endo-37/Endoderme_167.png)
+![Système biliaire intrahépatique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-37/Endoderme_167.png)
 
 
 `,
@@ -9984,11 +9984,11 @@ Ce processus est comparable à un mouvement de **tai chi**, se déroulant simult
 Le développement anti-horaire du **côlon** et l'expression des **membres supérieurs** se font également en synchronisation. Lors de la flexion du cerveau, il est intéressant d'observer les interactions au niveau du cœur, l'ébauche des yeux, la configuration du visage, du palais et des poumons, et d'évaluer où l'on en est dans ce processus.
 
 
-![Irrigation estomac/pancréas/rate](/images/schemas/endoderme/endo-38/Endoderme_125.png)
+![Irrigation estomac/pancréas/rate](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-38/Endoderme_125.png)
 
 
 
-![Vaisseaux duodénopancréatiques](/images/schemas/endoderme/endo-38/Endoderme_141.jpeg)
+![Vaisseaux duodénopancréatiques](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-38/Endoderme_141.jpeg)
 
 `,
   },
@@ -10007,7 +10007,7 @@ Le développement anti-horaire du **côlon** et l'expression des **membres supé
 
 Le **cordon ombilical** est initialement volumineux, mais il va se réduire au fil du développement. Au départ, l'**intestin** se développe en dehors de la cavité péritonéale, en raison d'un **apport trophique** important, principalement fourni par l'**artère mésentérique supérieure**. Cette artère, qui se divise à partir de l'aorte, constitue l'axe de la rotation intestinale.
 
-![Rotation anse intestinale](/images/schemas/endoderme/endo-39/Endoderme_172.png)
+![Rotation anse intestinale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_172.png)
 
 
 
@@ -10017,7 +10017,7 @@ On constate une **synchronicité** entre l'estomac et la rotation de l'intestin.
 
 Sur le plan vertébral, l'artère mésentérique supérieure correspond à l'axe de **D12-L1**, qui est lié aux zones d'insertion des piliers diaphragmatiques. Ce point d'appui est essentiel pour le corps et influence la dynamique de croissance de l'intestin.
 
-![Troncs artériels embryonnaires](/images/schemas/endoderme/endo-39/Endoderme_184.jpeg)
+![Troncs artériels embryonnaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_184.jpeg)
 
 
 
@@ -10027,13 +10027,13 @@ En observant la dynamique de l'intestin, on peut identifier plusieurs points d'a
 
 Le **canal ophalo-mésentérique**, qui est l'axe de rotation, se termine par un reliquat appelé le **diverticule de Meckel**, situé entre l'axe pubien et le cæcum. Le développement du cerveau est également dépendant du système vasculaire digestif. Si l'apport trophique est insuffisant, cela peut entraîner des complications.
 
-![Circulation villosités intestinales](/images/schemas/endoderme/endo-39/Endoderme_122.jpeg)
+![Circulation villosités intestinales](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_122.jpeg)
 
 
 
 La réintégration de l'intestin se produit au cours du développement, notamment autour du troisième mois de grossesse, lorsque le cordon ombilical commence à se former.
 
-![Pli ventral/latéral embryonnaire](/images/schemas/endoderme/endo-39/Endoderme_133.jpeg)
+![Pli ventral/latéral embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_133.jpeg)
 
  Ce processus est crucial pour établir les connexions avec la mère, notamment à travers la **cavité amniotique**, qui permet des échanges électrolytiques et hormonaux.
 
@@ -10043,36 +10043,36 @@ Le **colon descendant** est lié à des problématiques familiales et à la rech
 
 Le traitement des troubles intestinaux doit prendre en compte la dynamique péritonéale et les relations entre les différents organes.
 
-![Tourbillon embryologique](/images/schemas/endoderme/endo-39/Endoderme_196.jpeg)
+![Tourbillon embryologique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_196.jpeg)
 
  La stabilisation du cadre péritonéal peut aider à résoudre de nombreux problèmes de santé, notamment les infections et les inflammations.
 
 
-![Appareil digestif embryonnaire](/images/schemas/endoderme/endo-39/Endoderme_174.jpeg)
+![Appareil digestif embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_174.jpeg)
 
 
 
-![Intestin moyen, rotation](/images/schemas/endoderme/endo-39/Endoderme_175.jpeg)
+![Intestin moyen, rotation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_175.jpeg)
 
 
 
-![Intestin grêle vascularisé](/images/schemas/endoderme/endo-39/Endoderme_176.jpeg)
+![Intestin grêle vascularisé](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_176.jpeg)
 
 
 
-![Amniocentèse, Embryon, Utérus](/images/schemas/endoderme/endo-39/Endoderme_135.jpeg)
+![Amniocentèse, Embryon, Utérus](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_135.jpeg)
 
 
 
-![Appendice, caecum, variations](/images/schemas/endoderme/endo-39/Endoderme_187.jpeg)
+![Appendice, caecum, variations](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_187.jpeg)
 
 
 
-![Position de l'appendice](/images/schemas/endoderme/endo-39/Endoderme_188.jpeg)
+![Position de l'appendice](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_188.jpeg)
 
 
 
-![Vascularisation appendice caecum](/images/schemas/endoderme/endo-39/Endoderme_189.jpeg)
+![Vascularisation appendice caecum](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-39/Endoderme_189.jpeg)
 
 `,
   },
@@ -10108,7 +10108,7 @@ Le **côlon transverse** représente mes **certitudes** dans la vie. Si ces cert
 Enfin, en redescendant, j'aborde la **recherche de mon indépendance**, un processus par lequel je dois être totalement libre de mes **parents**.
 
 
-![Tube digestif embryonnaire](/images/schemas/endoderme/endo-40/Endoderme_173.jpeg)
+![Tube digestif embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-40/Endoderme_173.jpeg)
 
 `,
   },
@@ -10135,7 +10135,7 @@ Dans le cas d'une **hystérectomie**, la dynamique corporelle change, et le pati
 
 Le praticien peut alors aborder des zones spécifiques comme l'hépatique et le sigmoïdien, permettant une détente complète.
 
-![Anatomie du côlon](/images/schemas/endoderme/endo-41/Endoderme_183.jpeg)
+![Anatomie du côlon](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-41/Endoderme_183.jpeg)
 
 
 `,
@@ -10158,7 +10158,7 @@ Nous sommes finalement une somme d'**agrégats**, une composition **momentanée*
 
 Cette notion d'**interprétation** est cruciale. Comment percevons-nous ce qui nous entoure ? Le jeu qui se construit autour de nous est également une interprétation des phénomènes. Nous sommes une **phénoménologie**, et il est peut-être temps de changer notre mode de perception, d'aspirer à un mirage plus vaste, aussi grand que notre planète. Si nous prenons conscience que nous sommes liés à la Terre, nous pourrions en prendre davantage soin.
 
-![L'image un concept général, et ce paragraphe, traitant de la conscience de notre lien avec la Terre, préfigure l'introduction et la nécessité d'une 'nouvelle vision' qui suivra](/images/schemas/oeil/oeil-1/Oeil_2.png)
+![L'image un concept général, et ce paragraphe, traitant de la conscience de notre lien avec la Terre, préfigure l'introduction et la nécessité d'une 'nouvelle vision' qui suivra](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-1/Oeil_2.png)
 
 
 
@@ -10166,7 +10166,7 @@ Nous vivons dans une société axée sur la **croissance**, souvent perçue comm
 
 Les théories d'émergence nous enseignent que tout émerge puis s'effondre. La société actuelle est à un point de bascule, et en tant que **thérapeutes**, nous avons un rôle à jouer. Nous pouvons soulager la souffrance de nos patients tout en les aidant à s'ouvrir à de nouvelles perspectives.
 
-![Probablement un aspect des 'théories d'émergence' ou un concept visuel lié à la transition et au rôle des thérapeutes. La phrase précédente conclut cette idée générale](/images/schemas/oeil/oeil-1/Oeil_3.jpeg)
+![Probablement un aspect des 'théories d'émergence' ou un concept visuel lié à la transition et au rôle des thérapeutes. La phrase précédente conclut cette idée générale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-1/Oeil_3.jpeg)
 
 
 
@@ -10178,7 +10178,7 @@ Andreas Messie a identifié trois éléments essentiels pour opérer ce tournant
 
 3. **Travail spirituel** : Selon Iona Messie, sans ce travail, nous ne pourrons pas effectuer ce changement.
 
-![Cette image pourrait résumer ou introduire visuellement les aspects liés au 'travail spirituel' et au 'changement' mentionnés dans le paragraphe précédent par Iona Messie, avant d'aborder des concepts plus concrets comme la conscience bienveillante](/images/schemas/oeil/oeil-1/Oeil_4.jpeg)
+![Cette image pourrait résumer ou introduire visuellement les aspects liés au 'travail spirituel' et au 'changement' mentionnés dans le paragraphe précédent par Iona Messie, avant d'aborder des concepts plus concrets comme la conscience bienveillante](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-1/Oeil_4.jpeg)
 
  
 
@@ -10207,7 +10207,7 @@ L'**œil** est une structure fascinante qui joue un rôle crucial dans notre per
 
 L'importance de l'œil ne se limite pas à la vision. Il influence directement notre **centre de gravité**, et ce dernier, à son tour, affecte l'œil. En ce sens, l'œil agit comme un **phare** pour tous les **fascias** du corps.
 
-![Concept de l'œil comme 'phare des fascias' et son influence sur le centre de gravité, tel que décrit dans le texte](/images/schemas/oeil/oeil-2/Oeil_1.png)
+![Concept de l'œil comme 'phare des fascias' et son influence sur le centre de gravité, tel que décrit dans le texte](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-2/Oeil_1.png)
 
  Les tensions oculaires que nous observons en consultation sont souvent liées au **foie**. Par exemple, un œil rouge ou jaune peut être une expression de problèmes hépatiques.
 
@@ -10242,31 +10242,31 @@ En tant qu'ostéopathe, il est crucial de recevoir ces informations environnemen
 
 L'œil présente une **ressemblance** fascinante avec sa formation au huitième jour du développement embryonnaire, moment où apparaît une petite cavité appelée **cavité amniotique**. Cette cavité est fondamentale pour le développement de l'œil, qui provient du **cerveau**, plus précisément du **diéencéphale**, une expansion du troisième ventricule.
 
-![Schéma relatif à l'origine de l'oeil à partir du diencéphale, en lien avec le troisième ventricule](/images/schemas/oeil/oeil-3/Oeil_1.png)
+![Schéma relatif à l'origine de l'oeil à partir du diencéphale, en lien avec le troisième ventricule](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-3/Oeil_1.png)
 
 
 
 Au cours de ce développement, le système neuronal reçoit du **liquide amniotique primitif**, qui va former le **liquide céphalorachidien (LCR)**. Ce premier LCR, dérivé du liquide amniotique, va être enfermé dans le tube neural.
 
-![Schéma de l'apparition de la cavité amniotique, qui est mentionnée juste après cette phrase dans le résumé](/images/schemas/oeil/oeil-3/Oeil_2.jpeg)
+![Schéma de l'apparition de la cavité amniotique, qui est mentionnée juste après cette phrase dans le résumé](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-3/Oeil_2.jpeg)
 
  Par la suite, ce tube s'ouvre vers l'avant, formant des **vésicules primitives**.
 
 Le vestige de cette cavité amniotique se retrouve dans ce qu'on appelle la **poche des os** ou **zone B**, où se trouve du liquide céphalo-rachidien.
 
-![Vestige de la cavité amniotique (zone B)](/images/schemas/oeil/oeil-3/Oeil_5.png)
+![Vestige de la cavité amniotique (zone B)](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-3/Oeil_5.png)
 
  Il est intéressant de noter que le liquide à l'intérieur et à l'extérieur de l'embryon est le même. L'œil, en tant que membrane, cherche constamment à équilibrer cette zone B.
 
 La zone A est représentée par l'axe central du corps physique, tandis que la cavité amniotique commence à se former au huitième jour, marquant l'entrée dans la **muqueuse**. À ce stade, une perte de liquide centrale crée une petite cavité, et l'**ectoderme**, appelé à ce stade **épiblaste**, commence à se mettre en place.
 
-![Processus d'implantation : formation de la cavité](/images/schemas/oeil/oeil-3/Oeil_3.jpeg)
+![Processus d'implantation : formation de la cavité](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-3/Oeil_3.jpeg)
 
  Cela constitue déjà la structure subtile qui formera l'œil et le cerveau.
 
 La cavité amniotique, qui entoure l'embryon pendant neuf mois, devient ensuite un espace vaporeux.
 
-![Cavité amniotique](/images/schemas/oeil/oeil-3/Oeil_4.jpeg)
+![Cavité amniotique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-3/Oeil_4.jpeg)
 
  Cet espace doit être en équilibre avec le liquide intérieur. Des déséquilibres peuvent survenir, notamment en cas d'accidents, affectant la position de l'œil. L'œil représente ainsi un équilibre entre la profondeur du liquide du système nerveux (LCR) et l'espace environnant.
 
@@ -10301,25 +10301,25 @@ Le mouvement de perméation, un grand mouvement métabolique, se produit autour 
 
 Ce mouvement provoque un changement de forme de la notochorde, qui prend une forme en S. Cette croissance différentielle est liée à la polarité. L'axe primitif organise le tissu épithélial, qui réagit par des phénomènes d'induction et d'inhibition en relation avec la notochorde.
 
-![Croissance différentielle](/images/schemas/oeil/oeil-4/Oeil_2.jpeg)
+![Croissance différentielle](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-4/Oeil_2.jpeg)
 
 
 
 La plaque neurale évolue pour devenir une **gouttière neurale**, qui enferme du liquide céphalo-rachidien, ou plutôt du liquide amniotique primitif.
 
-![Liquide amniotique primitif](/images/schemas/oeil/oeil-4/Oeil_5.jpeg)
+![Liquide amniotique primitif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-4/Oeil_5.jpeg)
 
 
 
-![Formation de la gouttière neurale](/images/schemas/oeil/oeil-4/Oeil_4.jpeg)
+![Formation de la gouttière neurale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-4/Oeil_4.jpeg)
 
 
 
-![Transformation de la plaque neurale en gouttière neurale](/images/schemas/oeil/oeil-4/Oeil_3.jpeg)
+![Transformation de la plaque neurale en gouttière neurale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-4/Oeil_3.jpeg)
 
  La fermeture de cette gouttière forme un **tube neural**. Les **crêtes neurales**, considérées comme un quatrième tissu embryonnaire, jouent un rôle crucial dans le développement de l'œil.
 
-![Fermeture pour former le tube neural et la formation des crêtes neurales](/images/schemas/oeil/oeil-4/Oeil_6.png)
+![Fermeture pour former le tube neural et la formation des crêtes neurales](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-4/Oeil_6.png)
 
 
 
@@ -10400,7 +10400,7 @@ Il est important de considérer comment l'œil interagit dans l'espace. La grand
 
 Dans cette section, nous allons explorer la **formation de la placode optique** à partir de l'ectoblast de surface et du tube neural.
 
-![Tube neural et les ébauches optiques qui se forment](/images/schemas/oeil/oeil-7/Oeil_2.png)
+![Tube neural et les ébauches optiques qui se forment](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-7/Oeil_2.png)
 
 
 
@@ -10430,7 +10430,7 @@ Le liquide présent au-dessus de la placode optique est le même que celui à l'
 
 Les petites vésicules latérales se gonflent et, grâce à un contact moléculaire **justacrine**, le tissu épithélial se modifie pour former la **placode optique**. Cette placode devient un **fulcrum**, donnant l'impression de s'enfoncer sur le dessin.
 
-![Placode optique qui s'épaissit et se comporte comme un fulcrum](/images/schemas/oeil/oeil-7/Oeil_5.png)
+![Placode optique qui s'épaissit et se comporte comme un fulcrum](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-7/Oeil_5.png)
 
  Cela est dû à la croissance de l'extérieur, qui crée un point d'appui.
 
@@ -10453,7 +10453,7 @@ Il est important de noter qu'il existe une **fente colombomique** dans laquelle 
 
 L'évolution de l'œil commence par l'observation d'un **espace** entre les différentes structures. L'**épiblaste** s'attache et change de forme, tandis qu'à l'intérieur, on retrouve du **liquide céphalorachidien (LCR)** et du **liquide amniotique**, qui ont une origine commune.
 
-![Premiers stades du développement de l'œil](/images/schemas/oeil/oeil-8/Oeil_1.png)
+![Premiers stades du développement de l'œil](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-8/Oeil_1.png)
 
 
 
@@ -10463,13 +10463,13 @@ La fente colombique permet le passage des **vaisseaux hyéloïdiens**, qui se tr
 
 Les anatomistes et embryologistes considèrent que la rétine est une extension du **cerveau**, influencée par le liquide céphalo-rachidien et les informations exudées sur un plan intercellulaire.
 
-![Formation de la vésicule optique et différenciation de la rétine](/images/schemas/oeil/oeil-8/Oeil_2.png)
+![Formation de la vésicule optique et différenciation de la rétine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-8/Oeil_2.png)
 
  La **vésicule cristalline**, qui donnera le **cristallin**, provient également de l'épiblaste de surface. Cette rencontre se fait par communication juxtacrine.
 
 Le cristallin se forme à l'intérieur, tandis que l'épithélium de surface reste en place, suivant un schéma similaire à celui de la formation du **tube neural**.
 
-![Développement et invagination du cristallin](/images/schemas/oeil/oeil-8/Oeil_3.png)
+![Développement et invagination du cristallin](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-8/Oeil_3.png)
 
  La peau, en surface, se divise en différentes couches. Le tissu cristallin constitue la première couche de l'œil. 
 
@@ -10494,7 +10494,7 @@ L'**œil** est constitué de plusieurs couches, souvent décrites comme des chau
 
 La première couche, appelée **sclérotique**, est en continuité avec la **cornée** à l'avant. La cornée est une structure **transparente** qui permet à la lumière de pénétrer dans l'œil. Le **limbus** et la partie blanche de l'œil, connue sous le nom de **sclérotique**, constituent cette première chaussette.
 
-![Schéma général de l'œil](/images/schemas/oeil/oeil-9/Oeil_1.png)
+![Schéma général de l'œil](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-9/Oeil_1.png)
 
 
 
@@ -10510,7 +10510,7 @@ Les **processus ciliaires** et les **muscles suspenseurs de l'iris** jouent un r
 
 La troisième chaussette est la **rétine**, qui est le tissu nerveux le plus profond et représente une extension du **cerveau**. Elle est formée de deux couches : une couche interne et une couche externe. Un **décollement de la rétine** se produit lorsque l'espace entre ces deux couches se développe.
 
-![Tuniques de l'œil, processus ciliaires et rétine](/images/schemas/oeil/oeil-9/Oeil_2.png)
+![Tuniques de l'œil, processus ciliaires et rétine](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-9/Oeil_2.png)
 
 
 
@@ -10634,7 +10634,7 @@ Lorsque des personnes viennent avec des problèmes aigus, je leur pose souvent l
 
 Au cours de la deuxième semaine de développement embryonnaire, la **forme en S** du processus épiblastique commence à former la **notochorde**.
 
-![Début du processus épiblastique](/images/schemas/oeil/oeil-13/Oeil_1.jpeg)
+![Début du processus épiblastique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-13/Oeil_1.jpeg)
 
  Le **nœud d'Ensens**, ou dépression primitive, devient un point d'appui fixe et se déplace progressivement vers l'arrière. 
 
@@ -10667,7 +10667,7 @@ L'**humeur aqueuse** et l'**humeur vitrée** sont deux types d'humeurs présente
 
 Le cristallin provient de l'**ectoderme** de surface. Au cours de la cinquième semaine de développement, une **invagination** forme une **vésicule cristalline** entourée de **mésenchyme vascularisé**. La placode s'invagine pour devenir le cristallin, un processus similaire à celui de la formation du **tube neural**. Ce mouvement laisse un espace à l'intérieur, qui devient le cristallin.
 
-![Invagination de l'ectoderme](/images/schemas/oeil/oeil-14/Oeil_3.png)
+![Invagination de l'ectoderme](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-14/Oeil_3.png)
 
  
 
@@ -10698,7 +10698,7 @@ Enfin, la **rétine** est la couche la plus interne de l'œil. Elle provient de 
 
 Le **mouvement de la crête neurale** est un processus complexe impliquant différents types de **différenciation** et de **facteurs d'induction**. Ces facteurs peuvent être de nature **métabolique** ou **passive**, et interviennent après la **neurulation**.
 
-![Mouvement de la crête neurale](/images/schemas/oeil/oeil-15/Oeil_1.png)
+![Mouvement de la crête neurale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-15/Oeil_1.png)
 
  
 
@@ -10784,17 +10784,17 @@ Traiter l'œil, c'est donc aborder le développement à la fois **péritonéal**
 
 Aux environs du **26e jour**, un **sillon optique** apparaît, lié à une connexion interne. Ce sillon est stimulé par une vésicule qui touche la paroi superficielle.
 
-![Sillon optique et vésicule](/images/schemas/oeil/oeil-2/Oeil_1.jpeg)
+![Sillon optique et vésicule](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-2/Oeil_1.jpeg)
 
  La flexion céphalique et cervicale entraîne une rencontre entre le cerveau et le cœur, avec l'œil se déposant sur le cœur.
 
-![Rencontre du cerveau et du cœur](/images/schemas/oeil/oeil-5/Oeil_1.jpeg)
+![Rencontre du cerveau et du cœur](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-5/Oeil_1.jpeg)
 
  Cela crée un **pli postérieur**, connu sous le nom de **courbure pontique**, où se trouve le sacrum et la tente du cervelet.
 
 La **tente du cervelet** est primordiale, car elle établit des synchronicités avec le péritoine et le cerveau. La **flexure submésencéphale** est en rapport avec la pointe de la **notocorde**, servant de point d'appui. Le **supraocciput** est également lié à la flexion cervicale, tandis que la flexure pontique est associée à la base occipitale.
 
-![Points d'appui](/images/schemas/oeil/oeil-5/Oeil_3.jpeg)
+![Points d'appui](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-5/Oeil_3.jpeg)
 
 
 
@@ -10842,21 +10842,21 @@ Ainsi, en étudiant l'œil, nous pouvons mieux comprendre le développement du c
 
 Les **lignes de force** sont formées par le chargement des **électrons** du côté convex au niveau positif, créant ainsi des charges au niveau de l'os.
 
-![Chargement électrique de l'os](/images/schemas/oeil/oeil-19/Oeil_2.jpeg)
+![Chargement électrique de l'os](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-19/Oeil_2.jpeg)
 
 
 
-![Création de charges sur l'os](/images/schemas/oeil/oeil-19/Oeil_1.jpeg)
+![Création de charges sur l'os](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-19/Oeil_1.jpeg)
 
  Cela se répercute vers des lignes de force en profondeur, appelées **poutres**, qui jouent un rôle crucial dans la structure osseuse.
 
-![Lignes de force (poutres)](/images/schemas/oeil/oeil-19/Oeil_3.png)
+![Lignes de force (poutres)](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-19/Oeil_3.png)
 
 
 
 L'œil agit comme un **conformateur**, influençant la formation de l'os qui se construit autour de lui. Dans ce mouvement de descente, l'os effectue un **contre-mouvement**. Ce dernier est associé à la **céphalisation**, où l'os présente un mouvement de **contre-rotation**. Une poutre particulièrement intéressante est la **poutre canino-nasale frontale**, qui se développe de manière contralatérale.
 
-![Poutre canino-nasale frontale](/images/schemas/oeil/oeil-19/Oeil_4.png)
+![Poutre canino-nasale frontale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-19/Oeil_4.png)
 
 
 
@@ -10893,7 +10893,7 @@ La croissance céphalique est primordiale. C'est à ce moment que les yeux se ra
 
 On observe deux spirales : une spirale de l'œil et une contre-spirale osseuse, visibles dans la forme des **sutures** crâniennes. L'orientation de ces sutures est essentielle à l'étude de la tridimensionnalité du **prémaxillaire**, qui présente une forme complexe, contribuant à la structure orbitaire et oculaire.
 
-![Schéma explicatif](/images/schemas/oeil/oeil-20/Oeil_1.jpeg)
+![Schéma explicatif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-20/Oeil_1.jpeg)
 
 
 `,
@@ -10912,13 +10912,13 @@ On observe deux spirales : une spirale de l'œil et une contre-spirale osseuse, 
 
 Le **ligament liliequist** est une structure anatomique qui agit comme un petit diaphragme, communément appelé **membrane de l'iliquiste**. Ce ligament s'insère au niveau du **troisième ventricule** et descend jusqu'au **sphénoïde**.
 
-![Ligament de Liliequist](/images/schemas/oeil/oeil-21/Oeil_1.png)
+![Ligament de Liliequist](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-21/Oeil_1.png)
 
  À cet endroit, il joue un rôle crucial en relation avec le **nerf oculomoteur** et le passage artériel, notamment le **tronc basilaire**, qui est responsable de la formation des **artères cérébrales**.
 
 Lorsque le ligament descend, il crée un **axe de tension** qui influence le **système ventriculaire**. Le troisième ventricule, le quatrième ventricule, ainsi que les **ventricules latéraux** sont tous interconnectés par cette dynamique.
 
-![Système ventriculaire](/images/schemas/oeil/oeil-21/Oeil_2.png)
+![Système ventriculaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-21/Oeil_2.png)
 
  Un schéma de tension se met en place, ayant un impact significatif sur l'espace où se trouve l'**hypophyse**.
 
@@ -10928,7 +10928,7 @@ En examinant les **présphénoïdes**, qui correspondent à l'**occiput**, on ob
 
 Le mouvement crânien est également important à considérer. En observant un crâne, on peut noter les différents mouvements au niveau des **pariétaux** et d'autres structures.
 
-![Mouvements crâniens](/images/schemas/oeil/oeil-21/Oeil_3.png)
+![Mouvements crâniens](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-21/Oeil_3.png)
 
  Ces mouvements suivent des lignes de force spécifiques. Par exemple, le mouvement de **flexion** au niveau frontal, associé à la **suture métopique**, représente deux points de balance qui influencent le mouvement de l'œil.
 
@@ -10936,7 +10936,7 @@ Il est crucial de comprendre que le **cerveau** conditionne le **système ventri
 
 Le **sternum** monte en réponse à ces mouvements, convergeant vers la ligne médiane antérieure.
 
-![Mouvements coordonnés du crâne, sternum et sacrum](/images/schemas/oeil/oeil-21/Oeil_4.png)
+![Mouvements coordonnés du crâne, sternum et sacrum](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-21/Oeil_4.png)
 
  Tout cela est inscrit dans l'œil, et il est essentiel d'ajouter des éléments concernant le système facial et le système capsulaire de l'œil, qui s'insèrent autour et organisent l'ensemble avec une contre-rotation au niveau du développement de l'orbite.
 
@@ -11006,13 +11006,13 @@ L'anatomie de l'œil et du neurocrâne est un sujet fascinant qui implique une c
 
 Le **neurocrâne** est un champ métabolique de détraction, tandis que le **viscérocrâne** est constitué de dérivés embryologiques. La forme tridimensionnelle du **zygoma** est particulièrement intéressante, avec ses petites facettes et sillons, notamment le **grand sillon** au-dessus, appelé **fente sphénoïdale**, où passent le nerf **oculomoteur** (nerf III) et les branches trigéminales.
 
-![Fente sphénoïdale](/images/schemas/oeil/oeil-23/Oeil_29.png)
+![Fente sphénoïdale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_29.png)
 
  Le **canal optique** est crucial, car il abrite le nerf optique et l'artère ophtalmique.
 
 Le **palatin**, bien qu'il soit un petit processus, joue un rôle important dans l'équilibre du mouvement de flexion de l'embryon lors de la formation du palais.
 
-![Neurocrâne et viscérocrâne, notamment l'importance du palatin et du zygoma mentionnés](/images/schemas/oeil/oeil-23/Oeil_1.png)
+![Neurocrâne et viscérocrâne, notamment l'importance du palatin et du zygoma mentionnés](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_1.png)
 
  Il est associé au **zygomatique** et au **maxillaire**, qui sont également des os tridimensionnels. La fosse lacrymale, l'os lacrymal, l'**ethmoïde**, l'**os nasal**, le **frontal** et le **sphénoïde** forment une concentration d'informations osseuses.
 
@@ -11020,23 +11020,23 @@ Le **palatin**, bien qu'il soit un petit processus, joue un rôle important dans
 
 L'œil est constitué de trois grandes tuniques :
 
-![Vue d'ensemble des tuniques de l'œil](/images/schemas/oeil/oeil-23/Oeil_2.png)
+![Vue d'ensemble des tuniques de l'œil](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_2.png)
 
 
 
 1. **Sclérotique** : La sclérotique est la couche externe, qui se prolonge à l'avant par la **cornée**, une sclérotique transparente. Le blanc de l'œil est une sclérotique non transparente.
 
-![Cette image peut illustrer la structure de la cornée et de ses fréquences](/images/schemas/oeil/oeil-23/Oeil_4.png)
+![Cette image peut illustrer la structure de la cornée et de ses fréquences](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_4.png)
 
 
 
-![Coupe de l'œil](/images/schemas/oeil/oeil-23/Oeil_3.png)
+![Coupe de l'œil](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_3.png)
 
 
 
 2. **UV (Uvéa)** : Composée de plusieurs parties, dont la **choroïde**, richement vascularisée, l'**iris** à l'avant, et le **corps ciliaire** entre les deux. Le corps ciliaire contient des ligaments et des muscles, appelés **ligaments suspenseurs**, qui maintiennent le cristallin.
 
-![Cette image peut illustrer la vascularisation liée à la choroïde et l'intégration des informations dans l'œil](/images/schemas/oeil/oeil-23/Oeil_8.png)
+![Cette image peut illustrer la vascularisation liée à la choroïde et l'intégration des informations dans l'œil](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_8.png)
 
 
 
@@ -11046,13 +11046,13 @@ L'œil est constitué de trois grandes tuniques :
 
 Le **limbe** est la jonction entre la cornée et la sclérotique, également appelée **imbus corneoscléral**. Le **canal de Schlemm** est essentiel pour la résorption du liquide de la chambre antérieure. La **chambre antérieure** et la **chambre postérieure** de l'œil sont séparées par la pupille.
 
-![Pupille et sa fonction de régulation de la lumière](/images/schemas/oeil/oeil-23/Oeil_9.png)
+![Pupille et sa fonction de régulation de la lumière](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_9.png)
 
 
 
 L'**humeur aqueuse**, un liquide nutritif, est sécrétée par les processus ciliaires, filtrée par le trabéculum, et résorbée par le sinus veineux de la sclère et le canal de Schlemm. Elle maintient l'équilibre et nourrit la cornée et l'iris.
 
-![Cette image peut montrer une vue plus détaillée du canal de Schlemm et de la régulation de l'humeur aqueuse](/images/schemas/oeil/oeil-23/Oeil_6.png)
+![Cette image peut montrer une vue plus détaillée du canal de Schlemm et de la régulation de l'humeur aqueuse](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_6.png)
 
 
 
@@ -11060,61 +11060,61 @@ L'**humeur aqueuse**, un liquide nutritif, est sécrétée par les processus cil
 
 Les muscles oculomoteurs, tels que le **droit supérieur**, le **droit inférieur**, et les muscles obliques, sont essentiels pour le mouvement des yeux. Le **muscle releveur de la paupière** est également important, et des ptoses de la paupière peuvent indiquer des problèmes de santé.
 
-![Jonction de la conjonctive](/images/schemas/oeil/oeil-23/Oeil_22.png)
+![Jonction de la conjonctive](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_22.png)
 
 
 
-![Glande lacrymale et son système de drainage](/images/schemas/oeil/oeil-23/Oeil_21.png)
+![Glande lacrymale et son système de drainage](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_21.png)
 
 
 
-![Glandes de sécrétions et la continuité du tarsus avec le muscle de Muller](/images/schemas/oeil/oeil/oeil-23/Oeil_20.png)
+![Glandes de sécrétions et la continuité du tarsus avec le muscle de Muller](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil/oeil-23/Oeil_20.png)
 
 
 
-![Face muqueuse de la paupière (conjonctive)](/images/schemas/oeil/oeil-23/Oeil_19.png)
+![Face muqueuse de la paupière (conjonctive)](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_19.png)
 
 
 
-![Anatomie de la paupière](/images/schemas/oeil/oeil-23/Oeil_18.png)
+![Anatomie de la paupière](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_18.png)
 
 
 
 Le **tendon de Zinn** est le point d'attache des muscles oculomoteurs, qui sont en relation avec les muscles de la nuque.
 
-![Relation de la capsule de Tenon avec les fascias du corps](/images/schemas/oeil/oeil-23/Oeil_30.png)
+![Relation de la capsule de Tenon avec les fascias du corps](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_30.png)
 
 
 
-![Muscles oculomoteurs](/images/schemas/oeil/oeil-23/Oeil_28.png)
+![Muscles oculomoteurs](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_28.png)
 
 
 
-![Muscles oculomoteurs](/images/schemas/oeil/oeil-23/Oeil_27.png)
+![Muscles oculomoteurs](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_27.png)
 
 
 
-![Muscles oculomoteurs](/images/schemas/oeil/oeil-23/Oeil_26.png)
+![Muscles oculomoteurs](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_26.png)
 
 
 
-![Muscles oculomoteurs](/images/schemas/oeil/oeil-23/Oeil_25.png)
+![Muscles oculomoteurs](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_25.png)
 
 
 
-![Muscles oculomoteurs](/images/schemas/oeil/oeil-23/Oeil_24.png)
+![Muscles oculomoteurs](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_24.png)
 
 
 
-![Musculature oculaire et le point d'attache du tendon de Zinn](/images/schemas/oeil/oeil-23/Oeil_23.png)
+![Musculature oculaire et le point d'attache du tendon de Zinn](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_23.png)
 
  Les nerfs optiques et les artères ophtalmiques jouent un rôle crucial dans la vascularisation et l'innervation de l'œil.
 
-![Relation entre carotide et nerf optique](/images/schemas/oeil/oeil-23/Oeil_34.png)
+![Relation entre carotide et nerf optique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_34.png)
 
 
 
-![Cette image peut illustrer un sinus veineux ou un aspect de la vascularisation](/images/schemas/oeil/oeil-23/Oeil_33.png)
+![Cette image peut illustrer un sinus veineux ou un aspect de la vascularisation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_33.png)
 
 
 
@@ -11122,21 +11122,21 @@ Le **tendon de Zinn** est le point d'attache des muscles oculomoteurs, qui sont 
 
 La vascularisation de l'œil provient de la carotide, avec des artères ophtalmiques et des branches pour la vascularisation de la rétine.
 
-![Vascularisation de l'œil, commençant par la carotide](/images/schemas/oeil/oeil-23/Oeil_31.png)
+![Vascularisation de l'œil, commençant par la carotide](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_31.png)
 
  Les **péricytes** ou cellules de Rouget modulent l'information au niveau des capillaires, en particulier dans la rétine.
 
-![Péricytes et leur rôle dans la modulation de l'information](/images/schemas/oeil/oeil-23/Oeil_32.png)
+![Péricytes et leur rôle dans la modulation de l'information](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_32.png)
 
 
 
 L'innervation de l'œil comprend des voies sensitives, motrices et végétatives, avec le nerf optique captant l'information visuelle.
 
-![L'innervation et la réunion des informations dans le canal optique](/images/schemas/oeil/oeil-23/Oeil_35.png)
+![L'innervation et la réunion des informations dans le canal optique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_35.png)
 
  La rencontre de ces systèmes au niveau de la rétine forme le nerf optique, qui transmet l'information sensorielle.
 
-![Cette image peut compléter l'illustration de l'innervation et de la transmission de l'information via le nerf optique](/images/schemas/oeil/oeil-23/Oeil_36.png)
+![Cette image peut compléter l'illustration de l'innervation et de la transmission de l'information via le nerf optique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_36.png)
 
 
 
@@ -11229,7 +11229,7 @@ Il existe plusieurs niveaux de perception :
 
 L'œil reçoit une **information lumineuse** sous forme de photons. La première couche traversée est la **conjonctive**, suivie par la **cornée**, qui est la partie transparente de la sclérotique.
 
-![Couches de l'œil](/images/schemas/oeil/oeil-26/Oeil_2.png)
+![Couches de l'œil](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-26/Oeil_2.png)
 
  Ensuite, la lumière passe par la **pupille**.
 
@@ -11260,13 +11260,13 @@ Les **rayons lumineux** traversent d'abord toutes les couches de la rétine pour
 
 Après avoir traversé cette première couche, la lumière atteint les **cellules bipolaires**, puis les **cellules ganglionaires**. Ces dernières regroupent leurs axones pour former le **nerf optique**, où se produit la transduction.
 
-![Parcours de la lumière jusqu'au nerf optique](/images/schemas/oeil/oeil-27/Oeil_1.png)
+![Parcours de la lumière jusqu'au nerf optique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-27/Oeil_1.png)
 
  
 
 En approfondissant, on observe également des **cellules horizontales** qui captent et redistribuent les informations vers les cellules bipolaires. En dessous, se trouvent les **cellules amacrines**, qui rassemblent les informations avant de les diriger vers les cellules ganglionaires. Ce système complexe permet de traiter une grande quantité d'informations visuelles.
 
-![Rôle des cellules horizontales et amacrines](/images/schemas/oeil/oeil-27/Oeil_2.png)
+![Rôle des cellules horizontales et amacrines](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-27/Oeil_2.png)
 
 
 
@@ -11299,7 +11299,7 @@ La **transduction** de l'énergie lumineuse se produit dans les photorécepteurs
 
 Le **corps genouillé latéral** joue un rôle crucial dans le traitement de l'information visuelle.
 
-![Corps Genouillé Latéral (CGL)](/images/schemas/oeil/oeil-28/Oeil_2.png)
+![Corps Genouillé Latéral (CGL)](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_2.png)
 
  Il reçoit les influx nerveux provenant de la rétine et effectue un triage de ces informations avant de les transmettre aux aires visuelles.
 
@@ -11313,7 +11313,7 @@ Le corps genouillé latéral est constitué de plusieurs couches, chacune spéci
 
 Chaque couche du corps genouillé latéral contribue à la formation d'une image en intégrant ces différentes informations.
 
-![Cellules parvocellulaires et magnocellulaires](/images/schemas/oeil/oeil-28/Oeil_3.png)
+![Cellules parvocellulaires et magnocellulaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_3.png)
 
 
 
@@ -11321,17 +11321,17 @@ Chaque couche du corps genouillé latéral contribue à la formation d'une image
 
 L'information visuelle est transmise à travers le nerf optique et arrive au corps genouillé latéral, où elle est triée avant d'être envoyée vers le thalamus et les aires visuelles. Environ **80%** des informations traitées par le corps genouillé latéral sont directement envoyées aux aires visuelles, tandis que **20%** passent par le pulvinar, une autre structure thalamique, pour un traitement plus subtil.
 
-![Distribution de l'information du CGL au pulvinar](/images/schemas/oeil/oeil-28/Oeil_5.png)
+![Distribution de l'information du CGL au pulvinar](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_5.png)
 
 
 
 Le pulvinar reçoit également des informations d'autres noyaux, tels que le **colliculus supérieur** et les **noyaux olivaires**, qui sont essentiels pour intégrer des informations auditives et visuelles.
 
-![Connexions du pulvinar](/images/schemas/oeil/oeil-28/Oeil_4.png)
+![Connexions du pulvinar](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_4.png)
 
 
 
-![Parcours de l'information visuelle vers le CGL](/images/schemas/oeil/oeil-28/Oeil_1.png)
+![Parcours de l'information visuelle vers le CGL](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_1.png)
 
 
 
@@ -11339,11 +11339,11 @@ Le pulvinar reçoit également des informations d'autres noyaux, tels que le **c
 
 Le corps genouillé latéral ne traite pas seulement les informations visuelles, mais il est également en lien avec des systèmes auditifs et vestibulaires.
 
-![Intégration multisensorielle (auditive et vestibulaire)](/images/schemas/oeil/oeil-28/Oeil_6.png)
+![Intégration multisensorielle (auditive et vestibulaire)](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_6.png)
 
  Cela permet une intégration des informations provenant des yeux, des oreilles et de la position du corps dans l'espace. Ce processus est essentiel pour des actions comme les **saccades** oculaires et l'orientation de la tête.
 
-![Rôle dans les saccades et l'orientation de la tête](/images/schemas/oeil/oeil-28/Oeil_7.png)
+![Rôle dans les saccades et l'orientation de la tête](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_7.png)
 
 
 
@@ -11351,11 +11351,11 @@ Le corps genouillé latéral ne traite pas seulement les informations visuelles,
 
 Le corps genouillé latéral est également lié au **circuit de Papez**, qui joue un rôle dans la mémoire.
 
-![Circuit de Papez et mémoire](/images/schemas/oeil/oeil-28/Oeil_8.png)
+![Circuit de Papez et mémoire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_8.png)
 
  Ce circuit comprend des structures telles que les **corps mammillaires**, le **thalamus antérieur** et le **cortex cingulaire**. Il est impliqué dans le stockage et la récupération des souvenirs, reliant les informations visuelles à des expériences passées.
 
-![Circuit de Papez : consolidation de la mémoire](/images/schemas/oeil/oeil-28/Oeil_9.png)
+![Circuit de Papez : consolidation de la mémoire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_9.png)
 
 
 
@@ -11363,11 +11363,11 @@ Le corps genouillé latéral est également lié au **circuit de Papez**, qui jo
 
 Il est important de noter que lorsque nous percevons une information, nous ne recevons qu'une fraction de la réalité. En effet, seulement **20%** des informations perçues sont réelles, le reste étant une réinterprétation basée sur notre vécu, nos émotions et nos expériences antérieures.
 
-![Réinterprétation de l'information perçue](/images/schemas/oeil/oeil-28/Oeil_11.png)
+![Réinterprétation de l'information perçue](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_11.png)
 
  Ce processus d'interprétation est influencé par les connexions entre les aires visuelles et le corps genouillé latéral.
 
-![Interprétation de la réalité](/images/schemas/oeil/oeil-28/Oeil_10.png)
+![Interprétation de la réalité](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_10.png)
 
 
 
@@ -11375,7 +11375,7 @@ Il est important de noter que lorsque nous percevons une information, nous ne re
 
 Le corps genouillé latéral est une structure clé dans le traitement de l'information visuelle, intégrant des données provenant de différentes sources sensorielles et jouant un rôle crucial dans notre perception de la réalité. Sa capacité à trier et à interpréter les informations est essentielle pour notre interaction avec le monde qui nous entoure.
 
-![Importance du CGL dans la perception](/images/schemas/oeil/oeil-28/Oeil_12.png)
+![Importance du CGL dans la perception](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-28/Oeil_12.png)
 
 
 `,
@@ -11456,17 +11456,17 @@ Au moment de la formation de la base du crâne, un espace appelé la **poche de 
 
 La glande épiphyse se déplace de l'avant vers l'arrière, influencée par la lumière divine et l'hypophyse. Cette interaction entre la lumière divine et la lumière actuelle est essentielle pour la fonction de l'hypophyse.
 
-![Formation de la base du crâne](/images/schemas/oeil/oeil-31/Oeil_1.png)
+![Formation de la base du crâne](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-31/Oeil_1.png)
 
 
 
 L'hypophyse se développe à partir de l'épithélium de surface, et le mouvement de flexion entraîne une aspiration vers le centre, formant ainsi la glande hypophyse antérieure.
 
-![Développement de l'hypophyse](/images/schemas/oeil/oeil-31/Oeil_3.png)
+![Développement de l'hypophyse](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-31/Oeil_3.png)
 
  En parallèle, un mouvement d'aspiration dans le cerveau donne naissance à l'infidibulum, qui constitue la partie postérieure de l'hypophyse.
 
-![Développement de l'infundibulum](/images/schemas/oeil/oeil-31/Oeil_4.png)
+![Développement de l'infundibulum](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-31/Oeil_4.png)
 
 
 
@@ -11511,37 +11511,37 @@ L'œil subit un programme énergétique et d'interprétation, intégrant des inf
 
 Il existe des différences vasculaires significatives entre l'œil gauche et l'œil droit, influençant leur fonctionnement. Par exemple, l'œil droit est lié à des stases veineuses hépatiques, tandis que l'œil gauche est associé à une hyperpression artérielle.
 
-![Yeux en spirale](/images/schemas/oeil/oeil-32/Oeil_1.png)
+![Yeux en spirale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_1.png)
 
  Ces différences anatomiques peuvent entraîner des interférences spécifiques sur le cortex visuel.
 
 Les réflexes oculaires, tels que le réflexe fronto-orbitaire et le réflexe auriculo-cardiaque, montrent comment une pression légère sur les yeux peut rééquilibrer des problèmes cardiaques.
 
-![Croisement sur la ligne](/images/schemas/oeil/oeil-32/Oeil_2.png)
+![Croisement sur la ligne](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_2.png)
 
  Chaque œil a un rôle postural et un œil dominant, qui ne sont pas toujours les mêmes.
 
-![Axes et angles d'intégration visuelle](/images/schemas/oeil/oeil-32/Oeil_3.png)
+![Axes et angles d'intégration visuelle](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_3.png)
 
 
 
 Les mouvements oculaires sont essentiels pour le rééquilibrage.
 
-![Mouvements oculaires](/images/schemas/oeil/oeil-32/Oeil_7.png)
+![Mouvements oculaires](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_7.png)
 
  Les axes visuels et les angles d'inclinaison jouent un rôle dans l'intégration lumineuse neurosensorielle. L'œil a une liberté d'intégration lumineuse d'environ 23 degrés, un chiffre qui se retrouve dans divers contextes, comme l'inclinaison de la Terre.
 
-![23 degrés de liberté visuelle](/images/schemas/oeil/oeil-32/Oeil_4.png)
+![23 degrés de liberté visuelle](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_4.png)
 
 
 
 Enfin, les axes d'information, tels que l'axe pétreux, montrent comment les déstabilisations oculaires peuvent affecter l'équilibre.
 
-![Axes orbitaires et pyramidaux](/images/schemas/oeil/oeil-32/Oeil_5.png)
+![Axes orbitaires et pyramidaux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_5.png)
 
  Les mémoires intégrées dans les os ou les schémas électriques peuvent également influencer notre perception et notre équilibre.
 
-![Mémoires dans l'os](/images/schemas/oeil/oeil-32/Oeil_6.png)
+![Mémoires dans l'os](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_6.png)
 
 
 `,
