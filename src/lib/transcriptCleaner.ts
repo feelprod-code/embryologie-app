@@ -42,6 +42,10 @@ export function cleanTranscript(text: string): string {
         cleaned = cleaned.split(bad).join(good);
     }
 
+    // Fix variations of "œil" which are often mistranscribed
+    cleaned = cleaned.replace(/\b(?:oeïl|oëil|oei[l|I]|oeíl|oeil)\b/gi, 'œil');
+    cleaned = cleaned.replace(/\b(?:Oeïl|Oëil|Oei[l|I]|Oeíl|Oeil)\b/g, 'Œil');
+
     // 2. Fix spaced-out letters. e.g. "s p é c i f i q u e" -> "spécifique"
     // This regex looks for 3 or more single letters separated by spaces.
     // It handles typical French alphabet characters along with standard A-Z.

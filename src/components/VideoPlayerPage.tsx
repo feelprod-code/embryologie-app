@@ -728,12 +728,12 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       </div>
       <div className="flex flex-col h-full w-full relative">
         <div className="flex-none flex justify-center py-2 mb-2 bg-[#FAF6ED]/95 backdrop-blur-md z-20 sticky top-0 border-b border-transparent">
-          <div className="inline-flex bg-slate-100/80 p-1 rounded-lg items-center">
+          <div className="inline-flex bg-[#EBE5D9]/80 p-1 rounded-lg items-center">
             <button
               onClick={() => setContentMode('summary')}
               className={cn(
                 "px-3 min-[370px]:px-4 md:px-6 py-1.5 text-[12px] min-[370px]:text-[13px] md:text-sm font-medium rounded-md transition-all duration-200",
-                contentMode === 'summary' ? "bg-white text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-700"
+                contentMode === 'summary' ? "bg-[#FAF6ED] text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-800"
               )}
             >
               Résumé
@@ -742,7 +742,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               onClick={() => setContentMode('transcript')}
               className={cn(
                 "px-3 min-[370px]:px-4 md:px-6 py-1.5 text-[12px] min-[370px]:text-[13px] md:text-sm font-medium rounded-md transition-all duration-200",
-                contentMode === 'transcript' ? "bg-white text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-700"
+                contentMode === 'transcript' ? "bg-[#FAF6ED] text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-800"
               )}
             >
               <span className="hidden min-[400px]:inline">Re-transcription interactive</span>

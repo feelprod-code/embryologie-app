@@ -380,7 +380,7 @@ En d'autres termes, un champ électrique génère inévitablement un champ élec
     transcriptMarkdown: `
 # L'Embryologie Biodynamique : Comprendre le Développement Cellulaire
 
-Ce cours d'ostéopathie biodynamique explore les mécanismes fascinants de l'embryologie, en s'appuyant sur les concepts de **Marc Damoiseau**. Nous plongerons au cœur de la cellule, de sa naissance à sa différenciation, en passant par les forces qui la modèlent.
+Ce cours d'ostéopathie biodynamique explore les mécanismes fascinants de l'embryologie, en s'appuyant sur les concepts de **Marc Damoiseauxx**. Nous plongerons au cœur de la cellule, de sa naissance à sa différenciation, en passant par les forces qui la modèlent.
 
 ## I. De la Cellule Souche à la Polarisation : Les Premiers Pas de la Vie
 
@@ -444,7 +444,7 @@ Un champ métabolique est un **espace** dans lequel la cellule évolue. C'est un
 
 ### B. Les Différents Types de Communication Cellulaire
 
-Pour illustrer les interactions au sein de ce champ, Marc Damoiseau utilise des analogies parlantes :
+Pour illustrer les interactions au sein de ce champ, Marc Damoiseauxx utilise des analogies parlantes :
 
 * **Communication autocrine :** Imaginez que vous avez un besoin urgent et que le vent ramène tout sur vous. C'est une communication de la cellule avec elle-même.
 * **Communication paracrine :** Si vous êtes plusieurs à "faire pipi" ensemble et que le vent disperse les effluves sur vos voisins. C'est une communication entre cellules proches.
@@ -6196,7 +6196,7 @@ La vésicule vitelline est une grande source d'information. Le mouvement d'inté
 
 L'objectif est de redonner cette cavité et la zone B pour réintégrer la circulation interne.
 
-![Cette image semble être une vue d'ensemble, donc l'insérer après une phrase de contextualisation générale sur la réintégration du système circulaire semble approprié](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
+![Réintégration du système circulaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
 
 
 
@@ -6204,20 +6204,20 @@ En visualisant le schéma comme une personne allongée :
 
 - En bleu, l'intégration en un tube neural.
 
-![L'image semble détailler l'intégration du système nerveux ou un aspect de la structuration embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
+![Détail de l'intégration du système nerveux](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
 
 
 - Le reste formant la peau, une couche **ectodermique**.
 
 Simultanément, l'intégration de la vésicule vitelline contribue à former une partie du système digestif, tandis que tout le système veineux s'intègre. Le mouvement à suivre est celui de la cavité amniotique qui grandit, menant à une fusion pour former la partie longitudinale, le tube digestif.
 
-![Probablement une étape de la formation du tube digestif ou une structure longitudinale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
+![Étape de la formation du tube digestif](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
 
 
 
 L'intégration du cœlome externe en un futur cœlome interne est visualisée en jaune, où tout se rejoint sur la ligne médiane.
 
-![Probablement la convergence des structures vers la ligne médiane, cohérent avec la phrase](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
+![Convergence des structures vers la ligne médiane](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
 
 
 
@@ -6253,7 +6253,7 @@ Le retour se fait alors.
 
  Elle va repousser le pédicule pour rejoindre la vésicule vitelline et former plus tard le cordon ombilical.
 
-![Cette image semble être une vue récapitulative ou une visualisation finale de l'intégration du système vitellin et de ses vestiges, cohérent avec la fin du paragraphe](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_9.png)
+![Intégration du système vitellin et de ses vestiges](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_9.png)
 
 
 
@@ -7389,7 +7389,6 @@ La différenciation des organes génitaux externes est clairement visible :
 
 Cette différenciation débute entre la **cinquième** et la **huitième semaine** de grossesse, en même temps que le développement hépatique et surrénalien.
 
-![Étapes du développement embryonnaire](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
 
 
 
@@ -7404,7 +7403,6 @@ Il existe une analogie entre la formation des organes génitaux et celle d'autre
 
 Tous ces systèmes convergent vers la ligne médiane, qu'il s'agisse du sternum, de la face ou des organes génitaux.
 
-![Schéma général, cohérent avec la discussion sur la convergence vers la ligne médiane](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
 
 
 
@@ -7434,7 +7432,6 @@ Le développement des **canaux génitaux** dépend du sexe gonadique :
 
   - Le sinus urogénital se ferme.
 
-![Développement des organes génitaux externes, mentionné juste avant dans la discussion sur la fermeture du sinus urogénital](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
 
 
 
@@ -8019,19 +8016,16 @@ Le développement de l'**appareil locomoteur**, et plus spécifiquement des **ve
 
 La mise en place de la **notocorde** induit la formation du **tube neural**, qui s'organise progressivement sur l'axe longitudinal et structure le système des vaisseaux. Ce processus est accompagné d'une **croissance différentielle** qui devient antérieure, entraînant un mouvement de flexion. La partie antérieure crée ce qu'on appelle l'**anneau ectodermique**, un tissu d'épiblaste qui se fléchit, formant ainsi cet anneau.
 
-![Flexion et la formation de l'anneau ectodermique, qui est mentionnée dans le texte juste avant](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
 
 
 
 Cette flexion est essentielle, car elle entraîne des changements significatifs pour l'organisme, notamment la phase de **délimitation de l'embryon**. La présence du tube neural et des **crêtes neurales** est cruciale, car ces éléments interagissent avec l'anneau ectodermique, fournissant des informations importantes vers la notocorde.
 
-![Début du mouvement de développement autour de la notocorde, en lien avec les interactions mentionnées](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_2.jpeg)
 
 
 
 Le mouvement de l'anneau ectodermique génère une compression qui influence le développement autour de la notocorde. Ce processus est lié à la formation des **disques intervertébraux** et des **corps vertébraux**. La partie supérieure se transforme en disque, tandis que les parties inférieure et supérieure commencent à former le corps vertébral, sous l'influence de la notocorde et de la crête neurale.
 
-![Formation des disques intervertébraux et des corps vertébraux, directement après leur description](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
 
 
 
@@ -8145,7 +8139,6 @@ Une **tendinite** peut être le reflet d'un déficit de rotation du **péritone*
 
 En médecine chinoise, des points spécifiques de la périphérie sont stimulés pour traiter des problèmes internes. L'empreinte du péritone peut se réactiver pour réutiliser des fonctions antérieures. Les blessures majeures de la vie se produisent souvent avant l'âge de 5 ans, et certaines peuvent même remonter à la phase embryonnaire. Ce qui se passe dans le corps peut se refléter dans les membres.
 
-![L'image générale introduit la section sur les extrémités, et ce paragraphe conclut la discussion sur la relation entre les problèmes internes et les expressions.des membres](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_1.jpeg)
 
 
 
@@ -8165,7 +8158,6 @@ La main apparaît en premier dans le développement, suivie par l'allongement du
 
  La flexion de l'embryon est liée à la vitesse de croissance par rapport à l'aorte.
 
-![Premières phases du développement des membres, se connectant à la discussion sur l'allongement et la flexion des articulations](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_3.jpeg)
 
  Les articulations suivent un protocole similaire, où la présence de vaisseaux sanguins influence la densité et la forme des structures. Le mouvement de rotation externe est suivi d'une contre-rotation interne, orchestrée par le champ vasculaire.
 
@@ -8177,7 +8169,6 @@ Le **mésoblaste** est responsable de l'induction des membres, qui sont une expa
 
 L'axe vasculaire est fondamental pour comprendre la métamérisation et la disposition des membres.
 
-![Développement ultérieur des membres et la rotation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/mesoderme/mesoderme-intro/Mesoderme_4.jpeg)
 
 
 
@@ -10166,7 +10157,7 @@ Nous vivons dans une société axée sur la **croissance**, souvent perçue comm
 
 Les théories d'émergence nous enseignent que tout émerge puis s'effondre. La société actuelle est à un point de bascule, et en tant que **thérapeutes**, nous avons un rôle à jouer. Nous pouvons soulager la souffrance de nos patients tout en les aidant à s'ouvrir à de nouvelles perspectives.
 
-![Probablement un aspect des 'théories d'émergence' ou un concept visuel lié à la transition et au rôle des thérapeutes. La phrase précédente conclut cette idée générale](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-1/Oeil_3.jpeg)
+![Aspect des 'théories d'émergence'](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-1/Oeil_3.jpeg)
 
 
 
@@ -10178,7 +10169,7 @@ Andreas Messie a identifié trois éléments essentiels pour opérer ce tournant
 
 3. **Travail spirituel** : Selon Iona Messie, sans ce travail, nous ne pourrons pas effectuer ce changement.
 
-![Cette image pourrait résumer ou introduire visuellement les aspects liés au 'travail spirituel' et au 'changement' mentionnés dans le paragraphe précédent par Iona Messie, avant d'aborder des concepts plus concrets comme la conscience bienveillante](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-1/Oeil_4.jpeg)
+![Travail spirituel et conscience bienveillante](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-1/Oeil_4.jpeg)
 
  
 
@@ -11026,7 +11017,7 @@ L'œil est constitué de trois grandes tuniques :
 
 1. **Sclérotique** : La sclérotique est la couche externe, qui se prolonge à l'avant par la **cornée**, une sclérotique transparente. Le blanc de l'œil est une sclérotique non transparente.
 
-![Cette image peut illustrer la structure de la cornée et de ses fréquences](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_4.png)
+![La structure de la cornée et de ses fréquences](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_4.png)
 
 
 
@@ -11036,7 +11027,7 @@ L'œil est constitué de trois grandes tuniques :
 
 2. **UV (Uvéa)** : Composée de plusieurs parties, dont la **choroïde**, richement vascularisée, l'**iris** à l'avant, et le **corps ciliaire** entre les deux. Le corps ciliaire contient des ligaments et des muscles, appelés **ligaments suspenseurs**, qui maintiennent le cristallin.
 
-![Cette image peut illustrer la vascularisation liée à la choroïde et l'intégration des informations dans l'œil](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_8.png)
+![La vascularisation liée à la choroïde et l'intégration des informations dans l'œil](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_8.png)
 
 
 
@@ -11052,7 +11043,7 @@ Le **limbe** est la jonction entre la cornée et la sclérotique, également app
 
 L'**humeur aqueuse**, un liquide nutritif, est sécrétée par les processus ciliaires, filtrée par le trabéculum, et résorbée par le sinus veineux de la sclère et le canal de Schlemm. Elle maintient l'équilibre et nourrit la cornée et l'iris.
 
-![Cette image peut montrer une vue plus détaillée du canal de Schlemm et de la régulation de l'humeur aqueuse](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_6.png)
+![Vue détaillée du canal de Schlemm et de la régulation de l'humeur aqueuse](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_6.png)
 
 
 
@@ -11114,7 +11105,7 @@ Le **tendon de Zinn** est le point d'attache des muscles oculomoteurs, qui sont 
 
 
 
-![Cette image peut illustrer un sinus veineux ou un aspect de la vascularisation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_33.png)
+![Un sinus veineux ou un aspect de la vascularisation](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_33.png)
 
 
 
@@ -11136,7 +11127,7 @@ L'innervation de l'œil comprend des voies sensitives, motrices et végétatives
 
  La rencontre de ces systèmes au niveau de la rétine forme le nerf optique, qui transmet l'information sensorielle.
 
-![Cette image peut compléter l'illustration de l'innervation et de la transmission de l'information via le nerf optique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_36.png)
+![Innervation et de la transmission de l'information via le nerf optique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-23/Oeil_36.png)
 
 
 

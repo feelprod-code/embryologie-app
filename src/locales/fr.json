@@ -19,20 +19,20 @@
   },
   "chatbot": {
     "apiKeyMissing": "Clé API manquante.",
-    "assistantRole": "Réponse d'après l'enseignement de Marc Damoiseau",
+    "assistantRole": "Réponse d'après l'enseignement de Marc Damoiseauxx",
     "backToHome": "Retour à l'accueil",
     "clear": "Effacer",
     "clearConversationTitle": "Effacer la conversation",
-    "detailedAnswer": "Réponse d'après l'enseignement de Marc Damoiseau",
+    "detailedAnswer": "Réponse d'après l'enseignement de Marc Damoiseauxx",
     "exportPdfTitle": "Exporter en PDF",
     "generalError": "Une erreur est survenue.",
     "inputPlaceholder": "Posez votre question sur l'embryologie...",
     "networkError": "Erreur réseau : ",
     "pdf": "PDF",
     "question": "Question",
-    "searching": "Recherche dans les cours de Marc Damoiseau...",
+    "searching": "Recherche dans les cours de Marc Damoiseauxx...",
     "summaryDocument": "Document de synthèse",
-    "welcomeMessage": "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseau.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**."
+    "welcomeMessage": "Bonjour ! Je suis Embryo AI, votre assistant dédié au cours d'embryologie de Marc Damoiseauxx.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**."
   },
   "podcasts": {
     "showTranscript": "Afficher la retranscription",

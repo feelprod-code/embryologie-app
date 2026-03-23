@@ -174,7 +174,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (isPlaying) {
                 setShowControls(false);
             }
-        }, 3500); // slightly longer to be sure users have time to see them
+        }, 1500); // further reduced delay for controls to hide quickly
     };
 
     useEffect(() => {
