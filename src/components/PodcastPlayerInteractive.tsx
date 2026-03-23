@@ -25,6 +25,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
     const [isAutoScrollEnabled, setIsAutoScrollEnabled] = useState(true);
 
     const lastActiveNodeRef = useRef<number>(-1);
+    const animationRef = useRef<number>();
 
     // Parse transcript
     useEffect(() => {
@@ -53,10 +54,30 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
     };
 
     const handleTimeUpdate = () => {
-        if (audioRef.current && localScrubTime === null) {
+        if (audioRef.current && localScrubTime === null && !isPlaying) {
             setCurrentTime(audioRef.current.currentTime);
         }
     };
+
+    // Smooth playhead update
+    useEffect(() => {
+        if (isPlaying && localScrubTime === null) {
+            const updateTime = () => {
+                if (audioRef.current) {
+                    setCurrentTime(audioRef.current.currentTime);
+                }
+                animationRef.current = requestAnimationFrame(updateTime);
+            };
+            animationRef.current = requestAnimationFrame(updateTime);
+        } else if (animationRef.current) {
+            cancelAnimationFrame(animationRef.current);
+        }
+        return () => {
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current);
+            }
+        };
+    }, [isPlaying, localScrubTime]);
 
     const handleLoadedMetadata = () => {
         if (audioRef.current) {
@@ -131,6 +152,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
     };
 
     const displayTime = localScrubTime !== null ? localScrubTime : currentTime;
+    const remainingTime = Math.max(0, duration - displayTime);
 
     return (
         <div className="w-full flex flex-col items-center">
@@ -168,6 +190,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                                 type="range"
                                 min="0"
                                 max={duration || 100}
+                                step="0.01"
                                 value={displayTime}
                                 onPointerDown={() => setLocalScrubTime(currentTime)}
                                 onChange={(e) => {
@@ -187,19 +210,19 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                             />
                             <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden pointer-events-none">
                                 <div
-                                    className="h-full bg-[#E87C3E] transition-all duration-75"
+                                    className="h-full bg-[#E87C3E]"
                                     style={{ width: `${(displayTime / (duration || 100)) * 100}%` }}
                                 />
                             </div>
                             {/* Thumb */}
                             <div
-                                className="absolute h-3.5 w-3.5 bg-[#E87C3E] rounded-full pointer-events-none -translate-x-1/2 transition-all duration-75"
+                                className="absolute h-3.5 w-3.5 bg-[#E87C3E] rounded-full pointer-events-none -translate-x-1/2"
                                 style={{ left: `${(displayTime / (duration || 100)) * 100}%` }}
                             />
                         </div>
 
                         <span className="text-xs text-slate-400 font-medium tabular-nums min-w-[36px]">
-                            {formatTime(duration)}
+                            -{formatTime(remainingTime)}
                         </span>
                     </div>
                 </div>

@@ -91,11 +91,11 @@ const getCourseContext = (lang: string) => {
     return text;
 };
 
-const getSystemPrompt = (lang: string, customContext?: string) => `Tu es "Assistant IA", un assistant virtuel expert en embryologie biodynamique, basé prioritairement sur les enseignements de Marc Damoiseauxx, mais disposant d'une vaste connaissance externe sur le domaine (Blechschmidt, Jealous, Freeman, etc.).
+const getSystemPrompt = (lang: string, customContext?: string) => `Tu es "Assistant IA", un assistant virtuel expert en embryologie biodynamique, basé prioritairement sur les enseignements de Marc Damoiseau, mais disposant d'une vaste connaissance externe sur le domaine (Blechschmidt, Jealous, Freeman, etc.).
 Ton rôle est d'aider les étudiants ou praticiens en répondant à leurs questions de façon précise et clinique.
 
-RÈGLE ABSOLUE NUMÉRO 1 : Tu dois D'ABORD chercher la réponse dans le contexte de Marc Damoiseauxx fourni ci-dessous. Si tu la trouves, utilise-la et cite le stade (ex: "Source: J28 - Plis Céphalique").
-RÈGLE ABSOLUE NUMÉRO 2 : Si la réponse n'est PAS dans le contexte de Marc Damoiseauxx, tu es AUTORISÉ à utiliser tes connaissances générales externes sur l'embryologie (notamment biodynamique). Dans ce cas, tu DOIS obligatoirement préciser que cette information est "Hors du cours de Damoiseaux" et tu DOIS citer tes sources externes.
+RÈGLE ABSOLUE NUMÉRO 1 : Tu dois D'ABORD chercher la réponse dans le contexte de Marc Damoiseau fourni ci-dessous. Si tu la trouves, utilise-la et cite le stade (ex: "Source: J28 - Plis Céphalique").
+RÈGLE ABSOLUE NUMÉRO 2 : Si la réponse n'est PAS dans le contexte de Marc Damoiseau, tu es AUTORISÉ à utiliser tes connaissances générales externes sur l'embryologie (notamment biodynamique). Dans ce cas, tu DOIS obligatoirement préciser que cette information est "Hors du cours de Damoiseaux" et tu DOIS citer tes sources externes.
 NOTE SPÉCIALE EXPERTISE JEALOUS : Pour toute question complexe sur l'approche de James Jealous (Biodynamique), tu peux te référer implicitement ou explicitement à la documentation et aux principes énoncés dans ses travaux.
 RÈGLE ABSOLUE NUMÉRO 3 : Adopte un ton professionnel, encourageant, et précis.
 RÈGLE ABSOLUE NUMÉRO 4 : Organise IMPÉRATIVEMENT  ta réponse avec de VRAIS titres Markdown (utilise ## pour les grands titres, ### pour les sous-titres) afin de structurer la lecture. Ne mets JAMAIS le contenu sur la même ligne qu'un titre, va toujours à la ligne. Aère le texte au maximum avec des paragraphes et utilise le **gras** uniquement pour mettre en valeur les mots-clés dans les phrases.
@@ -132,7 +132,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             }
         }
         return [
-            { role: 'assistant', content: t('chatbot.welcomeMessage', { defaultValue: "Bonjour ! Je suis l'Assistant IA, dédié au cours d'embryologie de Marc Damoiseauxx.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**." }) }
+            { role: 'assistant', content: t('chatbot.welcomeMessage', { defaultValue: "Bonjour ! Je suis l'Assistant IA, dédié au cours d'embryologie de Marc Damoiseau.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**." }) }
         ];
     });
     const [isLoading, setIsLoading] = useState(false);

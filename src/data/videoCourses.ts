@@ -380,7 +380,7 @@ En d'autres termes, un champ électrique génère inévitablement un champ élec
     transcriptMarkdown: `
 # L'Embryologie Biodynamique : Comprendre le Développement Cellulaire
 
-Ce cours d'ostéopathie biodynamique explore les mécanismes fascinants de l'embryologie, en s'appuyant sur les concepts de **Marc Damoiseauxx**. Nous plongerons au cœur de la cellule, de sa naissance à sa différenciation, en passant par les forces qui la modèlent.
+Ce cours d'ostéopathie biodynamique explore les mécanismes fascinants de l'embryologie, en s'appuyant sur les concepts de **Marc Damoiseau**. Nous plongerons au cœur de la cellule, de sa naissance à sa différenciation, en passant par les forces qui la modèlent.
 
 ## I. De la Cellule Souche à la Polarisation : Les Premiers Pas de la Vie
 
@@ -444,7 +444,7 @@ Un champ métabolique est un **espace** dans lequel la cellule évolue. C'est un
 
 ### B. Les Différents Types de Communication Cellulaire
 
-Pour illustrer les interactions au sein de ce champ, Marc Damoiseauxx utilise des analogies parlantes :
+Pour illustrer les interactions au sein de ce champ, Marc Damoiseau utilise des analogies parlantes :
 
 * **Communication autocrine :** Imaginez que vous avez un besoin urgent et que le vent ramène tout sur vous. C'est une communication de la cellule avec elle-même.
 * **Communication paracrine :** Si vous êtes plusieurs à "faire pipi" ensemble et que le vent disperse les effluves sur vos voisins. C'est une communication entre cellules proches.
