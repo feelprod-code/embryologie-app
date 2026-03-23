@@ -25,7 +25,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
     const [isAutoScrollEnabled, setIsAutoScrollEnabled] = useState(true);
 
     const lastActiveNodeRef = useRef<number>(-1);
-    const animationRef = useRef<number>();
+    const animationRef = useRef<number>(0);
 
     // Parse transcript
     useEffect(() => {
