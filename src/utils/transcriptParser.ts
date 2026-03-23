@@ -28,7 +28,7 @@ export function parseTranscript(transcript: string): TranscriptCue[] {
     let currentCue: Partial<TranscriptCue> | null = null;
     let currentText: string[] = [];
 
-    // Regex to match "00:09 Philippe Guillaume" or "1:00:09 Marc Damoiseau"
+    // Regex to match "00:09 Philippe Guillaume" or "1:00:09 Marc Damoiseaux"
     const timeSpeakerRegex = /^(\d{1,2}:)?(\d{2}):(\d{2})\s+(.+)$/;
 
     for (const line of lines) {

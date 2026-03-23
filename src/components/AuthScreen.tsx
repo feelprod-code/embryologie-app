@@ -104,7 +104,7 @@ export const AuthScreen: React.FC = () => {
                     </div>
 
                     <h4 className="text-[10px] sm:text-sm md:text-xs lg:text-sm font-light text-slate-500 mb-5 sm:mb-10 md:mb-6 lg:mb-10 text-center uppercase tracking-widest">
-                        le cours de Marc Damoiseau, <span className="font-medium text-slate-700">Ostéopathe D.O</span>
+                        le cours de Marc Damoiseaux, <span className="font-medium text-slate-700">Ostéopathe D.O</span>
                     </h4>
                 </div>
 

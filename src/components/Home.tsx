@@ -70,7 +70,7 @@ export function Home({}: HomeProps) {
                                     {t('home.training_by')}
                                 </div>
                                 <div className="text-sm sm:text-lg lg:text-xl font-bold tracking-[0.2em] text-slate-800 mt-1 uppercase">
-                                    Marc Damoiseau <span className="opacity-70 text-xs sm:text-sm font-normal">Ostéopathe D.O.</span>
+                                    Marc Damoiseaux <span className="opacity-70 text-xs sm:text-sm font-normal">Ostéopathe D.O.</span>
                                 </div>
                             </div>
 

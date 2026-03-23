@@ -4,8 +4,8 @@ export const podcastsData: PodcastItem[] = [
     {
         "id": "pod-tdt-1",
         "title": "Gentle Tissue Techniques with Philippe Guillaume",
-        "author": "Marc Damoiseau",
-        "description": "Marc Damoiseau, an osteopath, integrated embryology into the heart of biodynamic osteopathy, making it vibrant, accessible, and experiential. In this episode, we trace his unique journey, marked by the call to heal and a decisive encounter with Patrick Van Den Heede, whose teaching is based on the construction of life through movement and self-knowledge through meditation. This dual approach gives rise to a true path of inner learning, where the understanding of embryological development meets the therapist's sensory experience.\n\nThis is a vision that goes against traditional approaches, starting from the polarity of fluids to reach the structure, and which naturally forms the link with biodynamic osteopathy: listening to the inherent movement of life to perceive the emergent movement of tissues. A coherence then establishes itself between the study of life, meditative presence, and the art of touch.\n\nMarc redefines essential concepts such as the 'just pattern', which consists of restoring the body to its proper function, and the 'Fulcrum', no longer seen as a lever but as an organisational centre. He evokes the embryonic power still present in each of us, which would be our homeostasis today. Finally, he leads us towards the vital axis – the primitive streak, the notochord – to rediscover the principles of unity, this dynamic that connects the chronology of systems, synchronicities, and the light of life.\n\nA rare and inspiring dialogue, where embryology becomes an art of listening to the inner world.",
+        "author": "Marc Damoiseaux",
+        "description": "Marc Damoiseaux, an osteopath, integrated embryology into the heart of biodynamic osteopathy, making it vibrant, accessible, and experiential. In this episode, we trace his unique journey, marked by the call to heal and a decisive encounter with Patrick Van Den Heede, whose teaching is based on the construction of life through movement and self-knowledge through meditation. This dual approach gives rise to a true path of inner learning, where the understanding of embryological development meets the therapist's sensory experience.\n\nThis is a vision that goes against traditional approaches, starting from the polarity of fluids to reach the structure, and which naturally forms the link with biodynamic osteopathy: listening to the inherent movement of life to perceive the emergent movement of tissues. A coherence then establishes itself between the study of life, meditative presence, and the art of touch.\n\nMarc redefines essential concepts such as the 'just pattern', which consists of restoring the body to its proper function, and the 'Fulcrum', no longer seen as a lever but as an organisational centre. He evokes the embryonic power still present in each of us, which would be our homeostasis today. Finally, he leads us towards the vital axis – the primitive streak, the notochord – to rediscover the principles of unity, this dynamic that connects the chronology of systems, synchronicities, and the light of life.\n\nA rare and inspiring dialogue, where embryology becomes an art of listening to the inner world.",
         "aushaId": "6r2X8f6LVNAp",
         "audioUrl": "https://audio.ausha.co/6r2X8f6LVNAp.mp3",
         "thumbnailUrl": "https://images.ausha.co/covers/0V3K7h4bQpRl/400x400.jpg",
@@ -14,21 +14,21 @@ export const podcastsData: PodcastItem[] = [
 Hello everyone and welcome to the gentle tissue techniques podcast.
 I'm Philippe Guillaume, a physiotherapist and biokinergist. In this
 podcast season, I share with you innovative approaches that have
-truly shaped my practice. Today, I'm hosting Marc Damoiseau. Marc
-Damoiseau is an osteopath who has particularly developed
+truly shaped my practice. Today, I'm hosting Marc Damoiseaux. Marc
+Damoiseaux is an osteopath who has particularly developed
 embryology within biodynamic osteopathy. What's remarkable about
 Marc is that he has developed a way of teaching embryology that
 makes it truly accessible, understandable, and alive. So Marc, hello!
-00:49 Marc Damoiseau
+00:49 Marc Damoiseaux
 Hello Guillaume.
 00:50 Philippe Guillaume
 How are you?
-00:51 Marc Damoiseau
+00:51 Marc Damoiseaux
 I'm well, very happy to share this podcast with you.
 00:55 Philippe Guillaume
 The pleasure is highly shared. To begin, can you introduce your
 approach?
-01:01 Marc Damoiseau
+01:01 Marc Damoiseaux
 My approach is primarily a study of embryology in motion. This is
 morphodynamics. It's a dynamic that allows us to understand how the
 body develops from a small cell in a growth process and to see how
@@ -37,7 +37,7 @@ that can be applied in our practice.
 
 01:18 Philippe Guillaume
 What led you to healthcare?
-01:21 Marc Damoiseau
+01:21 Marc Damoiseaux
 I think it's something I've always had, that I've always wanted. I can't
 explain it, but it's part of my being. Around the age of 10-12, I was
 lucky enough to have back pain. My father or my mother, I don't
@@ -47,12 +47,12 @@ sudden, I had a luminous moment. And I told myself, one day, I will
 be an osteopath. It had become clear. After that, once you've made
 that choice, everything organized itself to put it on my path. Very
 quickly, I was able to meet the right people.
-02:03 Marc Damoiseau
+02:03 Marc Damoiseaux
 I started by studying physiotherapy. It's taught at university in
 Belgium, over 6 years.
 02:08 Philippe Guillaume
 What did you gain from your physiotherapy studies?
-02:11 Marc Damoiseau
+02:11 Marc Damoiseaux
 The discovery of the hand, the discovery of the base, physiotherapy
 also leads us to wonderful treatment. But we work with major
 movements, whereas osteopathy leads us to treat minor movements.
@@ -64,18 +64,18 @@ osteopathic approach is that it led me to discover things that are
 increasingly subtle and precise, because that takes time.
 02:51 Philippe Guillaume
 I believe you also had an encounter that changed everything for you.
-02:55 Marc Damoiseau
+02:55 Marc Damoiseaux
 I had the chance to meet a mentor or my master in osteopathy named
 Patrick Van Den Heide.
 03:01 Philippe Guillaume
 What exactly did Patrick teach in osteopathy?
-03:04 Marc Damoiseau
+03:04 Marc Damoiseaux
 He taught visceral osteopathy. I found it absolutely fascinating and I
 really understood the impact it could have on the structure. An
 esophagus at the diaphragm level.
 03:18 Philippe Guillaume
 I believe Patrick also had a particularity in his teaching.
-03:23 Marc Damoiseau
+03:23 Marc Damoiseaux
 Everything started with embryology. He gave me a kind of work
 roadmap, telling me, first, you're going to understand what
 embryology is, which can help you understand how anatomy is built.
@@ -88,7 +88,7 @@ taught, we start with dense structures. We start by studying the bone,
 to which we add ligaments, muscles, vessels, etc.
 
 
-04:06 Marc Damoiseau
+04:06 Marc Damoiseaux
 But if we look at how anatomy was actually built, we see that bone, in
 fact, is something that appears later, and is almost a finality of
 embryology. If we look from the beginning, we realize that we are
@@ -102,13 +102,13 @@ motion. This movement is still a movement that was launched by the
 embryonic force. In medicine, they don't study it. It's not part of their
 curriculum. I even started my first course with Patrick before starting
 osteopathy. And so I found myself in osteopathy studies with Patrick,
-05:03 Marc Damoiseau
+05:03 Marc Damoiseaux
 that I could follow in all his courses, this whole way of seeing things.
 And I realized, I thought, but here, I'm a bit out of sync. They don't
 learn like that at all, in fact.
 05:11 Philippe Guillaume
 Patrick before doing osteopathy.
-05:14 Marc Damoiseau
+05:14 Marc Damoiseaux
 In physiotherapy, I was led to work in a hospital and there was
 Françoise, Françoise Girand, who became a very good friend, who was
 my internship supervisor and who was actually studying osteopathy.
@@ -120,7 +120,7 @@ me to place my hands on her skull. I perceived another movement that
 I didn't know, which was simply something that could inflate or
 deflate. That was it, my first approach to the skull. All of a sudden, I
 felt there was a wave, a breath passing through, but it was...
-06:05 Marc Damoiseau
+06:05 Marc Damoiseaux
 fluctuating. I finished my physiotherapy studies. And then, I wanted
 to start osteopathy right away. And on that, my friend Françoise told
 me, if you want, you can go take a course with him. I told her, but I'm
@@ -133,13 +133,13 @@ medicine worked? How Ayurvedic medicine worked? Prana, etc. That
 all of that integrated into a therapist's practice, if you will.
 06:48 Philippe Guillaume
 to know oneself better, in fact.
-06:50 Marc Damoiseau
+06:50 Marc Damoiseaux
 To learn to know oneself well, one must learn to meditate. And so
 very quickly, he taught us meditation. And meditation is learning to
 develop a quality of attention,
 
 
-07:00 Marc Damoiseau
+07:00 Marc Damoiseaux
 a quality of vigilance and especially a quality of presence. Because in
 fact, what can we truly offer our patients? Because most of the time,
 people look for techniques. But if there is no presence, the quality of
@@ -160,17 +160,17 @@ posture and do personal work. But learning meditation from the
 beginning is very, very rare. And especially, this energetic approach
 that you take from the outset. Since embryology, we start from a
 polarity. So this teaching you have is very, very rich.
-08:39 Marc Damoiseau
+08:39 Marc Damoiseaux
 That's how it presented itself to me.
 08:41 Philippe Guillaume
 And you accepted it right away.
-08:43 Marc Damoiseau
+08:43 Marc Damoiseaux
 During my physiotherapy studies, I was passionate about martial arts.
 And I think martial arts very quickly led me to understand that, in
 fact, we must first learn to see how we function ourselves. And so, all
 this somewhat "energetic" approach, in quotation marks, I also
 discovered very early on through a Chinese, Taoist master,
-09:02 Marc Damoiseau
+09:02 Marc Damoiseaux
 where I wanted to learn how to fight. And in fact, I was able to go to
 his place. He was a very old master, Kochi, I think. He made me sit
 down and told me, I'm going to teach you how to breathe first. And I'm
@@ -180,23 +180,23 @@ what it meant to be in your center of gravity. And there, I understood
 that there was a circulation of energy in the body.
 09:32 Philippe Guillaume
 long before doing osteopathy.
-09:34 Marc Damoiseau
+09:34 Marc Damoiseaux
 Yes, long before.
 09:35 Philippe Guillaume
 So, when you found Patrick again, then...
-09:37 Marc Damoiseau
+09:37 Marc Damoiseaux
 It was in the continuation, you see. He's a man who has a kind of well
 of knowledge, like that, in several fields, with a quality of listening and
 a quality of presence that, just when he enters the room, the room
 opens up.
 09:49 Philippe Guillaume
 How did he make you understand embryology at the beginning?
-09:53 Marc Damoiseau
+09:53 Marc Damoiseaux
 If, for example, we were talking about a stomach or a liver, he would
 first explain the embryological origin.
 09:59 Philippe Guillaume
 Embryology, we can date it, from when to when exactly.
-10:03 Marc Damoiseau
+10:03 Marc Damoiseaux
 There are already things preparing for it. The pre-conceptual period,
 the crucial moment, will be the moment of fertilization, an ignition in
 the future form, in morphodynamics. Already there, there is a very
@@ -207,18 +207,18 @@ structure, but there is already an impulse in the direction in which it
 will be built.
 10:37 Philippe Guillaume
 That brings us to how many... Let's say 3-4 months, is that right?
-10:41 Marc Damoiseau
+10:41 Marc Damoiseaux
 In the first trimester, we can say that all the noble structures are
 already built. After that, it's about maturity. You really have to be able
 to think about growth, because the fact that we think about growth
 will give us good points of support. When we study in a book, we don't
 see growth. It's important to be able to almost imagine it and
 understand that this phenomenon is fundamental,
-11:04 Marc Damoiseau
+11:04 Marc Damoiseaux
 and that there is a force, there is a power in the individual.
 11:07 Philippe Guillaume
 movement and growth.
-11:08 Marc Damoiseau
+11:08 Marc Damoiseaux
 and power. It's understanding the origin of the tissue, understanding
 the origin of an organ. We knew that there are three embryonic
 tissues, and we realize that each time an embryonic tissue appears, a
@@ -231,14 +231,14 @@ if you will. And so that was something that was immediately taught to
 me.
 11:49 Philippe Guillaume
 A cavity, an energetic field, matter, energy, information.
-11:54 Marc Damoiseau
+11:54 Marc Damoiseaux
 All of that goes together, it's not separate in fact.
 11:56 Philippe Guillaume
 It's quite good to grasp that from the beginning in a teaching.
-11:59 Marc Damoiseau
+11:59 Marc Damoiseaux
 But that was a bit of the luck I had, I felt it was right, you know what I
 mean?
-12:05 Marc Damoiseau
+12:05 Marc Damoiseaux
 I felt she was telling me, well yes, and then I told myself, well, I
 actually need to understand that. A great stroke of luck I had was that
 very quickly, I was led to teach. So when I finished my osteopathy
@@ -249,7 +249,7 @@ little further. However, if you teach it, you will retain it and you will
 learn it. The luck I had was to fall into teaching very early. It came into
 my path. The act of explaining it, you start to understand. So I would
 say like Paulo Coelho, if you want to understand something, teach it.
-13:02 Marc Damoiseau
+13:02 Marc Damoiseaux
 My study focused on embryology, anatomy, physiology,
 physiopathology, psychology, philosophy, and spirituality. If I decide
 to study an organ, I do a linear study. I take a book on embryology,
@@ -273,14 +273,14 @@ able to work in tensegrity, as in gently realigning a joint, whereas if
 we work on this famous comfort tissue, the connective tissue, we will
 be more in a fluid exchange type of work. By the way, Marc, when you
 teach, what is the first thing you try to make your students feel?
-14:39 Marc Damoiseau
+14:39 Marc Damoiseaux
 The perception we have in our hands is something that evolves over
 time. I don't perceive the same thing at the beginning, and now I have
 30 years of experience when I touch a body. So, I know it takes time, it
 takes maturity, it takes understanding what heat is, what movement
 is, etc. We can say that, in some way, osteopathy is also interested in
 energy.
-15:04 Marc Damoiseau
+15:04 Marc Damoiseaux
 It's almost interested in the available quantity of this energy. We can
 also say that the body has a capacity for regeneration. This generating
 force, the hypothesis we support, is that the embryonic force is the
@@ -291,7 +291,7 @@ prevent diseases perhaps. So, what I do first, I like to teach them to
 feel if there is a longitudinal fluctuation. When we put our hands on
 the legs, for example, it's a bit subtle to describe, but it's like a
 fluctuation that goes down, which is a little linked to gravity.
-16:00 Marc Damoiseau
+16:00 Marc Damoiseaux
 Am I well-grounded? The first thing is, am I anchored or not? Because
 many, many problems come from poor anchoring. We stay too much in
 the mind, for example. So, I already teach them to try to feel if there's
@@ -306,7 +306,7 @@ not strong? Is it extinguished? And the fourth thing, when someone is
 in their place, they are luminous. When they are well in their energy
 level. Sometimes, there are people, or sometimes us, we are with
 someone who extinguishes us.
-17:02 Marc Damoiseau
+17:02 Marc Damoiseaux
 Sometimes we are with someone else who lights us up. And so, it's
 about feeling that side, if you will, because mind, body, spirit, all of
 that is a unity. I cannot conceive of the body only as a mechanical
@@ -322,7 +322,7 @@ quantity that is available. The use and regulation of that so that it
 circulates well. We can ask ourselves, how can we help the process,
 you? In fact, the body is super powerful. It's simply by perhaps giving
 it back certain points of support
-18:00 Marc Damoiseau
+18:00 Marc Damoiseaux
 that the system can find its best physiology, thus its best
 homeostasis. And there are four very important things here. Because
 what is the energetic principle? And we must summarize it clearly. It's
@@ -335,7 +335,7 @@ communication systems, the endodermal system is very primary. That
 means what we eat will define us. So that quality is also important. And
 I would like to add something about eating correctly, it's drinking
 enough water. We are in a society of people who are dehydrated.
-19:01 Marc Damoiseau
+19:01 Marc Damoiseaux
 You need to drink at least three to four liters of water a day. And not
 all at once, like a camel, but throughout the day, you need to hydrate
 gently. We need water. Good physiology needs water. And it's water,
@@ -350,7 +350,7 @@ confuse respiration with ventilation. But respiration is something that
 goes deep and happens at the cellular level, at the level of a
 mitochondrion. There are many mitochondria, and that's where
 respiration happens. And we realize that it's there
-20:01 Marc Damoiseau
+20:01 Marc Damoiseaux
 subtle energy is given in ATP or otherwise. What is also interesting to
 conceive and observe is that the development of an embryo, in its
 initial phases, is the same phase as the development of cancer. So, I'm
@@ -363,7 +363,7 @@ transformation of my oxygen and my food into pure ATP energy, to
 give energy for proteins. And to give back... regeneration because that's
 where it happens and the fourth fundamental thing which is also
 energy is how I move so it's movement so that's something
-21:00 Marc Damoiseau
+21:00 Marc Damoiseaux
 which is very important is to bring people back to eating well, quality
 of sleep, quality of movement, respiratory quality. If after a treatment
 you improve that, well, you will greatly help the person because the
@@ -372,17 +372,17 @@ mind, the mental can settle down.
 And above all, it's a course that can be given to a student, a patient,
 and a healthcare professional, regardless of their level. We address the
 basics, the understanding of life.
-21:33 Marc Damoiseau
+21:33 Marc Damoiseaux
 It's simple, actually.
 21:34 Philippe Guillaume
 Something else, before returning to...
-21:38 Marc Damoiseau
+21:38 Marc Damoiseaux
 embryology? Yes, absolutely. What's important is to realize that the
 individual is built in the form of spheres, that they are volumes in fact.
 So you have the urogenital zone, the peritoneal metabolic zone, the
 cardio-respiratory rhythmic zone, and the neurosensory zone. And
 finally, these are volumes. So there is a pressure
-22:01 Marc Damoiseau
+22:01 Marc Damoiseaux
 negative at the pulmonary level, a positive pressure at the peritoneal
 level, a negative pressure at the urogenital level, and a pressure, let's
 say, of a positive type at the cerebral level. The system functions on
@@ -398,7 +398,7 @@ in particular sites at the cerebral level and give you ways of thinking.
 So don't forget the urogenital sphere which is connected to the lower
 limb which is the mineral kingdom on which we must rely, our reality,
 the matrix, matter, earth. And then
-23:06 Marc Damoiseau
+23:06 Marc Damoiseaux
 the digestive, the humus, the mood, the human. To find a little
 humanity, it's to realize that the vital force is also outside of us and not
 just inside of us. And then the cardiopulmonary zone which is a very
@@ -413,7 +413,7 @@ session, are the principles of homeostasis and that the best
 regulations occur between wakefulness and sleep. And that's where,
 together, we will harmonize the rhythms they know, the cardiac,
 respiratory, and digestive rhythms.
-24:01 Marc Damoiseau
+24:01 Marc Damoiseaux
 All these rhythms, fundamentally, are linked to the axis of health. To
 come together, to reunify so that all of this functions in a unified way.
 The embryonic movement, the study of this embryonic movement,
@@ -422,7 +422,7 @@ allows us to understand this path of unification.
 Precisely on this subject, to fully understand the interest of learning
 this biodynamic embryology, we will have to redefine the notion of
 pattern and proper function in osteopathy.
-24:30 Marc Damoiseau
+24:30 Marc Damoiseaux
 The important thing is to put it back into the vital axis, into the vital
 function. If a sacrum is blocked, for example, the person can become
 crooked and create dysfunctions, even at the visceral level or
@@ -431,7 +431,7 @@ has been born. I ask a question during the anamnesis, how was the
 delivery, for example. If we look at a baby, generally, they come for
 two main types of pathologies, either regurgitation problems, or
 digestive problems, let's say at the beginning, to simplify.
-25:05 Marc Damoiseau
+25:05 Marc Damoiseaux
 In both cases, it's quite linked. Let's say we have a difficult birth and
 we have to pull on the head. We put it in extension and pull, pull, it
 stays blocked. And the gynecologist has to pull, the woman pushes,
@@ -445,7 +445,7 @@ all ENT problems, in everything that is IT, otitis, rhinitis, allergic, etc.
 Very frequently, we observe that there are peptide secretions. An
 acidity, almost, that comes from the stomach, which can disturb all
 these functions.
-26:03 Marc Damoiseau
+26:03 Marc Damoiseaux
 For the most part, that's it, in fact. Looking at this child, somehow, he
 has left the right pattern, the right function, because he has left a little
 bit due to hypertension, hyper-traction, he is destabilized. And so the
@@ -460,7 +460,7 @@ example, rebalancing the base of the skull, because if we look at the
 esophagus, it is suspended from the base of the skull by the
 peripharyngeal membranes, etc. down to the sacrum as well, by the
 cranio-sacral axis,
-27:02 Marc Damoiseau
+27:02 Marc Damoiseaux
 to restore a good function, if you will, and thus bring it back into the
 original pattern, in quotation marks. So that's where the right pattern,
 the right pattern, is where health can express itself to its full potential.
@@ -475,7 +475,7 @@ longer a child we're rocking, but it's like a child who's twisting, well,
 they've left their original pattern a little bit. And so the idea is to bring
 them back to where the function is most sufficient. Subtle and most
 regenerative to help the body.
-28:00 Marc Damoiseau
+28:00 Marc Damoiseaux
 Because there, we leave the processes, and that's where the
 understanding of embryology immediately gives a global
 understanding of the body, the understanding of anatomy, the
@@ -494,7 +494,7 @@ earlier you talked about the endoderm, would there be a relationship
 with a function that would have suffered
 29:00 Philippe Guillaume
 at the embryological level of this tissue?
-29:03 Marc Damoiseau
+29:03 Marc Damoiseaux
 What is very important is that the baby has no cognition at the
 beginning. It will not say, "Oh, they didn't bring me my bottle, I didn't
 receive this." It takes what comes and that will give it a feeling, let's
@@ -508,7 +508,7 @@ breastfeeding or bottle-feeding does not go well. The child will feel an
 unpleasant sensation in its belly, for example, and it will feel that,
 well, it will develop a little frustration. We will say, if I scream, if I cry
 very loudly, someone suddenly comes to take care of me.
-30:01 Marc Damoiseau
+30:01 Marc Damoiseaux
 Sometimes, knowing what happened can be liberating. It's in tissue
 listening, it's something that sometimes appears even intuitively, as if
 we received a lot of information and then suddenly, we have a creative
@@ -522,12 +522,12 @@ separate mind, body, spirit. It's together.
 When you work on patterns, in the things you teach, there are axes
 and there are levels. Can you tell us about this progression, about the
 first thing we learn?
-30:45 Marc Damoiseau
+30:45 Marc Damoiseaux
 Little by little, it is possible to identify in the embryonic development
 trajectories, directions that also have a quantity of energy, a certain
 power in the hand. This movement that allowed this growth, it's as if
 you had an imprint marked in the tissue.
-31:09 Marc Damoiseau
+31:09 Marc Damoiseaux
 And besides, if we look closely at the movement of the heart or a
 movement of the stomach or a movement of the liver, it follows an
 embryonic movement in its development phase. And so, the way we
@@ -540,7 +540,7 @@ it will settle with the lesser sac, it also respects this embryonic
 movement in its dynamics. So, if it is not free, somewhere, the
 function, the physiology will be a little disturbed. And so, we try to
 restore this gliding surface, but not just any way.
-32:03 Marc Damoiseau
+32:03 Marc Damoiseaux
 With a listening where we know the embryonic lines of force, we know
 the imprint. And it becomes something that is a bit subtle to feel
 because it's not just a big movement. You know, there's the classic
@@ -558,7 +558,7 @@ space, but understanding how this space developed. What space it
 needs, if you will.
 33:00 Philippe Guillaume
 It's still a minor movement of a minor movement.
-33:03 Marc Damoiseau
+33:03 Marc Damoiseaux
 It's the same way we're going to work. I can induce a movement, or I
 induce a movement in the tissue. Okay, very good, direct
 manipulation for example, a thrust. Or I can follow the movement. I
@@ -571,7 +571,7 @@ opens up little by little, where we begin to perceive behind, perhaps
 specific directions, which are these movements given by the
 embryonic development movement. That's the link that can be made.
 But we have access to these movements, not by doing a thrust,
-34:01 Marc Damoiseau
+34:01 Marc Damoiseaux
 not by doing a functional technique where I follow a balance point,
 etc. No, it's, I place my hands, and I don't impose, but I listen and I see
 what happens. And there, there may be a spontaneous movement that
@@ -586,11 +586,11 @@ If you are not right, they take your hand and put it elsewhere. I think
 that this approach with children was my true discovery of biodynamic
 embryology and biodynamic osteopathy, and of truly understanding
 the application and the power of what it had.
-35:01 Marc Damoiseau
+35:01 Marc Damoiseaux
 That's what I learned.
 35:02 Philippe Guillaume
 An anecdote to support what you're saying?
-35:05 Marc Damoiseau
+35:05 Marc Damoiseaux
 I was a young teacher, already teaching embryology. And then, I was
 asked to do a rebalancing, because someone, after a treatment, was
 not well. In biodynamic osteopathy, we insist a lot on doing what is
@@ -605,7 +605,7 @@ recognize it and that the system, if you recognize it, has rebalanced
 itself. If you recognize that you are angry, your anger can pass. If you
 recognize the lesion, it can pass. And that's really an important
 moment because it hasn't left me.
-36:02 Marc Damoiseau
+36:02 Marc Damoiseaux
 It appeared like that. Osteopathy and especially biodynamic
 osteopathy, because it forces you to discover what is called the neutral.
 It is the meeting of the two neutrals that allows the emergence of
@@ -613,7 +613,7 @@ originality, which allows the creative force to pass through and make
 its way.
 36:18 Philippe Guillaume
 When you say the two neutrals.
-36:20 Marc Damoiseau
+36:20 Marc Damoiseaux
 The patient's neutral, the therapist's neutral.
 36:22 Philippe Guillaume
 a beautiful little branch. By the way, on this subject, I refer you to the
@@ -624,7 +624,7 @@ ignition, the practitioner's double attention, and also the tide. By the
 way, Marc, you have worked a lot in biodynamic osteopathy on the
 general public, on babies, as you just explained to us, but also on
 disabled children, I believe.
-37:00 Marc Damoiseau
+37:00 Marc Damoiseaux
 A few years ago, I had the opportunity to work in India, in a school
 called Sakya School, and to work with severely disabled children. There
 were several osteopaths, and what was quite brilliant was that we
@@ -640,7 +640,7 @@ vegetables with very significant cerebral infirmities. And the fact of
 working on them, to re-tone, to restart this longitudinal fluctuation, in
 fact, quite astonishing results of what happened around all these
 children,
-38:02 Marc Damoiseau
+38:02 Marc Damoiseaux
 and so with feedback, saying, "But what did you do?" And in fact, it
 was this exchange group, and this group that you have in your hand, or
 you don't, you can have it in your head, explanations, but it's an
@@ -648,7 +648,7 @@ experience in fact, it's an experience in the present moment.
 38:19 Philippe Guillaume
 When you talk about longitudinal fluctuations, what patterns are you
 referring to?
-38:25 Marc Damoiseau
+38:25 Marc Damoiseaux
 This embryonic force where the body lengthens, the power of growth
 it has, which is also a force of gravity, which allows you to stand up. It
 manifests in growth, but it is not growth. Do you understand? It's a
@@ -659,7 +659,7 @@ How, at that moment, does this embryonic developmental movement
 integrate into this health, this emergence? Because someone who does
 biodynamic osteopathy does not necessarily master embryonic
 movements.
-39:02 Marc Damoiseau
+39:02 Marc Damoiseaux
 No, but they should, I think. Because we find analogous movements
 that are observed in biodynamic osteopathy treatments. Certain
 analogous movements that are found in embryonic development. It is
@@ -674,7 +674,7 @@ about primary respiration, we talk about the breath of life, we talk about
 power, we talk about the neutral, we talk about ignition.
 39:54 Philippe Guillaume
 Is ignition the restoration of the pattern's function?
-39:59 Marc Damoiseau
+39:59 Marc Damoiseaux
 Yes, rekindling that flame.
 40:01 Philippe Guillaume
 What I really like when we study your courses is that it provides
@@ -686,16 +686,16 @@ becoming active again, we feel how the tissue was built and through
 the tissue, the inherent movement we had in our hands resumes. So
 this brings credibility to the initial perception that we might have
 doubted.
-40:51 Marc Damoiseau
+40:51 Marc Damoiseaux
 Often, students tell me, "Your explanations confirm what I feel." I think
 that embryology, as I teach it, allows us to sometimes confirm our
 feelings.
-41:04 Marc Damoiseau
+41:04 Marc Damoiseaux
 I think it's important to have as a vision, how can I help physiology,
 how can I support health. Health is there, how can I help it?
 41:13 Philippe Guillaume
 You mentioned different axes earlier. It starts with fertilization.
-41:19 Marc Damoiseau
+41:19 Marc Damoiseaux
 This is what we call the vital axis. It's a first impulse. At the moment of
 fertilization, and just before, we realized that in the creation of an
 oocyte, an ovule, an axis will be drawn, which is given by the nurse
@@ -705,7 +705,7 @@ disassimilating pole, if you will. We could say a positive pole and a
 negative pole. Which will be very important throughout embryology.
 At the moment of fertilization, the spermatozoon, at the moment it
 touches the membrane, if you will,
-42:04 Marc Damoiseau
+42:04 Marc Damoiseaux
 there will be what is called very quickly a calcium wave. So really a
 movement that will reorganize the cytoskeleton to put it in. It is
 already in what is called a pre-pattern on which the future embryo will
@@ -718,7 +718,7 @@ is established. And we will be able to follow the polarity, if you will, all
 the time. The axis that will evolve in space-time until it reaches a
 moment when there will be what is called the moment of
 implantation. That is to say, a first cavity will appear
-43:01 Marc Damoiseau
+43:01 Marc Damoiseaux
 with an embryonic pole, a vegetal pole, an animal pole. Again, an axis,
 if you will. And the embryo will always enter the uterine mucosa in an
 axial manner. It will not enter sideways. It will enter the place. There is
@@ -732,7 +732,7 @@ body, which is fluid, will also, around the embryo, bathe in another
 fluid. That's in the future. But at the moment I arrive, the embryo
 remains polarized. So it is oriented in a space-time in a very specific
 way. So I speak of space and time. So space.
-44:00 Marc Damoiseau
+44:00 Marc Damoiseaux
 It must place itself in space. It is not placed in any way in space. That
 is something important. It means that I orient myself in my space to be
 the most adequate and the most efficient. At the moment the embryo
@@ -747,7 +747,7 @@ formation of hypoxia, will pass, transform into mesenchymal cells to
 form the primitive mesoderm. And in this movement, at the same time,
 there is like a wave in the superficial epithelial tissue that will form,
 which also occurs along the axis
-45:00 Marc Damoiseau
+45:00 Marc Damoiseaux
 of the embryonic pedicle and this primitive streak, which will form
 what is called the notochord, which will undergo different evolutions,
 the notochordal process, the wave, to finally, ultimately, form like a
@@ -760,7 +760,7 @@ part and which has functional resources, if you will. So, it is a structure,
 and a function. So, one must not just think structure, one must also
 think, in one's head, about function. If I can give a summary of the
 notochordal process, we can consider that it is an organizing center
-46:00 Marc Damoiseau
+46:00 Marc Damoiseaux
 which is crucial, which will secrete morphogens, genes, if you will, to
 regulate the different genes that will be involved, among others, in
 neurulation, in the general differentiation of the embryo. And so, if this
@@ -773,7 +773,7 @@ and development of the entire body. So, the notochord acts as a
 signaling center, an organizing center, by emitting both at the
 molecular level, but at the same time, by allowing a recognition of all
 the cells where they are located, if you will, in space-time,
-47:02 Marc Damoiseau
+47:02 Marc Damoiseaux
 because it is also polarized. We were able to measure that if we have
 an electric field, and if it was deviated, well, there was a whole
 deviation that would occur. So, it is really an axis that will ensure the
@@ -790,7 +790,7 @@ into its entire base.
 48:00 Philippe Guillaume
 to take a minor movement to bring it back into an even more minor
 movement.
-48:06 Marc Damoiseau
+48:06 Marc Damoiseaux
 The vital axis which is the axis given by polarity. So, there is an
 orientation, if you will, that occurs. It is not done in an anarchic way, it
 is already oriented or pre-oriented. Then, there are two cells, then
@@ -806,7 +806,7 @@ reforms towards the midline. We are built of anterior, middle, and
 posterior parts around a specific axis.
 48:59 Philippe Guillaume
 And how do you find it in treatment?
-49:02 Marc Damoiseau
+49:02 Marc Damoiseaux
 Let's take the notochord. Where does it end up? And where does it
 start? We realize that there is a place in the skull called the base of the
 skull, and more specifically at the level of the sella turcica, which is the
@@ -818,11 +818,11 @@ way, in order to be able to show that between this part and that part,
 49:45 Philippe Guillaume
 Between the occiput and the sacrum, we have the memory of the
 notochord's construction.
-49:51 Marc Damoiseau
+49:51 Marc Damoiseaux
 It's there, it's in our hands. So the idea is simply to re-axis, if you will,
 in relation to that. It's almost an energetic, almost electromagnetic, re-
 axing.
-50:00 Marc Damoiseau
+50:00 Marc Damoiseaux
 It's a feeling, is it well placed in the right polarity, if you will. I like the
 word polarity at that moment. Between a plus and a minus, a point of
 support, a fulcrum. It's about understanding what a fulcrum means,
@@ -845,7 +845,7 @@ allows, with intellectual knowledge, to model a possibility of function
 at a time prior to when we touch a sacrum and afterwards, to feel this
 famous subtle polarity that is accompanied by the teacher to find this
 pattern.
-51:26 Marc Damoiseau
+51:26 Marc Damoiseaux
 to restore this midline. The first original midline in the body, which
 has an organizing function. If it's deviated, somewhere, you lose a bit.
 51:36 Philippe Guillaume
@@ -858,25 +858,25 @@ the head and the pelvis, at the beginning, will be very, very close.
 So, you have to imagine that we are touching a tissue in full growth
 and that by holding the sacrum, we also have the head in our hands.
 So, really opening up to a fine and very subtle perception.
-52:13 Marc Damoiseau
+52:13 Marc Damoiseaux
 You want the base of the skull and the sacrum at the beginning, if we
 go backwards,
 52:20 Philippe Guillaume
 ST' 501 Subtitling And that, if you're not taught it, if you stumble
 upon it by chance, you won't validate that perception.
-52:26 Marc Damoiseau
+52:26 Marc Damoiseaux
 Initially, it's the same thing. It allows us to restore the unity of the
 system. That's important because sometimes, we are disunified.
 52:33 Philippe Guillaume
 Absolutely. It's not a modeling, it's not a concept. Embryology is a
 construction from the living. That's precisely what gives it more
 presence and meaning in sensation.
-52:48 Marc Damoiseau
+52:48 Marc Damoiseaux
 the body recognizes that, it's like listening to a radio and being able to
 tune into the right wave, you can capture the information, that's a bit
 what I can explain, and it's also important to understand the notion of
 fulcrum in osteopathy
-53:01 Marc Damoiseau
+53:01 Marc Damoiseaux
 it's a point where tensions meet, where transformation points are
 created, whereas in biodynamic osteopathy we go a little further
 because we get closer to this embryonic movement, the fulcrum can
@@ -920,7 +920,7 @@ creation of the notochord.
 Can this explain a person who is not grounded or that you, as a
 therapist, are initially helpless in your approach, feeling like you can't
 stabilize them or that something is missing in your hands?
-56:15 Marc Damoiseau
+56:15 Marc Damoiseaux
 We're talking about temporality. When does the experience take
 place? If we look at the experience, it always takes place now. Now, let's
 think about something that happened this morning. This morning,
@@ -928,7 +928,7 @@ remember when you got into your car. You were a little bit in a now.
 That's where something very important, which is not easy to conceive,
 but which we can perhaps feel. Are there several nows? Or would there
 only be one now?
-57:04 Marc Damoiseau
+57:04 Marc Damoiseaux
 That means that most of the time, as soon as I think, I create time.
 Sometimes there are moments when you don't necessarily have to
 think. You have to put yourself in a quality of presence. And the word
@@ -941,7 +941,7 @@ nows. But I think, I create time. And that's why we say that true
 thinkers no longer think. And at some point, I think that through this
 absorption that we can have, we can put ourselves into something that
 is now,
-58:02 Marc Damoiseau
+58:02 Marc Damoiseaux
 in which we have access, in fact, to a concentrated space-time. So,
 what you are now is the result of all that. And that's where information
 can be passed. That's where information can be seized and given. That's
@@ -954,7 +954,7 @@ free them for their life. And that's where we can find in the tissue
 quality or in the information quality, But it happens now. But if you want
 to go into the past, and you think, it won't work. That's where we have
 the door to enter,
-59:00 Marc Damoiseau
+59:00 Marc Damoiseaux
 perhaps, into something more subtle. We say to ourselves, "Well, all of
 a sudden, I have access to this information that perhaps, if I think
 about it, happened a long time ago, but it is still in the now, because it
@@ -988,7 +988,7 @@ redesigned itself. And I found in my hands, this construction of the
 upper limb. And then, I found my movement in the connective tissue
 and in the articular tissue. And I was able to finish my session on the
 elbow.
-61:29 Marc Damoiseau
+61:29 Marc Damoiseaux
 Few people know that the upper and lower limbs are also an
 expansion of the cardiopleuroperitoneal sac. It's amusing because we
 find it in Chinese medicine, where all the meridians of the heart, of the
@@ -1001,7 +1001,7 @@ Yes, because in Chinese medicine, sometimes they only treat people
 dressed in periphery out of modesty or other reasons.
 62:08 Philippe Guillaume
 And in fact, they have access to the depth.
-62:10 Marc Damoiseau
+62:10 Marc Damoiseaux
 They have access to the depth because it's an expansion of that sac.
 It's an expansion of your depth. And besides, the folds, for example,
 the elbow crease, will form at the same time as the digestive rotations.
@@ -1010,7 +1010,7 @@ tennis?
 62:25 Philippe Guillaume
 Oh yes, so tell me about someone who comes to see you with a tennis
 elbow.
-62:28 Marc Damoiseau
+62:28 Marc Damoiseaux
 I will follow the tissue and see if it leads me to the visceral system and
 see what might have been blocked or have a dysfunction at the pleural
 level or otherwise, you see, of the lungs. It should be known that there
@@ -1020,7 +1020,7 @@ and the splanchnopleure, so let's say the visceral and parietal pleura,
 let's say. And then I can sometimes find a fixation on a lung.
 62:59 Philippe Guillaume
 All this because embryologically, there is a continuity of construction.
-63:03 Marc Damoiseau
+63:03 Marc Damoiseaux
 There's a meaning to what we're saying. That means if we say that, we
 can explain it. And that's what sometimes some people tell me, "Well, I
 managed to treat them here, I hadn't understood. Finally, but in
@@ -1030,14 +1030,14 @@ global understanding, if you will.
 63:30 Philippe Guillaume
 We've seen the notochord patterns. There's also something to consider,
 which is the hierarchy of systems.
-63:39 Marc Damoiseau
+63:39 Marc Damoiseaux
 The chronology of appearance of systems, that's very important and I
 think it's a therapeutic key. In a very first step, the first thing, if we
 take a cell and make a bit of a link, if you will, between ontogenesis
 and phylogenesis, understanding well that ontogenesis is the
 formation of a being, of a specific individual, and phylogenesis would
 encompass all species, I'm simplifying.
-64:04 Marc Damoiseau
+64:04 Marc Damoiseaux
 The very first system is an autocrine communication, meaning the cell
 communicates with itself. It's almost philosophical, it's first know
 yourself. And then the second thing is paracrine communication, I
@@ -1050,7 +1050,7 @@ we see that the first cavity that appears, we call it the blastocoel, the
 germ of the sky. And this cavity is your first digestive cavity. We find
 very, very well autocrine, paracrine, digestive. And then only other
 systems will appear,
-65:00 Marc Damoiseau
+65:00 Marc Damoiseaux
 but that means that many, many problems come from not knowing
 ourselves, let's say, and not having communicated well with others,
 and not eating properly. I think many pathologies in the body start
@@ -1062,7 +1062,7 @@ common cold of the pancreas, I call it jokingly, but liberating the
 pancreas on an osteopathic level through visceral techniques, whether
 it's on the level of mobility, structure or otherwise, or on the fascial
 level, can be a very, very good source of healing.
-66:00 Marc Damoiseau
+66:00 Marc Damoiseaux
 We don't see why all of a sudden these shoulder problems appear,
 these cervical pain problems, these back pain problems, these
 digestion problems, these constipation problems, to go and see what's
@@ -1085,7 +1085,7 @@ and posterior neuropores. And so, I have the impression that there's a
 huge relationship with the connection to the outside once we've found
 ourselves. And moreover, it's at that precise moment that embryonic
 flexion occurs.
-67:30 Marc Damoiseau
+67:30 Marc Damoiseaux
 We have flexion, but we also have longitudinal flexion. So it makes this
 forward flexion movement, which is a meeting of the brain and the
 heart, which know each other very well somewhere. And in this
@@ -1095,7 +1095,7 @@ develop, and among others with a very important organ, which is the
 thyroid, and also the notion of the pancreas which will develop a little
 later, already in this anlage phase and especially in longitudinal
 development.
-68:01 Marc Damoiseau
+68:01 Marc Damoiseaux
 So there's an action that takes place with the entire glandular system,
 from the pituitary, the thyroid, and the developing pancreatic system.
 68:09 Philippe Guillaume
@@ -1106,14 +1106,14 @@ extremities and the center, the periphery and the depth. You find
 relationships, points of support that date back to embryonic
 construction, it gives a consciousness in the hands that is just
 extraordinary. Let's talk now about synchronicities.
-68:37 Marc Damoiseau
+68:37 Marc Damoiseaux
 Let's revisit embryonic development. The exact word is synchronicities.
 Something that happens temporally, at the same time, but in a
 different space, with the same induction factors. Let's take an
 important example. There is a very important synchronicity in the
 development between the eyes, the thyroid, and the pancreas. Or
 between the development of the brain and the heart.
-69:03 Marc Damoiseau
+69:03 Marc Damoiseaux
 Or between the development of a stomach and a liver, or an intestine.
 And that's very interesting because it supports itself. And it allows us to
 understand certain problems. The importance, for example, to balance
@@ -1127,11 +1127,11 @@ closure of the cerebellar tentorium.
 69:41 Philippe Guillaume
 There is also the synchronicity between the closure of the neural tube
 and the closure of the coelom.
-69:48 Marc Damoiseau
+69:48 Marc Damoiseaux
 Yes, the closure of the neural tube, the closure of the coelom, these
 are phenomena that will happen at the same times, but which give us
 points of support. Don't forget, a word, a look, the gesture is healing.
-70:03 Marc Damoiseau
+70:03 Marc Damoiseaux
 The tongue is the bud of the heart. And from the tongue will appear
 the shield of your soul, which we call the thyroid. Thyroïdeos means
 the shield. That means the voice is connected to the heart, but it is
@@ -1144,7 +1144,7 @@ can feel with the heart. We can say that the hands are an expansion of
 the heart, in a somewhat philosophical way. And then, there is a third
 thing, the gaze, which is very important. The eyes, initially, have a very
 powerful link with the heart.
-71:00 Marc Damoiseau
+71:00 Marc Damoiseaux
 They settle on the heart. We look with our heart, we touch with our
 heart and we speak with our heart. That's why Steele said very early
 on, it's a very beautiful phrase I found, that we must restore freedom
@@ -1157,11 +1157,11 @@ above the head at a certain stage of development, so it's not
 surprising to see an osteopath working on the top of the head, "Oh, but
 I feel something special there, I'm drawn to the thorax at the same
 time, but it's not the same speed," and there, by doing embryology
-71:48 Marc Damoiseau
+71:48 Marc Damoiseaux
 Initially, if you look at the primitive appearance of the heart, it comes
 from two main parts, let's say. There is a part that comes from the
 epithelial cells, which are on either side of the primitive streak.
-72:02 Marc Damoiseau
+72:02 Marc Damoiseaux
 So very, very early, already in the embryo, there will be at some point
 a kind of aspiration field that will attract these cells which will go to
 the summit in the part we call apical. You have the caudal and apical
@@ -1175,34 +1175,34 @@ that are there, above, at some point, there is a differential growth rate
 that makes the brain grow around the heart and wrap around it like
 that. If I go backwards, I see that the cells are above, but that the
 growth of the brain wraps around the heart
-73:00 Marc Damoiseau
+73:00 Marc Damoiseaux
 and that's how it positions the heart. So it's an enfolding around my
 heart. But if I do the opposite, I pull the tissue backwards, I see that
 the system returns, that the development of the heart is indeed in the
 so-called apical part.
 73:14 Philippe Guillaume
 And we can feel that in our hands.
-73:16 Marc Damoiseau
+73:16 Marc Damoiseaux
 And we can feel that in our hands, we can perceive it, it is in any case
 the movement of freedom that must exist between the brain and the
 heart. I mainly work on this connection, I trust the tissues.
 73:28 Philippe Guillaume
 Since you started meditating with Patrick, getting to know yourself, can
 all these patterns be accessed through meditation?
-73:39 Marc Damoiseau
+73:39 Marc Damoiseaux
 In meditation, there are different degrees. The very first degree of
 meditation is first to develop what is called attention. So, I develop my
 capacity to be attentive, therefore my capacity for presence. You are
 more sharpened to be able to perceive better, if you will, because it
 forces you to be present. The therapeutic act is an act of presence.
-74:01 Marc Damoiseau
+74:01 Marc Damoiseaux
 So, it's a help, but it's not meditation. It's a tool, little by little, that
 allows access.
 74:08 Philippe Guillaume
 have you ever felt a pattern on yourself, for example, between the
 hand and the pleura or the brain and the heart, or an embryological
 movement that... you say, "Ah, that's an embryological movement"?
-74:19 Marc Damoiseau
+74:19 Marc Damoiseaux
 We develop around our vessels. And that's what's very important, is
 that the axis of growth, of orientation, is a differential growth rate. At
 some point, it will occur between the endothelial tubes and the
@@ -1213,7 +1213,7 @@ movements. I have in a...
 74:47 Philippe Guillaume
 of movements that take that path, you mean, that's it. Maybe not in its
 originality, but in its...
-74:55 Marc Damoiseau
+74:55 Marc Damoiseaux
 Not only do I focus on growth, but I will release a joint by being very
 careful to release the artery.
 75:04 Philippe Guillaume
@@ -1235,19 +1235,19 @@ embryology, the pattern of eye development appeared, expressed
 itself, was drawn. And there, it's extraordinary to be able to associate
 meditation, the movement of health, tissue movement, and also the
 embryological pattern.
-76:31 Marc Damoiseau
+76:31 Marc Damoiseaux
 Yes, yes, absolutely. That brings us to the eyes you're talking about. The
 eye is an exteriorized brain.
 76:37 Philippe Guillaume
 the expansion of the third entry.
-76:39 Marc Damoiseau
+76:39 Marc Damoiseaux
 It's a bit of a convergence of all the internal and external facial
 structures. I had the opportunity to delve deeply into this course on the
 eye. There is a convergence of tissues that the eye will almost look at
 through its facial system, where it is fixed. It is a receiver of an
 enormous amount of information. Taking the eyes, you can go towards
 a primary fixation point,
-77:03 Marc Damoiseau
+77:03 Marc Damoiseaux
 even on an energetic level, even on a purely photonic level.
 77:07 Philippe Guillaume
 Thank you for reminding me, because indeed, certain therapeutic
@@ -1287,21 +1287,21 @@ for those who, like me, have followed this course, thank you because
 we clearly perceive that when we are fully present in this famous now
 and we access these famous embryonic patterns, all the power that this
 brings to our care.
-80:02 Marc Damoiseau
+80:02 Marc Damoiseaux
 Thank you, Philippe, it was a real pleasure. I have many students after
 25 years of study, but you are the only one who took the courage and
 the will to study it, to listen to it several times because that's how we
 learn. And so I thank you for all that.
 80:20 Philippe Guillaume
 So, I'll see you soon.
-80:21 Marc Damoiseau
+80:21 Marc Damoiseaux
 See you soon, Philippe, very soon.`
     },
     {
         "id": "link-marc-site",
-        "title": "Marc Damoiseau's Website",
+        "title": "Marc Damoiseaux's Website",
         "author": "Site Web Officiel",
-        "description": "The complete works, texts and journey of Marc Damoiseau. Explore the original source of this biodynamic approach.",
+        "description": "The complete works, texts and journey of Marc Damoiseaux. Explore the original source of this biodynamic approach.",
         "thumbnailUrl": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=400&h=400&auto=format&fit=crop",
         "externalLink": "https://www.marcdamoiseaux.com"
     }
