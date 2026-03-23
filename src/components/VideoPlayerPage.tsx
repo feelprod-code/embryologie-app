@@ -540,8 +540,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
       <div className={cn(
         "bg-transparent flex-shrink-0 w-full lg:max-w-4xl mx-auto transition-all duration-300 ease-in-out overflow-hidden origin-top",
-        isFullscreen ? "hidden" : "",
-        !showExternalControls ? "max-h-0 opacity-0 p-0 mt-0 border-transparent shadow-none" : "max-h-24 p-1 sm:p-2 mt-2 rounded-lg md:rounded-xl shadow-sm border border-slate-200 opacity-100"
+        isFullscreen ? "hidden" : "max-h-24 p-1 sm:p-2 mt-2 rounded-lg md:rounded-xl shadow-sm border border-slate-200 opacity-100"
       )}>
         {/* COMPACT SINGLE-LINE CONTROLS */}
         <div className="flex justify-between items-center w-full gap-1 sm:gap-2 px-0.5 sm:px-1 min-h-[36px] sm:min-h-[44px]">
