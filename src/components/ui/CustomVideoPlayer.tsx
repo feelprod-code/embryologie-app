@@ -792,7 +792,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         const isTouch = (e.nativeEvent as any).pointerType === 'touch' || window.matchMedia("(pointer: coarse)").matches;
                         if (isTouch) {
                             // On mobile/touch devices, tapping the video toggles ONLY the controls
-                            if (showControls && isPlaying) {
+                            if (showControls) {
                                 handleSetShowControls(false);
                                 if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
                             } else {
@@ -814,7 +814,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
                 {isFullscreen && (
                     <div
-                        className={`absolute top-0 right-0 z-[60] transition-opacity duration-300 ${showControls || !isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'} p-4`}
+                        className={`absolute top-0 right-0 z-[60] transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'} p-4`}
                     >
                         <button
                             onClick={toggleFullscreen}
@@ -851,7 +851,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 )}
 
                 <div
-                    className={`absolute bottom-0 left-0 right-0 p-4 pt-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-40 transition-opacity duration-300 flex flex-col justify-end gap-1 ${showControls || !isPlaying ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                    className={`absolute bottom-0 left-0 right-0 p-4 pt-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-40 transition-opacity duration-300 flex flex-col justify-end gap-1 ${showControls ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                         }`}
                     onClick={(e) => e.stopPropagation()} // Prevent bubble to play/pause wrapper
                 >
