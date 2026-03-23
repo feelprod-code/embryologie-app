@@ -81,6 +81,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   const [isCaching, setIsCaching] = useState<boolean>(false);
   const [isCached, setIsCached] = useState<boolean>(false);
+  const [showSuccessCheck, setShowSuccessCheck] = useState<boolean>(false);
   const [localVideoUrl, setLocalVideoUrl] = useState<string | null>(null);
   const [showExternalControls, setShowExternalControls] = useState<boolean>(true);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState<boolean>(false);
@@ -282,6 +283,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       setLocalVideoUrl(URL.createObjectURL(blob));
 
       setIsCached(true);
+      setShowSuccessCheck(true);
+      setTimeout(() => setShowSuccessCheck(false), 2500);
     } catch (e: any) {
       console.error("Failed to cache video", e);
       alert(t('videoLibrary.cacheError', `Erreur lors de l'enregistrement de la vidéo: ${e?.message || 'Erreur inconnue'}`));
@@ -596,13 +599,15 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 <div className="relative flex items-center justify-center w-3.5 h-3.5 sm:w-4 sm:h-4">
                   {isCaching ? (
                     <Loader2 className="w-full h-full animate-spin" strokeWidth={2.5} />
+                  ) : showSuccessCheck ? (
+                    <CheckCircle2 className="w-full h-full text-[#5A9C51] animate-in zoom-in duration-300" strokeWidth={2.5} />
                   ) : isCached ? (
                     isConfirmingDelete ? (
                       <Trash2 className="w-full h-full text-red-500 animate-in zoom-in duration-200" strokeWidth={2.5} />
                     ) : (
                       <>
-                        <CheckCircle2 className="w-full h-full text-[#5A9C51] group-hover:opacity-0 transition-opacity absolute" strokeWidth={2.5} />
-                        <Trash2 className="w-full h-full text-red-500 opacity-0 group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />
+                        <CheckCircle2 className="w-full h-full text-[#5A9C51] md:group-hover:opacity-0 transition-opacity absolute" strokeWidth={2.5} />
+                        <Trash2 className="w-full h-full text-red-500 opacity-0 md:group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />
                       </>
                     )
                   ) : (
