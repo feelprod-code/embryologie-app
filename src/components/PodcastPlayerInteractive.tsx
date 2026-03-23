@@ -26,6 +26,14 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
 
     const lastActiveNodeRef = useRef<number>(-1);
     const animationRef = useRef<number>(0);
+    
+    // Direct DOM Refs for max performance (60fps without React state)
+    const scrubFillRef = useRef<HTMLDivElement>(null);
+    const scrubThumbRef = useRef<HTMLDivElement>(null);
+    const timeDisplayRef = useRef<HTMLSpanElement>(null);
+    const timeRemainingRef = useRef<HTMLSpanElement>(null);
+    const rangeRef = useRef<HTMLInputElement>(null);
+    const scrubRef = useRef<number | null>(null);
 
     // Parse transcript
     useEffect(() => {
@@ -54,7 +62,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
     };
 
     const handleTimeUpdate = () => {
-        if (audioRef.current && localScrubTime === null && !isPlaying) {
+        if (audioRef.current && localScrubTime === null && scrubRef.current === null) {
             setCurrentTime(audioRef.current.currentTime);
         }
     };
@@ -64,7 +72,13 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
         if (isPlaying && localScrubTime === null) {
             const updateTime = () => {
                 if (audioRef.current) {
-                    setCurrentTime(audioRef.current.currentTime);
+                    const time = audioRef.current.currentTime;
+                    // Direct DOM updates bypass React render cycle for 60fps fluidity!
+                    if (scrubFillRef.current) scrubFillRef.current.style.width = `${(time / (duration || 100)) * 100}%`;
+                    if (scrubThumbRef.current) scrubThumbRef.current.style.left = `${(time / (duration || 100)) * 100}%`;
+                    if (timeDisplayRef.current) timeDisplayRef.current.textContent = formatTime(time);
+                    if (timeRemainingRef.current) timeRemainingRef.current.textContent = `-${formatTime(Math.max(0, duration - time))}`;
+                    if (rangeRef.current) rangeRef.current.value = time.toString();
                 }
                 animationRef.current = requestAnimationFrame(updateTime);
             };
@@ -89,6 +103,13 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
         if (audioRef.current) {
             audioRef.current.currentTime = time;
             setCurrentTime(time);
+            
+            // Instantly visually snap
+            if (scrubFillRef.current) scrubFillRef.current.style.width = `${(time / (duration || 100)) * 100}%`;
+            if (scrubThumbRef.current) scrubThumbRef.current.style.left = `${(time / (duration || 100)) * 100}%`;
+            if (timeDisplayRef.current) timeDisplayRef.current.textContent = formatTime(time);
+            if (timeRemainingRef.current) timeRemainingRef.current.textContent = `-${formatTime(Math.max(0, duration - time))}`;
+            if (rangeRef.current) rangeRef.current.value = time.toString();
         }
     };
 
@@ -181,47 +202,59 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                     </button>
 
                     <div className="flex flex-1 items-center gap-2 sm:gap-3 shrink-0 ml-1">
-                        <span className="text-xs text-slate-500 font-medium tabular-nums min-w-[36px] text-right">
+                        <span ref={timeDisplayRef} className="text-xs text-slate-500 font-medium tabular-nums min-w-[36px] text-right">
                             {formatTime(displayTime)}
                         </span>
                         
                         <div className="relative flex-1 h-4 flex items-center group cursor-pointer touch-manipulation">
                             <input
+                                ref={rangeRef}
                                 type="range"
                                 min="0"
                                 max={duration || 100}
                                 step="0.01"
-                                value={displayTime}
-                                onPointerDown={() => setLocalScrubTime(currentTime)}
+                                defaultValue={0}
+                                onPointerDown={() => {
+                                    scrubRef.current = currentTime;
+                                    setLocalScrubTime(currentTime);
+                                }}
                                 onChange={(e) => {
                                     const val = parseFloat(e.target.value);
-                                    setLocalScrubTime(val);
+                                    scrubRef.current = val;
+                                    // Update DOM directly during scrub
+                                    if (scrubFillRef.current) scrubFillRef.current.style.width = `${(val / (duration || 100)) * 100}%`;
+                                    if (scrubThumbRef.current) scrubThumbRef.current.style.left = `${(val / (duration || 100)) * 100}%`;
+                                    if (timeDisplayRef.current) timeDisplayRef.current.textContent = formatTime(val);
+                                    if (timeRemainingRef.current) timeRemainingRef.current.textContent = `-${formatTime(Math.max(0, duration - val))}`;
                                 }}
                                 onPointerUp={() => {
-                                    if (localScrubTime !== null) {
-                                        handleSeek(localScrubTime);
+                                    if (scrubRef.current !== null) {
+                                        handleSeek(scrubRef.current);
                                         setLocalScrubTime(null);
+                                        scrubRef.current = null;
                                     }
                                 }}
-                                onPointerCancel={() => setLocalScrubTime(null)}
-                                onTouchCancel={() => setLocalScrubTime(null)}
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-manipulation"
+                                onPointerCancel={() => { setLocalScrubTime(null); scrubRef.current = null; }}
+                                onTouchCancel={() => { setLocalScrubTime(null); scrubRef.current = null; }}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-none"
                                 aria-label="Seek podcast"
                             />
                             <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden pointer-events-none">
                                 <div
+                                    ref={scrubFillRef}
                                     className="h-full bg-[#E87C3E]"
                                     style={{ width: `${(displayTime / (duration || 100)) * 100}%` }}
                                 />
                             </div>
                             {/* Thumb */}
                             <div
+                                ref={scrubThumbRef}
                                 className="absolute h-3.5 w-3.5 bg-[#E87C3E] rounded-full pointer-events-none -translate-x-1/2"
                                 style={{ left: `${(displayTime / (duration || 100)) * 100}%` }}
                             />
                         </div>
 
-                        <span className="text-xs text-slate-400 font-medium tabular-nums min-w-[36px]">
+                        <span ref={timeRemainingRef} className="text-xs text-slate-400 font-medium tabular-nums min-w-[36px]">
                             -{formatTime(remainingTime)}
                         </span>
                     </div>

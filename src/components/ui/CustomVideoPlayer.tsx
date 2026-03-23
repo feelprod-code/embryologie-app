@@ -44,6 +44,7 @@ interface CustomVideoPlayerProps {
     onPlayStateChange?: (isPlaying: boolean) => void;
     onCuesLoaded?: (cues: {start: number, end: number, text: string}[]) => void;
     onActiveCueChange?: (cueIndex: number) => void;
+    onControlsChange?: (visible: boolean) => void;
 }
 
 export interface CustomVideoPlayerRef {
@@ -65,6 +66,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     onPlayStateChange,
     onCuesLoaded,
     onActiveCueChange,
+    onControlsChange,
 }, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
@@ -86,6 +88,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const nativeFullscreenActive = useRef(false);
     const [showControls, setShowControls] = useState(true);
     const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const handleSetShowControls = React.useCallback((visible: boolean) => {
+        setShowControls(visible);
+        if (onControlsChange) onControlsChange(visible);
+    }, [onControlsChange]);
 
     // Zoom/Pan State for Fullscreen
     const [zoomScale, setZoomScale] = useState(1);
@@ -238,11 +245,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     };
 
     const triggerControls = () => {
-        setShowControls(true);
+        handleSetShowControls(true);
         if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
         controlsTimeoutRef.current = setTimeout(() => {
             if (isPlaying) {
-                setShowControls(false);
+                handleSetShowControls(false);
             }
         }, 1500); // further reduced delay for controls to hide quickly
     };
@@ -669,7 +676,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 }}
                 onMouseLeave={() => {
                     if (isPlaying) {
-                        setShowControls(false); // Instantly hide controls on mouse leave
+                        handleSetShowControls(false); // Instantly hide controls on mouse leave
                         if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
                     }
                 }}
@@ -781,8 +788,21 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     className="absolute inset-0 z-10 cursor-pointer flex items-center justify-center touch-manipulation"
                     onClick={(e) => {
                         e.stopPropagation();
-                        togglePlay(e);
-                        triggerControls();
+                        // Just use nativeEvent.pointerType or matchMedia to detect touch/mobile vs desktop
+                        const isTouch = (e.nativeEvent as any).pointerType === 'touch' || window.matchMedia("(pointer: coarse)").matches;
+                        if (isTouch) {
+                            // On mobile/touch devices, tapping the video toggles ONLY the controls
+                            if (showControls && isPlaying) {
+                                handleSetShowControls(false);
+                                if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+                            } else {
+                                triggerControls();
+                            }
+                        } else {
+                            // On desktop, clicking video plays/pauses
+                            togglePlay(e);
+                            triggerControls();
+                        }
                     }}
                     onTouchStart={handleZoomTouchStart}
                     onTouchMove={handleZoomTouchMove}
@@ -812,8 +832,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         className="absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300"
                         style={{
                             zIndex: 20,
-                            bottom: showControls ? (isFullscreen ? '80px' : '60px') : '0px',
-                            paddingBottom: isFullscreen ? '24px' : '6px'
+                            bottom: showControls ? (isFullscreen ? '60px' : '60px') : '0px',
+                            paddingBottom: isFullscreen ? '12px' : '6px'
                         }}
                     >
                         <span

@@ -82,6 +82,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [isCaching, setIsCaching] = useState<boolean>(false);
   const [isCached, setIsCached] = useState<boolean>(false);
   const [localVideoUrl, setLocalVideoUrl] = useState<string | null>(null);
+  const [showExternalControls, setShowExternalControls] = useState<boolean>(true);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState<boolean>(false);
   const videoUrl = course.cloudflareId ? `/cf-stream/${course.cloudflareId}/downloads/default.mp4` : '';
 
@@ -526,6 +527,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             onPlayStateChange={setIsVideoPlaying}
             onCuesLoaded={setCues}
             onActiveCueChange={setActiveCueIndex}
+            onControlsChange={setShowExternalControls}
             className={cn(
               isFullscreen ? "" : "rounded-2xl md:rounded-3xl shadow-xl border border-slate-800 w-full h-full object-cover mx-auto"
             )}
@@ -534,8 +536,9 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       </div>
 
       <div className={cn(
-        "bg-transparent p-1 sm:p-2 rounded-lg md:rounded-xl shadow-sm border border-slate-200 flex-shrink-0 w-full mt-2 lg:max-w-4xl mx-auto",
-        isFullscreen ? "hidden" : ""
+        "bg-transparent flex-shrink-0 w-full lg:max-w-4xl mx-auto transition-all duration-300 ease-in-out overflow-hidden origin-top",
+        isFullscreen ? "hidden" : "",
+        !showExternalControls ? "max-h-0 opacity-0 p-0 mt-0 border-transparent shadow-none" : "max-h-24 p-1 sm:p-2 mt-2 rounded-lg md:rounded-xl shadow-sm border border-slate-200 opacity-100"
       )}>
         {/* COMPACT SINGLE-LINE CONTROLS */}
         <div className="flex justify-between items-center w-full gap-1 sm:gap-2 px-0.5 sm:px-1 min-h-[36px] sm:min-h-[44px]">
@@ -621,7 +624,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       isFullscreen && "hidden"
     )}>
       {/* STICKY TRANSCRIPT HEADER */}
-      <div className="sticky top-0 z-30 bg-[#FAF6ED] border-b border-slate-200 shadow-sm w-full flex flex-col shrink-0">
+      <div className={cn(
+        "sticky top-0 z-30 bg-[#FAF6ED] w-full flex flex-col shrink-0 transition-all duration-300 ease-in-out origin-top overflow-hidden",
+        !showExternalControls ? "max-h-0 opacity-0 border-transparent shadow-none" : "max-h-32 opacity-100 border-b border-slate-200 shadow-sm"
+      )}>
         <div className="p-2 w-full flex items-center justify-between shrink-0">
           <div className="flex flex-row items-center px-2 flex-1 min-w-0 pr-2 gap-2">
             <h3 className={cn("font-anton text-sm md:text-sm lg:text-[15px] tracking-wide uppercase leading-tight truncate",
