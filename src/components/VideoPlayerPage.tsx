@@ -95,11 +95,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const markdownContainerRef = useRef<HTMLDivElement>(null);
   const lastActiveNodeRef = useRef<number>(-1);
 
+  const [cues, setCues] = useState<{start: number, end: number, text: string}[]>([]);
+  const [activeCueIndex, setActiveCueIndex] = useState<number>(-1);
+
   // Auto-scroll synchronisé estimé (sur la balise markdown)
   useEffect(() => {
     if (!markdownContainerRef.current || !videoDuration) return;
 
-    const progress = currentTime / videoDuration;
     const elements = Array.from(markdownContainerRef.current.children) as HTMLElement[];
     if (elements.length === 0) return;
 
@@ -124,7 +126,28 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
     if (trackableElements.length === 0) return;
 
-    const targetChar = progress * totalChars;
+    let targetChar = 0;
+    
+    if (cues.length > 0 && activeCueIndex >= 0) {
+      let cuesCharCount = 0;
+      let totalCuesChars = 0;
+      for (let i = 0; i < cues.length; i++) {
+        totalCuesChars += cues[i].text.length;
+        if (i < activeCueIndex) {
+          cuesCharCount += cues[i].text.length;
+        } else if (i === activeCueIndex) {
+          const cue = cues[i];
+          const cueDuration = cue.end - cue.start;
+          const cueProgress = cueDuration > 0 ? Math.max(0, Math.min(1, (currentTime - cue.start) / cueDuration)) : 0;
+          cuesCharCount += cue.text.length * cueProgress;
+        }
+      }
+      const textProgress = totalCuesChars > 0 ? (cuesCharCount / totalCuesChars) : 0;
+      targetChar = textProgress * totalChars;
+    } else {
+      const progress = currentTime / videoDuration;
+      targetChar = progress * totalChars;
+    }
     let currentSum = 0;
     let activeTrackableIndex = 0;
 
@@ -501,6 +524,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             onTimeUpdate={handleTimeUpdate}
             onFullscreenChange={handleFullscreenChange}
             onPlayStateChange={setIsVideoPlaying}
+            onCuesLoaded={setCues}
+            onActiveCueChange={setActiveCueIndex}
             className={cn(
               isFullscreen ? "" : "rounded-2xl md:rounded-3xl shadow-xl border border-slate-800 w-full h-full object-cover mx-auto"
             )}

@@ -42,6 +42,8 @@ interface CustomVideoPlayerProps {
     onTimeUpdate?: (currentTime: number, duration: number) => void;
     onFullscreenChange?: (isFullscreen: boolean) => void;
     onPlayStateChange?: (isPlaying: boolean) => void;
+    onCuesLoaded?: (cues: {start: number, end: number, text: string}[]) => void;
+    onActiveCueChange?: (cueIndex: number) => void;
 }
 
 export interface CustomVideoPlayerRef {
@@ -61,6 +63,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     onTimeUpdate,
     onFullscreenChange,
     onPlayStateChange,
+    onCuesLoaded,
+    onActiveCueChange,
 }, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
@@ -101,6 +105,47 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         };
     }, [isFullscreen, setIsVideoFullscreen]);
 
+    // Smooth time update using requestAnimationFrame
+    const requestRef = useRef<number>(0);
+
+    const updateTimeSmoothly = React.useCallback(() => {
+        if (playerRef.current && isPlaying && localScrubTime === null) {
+            const time = playerRef.current.currentTime || 0;
+            setCurrentTime(time);
+            if (onTimeUpdate) onTimeUpdate(time, duration || 0);
+
+            let activeText = null;
+            let activeIndex = -1;
+            for (let i = 0; i < cuesRef.current.length; i++) {
+                const c = cuesRef.current[i];
+                if (time >= c.start && time <= c.end) {
+                    activeText = c.text;
+                    activeIndex = i;
+                    break;
+                }
+            }
+            setActiveSubtitle(activeText);
+            if (onActiveCueChange && activeIndex !== -1) {
+                onActiveCueChange(activeIndex);
+            }
+
+            requestRef.current = requestAnimationFrame(updateTimeSmoothly);
+        }
+    }, [isPlaying, localScrubTime, duration, onTimeUpdate, onActiveCueChange]);
+
+    useEffect(() => {
+        if (isPlaying && localScrubTime === null) {
+            requestRef.current = requestAnimationFrame(updateTimeSmoothly);
+        } else if (requestRef.current) {
+            cancelAnimationFrame(requestRef.current);
+        }
+        return () => {
+            if (requestRef.current) {
+                cancelAnimationFrame(requestRef.current);
+            }
+        };
+    }, [isPlaying, localScrubTime, updateTimeSmoothly]);
+
     useImperativeHandle(ref, () => ({
         togglePlay,
         isPlaying,
@@ -108,6 +153,21 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             setCurrentTime(time);
             if (playerRef.current) {
                 playerRef.current.currentTime = time;
+            }
+            if (onTimeUpdate) onTimeUpdate(time, duration || 0);
+            let activeText = null;
+            let activeIndex = -1;
+            for (let i = 0; i < cuesRef.current.length; i++) {
+                const c = cuesRef.current[i];
+                if (time >= c.start && time <= c.end) {
+                    activeText = c.text;
+                    activeIndex = i;
+                    break;
+                }
+            }
+            setActiveSubtitle(activeText);
+            if (onActiveCueChange && activeIndex !== -1) {
+                onActiveCueChange(activeIndex);
             }
         },
     }));
@@ -135,15 +195,20 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             playerRef.current.currentTime = val;
         }
         if (onTimeUpdate) onTimeUpdate(val, duration || 0);
-        let active = null;
+        let activeText = null;
+        let activeIndex = -1;
         for (let i = 0; i < cuesRef.current.length; i++) {
             const c = cuesRef.current[i];
             if (val >= c.start && val <= c.end) {
-                active = c;
+                activeText = c.text;
+                activeIndex = i;
                 break;
             }
         }
-        setActiveSubtitle(active ? active.text : null);
+        setActiveSubtitle(activeText);
+        if (onActiveCueChange && activeIndex !== -1) {
+            onActiveCueChange(activeIndex);
+        }
         triggerControls();
     };
 
@@ -154,15 +219,20 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             playerRef.current.currentTime = newTime;
             setCurrentTime(newTime);
             if (onTimeUpdate) onTimeUpdate(newTime, duration || 0);
-            let active = null;
+            let activeText = null;
+            let activeIndex = -1;
             for (let i = 0; i < cuesRef.current.length; i++) {
                 const c = cuesRef.current[i];
                 if (newTime >= c.start && newTime <= c.end) {
-                    active = c;
+                    activeText = c.text;
+                    activeIndex = i;
                     break;
                 }
             }
-            setActiveSubtitle(active ? active.text : null);
+            setActiveSubtitle(activeText);
+            if (onActiveCueChange && activeIndex !== -1) {
+                onActiveCueChange(activeIndex);
+            }
         }
         triggerControls();
     };
@@ -509,6 +579,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 cuesRef.current = parsedCues;
                 if (parsedCues.length > 0) {
                     setHasSubtitles(cuesRef.current.length > 0); // Keep tracking it properly based on cues
+                    if (onCuesLoaded) onCuesLoaded(parsedCues);
                 }
             } catch (err) {
                 console.error("VTT Parse err", err);
@@ -681,19 +752,24 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 }
 
                                 // Protect current time if user is scrubbing
-                                if (localScrubTime === null) {
+                                if (localScrubTime === null && !isPlaying) { // Only update statically if paused (rAF handles playing state)
                                     setCurrentTime(time);
                                     if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
 
-                                    let active = null;
+                                    let activeText = null;
+                                    let activeIndex = -1;
                                     for (let i = 0; i < cuesRef.current.length; i++) {
                                         const c = cuesRef.current[i];
                                         if (time >= c.start && time <= c.end) {
-                                            active = c;
+                                            activeText = c.text;
+                                            activeIndex = i;
                                             break;
                                         }
                                     }
-                                    setActiveSubtitle(active ? active.text : null);
+                                    setActiveSubtitle(activeText);
+                                    if (onActiveCueChange && activeIndex !== -1) {
+                                        onActiveCueChange(activeIndex);
+                                    }
                                 }
                             }}
                         />
@@ -773,15 +849,20 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                     const val = parseFloat(e.target.value);
                                     setLocalScrubTime(val);
                                     if (onTimeUpdate) onTimeUpdate(val, duration || 0);
-                                    let active = null;
+                                    let activeText = null;
+                                    let activeIndex = -1;
                                     for (let i = 0; i < cuesRef.current.length; i++) {
                                         const c = cuesRef.current[i];
                                         if (val >= c.start && val <= c.end) {
-                                            active = c;
+                                            activeText = c.text;
+                                            activeIndex = i;
                                             break;
                                         }
                                     }
-                                    setActiveSubtitle(active ? active.text : null);
+                                    setActiveSubtitle(activeText);
+                                    if (onActiveCueChange && activeIndex !== -1) {
+                                        onActiveCueChange(activeIndex);
+                                    }
                                 }}
                                 onPointerUp={() => {
                                     if (localScrubTime !== null) {
