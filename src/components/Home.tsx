@@ -23,7 +23,7 @@ export function Home({}: HomeProps) {
     const currentLang = (typeof i18n.language === 'string' ? i18n.language.split('-')[0] : 'fr') || 'fr';
     const isEnglish = currentLang === 'en';
     const podcastAudioSrc = isEnglish
-        ? `${import.meta.env.BASE_URL}podcasts/full_podcast_english_final.mp3`
+        ? "https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/podcasts/full_podcast_english_final.m4a"
         : "https://audio.ausha.co/6r2X8f6LVNAp.mp3";
 
     const getPodcastData = () => {
