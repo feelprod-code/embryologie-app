@@ -927,14 +927,14 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   gridTemplateRows: isVideoVisible ? '1fr' : '0fr'
                 } : undefined}
               >
-                <div className={cn("w-full", !isFullscreen && "overflow-hidden pb-1", isFullscreen && "h-full")}>
+                <div className={cn("w-full", !isFullscreen && "overflow-hidden pb-1 pt-[env(safe-area-inset-top,0px)]", isFullscreen && "h-full")}>
                   {TopContent}
                 </div>
               </div>
 
               {/* La section basse (transcription) n'est rendue ou visible qu'en mode normal */}
               {!isFullscreen && (
-                <div className="flex-1 min-h-0 pt-1">
+                <div className="flex-1 min-h-0 pt-1 pb-[env(safe-area-inset-bottom,0px)]">
                   {BottomContent}
                 </div>
               )}
