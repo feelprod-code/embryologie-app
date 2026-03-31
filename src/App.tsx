@@ -173,6 +173,17 @@ function App() {
     }
 
     const checkProfileDevice = async (currentSession: any) => {
+      // VIP BYPASS: if VIP_BYPASS is active, maintain session and return early
+      if (localStorage.getItem('VIP_BYPASS') === 'true') {
+        if (mounted) {
+          setSession({ user: { id: 'vip-bypass', email: 'vip@feelprod.com', user_metadata: { first_name: 'VIP' } } });
+          setIsAdmin(false);
+          setIsPremium(true);
+          setIsInitializing(false);
+        }
+        return;
+      }
+
       // DEV BYPASS: If local dev AND bypass is enabled, don't check device ID
       if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
         if (mounted) {
@@ -343,11 +354,18 @@ function App() {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (_event === 'SIGNED_OUT') {
         localStorage.removeItem('DEV_BYPASS_AUTH');
+        localStorage.removeItem('VIP_BYPASS');
         if (mounted) setSession(null);
         setIsAdmin(false);
         setIsPremium(false);
       } else {
-        if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+        if (localStorage.getItem('VIP_BYPASS') === 'true') {
+          setIsAdmin(false);
+          setIsPremium(true);
+          if (mounted) {
+            setSession({ user: { id: 'vip-bypass', email: 'vip@feelprod.com', user_metadata: { first_name: 'VIP' } } });
+          }
+        } else if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
           setIsAdmin(true);
           setIsPremium(true);
         } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
