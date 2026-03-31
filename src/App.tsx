@@ -146,7 +146,7 @@ function App() {
     if (urlParams.get('bypass') === 'wuwai') {
       localStorage.setItem('MARC_BYPASS', 'true');
       setSession({ user: { id: 'marc-bypass', email: 'marc@damoiseaux.be', user_metadata: { first_name: 'Marc' } } });
-      setIsAdmin(true);
+      setIsAdmin(false);
       setIsPremium(true);
       setIsInitializing(false);
       // Clean up URL
@@ -166,7 +166,7 @@ function App() {
     // MARC BYPASS LOGIC (Production bypass for specific client)
     if (localStorage.getItem('MARC_BYPASS') === 'true') {
       setSession({ user: { id: 'marc-bypass', email: 'marc@damoiseaux.be', user_metadata: { first_name: 'Marc' } } });
-      setIsAdmin(true); // FORCE ADMIN TO AVOID ANY PAYWALL ISSUE
+      setIsAdmin(false); // NO ADMIN FOR BYPASS
       setIsPremium(true);
       setIsInitializing(false);
       return;
