@@ -141,6 +141,19 @@ function App() {
   useEffect(() => {
     let mounted = true;
 
+    // URL BYPASS LOGIC (ABSOLUTE FAILSAFE)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('bypass') === 'wuwai') {
+      localStorage.setItem('MARC_BYPASS', 'true');
+      setSession({ user: { id: 'marc-bypass', email: 'marc@damoiseaux.be', user_metadata: { first_name: 'Marc' } } });
+      setIsAdmin(true);
+      setIsPremium(true);
+      setIsInitializing(false);
+      // Clean up URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+      return;
+    }
+
     // DEV BYPASS LOGIC (Only in local development)
     if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
       setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
@@ -153,7 +166,7 @@ function App() {
     // MARC BYPASS LOGIC (Production bypass for specific client)
     if (localStorage.getItem('MARC_BYPASS') === 'true') {
       setSession({ user: { id: 'marc-bypass', email: 'marc@damoiseaux.be', user_metadata: { first_name: 'Marc' } } });
-      setIsAdmin(false);
+      setIsAdmin(true); // FORCE ADMIN TO AVOID ANY PAYWALL ISSUE
       setIsPremium(true);
       setIsInitializing(false);
       return;
