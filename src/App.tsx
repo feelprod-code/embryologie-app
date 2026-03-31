@@ -95,7 +95,7 @@ function App() {
 
   const handleLogout = async () => {
     localStorage.removeItem('DEV_BYPASS_AUTH');
-    localStorage.removeItem('MARC_BYPASS');
+    localStorage.removeItem('VIP_BYPASS');
 
     // Remove device from 3-device limit list
     if (session?.user?.id && !session.user.id.includes('bypass')) {
@@ -144,8 +144,8 @@ function App() {
     // URL BYPASS LOGIC (ABSOLUTE FAILSAFE)
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('bypass') === 'wuwai') {
-      localStorage.setItem('MARC_BYPASS', 'true');
-      setSession({ user: { id: 'marc-bypass', email: 'marc@damoiseaux.be', user_metadata: { first_name: 'Marc' } } });
+      localStorage.setItem('VIP_BYPASS', 'true');
+      setSession({ user: { id: 'vip-bypass', email: 'vip@feelprod.com', user_metadata: { first_name: 'VIP' } } });
       setIsAdmin(false);
       setIsPremium(true);
       setIsInitializing(false);
@@ -163,9 +163,9 @@ function App() {
       return;
     }
 
-    // MARC BYPASS LOGIC (Production bypass for specific client)
-    if (localStorage.getItem('MARC_BYPASS') === 'true') {
-      setSession({ user: { id: 'marc-bypass', email: 'marc@damoiseaux.be', user_metadata: { first_name: 'Marc' } } });
+    // VIP BYPASS LOGIC (Production bypass for specific VIPs)
+    if (localStorage.getItem('VIP_BYPASS') === 'true') {
+      setSession({ user: { id: 'vip-bypass', email: 'vip@feelprod.com', user_metadata: { first_name: 'VIP' } } });
       setIsAdmin(false); // NO ADMIN FOR BYPASS
       setIsPremium(true);
       setIsInitializing(false);
