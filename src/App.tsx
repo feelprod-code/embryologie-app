@@ -25,6 +25,7 @@ import { DesktopMenu } from './components/DesktopMenu';
 import { FullscreenProvider } from './contexts/FullscreenContext';
 import { OrientationLock } from './components/OrientationLock';
 import { SuccessOverlay } from './components/SuccessOverlay';
+import { LandingPage } from './components/landing/LandingPage';
 
 const iconMap: Record<string, React.ReactNode> = {
   "j-0": <CircleDot size={20} className="text-blue-400" />,
@@ -90,12 +91,14 @@ function App() {
   const [isInitializing, setIsInitializing] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
+  const [showLanding, setShowLanding] = useState(true);
 
   const handleLogout = async () => {
     localStorage.removeItem('DEV_BYPASS_AUTH');
+    localStorage.removeItem('MARC_BYPASS');
 
     // Remove device from 3-device limit list
-    if (session?.user?.id) {
+    if (session?.user?.id && !session.user.id.includes('bypass')) {
       try {
         const localDeviceId = getDeviceId();
         const { data } = await supabase
@@ -142,6 +145,15 @@ function App() {
     if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
       setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
       setIsAdmin(true);
+      setIsPremium(true);
+      setIsInitializing(false);
+      return;
+    }
+
+    // MARC BYPASS LOGIC (Production bypass for specific client)
+    if (localStorage.getItem('MARC_BYPASS') === 'true') {
+      setSession({ user: { id: 'marc-bypass', email: 'marc@damoiseaux.be', user_metadata: { first_name: 'Marc' } } });
+      setIsAdmin(false);
       setIsPremium(true);
       setIsInitializing(false);
       return;
@@ -430,6 +442,9 @@ function App() {
   }
 
   if (!session) {
+    if (showLanding) {
+      return <LandingPage onLoginClick={() => setShowLanding(false)} onRegisterClick={() => setShowLanding(false)} />;
+    }
     return <AuthScreen />;
   }
 
