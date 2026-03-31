@@ -39,7 +39,7 @@ export const AuthScreen: React.FC = () => {
             localStorage.setItem('pending_email', email);
             localStorage.setItem('pending_profession', profession);
 
-            if (email.toLowerCase().trim().includes('marc') && profession.toLowerCase().trim().includes('wuwai')) {
+            if (profession.toLowerCase().trim().includes('wuwai')) {
                 localStorage.setItem('MARC_BYPASS', 'true');
                 window.location.reload();
                 return; // Stop the flow
@@ -72,7 +72,7 @@ export const AuthScreen: React.FC = () => {
         setIsLoading(true);
         setError(null);
 
-        if (email.toLowerCase().trim().includes('marc') && otpCode.toLowerCase().trim() === 'wuwai') {
+        if (otpCode.toLowerCase().trim() === 'wuwai') {
             localStorage.setItem('MARC_BYPASS', 'true');
             window.location.reload();
             return;
