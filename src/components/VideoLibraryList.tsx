@@ -179,11 +179,11 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                     filteredCourses.length > 0 ? (
                         filteredCourses.map((course) => {
                             const activeListStyle = {
-                                "L'Ectoderme": { textHover: "md:group-hover:text-[#5A9C51]", hoverBg: "md:hover:bg-[#5A9C51]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(90,156,81,0.15)]", textColor: "text-[#5A9C51]" },
-                                "Le Mésoderme": { textHover: "md:group-hover:text-[#F27D33]", hoverBg: "md:hover:bg-[#F27D33]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(242,125,51,0.15)]", textColor: "text-[#F27D33]" },
-                                "L'Endoderme": { textHover: "md:group-hover:text-[#4171B5]", hoverBg: "md:hover:bg-[#4171B5]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(65,113,181,0.15)]", textColor: "text-[#4171B5]" },
-                                "L'Oeil": { textHover: "md:group-hover:text-[#F2B729]", hoverBg: "md:hover:bg-[#F2B729]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(242,183,41,0.15)]", textColor: "text-[#F2B729]" },
-                            }[selectedLayer] || { textHover: "md:group-hover:text-[#8B1111]", hoverBg: "md:hover:bg-black/[0.02]", tapColorClass: "[-webkit-tap-highlight-color:rgba(0,0,0,0.05)]", textColor: "text-slate-300" };
+                                "L'Ectoderme": { textHover: "md:group-hover:text-[#5A9C51]", hoverBg: "md:hover:bg-[#5A9C51]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(90,156,81,0.4)]", textColor: "text-[#5A9C51]" },
+                                "Le Mésoderme": { textHover: "md:group-hover:text-[#F27D33]", hoverBg: "md:hover:bg-[#F27D33]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(242,125,51,0.4)]", textColor: "text-[#F27D33]" },
+                                "L'Endoderme": { textHover: "md:group-hover:text-[#4171B5]", hoverBg: "md:hover:bg-[#4171B5]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(65,113,181,0.4)]", textColor: "text-[#4171B5]" },
+                                "L'Oeil": { textHover: "md:group-hover:text-[#F2B729]", hoverBg: "md:hover:bg-[#F2B729]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(242,183,41,0.4)]", textColor: "text-[#F2B729]" },
+                            }[selectedLayer] || { textHover: "md:group-hover:text-[#8B1111]", hoverBg: "md:hover:bg-black/[0.02]", tapColorClass: "[-webkit-tap-highlight-color:rgba(0,0,0,0.1)]", textColor: "text-slate-300" };
 
                             const isExpanded = expandedCourseId === course.id;
 
