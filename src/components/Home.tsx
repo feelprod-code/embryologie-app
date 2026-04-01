@@ -75,11 +75,21 @@ export function Home({}: HomeProps) {
                             </div>
 
                             {/* Main Cinematic Title */}
-                            <div className="relative z-10 w-full text-center flex flex-col items-center mt-6 sm:mt-8">
-                                <h1 className="text-4xl min-[380px]:text-5xl sm:text-7xl lg:text-[5rem] xl:text-[6rem] font-anton tracking-widest text-slate-700 uppercase leading-[0.85]">
+                            <div className="relative z-10 w-full text-center flex flex-col items-center mt-6 sm:mt-8 px-2 h-[62px] min-[380px]:h-[78px] sm:h-[110px] lg:h-[130px] justify-center">
+                                <h1 className={cn(
+                                    "font-anton text-slate-700 uppercase leading-[0.85] whitespace-nowrap",
+                                    (currentLang === 'ja' || currentLang === 'zh')
+                                        ? "text-[32px] min-[380px]:text-[38px] sm:text-6xl tracking-tight"
+                                        : "text-4xl min-[380px]:text-5xl sm:text-7xl lg:text-[5rem] xl:text-[6rem] tracking-widest"
+                                )}>
                                     {t('home.title_part1')}
                                 </h1>
-                                <h2 className="text-3xl min-[380px]:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 pr-2">
+                                <h2 className={cn(
+                                    "font-anton text-[#F27D33] uppercase leading-[0.9] mt-1 whitespace-nowrap",
+                                    (currentLang === 'ja' || currentLang === 'zh')
+                                        ? "text-[28px] min-[380px]:text-[34px] sm:text-5xl tracking-normal"
+                                        : "text-3xl min-[380px]:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-widest pr-2"
+                                )}>
                                     {t('home.title_part2')}
                                 </h2>
                             </div>
