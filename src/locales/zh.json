@@ -5,7 +5,10 @@
     "title_part2": "胚胎学",
     "start": "开始吧！",
     "ai_assistant": "AI助手",
-    "credits": "FeelProd 出品 ©"
+    "credits": "FeelProd 出品 ©",
+    "course": "Marc Damoiseaux 的课程,",
+    "osteo": "骨科医生 D.O",
+    "available_in": "提供语言"
   },
   "nav": {
     "timeline": "时间线",
@@ -56,5 +59,12 @@
     "timeline_psychosomatic": "身心",
     "timeline_layer_perceptions": "层级感知",
     "timeline_fulcrums": "支点"
+  },
+  "auth": {
+    "firstName": "名字",
+    "lastName": "姓氏",
+    "profession": "职业 (例：骨疗师)",
+    "emailPlaceholder": "你的@email.com",
+    "loginBtn": "登录"
   }
 }

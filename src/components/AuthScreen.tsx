@@ -1,8 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Mail, AlertCircle, Loader2, ShieldAlert, Briefcase, Trash2 } from 'lucide-react';
-import { isLocalNetwork } from '../utils';
+import { isLocalNetwork, cn } from '../utils';
+import { useTranslation } from 'react-i18next';
+
+import { LanguageSwitcher } from './ui/LanguageSwitcher';
+import { AnimatedLanguageFooter } from './ui/AnimatedLanguageFooter';
 
 export const AuthScreen: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -95,29 +98,49 @@ export const AuthScreen: React.FC = () => {
         }
     };
 
+    const { t, i18n } = useTranslation();
+
     return (
         <div className="fixed inset-0 z-50 flex justify-center bg-[#FBF7EC] overflow-y-auto no-scrollbar">
+            <div className="absolute top-[60px] sm:top-10 right-4 z-50">
+                <LanguageSwitcher variant="desktop-nav" />
+            </div>
+
             <div className="absolute inset-0 bg-[url('https://feelprod.com/wp-content/uploads/2023/11/bg-texture.jpg')] opacity-[0.03] bg-cover mix-blend-multiply pointer-events-none"></div>
 
-            <div className="relative w-full max-w-md px-4 sm:px-8 pt-8 md:pt-8 pb-32 sm:pb-40 bg-transparent flex flex-col items-center z-10 min-h-full justify-start md:justify-center">
+            <div className="relative w-full max-w-md px-4 sm:px-8 pt-12 md:pt-14 pb-32 sm:pb-40 bg-transparent flex flex-col items-center z-10 min-h-full justify-start md:justify-center">
 
                 <div className="w-[10rem] h-[10rem] sm:w-[14rem] sm:h-[14rem] md:w-[11rem] md:h-[11rem] lg:w-[14rem] lg:h-[14rem] mb-2 sm:mb-0 mt-4 md:mt-2 lg:mt-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
                     <img src="/icon-emb.png" alt="Embryologie" className="w-full h-full object-contain rounded-full" />
                 </div>
 
                 <div className="w-full flex flex-col items-center">
-                    <div className="flex flex-col items-center justify-center w-full mb-3 sm:mb-6 md:mb-4 lg:mb-6 mt-2 sm:mt-8 md:mt-4 lg:mt-8">
-                        <h1 className="text-4xl sm:text-6xl md:text-5xl lg:text-6xl font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center">
-                            L'EMBRYOLOGIE
+                    <div className="flex flex-col items-center justify-center w-full mb-3 sm:mb-6 md:mb-4 lg:mb-6 mt-2 sm:mt-8 md:mt-4 lg:mt-8 animate-in slide-in-from-top-4 fade-in duration-700 ease-out h-[62px] min-[380px]:h-[78px] sm:h-[110px] lg:h-[130px]">
+                        <h1 className={cn(
+                            "font-anton tracking-widest text-slate-700 uppercase leading-[0.85] text-center whitespace-nowrap",
+                            (typeof i18n.language === 'string' && (i18n.language.startsWith('ja') || i18n.language.startsWith('zh')))
+                                ? "text-[32px] min-[380px]:text-[38px] sm:text-6xl tracking-tight"
+                                : "text-4xl sm:text-6xl md:text-5xl lg:text-6xl tracking-widest"
+                        )}>
+                            {t('home.title_part1', "L'EMBRYOLOGIE")}
                         </h1>
-                        <h2 className="text-3xl sm:text-5xl md:text-4xl lg:text-5xl font-anton text-[#F27D33] uppercase tracking-widest leading-[0.9] mt-1 sm:mt-2 text-center">
-                            BIODYNAMIQUE
+                        <h2 className={cn(
+                            "font-anton text-[#F27D33] uppercase leading-[0.9] mt-1 sm:mt-2 text-center whitespace-nowrap",
+                            (typeof i18n.language === 'string' && (i18n.language.startsWith('ja') || i18n.language.startsWith('zh')))
+                                ? "text-[28px] min-[380px]:text-[34px] sm:text-5xl tracking-normal"
+                                : "text-3xl sm:text-5xl md:text-4xl lg:text-5xl tracking-widest pr-2"
+                        )}>
+                            {t('home.title_part2', "BIODYNAMIQUE")}
                         </h2>
                     </div>
 
-                    <h4 className="text-[10px] sm:text-sm md:text-xs lg:text-sm font-light text-slate-500 mb-5 sm:mb-10 md:mb-6 lg:mb-10 text-center uppercase tracking-widest">
-                        le cours de Marc Damoiseaux, <span className="font-medium text-slate-700">Ostéopathe D.O</span>
+                    <h4 className="text-[10px] sm:text-sm md:text-xs lg:text-sm font-light text-slate-500 mb-2 sm:mb-3 md:mb-2 lg:mb-3 text-center uppercase tracking-widest animate-fade-in -mt-1 sm:-mt-2" style={{ animationDelay: '0.15s' }}>
+                        {t('home.course', "le cours de Marc Damoiseaux,")} <span className="font-medium text-slate-700">{t('home.osteo', "Ostéopathe D.O")}</span>
                     </h4>
+
+                    <div className="flex items-center justify-center mb-5 sm:mb-8 md:mb-5 lg:mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                        <AnimatedLanguageFooter />
+                    </div>
                 </div>
 
                 {isSent ? (
@@ -188,7 +211,7 @@ export const AuthScreen: React.FC = () => {
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 className="w-1/2 px-4 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-[16px] shadow-inner"
-                                placeholder="Prénom"
+                                placeholder={t('auth.firstName', "Prénom")}
                             />
                             <input
                                 type="text"
@@ -196,7 +219,7 @@ export const AuthScreen: React.FC = () => {
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                                 className="w-1/2 px-4 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-[16px] shadow-inner"
-                                placeholder="Nom"
+                                placeholder={t('auth.lastName', "Nom")}
                             />
                         </div>
 
@@ -210,7 +233,7 @@ export const AuthScreen: React.FC = () => {
                                 value={profession}
                                 onChange={(e) => setProfession(e.target.value)}
                                 className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-[16px] shadow-inner"
-                                placeholder="Profession (ex: Ostéopathe)"
+                                placeholder={t('auth.profession', "Profession (ex: Ostéopathe)")}
                             />
                         </div>
 
@@ -224,7 +247,7 @@ export const AuthScreen: React.FC = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3 sm:py-4 bg-[#FAF6ED]/70 border-2 border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] transition-all text-slate-800 placeholder:text-slate-400 font-medium text-[16px] shadow-inner"
-                                placeholder="votre@email.com"
+                                placeholder={t('auth.emailPlaceholder', "votre@email.com")}
                             />
                         </div>
 
@@ -236,7 +259,7 @@ export const AuthScreen: React.FC = () => {
                             {isLoading ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
                             ) : (
-                                "SE CONNECTER"
+                                t('auth.loginBtn', "SE CONNECTER")
                             )}
                         </button>
 

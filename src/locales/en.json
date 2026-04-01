@@ -5,7 +5,11 @@
     "title_part2": "EMBRYOLOGY",
     "start": "Start",
     "ai_assistant": "AI Assistant",
-    "credits": "RÉALISATION FEELPROD"
+    "credits": "RÉALISATION FEELPROD",
+    "course": "the course by Marc Damoiseaux,",
+    "osteo": "Osteopath D.O",
+    "available_in": "Available in",
+    "available_languages": "Available in 7 languages"
   },
   "nav": {
     "timeline": "Timeline",
@@ -69,6 +73,11 @@
     "device_limit_reached": "You have reached the limit of 3 devices for this account. Please log out from one of your other devices to use this one.",
     "device_removed": "Your device has been disconnected because the device limit was reached or your session was revoked.",
     "device_mismatch": "This access is now being used on another device. You have been disconnected.",
-    "account_inactive": "Your account is disabled. Please contact support."
+    "account_inactive": "Your account is disabled. Please contact support.",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "profession": "Profession (e.g. Osteopath)",
+    "emailPlaceholder": "your@email.com",
+    "loginBtn": "LOG IN"
   }
 }

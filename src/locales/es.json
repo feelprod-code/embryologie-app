@@ -5,7 +5,10 @@
     "title_part2": "BIODINÁMICA",
     "start": "¡Empecemos!",
     "ai_assistant": "Asistente AI",
-    "credits": "RÉALISATION FEELPROD"
+    "credits": "RÉALISATION FEELPROD",
+    "course": "el curso de Marc Damoiseaux,",
+    "osteo": "Osteópata D.O",
+    "available_in": "Disponible en"
   },
   "nav": {
     "timeline": "Cronología",
@@ -61,5 +64,12 @@
     "timeline_psychosomatic": "Psicosomática",
     "timeline_layer_perceptions": "Percepciones de las capas",
     "timeline_fulcrums": "Fulcros"
+  },
+  "auth": {
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "profession": "Profesión (ej: Osteópata)",
+    "emailPlaceholder": "tu@email.com",
+    "loginBtn": "INICIAR SESIÓN"
   }
 }

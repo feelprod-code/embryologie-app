@@ -498,7 +498,7 @@ function App() {
           className={cn(
             "fixed bottom-0 z-50 w-full bg-[#FAF6ED]/95 backdrop-blur-xl border-t border-slate-200 lg:hidden shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
             window.self !== window.top ? "pb-[40px]" : "pb-[env(safe-area-inset-bottom,16px)]",
-            isAdmin ? "grid-cols-7" : "grid-cols-6"
+            "grid-cols-6"
           )}
         >
           <button
@@ -567,22 +567,6 @@ function App() {
             </div>
             <span className="mt-auto text-[10px] tracking-wide transition-all font-normal whitespace-nowrap truncate w-full text-center px-0.5 text-red-500">Quitter</span>
           </button>
-
-          {isAdmin && (
-            <button
-              onClick={() => handleViewChange('admin')}
-              onTouchStart={(e) => { e.preventDefault(); handleViewChange('admin'); }}
-              className={cn(
-                "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation md:active:scale-95 group overflow-hidden w-full",
-                activeNav === 'admin' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
-              )}
-            >
-              <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", activeNav === 'admin' ? "scale-105" : "group-hover:scale-105")}>
-                <Shield size={24} />
-              </div>
-              <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'admin' ? "font-medium" : "font-normal")}>Admin</span>
-            </button>
-          )}
 
           {/* Mobile bottom nav Language Switcher */}
           <LanguageSwitcher variant="bottom-nav" />

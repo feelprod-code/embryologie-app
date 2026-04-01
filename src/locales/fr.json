@@ -8,7 +8,11 @@
     "credits": "RÉALISATION FEELPROD",
     "legal": "Mentions Légales",
     "privacy": "Politique de Confidentialité",
-    "videos": "Vidéos"
+    "videos": "Vidéos",
+    "course": "le cours de Marc Damoiseaux,",
+    "osteo": "Ostéopathe D.O",
+    "available_in": "Disponible en",
+    "available_languages": "Disponible en 7 langues"
   },
   "nav": {
     "timeline": "Chronologie",
@@ -72,6 +76,11 @@
     "device_limit_reached": "Vous avez atteint la limite de 3 appareils pour ce compte. Veuillez vous déconnecter d'un de vos autres appareils pour pouvoir utiliser celui-ci.",
     "device_removed": "Votre appareil a été déconnecté car la limite d'appareils a été atteinte ou votre session a été révoquée.",
     "device_mismatch": "Cet accès est maintenant utilisé sur un autre appareil. Vous avez été déconnecté.",
-    "account_inactive": "Votre compte est désactivé. Veuillez contacter le support."
+    "account_inactive": "Votre compte est désactivé. Veuillez contacter le support.",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "profession": "Profession (ex: Ostéopathe)",
+    "emailPlaceholder": "votre@email.com",
+    "loginBtn": "SE CONNECTER"
   }
 }

@@ -5,7 +5,11 @@
     "title_part2": "EMBRYOLOGIE",
     "start": "Los geht's!",
     "ai_assistant": "KI-Assistent",
-    "credits": "Eine FeelProd-Produktion ©"
+    "credits": "Eine FeelProd-Produktion ©",
+    "course": "der Kurs von Marc Damoiseaux,",
+    "osteo": "Osteopath D.O",
+    "available_languages": "Verfügbar in 7 Sprachen",
+    "available_in": "Verfügbar auf"
   },
   "nav": {
     "timeline": "Zeitleiste",
@@ -56,5 +60,12 @@
     "timeline_psychosomatic": "Psychosomatik",
     "timeline_layer_perceptions": "Wahrnehmung der Schichten",
     "timeline_fulcrums": "Fulcren"
+  },
+  "auth": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "profession": "Beruf (z.B. Osteopath)",
+    "emailPlaceholder": "deine@email.com",
+    "loginBtn": "EINLOGGEN"
   }
 }

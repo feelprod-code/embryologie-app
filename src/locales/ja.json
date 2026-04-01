@@ -5,7 +5,10 @@
     "title_part2": "発生学",
     "start": "始めましょう！",
     "ai_assistant": "AIアシスタント",
-    "credits": "FeelProd制作 ©"
+    "credits": "FeelProd制作 ©",
+    "course": "Marc Damoiseaux のコース,",
+    "osteo": "オステオパシー医 D.O",
+    "available_in": "対応言語"
   },
   "nav": {
     "timeline": "タイムライン",
@@ -56,5 +59,12 @@
     "timeline_psychosomatic": "心身医学",
     "timeline_layer_perceptions": "層の知覚",
     "timeline_fulcrums": "支点"
+  },
+  "auth": {
+    "firstName": "名",
+    "lastName": "姓",
+    "profession": "職業 (例：オステオパシー医)",
+    "emailPlaceholder": "あなたの@email.com",
+    "loginBtn": "ログイン"
   }
 }

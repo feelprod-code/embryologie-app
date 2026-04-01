@@ -110,7 +110,6 @@
 
   body {
     @apply bg-background text-slate-800 font-sans;
-    background-image: radial-gradient(circle at 100% 0%, rgba(241, 245, 249, 1) 0%, rgba(248, 250, 252, 1) 100%);
   }
 
   h1,

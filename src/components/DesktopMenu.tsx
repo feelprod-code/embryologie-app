@@ -70,19 +70,6 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
                     {t('nav.ai_assistant', 'Assistant IA')}
                 </button>
 
-                {isAdmin && (
-                    <button
-                        onClick={() => setCurrentView('admin')}
-                        className={cn(
-                            "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-colors",
-                            currentView === 'admin'
-                                ? "bg-[#F27D33] text-white shadow-md"
-                                : "bg-transparent text-slate-600 hover:bg-[#F5F1E8] hover:text-slate-900"
-                        )}
-                    >
-                        Admin
-                    </button>
-                )}
             </div>
 
             {/* Language / Tools */}
