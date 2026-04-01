@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { type VideoCourse, videoCourses as videoCoursesFr, getCategoryTotalDuration } from '../data/videoCourses';
 import { videoCourses as videoCoursesEn } from '../data/videoCourses_en';
 import { videoCourses as videoCoursesEs } from '../data/videoCourses_es';
@@ -37,7 +37,24 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
     // UI state for immediate button feedback
     const [activeTab, setActiveTab] = useState<string>("L'Ectoderme");
     const [expandedCourseId, setExpandedCourseId] = useState<string | null>(null);
+    const [highlightedCourseId, setHighlightedCourseId] = useState<string | null>(null);
     const touchStartPos = useRef<{ x: number, y: number } | null>(null);
+
+    const itemRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+    useEffect(() => {
+        if (expandedCourseId && itemRefs.current[expandedCourseId]) {
+            // Un léger délai permet à Framer Motion de démarrer l'animation 
+            // pour qu'il calcule correctement le centrage avec la nouvelle hauteur
+            const timeoutId = setTimeout(() => {
+                const el = itemRefs.current[expandedCourseId];
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 150);
+            return () => clearTimeout(timeoutId);
+        }
+    }, [expandedCourseId]);
 
     // Deferred state for the heavy list rendering
     const [selectedLayer, setSelectedLayer] = useState<string>("L'Ectoderme");
@@ -179,16 +196,30 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                     filteredCourses.length > 0 ? (
                         filteredCourses.map((course) => {
                             const activeListStyle = {
-                                "L'Ectoderme": { textHover: "md:group-hover:text-[#5A9C51]", hoverBg: "md:hover:bg-[#5A9C51]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(90,156,81,0.4)]", textColor: "text-[#5A9C51]" },
-                                "Le Mésoderme": { textHover: "md:group-hover:text-[#F27D33]", hoverBg: "md:hover:bg-[#F27D33]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(242,125,51,0.4)]", textColor: "text-[#F27D33]" },
-                                "L'Endoderme": { textHover: "md:group-hover:text-[#4171B5]", hoverBg: "md:hover:bg-[#4171B5]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(65,113,181,0.4)]", textColor: "text-[#4171B5]" },
-                                "L'Oeil": { textHover: "md:group-hover:text-[#F2B729]", hoverBg: "md:hover:bg-[#F2B729]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(242,183,41,0.4)]", textColor: "text-[#F2B729]" },
-                            }[selectedLayer] || { textHover: "md:group-hover:text-[#8B1111]", hoverBg: "md:hover:bg-black/[0.02]", tapColorClass: "[-webkit-tap-highlight-color:rgba(0,0,0,0.1)]", textColor: "text-slate-300" };
+                                "L'Ectoderme": { textHover: "md:group-hover:text-[#5A9C51]", hoverBg: "md:hover:bg-[#5A9C51]/5", whileTapBg: "rgba(90,156,81,0.15)", textColor: "text-[#5A9C51]" },
+                                "Le Mésoderme": { textHover: "md:group-hover:text-[#F27D33]", hoverBg: "md:hover:bg-[#F27D33]/5", whileTapBg: "rgba(242,125,51,0.15)", textColor: "text-[#F27D33]" },
+                                "L'Endoderme": { textHover: "md:group-hover:text-[#4171B5]", hoverBg: "md:hover:bg-[#4171B5]/5", whileTapBg: "rgba(65,113,181,0.15)", textColor: "text-[#4171B5]" },
+                                "L'Oeil": { textHover: "md:group-hover:text-[#F2B729]", hoverBg: "md:hover:bg-[#F2B729]/5", whileTapBg: "rgba(242,183,41,0.15)", textColor: "text-[#F2B729]" },
+                            }[selectedLayer] || { textHover: "md:group-hover:text-[#8B1111]", hoverBg: "md:hover:bg-black/[0.02]", whileTapBg: "rgba(0,0,0,0.05)", textColor: "text-slate-300" };
 
                             const isExpanded = expandedCourseId === course.id;
+                            const isHighlighted = highlightedCourseId === course.id;
 
-                            const handleVideoTap = () => {
+                            const handleMouseClick = () => {
                                 setExpandedCourseId(isExpanded ? null : course.id);
+                                setHighlightedCourseId(null);
+                            };
+
+                            const handleTouchTap = () => {
+                                if (isExpanded) {
+                                    setExpandedCourseId(null);
+                                    setHighlightedCourseId(null);
+                                } else if (isHighlighted) {
+                                    setExpandedCourseId(course.id);
+                                    setHighlightedCourseId(null);
+                                } else {
+                                    setHighlightedCourseId(course.id);
+                                }
                             };
 
                             const handlePlayTap = (e: React.MouseEvent | React.TouchEvent) => {
@@ -207,6 +238,11 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                             return (
                                 <motion.div
                                     key={course.id}
+                                    ref={(el: HTMLDivElement | null) => {
+                                        if (el) {
+                                            itemRefs.current[course.id] = el;
+                                        }
+                                    }}
                                     layout
                                     variants={itemVariants}
                                     className="w-full relative"
@@ -214,7 +250,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                 >
                                     <motion.div
                                         layout
-                                        onClick={!isExpanded ? handleVideoTap : undefined}
+                                        onClick={!isExpanded ? handleMouseClick : undefined}
                                         onTouchStart={!isExpanded ? (e: React.TouchEvent) => {
                                             touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
                                         } : undefined}
@@ -225,7 +261,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                             touchStartPos.current = null;
                                             if (dx < 10 && dy < 10) {
                                                 if (e.cancelable) e.preventDefault();
-                                                handleVideoTap();
+                                                handleTouchTap();
                                             }
                                         } : undefined}
                                         className={cn(
@@ -234,11 +270,12 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                 ? "flex-col p-6 sm:p-8 md:p-10 bg-[#FAF6ED] rounded-3xl sm:rounded-[2rem] shadow-2xl border border-slate-200/50" 
                                                 : cn(
                                                     "flex-row items-center py-4 sm:py-3 md:py-3 lg:py-2 border-b border-slate-200/60 last:border-0 rounded-xl px-2 sm:px-3 md:px-4 lg:px-3 cursor-pointer group transition-colors",
-                                                    activeListStyle.hoverBg,
-                                                    activeListStyle.tapColorClass
+                                                    activeListStyle.hoverBg
                                                 )
                                         )}
+                                        whileTap={!isExpanded ? { backgroundColor: activeListStyle.whileTapBg } : {}}
                                         style={!isExpanded ? {
+                                            backgroundColor: isHighlighted ? activeListStyle.whileTapBg : undefined,
                                             transition: 'background-color 0.15s ease-out',
                                         } : undefined}
                                     >
@@ -307,8 +344,9 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                             </div>
                                                         </div>
                                                         <button 
-                                                            onClick={(e) => { e.stopPropagation(); handleVideoTap(); }}
+                                                            onClick={(e) => { e.stopPropagation(); setExpandedCourseId(null); setHighlightedCourseId(null); }}
                                                             className="flex-shrink-0 p-2 sm:p-3 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 hover:bg-slate-200 transition-colors active:scale-95"
+
                                                         >
                                                             <X size={20} />
                                                         </button>

@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@theme {
+  /* Fonts from Embryologie App */
+  --font-sans: 'Montserrat', system-ui, sans-serif;
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-anton: 'Anton', sans-serif;
+  --font-handwriting: 'Caveat', cursive;
+
+  /* Specific brand colors from Embryologie App */
+  --color-brand-bg: #FAF6ED;
+  --color-brand-card: #FAF6ED;
+  --color-brand-primary: #8B1111;
+  --color-brand-secondary: #64748b;
+  --color-brand-dark: #1e293b;
+  --color-brand-accent: #9f1239;
+  
+  /* Layer colors (Icone aux 3 couleurs + Oeil) */
+  --color-ecto-green: #5A9C51; 
+  --color-meso-orange: #F27D33; 
+  --color-endo-blue: #4171B5;
+  --color-brand-yellow: #F2B729;
+}
