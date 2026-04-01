@@ -14,7 +14,8 @@ const languages = [
 
 export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'desktop-nav' | 'bottom-nav' }) {
     const { i18n } = useTranslation();
-    const [isOpen, setIsOpen] = useState(false);
+    const isAutoCycle = typeof window !== 'undefined' && (sessionStorage.getItem('AUTOCYCLE') === 'true' || new URLSearchParams(window.location.search).get('autocycle') === 'true');
+    const [isOpen, setIsOpen] = useState(isAutoCycle);
     const menuRef = useRef<HTMLDivElement>(null);
 
     const currentLang = typeof i18n.language === 'string' ? i18n.language : 'fr';
@@ -23,19 +24,41 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
     // Close when clicking outside
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
+            if (isAutoCycle) return;
             if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
                 setIsOpen(false);
             }
         }
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+    }, [isAutoCycle]);
+
+    // Force it open if autocycle is enabled
+    useEffect(() => {
+        if (isAutoCycle) {
+            setIsOpen(true);
+        }
+    }, [isAutoCycle]);
+
+    // Auto-cycle through languages every 800ms if enabled
+    useEffect(() => {
+        if (!isAutoCycle) return;
+        
+        const interval = setInterval(() => {
+            const currentCode = typeof i18n.language === 'string' ? i18n.language.split('-')[0] : 'fr';
+            let nextIndex = languages.findIndex(l => l.code === currentCode) + 1;
+            if (nextIndex >= languages.length) nextIndex = 0;
+            i18n.changeLanguage(languages[nextIndex].code);
+        }, 800);
+
+        return () => clearInterval(interval);
+    }, [isAutoCycle, i18n]);
 
     return (
         <div className="relative w-full h-full flex flex-col" ref={menuRef}>
             {/* Trigger Button - A circle containing the flag exactly the size of other icons (e.g. 24px inner for mobile) */}
             <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => !isAutoCycle && setIsOpen(!isOpen)}
                 className={cn(
                     "flex flex-col items-center justify-start transition-all duration-200 group active:scale-95 w-full",
                     variant === 'bottom-nav' ? "pt-3 pb-2 gap-1 overflow-hidden" : "w-10 h-10 rounded-full hover:bg-slate-100 justify-center"
