@@ -15,6 +15,7 @@
     "@cloudflare/stream-react": "^1.9.3",
     "@google/genai": "^1.44.0",
     "@remotion/cli": "^4.0.442",
+    "@remotion/player": "^4.0.443",
     "@remotion/tailwind-v4": "^4.0.442",
     "@stripe/stripe-js": "^8.9.0",
     "@supabase/supabase-js": "^2.98.0",
