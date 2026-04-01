@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { HeroSection } from './HeroSection';
-import { TrailerShowcase } from './TrailerShowcase';
 import { PricingSection } from './PricingSection';
 import { Footer } from './Footer';
 import { motion, useScroll, useSpring } from 'framer-motion';
@@ -29,7 +28,6 @@ export function LandingPage({ onLoginClick, onRegisterClick }: LandingPageProps)
       
       <main className="flex flex-col overflow-hidden">
         <HeroSection onRegisterClick={onRegisterClick} onLoginClick={onLoginClick} />
-        <TrailerShowcase />
         <PricingSection onRegisterClick={onRegisterClick} />
       </main>
       <Footer />
