@@ -179,11 +179,11 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                     filteredCourses.length > 0 ? (
                         filteredCourses.map((course) => {
                             const activeListStyle = {
-                                "L'Ectoderme": { textHover: "md:group-hover:text-[#5A9C51]", hoverBg: "md:hover:bg-[#5A9C51]/5", tapBg: "rgba(90, 156, 81, 0.15)", textColor: "text-[#5A9C51]" },
-                                "Le Mésoderme": { textHover: "md:group-hover:text-[#F27D33]", hoverBg: "md:hover:bg-[#F27D33]/5", tapBg: "rgba(242, 125, 51, 0.15)", textColor: "text-[#F27D33]" },
-                                "L'Endoderme": { textHover: "md:group-hover:text-[#4171B5]", hoverBg: "md:hover:bg-[#4171B5]/5", tapBg: "rgba(65, 113, 181, 0.15)", textColor: "text-[#4171B5]" },
-                                "L'Oeil": { textHover: "md:group-hover:text-[#F2B729]", hoverBg: "md:hover:bg-[#F2B729]/5", tapBg: "rgba(242, 183, 41, 0.15)", textColor: "text-[#F2B729]" },
-                            }[selectedLayer] || { textHover: "md:group-hover:text-[#8B1111]", hoverBg: "md:hover:bg-black/[0.02]", tapBg: "rgba(0, 0, 0, 0.05)", textColor: "text-slate-300" };
+                                "L'Ectoderme": { textHover: "md:group-hover:text-[#5A9C51]", hoverBg: "md:hover:bg-[#5A9C51]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(90,156,81,0.15)]", textColor: "text-[#5A9C51]" },
+                                "Le Mésoderme": { textHover: "md:group-hover:text-[#F27D33]", hoverBg: "md:hover:bg-[#F27D33]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(242,125,51,0.15)]", textColor: "text-[#F27D33]" },
+                                "L'Endoderme": { textHover: "md:group-hover:text-[#4171B5]", hoverBg: "md:hover:bg-[#4171B5]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(65,113,181,0.15)]", textColor: "text-[#4171B5]" },
+                                "L'Oeil": { textHover: "md:group-hover:text-[#F2B729]", hoverBg: "md:hover:bg-[#F2B729]/5", tapColorClass: "[-webkit-tap-highlight-color:rgba(242,183,41,0.15)]", textColor: "text-[#F2B729]" },
+                            }[selectedLayer] || { textHover: "md:group-hover:text-[#8B1111]", hoverBg: "md:hover:bg-black/[0.02]", tapColorClass: "[-webkit-tap-highlight-color:rgba(0,0,0,0.05)]", textColor: "text-slate-300" };
 
                             const isExpanded = expandedCourseId === course.id;
 
@@ -233,8 +233,9 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                             isExpanded 
                                                 ? "flex-col p-6 sm:p-8 md:p-10 bg-[#FAF6ED] rounded-3xl sm:rounded-[2rem] shadow-2xl border border-slate-200/50" 
                                                 : cn(
-                                                    "flex-row items-center py-4 sm:py-3 md:py-3 lg:py-2 border-b border-slate-200/60 last:border-0 rounded-xl px-2 sm:px-3 md:px-4 lg:px-3 cursor-pointer group hover:bg-black/5 active:bg-black/10 transition-colors",
-                                                    activeListStyle.hoverBg
+                                                    "flex-row items-center py-4 sm:py-3 md:py-3 lg:py-2 border-b border-slate-200/60 last:border-0 rounded-xl px-2 sm:px-3 md:px-4 lg:px-3 cursor-pointer group transition-colors",
+                                                    activeListStyle.hoverBg,
+                                                    activeListStyle.tapColorClass
                                                 )
                                         )}
                                         style={!isExpanded ? {
@@ -316,7 +317,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                     {/* Big Summary */}
                                                     <div className="mb-8">
                                                         <p className="text-base md:text-lg xl:text-xl text-slate-600 leading-[1.7] font-sans font-light">
-                                                            {course.fullSummary || course.shortSummary || "Résumé non disponible."}
+                                                            {course.shortSummary || course.fullSummary || "Résumé non disponible."}
                                                         </p>
                                                     </div>
 
