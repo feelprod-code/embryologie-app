@@ -154,19 +154,19 @@ function App() {
       return;
     }
 
-    // DEV BYPASS LOGIC (Only in local development)
-    if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
-      setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
-      setIsAdmin(true);
+    // VIP BYPASS LOGIC (Production bypass for specific VIPs)
+    if (localStorage.getItem('VIP_BYPASS') === 'true') {
+      setSession({ user: { id: 'vip-bypass', email: 'vip@feelprod.com', user_metadata: { first_name: 'VIP' } } });
+      setIsAdmin(false); // NO ADMIN FOR BYPASS
       setIsPremium(true);
       setIsInitializing(false);
       return;
     }
 
-    // VIP BYPASS LOGIC (Production bypass for specific VIPs)
-    if (localStorage.getItem('VIP_BYPASS') === 'true') {
-      setSession({ user: { id: 'vip-bypass', email: 'vip@feelprod.com', user_metadata: { first_name: 'VIP' } } });
-      setIsAdmin(false); // NO ADMIN FOR BYPASS
+    // DEV BYPASS LOGIC (Only in local development)
+    if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+      setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
+      setIsAdmin(true);
       setIsPremium(true);
       setIsInitializing(false);
       return;
@@ -496,7 +496,8 @@ function App() {
       {(
         <nav
           className={cn(
-            "fixed bottom-0 z-50 w-full bg-[#FAF6ED]/95 backdrop-blur-xl border-t border-slate-200 lg:hidden pb-[env(safe-area-inset-bottom,16px)] shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
+            "fixed bottom-0 z-50 w-full bg-[#FAF6ED]/95 backdrop-blur-xl border-t border-slate-200 lg:hidden shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
+            window.self !== window.top ? "pb-[40px]" : "pb-[env(safe-area-inset-bottom,16px)]",
             isAdmin ? "grid-cols-7" : "grid-cols-6"
           )}
         >
