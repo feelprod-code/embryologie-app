@@ -25,7 +25,7 @@ import { DesktopMenu } from './components/DesktopMenu';
 import { FullscreenProvider } from './contexts/FullscreenContext';
 import { OrientationLock } from './components/OrientationLock';
 import { SuccessOverlay } from './components/SuccessOverlay';
-import { LandingPage } from './components/landing/LandingPage';
+
 
 const iconMap: Record<string, React.ReactNode> = {
   "j-0": <CircleDot size={20} className="text-blue-400" />,
@@ -91,7 +91,7 @@ function App() {
   const [isInitializing, setIsInitializing] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
-  const [showLanding, setShowLanding] = useState(true);
+
 
   const handleLogout = async () => {
     localStorage.removeItem('DEV_BYPASS_AUTH');
@@ -473,9 +473,6 @@ function App() {
   }
 
   if (!session) {
-    if (showLanding) {
-      return <LandingPage onLoginClick={() => setShowLanding(false)} onRegisterClick={() => setShowLanding(false)} />;
-    }
     return <AuthScreen />;
   }
 
