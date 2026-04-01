@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { PlayCircle, Video, Lock, ArrowRight, Brain, ChevronDown } from 'lucide-react';
+import { PlayCircle, Video, ArrowRight, Brain } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeroSectionProps {
