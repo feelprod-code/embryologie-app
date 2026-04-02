@@ -272,10 +272,10 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
 
             {/* Transcript Area — Fullscreen scrollable container */}
             {isTranscriptVisible && (
-                <div className="w-full mt-2 sm:mt-4 bg-white/80 backdrop-blur-md rounded-t-3xl border-t border-slate-200/50 shadow-[0_-5px_30px_rgba(0,0,0,0.03)] flex flex-col relative z-30 animate-fade-in-up">
+                <div className="w-full mt-2 sm:mt-4 bg-transparent flex flex-col relative z-30 animate-fade-in-up">
                     
                     {/* Transcript Tools Header */}
-                    <div className="flex-none px-4 py-3 border-b border-slate-100 flex justify-between items-center bg-white/90 backdrop-blur-sm">
+                    <div className="flex-none px-4 py-3 flex justify-between items-center bg-transparent">
                         <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('podcasts.transcript', 'Retranscription')}</span>
                         <button
                             onClick={() => setIsAutoScrollEnabled(!isAutoScrollEnabled)}
@@ -313,8 +313,8 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                                             className={cn(
                                                 "p-4 rounded-2xl cursor-pointer transition-all duration-300 border",
                                                 (isActive && isAutoScrollEnabled) 
-                                                    ? "bg-[#FFF8F0] border-[#E87C3E]/30 shadow-md transform scale-[1.01]" 
-                                                    : "border-transparent hover:bg-slate-50",
+                                                    ? "bg-[#EFE8D8] border-[#E87C3E]/20 shadow-sm transform scale-[1.01]" 
+                                                    : "border-transparent hover:bg-[#EFE8D8]/50",
                                                 !isActive && isPlaying && isAutoScrollEnabled ? "opacity-50" : "opacity-100"
                                             )}
                                         >
