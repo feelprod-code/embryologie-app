@@ -141,6 +141,11 @@ function App() {
   useEffect(() => {
     let mounted = true;
 
+    // AUTO-ENABLE DEV BYPASS FOR LOCAL NETWORK TESTING (e.g. iPhone)
+    if (isLocalNetwork()) {
+      localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+    }
+
     // URL BYPASS LOGIC (ABSOLUTE FAILSAFE)
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('bypass') === 'wuwai') {
