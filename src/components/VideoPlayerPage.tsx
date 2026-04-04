@@ -23,6 +23,8 @@ const CACHE_NAME = 'video-offline-cache';
 interface VideoPlayerPageProps {
   course: VideoCourse;
   onSelectVideo: (video: VideoCourse) => void;
+  hasFullAccess?: boolean;
+  onLockedVideoClick?: () => void;
 }
 
 const CustomMarkdownComponents = {
@@ -48,7 +50,7 @@ const CustomMarkdownComponents = {
   }
 };
 
-export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initialCourse, onSelectVideo }) => {
+export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initialCourse, onSelectVideo, hasFullAccess = false, onLockedVideoClick }) => {
   const { t, i18n } = useTranslation();
 
   const videoCourses = i18n.language.startsWith('en')
@@ -480,6 +482,17 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const prevVideo = currentIndex > 0 ? categoryVideos[currentIndex - 1] : null;
   const nextVideo = currentIndex < categoryVideos.length - 1 ? categoryVideos[currentIndex + 1] : null;
 
+  const handleSelectVideo = (targetVideo: VideoCourse) => {
+    const targetIndex = categoryVideos.findIndex((v: VideoCourse) => v.id === targetVideo.id);
+    if (!hasFullAccess && targetIndex >= 2) {
+      if (onLockedVideoClick) {
+        onLockedVideoClick();
+      }
+    } else {
+      onSelectVideo(targetVideo);
+    }
+  };
+
   useEffect(() => {
     const t = setTimeout(() => setCurrentSpeed(1), 0);
     return () => clearTimeout(t);
@@ -569,7 +582,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           {/* CENTER: PREV/NEXT */}
           <div className="flex items-center justify-center gap-2 sm:gap-3 z-10 shrink-0">
             <button
-              onClick={() => prevVideo && onSelectVideo(prevVideo)}
+              onClick={() => prevVideo && handleSelectVideo(prevVideo)}
               disabled={!prevVideo}
               className="flex items-center justify-center py-1 md:py-1.5 w-16 sm:w-24 md:w-32 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
               title={t('videoLibrary.previous')}
@@ -577,7 +590,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             <button
-              onClick={() => nextVideo && onSelectVideo(nextVideo)}
+              onClick={() => nextVideo && handleSelectVideo(nextVideo)}
               disabled={!nextVideo}
               className="flex items-center justify-center py-1 md:py-1.5 w-16 sm:w-24 md:w-32 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
               title={t('videoLibrary.next')}
@@ -679,7 +692,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               {/* Playback Buttons */}
               <div className="flex items-center justify-center shrink-0">
                 <button
-                  onClick={() => prevVideo && onSelectVideo(prevVideo)}
+                  onClick={() => prevVideo && handleSelectVideo(prevVideo)}
                   disabled={!prevVideo}
                   className="flex items-center justify-center p-1 sm:p-2 text-slate-400 md:hover:text-slate-700 active:text-slate-600 active:bg-slate-200 rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   title={t('videoLibrary.previous')}
@@ -696,7 +709,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                 </button>
 
                 <button
-                  onClick={() => nextVideo && onSelectVideo(nextVideo)}
+                  onClick={() => nextVideo && handleSelectVideo(nextVideo)}
                   disabled={!nextVideo}
                   className="flex items-center justify-center p-1 sm:p-2 text-slate-400 md:hover:text-slate-700 active:text-slate-600 active:bg-slate-200 rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   title={t('videoLibrary.next')}

@@ -722,6 +722,8 @@ function App() {
               <VideoPlayerPage
                 course={activeVideo}
                 onSelectVideo={setActiveVideo}
+                hasFullAccess={isPremium || isAdmin}
+                onLockedVideoClick={() => setShowPaywallModal(true)}
               />
             </div>
           )}

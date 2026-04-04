@@ -6,7 +6,7 @@ import { videoCourses as videoCoursesIt } from '../data/videoCourses_it';
 import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
 import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
 import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
-import { Play, Clock, BookOpen, X } from 'lucide-react';
+import { Play, Clock, BookOpen, X, Lock } from 'lucide-react';
 import { cn } from '../utils';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -15,9 +15,11 @@ import { useTranslation } from 'react-i18next';
 
 interface VideoLibraryListProps {
     onSelectVideo: (video: VideoCourse) => void;
+    hasFullAccess?: boolean;
+    onLockedVideoClick?: () => void;
 }
 
-export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVideo }) => {
+export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVideo, hasFullAccess = true, onLockedVideoClick }) => {
     const { t, i18n } = useTranslation();
 
     const videoCourses = i18n.language.startsWith('en')
@@ -194,7 +196,9 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
             >
                 {
                     filteredCourses.length > 0 ? (
-                        filteredCourses.map((course) => {
+                        filteredCourses.map((course, index) => {
+                            const isLocked = !hasFullAccess && index >= 2;
+
                             const activeListStyle = {
                                 "L'Ectoderme": { textHover: "md:group-hover:text-[#5A9C51]", hoverBg: "md:hover:bg-[#5A9C51]/5", whileTapBg: "rgba(90,156,81,0.15)", textColor: "text-[#5A9C51]" },
                                 "Le Mésoderme": { textHover: "md:group-hover:text-[#F27D33]", hoverBg: "md:hover:bg-[#F27D33]/5", whileTapBg: "rgba(242,125,51,0.15)", textColor: "text-[#F27D33]" },
@@ -206,11 +210,19 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                             const isHighlighted = highlightedCourseId === course.id;
 
                             const handleMouseClick = () => {
+                                if (isLocked) {
+                                    onLockedVideoClick?.();
+                                    return;
+                                }
                                 setExpandedCourseId(isExpanded ? null : course.id);
                                 setHighlightedCourseId(null);
                             };
 
                             const handleTouchTap = () => {
+                                if (isLocked) {
+                                    onLockedVideoClick?.();
+                                    return;
+                                }
                                 if (isExpanded) {
                                     setExpandedCourseId(null);
                                     setHighlightedCourseId(null);
@@ -224,6 +236,10 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
 
                             const handlePlayTap = (e: React.MouseEvent | React.TouchEvent) => {
                                 e.stopPropagation();
+                                if (isLocked) {
+                                    onLockedVideoClick?.();
+                                    return;
+                                }
                                 onSelectVideo(course);
                             };
 
@@ -286,13 +302,16 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                     initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
                                                     exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                                                    className="flex flex-row items-center w-full"
+                                                    className={cn("flex flex-row items-center w-full", isLocked && "opacity-60 grayscale-[0.3]")}
                                                 >
-                                                    {/* Minimalist Play Icon */}
-                                                    <div className="flex-shrink-0 w-10 h-10 sm:w-10 sm:h-10 md:w-8 md:h-8 lg:w-7 lg:h-7 flex items-center justify-center mr-3 sm:mr-4 md:mr-4 lg:mr-3">
-                                                        <div className={cn("w-8 h-8 sm:w-8 sm:h-8 md:w-6 md:h-6 lg:w-6 lg:h-6 rounded-full flex items-center justify-center shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)] transition-all duration-300 md:group-hover:scale-110 bg-[#FAF6ED]")}>
-                                                            <Play className={cn("w-4 h-4 sm:w-4 sm:h-4 md:w-3 md:h-3 lg:w-3 lg:h-3 transition-colors translate-x-[1px]", activeListStyle.textColor)} fill="currentColor" strokeWidth={1} />
-                                                        </div>
+                                                    {/* Minimalist Play/Lock Icon */}
+                                                    <div className="flex-shrink-0 w-10 h-10 sm:w-10 sm:h-10 md:w-8 md:h-8 lg:w-8 lg:h-8 flex items-center justify-center mr-3 sm:mr-4 md:mr-4 lg:mr-3 relative">
+                                                        <div className="absolute inset-0 bg-[#F4F1E8] rounded-full shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)] opacity-100"></div>
+                                                        {isLocked ? (
+                                                            <Lock className={cn("w-4 h-4 sm:w-4 sm:h-4 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 transition-colors relative z-10", activeListStyle.textColor)} strokeWidth={2.5} />
+                                                        ) : (
+                                                            <Play className={cn("w-4 h-4 sm:w-4 sm:h-4 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 transition-colors translate-x-[1.5px] relative z-10", activeListStyle.textColor)} fill="currentColor" strokeWidth={0} />
+                                                        )}
                                                     </div>
 
                                                     {/* Minimalist Info */}
@@ -332,23 +351,22 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                     className="flex flex-col w-full h-full"
                                                 >
                                                     {/* Top Bar: Title & Duration & Close */}
-                                                    <div className="flex justify-between items-start mb-6">
-                                                        <div className="flex-1 pr-6">
-                                                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bebas tracking-wide text-slate-800 leading-tight">
+                                                    <div className="flex justify-between items-start mb-5 relative">
+                                                        <div className="flex-1 pr-10">
+                                                            <h2 className="text-[20px] sm:text-[24px] md:text-[28px] font-bebas tracking-wide text-slate-800 leading-[1.1]">
                                                                 {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}. ` : '') + course.title.replace(/^\d+[.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
                                                             </h2>
-                                                            <div className="flex items-center gap-3 mt-2">
-                                                                <span className="px-3 py-1 rounded-full text-white font-bebas text-sm sm:text-base tracking-widest shadow-sm" style={{ backgroundColor: categoryColor }}>
+                                                            <div className="flex items-center gap-3 mt-3">
+                                                                <span className="px-4 py-1.5 rounded-full text-white font-sans font-bold text-[12px] sm:text-[14px] tracking-widest shadow-sm" style={{ backgroundColor: categoryColor }}>
                                                                     {t('videoLibrary.duration', 'DURÉE')} : {course.duration}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                         <button 
                                                             onClick={(e) => { e.stopPropagation(); setExpandedCourseId(null); setHighlightedCourseId(null); }}
-                                                            className="flex-shrink-0 p-2 sm:p-3 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 hover:bg-slate-200 transition-colors active:scale-95"
-
+                                                            className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#EAF0F6] text-[#71869D] hover:text-slate-600 hover:bg-slate-200 transition-colors active:scale-95 absolute top-[-8px] right-[-8px] sm:top-[-4px] sm:right-[-4px]"
                                                         >
-                                                            <X size={20} />
+                                                            <X size={18} strokeWidth={2.5} />
                                                         </button>
                                                     </div>
 
@@ -360,15 +378,15 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                     </div>
 
                                                     {/* Play Button matching design */}
-                                                    <div className="flex items-center justify-center mt-auto pb-2">
+                                                    <div className="flex items-center justify-center mt-auto pb-1">
                                                         <button 
                                                             onClick={handlePlayTap}
-                                                            className="group flex items-center justify-center gap-4 px-10 py-4 sm:py-5 rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_25px_-10px_rgba(0,0,0,0.4)] w-full sm:w-auto overflow-hidden relative"
+                                                            className="group flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 rounded-[16px] sm:rounded-[18px] transition-all duration-300 transform shadow-[0_4px_14px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)] w-full overflow-hidden relative"
                                                             style={{ backgroundColor: categoryColor }}
                                                         >
                                                             <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                                                            <Play className="w-6 h-6 sm:w-7 sm:h-7 text-white fill-white relative z-10" />
-                                                            <span className="text-white font-bebas text-2xl sm:text-3xl tracking-widest pt-1 relative z-10">
+                                                            <Play className="w-5 h-5 sm:w-6 sm:h-6 text-white fill-white relative z-10" />
+                                                            <span className="text-white font-bebas text-[20px] sm:text-2xl tracking-widest pt-0.5 relative z-10">
                                                                 {t('videoLibrary.playNow', 'DÉMARRER LA VIDÉO')}
                                                             </span>
                                                         </button>
