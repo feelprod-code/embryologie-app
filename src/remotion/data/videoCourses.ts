@@ -10144,7 +10144,7 @@ Le praticien peut alors aborder des zones spécifiques comme l'hépatique et le 
     id: "oeil-1",
     categoryId: "oeil",
     youtubeId: "_bnk-aQx3d8",
-    cloudflareId: "3db2fd4744dc9ac3e144f0cedeefa701",
+    cloudflareId: "72e294c6fe48e57cba3f2da10f7a98f7",
     duration: "16:19",
     title: "1. Une nouvelle Vision",
     shortSummary: "Impact d'une nouvelle perception de la réalité sur la thérapie, axé sur l'interdépendance et la transcendance des illusions pour favoriser une guérison authentique.",

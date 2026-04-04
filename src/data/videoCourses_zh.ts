@@ -2095,7 +2095,7 @@ export const videoCourses: VideoCourse[] = [
         "id": "oeil-1",
         "categoryId": "oeil",
         "youtubeId": "_bnk-aQx3d8",
-        "cloudflareId": "3db2fd4744dc9ac3e144f0cedeefa701",
+        "cloudflareId": "72e294c6fe48e57cba3f2da10f7a98f7",
         "duration": "16:19",
         "title": "1. 一个新的视角",
         "shortSummary": "影响一种新的现实感知对治疗的影响，侧重于相互依存和超越幻觉，以促进真正的愈合。",

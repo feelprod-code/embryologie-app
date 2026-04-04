@@ -2095,7 +2095,7 @@ export const videoCourses: VideoCourse[] = [
         "id": "oeil-1",
         "categoryId": "oeil",
         "youtubeId": "_bnk-aQx3d8",
-        "cloudflareId": "3db2fd4744dc9ac3e144f0cedeefa701",
+        "cloudflareId": "72e294c6fe48e57cba3f2da10f7a98f7",
         "duration": "16:19",
         "title": "1. 新しいビジョン",
         "shortSummary": "現実の新しい認識が治療に与える影響、相互依存性と幻想の超越に焦点を当て、真の治癒を促進する。",

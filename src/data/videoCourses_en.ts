@@ -2095,7 +2095,7 @@ export const videoCourses: VideoCourse[] = [
         "id": "oeil-1",
         "categoryId": "oeil",
         "youtubeId": "_bnk-aQx3d8",
-        "cloudflareId": "3db2fd4744dc9ac3e144f0cedeefa701",
+        "cloudflareId": "72e294c6fe48e57cba3f2da10f7a98f7",
         "duration": "16:19",
         "title": "1. A New Vision",
         "shortSummary": "Impact of a new perception of reality on therapy, focused on interdependence and the transcendence of illusions to promote authentic healing.",
