@@ -14,7 +14,7 @@ export function Paywall() {
       
       const { data, error } = await supabase.functions.invoke('create-checkout-session', {
         body: { 
-           priceId: 'price_1TBKsE2ahjCLnYridMlbbePk',
+           priceId: 'price_1TIaCmFZLk6A75YEP5J9k0oQ',
            successUrl: window.location.origin + '?success=true',
            cancelUrl: window.location.origin + '?canceled=true',
         }
