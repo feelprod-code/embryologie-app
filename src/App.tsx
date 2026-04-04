@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useTransition } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video, Shield, LogOut } from 'lucide-react';
+import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video, Shield, LogOut, X } from 'lucide-react';
 import { detailedStages as detailedStagesFr, type StageDataV2, type EmbryoLayer } from './data/embryologie';
 import { detailedStages as detailedStagesEn } from './data/embryologie_en';
 import { detailedStages as detailedStagesEs } from './data/embryologie_es';
@@ -457,6 +457,7 @@ function App() {
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
   const [optimisticView, setOptimisticView] = useState<View | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [showPaywallModal, setShowPaywallModal] = useState(false);
 
   const handleViewChange = (view: View) => {
     if (currentView === view) return;
@@ -682,16 +683,35 @@ function App() {
 
           {currentView === 'video-library' && (
             <div className="w-full flex flex-col items-center animate-fade-in relative z-10 mx-auto">
-              <div className="w-full">
-                {(!isPremium && !isAdmin) ? (
-                  <Paywall />
-                ) : (
-                  <VideoLibraryList
-                    onSelectVideo={(video) => {
-                      setActiveVideo(video);
-                      setCurrentView('video-player');
-                    }}
-                  />
+              <div className="w-full relative">
+                <VideoLibraryList
+                  hasFullAccess={isPremium || isAdmin}
+                  onSelectVideo={(video) => {
+                    setActiveVideo(video);
+                    setCurrentView('video-player');
+                  }}
+                  onLockedVideoClick={() => setShowPaywallModal(true)}
+                />
+                
+                {/* Paywall Overlay */}
+                {showPaywallModal && (
+                  <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                    <div 
+                        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" 
+                        onClick={() => setShowPaywallModal(false)}
+                    ></div>
+                    <div className="relative w-full max-w-md z-10 animate-fade-in-up">
+                      <button 
+                        onClick={() => setShowPaywallModal(false)} 
+                        className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 z-20 w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 shadow-xl border border-slate-100 transition-colors"
+                      >
+                        <X size={18} strokeWidth={2.5} />
+                      </button>
+                      <div className="overflow-hidden rounded-3xl shadow-2xl">
+                        <Paywall />
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
@@ -699,14 +719,10 @@ function App() {
 
           {currentView === 'video-player' && activeVideo && (
             <div className="w-full animate-fade-in h-full">
-              {(!isPremium && !isAdmin) ? (
-                <Paywall />
-              ) : (
-                <VideoPlayerPage
-                  course={activeVideo}
-                  onSelectVideo={setActiveVideo}
-                />
-              )}
+              <VideoPlayerPage
+                course={activeVideo}
+                onSelectVideo={setActiveVideo}
+              />
             </div>
           )}
 
