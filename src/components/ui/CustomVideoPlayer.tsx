@@ -814,7 +814,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
                 {isFullscreen && (
                     <div
-                        className={`absolute top-0 right-0 z-[60] transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'} p-4`}
+                        className={`absolute top-0 left-0 z-[60] transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'} p-4`}
                     >
                         <button
                             onClick={toggleFullscreen}
