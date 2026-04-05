@@ -56,7 +56,7 @@ export function Home({}: HomeProps) {
                 "flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 mx-auto min-h-full transition-all duration-500",
                 isTranscriptMode 
                     ? "pt-4 min-[380px]:pt-6 sm:pt-4 lg:pt-6 pb-20 lg:pb-12" // Transcript open padding
-                    : "pt-12 min-[380px]:pt-16 sm:pt-6 lg:pt-10 pb-4" // Intermediate top padding to lower elements a notch
+                    : "pt-12 min-[380px]:pt-16 sm:pt-6 lg:pt-10 pb-32 sm:pb-36" // Intermediate top padding to lower elements a notch, pb-32 prevents nav bar overlap
             )}>
 
                 {/* ===== POSTER MODE: Title + Vignette (hidden when transcript is open) ===== */}
