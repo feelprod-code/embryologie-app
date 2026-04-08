@@ -627,8 +627,10 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             <div className="flex-1 overflow-y-auto overscroll-none p-4 md:p-8 space-y-6 bg-transparent" id="chatbot-messages" style={{ WebkitOverflowScrolling: 'touch' }}>
                 <div className="max-w-4xl mx-auto w-full space-y-6">
                     {messages.map((msg, idx) => {
-                        // Strip any parentheses or brackets tightly wrapping video links
-                        const processedContent = msg.content.replace(/[\(\[]\s*(\[[^\]]+\]\(#video-[a-zA-Z0-9_-]+\))\s*[\)\]]/g, '$1');
+                        // Strip any parentheses or brackets tightly wrapping video links, and also handle (Source: ..., [Link]) gracefully.
+                        const processedContent = msg.content
+                            .replace(/\(\s*([Ss]ource[^\(\)\[\]]*?)(?:,|\s)*(\[[^\]]+\]\(\s*#video-[a-zA-Z0-9_-]+\s*\))\s*\)/g, '$1 $2')
+                            .replace(/[\(\[]\s*(\[[^\]]+\]\(\s*#video-[a-zA-Z0-9_-]+\s*\))\s*[\)\]]/g, '$1');
                         
                         return (
                         <div key={idx} className={cn("flex", msg.role === 'user' ? "justify-end" : "justify-start")}>

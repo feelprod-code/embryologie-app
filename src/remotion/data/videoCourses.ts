@@ -8776,13 +8776,13 @@ En conclusion, la formation de l'intestin supérieur et des structures faciales 
     duration: "03:11",
     title: "11- revision_ Origine assymetrie du corps",
     shortSummary: "Analyse des origines de l'asymétrie corporelle durant l'embryogenèse, avec un focus sur son influence sur le développement des organes. Inclut des concepts théoriques et des applications cliniques en embryologie biodynamique et ostéopathie.",
-    fullSummary: "Cette vidéo explore les origines de l'asymétrie corporelle, en examinant le mouvement du processus notocordal et son rôle dans la formation du nœud d'Ensens. À travers ce processus, les chercheurs découvrent l'importance des microcils, liés à des troubles de la latéralité et influençant la position des organes comme le cœur et le foie. L'animation d'une cascade de molécules et de protéines spécifiques est mise en lumière, soulignant leur impact sur l'organisation asymétrique du corps. En plus d'un aspect théorique, cette leçon offre des insights précieux pour l'application clinique, renforçant la compréhension des mécanismes développementaux en embryologie biodynamique et ostéopathie.",
+    fullSummary: "Cette vidéo explore les origines de l'asymétrie corporelle, en examinant le mouvement du processus notocordal et son rôle dans la formation du nœud de Hensen. À travers ce processus, les chercheurs découvrent l'importance des microcils, liés à des troubles de la latéralité et influençant la position des organes comme le cœur et le foie. L'animation d'une cascade de molécules et de protéines spécifiques est mise en lumière, soulignant leur impact sur l'organisation asymétrique du corps. En plus d'un aspect théorique, cette leçon offre des insights précieux pour l'application clinique, renforçant la compréhension des mécanismes développementaux en embryologie biodynamique et ostéopathie.",
     transcriptMarkdown: `
 # Origine de l'Asymétrie du Corps
 
-L'origine de cette **asymétrie** se produit lors du mouvement du **processus notocordal**. Ce mouvement engendre un nœud, appelé le **nœud d'Ensens**. Ce nœud est essentiel dans la formation de l'axe notocordal.
+L'origine de cette **asymétrie** se produit lors du mouvement du **processus notocordal**. Ce mouvement engendre un nœud, appelé le **nœud de Hensen**. Ce nœud est essentiel dans la formation de l'axe notocordal.
 
-À l'intérieur de cette structure, on trouve des **microcils**. Grâce au **syndrome de Kartagener**, des chercheurs japonais ont découvert que ce système était lié à des troubles de la **latéralité**. Par exemple, certaines personnes développent leur cœur à droite au lieu de gauche. Ils ont observé pour la première fois ces petits cils dans la région du nœud d'Ensens.
+À l'intérieur de cette structure, on trouve des **microcils**. Grâce au **syndrome de Kartagener**, des chercheurs japonais ont découvert que ce système était lié à des troubles de la **latéralité**. Par exemple, certaines personnes développent leur cœur à droite au lieu de gauche. Ils ont observé pour la première fois ces petits cils dans la région du nœud de Hensen.
 
 Ces microcils, présents dans divers endroits du corps comme les **spermatozoïdes**, l'**utérus**, les **trompes** et les **bronches**, effectuent un mouvement rotatoire plutôt qu'un mouvement de va-et-vient. Ces cils, inclinés à 60 degrés, créent un mouvement qui concentre des petites molécules d'un côté, poussées vers le côté gauche de l'embryon.
 
@@ -10379,7 +10379,7 @@ Cette inhibition est liée à la **non-fermeture du tube neural**. Sans cette in
 
 Un **autocorps** représente une fonction génomique, agissant comme une référence pour le corps. Ce champ électrique, résultant d'une polarité, est fondamental. Selon la loi de **Maxwell**, chaque champ électrique génère un champ électromagnétique. Ainsi, chaque individu reçoit une information spécifique. 
 
-Dans l'anotocorte, les cellules en avant reçoivent une information que l'on appelle la sonétique HH. Si cette croissance est ralentie, une accélération se produit, entraînant une expansion de l'épithélium, liée à des processus génétiques. Cependant, tant que le tube neural n'est pas fermé, un petit espace persiste. 
+Dans la notochorde, les cellules en avant reçoivent une information que l'on appelle la sonétique HH. Si cette croissance est ralentie, une accélération se produit, entraînant une expansion de l'épithélium, liée à des processus génétiques. Cependant, tant que le tube neural n'est pas fermé, un petit espace persiste. 
 
 Sans inhibition, l'œil se développe au centre, entraînant la formation d'un œil de cyclope. La fermeture du tube neural est cruciale pour que la crête neurale s'exprime latéralement. Une fois la fermeture réalisée, l'inhibition négative influence l'œil, en lien avec des phénomènes de colocalisation **thyroïdiens**, **cardiaques** et **hépatopancréatiques**. Ces grands organes ont un impact direct sur l'œil, qui est fortement relié à la **choroïde**, un tissu mésenchymateux vasculaire.
 
@@ -10636,7 +10636,7 @@ Au cours de la deuxième semaine de développement embryonnaire, la **forme en S
 
 ![Début du processus épiblastique](/images/schemas/oeil/oeil-13/Oeil_1.jpeg)
 
- Le **nœud d'Ensens**, ou dépression primitive, devient un point d'appui fixe et se déplace progressivement vers l'arrière. 
+ Le **nœud de Hensen**, ou dépression primitive, devient un point d'appui fixe et se déplace progressivement vers l'arrière. 
 
 Cette structure est essentielle car elle constitue la base du **crâne**, intégrant des éléments comme l'**hypophyse**, les **grandes ailes du sphénoïde**, le **système pétreux**, le **système occipital** et l'**ethmoïde**. En bas, le développement du **sacrum** commence, avec le processus de S2, qui représente le vestige de la ligne primitive. Ce processus devient un point d'appui crucial, soulignant l'importance d'un **sacrum libre** pour permettre une unité fonctionnelle.
 

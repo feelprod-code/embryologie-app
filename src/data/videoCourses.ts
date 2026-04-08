@@ -4250,11 +4250,11 @@ Je reviens alors pleinement sur ma Terre, en parfaite harmonie avec mes émotion
     youtubeId: "",
     cloudflareId: "682f30474ce5bd68cfb9ddb8e11f45db",
     duration: "08:15",
-    title: "1-Introduction_Le WUWAI",
+    title: "1-Introduction_Le WUWEI",
     shortSummary: "Exploration de l'embryologie biodynamique, rôle du thérapeute comme facilitateur et importance de l'état de neutre pour l'autorégulation et le bien-être du patient.",
-    fullSummary: "Cette vidéo d'introduction au WUWAI de l'embryologie biodynamique présente le rôle du thérapeute comme un facilitateur plutôt qu'un intervenant actif. Les concepts de respiration primaire et de mouvement respiratoire primaire sont explorés en tant qu'éléments clés du processus de guérison. En mettant l'accent sur la découverte du 'neutre', le praticien apprend à se centrer pour permettre à la puissance thérapeutique d'émerger, notamment à travers une rencontre avec le neutre du patient. De plus, les notions de force de gravité et de force électromagnétique sont abordées pour ramener chaque patient dans son corps, favorisant ainsi une meilleure autorégulation et un accès à la santé plutôt qu'à la maladie.",
+    fullSummary: "Cette vidéo d'introduction au WUWEI de l'embryologie biodynamique présente le rôle du thérapeute comme un facilitateur plutôt qu'un intervenant actif. Les concepts de respiration primaire et de mouvement respiratoire primaire sont explorés en tant qu'éléments clés du processus de guérison. En mettant l'accent sur la découverte du 'neutre', le praticien apprend à se centrer pour permettre à la puissance thérapeutique d'émerger, notamment à travers une rencontre avec le neutre du patient. De plus, les notions de force de gravité et de force électromagnétique sont abordées pour ramener chaque patient dans son corps, favorisant ainsi une meilleure autorégulation et un accès à la santé plutôt qu'à la maladie.",
     transcriptMarkdown: `
-# Introduction au WUWAI de l'Embryologie Biodynamique
+# Introduction au WUWEI de l'Embryologie Biodynamique
 
 ## Confiance et Absence d'Induction
 
@@ -4364,7 +4364,7 @@ La première chose très importante est de relancer cette **fluctuation longitud
 
 Si vous étudiez Sutherland, il en parle, notamment lorsqu'il travaille au niveau de la base, pour redynamiser cette fluctuation longitudinale.
 
-## Le WUWAI : Le Non-Faire
+## Le WUWEI : Le Non-Faire
 
 Je répète encore une fois : quel est votre neutre ? Je vous pose cette question : qu'est-ce que le neutre pour vous ? Car c'est à partir de ce neutre que nous travaillerons.
 
@@ -8767,13 +8767,13 @@ En conclusion, la formation de l'intestin supérieur et des structures faciales 
     duration: "03:11",
     title: "11- revision_ Origine assymetrie du corps",
     shortSummary: "Analyse des origines de l'asymétrie corporelle durant l'embryogenèse, avec un focus sur son influence sur le développement des organes. Inclut des concepts théoriques et des applications cliniques en embryologie biodynamique et ostéopathie.",
-    fullSummary: "Cette vidéo explore les origines de l'asymétrie corporelle, en examinant le mouvement du processus notocordal et son rôle dans la formation du nœud d'Ensens. À travers ce processus, les chercheurs découvrent l'importance des microcils, liés à des troubles de la latéralité et influençant la position des organes comme le cœur et le foie. L'animation d'une cascade de molécules et de protéines spécifiques est mise en lumière, soulignant leur impact sur l'organisation asymétrique du corps. En plus d'un aspect théorique, cette leçon offre des insights précieux pour l'application clinique, renforçant la compréhension des mécanismes développementaux en embryologie biodynamique et ostéopathie.",
+    fullSummary: "Cette vidéo explore les origines de l'asymétrie corporelle, en examinant le mouvement du processus notocordal et son rôle dans la formation du nœud de Hensen. À travers ce processus, les chercheurs découvrent l'importance des microcils, liés à des troubles de la latéralité et influençant la position des organes comme le cœur et le foie. L'animation d'une cascade de molécules et de protéines spécifiques est mise en lumière, soulignant leur impact sur l'organisation asymétrique du corps. En plus d'un aspect théorique, cette leçon offre des insights précieux pour l'application clinique, renforçant la compréhension des mécanismes développementaux en embryologie biodynamique et ostéopathie.",
     transcriptMarkdown: `
 # Origine de l'Asymétrie du Corps
 
-L'origine de cette **asymétrie** se produit lors du mouvement du **processus notocordal**. Ce mouvement engendre un nœud, appelé le **nœud d'Ensens**. Ce nœud est essentiel dans la formation de l'axe notocordal.
+L'origine de cette **asymétrie** se produit lors du mouvement du **processus notocordal**. Ce mouvement engendre un nœud, appelé le **nœud de Hensen**. Ce nœud est essentiel dans la formation de l'axe notocordal.
 
-À l'intérieur de cette structure, on trouve des **microcils**. Grâce au **syndrome de Kartagener**, des chercheurs japonais ont découvert que ce système était lié à des troubles de la **latéralité**. Par exemple, certaines personnes développent leur cœur à droite au lieu de gauche. Ils ont observé pour la première fois ces petits cils dans la région du nœud d'Ensens.
+À l'intérieur de cette structure, on trouve des **microcils**. Grâce au **syndrome de Kartagener**, des chercheurs japonais ont découvert que ce système était lié à des troubles de la **latéralité**. Par exemple, certaines personnes développent leur cœur à droite au lieu de gauche. Ils ont observé pour la première fois ces petits cils dans la région du nœud de Hensen.
 
 Ces microcils, présents dans divers endroits du corps comme les **spermatozoïdes**, l'**utérus**, les **trompes** et les **bronches**, effectuent un mouvement rotatoire plutôt qu'un mouvement de va-et-vient. Ces cils, inclinés à 60 degrés, créent un mouvement qui concentre des petites molécules d'un côté, poussées vers le côté gauche de l'embryon.
 
@@ -10370,7 +10370,7 @@ Cette inhibition est liée à la **non-fermeture du tube neural**. Sans cette in
 
 Un **autocorps** représente une fonction génomique, agissant comme une référence pour le corps. Ce champ électrique, résultant d'une polarité, est fondamental. Selon la loi de **Maxwell**, chaque champ électrique génère un champ électromagnétique. Ainsi, chaque individu reçoit une information spécifique. 
 
-Dans l'anotocorte, les cellules en avant reçoivent une information que l'on appelle la sonétique HH. Si cette croissance est ralentie, une accélération se produit, entraînant une expansion de l'épithélium, liée à des processus génétiques. Cependant, tant que le tube neural n'est pas fermé, un petit espace persiste. 
+Dans la notochorde, les cellules en avant reçoivent une information que l'on appelle la sonétique HH. Si cette croissance est ralentie, une accélération se produit, entraînant une expansion de l'épithélium, liée à des processus génétiques. Cependant, tant que le tube neural n'est pas fermé, un petit espace persiste. 
 
 Sans inhibition, l'œil se développe au centre, entraînant la formation d'un œil de cyclope. La fermeture du tube neural est cruciale pour que la crête neurale s'exprime latéralement. Une fois la fermeture réalisée, l'inhibition négative influence l'œil, en lien avec des phénomènes de colocalisation **thyroïdiens**, **cardiaques** et **hépatopancréatiques**. Ces grands organes ont un impact direct sur l'œil, qui est fortement relié à la **choroïde**, un tissu mésenchymateux vasculaire.
 
@@ -10627,7 +10627,7 @@ Au cours de la deuxième semaine de développement embryonnaire, la **forme en S
 
 ![Début du processus épiblastique](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-13/Oeil_1.jpeg)
 
- Le **nœud d'Ensens**, ou dépression primitive, devient un point d'appui fixe et se déplace progressivement vers l'arrière. 
+ Le **nœud de Hensen**, ou dépression primitive, devient un point d'appui fixe et se déplace progressivement vers l'arrière. 
 
 Cette structure est essentielle car elle constitue la base du **crâne**, intégrant des éléments comme l'**hypophyse**, les **grandes ailes du sphénoïde**, le **système pétreux**, le **système occipital** et l'**ethmoïde**. En bas, le développement du **sacrum** commence, avec le processus de S2, qui représente le vestige de la ligne primitive. Ce processus devient un point d'appui crucial, soulignant l'importance d'un **sacrum libre** pour permettre une unité fonctionnelle.
 

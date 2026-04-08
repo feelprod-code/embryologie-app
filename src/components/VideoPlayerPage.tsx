@@ -580,24 +580,26 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
 
           {/* CENTER: PREV/NEXT */}
-          <div className="flex items-center justify-center gap-2 sm:gap-3 z-10 shrink-0">
-            <button
-              onClick={() => prevVideo && handleSelectVideo(prevVideo)}
-              disabled={!prevVideo}
-              className="flex items-center justify-center py-1 md:py-1.5 w-16 sm:w-24 md:w-32 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
-              title={t('videoLibrary.previous')}
-            >
-              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
-            <button
-              onClick={() => nextVideo && handleSelectVideo(nextVideo)}
-              disabled={!nextVideo}
-              className="flex items-center justify-center py-1 md:py-1.5 w-16 sm:w-24 md:w-32 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
-              title={t('videoLibrary.next')}
-            >
-              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
-          </div>
+          {(!isDesktopLayout && !isTabletLayout) && (
+            <div className="flex items-center justify-center gap-2 sm:gap-3 z-10 shrink-0">
+              <button
+                onClick={() => prevVideo && handleSelectVideo(prevVideo)}
+                disabled={!prevVideo}
+                className="flex items-center justify-center py-1 md:py-1.5 w-16 sm:w-24 md:w-32 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+                title={t('videoLibrary.previous')}
+              >
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+              <button
+                onClick={() => nextVideo && handleSelectVideo(nextVideo)}
+                disabled={!nextVideo}
+                className="flex items-center justify-center py-1 md:py-1.5 w-16 sm:w-24 md:w-32 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+                title={t('videoLibrary.next')}
+              >
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            </div>
+          )}
 
           {/* RIGHT: OFFLINE AND DOWNLOAD */}
           <div className="flex flex-1 items-center justify-end z-10">
@@ -645,7 +647,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         "sticky top-0 z-30 bg-[#FAF6ED] w-full flex flex-col shrink-0 transition-all duration-300 ease-in-out origin-top overflow-hidden",
         "max-h-32 opacity-100 border-b border-slate-200 shadow-sm"
       )}>
-        <div className="p-2 w-full flex items-center justify-between shrink-0">
+        <div className="p-2 w-full flex items-center shrink-0">
           <div className="flex flex-row items-center px-2 flex-1 min-w-0 pr-2 gap-2">
             <h3 className={cn("font-anton text-sm md:text-sm lg:text-[15px] tracking-wide uppercase leading-tight truncate",
             course.categoryId === 'ectoderme' ? "text-[#5A9C51]" :
@@ -663,7 +665,29 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           )}
         </div>
 
-        <div className="flex items-center shrink-0 ml-1 gap-2 sm:gap-3">
+        {/* CENTER: Previous / Next Buttons */}
+        {(isDesktopLayout || isTabletLayout) && isVideoVisible && (
+          <div className="hidden md:flex items-center justify-center gap-2 sm:gap-3 shrink-0 mx-2">
+            <button
+              onClick={() => prevVideo && handleSelectVideo(prevVideo)}
+              disabled={!prevVideo}
+              className="flex items-center justify-center py-1 md:py-1.5 w-20 lg:w-28 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+              title={t('videoLibrary.previous')}
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => nextVideo && handleSelectVideo(nextVideo)}
+              disabled={!nextVideo}
+              className="flex items-center justify-center py-1 md:py-1.5 w-20 lg:w-28 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+              title={t('videoLibrary.next')}
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        )}
+
+        <div className="flex flex-1 items-center justify-end shrink-0 ml-1 gap-2 sm:gap-3">
           {/* Audio Controls moved to dedicated row below */}
 
           <button
@@ -774,7 +798,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
         )}
       </div>
-      <div className="flex flex-col h-full w-full relative">
+      <div className="flex-1 flex flex-col h-full w-full relative min-h-0 overflow-hidden">
         <div className="flex-none flex justify-center py-2 mb-2 bg-[#FAF6ED]/95 backdrop-blur-md z-20 sticky top-0 border-b border-transparent">
           <div className="inline-flex bg-[#EBE5D9]/80 p-1 rounded-lg items-center">
             <button
@@ -928,7 +952,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         {/* --- MOBILE VIEW: Resizable Split Pane (Vertical) --- */}
         {isMobileLayout && (
           <div className={cn("flex-1 flex flex-col min-h-0 w-full", !isFullscreen && "px-2")}>
-            <div className="w-full h-full flex flex-col">
+            <div className="w-full h-full flex flex-col min-h-0">
               {/* Le conteneur du lecteur vidéo */}
               <div
                 className={cn(
@@ -957,7 +981,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
         {/* --- TABLET & DESKTOP VIEW: Floating Picture-in-Picture in Corner --- */}
         {(isTabletLayout || isDesktopLayout) && (
-          <div className="flex-1 relative w-full h-full pb-4 px-4">
+          <div className="flex-1 relative w-full h-full pb-4 px-4 min-h-0">
             {/* Transcript Background (Full Tablet Width) */}
             <div className="w-full h-full relative">
               {BottomContent}

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, useImperativeHandle } from 'react';
 import { Stream } from '@cloudflare/stream-react';
 import { useTranslation } from 'react-i18next';
-import { Play, Pause, Maximize, X, RotateCcw, RotateCw } from 'lucide-react';
+import { Play, Pause, Maximize, X, RotateCcw, RotateCw, PictureInPicture2 } from 'lucide-react';
 import { cn } from '../../utils';
 import { useFullscreen } from '../../contexts/FullscreenContext';
 
@@ -75,9 +75,33 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     // State
     const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
     const [hasSubtitles, setHasSubtitles] = useState(false);
+    const [isPipSupported, setIsPipSupported] = useState(false);
+
+    useEffect(() => {
+        const standardPip = 'pictureInPictureEnabled' in document;
+        const safariPip = typeof HTMLVideoElement !== 'undefined' && 'webkitSetPresentationMode' in HTMLVideoElement.prototype;
+        setIsPipSupported(standardPip || safariPip);
+    }, []);
     const [activeSubtitle, setActiveSubtitle] = useState<string | null>(null);
     const cuesRef = useRef<{ start: number, end: number, text: string }[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
+    const [containerWidth, setContainerWidth] = useState<number>(0);
+
+    // Measure container width for responsive subtitles
+    useEffect(() => {
+        if (!containerRef.current) return;
+        const observer = new ResizeObserver((entries) => {
+            for (let entry of entries) {
+                if (entry.contentRect.width > 0) {
+                    setContainerWidth(entry.contentRect.width);
+                }
+            }
+        });
+        observer.observe(containerRef.current);
+        // Initial setup
+        setContainerWidth(containerRef.current.getBoundingClientRect().width);
+        return () => observer.disconnect();
+    }, []);
 
     // Custom Controls State
     const [isPlaying, setIsPlaying] = useState(false);
@@ -419,6 +443,48 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         };
     }, []);
 
+    const togglePiP = (e?: React.MouseEvent | React.TouchEvent) => {
+        if (e) {
+            e.stopPropagation();
+        }
+        try {
+            if (document.pictureInPictureElement) {
+                document.exitPictureInPicture();
+                return;
+            }
+            
+            let videoElement = playerRef.current;
+            
+            // Fallbacks if playerRef itself is not the video element
+            if (videoElement && typeof (videoElement as any).requestPictureInPicture !== 'function' && typeof (videoElement as any).webkitSetPresentationMode !== 'function') {
+                if ((videoElement as any).video && (typeof (videoElement as any).video.requestPictureInPicture === 'function' || typeof (videoElement as any).video.webkitSetPresentationMode === 'function')) {
+                    videoElement = (videoElement as any).video;
+                } else if (containerRef.current) {
+                    let v = containerRef.current.querySelector('video');
+                    if (!v) {
+                        // En Shadow DOM (Component Cloudflare)
+                        const streamRoot = containerRef.current.querySelector('stream');
+                        if (streamRoot && streamRoot.shadowRoot) {
+                            v = streamRoot.shadowRoot.querySelector('video');
+                        }
+                    }
+                    if (v) videoElement = v as any;
+                }
+            }
+            
+            if (videoElement && typeof (videoElement as any).webkitSetPresentationMode === 'function') {
+                // Apple/Safari fallback: must be synchronous!
+                (videoElement as any).webkitSetPresentationMode('picture-in-picture');
+            } else if (videoElement && typeof (videoElement as any).requestPictureInPicture === 'function') {
+                (videoElement as any).requestPictureInPicture().catch((err: any) => console.error("PiP err:", err));
+            } else {
+                console.warn("Picture-in-Picture API is not supported on this video element.");
+            }
+        } catch (err) {
+            console.error("Picture-in-Picture error:", err);
+        }
+    };
+
 
     // Dynamically allow zoom and handle status bar in fullscreen
     useEffect(() => {
@@ -551,12 +617,21 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 .replace(/Ã´/g, 'ô').replace(/Ã»/g, 'û').replace(/Ã§/g, 'ç')
                                 .replace(/Ãe/g, 'ée').replace(/Ãd/g, 'éd').replace(/cÃdule/g, 'cellule')
                                 .replace(/Ã/g, 'à')
+                                // Transcription error fixes
+                                .replace(/auto\s*-?\s*crime/gi, 'autocrine')
+                                .replace(/\bc(é|e)dule(s)?\b/gi, 'cellule$2')
+                                .replace(/(?:à|a|ah)\s+a\s+veut\s+dire/gi, 'ça veut dire')
+                                .replace(/^à\s+a\b/gi, 'ça')
                                 // Remove odd formatting characters
                                 .replace(/[|~_^*@¿¡]/g, '')
                                 .replace(/^-?\s*\d+\s*-?\s*/, '')
                                 .replace(/\s+'\s+/g, "'").replace(/\s+'/g, "'").replace(/'\s+/g, "'")
                                 .replace(/(\w)\s+-\s+(\w)/g, "$1-$2")
-                                .replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '');
+                                .replace(/\s+,/g, ',')
+                                .replace(/\s+\./g, '.')
+                                .replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '')
+                                // Normalize all weird spaces to standard space
+                                .replace(/\s+/g, ' ');
 
                             textAcc += lineText.trim() + ' ';
                             i++;
@@ -840,7 +915,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             className="text-slate-700 bg-[#FAF6ED]/95 px-3 py-1.5 rounded-xl mx-2 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans shadow-md"
                             style={{
                                 display: 'inline-block',
-                                fontSize: isFullscreen ? 'clamp(0.95rem, 2vw, 1.4rem)' : 'clamp(0.85rem, 2vw, 1.25rem)',
+                                fontSize: `${isFullscreen ? Math.max(12, Math.min(32, containerWidth * 0.035)) : Math.max(10, Math.min(22, containerWidth * 0.03))}px`,
                                 letterSpacing: '0.01em',
                                 lineHeight: '1.4',
                                 fontWeight: '500',
@@ -957,6 +1032,19 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                         {!subtitlesEnabled && <line x1="2" y1="2" x2="22" y2="22" strokeWidth="2.5" stroke="currentColor" />}
                                     </svg>
                                     {subtitlesEnabled && <div className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ bottom: '2px', backgroundColor: progressColor }} />}
+                                </button>
+                            )}
+
+                            {/* PiP Toggle */}
+                            {isPipSupported && (
+                                <button
+                                    onClick={(e) => { e.stopPropagation(); togglePiP(e); }}
+                                    onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); togglePiP(e); }}
+                                    className="text-white hover:text-white/80 transition-colors p-2 cursor-pointer touch-manipulation active:scale-90"
+                                    aria-label="Mode fenêtre (Picture-in-Picture)"
+                                    title="Mode fenêtre (Picture-in-Picture)"
+                                >
+                                    <PictureInPicture2 size={22} />
                                 </button>
                             )}
 
