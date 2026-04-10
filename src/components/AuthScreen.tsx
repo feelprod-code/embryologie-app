@@ -108,7 +108,7 @@ export const AuthScreen: React.FC = () => {
 
             <div className="absolute inset-0 bg-[url('https://feelprod.com/wp-content/uploads/2023/11/bg-texture.jpg')] opacity-[0.03] bg-cover mix-blend-multiply pointer-events-none"></div>
 
-            <div className="relative w-full max-w-md px-4 sm:px-8 pt-12 md:pt-14 pb-32 sm:pb-40 bg-transparent flex flex-col items-center z-10 min-h-full justify-start md:justify-center">
+            <div className="relative w-full max-w-md px-4 sm:px-8 pt-12 md:pt-14 pb-8 bg-transparent flex flex-col items-center z-10 min-h-[100dvh] justify-start md:justify-center">
 
                 <div className="w-[10rem] h-[10rem] sm:w-[14rem] sm:h-[14rem] md:w-[11rem] md:h-[11rem] lg:w-[14rem] lg:h-[14rem] mb-2 sm:mb-0 mt-4 md:mt-2 lg:mt-0 overflow-hidden bg-transparent flex items-center justify-center rounded-full shrink-0">
                     <img src="/icon-emb.png" alt="Embryologie" className="w-full h-full object-contain rounded-full" />
@@ -279,10 +279,8 @@ export const AuthScreen: React.FC = () => {
                     </form>
                 )}
 
-            </div>
-
-            {/* Footer FeelProd et bouton Cache */}
-            <div className="absolute bottom-4 sm:bottom-8 w-full flex flex-col items-center justify-end opacity-90 z-20 gap-4">
+                {/* Footer FeelProd et bouton Cache */}
+                <div className="w-full flex flex-col items-center justify-end opacity-90 z-20 gap-4 mt-auto pt-10">
                 <button
                     type="button"
                     onClick={() => {
@@ -306,6 +304,7 @@ export const AuthScreen: React.FC = () => {
                         Réalisation Feelprod
                     </span>
                     <div className="w-12 h-[1px] bg-slate-300/50 mt-0.5"></div>
+                </div>
                 </div>
             </div>
         </div >
