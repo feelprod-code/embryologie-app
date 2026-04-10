@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound, MonitorOff } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History } from 'lucide-react';
 import { cn } from '../utils';
 
 type Profile = {
@@ -12,12 +12,18 @@ type Profile = {
     device_id: string | null;
     is_active: boolean;
     created_at: string;
+    access_tier?: 'legacy' | 'premium' | 'free' | 'trial' | null;
+    expires_at?: string | null;
 };
+
+type FilterType = 'ALL' | 'ACTIVE' | 'EXPIRED' | 'TRIAL';
 
 export function AdminDashboard() {
     const [profiles, setProfiles] = useState<Profile[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [filter, setFilter] = useState<FilterType>('ALL');
+    const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
 
     useEffect(() => {
         fetchProfiles();
@@ -41,7 +47,7 @@ export function AdminDashboard() {
     const toggleStatus = async (id: string, currentStatus: boolean) => {
         const { data: { session } } = await supabase.auth.getSession();
         if (!session) {
-            alert("Action impossible : vous utilisez le bouton 'DEV' (sans vraie connexion). Veuillez vous connecter avec e-mail/code pour modifier la base de données.");
+            alert("Action impossible : vous utilisez le bouton 'DEV' (sans vraie connexion).");
             return;
         }
 
@@ -57,17 +63,20 @@ export function AdminDashboard() {
             alert('Mise à jour refusée par la base de données. Vous n\'avez pas les droits administrateur (erreur RLS).');
         } else {
             fetchProfiles();
+            if (selectedProfile && selectedProfile.id === id) {
+                setSelectedProfile({ ...selectedProfile, is_active: !currentStatus });
+            }
         }
     };
 
     const resetDevice = async (id: string) => {
         const { data: { session } } = await supabase.auth.getSession();
         if (!session) {
-            alert("Action impossible : vous utilisez le bouton 'DEV' (sans vraie connexion). Veuillez vous connecter avec e-mail/code pour modifier la base de données.");
+            alert("Action impossible : vous n'êtes pas authentifié.");
             return;
         }
 
-        if (!confirm('Êtes-vous sûr de vouloir réinitialiser les appareils de cet élève ? Il devra se reconnecter et enregistrer à nouveau ses appareils.')) return;
+        if (!confirm('Êtes-vous sûr de vouloir réinitialiser les appareils de cet élève ?')) return;
         
         const { data, error } = await supabase
             .from('profiles')
@@ -78,280 +87,230 @@ export function AdminDashboard() {
         if (error) {
             alert('Erreur lors de la réinitialisation : ' + error.message);
         } else if (!data || data.length === 0) {
-            alert('Réinitialisation refusée par la base de données. Vous n\'avez pas les droits administrateur (erreur RLS).');
+            alert('Réinitialisation refusée (erreur RLS).');
         } else {
             fetchProfiles();
+            if (selectedProfile && selectedProfile.id === id) {
+                setSelectedProfile({ ...selectedProfile, device_id: null });
+            }
         }
     };
 
+    const isExpired = (expires_at?: string | null) => {
+        if (!expires_at) return false;
+        return new Date(expires_at) < new Date();
+    };
 
-
-    const filteredProfiles = profiles.filter(p =>
+    // Derived filtered profiles
+    let filteredProfiles = profiles.filter(p =>
         p.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         p.first_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         p.last_name?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    if (filter === 'ACTIVE') {
+        filteredProfiles = filteredProfiles.filter(p => p.is_active && !isExpired(p.expires_at));
+    } else if (filter === 'EXPIRED') {
+        filteredProfiles = filteredProfiles.filter(p => !p.is_active || isExpired(p.expires_at));
+    } else if (filter === 'TRIAL') {
+        filteredProfiles = filteredProfiles.filter(p => p.access_tier === 'trial');
+    }
+
+    const renderTierBadge = (tier?: string | null) => {
+        switch (tier) {
+            case 'premium': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700"><Crown size={12}/> Plein Tarif</span>;
+            case 'legacy': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-amber-50 border border-amber-200 text-amber-700"><History size={12}/> Transfert</span>;
+            case 'free': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-pink-50 border border-pink-200 text-pink-700"><Gift size={12}/> Cadeau</span>;
+            case 'trial': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-blue-50 border border-blue-200 text-blue-700"><Clock size={12}/> Essai 24h</span>;
+            default: return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-slate-100 border border-slate-200 text-slate-500">Standard</span>;
+        }
+    };
+
+    const renderStatusBadge = (profile: Profile) => {
+        const expired = isExpired(profile.expires_at);
+        if (!profile.is_active) {
+            return <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-red-500"/><span className="text-sm font-semibold text-slate-700">Verrouillé</span></div>;
+        }
+        if (expired) {
+            return <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-slate-400"/><span className="text-sm font-semibold text-slate-700">Expiré</span></div>;
+        }
+        if (profile.access_tier === 'trial' && profile.expires_at) {
+            return <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"/><span className="text-sm font-semibold text-slate-700">En cours d'essai</span></div>;
+        }
+        return <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-green-500"/><span className="text-sm font-semibold text-slate-700">Actif</span></div>;
+    };
+
     return (
-        <div className="w-full h-full max-w-6xl mx-auto animate-fade-in relative z-10 flex flex-col bg-[#FAF6ED]">
-            {/* FIXED HEADER WITH BEIGE NOTCH */}
-            <div className="flex-none w-full bg-[#FAF6ED] pt-[max(env(safe-area-inset-top),16px)] px-4 pb-4 md:px-8 border-b border-slate-200 z-20 shrink-0 shadow-sm">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-2">
-                    <div>
-                        <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase leading-none">Gestion des élèves</h1>
-                        <p className="text-slate-500 font-medium text-xs md:text-sm mt-1">Administration du CRM et des accès.</p>
-                    </div>
-
-                    <div className="relative w-full md:w-auto mt-2 md:mt-0">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Search className="h-5 w-5 text-slate-400" />
+        <div className="w-full h-full animate-fade-in relative z-10 flex bg-slate-50 overflow-hidden">
+            {/* MAIN LIST VIEW */}
+            <div className={cn("flex-1 flex flex-col h-full bg-[#FAF6ED] transition-all duration-300", selectedProfile ? "mr-0 md:mr-80 lg:mr-[400px]" : "mr-0")}>
+                {/* TOOLBAR */}
+                <div className="flex-none pt-[max(env(safe-area-inset-top),16px)] px-6 pb-6 border-b border-slate-200 bg-white shadow-sm z-20">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 max-w-6xl mx-auto">
+                        <div>
+                            <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase leading-none">Tour de Contrôle</h1>
+                            <p className="text-slate-500 font-medium text-sm mt-1">Gestion synthétique des accès et transferts</p>
                         </div>
-                        <input
-                            type="text"
-                            className="block w-full md:w-64 pl-10 pr-3 py-2 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm font-medium"
-                            placeholder="Rechercher un élève..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                    </div>
-                </div>
-            </div>
-
-            {/* List Container - SCROLLABLE */}
-            <div className="flex-1 w-full overflow-y-auto overscroll-y-contain px-4 md:px-8 pb-[120px] pt-6">
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden relative z-10 w-full mb-8">
-                {/* Desktop Table View */}
-                <div className="hidden md:block overflow-x-auto">
-                    <table className="min-w-full divide-y divide-slate-200">
-                        <thead className="bg-slate-50">
-                            <tr>
-                                <th scope="col" className="px-6 py-4 text-left text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                                    Élève
-                                </th>
-                                <th scope="col" className="px-6 py-4 text-left text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                                    Statut d'Accès
-                                </th>
-                                <th scope="col" className="px-6 py-4 text-left text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                                    Empreinte
-                                </th>
-                                <th scope="col" className="px-6 py-4 text-right text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                                    Actions
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="bg-white divide-y divide-slate-200">
-                            {loading ? (
-                                <tr>
-                                    <td colSpan={4} className="px-6 py-12 text-center text-slate-500 font-medium">
-                                        <div className="flex justify-center mb-4">
-                                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                                        </div>
-                                        Chargement des élèves...
-                                    </td>
-                                </tr>
-                            ) : filteredProfiles.length === 0 ? (
-                                <tr>
-                                    <td colSpan={4} className="px-6 py-12 text-center text-slate-500 font-medium">
-                                        Aucun élève trouvé.
-                                    </td>
-                                </tr>
-                            ) : (
-                                filteredProfiles.map((profile) => (
-                                    <tr key={profile.id} className="hover:bg-slate-50 transition-colors">
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="flex items-center">
-                                                <div className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold uppercase shrink-0">
-                                                    {profile.first_name?.[0] || ''}{profile.last_name?.[0] || ''}
-                                                    {!profile.first_name && !profile.last_name && profile.email?.[0]}
-                                                </div>
-                                                <div className="ml-4">
-                                                    <div className="text-sm font-bold text-slate-900">
-                                                        {profile.first_name || profile.last_name ? `${profile.first_name || ''} ${profile.last_name || ''}` : <span className="italic text-slate-400">Nom inconnu</span>}
-                                                    </div>
-                                                    <div className="text-sm text-slate-500 font-medium flex items-center gap-2">
-                                                        <span>{profile.email}</span>
-                                                        {profile.profession ? (
-                                                            <>
-                                                                <span className="text-slate-300">•</span>
-                                                                <span className="text-slate-500 italic">{profile.profession}</span>
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <span className="text-slate-300">•</span>
-                                                                <span className="text-slate-400 italic">Profession non renseignée</span>
-                                                            </>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <span className={cn(
-                                                "px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full border",
-                                                profile.is_active
-                                                    ? "bg-green-50 text-green-700 border-green-200"
-                                                    : "bg-red-50 text-red-700 border-red-200"
-                                            )}>
-                                                {profile.is_active ? '✅ Accès Autorisé' : '🚫 Accès Bloqué'}
-                                            </span>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            {profile.device_id ? (
-                                                <div className="flex flex-col gap-1.5">
-                                                    {profile.device_id.split(',').filter(Boolean).map((dev, idx) => {
-                                                        const shortName = dev.includes('-') && dev.split('-').length > 4 ?
-                                                            (dev.split('-').length === 5 ? dev.split('-')[0] : `${dev.split('-')[0]}-${dev.split('-')[1]}`)
-                                                            : dev;
-                                                        return (
-                                                            <div key={idx} className="flex items-center text-[11px] text-slate-600 font-medium bg-slate-50 px-2 py-1 rounded-md border border-slate-200">
-                                                                <KeyRound size={12} className="mr-1.5 text-amber-500 shrink-0" />
-                                                                <span className="truncate w-24" title={dev}>
-                                                                    {shortName}
-                                                                </span>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-                                            ) : (
-                                                <span className="text-sm text-slate-400 italic">Aucun appareil</span>
-                                            )}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <div className="flex justify-end gap-2">
-                                                <button
-                                                    onClick={() => toggleStatus(profile.id, profile.is_active)}
-                                                    className={cn(
-                                                        "flex items-center px-3 py-1.5 rounded-lg border transition-colors text-xs font-bold",
-                                                        profile.is_active
-                                                            ? "bg-white border-red-200 text-red-600 hover:bg-red-50"
-                                                            : "bg-white border-green-200 text-green-600 hover:bg-green-50"
-                                                    )}
-                                                    title={profile.is_active ? "Bloquer l'accès" : "Autoriser l'accès"}
-                                                >
-                                                    {profile.is_active ? <UserX size={14} className="mr-1.5" /> : <UserCheck size={14} className="mr-1.5" />}
-                                                    {profile.is_active ? 'Bloquer' : 'Activer'}
-                                                </button>
-                                                <button
-                                                    onClick={() => resetDevice(profile.id)}
-                                                    disabled={!profile.device_id}
-                                                    className={cn(
-                                                        "flex items-center px-3 py-1.5 rounded-lg border transition-colors text-xs font-bold",
-                                                        profile.device_id
-                                                            ? "bg-white border-amber-200 text-amber-600 hover:bg-amber-50"
-                                                            : "bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed"
-                                                    )}
-                                                    title="Réinitialiser les appareils"
-                                                >
-                                                    <MonitorOff size={14} className="mr-1.5" />
-                                                    Reset
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-
-                {/* Mobile Cards View */}
-                <div className="md:hidden flex flex-col divide-y divide-slate-100">
-                    {loading ? (
-                        <div className="px-6 py-12 text-center text-slate-500 font-medium">
-                            <div className="flex justify-center mb-4">
-                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                        
+                        <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+                            <div className="flex bg-slate-100 p-1 rounded-xl w-full sm:w-auto overflow-x-auto">
+                                <button onClick={() => setFilter('ALL')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap", filter === 'ALL' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>Tous ({profiles.length})</button>
+                                <button onClick={() => setFilter('ACTIVE')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap", filter === 'ACTIVE' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🟢 Actifs</button>
+                                <button onClick={() => setFilter('TRIAL')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap", filter === 'TRIAL' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>⏱️ Essais</button>
+                                <button onClick={() => setFilter('EXPIRED')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap", filter === 'EXPIRED' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🔴 Bloqués</button>
                             </div>
-                            Chargement des élèves...
+                            <div className="relative w-full sm:w-64">
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                                <input
+                                    type="text"
+                                    className="w-full pl-9 pr-3 py-2 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm font-medium"
+                                    placeholder="Chercher un nom ou e-mail..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                            </div>
                         </div>
-                    ) : filteredProfiles.length === 0 ? (
-                        <div className="px-6 py-12 text-center text-slate-500 font-medium">
-                            Aucun élève trouvé.
-                        </div>
-                    ) : (
-                        filteredProfiles.map((profile) => (
-                            <div key={profile.id} className="p-4 flex flex-col gap-4">
-                                <div className="flex items-start justify-between gap-2">
-                                    <div className="flex items-center w-full">
-                                        <div className="h-[42px] w-[42px] rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold uppercase shrink-0">
-                                            {profile.first_name?.[0] || ''}{profile.last_name?.[0] || ''}
-                                            {!profile.first_name && !profile.last_name && profile.email?.[0]}
-                                        </div>
-                                        <div className="ml-3 overflow-hidden flex-1">
-                                            <div className="text-sm font-bold text-slate-900 truncate">
-                                                {profile.first_name || profile.last_name ? `${profile.first_name || ''} ${profile.last_name || ''}` : <span className="italic text-slate-400">Nom inconnu</span>}
+                    </div>
+                </div>
+
+                {/* THE SYNTHETIC TABLE */}
+                <div className="flex-1 overflow-y-auto w-full max-w-6xl mx-auto px-4 md:px-6 py-6 pb-[120px]">
+                    <div className="bg-white rounded-2xl shadow-[0_5px_20px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden relative">
+                        {loading ? (
+                            <div className="p-12 text-center text-slate-400">Chardement des données...</div>
+                        ) : filteredProfiles.length === 0 ? (
+                            <div className="p-12 text-center text-slate-400">Aucun résultat.</div>
+                        ) : (
+                            <div className="divide-y divide-slate-100">
+                                {filteredProfiles.map((p) => (
+                                    <div 
+                                        key={p.id} 
+                                        onClick={() => setSelectedProfile(p)}
+                                        className={cn(
+                                            "group flex items-center justify-between p-4 px-6 cursor-pointer hover:bg-slate-50 transition-colors",
+                                            selectedProfile?.id === p.id && "bg-slate-50 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-primary"
+                                        )}
+                                    >
+                                        <div className="flex items-center gap-4 w-[50%] md:w-[40%]">
+                                            <div className="hidden md:flex h-10 w-10 shrink-0 rounded-full bg-slate-100 text-slate-500 font-bold items-center justify-center text-sm uppercase">
+                                                {p.first_name?.[0] || ''}{p.last_name?.[0] || ''}
+                                                {!p.first_name && !p.last_name && p.email?.[0]}
                                             </div>
-                                            <div className="text-xs text-slate-500 font-medium truncate">{profile.email}</div>
-                                            {profile.profession ? (
-                                                <div className="text-xs text-slate-400 italic truncate mt-0.5">{profile.profession}</div>
-                                            ) : (
-                                                <div className="text-xs text-slate-400 italic truncate mt-0.5">Profession non renseignée</div>
-                                            )}
+                                            <div className="overflow-hidden">
+                                                <div className="font-bold text-slate-900 text-sm truncate">{p.first_name || p.last_name ? `${p.first_name || ''} ${p.last_name || ''}` : <span className="italic">Inconnu</span>}</div>
+                                                <div className="text-xs text-slate-500 font-medium truncate">{p.email}</div>
+                                            </div>
+                                        </div>
+
+                                        <div className="hidden md:flex w-[25%]">
+                                            {renderTierBadge(p.access_tier)}
+                                        </div>
+
+                                        <div className="w-[30%] md:w-[25%] flex justify-end md:justify-start">
+                                            {renderStatusBadge(p)}
+                                        </div>
+
+                                        <div className="w-[10%] flex justify-end">
+                                            <ChevronRight size={18} className={cn("text-slate-300 group-hover:text-primary transition-colors", selectedProfile?.id === p.id && "text-primary")} />
                                         </div>
                                     </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            {/* SIDE DRAWER (THE DETAILS PANEL) */}
+            <div className={cn(
+                "fixed inset-y-0 right-0 bg-white w-full md:w-80 lg:w-[400px] shadow-[-10px_0_40px_rgba(0,0,0,0.05)] border-l border-slate-200 z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto",
+                selectedProfile ? "translate-x-0" : "translate-x-full"
+            )}>
+                {selectedProfile && (
+                    <div className="flex flex-col h-full">
+                        {/* Drawer Header */}
+                        <div className="p-6 border-b border-slate-100 flex items-start justify-between bg-slate-50/50">
+                            <div>
+                                <h2 className="text-xl font-bold text-slate-900">
+                                    {selectedProfile.first_name || selectedProfile.last_name ? `${selectedProfile.first_name} ${selectedProfile.last_name}` : 'Utilisateur Inconnu'}
+                                </h2>
+                                <p className="text-sm text-slate-500 font-medium mt-1">{selectedProfile.email}</p>
+                            </div>
+                            <button onClick={() => setSelectedProfile(null)} className="p-2 bg-white rounded-full border border-slate-200 text-slate-400 hover:text-slate-600 transition-colors shadow-sm">
+                                <X size={16} />
+                            </button>
+                        </div>
+
+                        {/* Drawer Body */}
+                        <div className="p-6 space-y-8 flex-1">
+                            
+                            {/* Identité Section */}
+                            <div>
+                                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Identité</h3>
+                                <div className="space-y-3">
+                                    <div className="flex justify-between items-center text-sm">
+                                        <span className="text-slate-500">Profession</span>
+                                        <span className="font-medium text-slate-800">{selectedProfile.profession || '-'}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center text-sm">
+                                        <span className="text-slate-500">Inscrit le</span>
+                                        <span className="font-medium text-slate-800">{new Date(selectedProfile.created_at).toLocaleDateString('fr-FR')}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Accès Section */}
+                            <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Statut d'Accès Actuel</h3>
+                                <div className="flex justify-between items-center mb-4">
+                                    {renderTierBadge(selectedProfile.access_tier)}
+                                    {renderStatusBadge(selectedProfile)}
                                 </div>
 
-                                <div className="flex flex-wrap items-center gap-2">
-                                    <span className={cn(
-                                        "px-2.5 py-1 inline-flex text-[11px] leading-4 font-bold rounded-full border",
-                                        profile.is_active
-                                            ? "bg-green-50 text-green-700 border-green-200"
-                                            : "bg-red-50 text-red-700 border-red-200"
-                                    )}>
-                                        {profile.is_active ? '✅ Actif' : '🚫 Bloqué'}
-                                    </span>
-                                    {profile.device_id ? (
-                                        <div className="flex flex-wrap items-center gap-1.5">
-                                            {profile.device_id.split(',').filter(Boolean).map((dev, idx) => {
-                                                const shortName = dev.includes('-') && dev.split('-').length > 4 ?
-                                                    (dev.split('-').length === 5 ? dev.split('-')[0] : `${dev.split('-')[0]}-${dev.split('-')[1]}`)
-                                                    : dev;
-                                                return (
-                                                    <div key={idx} className="flex items-center text-[10px] text-slate-600 font-medium px-2 py-0.5 bg-slate-50 rounded-full border border-slate-200">
-                                                        <KeyRound size={10} className="mr-1 text-amber-500" />
-                                                        <span className="truncate max-w-[70px]" title={dev}>
-                                                            {shortName}
-                                                        </span>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    ) : (
-                                        <span className="text-[11px] px-2.5 py-1 bg-slate-50 text-slate-400 italic rounded-full border border-slate-200">Aucun appareil</span>
-                                    )}
-                                </div>
-
-                                <div className="flex flex-row justify-stretch gap-2 mt-1">
-                                    <button
-                                        onClick={() => toggleStatus(profile.id, profile.is_active)}
+                                <div className="space-y-2 mt-4 pt-4 border-t border-slate-200">
+                                    <button 
+                                        onClick={() => toggleStatus(selectedProfile.id, selectedProfile.is_active)}
                                         className={cn(
-                                            "flex-[2] flex justify-center items-center px-3 py-2 rounded-[10px] border transition-colors text-xs font-bold",
-                                            profile.is_active
-                                                ? "bg-white border-red-200 text-red-600 hover:bg-red-50"
-                                                : "bg-white border-green-200 text-green-600 hover:bg-green-50"
+                                            "w-full py-2.5 rounded-xl font-bold text-sm transition-all border flex items-center justify-center gap-2",
+                                            selectedProfile.is_active 
+                                                ? "bg-white text-red-600 border-red-200 hover:bg-red-50" 
+                                                : "bg-[#1c2e4a] text-white border-transparent hover:bg-[#1c2e4a]/90"
                                         )}
                                     >
-                                        {profile.is_active ? <UserX size={14} className="mr-1.5" /> : <UserCheck size={14} className="mr-1.5" />}
-                                        {profile.is_active ? 'Bloquer' : 'Activer'}
-                                    </button>
-                                    <button
-                                        onClick={() => resetDevice(profile.id)}
-                                        disabled={!profile.device_id}
-                                        className={cn(
-                                            "flex-1 flex justify-center items-center px-3 py-2 rounded-[10px] border transition-colors text-xs font-bold",
-                                            profile.device_id
-                                                ? "bg-white border-amber-200 text-amber-600 hover:bg-amber-50"
-                                                : "bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed"
-                                        )}
-                                        title="Réinitialiser les appareils"
-                                    >
-                                        <MonitorOff size={14} className="mr-1.5" /> Reset
+                                        {selectedProfile.is_active ? <UserX size={16} /> : <UserCheck size={16} />}
+                                        {selectedProfile.is_active ? "Bloquer le compte" : "Déverrouiller le compte"}
                                     </button>
                                 </div>
                             </div>
-                        ))
-                    )}
-                </div>
-            </div>
+
+                            {/* Appareils Section */}
+                            <div>
+                                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
+                                    <MonitorOff size={14} /> Sécurité des Appareils
+                                </h3>
+                                <p className="text-xs text-slate-500 mb-3 leading-relaxed">
+                                    Empreintes des appareils utilisés par ce navigateur. Réinitialisez si l'élève a changé d'ordinateur ou de téléphone.
+                                </p>
+                                <div className="bg-white border text-sm border-slate-200 rounded-xl p-3 mb-3 text-slate-700 max-h-32 overflow-y-auto break-all font-mono text-[10px]">
+                                    {selectedProfile.device_id || "Aucun appareil enregistré."}
+                                </div>
+                                <button
+                                    onClick={() => resetDevice(selectedProfile.id)}
+                                    disabled={!selectedProfile.device_id}
+                                    className="w-full py-2.5 rounded-xl text-amber-600 border border-amber-200 bg-amber-50 font-bold text-sm hover:bg-amber-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    Effacer les Empreintes
+                                </button>
+                            </div>
+                            
+                            {/* Prochaines évolutions Stripe */}
+                            <div className="bg-blue-50/50 rounded-2xl p-4 border border-blue-100 border-dashed">
+                                <h3 className="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">À Venir (Stripe)</h3>
+                                <p className="text-xs text-blue-800/70">La gestion complète de l'accès payant (Génération de liens Stripe, codes promos, expiration 24h) sera connectée à cet encart lors de la mise en production du module de paiement.</p>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
