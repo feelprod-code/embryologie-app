@@ -17,12 +17,14 @@ type Profile = {
 };
 
 type FilterType = 'ALL' | 'ACTIVE' | 'EXPIRED' | 'TRIAL';
+type TierFilterType = 'ALL' | 'LEGACY' | 'PREMIUM' | 'FREE' | 'TRIAL' | 'STANDARD';
 
 export function AdminDashboard() {
     const [profiles, setProfiles] = useState<Profile[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const [filter, setFilter] = useState<FilterType>('ALL');
+    const [tierFilter, setTierFilter] = useState<TierFilterType>('ALL');
     const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
 
     useEffect(() => {
@@ -116,6 +118,13 @@ export function AdminDashboard() {
         filteredProfiles = filteredProfiles.filter(p => p.access_tier === 'trial');
     }
 
+    if (tierFilter !== 'ALL') {
+        filteredProfiles = filteredProfiles.filter(p => {
+            if (tierFilter === 'STANDARD') return !p.access_tier; // Pas de tier défini = standard
+            return p.access_tier?.toUpperCase() === tierFilter;
+        });
+    }
+
     const renderTierBadge = (tier?: string | null) => {
         switch (tier) {
             case 'premium': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700"><Crown size={12}/> Plein Tarif</span>;
@@ -141,25 +150,40 @@ export function AdminDashboard() {
     };
 
     return (
-        <div className="w-full h-full animate-fade-in relative z-10 flex bg-slate-50 overflow-hidden">
+        <div className="w-full h-full animate-fade-in relative z-10 flex bg-slate-50 overflow-hidden min-h-0">
             {/* MAIN LIST VIEW */}
-            <div className={cn("flex-1 flex flex-col h-full bg-[#FAF6ED] transition-all duration-300", selectedProfile ? "mr-0 md:mr-80 lg:mr-[400px]" : "mr-0")}>
+            <div className={cn("flex-1 flex flex-col h-full min-w-0 min-h-0 bg-[#FAF6ED] transition-all duration-300", selectedProfile ? "mr-0 xl:mr-[400px]" : "mr-0")}>
                 {/* TOOLBAR */}
-                <div className="flex-none pt-[max(env(safe-area-inset-top),16px)] px-6 pb-6 border-b border-slate-200 bg-white shadow-sm z-20">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 max-w-6xl mx-auto">
+                <div className="flex-none pt-[max(env(safe-area-inset-top),16px)] px-4 md:px-6 pb-6 border-b border-slate-200 bg-white shadow-sm z-20">
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 max-w-6xl mx-auto">
                         <div>
                             <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase leading-none">Tour de Contrôle</h1>
-                            <p className="text-slate-500 font-medium text-sm mt-1">Gestion synthétique des accès et transferts</p>
+                            <p className="text-slate-500 font-medium text-sm mt-1">Gestion des accès et transferts</p>
                         </div>
                         
-                        <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-                            <div className="flex bg-slate-100 p-1 rounded-xl w-full sm:w-auto overflow-x-auto">
-                                <button onClick={() => setFilter('ALL')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap", filter === 'ALL' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>Tous ({profiles.length})</button>
-                                <button onClick={() => setFilter('ACTIVE')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap", filter === 'ACTIVE' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🟢 Actifs</button>
-                                <button onClick={() => setFilter('TRIAL')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap", filter === 'TRIAL' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>⏱️ Essais</button>
-                                <button onClick={() => setFilter('EXPIRED')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap", filter === 'EXPIRED' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🔴 Bloqués</button>
+                        <div className="flex flex-col xl:flex-row items-stretch xl:items-center gap-3 w-full lg:w-auto">
+                            <div className="flex bg-slate-100 p-1 rounded-xl w-full xl:w-auto overflow-x-auto no-scrollbar">
+                                <button onClick={() => setFilter('ALL')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'ALL' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>Tous ({profiles.length})</button>
+                                <button onClick={() => setFilter('ACTIVE')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'ACTIVE' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🟢 Actifs</button>
+                                <button onClick={() => setFilter('EXPIRED')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'EXPIRED' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🔴 Bloqués</button>
                             </div>
-                            <div className="relative w-full sm:w-64">
+                            
+                            <div className="flex bg-slate-100 p-1 rounded-xl w-full xl:w-auto">
+                                <select 
+                                    value={tierFilter} 
+                                    onChange={(e) => setTierFilter(e.target.value as TierFilterType)}
+                                    className="bg-transparent text-slate-700 text-xs font-bold px-3 py-1.5 w-full focus:outline-none cursor-pointer appearance-none text-center"
+                                >
+                                    <option value="ALL">🌟 Tous les accès</option>
+                                    <option value="PREMIUM">👑 Plein Tarif</option>
+                                    <option value="LEGACY">📜 Transfert</option>
+                                    <option value="FREE">🎁 Cadeau</option>
+                                    <option value="TRIAL">⏱️ Essai 24h</option>
+                                    <option value="STANDARD">⚪ Standard</option>
+                                </select>
+                            </div>
+
+                            <div className="relative w-full xl:w-64 shrink-0">
                                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                                 <input
                                     type="text"
@@ -174,10 +198,10 @@ export function AdminDashboard() {
                 </div>
 
                 {/* THE SYNTHETIC TABLE */}
-                <div className="flex-1 overflow-y-auto w-full max-w-6xl mx-auto px-4 md:px-6 py-6 pb-[120px]">
+                <div className="flex-1 overflow-y-auto w-full max-w-6xl mx-auto px-4 md:px-6 py-6 pb-[120px] will-change-scroll">
                     <div className="bg-white rounded-2xl shadow-[0_5px_20px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden relative">
                         {loading ? (
-                            <div className="p-12 text-center text-slate-400">Chardement des données...</div>
+                            <div className="p-12 text-center text-slate-400">Chargement des données...</div>
                         ) : filteredProfiles.length === 0 ? (
                             <div className="p-12 text-center text-slate-400">Aucun résultat.</div>
                         ) : (
@@ -223,7 +247,7 @@ export function AdminDashboard() {
 
             {/* SIDE DRAWER (THE DETAILS PANEL) */}
             <div className={cn(
-                "fixed inset-y-0 right-0 bg-white w-full md:w-80 lg:w-[400px] shadow-[-10px_0_40px_rgba(0,0,0,0.05)] border-l border-slate-200 z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto",
+                "fixed top-0 lg:top-[60px] bottom-0 right-0 bg-white w-full md:w-80 lg:w-[400px] shadow-[-10px_0_40px_rgba(0,0,0,0.05)] border-l border-slate-200 z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto",
                 selectedProfile ? "translate-x-0" : "translate-x-full"
             )}>
                 {selectedProfile && (
