@@ -1035,18 +1035,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 </button>
                             )}
 
-                            {/* PiP Toggle */}
-                            {isPipSupported && (
-                                <button
-                                    onClick={(e) => { e.stopPropagation(); togglePiP(e); }}
-                                    onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); togglePiP(e); }}
-                                    className="text-white hover:text-white/80 transition-colors p-2 cursor-pointer touch-manipulation active:scale-90"
-                                    aria-label="Mode fenêtre (Picture-in-Picture)"
-                                    title="Mode fenêtre (Picture-in-Picture)"
-                                >
-                                    <PictureInPicture2 size={22} />
-                                </button>
-                            )}
+
 
                             {/* Fullscreen Toggle */}
                             {!isFullscreen && (
