@@ -3,39 +3,7 @@ import { Shield, Sparkles, Loader2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export function Paywall() {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubscribe = async () => {
-    if (isLoading) return;
-    setIsLoading(true);
-
-    try {
-      console.log("Appel au backend pour créer une session Checkout...");
-      
-      const { data, error } = await supabase.functions.invoke('create-checkout-session', {
-        body: { 
-           priceId: 'price_1TIaCmFZLk6A75YEP5J9k0oQ',
-           successUrl: window.location.origin + '?success=true',
-           cancelUrl: window.location.origin + '?canceled=true',
-        }
-      });
-      
-      if (error) {
-         console.error("Erreur du backend:", error);
-         setIsLoading(false);
-         return;
-      }
-
-      if (data?.url) {
-        window.location.href = data.url; // Redirection directe vers Stripe
-      } else {
-        setIsLoading(false);
-      }
-    } catch (err) {
-      console.error("Erreur de connexion Stripe:", err);
-      setIsLoading(false);
-    }
-  };
+  const stripeLink = "https://buy.stripe.com/8x29ATgysdhE91VbRi9k400";
 
   return (
     <div className="w-full flex-1 flex items-center justify-center p-4 bg-[#FAF6ED]">
@@ -69,20 +37,14 @@ export function Paywall() {
           </ul>
         </div>
 
-        <button
-          onClick={handleSubscribe}
-          disabled={isLoading}
-          className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-md active:scale-95 text-lg flex items-center justify-center"
+        <a 
+          href={stripeLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-md active:scale-95 text-lg flex items-center justify-center no-underline"
         >
-          {isLoading ? (
-            <>
-              <Loader2 className="animate-spin mr-2 h-5 w-5" />
-              Chargement...
-            </>
-          ) : (
-            "Débloquer l'accès complet"
-          )}
-        </button>
+          Débloquer l'accès complet
+        </a>
       </div>
     </div>
   );

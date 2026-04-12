@@ -82,7 +82,8 @@ const getDeviceId = () => {
 };
 
 const ADMIN_EMAILS = [
-  'guillaumephilippe1968@gmail.com'
+  'guillaumephilippe1968@gmail.com',
+  'marc@damoiseaux.be'
 ];
 function App() {
   const { t, i18n } = useTranslation();
