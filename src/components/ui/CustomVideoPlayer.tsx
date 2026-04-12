@@ -526,7 +526,12 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
     // --- VTT Logic ---
     const parseVttTime = (timeStr: string) => {
-        const parts = timeStr.replace(',', '.').split(':');
+        let s = timeStr.replace(',', '.');
+        if ((s.match(/:/g) || []).length === 2 && !s.includes('.')) {
+            const lastIndex = s.lastIndexOf(':');
+            s = s.substring(0, lastIndex) + '.' + s.substring(lastIndex + 1);
+        }
+        const parts = s.split(':');
         if (parts.length === 3) {
             const [hours, minutes, seconds] = parts;
             return parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseFloat(seconds);
@@ -637,6 +642,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             i++;
                         }
                         if (textAcc.trim() && !textAcc.includes('WEBVTT')) {
+                            const MAX_CUE_DURATION = 12; // Maximum duration for a single cue before disappearing
                             // Heuristic split for gigantic blocks > 10s
                             if ((end - start) > 10 && /[.!?]/.test(textAcc)) {
                                 const sentences = textAcc.match(/[^.!?]+[.!?]+/g) || [textAcc];
@@ -646,12 +652,18 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 sentences.forEach(sentence => {
                                     const s = sentence.trim();
                                     if (!s) return;
-                                    const sentenceDuration = (s.length / totalLength) * (end - start);
-                                    parsedCues.push({ start: currentStart, end: currentStart + sentenceDuration, text: s });
-                                    currentStart += sentenceDuration;
+                                    let sentenceDuration = (s.length / totalLength) * (end - start);
+                                    let displayedDuration = sentenceDuration > MAX_CUE_DURATION ? MAX_CUE_DURATION : sentenceDuration;
+                                    
+                                    parsedCues.push({ start: currentStart, end: currentStart + displayedDuration, text: s });
+                                    currentStart += sentenceDuration; // maintain overall timeline progression
                                 });
                             } else {
-                                parsedCues.push({ start, end, text: textAcc.trim() });
+                                let finalEnd = end;
+                                if (finalEnd - start > MAX_CUE_DURATION) {
+                                    finalEnd = start + MAX_CUE_DURATION;
+                                }
+                                parsedCues.push({ start, end: finalEnd, text: textAcc.trim() });
                             }
                         }
                     } else {
