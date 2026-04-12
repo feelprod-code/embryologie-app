@@ -32,7 +32,7 @@ export function Paywall() {
             </li>
             <li className="flex items-center text-slate-700">
               <Shield className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-              <span>Paiement sécurisé via Stripe</span>
+              <span>Paiement sécurisé (1x, ou bien en 3x/4x via Klarna / PayPal)</span>
             </li>
           </ul>
         </div>
