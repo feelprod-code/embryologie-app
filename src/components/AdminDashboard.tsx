@@ -266,7 +266,7 @@ export function AdminDashboard() {
                         </div>
 
                         {/* Drawer Body */}
-                        <div className="p-6 space-y-8 flex-1">
+                        <div className="p-6 pb-32 lg:pb-12 space-y-8 flex-1">
                             
                             {/* Identité Section */}
                             <div>
