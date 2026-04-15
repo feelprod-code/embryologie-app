@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2 } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield } from 'lucide-react';
 import { cn } from '../utils';
 
 type Profile = {
@@ -17,7 +17,13 @@ type Profile = {
 };
 
 type FilterType = 'ALL' | 'ACTIVE' | 'EXPIRED' | 'TRIAL';
-type TierFilterType = 'ALL' | 'LEGACY' | 'PREMIUM' | 'FREE' | 'TRIAL' | 'STANDARD';
+type TierFilterType = 'ALL' | 'LEGACY' | 'PREMIUM' | 'FREE' | 'TRIAL' | 'STANDARD' | 'ADMIN';
+
+const ADMIN_EMAILS = [
+    'guillaumephilippe1968@gmail.com',
+    'marc@damoiseaux.be',
+    'vip@feelprod.com'
+];
 
 export function AdminDashboard() {
     const [profiles, setProfiles] = useState<Profile[]>([]);
@@ -146,8 +152,12 @@ export function AdminDashboard() {
 
     const getTierCount = (tier: TierFilterType) => {
         if (tier === 'ALL') return profiles.length;
-        if (tier === 'STANDARD') return profiles.filter(p => !p.access_tier).length;
-        return profiles.filter(p => p.access_tier?.toUpperCase() === tier).length;
+        if (tier === 'ADMIN') return profiles.filter(p => ADMIN_EMAILS.includes(p.email?.toLowerCase() || '')).length;
+        
+        // Pour les autres filtres, on exclut systématiquement les administrateurs
+        const nonAdminProfiles = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || ''));
+        if (tier === 'STANDARD') return nonAdminProfiles.filter(p => !p.access_tier).length;
+        return nonAdminProfiles.filter(p => p.access_tier?.toUpperCase() === tier).length;
     };
 
     // Derived filtered profiles
@@ -167,13 +177,23 @@ export function AdminDashboard() {
 
     if (tierFilter !== 'ALL') {
         filteredProfiles = filteredProfiles.filter(p => {
+            const isAdmin = ADMIN_EMAILS.includes(p.email?.toLowerCase() || '');
+            if (tierFilter === 'ADMIN') return isAdmin;
+            
+            // Si le filtre n'est ni ALL ni ADMIN, on exclut d'office les administrateurs
+            if (isAdmin) return false;
+
             if (tierFilter === 'STANDARD') return !p.access_tier; // Pas de tier défini = standard
             return p.access_tier?.toUpperCase() === tierFilter;
         });
     }
 
-    const renderTierBadge = (tier?: string | null) => {
-        switch (tier) {
+    const renderTierBadge = (profile: Profile) => {
+        if (ADMIN_EMAILS.includes(profile.email?.toLowerCase() || '')) {
+            return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-purple-50 border border-purple-200 text-purple-700"><Shield size={12}/> Admin</span>;
+        }
+
+        switch (profile.access_tier) {
             case 'premium': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700"><Crown size={12}/> Plein Tarif</span>;
             case 'legacy': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-amber-50 border border-amber-200 text-amber-700"><History size={12}/> Transfert</span>;
             case 'free': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-pink-50 border border-pink-200 text-pink-700"><Gift size={12}/> Cadeau</span>;
@@ -229,20 +249,21 @@ export function AdminDashboard() {
                     </div>
 
                     {/* TIER TABS SYSTEM */}
-                    <div className="flex overflow-x-auto no-scrollbar max-w-6xl mx-auto gap-6 border-transparent">
+                    <div className="flex overflow-x-auto no-scrollbar max-w-6xl mx-auto gap-6 border-transparent -mx-4 px-4 md:-mx-6 md:px-6 snap-x snap-mandatory">
                         {[
                             { id: 'ALL', label: 'Tous', icon: '🌟' },
                             { id: 'STANDARD', label: 'Standards', icon: '⚪' },
                             { id: 'PREMIUM', label: 'Premiums', icon: '👑' },
                             { id: 'LEGACY', label: 'Mise à jour', icon: '📜' },
                             { id: 'FREE', label: 'Cadeaux', icon: '🎁' },
-                            { id: 'TRIAL', label: 'Essais 24h', icon: '⏱️' }
+                            { id: 'TRIAL', label: 'Essais 24h', icon: '⏱️' },
+                            { id: 'ADMIN', label: 'Admin', icon: '🛡️' }
                         ].map((t) => (
                             <button
                                 key={t.id}
                                 onClick={() => setTierFilter(t.id as TierFilterType)}
                                 className={cn(
-                                    "pb-3 text-sm font-bold whitespace-nowrap transition-colors relative flex items-center",
+                                    "pb-3 text-sm font-bold whitespace-nowrap transition-colors relative flex items-center snap-start",
                                     tierFilter === t.id ? "text-primary" : "text-slate-400 hover:text-slate-600"
                                 )}
                             >
@@ -294,7 +315,7 @@ export function AdminDashboard() {
                                         </div>
 
                                         <div className="hidden md:flex w-[25%]">
-                                            {renderTierBadge(p.access_tier)}
+                                            {renderTierBadge(p)}
                                         </div>
 
                                         <div className="w-[30%] md:w-[25%] flex justify-end md:justify-start">
