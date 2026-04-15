@@ -43,7 +43,7 @@ export const AuthScreen: React.FC = () => {
             localStorage.setItem('pending_profession', profession);
 
             if (profession.toLowerCase().trim().includes('wuwai')) {
-                localStorage.setItem('MARC_BYPASS', 'true');
+                localStorage.setItem('VIP_BYPASS', 'true');
                 window.location.reload();
                 return; // Stop the flow
             }
@@ -76,7 +76,7 @@ export const AuthScreen: React.FC = () => {
         setError(null);
 
         if (otpCode.toLowerCase().trim() === 'wuwai') {
-            localStorage.setItem('MARC_BYPASS', 'true');
+            localStorage.setItem('VIP_BYPASS', 'true');
             window.location.reload();
             return;
         }

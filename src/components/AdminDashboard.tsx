@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2 } from 'lucide-react';
 import { cn } from '../utils';
 
 type Profile = {
@@ -98,9 +98,56 @@ export function AdminDashboard() {
         }
     };
 
+    const deleteUser = async (id: string) => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+            alert("Action impossible : vous n'êtes pas authentifié.");
+            return;
+        }
+
+        if (!confirm('ATTENTION : Êtes-vous sûr de vouloir EFFACER TOTALEMENT cet élève ? \nSon e-mail sera purgé et il devra recréer un compte de zéro.')) return;
+        
+        const { error } = await supabase.rpc('admin_delete_user', { target_user_id: id });
+
+        if (error) {
+            alert('Erreur lors de la suppression : ' + error.message);
+        } else {
+            alert('Le profil a été effacé avec succès. L\'utilisateur n\'existe plus.');
+            setSelectedProfile(null);
+            fetchProfiles();
+        }
+    };
+
+    const updateTier = async (id: string, newTier: TierFilterType | 'NONE') => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) return alert("Action impossible : non authentifié.");
+        
+        const tierValue = newTier === 'NONE' || newTier === 'STANDARD' ? null : newTier.toLowerCase();
+        
+        const { error } = await supabase
+            .from('profiles')
+            .update({ access_tier: tierValue })
+            .eq('id', id);
+
+        if (error) {
+            alert('Erreur lors de la mise à jour : ' + error.message);
+        } else {
+            fetchProfiles();
+            if (selectedProfile && selectedProfile.id === id) {
+                setSelectedProfile({ ...selectedProfile, access_tier: tierValue as any });
+            }
+        }
+    };
+
     const isExpired = (expires_at?: string | null) => {
         if (!expires_at) return false;
         return new Date(expires_at) < new Date();
+    };
+
+    const getTierCount = (tier: TierFilterType) => {
+        if (tier === 'ALL') return profiles.length;
+        if (tier === 'STANDARD') return profiles.filter(p => !p.access_tier).length;
+        return profiles.filter(p => p.access_tier?.toUpperCase() === tier).length;
     };
 
     // Derived filtered profiles
@@ -154,33 +201,18 @@ export function AdminDashboard() {
             {/* MAIN LIST VIEW */}
             <div className={cn("flex-1 flex flex-col h-full min-w-0 min-h-0 bg-[#FAF6ED] transition-all duration-300", selectedProfile ? "mr-0 xl:mr-[400px]" : "mr-0")}>
                 {/* TOOLBAR */}
-                <div className="flex-none pt-[max(env(safe-area-inset-top),16px)] px-4 md:px-6 pb-6 border-b border-slate-200 bg-white shadow-sm z-20">
-                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 max-w-6xl mx-auto">
+                <div className="flex-none pt-[max(env(safe-area-inset-top),16px)] px-4 md:px-6 pb-0 border-b border-slate-200 bg-white shadow-sm z-20">
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 max-w-6xl mx-auto mb-6">
                         <div>
                             <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase leading-none">Tour de Contrôle</h1>
                             <p className="text-slate-500 font-medium text-sm mt-1">Gestion des accès et transferts</p>
                         </div>
                         
                         <div className="flex flex-col xl:flex-row items-stretch xl:items-center gap-3 w-full lg:w-auto">
-                            <div className="flex bg-slate-100 p-1 rounded-xl w-full xl:w-auto overflow-x-auto no-scrollbar">
-                                <button onClick={() => setFilter('ALL')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'ALL' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>Tous ({profiles.length})</button>
+                            <div className="flex bg-slate-100 p-1 rounded-xl w-full xl:w-auto overflow-x-auto no-scrollbar hidden md:flex">
+                                <button onClick={() => setFilter('ALL')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'ALL' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>Vue globale</button>
                                 <button onClick={() => setFilter('ACTIVE')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'ACTIVE' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🟢 Actifs</button>
                                 <button onClick={() => setFilter('EXPIRED')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'EXPIRED' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🔴 Bloqués</button>
-                            </div>
-                            
-                            <div className="flex bg-slate-100 p-1 rounded-xl w-full xl:w-auto">
-                                <select 
-                                    value={tierFilter} 
-                                    onChange={(e) => setTierFilter(e.target.value as TierFilterType)}
-                                    className="bg-transparent text-slate-700 text-xs font-bold px-3 py-1.5 w-full focus:outline-none cursor-pointer appearance-none text-center"
-                                >
-                                    <option value="ALL">🌟 Tous les accès</option>
-                                    <option value="PREMIUM">👑 Plein Tarif</option>
-                                    <option value="LEGACY">📜 Transfert</option>
-                                    <option value="FREE">🎁 Cadeau</option>
-                                    <option value="TRIAL">⏱️ Essai 24h</option>
-                                    <option value="STANDARD">⚪ Standard</option>
-                                </select>
                             </div>
 
                             <div className="relative w-full xl:w-64 shrink-0">
@@ -194,6 +226,39 @@ export function AdminDashboard() {
                                 />
                             </div>
                         </div>
+                    </div>
+
+                    {/* TIER TABS SYSTEM */}
+                    <div className="flex overflow-x-auto no-scrollbar max-w-6xl mx-auto gap-6 border-transparent">
+                        {[
+                            { id: 'ALL', label: 'Tous', icon: '🌟' },
+                            { id: 'STANDARD', label: 'Standards', icon: '⚪' },
+                            { id: 'PREMIUM', label: 'Premiums', icon: '👑' },
+                            { id: 'LEGACY', label: 'Mise à jour', icon: '📜' },
+                            { id: 'FREE', label: 'Cadeaux', icon: '🎁' },
+                            { id: 'TRIAL', label: 'Essais 24h', icon: '⏱️' }
+                        ].map((t) => (
+                            <button
+                                key={t.id}
+                                onClick={() => setTierFilter(t.id as TierFilterType)}
+                                className={cn(
+                                    "pb-3 text-sm font-bold whitespace-nowrap transition-colors relative flex items-center",
+                                    tierFilter === t.id ? "text-primary" : "text-slate-400 hover:text-slate-600"
+                                )}
+                            >
+                                <span className="mr-1.5">{t.icon}</span>
+                                {t.label} 
+                                <span className={cn(
+                                    "ml-2 text-[10px] px-2 py-0.5 rounded-full font-bold",
+                                    tierFilter === t.id ? "bg-primary/10 text-primary" : "bg-slate-100 text-slate-500"
+                                )}>
+                                    {getTierCount(t.id as TierFilterType)}
+                                </span>
+                                {tierFilter === t.id && (
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary transform translate-y-[2px]" />
+                                )}
+                            </button>
+                        ))}
                     </div>
                 </div>
 
@@ -222,7 +287,9 @@ export function AdminDashboard() {
                                             </div>
                                             <div className="overflow-hidden">
                                                 <div className="font-bold text-slate-900 text-sm truncate">{p.first_name || p.last_name ? `${p.first_name || ''} ${p.last_name || ''}` : <span className="italic">Inconnu</span>}</div>
-                                                <div className="text-xs text-slate-500 font-medium truncate">{p.email}</div>
+                                                <div className="text-xs text-slate-500 font-medium truncate">
+                                                    {p.email} <span className="opacity-50 mx-1">•</span> <span className="text-[10px] uppercase tracking-wide">{new Date(p.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: '2-digit' })}</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -285,10 +352,32 @@ export function AdminDashboard() {
 
                             {/* Accès Section */}
                             <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
-                                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Statut d'Accès Actuel</h3>
-                                <div className="flex justify-between items-center mb-4">
-                                    {renderTierBadge(selectedProfile.access_tier)}
-                                    {renderStatusBadge(selectedProfile)}
+                                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Abonnement & Accès</h3>
+                                <div className="space-y-4">
+                                    <div className="flex flex-col gap-2">
+                                        <label className="text-xs font-semibold text-slate-500">Modifier l'offre associée</label>
+                                        <div className="relative">
+                                            <select 
+                                                value={selectedProfile.access_tier ? selectedProfile.access_tier.toUpperCase() : 'STANDARD'}
+                                                onChange={(e) => updateTier(selectedProfile.id, e.target.value as TierFilterType)}
+                                                className="w-full appearance-none bg-white border border-slate-200 text-slate-800 text-sm font-bold rounded-xl px-4 py-2.5 pr-10 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm"
+                                            >
+                                                <option value="STANDARD">⚪ Standard (Gratuit)</option>
+                                                <option value="PREMIUM">👑 Plein Tarif (Premium)</option>
+                                                <option value="LEGACY">📜 Mise à jour (Réduit)</option>
+                                                <option value="FREE">🎁 Accès Offert (Cadeau)</option>
+                                                <option value="TRIAL">⏱️ Essai 24h</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                                <ChevronRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-100 mt-2">
+                                        <span className="text-xs font-bold text-slate-500">Statut de connexion</span>
+                                        {renderStatusBadge(selectedProfile)}
+                                    </div>
                                 </div>
 
                                 <div className="space-y-2 mt-4 pt-4 border-t border-slate-200">
@@ -321,9 +410,25 @@ export function AdminDashboard() {
                                 <button
                                     onClick={() => resetDevice(selectedProfile.id)}
                                     disabled={!selectedProfile.device_id}
-                                    className="w-full py-2.5 rounded-xl text-amber-600 border border-amber-200 bg-amber-50 font-bold text-sm hover:bg-amber-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full py-2.5 rounded-xl text-amber-600 border border-amber-200 bg-amber-50 font-bold text-sm hover:bg-amber-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-8"
                                 >
                                     Effacer les Empreintes
+                                </button>
+                            </div>
+
+                            {/* Suppression Totale */}
+                            <div>
+                                <h3 className="text-xs font-bold uppercase tracking-widest text-red-500 mb-2 flex items-center gap-2">
+                                    <Trash2 size={14} /> Suppression de Contact
+                                </h3>
+                                <p className="text-xs text-red-500/80 mb-3 leading-relaxed">
+                                    Efface totalement ce profil de la base de données. L'élève pourra ainsi s'inscrire à nouveau normalement avec cette même adresse e-mail.
+                                </p>
+                                <button
+                                    onClick={() => deleteUser(selectedProfile.id)}
+                                    className="w-full py-2.5 rounded-xl text-white bg-red-600 font-bold text-sm hover:bg-red-700 transition-colors shadow-sm shadow-red-500/20 flex items-center justify-center gap-2"
+                                >
+                                    <Trash2 size={16} /> Effacer Totalement le Contact
                                 </button>
                             </div>
                             
