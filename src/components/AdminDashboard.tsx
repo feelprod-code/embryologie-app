@@ -249,7 +249,7 @@ export function AdminDashboard() {
                     </div>
 
                     {/* TIER TABS SYSTEM */}
-                    <div className="flex overflow-x-auto no-scrollbar max-w-6xl mx-auto gap-6 border-transparent -mx-4 px-4 md:-mx-6 md:px-6 snap-x snap-mandatory">
+                    <div className="flex overflow-x-auto overflow-y-hidden touch-pan-x no-scrollbar max-w-6xl mx-auto gap-6 border-transparent -mx-4 px-4 md:-mx-6 md:px-6 snap-x snap-mandatory">
                         {[
                             { id: 'ALL', label: 'Tous', icon: '🌟' },
                             { id: 'STANDARD', label: 'Standards', icon: '⚪' },
@@ -439,15 +439,15 @@ export function AdminDashboard() {
 
                             {/* Suppression Totale */}
                             <div>
-                                <h3 className="text-xs font-bold uppercase tracking-widest text-red-500 mb-2 flex items-center gap-2">
+                                <h3 className="text-xs font-bold uppercase tracking-widest text-[#B91C1C] mb-2 flex items-center gap-2">
                                     <Trash2 size={14} /> Suppression de Contact
                                 </h3>
-                                <p className="text-xs text-red-500/80 mb-3 leading-relaxed">
+                                <p className="text-xs text-[#B91C1C]/80 mb-3 leading-relaxed">
                                     Efface totalement ce profil de la base de données. L'élève pourra ainsi s'inscrire à nouveau normalement avec cette même adresse e-mail.
                                 </p>
                                 <button
                                     onClick={() => deleteUser(selectedProfile.id)}
-                                    className="w-full py-2.5 rounded-xl text-white bg-red-600 font-bold text-sm hover:bg-red-700 transition-colors shadow-sm shadow-red-500/20 flex items-center justify-center gap-2"
+                                    className="w-full py-2.5 rounded-xl text-white bg-[#B91C1C] font-bold text-sm hover:bg-[#991B1B] transition-colors shadow-sm flex items-center justify-center gap-2"
                                 >
                                     <Trash2 size={16} /> Effacer Totalement le Contact
                                 </button>
