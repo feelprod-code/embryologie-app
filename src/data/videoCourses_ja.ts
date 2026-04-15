@@ -2442,5 +2442,68 @@ export const videoCourses: VideoCourse[] = [
         "shortSummary": "姿勢の緊張における眼の役割と、身体的・感情的幸福への影響。治療における視覚、身体、エネルギーの相互作用。",
         "fullSummary": "神経感覚プログラムにおける眼の役割と、テノン嚢／視床下部-脳室系との関連性の検討。姿勢の化学、身体フィードバック、エネルギーメカニズムを統合し、視覚入力が緊張と精神状態にどのように影響するかを示す。身体記憶の媒体としての筋膜組織の分析と、電磁気的バランスに対する心血管系の影響。",
         "transcriptMarkdown": "# 眼への影響\n\n**テノン嚢**は全身と連結しており、**神経感覚プログラム**において極めて重要な役割を担っています。これは、**姿勢の緊張**に関する情報を統合することを意味し、これは**姿勢の化学**と見なすことができます。**視床下部**では、**視床**や**視床枕**、および脳室周囲の他の核を介して、多くの情報が統合されます。\n\nこれらの情報は、**栄養性（trophotrophes）**と**活動性（ergotrophes）**の2種類に分類でき、それぞれ交感神経系と副交感神経系に対応します。したがって、視床下部が受け取る情報（眼からの情報を含む）は、**酸化還元**や**グアノシン**、**アデノシン**などの**ヌクレオチド**といった要素を統合し、細胞レベルで姿勢の化学に影響を与えます。視床下部はこのデータを使用して、身体の緊張を調整します。\n\n例えば、螺旋運動は右向きまたは左向きに方向付けられ、**うつ病**や**過剰な圧力**など、さまざまなエネルギー状態と関連付けられることがあります。このように、姿勢の化学は、皮質系および視覚系への多様な求心性入力によって影響を受ける緊張に統合され、継続的な**フィードバック**（正または負）を生み出します。\n\n眼は情報源として、これらのメッセージの統合において不可欠な役割を果たします。眼は特定の姿勢の結果に貢献し、特定の時点での可能な限り最良の適応を表します。悪い姿勢というものは存在せず、最も適切な機能的応答があるだけです。見ているものを信頼することが重要ですが、プログラムがループに陥ることがあることも認識しておく必要があります。これには、適切なタイミングと空間で行われる視線、解放のジェスチャーが必要です。\n\n**瞑想**もまた、現実の認識を歪める可能性のあるこれらの習慣のパターンから抜け出すのに役立ちます。顔面および眼の微小損傷は、眼の向きを変え、精神的なプログラムに影響を与える可能性があります。眼は、**視蓋脊髄路**および**筋膜組織**に蓄積された記憶と関連して、神経感覚情報の統合において極めて重要です。\n\n**筋膜**は、情報と記憶を蓄積できるインテリジェントな組織です。適切な場所とタイミングで、適切な精神的マッピングを持って耳を傾けることで、解放を達成することができます。この精神的表現は影響を受けやすく、視覚的なメッセージをサポートすることさえできます。\n\n眼と髄膜系の間のつながりは根本的です。眼は灯台のように機能し、このレベルですべての情報を統合します。眼は純粋であるため、欺くことはできないことを理解することが不可欠です。光は、光子として、私たちの知覚に影響を与えるエネルギー源です。周波数と波長の関係は重要です。周波数が高いほど波長は短くなり、エネルギーが増加します。\n\n網膜によって捕捉された光情報は、流体の動員を引き起こす可能性があります。網膜の**錐体**と**桿体**は、情報のセンサーであるだけでなく、エネルギーのセンサーでもあります。肉体的な疲労は、しばしば交感神経系の損傷と関連しており、**散瞳**と桿体の興奮を引き起こし、交感神経系を疲弊させる可能性があります。\n\nエネルギーストレスなどの要因は、私たちの状態を悪化させる可能性があります。適切な光情報は、私たちの健康を維持するために不可欠です。オーラは、光の場として、人生における私たちの位置に影響されます。ポジティブなエネルギーを発するためには、内なる平和と知恵を育む必要があります。\n\n眼は、エネルギーと解釈のプログラムを受け、事前プログラムの形で情報を統合します。このプロセスは、私たちを電気的および電磁気的な平面へと導き、そこでは心臓が中心的な役割を果たします。心臓は強力な電磁場を発し、眼は可動性の支点として、異なる電流の影響も受けます。\n\n左眼と右眼の間には血管に大きな違いがあり、その機能に影響を与えます。例えば、右眼は肝臓の静脈うっ滞と関連しており、左眼は動脈性高血圧と関連しています。これらの解剖学的な違いは、視覚皮質に特定の干渉を引き起こす可能性があります。\n\n![螺旋状の目](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_1.png)\n\n眼の反射、例えば前頭眼窩反射や耳介心臓反射は、眼への軽い圧力が心臓の問題を再調整できることを示しています。各眼には姿勢の役割と優位眼があり、これらは常に同じではありません。\n\n眼の動きは再調整に不可欠です。視軸と傾斜角は、神経感覚的な光の統合において役割を果たします。眼は、約23度の光の統合の自由度を持っており、この数字は地球の傾きなど、さまざまな文脈で見られます。\n\n![中心線での交差](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_2.png)\n\n最後に、錐体軸などの情報軸は、眼の不安定化がバランスにどのように影響するかを示しています。骨に統合された記憶や電気的なパターンも、私たちの知覚とバランスに影響を与える可能性があります。\n\n![視覚統合の軸と角度](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_3.png)\n\n![眼球運動](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_7.png)\n\n![視覚の23の自由度](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_4.png)\n\n![眼窩軸と錐体軸](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_5.png)\n\n![骨の中の記憶](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_6.png)"
+    },
+    {
+        "id": "meso-47",
+        "schemas": [],
+        "categoryId": "mesoderme",
+        "youtubeId": "",
+        "cloudflareId": "8f890e7f51588216db016b73a8a97a14",
+        "duration": "10:31",
+        "title": "BONUS - Le Mouvement Régénérateur",
+                        "shortSummary": "胚の受肉の主要な段階を身体的に辿る身体的・感覚的実践（マルク・ダモワゾーによって考案）：卵子から完全な組織の巻き込みまで。",
+    "fullSummary": "再生運動（マルク・ダモワゾーによって考案）は、身体が自身の発生を身体的に辿る強力な身体実践です。意識的に、施術者は卵子の最初の分極、初期の割球の分裂を再体験し、その後、胚の巨大な折り畳み（脊索波、心臓のループ形成、肺の傾斜、消化器筋膜の回転）を通過します。この動的な構造は、最終的に中心軸（頭頂部 - 蝶形後頭骨結合 - 心臓 - 仙骨）の知覚を取り戻し、正中線の深部組織のバランスを再初期化します。",
+    "transcriptMarkdown": `# Le Mouvement Régénérateur
+
+Le mouvement régénérateur (création de Marc Damoiseaux) inspiré du mouvement développemental de l'embryon. 
+
+## Position Initiale
+
+- Pousse de la main droite dans la main gauche, pieds parallèles. Largeur des épaules.
+- Le dos est droit et détendu. Légère flexion des genoux.
+- Et observation des différentes lignes médianes : La ligne médiane notochordale, postérieure et antérieure.
+
+On observe bien la sphère neuro-sensorielle, rythmique, métabolique, urogénitale. Essayez de les ressentir, de vous équilibrer.
+
+## Les Étapes du Mouvement
+
+### 1. La Sphère
+
+Dans un premier temps, le mouvement, l'ovule est sphérique. Vous dessinez dans l'espace une sphère devant vous qui représente l'ovule. 
+
+La première fonction de l'ovule en création est d'accepter. À l'intérieur, c'est l'acceptation de la fécondation pour créer cet œuf, le zygote.
+
+### 2. Le Mouvement Toroïdal
+
+Une asymétrie s'installe. Dans un mouvement toroïdal qui se retourne tout le temps sur lui-même. Vous laissez ce mouvement parcourir votre corps pour faire le développement du corps.
+
+### 3. La Nidation et le Cordon Ombilical
+
+Le stade de la nidation. Au bout du 7ème jour et jusqu'au 21ème jour vient se mettre en place tous nos annexes : le cordon ombilical, le placenta, la cavité amniotique. Le mouvement est grand, protecteur.
+
+### 4. La Ligne Médiane
+
+A ce stade-là avec de l'enroulement, de la formation du cœur, il y a un appel de la ligne médiane. Sentez ce retour vers votre ligne médiane, et ça se pose dans le cœur.
+
+### 5. Rotation et Colonne Vertébrale
+
+Cette asymétrie qui se met en place crée des phénomènes de rotation que ce soit avec la langue, que ce soit les bras, un membre va pousser vers le haut l'autre vers le bas. À ce stade-là notre tube neural s'est refermé. 
+
+Notre colonne vertébrale, notre moelle épinière est en place. Connectez la souplesse de votre corps, de votre dos en vous relâchant.
+
+### 6. Le Cœur et le Plissement
+
+Le cœur avec toutes ces asymétries est obligé d'évoluer, il plonge, de quatre tubes il deviendra cœur. Avec ses pompes, reliez-vous avec souplesse dans ce mouvement du cœur où tout le corps se plisse pour se connecter et laisser l'énergie en place.
+
+Il bat ce cœur...
+
+### 7. Respiration et Retour
+
+Le point de recueillement, ramener sur soi, puis laisser l'expansion. Sèche, la respiration. Relâchez-vous vers la fin, et laissez couler la liberté de la vie sur votre naissance. 
+
+L'important c'est de garder ce mouvement asymétrique et continuel, rien ne s'arrête jamais. Pour revenir sur l'essentiel, à la maison : l'humain. C'est vous, par la respiration. 
+
+Puis laisser reposer, refermer.`
     }
+    
 ];

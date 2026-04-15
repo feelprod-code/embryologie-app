@@ -2442,5 +2442,68 @@ export const videoCourses: VideoCourse[] = [
         "shortSummary": "Rol del ojo en el tono postural e impacto en el bienestar físico y emocional. Interacciones entre visión, cuerpo y energía en las terapias.",
         "fullSummary": "Examen del papel del ojo en el programa neurosensorial y su conexión con la cápsula de Tenon / sistema hipotálamo-ventricular. Integración de la química postural, la retroalimentación somática y los mecanismos energéticos para demostrar cómo las aferencias visuales afectan el tono y el estado psíquico. Análisis del tejido fascial como vector de memoria corporal y de la influencia del sistema cardiovascular en el equilibrio electromagnético.",
         "transcriptMarkdown": "# Influencias sobre el Ojo\n\nLa **cápsula de Tenon** está conectada a todo el cuerpo y desempeña un papel crucial en un **programa neurosensorial**. Esto significa que integra información sobre el **tono postural**, que puede considerarse como una **química postural**. A nivel del **hipotálamo**, se integra mucha información, particularmente a través del **tálamo** y el **pulvinar**, así como otros núcleos alrededor del sistema ventricular.\n\nEsta información se puede clasificar en dos tipos: **trofotróficas** y **ergotróficas**, que corresponden respectivamente a los sistemas simpático y parasimpático. Así, la información recibida por el hipotálamo, incluyendo la proveniente de los ojos, influye en la química postural a nivel celular, integrando elementos como la **oxidación-reducción** y los **nucleótidos** como la **guanosina** y la **adenosina**. El hipotálamo utiliza estos datos para ajustar la tonicidad corporal.\n\nPor ejemplo, un movimiento en espiral puede estar orientado hacia la derecha o hacia la izquierda, y puede asociarse con estados de energía variados, como la **depresión** o la **sobrepresión**. La química postural se integra así en un tono influenciado por diversas aferencias sobre el sistema cortical y visual, creando una **retroalimentación** continua, positiva o negativa.\n\nEl ojo, como fuente de información, desempeña un papel esencial en la integración de estos mensajes. Contribuye a un resultado postural específico, representando la mejor adaptación posible en un momento dado. No existe una mala posición, solo la respuesta funcional más adecuada. Es crucial confiar en lo que se ve, siendo consciente de que el programa a veces puede entrar en un bucle. Esto requiere una mirada, un gesto liberador, realizado en el momento y espacio adecuados.\n\nLa **meditación** también puede ayudar a salir de estos patrones de hábito, que a veces pueden distorsionar nuestra percepción de la realidad. Las microlesiones a nivel facial y ocular pueden modificar la orientación del ojo e influir en los programas mentales. El ojo tiene una importancia capital en la integración de la información neurosensorial, en relación con el **sistema tectoespinal** y las memorias almacenadas en el **tejido facial**.\n\nLa **fascia** es un tejido inteligente capaz de almacenar información y memorias. Al estar atento, en el lugar y momento adecuados, con una cartografía mental apropiada, es posible alcanzar una liberación. Esta representación mental es influenciable e incluso puede apoyar el mensaje visual.\n\nEl vínculo entre el ojo y el sistema meníngeo es fundamental. El ojo actúa como un faro, integrando toda la información a este nivel. Es esencial comprender que el ojo no puede engañar, porque es puro. La luz, como fotón, es una fuente de energía que influye en nuestra percepción. La relación entre la frecuencia y la longitud de onda es crucial: una frecuencia más alta corresponde a una longitud de onda más corta, lo que resulta en un aumento de energía.\n\nLa información luminosa, captada por la retina, puede provocar una movilización fluida. Los **conos** y **bastones** de la retina no son solo captores de información, sino también captores de energía. La fatiga física a menudo puede estar relacionada con lesiones simpáticas, lo que lleva a una **midriasis** y una agitación de los bastones, lo que puede agotar el sistema simpático.\n\nFactores como el estrés energético pueden degradar nuestro estado. La información luminosa correcta es esencial para mantener nuestro bienestar. El aura, como campo luminoso, está influenciada por nuestra posición en la vida. La paz interior y la sabiduría deben cultivarse para emanar una energía positiva.\n\nEl ojo se somete a un programa energético y de interpretación, integrando información en forma de pre-programas. Este proceso nos lleva a un plano eléctrico y electromagnético, donde el corazón juega un papel central. El corazón emite un potente campo electromagnético, y el ojo, como fulcro móvil, también está influenciado por diferentes corrientes.\n\nExisten diferencias vasculares significativas entre el ojo izquierdo y el ojo derecho, que influyen en su funcionamiento. Por ejemplo, el ojo derecho está relacionado con estasis venosas hepáticas, mientras que el ojo izquierdo se asocia con una hipertensión arterial. Estas diferencias anatómicas pueden causar interferencias específicas en la corteza visual.\n\n![Ojos en espiral](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_1.png)\n\nLos reflejos oculares, como el reflejo fronto-orbitario y el reflejo aurículo-cardíaco, muestran cómo una ligera presión sobre los ojos puede reequilibrar problemas cardíacos. Cada ojo tiene un papel postural y un ojo dominante, que no siempre son los mismos.\n\nLos movimientos oculares son esenciales para el reequilibrio. Los ejes visuales y los ángulos de inclinación juegan un papel en la integración luminosa neurosensorial. El ojo tiene una libertad de integración luminosa de aproximadamente 23 grados, una cifra que se encuentra en diversos contextos, como la inclinación de la Tierra.\n\n![Cruce en la línea](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_2.png)\n\nFinalmente, los ejes de información, como el eje petroso, muestran cómo las desestabilizaciones oculares pueden afectar el equilibrio. Las memorias integradas en los huesos o los esquemas eléctricos también pueden influir en nuestra percepción y nuestro equilibrio.\n\n![Ejes y ángulos de integración visual](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_3.png)\n\n![Movimientos oculares](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_7.png)\n\n![23 grados de libertad visual](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_4.png)\n\n![Ejes orbitarios y piramidales](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_5.png)\n\n![Memorias en el hueso](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_6.png)"
+    },
+    {
+        "id": "meso-47",
+        "schemas": [],
+        "categoryId": "mesoderme",
+        "youtubeId": "",
+        "cloudflareId": "8f890e7f51588216db016b73a8a97a14",
+        "duration": "10:31",
+        "title": "BONUS - Le Mouvement Régénérateur",
+                        "shortSummary": "Práctica corporal y sensorial (creada por Marc Damoiseaux) que traza físicamente las grandes etapas de la encarnación del embrión: desde el óvulo hasta el enrollamiento tisular completo.",
+    "fullSummary": "El Movimiento Regenerador (creado por Marc Damoiseaux) es una potente práctica somática donde el cuerpo traza físicamente su propia génesis. Con conciencia, el practicante revive la polarización original del óvulo, la segmentación de los primeros blastómeros, y luego atraviesa la gigantesca plegadura del embrión (onda notocordal, looping del corazón, basculación pulmonar y rotación de las fascias digestivas). Esta arquitectura en movimiento devuelve finalmente la percepción del Eje Central (Vértice - SSB - Corazón - Sacro), reiniciando el equilibrio tisular profundo de la cadena mediana.",
+    "transcriptMarkdown": `# Le Mouvement Régénérateur
+
+Le mouvement régénérateur (création de Marc Damoiseaux) inspiré du mouvement développemental de l'embryon. 
+
+## Position Initiale
+
+- Pousse de la main droite dans la main gauche, pieds parallèles. Largeur des épaules.
+- Le dos est droit et détendu. Légère flexion des genoux.
+- Et observation des différentes lignes médianes : La ligne médiane notochordale, postérieure et antérieure.
+
+On observe bien la sphère neuro-sensorielle, rythmique, métabolique, urogénitale. Essayez de les ressentir, de vous équilibrer.
+
+## Les Étapes du Mouvement
+
+### 1. La Sphère
+
+Dans un premier temps, le mouvement, l'ovule est sphérique. Vous dessinez dans l'espace une sphère devant vous qui représente l'ovule. 
+
+La première fonction de l'ovule en création est d'accepter. À l'intérieur, c'est l'acceptation de la fécondation pour créer cet œuf, le zygote.
+
+### 2. Le Mouvement Toroïdal
+
+Une asymétrie s'installe. Dans un mouvement toroïdal qui se retourne tout le temps sur lui-même. Vous laissez ce mouvement parcourir votre corps pour faire le développement du corps.
+
+### 3. La Nidation et le Cordon Ombilical
+
+Le stade de la nidation. Au bout du 7ème jour et jusqu'au 21ème jour vient se mettre en place tous nos annexes : le cordon ombilical, le placenta, la cavité amniotique. Le mouvement est grand, protecteur.
+
+### 4. La Ligne Médiane
+
+A ce stade-là avec de l'enroulement, de la formation du cœur, il y a un appel de la ligne médiane. Sentez ce retour vers votre ligne médiane, et ça se pose dans le cœur.
+
+### 5. Rotation et Colonne Vertébrale
+
+Cette asymétrie qui se met en place crée des phénomènes de rotation que ce soit avec la langue, que ce soit les bras, un membre va pousser vers le haut l'autre vers le bas. À ce stade-là notre tube neural s'est refermé. 
+
+Notre colonne vertébrale, notre moelle épinière est en place. Connectez la souplesse de votre corps, de votre dos en vous relâchant.
+
+### 6. Le Cœur et le Plissement
+
+Le cœur avec toutes ces asymétries est obligé d'évoluer, il plonge, de quatre tubes il deviendra cœur. Avec ses pompes, reliez-vous avec souplesse dans ce mouvement du cœur où tout le corps se plisse pour se connecter et laisser l'énergie en place.
+
+Il bat ce cœur...
+
+### 7. Respiration et Retour
+
+Le point de recueillement, ramener sur soi, puis laisser l'expansion. Sèche, la respiration. Relâchez-vous vers la fin, et laissez couler la liberté de la vie sur votre naissance. 
+
+L'important c'est de garder ce mouvement asymétrique et continuel, rien ne s'arrête jamais. Pour revenir sur l'essentiel, à la maison : l'humain. C'est vous, par la respiration. 
+
+Puis laisser reposer, refermer.`
     }
+    
 ];

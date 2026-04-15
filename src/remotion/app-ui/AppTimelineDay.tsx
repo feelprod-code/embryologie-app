@@ -32,6 +32,7 @@ export const AppTimelineDay: React.FC<{
   const contentId = activeContentId || activeStageId;
   const activeContentStage = detailedStagesFr.find(s => s.id === contentId) as StageDataV2 || detailedStagesFr[0];
   const activeIndex = detailedStagesFr.findIndex(s => s.id === activeStageId);
+  const [playingVideoIdx, setPlayingVideoIdx] = React.useState<number | null>(null);
 
   // Scroll interpolation over dynamic height based on content
   let translateY = 0;
@@ -132,10 +133,18 @@ export const AppTimelineDay: React.FC<{
                   </h3>
 
                   <div className="grid gap-3">
-                    {activeContentStage.events.map((event, idx) => (
+                    {activeContentStage.events.map((event, idx) => {
+                      const isPlaying = playingVideoIdx === idx;
+                      return (
                       <div
                         key={idx}
-                        className="group relative flex flex-col items-start bg-white rounded-[1rem] p-4 border border-slate-200 shadow-sm"
+                        onClick={() => {
+                            if (event.videoUrl) setPlayingVideoIdx(isPlaying ? null : idx);
+                        }}
+                        className={cn(
+                          "group relative flex flex-col items-start bg-white rounded-[1rem] p-4 border shadow-sm transition-all duration-300",
+                          event.videoUrl ? "cursor-pointer hover:border-slate-400 border-slate-300" : "border-slate-200"
+                        )}
                       >
                         {event.order && (
                           <div className="absolute -left-2 -top-2 w-6 h-6 rounded-full bg-[#FAF6ED] border-2 border-slate-200 shadow-sm flex items-center justify-center text-[10px] font-bold text-slate-400 z-10 font-anton">
@@ -153,15 +162,33 @@ export const AppTimelineDay: React.FC<{
                         </div>
 
                         <div className="w-full flex flex-col">
-                          <h4 className="text-slate-800 font-bold mb-1 text-[14px] font-sans">
-                            {event.movement}
-                          </h4>
+                          <div className="flex items-center justify-between w-full mb-1">
+                            <h4 className="text-slate-800 font-bold text-[14px] font-sans">
+                                {event.movement}
+                            </h4>
+                            {(event as any).videoUrl && (
+                                <div className="text-[10px] bg-red-600 text-white px-2 py-1 rounded-full flex items-center gap-1 font-bold tracking-widest uppercase">
+                                    <Video size={10} strokeWidth={3} /> {isPlaying ? 'Fermer' : 'Vidéo'}
+                                </div>
+                            )}
+                          </div>
                           <p className="text-slate-600 text-[12px] leading-relaxed font-medium">
                             {event.description}
                           </p>
+
+                          {(event as any).videoUrl && isPlaying && (
+                            <div className="w-full mt-4 rounded-xl overflow-hidden bg-black aspect-video relative shadow-inner">
+                              <iframe
+                                src={(event as any).videoUrl}
+                                className="absolute inset-0 w-full h-full border-0"
+                                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                                allowFullScreen
+                              ></iframe>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    ))}
+                    )})}
                   </div>
 
                   {activeContentStage.mermaidCode && (

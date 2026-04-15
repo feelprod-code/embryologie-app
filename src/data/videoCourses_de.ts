@@ -2442,5 +2442,68 @@ export const videoCourses: VideoCourse[] = [
         "shortSummary": "Die Rolle des Auges im Haltungstonus und dessen Auswirkungen auf das körperliche und emotionale Wohlbefinden. Wechselwirkungen zwischen Sehen, Körper und Energie in Therapien.",
         "fullSummary": "Untersuchung der Rolle des Auges im neurosensorischen Programm und seiner Verbindung zur Tenon-Kapsel / hypothalamisch-ventrikulären System. Integration von posturaler Chemie, somatischem Feedback und energetischen Mechanismen, um zu zeigen, wie visuelle Afferenzen den Tonus und den psychischen Zustand beeinflussen. Analyse des Fasziengewebes als Vektor des Körpergedächtnisses und des Einflusses des Herz-Kreislauf-Systems auf das elektromagnetische Gleichgewicht.",
         "transcriptMarkdown": "# Einflüsse auf das Auge\n\nDie **Tenon-Kapsel** ist mit dem gesamten Körper verbunden und spielt eine entscheidende Rolle in einem **neurosensorischen Programm**. Das bedeutet, dass sie Informationen über den **posturalen Tonus** integriert, der als **posturale Chemie** betrachtet werden kann. Im **Hypothalamus** werden viele Informationen integriert, insbesondere über den **Thalamus** und den **Pulvinar** sowie andere Kerne um das ventrikuläre System.\n\nDiese Informationen können in zwei Typen eingeteilt werden: **trophotrop** und **ergotrop**, die den sympathischen bzw. parasympathischen Systemen entsprechen. So beeinflussen die vom Hypothalamus empfangenen Informationen, einschließlich derer aus den Augen, die posturale Chemie auf zellulärer Ebene, indem sie Elemente wie **Oxidoreduktion** und **Nukleotide** wie **Guanosin** und **Adenosin** integrieren. Der Hypothalamus nutzt diese Daten, um die Körpertonizität anzupassen.\n\nZum Beispiel kann eine Spiralbewegung nach rechts oder links ausgerichtet sein und mit verschiedenen Energiezuständen wie **Depression** oder **Überdruck** verbunden sein. Die posturale Chemie integriert sich somit in einen Tonus, der durch verschiedene Afferenzen auf das kortikale und visuelle System beeinflusst wird, wodurch ein kontinuierliches, positives oder negatives **Feedback** entsteht.\n\nDas Auge spielt als Informationsquelle eine wesentliche Rolle bei der Integration dieser Botschaften. Es trägt zu einem spezifischen posturalen Ergebnis bei, das die bestmögliche Anpassung zu einem bestimmten Zeitpunkt darstellt. Es gibt keine schlechte Position, nur die funktional adäquateste Antwort. Es ist entscheidend, dem zu vertrauen, was man sieht, während man sich bewusst ist, dass das Programm manchmal in einer Schleife laufen kann. Dies erfordert einen Blick, eine befreiende Geste, die zur richtigen Zeit und am richtigen Ort ausgeführt wird.\n\n**Meditation** kann auch helfen, aus diesen Gewohnheitsmustern auszubrechen, die manchmal unsere Wahrnehmung der Realität verzerren können. Mikroverletzungen im Gesichts- und Augenbereich können die Ausrichtung des Auges verändern und mentale Programme beeinflussen. Das Auge hat eine entscheidende Bedeutung bei der Integration neurosensorischer Informationen, in Verbindung mit dem **tektospinalen System** und den im **Fasziengewebe** gespeicherten Erinnerungen.\n\nDie **Faszie** ist ein intelligentes Gewebe, das Informationen und Erinnerungen speichern kann. Indem man zuhört, am richtigen Ort und zur richtigen Zeit, mit einer adäquaten mentalen Kartierung, ist es möglich, eine Befreiung zu erreichen. Diese mentale Repräsentation ist beeinflussbar und kann sogar die visuelle Botschaft unterstützen.\n\nDie Verbindung zwischen Auge und Meningen ist fundamental. Das Auge fungiert als Leuchtturm und integriert alle Informationen auf dieser Ebene. Es ist wesentlich zu verstehen, dass das Auge nicht täuschen kann, da es rein ist. Licht, als Photon, ist eine Energiequelle, die unsere Wahrnehmung beeinflusst. Die Beziehung zwischen Frequenz und Wellenlänge ist entscheidend: Eine höhere Frequenz entspricht einer kürzeren Wellenlänge, was zu einer Energieerhöhung führt.\n\nLichtinformationen, die von der Netzhaut erfasst werden, können eine flüssige Mobilisierung hervorrufen. Die **Zapfen** und **Stäbchen** der Netzhaut sind nicht nur Informationssensoren, sondern auch Energiesensoren. Körperliche Ermüdung kann oft mit sympathischen Läsionen zusammenhängen, die zu einer **Mydriasis** und einer Erregung der Stäbchen führen, was das sympathische System erschöpfen kann.\n\nFaktoren wie Energiestress können unseren Zustand verschlechtern. Die richtige Lichtinformation ist entscheidend für unser Wohlbefinden. Die Aura, als Lichtfeld, wird durch unsere Position im Leben beeinflusst. Innerer Frieden und Weisheit müssen kultiviert werden, um eine positive Energie auszustrahlen.\n\nDas Auge durchläuft ein Energie- und Interpretationsprogramm, das Informationen in Form von Vorprogrammen integriert. Dieser Prozess führt uns zu einer elektrischen und elektromagnetischen Ebene, wo das Herz eine zentrale Rolle spielt. Das Herz sendet ein starkes elektromagnetisches Feld aus, und das Auge, als beweglicher Drehpunkt, wird ebenfalls von verschiedenen Strömen beeinflusst.\n\nEs gibt signifikante vaskuläre Unterschiede zwischen dem linken und rechten Auge, die ihre Funktion beeinflussen. Zum Beispiel ist das rechte Auge mit hepatischen venösen Stauungen verbunden, während das linke Auge mit arteriellem Überdruck assoziiert ist. Diese anatomischen Unterschiede können spezifische Interferenzen auf dem visuellen Kortex verursachen.\n\n![Spiralaugen](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_1.png)\n\nAugenreflexe, wie der fronto-orbitale Reflex und der aurikulo-kardiale Reflex, zeigen, wie leichter Druck auf die Augen Herzprobleme ausgleichen kann. Jedes Auge hat eine posturale Rolle und ein dominantes Auge, die nicht immer identisch sind.\n\nAugenbewegungen sind wesentlich für die Neuausrichtung. Die Sehachsen und Neigungswinkel spielen eine Rolle bei der neurosensorischen Lichtintegration. Das Auge hat eine Freiheit der Lichtintegration von etwa 23 Grad, eine Zahl, die in verschiedenen Kontexten, wie der Neigung der Erde, wiederkehrt.\n\n![Überquerung der Linie](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_2.png)\n\nSchließlich zeigen Informationsachsen, wie die Felsenbeinachse, wie okuläre Destabilisierungen das Gleichgewicht beeinflussen können. In Knochen oder elektrischen Schemata integrierte Erinnerungen können ebenfalls unsere Wahrnehmung und unser Gleichgewicht beeinflussen.\n\n![Achsen und Winkel der visuellen Integration](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_3.png)\n\n![Augenbewegungen](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_7.png)\n\n![23 Grad visuelle Freiheit](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_4.png)\n\n![Orbitale und pyramidale Achsen](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_5.png)\n\n![Erinnerungen im Knochen](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_6.png)"
+    },
+    {
+        "id": "meso-47",
+        "schemas": [],
+        "categoryId": "mesoderme",
+        "youtubeId": "",
+        "cloudflareId": "8f890e7f51588216db016b73a8a97a14",
+        "duration": "10:31",
+        "title": "BONUS - Le Mouvement Régénérateur",
+                        "shortSummary": "Körperliche und sensorische Praxis (entwickelt von Marc Damoiseaux), die die wichtigsten Stadien der embryonalen Inkarnation physisch nachvollzieht: von der Eizelle bis zur vollständigen Gewebeumwicklung.",
+    "fullSummary": "Die Regenerative Bewegung (entwickelt von Marc Damoiseaux) ist eine kraftvolle somatische Praxis, bei der der Körper seine eigene Genese physisch nachvollzieht. Bewusst erlebt der Praktizierende die ursprüngliche Polarisation der Eizelle, die Spaltung der ersten Blastomere und durchläuft dann die gigantische Faltung des Embryos (Notochordalwelle, Herzschleife, Lungenkippung und Rotation der Verdauungsfaszien). Diese bewegte Architektur führt letztendlich zur Wahrnehmung der Zentralachse (Vertex - SSB - Herz - Sakrum) zurück und reinitialisiert das tiefe Gewebegleichgewicht der Mediankette.",
+    "transcriptMarkdown": `# Le Mouvement Régénérateur
+
+Le mouvement régénérateur (création de Marc Damoiseaux) inspiré du mouvement développemental de l'embryon. 
+
+## Position Initiale
+
+- Pousse de la main droite dans la main gauche, pieds parallèles. Largeur des épaules.
+- Le dos est droit et détendu. Légère flexion des genoux.
+- Et observation des différentes lignes médianes : La ligne médiane notochordale, postérieure et antérieure.
+
+On observe bien la sphère neuro-sensorielle, rythmique, métabolique, urogénitale. Essayez de les ressentir, de vous équilibrer.
+
+## Les Étapes du Mouvement
+
+### 1. La Sphère
+
+Dans un premier temps, le mouvement, l'ovule est sphérique. Vous dessinez dans l'espace une sphère devant vous qui représente l'ovule. 
+
+La première fonction de l'ovule en création est d'accepter. À l'intérieur, c'est l'acceptation de la fécondation pour créer cet œuf, le zygote.
+
+### 2. Le Mouvement Toroïdal
+
+Une asymétrie s'installe. Dans un mouvement toroïdal qui se retourne tout le temps sur lui-même. Vous laissez ce mouvement parcourir votre corps pour faire le développement du corps.
+
+### 3. La Nidation et le Cordon Ombilical
+
+Le stade de la nidation. Au bout du 7ème jour et jusqu'au 21ème jour vient se mettre en place tous nos annexes : le cordon ombilical, le placenta, la cavité amniotique. Le mouvement est grand, protecteur.
+
+### 4. La Ligne Médiane
+
+A ce stade-là avec de l'enroulement, de la formation du cœur, il y a un appel de la ligne médiane. Sentez ce retour vers votre ligne médiane, et ça se pose dans le cœur.
+
+### 5. Rotation et Colonne Vertébrale
+
+Cette asymétrie qui se met en place crée des phénomènes de rotation que ce soit avec la langue, que ce soit les bras, un membre va pousser vers le haut l'autre vers le bas. À ce stade-là notre tube neural s'est refermé. 
+
+Notre colonne vertébrale, notre moelle épinière est en place. Connectez la souplesse de votre corps, de votre dos en vous relâchant.
+
+### 6. Le Cœur et le Plissement
+
+Le cœur avec toutes ces asymétries est obligé d'évoluer, il plonge, de quatre tubes il deviendra cœur. Avec ses pompes, reliez-vous avec souplesse dans ce mouvement du cœur où tout le corps se plisse pour se connecter et laisser l'énergie en place.
+
+Il bat ce cœur...
+
+### 7. Respiration et Retour
+
+Le point de recueillement, ramener sur soi, puis laisser l'expansion. Sèche, la respiration. Relâchez-vous vers la fin, et laissez couler la liberté de la vie sur votre naissance. 
+
+L'important c'est de garder ce mouvement asymétrique et continuel, rien ne s'arrête jamais. Pour revenir sur l'essentiel, à la maison : l'humain. C'est vous, par la respiration. 
+
+Puis laisser reposer, refermer.`
     }
+    
 ];

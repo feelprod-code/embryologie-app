@@ -2442,5 +2442,68 @@ export const videoCourses: VideoCourse[] = [
         "shortSummary": "眼睛在姿势张力中的作用及其对身心健康的影响。视觉、身体和能量在治疗中的相互作用。",
         "fullSummary": "检查眼睛在神经感觉程序中的作用及其与Tenon囊/下丘脑-脑室系统的联系。整合姿势化学、躯体反馈和能量机制，以证明视觉传入如何影响张力和精神状态。分析筋膜组织作为身体记忆的载体，以及心血管系统对电磁平衡的影响。",
         "transcriptMarkdown": "# 对眼睛的影响\n\n**Tenon囊**与整个身体相连，并在**神经感觉程序**中发挥关键作用。这意味着它整合了关于**姿势张力**的信息，姿势张力可以被视为一种**姿势化学**。在**下丘脑**层面，许多信息被整合，特别是通过**丘脑**和**枕核**，以及脑室系统周围的其他核团。\n\n这些信息可以分为两种类型：**营养型**和**活动型**，分别对应于交感神经系统和副交感神经系统。因此，下丘脑接收到的信息，包括来自眼睛的信息，会在细胞层面影响姿势化学，整合**氧化还原**和**核苷酸**（如**鸟苷**和**腺苷**）等元素。下丘脑利用这些数据来调整身体的张力。\n\n例如，螺旋运动可以向右或向左，并可能与各种能量状态相关联，例如**抑郁**或**超压**。姿势化学因此整合到受皮层和视觉系统各种传入影响的张力中，形成持续的、正向或负向的**反馈**。\n\n眼睛作为信息来源，在整合这些信息方面发挥着至关重要的作用。它有助于形成特定的姿势结果，代表了在特定时刻可能达到的最佳适应。没有错误的姿势，只有最合适的功​​能性反应。相信我们所看到的至关重要，同时也要意识到程序有时可能会陷入循环。这需要一个眼神，一个解放性的姿态，在正确的时间和正确的空间完成。\n\n**冥想**也可以帮助摆脱这些习惯模式，这些模式有时会扭曲我们对现实的感知。面部和眼部的微小损伤可能会改变眼睛的方向并影响心理程序。眼睛在神经感觉信息的整合中具有极其重要的作用，这与**顶盖脊髓束系统**和储存在**面部组织**中的记忆有关。\n\n**筋膜**是一种智能组织，能够储存信息和记忆。通过在正确的时间和正确的地点倾听，并拥有适当的心理图谱，就有可能实现解放。这种心理表征是可受影响的，甚至可以支持视觉信息。\n\n眼睛和脑膜系统之间的联系是根本性的。眼睛就像一个灯塔，整合了所有层面的信息。理解眼睛不会欺骗至关重要，因为它是纯粹的。光子作为一种能量来源，影响着我们的感知。频率和波长之间的关系至关重要：更高的频率对应更短的波长，导致能量增加。\n\n视网膜捕获的光信息可以引起流体动员。视网膜的**视锥细胞**和**视杆细胞**不仅是信息传感器，也是能量传感器。身体疲劳通常与交感神经损伤有关，导致**瞳孔散大**和视杆细胞的激动，这可能会耗尽交感神经系统。\n\n能量压力等因素会降低我们的状态。正确的光信息对于维持我们的健康至关重要。光环作为一种光场，受我们人生位置的影响。必须培养内心的平静和智慧，以散发积极的能量。\n\n眼睛经历一个能量和解释程序，以预编程的形式整合信息。这个过程将我们带到一个电和电磁平面，其中心脏起着核心作用。心脏发出强大的电磁场，而眼睛作为可移动的支点，也受到不同电流的影响。\n\n左眼和右眼之间存在显著的血管差异，影响着它们的功能。例如，右眼与肝静脉淤滞有关，而左眼与动脉高压有关。这些解剖学差异可能导致对视觉皮层的特定干扰。\n\n![螺旋眼](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_1.png)\n\n眼部反射，如额眶反射和耳心反射，表明对眼睛施加轻微压力可以重新平衡心脏问题。每只眼睛都有一个姿势作用和一只主导眼，它们并不总是相同的。\n\n眼球运动对于重新平衡至关重要。视轴和倾斜角度在神经感觉光整合中发挥作用。眼睛具有约23度的光整合自由度，这个数字在各种语境中都有体现，例如地球的倾斜度。\n\n![越过线](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_2.png)\n\n最后，信息轴，如岩骨轴，表明眼部不稳定如何影响平衡。储存在骨骼中的记忆或电模式也可能影响我们的感知和平衡。\n\n![视觉整合轴和角度](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_3.png)\n\n![眼球运动](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_7.png)\n\n![23度视觉自由度](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_4.png)\n\n![眶轴和锥体轴](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_5.png)\n\n![骨骼中的记忆](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_6.png)"
+    },
+    {
+        "id": "meso-47",
+        "schemas": [],
+        "categoryId": "mesoderme",
+        "youtubeId": "",
+        "cloudflareId": "8f890e7f51588216db016b73a8a97a14",
+        "duration": "10:31",
+        "title": "BONUS - Le Mouvement Régénérateur",
+                        "shortSummary": "一种身体和感官练习（由 Marc Damoiseaux 创立），它物理性地追溯了胚胎具身化的主要阶段：从卵子到完整的组织卷曲。",
+    "fullSummary": "再生运动（由 Marc Damoiseaux 创立）是一种强大的躯体实践，身体在此物理性地追溯其自身的起源。在意识中，实践者重新体验卵子的原始极化、早期卵裂球的分裂，然后经历胚胎巨大的折叠（脊索波、心脏环、肺部翻转和消化筋膜的旋转）。这种运动中的结构最终带回了对中轴（头顶-蝶枕关节-心脏-骶骨）的感知，重新设定了中线深层组织的平衡。",
+    "transcriptMarkdown": `# Le Mouvement Régénérateur
+
+Le mouvement régénérateur (création de Marc Damoiseaux) inspiré du mouvement développemental de l'embryon. 
+
+## Position Initiale
+
+- Pousse de la main droite dans la main gauche, pieds parallèles. Largeur des épaules.
+- Le dos est droit et détendu. Légère flexion des genoux.
+- Et observation des différentes lignes médianes : La ligne médiane notochordale, postérieure et antérieure.
+
+On observe bien la sphère neuro-sensorielle, rythmique, métabolique, urogénitale. Essayez de les ressentir, de vous équilibrer.
+
+## Les Étapes du Mouvement
+
+### 1. La Sphère
+
+Dans un premier temps, le mouvement, l'ovule est sphérique. Vous dessinez dans l'espace une sphère devant vous qui représente l'ovule. 
+
+La première fonction de l'ovule en création est d'accepter. À l'intérieur, c'est l'acceptation de la fécondation pour créer cet œuf, le zygote.
+
+### 2. Le Mouvement Toroïdal
+
+Une asymétrie s'installe. Dans un mouvement toroïdal qui se retourne tout le temps sur lui-même. Vous laissez ce mouvement parcourir votre corps pour faire le développement du corps.
+
+### 3. La Nidation et le Cordon Ombilical
+
+Le stade de la nidation. Au bout du 7ème jour et jusqu'au 21ème jour vient se mettre en place tous nos annexes : le cordon ombilical, le placenta, la cavité amniotique. Le mouvement est grand, protecteur.
+
+### 4. La Ligne Médiane
+
+A ce stade-là avec de l'enroulement, de la formation du cœur, il y a un appel de la ligne médiane. Sentez ce retour vers votre ligne médiane, et ça se pose dans le cœur.
+
+### 5. Rotation et Colonne Vertébrale
+
+Cette asymétrie qui se met en place crée des phénomènes de rotation que ce soit avec la langue, que ce soit les bras, un membre va pousser vers le haut l'autre vers le bas. À ce stade-là notre tube neural s'est refermé. 
+
+Notre colonne vertébrale, notre moelle épinière est en place. Connectez la souplesse de votre corps, de votre dos en vous relâchant.
+
+### 6. Le Cœur et le Plissement
+
+Le cœur avec toutes ces asymétries est obligé d'évoluer, il plonge, de quatre tubes il deviendra cœur. Avec ses pompes, reliez-vous avec souplesse dans ce mouvement du cœur où tout le corps se plisse pour se connecter et laisser l'énergie en place.
+
+Il bat ce cœur...
+
+### 7. Respiration et Retour
+
+Le point de recueillement, ramener sur soi, puis laisser l'expansion. Sèche, la respiration. Relâchez-vous vers la fin, et laissez couler la liberté de la vie sur votre naissance. 
+
+L'important c'est de garder ce mouvement asymétrique et continuel, rien ne s'arrête jamais. Pour revenir sur l'essentiel, à la maison : l'humain. C'est vous, par la respiration. 
+
+Puis laisser reposer, refermer.`
     }
+    
 ];

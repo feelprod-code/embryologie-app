@@ -5,6 +5,7 @@ export interface EventDetail {
     layer: EmbryoLayer;
     movement: string; // ex: "Cardialisation", "Vague Calcique"
     description: string;
+    videoUrl?: string; // Ajout pour la vidéo
 }
 
 export interface LayerPerception {
@@ -262,6 +263,13 @@ export const detailedStages: StageDataV2[] = [
                 layer: "Global",
                 movement: "Rotation Ciliaire",
                 description: "Au fond du nœud de Hensen, des cils tournent à 60° (flux nodal) poussant des signaux à gauche, determining la future asymétrie des organes."
+            },
+            {
+                order: 47,
+                layer: "Le Mésoderme",
+                movement: "Bonus",
+                description: "Le Mouvement Régénérateur (création de Marc Damoiseaux) est une puissante pratique somatique où le corps retrace physiquement sa propre genèse. En conscience, le praticien revit la polarisation originelle de l'ovule, le clivage des premiers blastomères, puis traverse la gigantesque plicature de l'embryon (vague notochordale, looping du cœur, bascule pulmonaire et rotation des fascias digestifs). Cette architecture en mouvement ramène ultimement la perception de l'Axe Central (Vertex - SSB - Cœur - Sacrum), réinitialisant l'équilibre tissulaire profond de la chaîne médiane.",
+                videoUrl: "https://customer-6i2z59dst7q6iswv.cloudflarestream.com/8f890e7f51588216db016b73a8a97a14/iframe"
             }
         ],
         themeColor: "bg-red-900",

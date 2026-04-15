@@ -2442,5 +2442,68 @@ export const videoCourses: VideoCourse[] = [
         "shortSummary": "The role of the eye in postural tone and its impact on physical and emotional well-being. Interactions between vision, body, and energy in therapies.",
         "fullSummary": "Examination of the eye's role within the neurosensory programme and its connection to Tenon's capsule / hypothalamo-ventricular system. Integration of postural chemistry, somatic feedback, and energetic mechanisms to demonstrate how visual afferents affect tone and psychic state. Analysis of fascial tissue as a vector of body memory and the cardiovascular system's influence on electromagnetic balance.",
         "transcriptMarkdown": "# Influences on the Eye\n\nThe **Tenon's capsule** is connected to the entire body and plays a crucial role in a **neurosensorimotor programme**. This means it integrates information about **postural tone**, which can be considered as **postural chemistry**. At the level of the **hypothalamus**, a great deal of information is integrated, notably via the **thalamus** and the **pulvinar**, as well as other nuclei around the ventricular system.\n\nThis information can be classified into two types: **trophotropic** and **ergotropic**, corresponding respectively to the sympathetic and parasympathetic systems. Thus, the information received by the hypothalamus, including that from the eyes, influences postural chemistry at a cellular level, integrating elements such as **oxidation-reduction** and **nucleotides** like **guanosine** and **adenosine**. The hypothalamus uses this data to adjust bodily tonicity.\n\nFor example, a spiral movement can be oriented to the right or left, and can be associated with various energy states, such as **depression** or **overpressure**. Postural chemistry is thus integrated into a tone influenced by various afferents to the cortical and visual system, creating a continuous, positive or negative **feedback**.\n\nThe eye, as a source of information, plays an essential role in integrating these messages. It contributes to a specific postural outcome, representing the best possible adaptation at a given moment. There is no bad posture, only the most adequate functional response. It is crucial to trust what one sees, while being aware that the programme can sometimes loop. This requires a gaze, a liberating gesture, performed at the right time and in the right space.\n\n**Meditation** can also help to break free from these habitual patterns, which can sometimes distort our perception of reality. Micro-lesions in the facial and ocular areas can alter the orientation of the eye and influence mental programmes. The eye is of paramount importance in the integration of neurosensory information, in connection with the **tectospinal system** and memories stored in the **facial tissue**.\n\nThe **fascia** is an intelligent tissue capable of storing information and memories. By being attentive, in the right place and at the right time, with an adequate mental map, it is possible to achieve liberation. This mental representation is influenceable and can even support the visual message.\n\nThe link between the eye and the meningeal system is fundamental. The eye acts as a beacon, integrating all information at this level. It is essential to understand that the eye cannot deceive, because it is pure. Light, as a photon, is a source of energy that influences our perception. The relationship between frequency and wavelength is crucial: a higher frequency corresponds to a shorter wavelength, leading to an increase in energy.\n\nLight information, captured by the retina, can cause fluid mobilisation. The **cones** and **rods** of the retina are not only information sensors, but also energy sensors. Physical fatigue can often be linked to sympathetic lesions, leading to **mydriasis** and agitation of the rods, which can exhaust the sympathetic system.\n\nFactors such as energetic stress can degrade our state. The right light information is essential to maintain our well-being. The aura, as a luminous field, is influenced by our position in life. Inner peace and wisdom must be cultivated to emanate positive energy.\n\nThe eye undergoes an energetic and interpretative programme, integrating information in the form of pre-programmes. This process leads us to an electrical and electromagnetic plane, where the heart plays a central role. The heart emits a powerful electromagnetic field, and the eye, as a mobile fulcrum, is also influenced by different currents.\n\nThere are significant vascular differences between the left and right eyes, influencing their functioning. For example, the right eye is linked to hepatic venous stasis, while the left eye is associated with arterial hypertension. These anatomical differences can lead to specific interferences on the visual cortex.\n\n![Spiral eyes](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_1.png)\n\nOcular reflexes, such as the fronto-orbital reflex and the auriculo-cardiac reflex, show how light pressure on the eyes can rebalance cardiac problems. Each eye has a postural role and a dominant eye, which are not always the same.\n\nEye movements are essential for rebalancing. Visual axes and angles of inclination play a role in neurosensory light integration. The eye has a freedom of light integration of approximately 23 degrees, a figure found in various contexts, such as the Earth's tilt.\n\n![Crossing the line](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_2.png)\n\nFinally, information axes, such as the petrous axis, show how ocular destabilisations can affect balance. Memories integrated into bones or electrical patterns can also influence our perception and balance.\n\n![Axes and angles of visual integration](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_3.png)\n\n![Eye movements](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_7.png)\n\n![23 degrees of visual freedom](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_4.png)\n\n![Orbital and pyramidal axes](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_5.png)\n\n![Memories in the bone](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/oeil/oeil-32/Oeil_6.png)"
+    },
+    {
+        "id": "meso-47",
+        "schemas": [],
+        "categoryId": "mesoderme",
+        "youtubeId": "",
+        "cloudflareId": "8f890e7f51588216db016b73a8a97a14",
+        "duration": "10:31",
+        "title": "BONUS - Le Mouvement Régénérateur",
+                        "shortSummary": "A bodily and sensory practice (created by Marc Damoiseaux) that physically retraces the major stages of embryonic incarnation: from the ovum to complete tissue coiling.",
+    "fullSummary": "The Regenerative Movement (created by Marc Damoiseaux) is a powerful somatic practice where the body physically retraces its own genesis. Consciously, the practitioner relives the original polarization of the ovum, the cleavage of the first blastomeres, then traverses the gigantic embryonic folding (notochordal wave, heart looping, pulmonary shift, and rotation of the digestive fascia). This moving architecture ultimately brings back the perception of the Central Axis (Vertex - SSB - Heart - Sacrum), resetting the deep tissue balance of the median chain.",
+    "transcriptMarkdown": `# Le Mouvement Régénérateur
+
+Le mouvement régénérateur (création de Marc Damoiseaux) inspiré du mouvement développemental de l'embryon. 
+
+## Position Initiale
+
+- Pousse de la main droite dans la main gauche, pieds parallèles. Largeur des épaules.
+- Le dos est droit et détendu. Légère flexion des genoux.
+- Et observation des différentes lignes médianes : La ligne médiane notochordale, postérieure et antérieure.
+
+On observe bien la sphère neuro-sensorielle, rythmique, métabolique, urogénitale. Essayez de les ressentir, de vous équilibrer.
+
+## Les Étapes du Mouvement
+
+### 1. La Sphère
+
+Dans un premier temps, le mouvement, l'ovule est sphérique. Vous dessinez dans l'espace une sphère devant vous qui représente l'ovule. 
+
+La première fonction de l'ovule en création est d'accepter. À l'intérieur, c'est l'acceptation de la fécondation pour créer cet œuf, le zygote.
+
+### 2. Le Mouvement Toroïdal
+
+Une asymétrie s'installe. Dans un mouvement toroïdal qui se retourne tout le temps sur lui-même. Vous laissez ce mouvement parcourir votre corps pour faire le développement du corps.
+
+### 3. La Nidation et le Cordon Ombilical
+
+Le stade de la nidation. Au bout du 7ème jour et jusqu'au 21ème jour vient se mettre en place tous nos annexes : le cordon ombilical, le placenta, la cavité amniotique. Le mouvement est grand, protecteur.
+
+### 4. La Ligne Médiane
+
+A ce stade-là avec de l'enroulement, de la formation du cœur, il y a un appel de la ligne médiane. Sentez ce retour vers votre ligne médiane, et ça se pose dans le cœur.
+
+### 5. Rotation et Colonne Vertébrale
+
+Cette asymétrie qui se met en place crée des phénomènes de rotation que ce soit avec la langue, que ce soit les bras, un membre va pousser vers le haut l'autre vers le bas. À ce stade-là notre tube neural s'est refermé. 
+
+Notre colonne vertébrale, notre moelle épinière est en place. Connectez la souplesse de votre corps, de votre dos en vous relâchant.
+
+### 6. Le Cœur et le Plissement
+
+Le cœur avec toutes ces asymétries est obligé d'évoluer, il plonge, de quatre tubes il deviendra cœur. Avec ses pompes, reliez-vous avec souplesse dans ce mouvement du cœur où tout le corps se plisse pour se connecter et laisser l'énergie en place.
+
+Il bat ce cœur...
+
+### 7. Respiration et Retour
+
+Le point de recueillement, ramener sur soi, puis laisser l'expansion. Sèche, la respiration. Relâchez-vous vers la fin, et laissez couler la liberté de la vie sur votre naissance. 
+
+L'important c'est de garder ce mouvement asymétrique et continuel, rien ne s'arrête jamais. Pour revenir sur l'essentiel, à la maison : l'humain. C'est vous, par la respiration. 
+
+Puis laisser reposer, refermer.`
     }
+    
 ];

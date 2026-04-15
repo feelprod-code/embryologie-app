@@ -452,6 +452,7 @@ function App() {
               : detailedStagesFr;
 
   const [activeStageId, setActiveStageId] = useState<string>(detailedStages[0].id);
+  const [playingVideoIdx, setPlayingVideoIdx] = useState<number | null>(null);
 
   type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'admin' | 'admin-users' | 'admin-prompts';
   const [currentView, setCurrentView] = useState<View>('home');
@@ -900,7 +901,13 @@ function App() {
                               .map((event, idx) => (
                                 <div
                                   key={idx}
-                                  className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-white rounded-[1.2rem] p-4 border border-slate-200 hover:bg-slate-50 transition-all hover:shadow-md hover:border-slate-300"
+                                  onClick={() => {
+                                      if ((event as any).videoUrl) setPlayingVideoIdx(playingVideoIdx === idx ? null : idx);
+                                  }}
+                                  className={cn(
+                                      "group relative flex flex-col sm:flex-row items-start sm:items-center bg-white rounded-[1.2rem] p-4 border transition-all duration-300",
+                                      (event as any).videoUrl ? "cursor-pointer border-slate-300 hover:border-slate-400 shadow-sm hover:shadow-md" : "border-slate-200 hover:bg-slate-50 hover:shadow-md hover:border-slate-300"
+                                  )}
                                 >
                                   {/* Order Indicator (if exists) */}
                                   {event.order && (
@@ -931,12 +938,31 @@ function App() {
 
                                   {/* Content */}
                                   <div className="w-full sm:w-3/4 flex flex-col">
-                                    <h4 className="text-dark font-bold mb-1 text-lg md:text-xl font-sans">
-                                      {event.movement}
-                                    </h4>
+                                    <div className="flex items-center justify-between w-full mb-1">
+                                        <h4 className="text-dark font-bold text-lg md:text-xl font-sans">
+                                          {event.movement}
+                                        </h4>
+                                        {(event as any).videoUrl && (
+                                            <div className="text-xs bg-red-600 text-white px-3 py-1 rounded-full flex items-center gap-1.5 font-bold tracking-widest uppercase shadow-sm">
+                                                <Video size={14} strokeWidth={2.5} /> 
+                                                {playingVideoIdx === idx ? 'Fermer' : 'Vidéo'}
+                                            </div>
+                                        )}
+                                    </div>
                                     <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
                                       {event.description}
                                     </p>
+
+                                    {(event as any).videoUrl && playingVideoIdx === idx && (
+                                      <div className="w-full mt-6 rounded-2xl overflow-hidden bg-black aspect-video relative shadow-inner">
+                                        <iframe
+                                          src={(event as any).videoUrl}
+                                          className="absolute inset-0 w-full h-full border-0"
+                                          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                                          allowFullScreen
+                                        ></iframe>
+                                      </div>
+                                    )}
                                   </div>
                                 </div>
                               ))}

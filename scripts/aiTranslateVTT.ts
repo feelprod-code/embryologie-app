@@ -132,7 +132,11 @@ async function main() {
     }
 
     const files = fs.readdirSync(dir);
-    const frFiles = files.filter(f => f.endsWith('_fr.vtt'));
+    let frFiles = files.filter(f => f.endsWith('_fr.vtt'));
+
+    if (process.argv[2]) {
+        frFiles = frFiles.filter(f => f.includes(process.argv[2]));
+    }
 
     if (frFiles.length === 0) {
         console.error("Aucun fichier _fr.vtt trouvé.");

@@ -6,10 +6,13 @@ import https from 'https';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+const envLocalPath = path.resolve(process.cwd(), '.env.local');
+const envContent = fs.existsSync(envLocalPath) ? fs.readFileSync(envLocalPath, 'utf-8') : '';
+const match = envContent.match(/VITE_OPENROUTER_API_KEY=["']?([^"'\n\r]+)["']?/);
+const GOOGLE_API_KEY = match ? match[1].trim() : process.env.VITE_OPENROUTER_API_KEY;
 
 if (!GOOGLE_API_KEY) {
-    console.error("Please provide GOOGLE_API_KEY environment variable.");
+    console.error("Please provide VITE_OPENROUTER_API_KEY environment variable.");
     process.exit(1);
 }
 
@@ -40,19 +43,21 @@ Input:
 ${JSON.stringify(itemsToTranslate, null, 2)}`;
     
     const postData = JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.1 }
+        model: 'google/gemini-2.5-flash',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.1
     });
 
     const options = {
-        hostname: 'generativelanguage.googleapis.com',
-        path: `/v1beta/models/gemini-2.5-flash:generateContent?key=${GOOGLE_API_KEY}`,
+        hostname: 'openrouter.ai',
+        path: '/api/v1/chat/completions',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${GOOGLE_API_KEY}`,
             'Content-Length': Buffer.byteLength(postData)
         },
-        timeout: 30000 // 30 seconds for batch
+        timeout: 60000 // 60 seconds for batch
     };
 
     return new Promise((resolve, reject) => {
@@ -62,8 +67,8 @@ ${JSON.stringify(itemsToTranslate, null, 2)}`;
             res.on('end', () => {
                 try {
                     const parsed = JSON.parse(data);
-                    if (parsed.candidates && parsed.candidates.length > 0 && parsed.candidates[0].content && parsed.candidates[0].content.parts.length > 0) {
-                        let result = parsed.candidates[0].content.parts[0].text.trim();
+                    if (parsed.choices && parsed.choices.length > 0 && parsed.choices[0].message && parsed.choices[0].message.content) {
+                        let result = parsed.choices[0].message.content.trim();
                         // Remove potential enclosing backticks/code blocks from the AI response
                         if (result.startsWith('```json')) result = result.substring(7);
                         if (result.startsWith('```')) result = result.substring(3);
@@ -87,7 +92,7 @@ ${JSON.stringify(itemsToTranslate, null, 2)}`;
 
         req.on('timeout', () => {
             req.destroy();
-            reject(new Error('Request timeout (30s)'));
+            reject(new Error('Request timeout (60s)'));
         });
 
         req.on('error', (e) => {
