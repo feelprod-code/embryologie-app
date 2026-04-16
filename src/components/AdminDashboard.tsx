@@ -467,11 +467,10 @@ export function AdminDashboard() {
                                                     <div key={index} className="flex flex-col gap-1 mb-2">
                                                         <div className="flex items-center gap-2">
                                                             <span className="font-bold text-sm text-slate-800">Appareil {index + 1} :</span>
-                                                            <span className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-semibold tracking-wider uppercase">
+                                                            <span className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-semibold tracking-wider">
                                                                 {type}
                                                             </span>
                                                         </div>
-                                                        <span className="text-[10px] text-slate-400 font-mono break-all">{deviceId}</span>
                                                     </div>
                                                 );
                                             })}
