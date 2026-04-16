@@ -147,27 +147,7 @@ function App() {
       localStorage.setItem('DEV_BYPASS_AUTH', 'true');
     }
 
-    // URL BYPASS LOGIC (ABSOLUTE FAILSAFE)
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('bypass') === 'wuwai') {
-      localStorage.setItem('VIP_BYPASS', 'true');
-      setSession({ user: { id: 'vip-bypass', email: 'vip@feelprod.com', user_metadata: { first_name: 'VIP' } } });
-      setIsAdmin(false);
-      setIsPremium(true);
-      setIsInitializing(false);
-      // Clean up URL
-      window.history.replaceState({}, document.title, window.location.pathname);
-      return;
-    }
 
-    // VIP BYPASS LOGIC (Production bypass for specific VIPs)
-    if (localStorage.getItem('VIP_BYPASS') === 'true') {
-      setSession({ user: { id: 'vip-bypass', email: 'vip@feelprod.com', user_metadata: { first_name: 'VIP' } } });
-      setIsAdmin(false); // NO ADMIN FOR BYPASS
-      setIsPremium(true);
-      setIsInitializing(false);
-      return;
-    }
 
     // DEV BYPASS LOGIC (Only in local development)
     if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
