@@ -133,7 +133,7 @@ export function AdminDashboard() {
         const isPremiumValue = tierValue !== null;
         const updateData: any = { access_tier: tierValue, is_premium: isPremiumValue };
 
-        if (newTier === 'ESSAI_24H') {
+        if (newTier === 'TRIAL') {
             const tomorrow = new Date();
             tomorrow.setHours(tomorrow.getHours() + 24);
             updateData.trial_ends_at = tomorrow.toISOString();
