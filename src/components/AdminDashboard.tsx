@@ -130,10 +130,20 @@ export function AdminDashboard() {
         if (!session) return alert("Action impossible : non authentifié.");
         
         const tierValue = newTier === 'NONE' || newTier === 'STANDARD' ? null : newTier.toLowerCase();
+        const isPremiumValue = tierValue !== null;
+        const updateData: any = { access_tier: tierValue, is_premium: isPremiumValue };
+
+        if (newTier === 'ESSAI_24H') {
+            const tomorrow = new Date();
+            tomorrow.setHours(tomorrow.getHours() + 24);
+            updateData.trial_ends_at = tomorrow.toISOString();
+        } else {
+            updateData.trial_ends_at = null;
+        }
         
         const { error } = await supabase
             .from('profiles')
-            .update({ access_tier: tierValue })
+            .update(updateData)
             .eq('id', id);
 
         if (error) {
@@ -141,7 +151,7 @@ export function AdminDashboard() {
         } else {
             fetchProfiles();
             if (selectedProfile && selectedProfile.id === id) {
-                setSelectedProfile({ ...selectedProfile, access_tier: tierValue as any });
+                setSelectedProfile({ ...selectedProfile, ...updateData });
             }
         }
     };
