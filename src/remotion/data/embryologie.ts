@@ -5,6 +5,7 @@ export interface EventDetail {
     layer: EmbryoLayer;
     movement: string; // ex: "Cardialisation", "Vague Calcique"
     description: string;
+    videoUrl?: string;
 }
 
 export interface LayerPerception {
