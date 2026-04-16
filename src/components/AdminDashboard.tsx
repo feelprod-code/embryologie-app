@@ -460,20 +460,16 @@ export function AdminDashboard() {
                                 </p>
                                 <div className="bg-white border border-slate-200 rounded-xl p-3 mb-3 text-slate-700 max-h-32 overflow-y-auto">
                                     {selectedProfile.device_id ? (
-                                        <div className="flex flex-col gap-2">
-                                            {selectedProfile.device_id.split(',').filter(Boolean).map((deviceId: string, index: number) => {
-                                                const type = deviceId.includes('-') ? deviceId.split('-')[0] : 'Navigateur';
-                                                return (
-                                                    <div key={index} className="flex flex-col gap-1 mb-2">
-                                                        <div className="flex items-center gap-2">
-                                                            <span className="font-bold text-sm text-slate-800">Appareil {index + 1} :</span>
-                                                            <span className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-semibold tracking-wider">
-                                                                {type}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                );
-                                            })}
+                                        <div className="flex flex-wrap gap-2">
+                                            {Array.from(new Set(
+                                                selectedProfile.device_id.split(',').filter(Boolean).map((deviceId: string) => 
+                                                    deviceId.includes('-') ? deviceId.split('-')[0] : 'Navigateur'
+                                                )
+                                            )).map((type: string, index: number) => (
+                                                <span key={index} className="bg-slate-100 border border-slate-200 text-slate-700 px-3 py-1 rounded-lg text-xs font-semibold tracking-wide">
+                                                    {type}
+                                                </span>
+                                            ))}
                                         </div>
                                     ) : (
                                         <span className="text-sm text-slate-500">Aucun appareil enregistré.</span>
