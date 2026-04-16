@@ -274,37 +274,47 @@ function App() {
             (dbDevice.includes('-') && localDeviceId === dbDevice.substring(dbDevice.indexOf('-') + 1))
           );
 
+          const isAdminUser =
+            (currentSession?.user?.email && ADMIN_EMAILS.includes(currentSession.user.email.toLowerCase())) ||
+            (profile.email && ADMIN_EMAILS.includes(profile.email.toLowerCase()));
+
+          const MAX_DEVICES = isAdminUser ? 3 : 1;
+
           if (!isMatch) {
-            const isAdminUser =
-              (currentSession?.user?.email && ADMIN_EMAILS.includes(currentSession.user.email.toLowerCase())) ||
-              (profile.email && ADMIN_EMAILS.includes(profile.email.toLowerCase()));
-
-            if (isAdminUser) {
-              // L'administrateur a le droit d'utiliser plusieurs appareils
-              console.log("Admin multi-device access granted. Ignoring mismatch.");
-            } else if (deviceIds.length < 2) {
-              // Add this new device
+            if (deviceIds.length < MAX_DEVICES) {
+              // Il reste de la place, on ajoute l'appareil
               deviceIds.push(localDeviceId);
-              const { error: updateError } = await supabase
-                .from('profiles')
-                .update({ device_id: deviceIds.join(',') })
-                .eq('id', currentSession.user.id);
-
-              if (updateError) {
-                console.error("Failed to add device:", updateError);
+              await supabase.from('profiles').update({ device_id: deviceIds.join(',') }).eq('id', currentSession.user.id);
+              console.log(`Device added. Total: ${deviceIds.length}/${MAX_DEVICES}`);
+            } else if (isExplicitSignIn) {
+              // Plus de place, mais c'est une connexion manuelle => on vole la session (Émigration)
+              if (isAdminUser) {
+                // Pour l'admin plein à craquer (3 dev), on retire le plus vieux et on met le nouveau
+                deviceIds.shift();
+                deviceIds.push(localDeviceId);
+                await supabase.from('profiles').update({ device_id: deviceIds.join(',') }).eq('id', currentSession.user.id);
               } else {
-                console.log(`Device added. Total devices: ${deviceIds.length}/2`);
+                // Pour un élève (1 dev max), le nouvel appareil écrase tout
+                await supabase.from('profiles').update({ device_id: localDeviceId }).eq('id', currentSession.user.id);
               }
+              console.log("Émigration réussie sur le nouvel appareil.");
             } else {
-              // Limit reached!
-              alert(t('auth.device_limit_reached', "Vous avez atteint la limite de 2 appareils pour ce compte. Veuillez vous déconnecter d'un de vos autres appareils pour pouvoir utiliser celui-ci."));
+              // Plus de place, et ce n'est PAS une nouvelle connexion (vieil appareil ouvert en arrière-plan) => on déconnecte
+              alert("Vous avez été déconnecté car votre compte est utilisé sur un autre appareil. Veuillez vous reconnecter.");
               await supabase.auth.signOut();
               if (mounted) {
                 setSession(null);
                 setIsInitializing(false);
               }
-              return; // Halt login
+              return; // Fin du processus de login
             }
+          } else if (deviceIds.length > MAX_DEVICES) {
+            // Un appareil valide se connecte, mais la base contient trop de vieux appareils (changement de politique de 2 à 1)
+            // On nettoie la base pour ne garder que le sien (ou les derniers pour l'admin)
+            if (!isAdminUser) {
+              await supabase.from('profiles').update({ device_id: localDeviceId }).eq('id', currentSession.user.id);
+            }
+          }
         }
 
         // Extra check for admin using profile email (fixes Apple Hide My Email if Apple email is linked to real email in profile)
