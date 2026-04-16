@@ -61,12 +61,15 @@ const layerColors: Record<EmbryoLayer, string> = {
 
 const getDeviceType = () => {
   const ua = navigator.userAgent;
-  if (/iPad|iPhone|iPod/.test(ua)) return 'iOS';
-  if (/Macintosh|Mac OS X/.test(ua)) return 'Mac';
-  if (/Android/.test(ua)) return 'Android';
-  if (/Windows/.test(ua)) return 'Windows';
-  if (/Linux/.test(ua)) return 'Linux';
-  return 'Device';
+  if (/iPad/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) return 'iPad';
+  if (/iPhone/i.test(ua)) return 'iPhone';
+  if (/Macintosh|Mac OS X/i.test(ua)) return 'Mac';
+  if (/Android/i.test(ua)) {
+    return /Mobile|mini/i.test(ua) ? 'Android (Téléphone)' : 'Android (Tablette)';
+  }
+  if (/Windows/i.test(ua)) return 'Windows';
+  if (/Linux/i.test(ua)) return 'Linux';
+  return 'Navigateur';
 };
 
 const getDeviceId = () => {
@@ -158,7 +161,7 @@ function App() {
       return;
     }
 
-    const checkProfileDevice = async (currentSession: any) => {
+    const checkProfileDevice = async (currentSession: any, isExplicitSignIn: boolean = false) => {
 
 
       // DEV BYPASS: If local dev AND bypass is enabled, don't check device ID
@@ -259,9 +262,12 @@ function App() {
             console.error("Failed to bind device:", updateError);
           }
         } else {
+          // Si le profil a déjà un ou plusieurs appareils enregistrés
           const dbDevicesStr = profile.device_id;
           const deviceIds = dbDevicesStr.split(',').filter(Boolean);
           
+          // La base de données peut encore contenir plusieurs IDs si l'utilisateur y était avant la mise à jour
+          // On vérifie si l'appareil actuel est parmi eux
           const isMatch = deviceIds.some((dbDevice: string) => 
             dbDevice === localDeviceId ||
             (localDeviceId.includes('-') && dbDevice === localDeviceId.substring(localDeviceId.indexOf('-') + 1)) ||
@@ -274,24 +280,24 @@ function App() {
               (profile.email && ADMIN_EMAILS.includes(profile.email.toLowerCase()));
 
             if (isAdminUser) {
-              // Bypassing the device check for administrators so they can use multiple devices
+              // L'administrateur a le droit d'utiliser plusieurs appareils
               console.log("Admin multi-device access granted. Ignoring mismatch.");
-            } else if (deviceIds.length < 2) {
-              // Add this new device
-              deviceIds.push(localDeviceId);
+            } else if (isExplicitSignIn) {
+              // C'est une NOUVELLE connexion explicite par l'utilisateur (il a rentré son OTP sur ce nouvel appareil)
+              // Il "vole" la session. On écrase l'enregistrement de l'appareil en forçant à 1 seul : le sien.
               const { error: updateError } = await supabase
                 .from('profiles')
-                .update({ device_id: deviceIds.join(',') })
+                .update({ device_id: localDeviceId })
                 .eq('id', currentSession.user.id);
 
               if (updateError) {
-                console.error("Failed to add device:", updateError);
+                console.error("Failed to re-bind device:", updateError);
               } else {
-                console.log(`Device added. Total devices: ${deviceIds.length}/2`);
+                console.log("Session volée par un nouvel appareil. Emigration réussie.");
               }
             } else {
-              // Limit reached!
-              alert(t('auth.device_limit_reached', "Vous avez atteint la limite de 2 appareils pour ce compte. Veuillez vous déconnecter d'un de vos autres appareils pour pouvoir utiliser celui-ci."));
+              // Ce n'est PAS une nouvelle connexion (l'utilisateur a juste ouvert l'appli sur un ANCIEN appareil qui s'est fait voler la session)
+              alert("Vous avez été déconnecté car votre compte est utilisé sur un autre appareil. Veuillez vous reconnecter ici si vous souhaitez utiliser cet appareil.");
               await supabase.auth.signOut();
               if (mounted) {
                 setSession(null);
@@ -299,6 +305,9 @@ function App() {
               }
               return; // Halt login
             }
+          } else if (deviceIds.length > 1) {
+            // Optionnel : si match mais qu'il y a plus de 1 appareil dans la BD (vieux compte), on nettoie.
+            await supabase.from('profiles').update({ device_id: localDeviceId }).eq('id', currentSession.user.id);
           }
         }
 
@@ -323,7 +332,7 @@ function App() {
       } else {
         setIsAdmin(false);
       }
-      checkProfileDevice(session);
+      checkProfileDevice(session, false);
     });
 
     const {
@@ -347,7 +356,7 @@ function App() {
 
         if (_event === 'SIGNED_IN') {
           if (mounted) setIsInitializing(true);
-          checkProfileDevice(session);
+          checkProfileDevice(session, true);
         }
       }
     });
