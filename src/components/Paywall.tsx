@@ -1,9 +1,18 @@
-import { useState } from 'react';
-import { Shield, Sparkles, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Shield, Sparkles } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export function Paywall() {
-  const stripeLink = "https://buy.stripe.com/8x29ATgysdhE91VbRi9k400";
+  const [stripeLink, setStripeLink] = useState("https://buy.stripe.com/8x29ATgysdhE91VbRi9k400");
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user?.id) {
+        const emailParam = session.user.email ? `&prefilled_email=${encodeURIComponent(session.user.email)}` : '';
+        setStripeLink(`https://buy.stripe.com/8x29ATgysdhE91VbRi9k400?client_reference_id=${session.user.id}${emailParam}`);
+      }
+    });
+  }, []);
 
   return (
     <div className="w-full flex-1 flex items-center justify-center p-4 bg-[#FAF6ED]">

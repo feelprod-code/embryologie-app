@@ -484,10 +484,30 @@ function App() {
     return <AuthScreen />;
   }
 
+  const forcePaywall = new URLSearchParams(window.location.search).get('paywall') === 'true';
+
   return (
     <FullscreenProvider>
       <OrientationLock disabled={activeNav === 'video-player'} />
       <SuccessOverlay />
+
+      {forcePaywall && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-md" onClick={() => window.location.href = window.location.pathname}></div>
+          <div className="relative w-full max-w-md z-10 animate-fade-in-up">
+            <button 
+              onClick={() => window.location.href = window.location.pathname} 
+              className="absolute -top-4 -right-4 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 shadow-xl border border-slate-100"
+            >
+              <X size={20} strokeWidth={2.5} />
+            </button>
+            <div className="overflow-hidden rounded-3xl shadow-2xl bg-white">
+              <Paywall />
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className={cn("flex flex-col items-center h-[100dvh] w-full max-w-full relative bg-[#FAF6ED] text-slate-800 overflow-hidden", isPending && "transition-all duration-300")}>
         {/* Cinematic Background Gradients (Global) */}
       {activeNav !== 'video-player' && (

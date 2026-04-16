@@ -64,7 +64,10 @@ serve(async (req: Request) => {
         console.log(`Mise à jour du statut premium pour l'utilisateur: ${userId}`);
         const { error } = await supabaseClient
           .from("profiles")
-          .update({ is_premium: true })
+          .update({ 
+            is_premium: true,
+            stripe_payment_id: session.payment_intent || null
+          })
           .eq("id", userId);
 
         if (error) {
@@ -74,6 +77,26 @@ serve(async (req: Request) => {
       } else {
         console.log("Impossible de trouver l'utilisateur avec l'email", customerEmail);
         return new Response("User not found", { status: 400 });
+      }
+    } 
+    else if (event.type === "charge.refunded" || event.type === "customer.subscription.deleted") {
+      const dataObject = event.data.object as any;
+      const customerEmail = dataObject.billing_details?.email || dataObject.customer_email || dataObject.email || dataObject.receipt_email;
+      
+      console.log(`Annulation ou remboursement intercepté.`);
+
+      if (customerEmail) {
+        console.log(`Révocation pour l'email: ${customerEmail}`);
+        const { error } = await supabaseClient
+          .from("profiles")
+          .update({ is_premium: false })
+          .eq("email", customerEmail);
+
+        if (error) {
+          console.error("Erreur lors de la révocation du statut premium", error);
+          return new Response("Database Error", { status: 500 });
+        }
+        console.log("Statut premium révoqué avec succès.");
       }
     }
 

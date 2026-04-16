@@ -14,6 +14,7 @@ type Profile = {
     created_at: string;
     access_tier?: 'legacy' | 'premium' | 'free' | 'trial' | null;
     expires_at?: string | null;
+    stripe_payment_id?: string | null;
 };
 
 type FilterType = 'ALL' | 'ACTIVE' | 'EXPIRED' | 'TRIAL';
@@ -141,6 +142,28 @@ export function AdminDashboard() {
             fetchProfiles();
             if (selectedProfile && selectedProfile.id === id) {
                 setSelectedProfile({ ...selectedProfile, access_tier: tierValue as any });
+            }
+        }
+    };
+
+    const refundPayment = async (id: string) => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) return alert("Action impossible : non authentifié.");
+        
+        if (!confirm('ATTENTION : Êtes-vous sûr de vouloir annuler ce paiement ? \nLe client sera remboursé directement sur son système bancaire (PayPal, CB, Apple Pay). Cette action est irréversible.')) return;
+        
+        const { data, error } = await supabase.functions.invoke('admin-stripe-refund', {
+            body: { userId: id }
+        });
+
+        if (error || data?.error) {
+            alert('Erreur lors du remboursement : ' + (data?.error || error?.message || 'Erreur inconnue'));
+        } else {
+            alert('💳 Remboursement effectué avec succès. L\'accès premium a été retiré.');
+            fetchProfiles();
+            // Refraîchir la vue de profil pour cacher l'ID
+            if (selectedProfile && selectedProfile.id === id) {
+                 setSelectedProfile({ ...selectedProfile, stripe_payment_id: null, is_premium: false } as any);
             }
         }
     };
@@ -453,10 +476,24 @@ export function AdminDashboard() {
                                 </button>
                             </div>
                             
-                            {/* Prochaines évolutions Stripe */}
-                            <div className="bg-blue-50/50 rounded-2xl p-4 border border-blue-100 border-dashed">
-                                <h3 className="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">À Venir (Stripe)</h3>
-                                <p className="text-xs text-blue-800/70">La gestion complète de l'accès payant (Génération de liens Stripe, codes promos, expiration 24h) sera connectée à cet encart lors de la mise en production du module de paiement.</p>
+                            {/* Facturation Stripe */}
+                            <div>
+                                <h3 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
+                                    <Crown size={14} /> Paiement & Remboursement
+                                </h3>
+                                <p className="text-xs text-indigo-900/70 mb-3 leading-relaxed">
+                                    Identifiant de transaction Stripe unique lié à ce compte. Utilisé pour lancer un remboursement automatique.
+                                </p>
+                                <div className="bg-white border text-sm border-slate-200 rounded-xl p-3 mb-3 text-slate-700 max-h-32 overflow-y-auto break-all font-mono text-[10px]">
+                                    {selectedProfile.stripe_payment_id || "Aucun paiement Stripe enregistré en base."}
+                                </div>
+                                <button
+                                    onClick={() => refundPayment(selectedProfile.id)}
+                                    disabled={!selectedProfile.stripe_payment_id}
+                                    className="w-full py-2.5 rounded-xl text-white bg-indigo-600 font-bold text-sm hover:bg-indigo-700 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                >
+                                    💳 Envoyer un Remboursement Stripe
+                                </button>
                             </div>
                         </div>
                     </div>
