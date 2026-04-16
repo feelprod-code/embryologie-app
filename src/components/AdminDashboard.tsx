@@ -458,8 +458,24 @@ export function AdminDashboard() {
                                 <p className="text-xs text-slate-500 mb-3 leading-relaxed">
                                     Empreintes des appareils utilisés par ce navigateur. Réinitialisez si l'élève a changé d'ordinateur ou de téléphone.
                                 </p>
-                                <div className="bg-white border text-sm border-slate-200 rounded-xl p-3 mb-3 text-slate-700 max-h-32 overflow-y-auto break-all font-mono text-[10px]">
-                                    {selectedProfile.device_id || "Aucun appareil enregistré."}
+                                <div className="bg-white border border-slate-200 rounded-xl p-3 mb-3 text-slate-700 max-h-32 overflow-y-auto">
+                                    {selectedProfile.device_id ? (
+                                        <div className="flex flex-col gap-2">
+                                            {selectedProfile.device_id.split(',').filter(Boolean).map((deviceId: string, index: number) => {
+                                                const type = deviceId.includes('-') ? deviceId.split('-')[0] : 'Navigateur';
+                                                return (
+                                                    <div key={index} className="flex items-center gap-2">
+                                                        <span className="font-bold text-sm text-slate-800">Appareil {index + 1} :</span>
+                                                        <span className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-semibold tracking-wider uppercase">
+                                                            {type}
+                                                        </span>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    ) : (
+                                        <span className="text-sm text-slate-500">Aucun appareil enregistré.</span>
+                                    )}
                                 </div>
                                 <button
                                     onClick={() => resetDevice(selectedProfile.id)}
