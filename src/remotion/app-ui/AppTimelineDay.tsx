@@ -155,7 +155,7 @@ export const AppTimelineDay: React.FC<{
                         <div className="w-full mb-2">
                           {event.layer !== 'N/A' && (
                           <span className={cn(
-                            "inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold border uppercase tracking-wider",
+                            "inline-flex items-center justify-center px-3 py-1 rounded-full text-[10px] font-bold border uppercase tracking-wider whitespace-nowrap",
                             layerColors[event.layer] || "bg-slate-100 text-slate-500 border-slate-200"
                           )}>
                             {event.layer}

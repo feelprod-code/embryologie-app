@@ -904,7 +904,7 @@ function App() {
                                   <div className="w-full sm:w-1/4 mb-4 sm:mb-0 sm:pr-6">
                                     {event.layer !== 'N/A' && (
                                     <span className={cn(
-                                      "inline-flex items-center px-4 py-1.5 rounded-[1.2rem] text-xs font-bold border uppercase tracking-wider",
+                                      "inline-flex items-center justify-center px-4 py-1.5 rounded-[1.2rem] text-xs font-bold border uppercase tracking-wider whitespace-nowrap",
                                       layerColors[event.layer]
                                     )}>
                                       {(() => {

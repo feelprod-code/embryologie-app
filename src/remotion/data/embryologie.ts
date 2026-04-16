@@ -263,12 +263,6 @@ export const detailedStages: StageDataV2[] = [
                 layer: "Global",
                 movement: "Rotation Ciliaire",
                 description: "Au fond du nœud de Hensen, des cils tournent à 60° (flux nodal) poussant des signaux à gauche, determining la future asymétrie des organes."
-            },
-            {
-                order: 47,
-                layer: "Le Mésoderme",
-                movement: "Bonus",
-                description: "Mouvement régénérateur de l'embryon. [Le résumé de ce mouvement sera inséré ici, avec lancement de la vidéo au clic]."
             }
         ],
         themeColor: "bg-red-900",
