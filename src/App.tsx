@@ -901,7 +901,7 @@ function App() {
                                     </div>
                                   )}
 
-                                  <div className="w-full sm:w-1/4 mb-4 sm:mb-0 sm:pr-6">
+                                  <div className="w-full sm:w-40 lg:w-48 mb-4 sm:mb-0 sm:pr-4 flex-shrink-0">
                                     {event.layer !== 'N/A' && (
                                     <span className={cn(
                                       "inline-flex items-center justify-center px-4 py-1.5 rounded-[1.2rem] text-xs font-bold border uppercase tracking-wider whitespace-nowrap",
@@ -924,7 +924,7 @@ function App() {
                                   </div>
 
                                   {/* Content */}
-                                  <div className="w-full sm:w-3/4 flex flex-col">
+                                  <div className="w-full flex-1 flex flex-col min-w-0">
                                     <div className="flex items-center justify-between w-full mb-1">
                                         <h4 className="text-dark font-bold text-lg md:text-xl font-sans">
                                           {event.movement}
