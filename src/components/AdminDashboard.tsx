@@ -464,11 +464,14 @@ export function AdminDashboard() {
                                             {selectedProfile.device_id.split(',').filter(Boolean).map((deviceId: string, index: number) => {
                                                 const type = deviceId.includes('-') ? deviceId.split('-')[0] : 'Navigateur';
                                                 return (
-                                                    <div key={index} className="flex items-center gap-2">
-                                                        <span className="font-bold text-sm text-slate-800">Appareil {index + 1} :</span>
-                                                        <span className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-semibold tracking-wider uppercase">
-                                                            {type}
-                                                        </span>
+                                                    <div key={index} className="flex flex-col gap-1 mb-2">
+                                                        <div className="flex items-center gap-2">
+                                                            <span className="font-bold text-sm text-slate-800">Appareil {index + 1} :</span>
+                                                            <span className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-semibold tracking-wider uppercase">
+                                                                {type}
+                                                            </span>
+                                                        </div>
+                                                        <span className="text-[10px] text-slate-400 font-mono break-all">{deviceId}</span>
                                                     </div>
                                                 );
                                             })}
