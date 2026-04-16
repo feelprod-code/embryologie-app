@@ -282,22 +282,22 @@ function App() {
             if (isAdminUser) {
               // L'administrateur a le droit d'utiliser plusieurs appareils
               console.log("Admin multi-device access granted. Ignoring mismatch.");
-            } else if (isExplicitSignIn) {
-              // C'est une NOUVELLE connexion explicite par l'utilisateur (il a rentré son OTP sur ce nouvel appareil)
-              // Il "vole" la session. On écrase l'enregistrement de l'appareil en forçant à 1 seul : le sien.
+            } else if (deviceIds.length < 2) {
+              // Add this new device
+              deviceIds.push(localDeviceId);
               const { error: updateError } = await supabase
                 .from('profiles')
-                .update({ device_id: localDeviceId })
+                .update({ device_id: deviceIds.join(',') })
                 .eq('id', currentSession.user.id);
 
               if (updateError) {
-                console.error("Failed to re-bind device:", updateError);
+                console.error("Failed to add device:", updateError);
               } else {
-                console.log("Session volée par un nouvel appareil. Emigration réussie.");
+                console.log(`Device added. Total devices: ${deviceIds.length}/2`);
               }
             } else {
-              // Ce n'est PAS une nouvelle connexion (l'utilisateur a juste ouvert l'appli sur un ANCIEN appareil qui s'est fait voler la session)
-              alert("Vous avez été déconnecté car votre compte est utilisé sur un autre appareil. Veuillez vous reconnecter ici si vous souhaitez utiliser cet appareil.");
+              // Limit reached!
+              alert(t('auth.device_limit_reached', "Vous avez atteint la limite de 2 appareils pour ce compte. Veuillez vous déconnecter d'un de vos autres appareils pour pouvoir utiliser celui-ci."));
               await supabase.auth.signOut();
               if (mounted) {
                 setSession(null);
@@ -305,10 +305,6 @@ function App() {
               }
               return; // Halt login
             }
-          } else if (deviceIds.length > 1) {
-            // Optionnel : si match mais qu'il y a plus de 1 appareil dans la BD (vieux compte), on nettoie.
-            await supabase.from('profiles').update({ device_id: localDeviceId }).eq('id', currentSession.user.id);
-          }
         }
 
         // Extra check for admin using profile email (fixes Apple Hide My Email if Apple email is linked to real email in profile)
