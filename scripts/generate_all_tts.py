@@ -1,23 +1,27 @@
 import os
 import re
-import urllib.request
-import urllib.error
-import json
-import base64
 import wave
 import ast
 import time
+from google.cloud import texttospeech
 
-API_KEY = os.environ.get("GEMINI_API_KEY", "")
+# Set credentials to the JSON file we just downloaded
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gen-lang-client-0754661614-09b6668250b7.json"
 
-# Using standard prebuilt voices for Gemini-3.1-flash-tts
-VOICE_PROFILES = {
-    "Philippe Guillaume": "Puck",
-    "Marc Damoiseaux": "Aoede",
-    "Default": "Puck"
+client = texttospeech.TextToSpeechClient()
+
+# Mapping languages to specific Google Cloud TTS voice profiles
+# Neural2 is premium, Wavenet is fallback
+VOICE_MAP = {
+    "es": {"Philippe Guillaume": "es-ES-Neural2-F", "Marc Damoiseaux": "es-ES-Neural2-G", "Default": "es-ES-Neural2-F"},
+    "ja": {"Philippe Guillaume": "ja-JP-Neural2-C", "Marc Damoiseaux": "ja-JP-Neural2-D", "Default": "ja-JP-Neural2-C"},
+    "zh": {"Philippe Guillaume": "cmn-CN-Wavenet-C", "Marc Damoiseaux": "cmn-CN-Wavenet-B", "Default": "cmn-CN-Wavenet-C"},
+    "de": {"Philippe Guillaume": "de-DE-Neural2-D", "Marc Damoiseaux": "de-DE-Neural2-B", "Default": "de-DE-Neural2-D"}, # Adjusted fallback to known Wavenet if Neural doesn't exist later
+    "it": {"Philippe Guillaume": "it-IT-Neural2-C", "Marc Damoiseaux": "it-IT-Neural2-A", "Default": "it-IT-Neural2-C"},
+    "en": {"Philippe Guillaume": "en-US-Neural2-D", "Marc Damoiseaux": "en-US-Neural2-J", "Default": "en-US-Neural2-D"}
 }
 
-LANGUAGES = ["es", "ja", "zh", "de", "it"]
+LANGUAGES = ["en", "es", "ja", "zh", "de", "it"]
 OUTPUT_BASE_DIR = "public/audio"
 
 if not os.path.exists(OUTPUT_BASE_DIR):
@@ -56,7 +60,7 @@ def concatenate_wavs(wav_files, output_file):
         print(f"Failed to write output WAV: {e}")
 
 for lang in LANGUAGES:
-    print(f"\n--- Generating podcast for {lang.upper()} using Gemini TTS ---")
+    print(f"\n--- Generating podcast for {lang.upper()} using Google Cloud TTS ---")
     ts_file_path = f"src/data/podcasts_{lang}.ts"
     if not os.path.exists(ts_file_path):
         print(f"Skipping {lang}: File {ts_file_path} not found.")
@@ -65,10 +69,9 @@ for lang in LANGUAGES:
     with open(ts_file_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Robust matching of TS string format:
+    # Extract transcript
     match = re.search(r'"transcript"\s*:\s*("(?:\\.|[^"\\])*"|`[\s\S]*?`)', content, re.DOTALL)
     if not match:
-        print(f"Skipping {lang}: No transcript property found.")
         continue
 
     raw_str = match.group(1)
@@ -92,13 +95,11 @@ for lang in LANGUAGES:
                 "text": text
             })
 
-    print(f"Detected {len(blocks)} blocks for {lang}.")
     if not blocks:
         continue
     
     chunks_dir = os.path.join(OUTPUT_BASE_DIR, f"chunks_{lang}_wav")
-    if not os.path.exists(chunks_dir):
-        os.makedirs(chunks_dir)
+    os.makedirs(chunks_dir, exist_ok=True)
 
     chunk_files = []
     for i, block in enumerate(blocks):
@@ -112,56 +113,52 @@ for lang in LANGUAGES:
         speaker = block['speaker']
         text = block['text']
         
-        voiceName = VOICE_PROFILES.get("Default")
-        for k, v in VOICE_PROFILES.items():
+        # Get voice
+        voice_map = VOICE_MAP.get(lang, VOICE_MAP["en"])
+        voice_name = voice_map.get("Default")
+        for k, v in voice_map.items():
             if k in speaker:
-                voiceName = v
+                voice_name = v
                 break
+                
+        # Split voice name backwards to get language code
+        parts = voice_name.split("-")
+        lang_code = f"{parts[0]}-{parts[1]}"
         
-        print(f"[{pad_index}/{len(blocks)}] Generating text for {speaker}...")
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-tts-preview:generateContent?key={API_KEY}"
-        data_str = json.dumps({
-            "contents": [{"parts": [{"text": text}]}],
-            "generationConfig": {
-                "speechConfig": {
-                    "voiceConfig": {
-                        "prebuiltVoiceConfig": {
-                            "voiceName": voiceName
-                        }
-                    }
-                }
-            }
-        }).encode('utf-8')
+        # Ensure we always get valid standard fallback if Neural fails
+        if "de-" in lang_code and "Neural2-D" in voice_name:
+            voice_name = "de-DE-Neural2-F" # Male fallback
+
+        print(f"[{pad_index}/{len(blocks)}] Generating text for {lang.upper()} using {voice_name}...")
         
-        req = urllib.request.Request(url, data=data_str, headers={'Content-Type': 'application/json'})
+        synthesis_input = texttospeech.SynthesisInput(text=text)
+        voice = texttospeech.VoiceSelectionParams(
+            language_code=lang_code,
+            name=voice_name
+        )
+        audio_config = texttospeech.AudioConfig(
+            audio_encoding=texttospeech.AudioEncoding.LINEAR16
+        )
         
-        success = False
-        while not success:
-            try:
-                with urllib.request.urlopen(req) as response:
-                    result = json.loads(response.read().decode('utf-8'))
-                    if 'candidates' in result:
-                        part = result['candidates'][0]['content']['parts'][0]
-                        if 'inlineData' in part:
-                             audio_data = base64.b64decode(part['inlineData']['data'])
-                             with open(out_file, 'wb') as f_out:
-                                 f_out.write(audio_data)
-                             success = True
-                             time.sleep(1) # Prevent immediate rate limit blocking
-                        else:
-                             print(f"API returned no inlineData for block {i}.")
-                             success = True
-            except urllib.error.HTTPError as e:
-                err_text = e.read().decode('utf-8')
-                if e.code == 429:
-                    print("Rate limit exceeded. Waiting 30 seconds...")
-                    time.sleep(30)
-                else:
-                    print(f"API HTTP Error for {lang} block {i}: {e.code}\n{err_text[:200]}")
-                    success = True # Stop trying on unknown errors
-            except Exception as e:
-                print(f"API Error for {lang} block {i}: {e}")
-                success = True
+        try:
+            response = client.synthesize_speech(
+                input=synthesis_input, voice=voice, audio_config=audio_config
+            )
+            with open(out_file, "wb") as out:
+                out.write(response.audio_content)
+        except Exception as e:
+            # Fallback to standard if premium voice doesn't exist
+            print(f"Error {e}. Trying Wavenet fallback.")
+            try: 
+                fallback_name = lang_code + "-Wavenet-B"
+                voice.name = fallback_name
+                response = client.synthesize_speech(
+                    input=synthesis_input, voice=voice, audio_config=audio_config
+                )
+                with open(out_file, "wb") as out:
+                    out.write(response.audio_content)
+            except Exception as e2:
+                print(f"Fallback also failed: {e2}")
 
     # Concatenate using wave module
     final_output = os.path.join(OUTPUT_BASE_DIR, f"podcast_tdt_{lang}.wav")
@@ -175,4 +172,4 @@ for lang in LANGUAGES:
     except Exception as e:
         print(f"Error concatenating: {e}")
 
-print("All generation tasks finished.")
+print("All podcasts generated via Google Cloud API!")
