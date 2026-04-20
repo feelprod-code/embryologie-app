@@ -8,7 +8,7 @@ import wave
 import ast
 import time
 
-API_KEY = "AIzaSyBU5-swcwLGzs5g7FT2bh26B7YKgToRJZo"
+API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
 # Using standard prebuilt voices for Gemini-3.1-flash-tts
 VOICE_PROFILES = {
