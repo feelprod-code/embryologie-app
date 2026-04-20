@@ -70,7 +70,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 }, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
+    const audioRef = useRef<HTMLAudioElement>(null);
     const { i18n } = useTranslation();
+
+    // Determine the dubbed audio URL based on language
+    const currentLang = i18n.language || 'fr';
+    const isDubbed = currentLang !== 'fr';
+    const audioUrl = (isDubbed && cloudflareId) 
+        ? `https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/podcasts/video_${cloudflareId}_${getCloudflareLangCode(currentLang)}.wav`
+        : null;
+
 
     // State
     const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
@@ -177,6 +186,12 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         };
     }, [isPlaying, localScrubTime, updateTimeSmoothly]);
 
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.playbackRate = speed;
+        }
+    }, [speed]);
+
     useImperativeHandle(ref, () => ({
         togglePlay,
         isPlaying,
@@ -184,6 +199,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             setCurrentTime(time);
             if (playerRef.current) {
                 playerRef.current.currentTime = time;
+            }
+            if (audioRef.current) {
+                audioRef.current.currentTime = time;
             }
             if (onTimeUpdate) onTimeUpdate(time, duration || 0);
             let activeText = null;
@@ -209,10 +227,12 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         if (playerRef.current) {
             if (isPlaying) {
                 playerRef.current.pause();
+                if (audioRef.current) audioRef.current.pause();
                 setIsPlaying(false);
                 onPlayStateChange?.(false);
             } else {
                 playerRef.current.play();
+                if (audioRef.current) audioRef.current.play();
                 setIsPlaying(true);
                 onPlayStateChange?.(true);
             }
@@ -224,6 +244,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         setCurrentTime(val);
         if (playerRef.current) {
             playerRef.current.currentTime = val;
+        }
+        if (audioRef.current) {
+            audioRef.current.currentTime = val;
         }
         if (onTimeUpdate) onTimeUpdate(val, duration || 0);
         let activeText = null;
@@ -248,6 +271,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         if (playerRef.current) {
             const newTime = Math.max(0, Math.min(currentTime + secondsOffset, duration));
             playerRef.current.currentTime = newTime;
+            if (audioRef.current) {
+                audioRef.current.currentTime = newTime;
+            }
             setCurrentTime(newTime);
             if (onTimeUpdate) onTimeUpdate(newTime, duration || 0);
             let activeText = null;
@@ -818,9 +844,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             className="w-full h-full object-cover"
                             src={cloudflareId!}
                             controls={false} // Disable native UI to avoid iOS taking over fullscreen
+                            muted={isDubbed} // MUTE the native video if playing AI dubbed audio
                             width="100%"
                             height="100%"
                             playbackRate={speed}
+
                             responsive={false}
                             onEnded={() => {
                                 setIsPlaying(false);
@@ -858,6 +886,21 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                         onActiveCueChange(activeIndex);
                                     }
                                 }
+                            }}
+                        />
+                    )}
+                    
+                    {/* Render independent <audio> tag for AI dubbed audio */}
+                    {audioUrl && (
+                        <audio
+                            ref={audioRef}
+                            src={audioUrl}
+                            preload="metadata"
+                            onEnded={() => {
+                                // Master video usually handles this
+                            }}
+                            onError={(e) => {
+                                console.warn("AI Dubbed Audio failed to load. Falling back to native.", e);
                             }}
                         />
                     )}
