@@ -18,8 +18,9 @@ const SUBTITLE_LANGS = [
 ];
 
 const getCloudflareLangCode = (appLang: string) => {
-    // Return matching language code, or default to fr
-    if (SUBTITLE_LANGS.some(lang => lang.code === appLang)) return appLang;
+    // Return matching language code (matching first 2 letters), or default to fr
+    const shortCode = appLang.split('-')[0].toLowerCase();
+    if (SUBTITLE_LANGS.some(lang => lang.code === shortCode)) return shortCode;
     return 'fr';
 };
 
