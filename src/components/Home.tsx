@@ -21,10 +21,6 @@ export function Home({}: HomeProps) {
 
     // Determine which podcast audio to load based on language
     const currentLang = (typeof i18n.language === 'string' ? i18n.language.split('-')[0] : 'fr') || 'fr';
-    const isEnglish = currentLang === 'en';
-    const podcastAudioSrc = isEnglish
-        ? "https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/podcasts/full_podcast_english_final.m4a"
-        : "https://audio.ausha.co/6r2X8f6LVNAp.mp3";
 
     const getPodcastData = () => {
         switch (currentLang) {
@@ -41,10 +37,7 @@ export function Home({}: HomeProps) {
 
     const currentPodcastsData = getPodcastData();
 
-    const activePodcast = {
-        ...currentPodcastsData[0],
-        audioUrl: podcastAudioSrc
-    };
+    const activePodcast = currentPodcastsData.find(p => p.id === 'pod-tdt-1') || currentPodcastsData[0];
 
     return (
         <div id="home-scroll-container" className={cn(
@@ -114,6 +107,7 @@ export function Home({}: HomeProps) {
                 <div className="flex flex-col items-center justify-center w-full flex-none mt-2 sm:mt-0">
                     <div className="w-full flex flex-col items-center justify-center z-20">
                         <PodcastPlayerInteractive 
+                            key={`${activePodcast.id}-${currentLang}`}
                             podcast={activePodcast} 
                             onTranscriptToggle={setIsTranscriptMode}
                         />

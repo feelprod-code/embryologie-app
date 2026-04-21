@@ -7,20 +7,10 @@ import { useFullscreen } from '../../contexts/FullscreenContext';
 
 // Supported subtitle languages
 const SUBTITLE_LANGS = [
-    { code: 'off', label: 'Désactivés' },
     { code: 'fr', label: 'Français' },
     { code: 'en', label: 'English' },
     { code: 'es', label: 'Español' },
-    { code: 'it', label: 'Italiano' },
-    { code: 'de', label: 'Deutsch' },
-    { code: 'ja', label: '日本語' },
-    { code: 'zh', label: '中文' },
-];
-
-const AUDIO_LANGS = [
-    { code: 'fr', label: 'Français (Original)' },
-    { code: 'en', label: 'English' },
-    { code: 'es', label: 'Español' },
+    { code: 'pt', label: 'Português' },
     { code: 'it', label: 'Italiano' },
     { code: 'de', label: 'Deutsch' },
     { code: 'ja', label: '日本語' },
@@ -29,7 +19,7 @@ const AUDIO_LANGS = [
 
 const getCloudflareLangCode = (appLang: string) => {
     // Return matching language code, or default to fr
-    if (SUBTITLE_LANGS.some(lang => lang.code === appLang && appLang !== 'off')) return appLang;
+    if (SUBTITLE_LANGS.some(lang => lang.code === appLang)) return appLang;
     return 'fr';
 };
 
@@ -80,24 +70,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 }, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
-    const audioRef = useRef<HTMLAudioElement>(null);
     const { i18n } = useTranslation();
-
-    // Determine the dubbed audio URL based on language
-    const currentSiteLang = i18n.language || 'fr';
-    
-    // Decoupled Video States
-    const [audioLangState, setAudioLangState] = useState<string | null>(null);
-    const [subtitleLangState, setSubtitleLangState] = useState<string | null>(null);
-    
-    const currentAudioLang = audioLangState || currentSiteLang;
-    const currentSubtitleLang = subtitleLangState || currentSiteLang;
-
-    const isDubbed = currentAudioLang !== 'fr';
-    const audioUrl = (isDubbed && cloudflareId) 
-        ? `https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/podcasts/video_${cloudflareId}_${getCloudflareLangCode(currentAudioLang)}.wav`
-        : null;
-
 
     // State
     const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
@@ -204,12 +177,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         };
     }, [isPlaying, localScrubTime, updateTimeSmoothly]);
 
-    useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.playbackRate = speed;
-        }
-    }, [speed]);
-
     useImperativeHandle(ref, () => ({
         togglePlay,
         isPlaying,
@@ -217,9 +184,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             setCurrentTime(time);
             if (playerRef.current) {
                 playerRef.current.currentTime = time;
-            }
-            if (audioRef.current) {
-                audioRef.current.currentTime = time;
             }
             if (onTimeUpdate) onTimeUpdate(time, duration || 0);
             let activeText = null;
@@ -245,12 +209,10 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         if (playerRef.current) {
             if (isPlaying) {
                 playerRef.current.pause();
-                if (audioRef.current) audioRef.current.pause();
                 setIsPlaying(false);
                 onPlayStateChange?.(false);
             } else {
                 playerRef.current.play();
-                if (audioRef.current) audioRef.current.play();
                 setIsPlaying(true);
                 onPlayStateChange?.(true);
             }
@@ -262,9 +224,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         setCurrentTime(val);
         if (playerRef.current) {
             playerRef.current.currentTime = val;
-        }
-        if (audioRef.current) {
-            audioRef.current.currentTime = val;
         }
         if (onTimeUpdate) onTimeUpdate(val, duration || 0);
         let activeText = null;
@@ -289,9 +248,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         if (playerRef.current) {
             const newTime = Math.max(0, Math.min(currentTime + secondsOffset, duration));
             playerRef.current.currentTime = newTime;
-            if (audioRef.current) {
-                audioRef.current.currentTime = newTime;
-            }
             setCurrentTime(newTime);
             if (onTimeUpdate) onTimeUpdate(newTime, duration || 0);
             let activeText = null;
@@ -592,14 +548,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         cuesRef.current = [];
         const fetchVtt = async () => {
             setActiveSubtitle(null);
-            
-            if (currentSubtitleLang === 'off') {
-                setHasSubtitles(false);
-                return;
-            }
-
             try {
-                const langCode = getCloudflareLangCode(currentSubtitleLang);
+                const langCode = getCloudflareLangCode(i18n.language || 'fr');
                 let vttText = '';
 
                 // Try fetching directly from Cloudflare downloads first via local proxy
@@ -719,13 +669,12 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     if (onCuesLoaded) onCuesLoaded(parsedCues);
                 }
             } catch (err) {
-                console.warn('Erreur lors du traitement des sous-titres', err);
-                setHasSubtitles(false);
+                console.error("VTT Parse err", err);
             }
         };
 
         fetchVtt();
-    }, [cloudflareId, currentSubtitleLang, onCuesLoaded]);
+    }, [cloudflareId, i18n.language]);
 
     // Zoom and Pan Handlers
     const handleZoomTouchStart = (e: React.TouchEvent) => {
@@ -869,11 +818,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             className="w-full h-full object-cover"
                             src={cloudflareId!}
                             controls={false} // Disable native UI to avoid iOS taking over fullscreen
-                            muted={isDubbed} // MUTE the native video if playing AI dubbed audio
                             width="100%"
                             height="100%"
                             playbackRate={speed}
-
                             responsive={false}
                             onEnded={() => {
                                 setIsPlaying(false);
@@ -911,21 +858,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                         onActiveCueChange(activeIndex);
                                     }
                                 }
-                            }}
-                        />
-                    )}
-                    
-                    {/* Render independent <audio> tag for AI dubbed audio */}
-                    {audioUrl && (
-                        <audio
-                            ref={audioRef}
-                            src={audioUrl}
-                            preload="metadata"
-                            onEnded={() => {
-                                // Master video usually handles this
-                            }}
-                            onError={(e) => {
-                                console.warn("AI Dubbed Audio failed to load. Falling back to native.", e);
                             }}
                         />
                     )}
@@ -1090,61 +1022,23 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         </div>
 
                         <div className="flex items-center gap-3 sm:gap-5">
-                            {/* Audio Track Selector */}
-                            <div className="relative flex items-center justify-center p-2 rounded transition-colors text-white cursor-pointer touch-manipulation active:scale-90" title="Piste Audio">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                                </svg>
-                                <select 
-                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer text-base bg-white text-black"
-                                    value={currentAudioLang}
-                                    onChange={(e) => {
-                                        setAudioLangState(e.target.value);
-                                        // Mute original stream natively if we switch to dubbed
-                                        if (e.target.value !== 'fr' && playerRef.current) {
-                                            playerRef.current.muted = true;
-                                        } else if (e.target.value === 'fr' && playerRef.current) {
-                                            playerRef.current.muted = false;
-                                        }
-                                        // Rewind slightly to give buffer time to Audio API when switching
-                                        if (audioRef.current && isPlaying) {
-                                            audioRef.current.pause();
-                                            setTimeout(() => {
-                                               if(audioRef.current) {
-                                                   audioRef.current.currentTime = currentTime;
-                                                   audioRef.current.play();
-                                               }
-                                            }, 150);
-                                        }
-                                    }}
+                            {/* CC Toggle */}
+                            {hasSubtitles && (
+                                <button
+                                    onClick={(e) => { e.stopPropagation(); setSubtitlesEnabled(!subtitlesEnabled); }}
+                                    onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setSubtitlesEnabled(!subtitlesEnabled); }}
+                                    className={`relative flex items-center justify-center p-2 rounded transition-colors cursor-pointer touch-manipulation active:scale-90 ${subtitlesEnabled ? 'text-white' : 'text-white/40 hover:text-white/70'}`}
+                                    title={"Sous-titres"}
                                 >
-                                    {AUDIO_LANGS.map(l => (
-                                        <option key={l.code} value={l.code}>{l.label}</option>
-                                    ))}
-                                </select>
-                                {isDubbed && <div className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ bottom: '2px', backgroundColor: '#F27D33' }} />}
-                            </div>
-
-                            {/* CC Toggle / Subtitles */}
-                            <div className={`relative flex items-center justify-center p-2 rounded transition-colors cursor-pointer touch-manipulation active:scale-90 ${currentSubtitleLang !== 'off' ? 'text-white' : 'text-white/40 hover:text-white/70'}`} title="Sous-titres">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <rect x="2" y="7" width="20" height="10" rx="2" ry="2"></rect>
-                                    <path d="M10 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
-                                    <path d="M17 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
-                                    {currentSubtitleLang === 'off' && <line x1="2" y1="2" x2="22" y2="22" strokeWidth="2.5" stroke="currentColor" />}
-                                </svg>
-                                <select 
-                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer text-base bg-white text-black"
-                                    value={currentSubtitleLang}
-                                    onChange={(e) => setSubtitleLangState(e.target.value)}
-                                >
-                                    {SUBTITLE_LANGS.map(l => (
-                                        <option key={l.code} value={l.code}>{l.label}</option>
-                                    ))}
-                                </select>
-                                {currentSubtitleLang !== 'off' && currentSubtitleLang !== 'fr' && <div className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ bottom: '2px', backgroundColor: progressColor }} />}
-                            </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <rect x="2" y="7" width="20" height="10" rx="2" ry="2"></rect>
+                                        <path d="M10 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
+                                        <path d="M17 14.5a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3"></path>
+                                        {!subtitlesEnabled && <line x1="2" y1="2" x2="22" y2="22" strokeWidth="2.5" stroke="currentColor" />}
+                                    </svg>
+                                    {subtitlesEnabled && <div className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ bottom: '2px', backgroundColor: progressColor }} />}
+                                </button>
+                            )}
 
 
 
