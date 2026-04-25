@@ -65,6 +65,15 @@
     "lastName": "姓氏",
     "profession": "职业 (例：骨疗师)",
     "emailPlaceholder": "你的@email.com",
-    "loginBtn": "登录"
+    "loginBtn": "登录",
+    "verifyEmails": "请检查您的电子邮件",
+    "codeSentTo": "发送到以下地址的代码：",
+    "invalidCode": "无效或过期的代码。",
+    "loginError": "登录时发生错误。",
+    "validateCode": "验证代码",
+    "changeEmail": "修改电子邮件地址",
+    "clearCache": "清除设备缓存",
+    "realisation": "Feelprod 制作",
+    "devBypass": "DEV: 强制管理员访问"
   }
 }

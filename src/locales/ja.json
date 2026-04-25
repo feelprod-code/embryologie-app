@@ -65,6 +65,15 @@
     "lastName": "姓",
     "profession": "職業 (例：オステオパシー医)",
     "emailPlaceholder": "あなたの@email.com",
-    "loginBtn": "ログイン"
+    "loginBtn": "ログイン",
+    "verifyEmails": "メールを確認してください",
+    "codeSentTo": "以下のアドレスに送信されたコード：",
+    "invalidCode": "無効または期限切れのコード。",
+    "loginError": "ログイン中にエラーが発生しました。",
+    "validateCode": "コードを検証",
+    "changeEmail": "メールアドレスを変更",
+    "clearCache": "デバイスのキャッシュをクリア",
+    "realisation": "制作 Feelprod",
+    "devBypass": "DEV: 管理者アクセスを強制"
   }
 }

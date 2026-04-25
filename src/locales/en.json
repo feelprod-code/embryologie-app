@@ -78,6 +78,15 @@
     "lastName": "Last Name",
     "profession": "Profession (e.g. Osteopath)",
     "emailPlaceholder": "your@email.com",
-    "loginBtn": "LOG IN"
+    "loginBtn": "LOG IN",
+    "verifyEmails": "Check your emails",
+    "codeSentTo": "Here is the code sent to",
+    "invalidCode": "Invalid or expired code.",
+    "loginError": "An error occurred during login.",
+    "validateCode": "VALIDATE CODE",
+    "changeEmail": "Change email address",
+    "clearCache": "Clear device cache",
+    "realisation": "By Feelprod",
+    "devBypass": "DEV: Force Admin Access"
   }
 }

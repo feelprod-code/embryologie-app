@@ -70,6 +70,15 @@
     "lastName": "Apellido",
     "profession": "Profesión (ej: Osteópata)",
     "emailPlaceholder": "tu@email.com",
-    "loginBtn": "INICIAR SESIÓN"
+    "loginBtn": "INICIAR SESIÓN",
+    "verifyEmails": "Revisa tus correos",
+    "codeSentTo": "Aquí está el código enviado a",
+    "invalidCode": "Código inválido o expirado.",
+    "loginError": "Ocurrió un error al iniciar sesión.",
+    "validateCode": "VALIDAR EL CÓDIGO",
+    "changeEmail": "Modificar la dirección de correo",
+    "clearCache": "Borrar la caché del dispositivo",
+    "realisation": "Realización Feelprod",
+    "devBypass": "DEV: Forzar acceso de Admin"
   }
 }

@@ -81,6 +81,15 @@
     "lastName": "Nom",
     "profession": "Profession (ex: Ostéopathe)",
     "emailPlaceholder": "votre@email.com",
-    "loginBtn": "SE CONNECTER"
+    "loginBtn": "SE CONNECTER",
+    "verifyEmails": "Vérifiez vos emails",
+    "codeSentTo": "Voici le code envoyé à",
+    "invalidCode": "Code invalide ou expiré.",
+    "loginError": "Une erreur est survenue lors de la connexion.",
+    "validateCode": "VALIDER LE CODE",
+    "changeEmail": "Modifier l'adresse email",
+    "clearCache": "Vider le cache de l'appareil",
+    "realisation": "Réalisation Feelprod",
+    "devBypass": "DEV: Forcer l'accès Admin"
   }
 }

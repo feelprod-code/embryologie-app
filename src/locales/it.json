@@ -65,6 +65,15 @@
     "lastName": "Cognome",
     "profession": "Professione (es: Osteopata)",
     "emailPlaceholder": "tuo@email.com",
-    "loginBtn": "ACCEDI"
+    "loginBtn": "ACCEDI",
+    "verifyEmails": "Controlla le tue email",
+    "codeSentTo": "Ecco il codice inviato a",
+    "invalidCode": "Codice non valido o scaduto.",
+    "loginError": "Si è verificato un errore durante l'accesso.",
+    "validateCode": "CONVALIDA IL CODICE",
+    "changeEmail": "Modifica l'indirizzo email",
+    "clearCache": "Svuota la cache del dispositivo",
+    "realisation": "Realizzazione Feelprod",
+    "devBypass": "DEV: Forza l'accesso Admin"
   }
 }

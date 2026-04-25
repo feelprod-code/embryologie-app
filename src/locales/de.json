@@ -66,6 +66,15 @@
     "lastName": "Nachname",
     "profession": "Beruf (z.B. Osteopath)",
     "emailPlaceholder": "deine@email.com",
-    "loginBtn": "EINLOGGEN"
+    "loginBtn": "EINLOGGEN",
+    "verifyEmails": "Überprüfen Sie Ihre E-Mails",
+    "codeSentTo": "Hier ist der Code gesendet an",
+    "invalidCode": "Ungültiger oder abgelaufener Code.",
+    "loginError": "Bei der Anmeldung ist ein Fehler aufgetreten.",
+    "validateCode": "CODE BESTÄTIGEN",
+    "changeEmail": "E-Mail-Adresse ändern",
+    "clearCache": "Geräte-Cache leeren",
+    "realisation": "Realisierung Feelprod",
+    "devBypass": "DEV: Admin-Zugriff erzwingen"
   }
 }

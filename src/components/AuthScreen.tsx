@@ -137,9 +137,9 @@ export const AuthScreen: React.FC = () => {
                         <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#5A9C51]/10 rounded-full flex items-center justify-center mb-1 sm:mb-2">
                             <Mail className="text-[#5A9C51] w-6 h-6 sm:w-8 sm:h-8" />
                         </div>
-                        <h3 className="text-slate-800 font-bold text-lg sm:text-xl">Vérifiez vos emails</h3>
+                        <h3 className="text-slate-800 font-bold text-lg sm:text-xl">{t('auth.verifyEmails', "Vérifiez vos emails")}</h3>
                         <p className="text-slate-500 text-xs sm:text-sm mb-1 sm:mb-2 px-2">
-                            Voici le code envoyé à <strong className="text-slate-800 break-words block mt-1 sm:mt-0 sm:inline">{email}</strong> :
+                            {t('auth.codeSentTo', "Voici le code envoyé à")} <strong className="text-slate-800 break-words block mt-1 sm:mt-0 sm:inline">{email}</strong> :
                         </p>
 
                         {error && (
@@ -167,7 +167,7 @@ export const AuthScreen: React.FC = () => {
                             {isLoading ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
                             ) : (
-                                "VALIDER LE CODE"
+                                t('auth.validateCode', "VALIDER LE CODE")
                             )}
                         </button>
 
@@ -180,7 +180,7 @@ export const AuthScreen: React.FC = () => {
                             }}
                             className="text-slate-400 text-sm mt-2 hover:text-slate-600 underline"
                         >
-                            Modifier l'adresse email
+                            {t('auth.changeEmail', "Modifier l'adresse email")}
                         </button>
                     </form>
                 ) : (
@@ -262,7 +262,7 @@ export const AuthScreen: React.FC = () => {
                                 className="w-full flex items-center justify-center py-3 px-4 rounded-xl text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all duration-300 mt-4"
                             >
                                 <ShieldAlert className="w-5 h-5 mr-2" />
-                                DEV: Forcer l'accès Admin
+                                {t('auth.devBypass', "DEV: Forcer l'accès Admin")}
                             </button>
                         )}
                     </form>
@@ -286,11 +286,11 @@ export const AuthScreen: React.FC = () => {
                     }}
                     className="flex items-center justify-center gap-1 text-[11px] sm:text-xs font-bold text-[#4171B5] hover:text-[#4171B5]/80 transition-colors px-3 py-1.5"
                 >
-                    <Trash2 className="w-3.5 h-3.5" /> Vider le cache de l'appareil
+                    <Trash2 className="w-3.5 h-3.5" /> {t('auth.clearCache', "Vider le cache de l'appareil")}
                 </button>
                 <div className="flex flex-col items-center justify-center gap-1">
                     <span className="text-[10px] sm:text-[11px] md:text-sm text-slate-500/80 font-medium uppercase tracking-[0.3em] text-center relative z-20">
-                        Réalisation Feelprod
+                        {t('auth.realisation', "Réalisation Feelprod")}
                     </span>
                     <div className="w-12 h-[1px] bg-slate-300/50 mt-0.5"></div>
                 </div>
