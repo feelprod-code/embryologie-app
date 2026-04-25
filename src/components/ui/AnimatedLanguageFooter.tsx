@@ -26,7 +26,7 @@ export const AnimatedLanguageFooter = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 gap-2 text-[10px] sm:text-xs font-bold text-[#A06C50] uppercase tracking-[0.2em] w-full max-w-[320px]">
+    <div className="grid grid-cols-2 gap-2 text-[10px] sm:text-xs font-bold text-[#A06C50] uppercase tracking-[0.2em] w-full max-w-[320px] translate-x-6">
       <div className="flex justify-end items-center text-right">
         <span>{t('home.available_in', "Disponible en")}</span>
       </div>
