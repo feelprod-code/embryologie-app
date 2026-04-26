@@ -684,7 +684,15 @@ function App() {
           {currentView === 'embryo-ai' && (
             <div className="w-full relative h-[calc(100vh-69px)] flex flex-col items-center md:items-stretch md:justify-start py-0 px-0 sm:px-4 md:px-0 pt-0">
               {(!isPremium && !isAdmin) ? (
-                <Paywall />
+                <div className="relative w-full flex-1 flex flex-col">
+                  <button 
+                    onClick={() => setCurrentView('home')} 
+                    className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 w-12 h-12 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 shadow-md border border-slate-100 touch-manipulation cursor-pointer select-none"
+                  >
+                    <X size={20} strokeWidth={2.5} />
+                  </button>
+                  <Paywall />
+                </div>
               ) : (
                 <ChatBot
                   isAdmin={isAdmin}
