@@ -918,12 +918,12 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         }}
                     >
                         <span
-                            className="text-slate-700 bg-[#FAF6ED]/95 px-3 py-1.5 rounded-xl mx-2 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans shadow-md"
+                            className="text-slate-700 bg-[#FAF6ED]/95 px-3 py-1 rounded-lg mx-2 max-w-[95%] sm:max-w-[85%] md:max-w-3xl text-center whitespace-pre-wrap break-words font-sans shadow-md"
                             style={{
                                 display: 'inline-block',
-                                fontSize: `${isFullscreen ? Math.max(12, Math.min(32, containerWidth * 0.035)) : Math.max(10, Math.min(22, containerWidth * 0.03))}px`,
+                                fontSize: `${isFullscreen ? Math.max(12, Math.min(24, containerWidth * 0.022)) : Math.max(10, Math.min(18, containerWidth * 0.022))}px`,
                                 letterSpacing: '0.01em',
-                                lineHeight: '1.4',
+                                lineHeight: '1.3',
                                 fontWeight: '500',
                             }}
                             dangerouslySetInnerHTML={{ __html: activeSubtitle }}
