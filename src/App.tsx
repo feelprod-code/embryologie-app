@@ -477,7 +477,7 @@ function App() {
           <div className="relative w-full max-w-md z-10 animate-fade-in-up">
             <button 
               onClick={() => window.location.href = window.location.pathname} 
-              className="absolute -top-4 -right-4 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 shadow-xl border border-slate-100"
+              className="absolute -top-4 -right-2 sm:-top-5 sm:-right-5 z-20 w-12 h-12 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 shadow-xl border border-slate-100 touch-manipulation cursor-pointer select-none"
             >
               <X size={20} strokeWidth={2.5} />
             </button>
@@ -721,9 +721,9 @@ function App() {
                     <div className="relative w-full max-w-md z-10 animate-fade-in-up">
                       <button 
                         onClick={() => setShowPaywallModal(false)} 
-                        className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 z-20 w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 shadow-xl border border-slate-100 transition-colors"
+                        className="absolute -top-4 -right-2 sm:-top-5 sm:-right-5 z-20 w-12 h-12 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 shadow-xl border border-slate-100 transition-colors touch-manipulation cursor-pointer select-none"
                       >
-                        <X size={18} strokeWidth={2.5} />
+                        <X size={20} strokeWidth={2.5} />
                       </button>
                       <div className="overflow-hidden rounded-3xl shadow-2xl">
                         <Paywall />
