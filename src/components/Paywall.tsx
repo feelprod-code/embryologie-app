@@ -50,7 +50,7 @@ export function Paywall() {
           href={stripeLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3.5 sm:py-4 px-6 rounded-xl transition-all shadow-md active:scale-95 text-base sm:text-lg flex items-center justify-center no-underline"
+          className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3.5 sm:py-4 px-6 rounded-xl transition-colors shadow-md text-base sm:text-lg flex items-center justify-center no-underline touch-manipulation cursor-pointer select-none"
         >
           Débloquer l'accès complet
         </a>
