@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, Loader2, PlayCircle, X, Download } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { ArrowRight, Loader2, PlayCircle, X, Download, Mic, MicOff } from 'lucide-react';
+import { useRealtimeVoice } from '../hooks/useRealtimeVoice';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { detailedStages as detailedStagesFr } from '../data/embryologie';
@@ -139,6 +140,26 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
     const [error, setError] = useState<string | null>(null);
     const [isFastMode, setIsFastMode] = useState(!isAdmin);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    // --- VOCAL MODE (Admin only) ---
+    const handleVoiceTranscript = useCallback((role: 'user' | 'assistant', text: string) => {
+        if (!text.trim()) return;
+        setMessages(prev => [...prev, { role, content: text }]);
+    }, []);
+
+    const { status: voiceStatus, connect: voiceConnect, disconnect: voiceDisconnect, isConnected: isVoiceConnected, isConnecting: isVoiceConnecting } = useRealtimeVoice({
+        language: i18n.language,
+        courseContext: getCourseContext(i18n.language),
+        onTranscript: handleVoiceTranscript,
+    });
+
+    const handleVoiceToggle = () => {
+        if (isVoiceConnected || isVoiceConnecting) {
+            voiceDisconnect();
+        } else {
+            voiceConnect();
+        }
+    };
 
     // Sync isFastMode if isAdmin prop changes dynamically
     useEffect(() => {
@@ -582,10 +603,10 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                             <div className="flex bg-slate-100 p-0.5 rounded-full border border-slate-200/60 shadow-sm ml-8 xs:ml-0">
                                 <button
                                     type="button"
-                                    onClick={() => setIsFastMode(true)}
+                                    onClick={() => { if (isVoiceConnected) voiceDisconnect(); setIsFastMode(true); }}
                                     className={cn(
                                         "flex items-center justify-center px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-all",
-                                        isFastMode
+                                        isFastMode && !isVoiceConnected && !isVoiceConnecting
                                             ? "bg-[#A06C50] text-white shadow-sm"
                                             : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
                                     )}
@@ -595,16 +616,32 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                 </button>
                                 <button
                                     type="button"
-                                    onClick={() => setIsFastMode(false)}
+                                    onClick={() => { if (isVoiceConnected) voiceDisconnect(); setIsFastMode(false); }}
                                     className={cn(
                                         "flex items-center justify-center px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-all",
-                                        !isFastMode
+                                        !isFastMode && !isVoiceConnected && !isVoiceConnecting
                                             ? "bg-[#A06C50] text-white shadow-sm"
                                             : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
                                     )}
                                     title="Mode Profond : Donne le cours intégral à lire à l'IA (- rapide)"
                                 >
                                     DEEP
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={handleVoiceToggle}
+                                    className={cn(
+                                        "flex items-center justify-center gap-1 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-all",
+                                        isVoiceConnected
+                                            ? "bg-red-500 text-white shadow-sm animate-pulse"
+                                            : isVoiceConnecting
+                                                ? "bg-amber-500 text-white shadow-sm"
+                                                : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
+                                    )}
+                                    title={isVoiceConnected ? 'Arrêter le mode vocal' : 'Démarrer le tuteur vocal'}
+                                >
+                                    {isVoiceConnected ? <MicOff size={12} /> : <Mic size={12} />}
+                                    {isVoiceConnecting ? '...' : 'VOCAL'}
                                 </button>
                             </div>
                         )}
