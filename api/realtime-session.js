@@ -54,6 +54,7 @@ ${courseContext.substring(0, 8000)}`;
       },
       body: JSON.stringify({
         model: 'gpt-4o-realtime-preview',
+        modalities: ["audio", "text"],
         voice: 'echo',
         instructions: instructions,
         input_audio_transcription: { model: 'whisper-1' },
