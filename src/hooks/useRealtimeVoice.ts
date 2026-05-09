@@ -55,8 +55,14 @@ export function useRealtimeVoice({ language, courseContext, onTranscript }: UseR
         audioEl.srcObject = e.streams[0];
       };
 
-      // 4. Add microphone input
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      // 4. Add microphone input with echo cancellation to prevent AI interrupting itself
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        audio: { 
+          echoCancellation: true, 
+          noiseSuppression: true, 
+          autoGainControl: true 
+        } 
+      });
       streamRef.current = stream;
       pc.addTrack(stream.getTracks()[0]);
 
