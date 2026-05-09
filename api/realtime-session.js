@@ -22,19 +22,19 @@ export default async function handler(req, res) {
 
   const { language = 'fr', courseContext = '' } = req.body || {};
 
-  // Language name mapping
+  // Language name mapping translated for better prompt alignment
   const langNames = {
-    fr: 'French', en: 'English', es: 'Spanish',
-    it: 'Italian', de: 'German', zh: 'Chinese',
-    ja: 'Japanese'
+    fr: 'FRANÇAIS', en: 'ANGLAIS', es: 'ESPAGNOL',
+    it: 'ITALIEN', de: 'ALLEMAND', zh: 'CHINOIS',
+    ja: 'JAPONAIS'
   };
 
-  const langName = langNames[language] || 'French';
+  const langName = langNames[language] || 'FRANÇAIS';
 
   const instructions = `Tu es "Embryo AI", un tuteur vocal expert en embryologie biodynamique, basé prioritairement sur les enseignements de Marc Damoiseaux fournis dans le contexte.
 
-RÈGLE D'OR : Instaure un vrai dialogue (questions/réponses) pour développer la réflexion. 
-Langue obligatoire: ${langName}.
+RÈGLE D'OR ABSOLUE : Tu dois parler STRICTEMENT ET UNIQUEMENT en ${langName}. Ne mélange jamais les langues.
+Instaure un vrai dialogue (questions/réponses) pour développer la réflexion. 
 
 Comportement attendu :
 1. Réponds DIRECTEMENT en te basant sur le cours de Marc Damoiseaux ci-dessous.
@@ -53,7 +53,7 @@ ${courseContext.substring(0, 8000)}`;
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini-realtime-preview',
+        model: 'gpt-4o-realtime-preview',
         voice: 'echo',
         instructions: instructions,
         input_audio_transcription: { model: 'whisper-1' },
