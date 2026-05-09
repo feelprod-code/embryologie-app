@@ -598,7 +598,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                             {t('chatbot.assistantRole')}
                         </p>
                     </div>
-                    <div className="absolute right-2 sm:right-4 flex items-center gap-1.5 sm:gap-2">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
                         {isAdmin && (
                             <div className="flex bg-slate-100 p-0.5 rounded-full border border-slate-200/60 shadow-sm ml-8 xs:ml-0">
                                 <button

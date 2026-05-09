@@ -54,7 +54,7 @@ ${courseContext.substring(0, 8000)}`;
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini-realtime-preview',
-        voice: 'sage',
+        voice: 'alloy',
         instructions: instructions,
         input_audio_transcription: { model: 'whisper-1' },
       }),
