@@ -3,7 +3,7 @@ import { cn } from '../utils';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './ui/LanguageSwitcher';
 
-import { LogOut } from 'lucide-react';
+import { LogOut, BookOpen } from 'lucide-react';
 
 interface DesktopMenuProps {
     currentView: string;
@@ -68,6 +68,20 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
                     )}
                 >
                     {t('nav.ai_assistant', 'Assistant IA')}
+                </button>
+
+                <button
+                    onClick={() => setCurrentView('bibliographie')}
+                    className={cn(
+                        "flex items-center gap-2 px-4 py-1.5 rounded-xl font-bebas text-lg tracking-wide transition-colors",
+                        currentView === 'bibliographie'
+                            ? "bg-[#F27D33] text-white shadow-md"
+                            : "bg-transparent text-slate-600 hover:bg-[#F5F1E8] hover:text-slate-900"
+                    )}
+                >
+                    <BookOpen size={18} className={currentView === 'bibliographie' ? "text-white" : "text-slate-500"} />
+                    <span className="hidden xl:inline">Bibliographie</span>
+                    <span className="xl:hidden">Biblio</span>
                 </button>
 
                 {isAdmin && (

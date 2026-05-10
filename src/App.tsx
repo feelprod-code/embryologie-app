@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useTransition } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video, Shield, LogOut, X } from 'lucide-react';
+import { Layers, Droplet, Heart, Brain, Baby, CircleDot, Waves, ArrowRightLeft, Clock, GitCommitHorizontal, Sparkles, Stethoscope, HeartHandshake, Eye, Home as HomeIcon, Video, Shield, LogOut, X, BookOpen } from 'lucide-react';
 import { detailedStages as detailedStagesFr, type StageDataV2, type EmbryoLayer } from './data/embryologie';
 import { detailedStages as detailedStagesEn } from './data/embryologie_en';
 import { detailedStages as detailedStagesEs } from './data/embryologie_es';
@@ -16,6 +16,7 @@ import { VideoPlayerPage } from './components/VideoPlayerPage';
 import { AuthScreen } from './components/AuthScreen';
 import { Paywall } from './components/Paywall';
 import { AdminDashboard } from './components/AdminDashboard';
+import { Bibliographie } from './components/Bibliographie';
 import { supabase } from './lib/supabase';
 import { type VideoCourse } from './data/videoCourses';
 import { cn, isLocalNetwork } from './utils';
@@ -434,7 +435,7 @@ function App() {
   const [activeStageId, setActiveStageId] = useState<string>(detailedStages[0].id);
   const [playingVideoIdx, setPlayingVideoIdx] = useState<number | null>(null);
 
-  type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'admin' | 'admin-users' | 'admin-prompts';
+  type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'bibliographie' | 'admin' | 'admin-users' | 'admin-prompts';
   const [currentView, setCurrentView] = useState<View>('home');
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
   const [optimisticView, setOptimisticView] = useState<View | null>(null);
@@ -506,7 +507,7 @@ function App() {
           className={cn(
             "fixed bottom-0 z-50 w-full bg-[#FAF6ED]/95 backdrop-blur-xl border-t border-slate-200 lg:hidden shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] overscroll-none grid",
             window.self !== window.top ? "pb-[40px]" : "pb-[env(safe-area-inset-bottom,16px)]",
-            isAdmin ? "grid-cols-7" : "grid-cols-6"
+            isAdmin ? "grid-cols-8" : "grid-cols-7"
           )}
         >
           <button
@@ -563,6 +564,20 @@ function App() {
               <Brain size={24} />
             </div>
             <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'embryo-ai' ? "font-medium" : "font-normal")}>{t('nav.ai_assistant')}</span>
+          </button>
+
+          <button
+            onClick={() => handleViewChange('bibliographie')}
+            onTouchStart={(e) => { e.preventDefault(); handleViewChange('bibliographie'); }}
+            className={cn(
+              "flex flex-col items-center justify-start pt-3 pb-2 gap-1 transition-colors cursor-pointer touch-manipulation md:active:scale-95 group overflow-hidden w-full",
+              activeNav === 'bibliographie' ? "text-slate-800" : "text-slate-600 hover:text-slate-800"
+            )}
+          >
+            <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", activeNav === 'bibliographie' ? "scale-105" : "group-hover:scale-105")}>
+              <BookOpen size={24} />
+            </div>
+            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'bibliographie' ? "font-medium" : "font-normal")}>Biblio</span>
           </button>
 
           {isAdmin && (
@@ -662,10 +677,10 @@ function App() {
 
         <div className={cn(
           "flex flex-col items-center w-full flex-1 min-h-0",
-          currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai' || currentView === 'admin'
+          currentView === 'home' || currentView === 'video-player' || currentView === 'embryo-ai' || currentView === 'admin' || currentView === 'bibliographie'
             ? "p-0"
             : "px-2 sm:px-6 lg:px-8 w-full pb-[90px] md:pb-8",
-          currentView === 'home' || currentView === 'admin' ? "overflow-hidden h-[100dvh] md:h-full" : "",
+          currentView === 'home' || currentView === 'admin' || currentView === 'bibliographie' ? "overflow-hidden h-[100dvh] md:h-full" : "",
           currentView === 'video-player' ? "pt-0 pb-[90px] md:pb-2 overflow-hidden h-[100dvh] md:h-full" : "pt-0"
         )}>
 
@@ -702,6 +717,11 @@ function App() {
                   }}
                 />
               )}
+            </div>
+          )}
+          {currentView === 'bibliographie' && (
+            <div className="w-full flex-1 flex flex-col items-center animate-fade-in relative z-10 mx-auto overflow-y-auto no-scrollbar">
+              <Bibliographie />
             </div>
           )}
 
