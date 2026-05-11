@@ -369,7 +369,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   const isMobileLayout = activeLayout === 'mobile';
   const isTabletLayout = activeLayout === 'tablet';
+
   const isDesktopLayout = activeLayout === 'desktop';
+
+  const is43 = course.id.toLowerCase().includes('tricot') || (course.categoryId && course.categoryId.toLowerCase().includes('tricot'));
+
 
   const pipResizeStartRef = useRef<{ x: number, width: number } | null>(null);
   const pipDragStartRef = useRef<{ clientX: number, clientY: number, startX: number, startY: number, bounds: { minX: number, maxX: number, minY: number, maxY: number } | null } | null>(null);
@@ -527,8 +531,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       >
         <div
           className={cn(
-            "relative transition-none flex-shrink-0 flex items-center justify-center w-full",
-            isFullscreen ? "h-full" : "aspect-video"
+            "relative transition-none flex-shrink-0 flex items-center justify-center mx-auto",
+            isFullscreen ? "w-full h-full" : (is43 ? "w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl aspect-[4/3]" : "w-full aspect-video")
           )}
         >
           <CustomVideoPlayer
