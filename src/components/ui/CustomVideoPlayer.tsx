@@ -823,7 +823,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             height="100%"
                             playbackRate={speed}
                             responsive={false}
-                            playsInline
                             onEnded={() => {
                                 setIsPlaying(false);
                                 if (onEnded) onEnded();

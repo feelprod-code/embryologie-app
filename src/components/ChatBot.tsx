@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { ArrowRight, Loader2, PlayCircle, X, Download, Mic, MicOff } from 'lucide-react';
-import { useRealtimeVoice } from '../hooks/useRealtimeVoice';
+import { useGeminiLive } from '../hooks/useGeminiLive';
+import { getOKFContext, getCoreStagesContext } from '../utils/okf';
+
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { detailedStages as detailedStagesFr } from '../data/embryologie';
@@ -102,9 +104,10 @@ RÈGLE ABSOLUE NUMÉRO 3 : Adopte un ton professionnel, encourageant, et précis
 RÈGLE ABSOLUE NUMÉRO 4 : Organise IMPÉRATIVEMENT  ta réponse avec de VRAIS titres Markdown (utilise ## pour les grands titres, ### pour les sous-titres) afin de structurer la lecture. Ne mets JAMAIS le contenu sur la même ligne qu'un titre, va toujours à la ligne. Aère le texte au maximum avec des paragraphes et utilise le **gras** uniquement pour mettre en valeur les mots-clés dans les phrases.
 RÈGLE ABSOLUE NUMÉRO 5 : Lorsque tu cites ou fais référence à un cours vidéo, tu DOIS ABSOLUMENT formater la source exacte sous forme de lien markdown avec une ancre commençant STRICTEMENT par "#video-ID_VIDEO". Ne mets JAMAIS d'url classique du type "https://" ni de protocole inventé. Exemple parfait: Si cest une vidéo de l'Endoderme, écrit exactement ceci : [Source exacte](#video-endoderme-01).
 RÈGLE ABSOLUE NUMÉRO 6 : Tu réponds IMPÉRATIVEMENT dans la langue de l'utilisateur. Langue actuelle: ${lang}.
+RÈGLE ABSOLUE NUMÉRO 7 : Pour enrichir tes réponses cliniques si besoin, tu es fortement encouragé à utiliser des informations provenant des meilleurs sites scientifiques et médicaux du web (ex: PubMed, NCBI, embryology.med.unsw.edu.au, études de Blechschmidt ou Jealous). Dans ce cas, indique CLAIREMENT les sources web externes sous forme de liens ou citations claires.
 
 CONTEXTE DU COURS :
-${customContext !== undefined ? customContext : getCourseContext(lang)}
+${customContext !== undefined ? customContext : getCoreStagesContext()}
 `;
 
 type Message = {
@@ -138,7 +141,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [isFastMode, setIsFastMode] = useState(!isAdmin);
+    const [isFastMode, setIsFastMode] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     // --- VOCAL MODE (Admin only) ---
@@ -147,9 +150,9 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
         setMessages(prev => [...prev, { role, content: text }]);
     }, []);
 
-    const { status: voiceStatus, connect: voiceConnect, disconnect: voiceDisconnect, isConnected: isVoiceConnected, isConnecting: isVoiceConnecting } = useRealtimeVoice({
+    const { status: voiceStatus, connect: voiceConnect, disconnect: voiceDisconnect, isConnected: isVoiceConnected, isConnecting: isVoiceConnecting } = useGeminiLive({
         language: i18n.language,
-        courseContext: getCourseContext(i18n.language),
+        courseContext: getCoreStagesContext(),
         onTranscript: handleVoiceTranscript,
     });
 
@@ -163,7 +166,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
 
     // Sync isFastMode if isAdmin prop changes dynamically
     useEffect(() => {
-        setIsFastMode(!isAdmin);
+        setIsFastMode(false); // Default to OKF mode (DEEP)
     }, [isAdmin]);
 
     // Prevent body vertical bounce on iOS devices
@@ -546,6 +549,9 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                         pineconeData.results.map((r: any) => `Document: ${r.metadata.title || 'Inconnu'}\nAuteur: ${r.metadata.author || 'Inconnu'}\nContenu: ${r.text || r.metadata.text}`).join('\n\n') +
                         "\n---";
                 }
+            } else {
+                // Mode DEEP : recherche locale ultra-rapide et structurée dans OKF
+                currentContext = getOKFContext(userMessage, 8);
             }
 
             const apiMessages = [

@@ -24,6 +24,7 @@ dist-ssr
 *.sw?
 .vercel
 *.mjs
+!scripts/build-knowledge.mjs
 .env.vercel
 scripts/pdfs_cours/
 .env*.local
