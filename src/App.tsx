@@ -279,7 +279,11 @@ function App() {
             (currentSession?.user?.email && ADMIN_EMAILS.includes(currentSession.user.email.toLowerCase())) ||
             (profile.email && ADMIN_EMAILS.includes(profile.email.toLowerCase()));
 
-          const MAX_DEVICES = isAdminUser ? 3 : 1;
+          const isSuperAdmin =
+            (currentSession?.user?.email && currentSession.user.email.toLowerCase() === 'guillaumephilippe1968@gmail.com') ||
+            (profile.email && profile.email.toLowerCase() === 'guillaumephilippe1968@gmail.com');
+
+          const MAX_DEVICES = isSuperAdmin ? 99 : (isAdminUser ? 3 : 1);
 
           if (!isMatch) {
             if (deviceIds.length < MAX_DEVICES) {
