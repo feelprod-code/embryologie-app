@@ -35,11 +35,7 @@ export function AdminDashboard() {
     const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
     const [activeTab, setActiveTab] = useState<'users' | 'analytics'>('users');
     const [timeframe, setTimeframe] = useState<'week' | 'month' | 'year'>('week');
-    const [lookerStudioUrl, setLookerStudioUrl] = useState<string>(() => {
-        return typeof window !== 'undefined' ? localStorage.getItem('looker_studio_url') || '' : '';
-    });
-    const [isEditingUrl, setIsEditingUrl] = useState(false);
-    const [tempUrl, setTempUrl] = useState(lookerStudioUrl);
+
 
     const [gaData, setGaData] = useState<{ dimension: string; activeUsers: number; pageViews: number }[] | null>(null);
     const [topCountries, setTopCountries] = useState<{ country: string; activeUsers: number }[] | null>(null);
@@ -199,11 +195,7 @@ export function AdminDashboard() {
 
     const { pointsPv, pointsUv, pvPolylineString, uvPolylineString, pvAreaString, uvAreaString, maxVal: chartMaxVal } = getChartCoordinates();
 
-    const handleSaveLookerUrl = () => {
-        localStorage.setItem('looker_studio_url', tempUrl);
-        setLookerStudioUrl(tempUrl);
-        setIsEditingUrl(false);
-    };
+
 
 
     useEffect(() => {
@@ -614,64 +606,7 @@ export function AdminDashboard() {
                             </div>
                         </div>
 
-                        {/* LOOKER STUDIO IFRAME OR MOCK DASHBOARD */}
-                        {false ? (
-                            <div className="bg-white rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.03)] overflow-hidden p-4 space-y-4">
-                                <div className="flex justify-between items-center px-2">
-                                    <div className="flex items-center gap-2">
-                                        <BarChart2 className="text-indigo-600" size={20} />
-                                        <h3 className="font-bold text-slate-800 text-sm">Tableau de bord Google Analytics en direct</h3>
-                                    </div>
-                                    <button 
-                                        onClick={() => {
-                                            setTempUrl(lookerStudioUrl);
-                                            setIsEditingUrl(true);
-                                        }}
-                                        className="text-xs font-bold text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-1 cursor-pointer"
-                                    >
-                                        <Settings size={14} /> Configurer
-                                    </button>
-                                </div>
-
-                                {isEditingUrl ? (
-                                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200/50 space-y-3">
-                                        <label className="text-xs font-bold text-slate-600 block">Lien d'intégration Looker Studio / Analytics</label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-3 py-2 border border-slate-200 rounded-xl bg-white text-sm font-mono text-xs focus:outline-none"
-                                            value={tempUrl}
-                                            onChange={(e) => setTempUrl(e.target.value)}
-                                            placeholder="Ex: https://lookerstudio.google.com/embed/reporting/..."
-                                        />
-                                        <div className="flex gap-2">
-                                            <button onClick={handleSaveLookerUrl} className="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-bold cursor-pointer transition-colors">Enregistrer</button>
-                                            <button 
-                                                onClick={() => {
-                                                    localStorage.removeItem('looker_studio_url');
-                                                    setLookerStudioUrl('');
-                                                    setTempUrl('');
-                                                    setIsEditingUrl(false);
-                                                }} 
-                                                className="px-4 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded-lg text-xs font-bold cursor-pointer transition-colors"
-                                            >
-                                                Débrancher
-                                            </button>
-                                            <button onClick={() => setIsEditingUrl(false)} className="px-4 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-xs font-bold cursor-pointer transition-colors">Annuler</button>
-                                        </div>
-                                    </div>
-                                ) : null}
-
-                                <div className="relative w-full rounded-xl overflow-hidden bg-slate-100 border border-slate-200/50">
-                                    <iframe
-                                        src={lookerStudioUrl}
-                                        className="w-full h-[600px] border-0 bg-white"
-                                        allowFullScreen
-                                        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-                                    />
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                                 {/* MOCK VISITS CHART */}
                                 <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] lg:col-span-2 space-y-4">
                                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -885,95 +820,7 @@ export function AdminDashboard() {
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* INTEGRATE LOOKER STUDIO SETUP CARD */}
-                                <div className="bg-gradient-to-r from-indigo-900 to-slate-900 text-white p-6 rounded-2xl shadow-[0_10px_30px_rgba(28,46,74,0.15)] lg:col-span-3 space-y-4">
-                                    <div className="flex items-start gap-4">
-                                        <div className="p-3 bg-white/10 text-indigo-300 rounded-xl">
-                                            <BarChart2 size={24} />
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-lg">Afficher vos graphiques Google Looker Studio</h4>
-                                            <p className="text-xs text-slate-300 mt-1 leading-relaxed max-w-3xl">
-                                                Pour éviter les blocages de connexion Google dans l'application, vous pouvez brancher votre rapport Looker Studio ci-dessous et l'ouvrir en toute sécurité dans un nouvel onglet.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {lookerStudioUrl && (
-                                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-white/5 p-4 rounded-xl border border-white/5 gap-3 text-xs">
-                                            <div className="flex items-center gap-2">
-                                                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                                                <span>Rapport branché : <code className="text-slate-300 font-mono">{lookerStudioUrl.substring(0, 50)}...</code></span>
-                                            </div>
-                                            <div className="flex gap-2">
-                                                <a 
-                                                    href={lookerStudioUrl} 
-                                                    target="_blank" 
-                                                    rel="noreferrer" 
-                                                    className="px-4 py-2 bg-indigo-500 hover:bg-indigo-400 text-white font-bold rounded-lg transition-colors flex items-center gap-1.5"
-                                                >
-                                                    <ArrowUpRight size={14} /> Ouvrir le rapport
-                                                </a>
-                                                <button 
-                                                    onClick={() => {
-                                                        localStorage.removeItem('looker_studio_url');
-                                                        setLookerStudioUrl('');
-                                                        setTempUrl('');
-                                                    }}
-                                                    className="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-200 font-bold rounded-lg transition-colors"
-                                                >
-                                                    Débrancher
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300 pt-2 font-medium">
-                                        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
-                                            <span className="font-bold text-indigo-400 block mb-1">Étape 1</span>
-                                            Allez sur <a href="https://lookerstudio.google.com/" target="_blank" rel="noreferrer" className="text-white underline">Looker Studio</a> et créez un rapport connecté à votre propriété GA4.
-                                        </div>
-                                        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
-                                            <span className="font-bold text-indigo-400 block mb-1">Étape 2</span>
-                                            Cliquez sur **Partager** &rarr; **Intégrer le rapport**. Cochez "Activer l'intégration" et choisissez "Intégrer l'URL".
-                                        </div>
-                                        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
-                                            <span className="font-bold text-indigo-400 block mb-1">Étape 3</span>
-                                            Copiez l'URL d'intégration (ex: *https://lookerstudio.google.com/embed/...*) et collez-la ci-dessous :
-                                        </div>
-                                    </div>
-
-                                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                                        <input
-                                            type="text"
-                                            className="flex-1 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-white/20 text-xs font-mono"
-                                            placeholder="Coller l'URL d'intégration (https://lookerstudio.google.com/embed/...)"
-                                            value={tempUrl}
-                                            onChange={(e) => setTempUrl(e.target.value)}
-                                        />
-                                        <button 
-                                            onClick={handleSaveLookerUrl}
-                                            className="px-6 py-2.5 bg-indigo-500 hover:bg-indigo-400 transition-colors text-white font-bold text-xs rounded-xl shadow-md cursor-pointer flex items-center gap-1.5"
-                                        >
-                                            <ArrowUpRight size={14} /> Brancher le rapport
-                                        </button>
-                                        <button 
-                                            type="button"
-                                            onClick={() => {
-                                                const demoUrl = "https://lookerstudio.google.com/embed/reporting/0B-sAo9A1vjC9RE9vTmt1YTlyX0E/page/1M";
-                                                setTempUrl(demoUrl);
-                                                localStorage.setItem('looker_studio_url', demoUrl);
-                                                setLookerStudioUrl(demoUrl);
-                                            }}
-                                            className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 transition-colors text-white font-bold text-xs rounded-xl shadow-md cursor-pointer flex items-center gap-1.5 border border-white/10"
-                                        >
-                                            Visualiser une démo
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
-                        )}
                     </div>
                 )}
             </div>
