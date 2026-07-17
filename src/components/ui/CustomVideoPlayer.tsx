@@ -525,24 +525,41 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 return;
             }
 
-            // Remove any existing track element we added to avoid duplicates
+            // Remove any track element we added previously to avoid duplicates
             const existingTracks = videoElement.querySelectorAll('track');
             existingTracks.forEach((t: any) => t.remove());
 
-            // Create new track element
-            const track = document.createElement('track');
-            track.kind = 'subtitles';
-            track.srclang = getCloudflareLangCode(i18n.language || 'fr');
-            track.label = 'Français';
-            track.src = vttUrl;
-            track.default = true;
+            // Reuse or create programmatic TextTrack
+            let track = Array.from(videoElement.textTracks || []).find(
+                (t: any) => t.label === 'Français (FeelProd)'
+            ) as any;
 
-            videoElement.appendChild(track);
-
-            // Force visibility mode
-            if (videoElement.textTracks && videoElement.textTracks[0]) {
-                videoElement.textTracks[0].mode = subtitlesEnabled ? 'showing' : 'hidden';
+            if (track) {
+                // Clear existing cues
+                const cues = Array.from(track.cues || []);
+                cues.forEach((c: any) => track.removeCue(c));
+            } else {
+                // Create a new in-memory track
+                track = videoElement.addTextTrack('subtitles', 'Français (FeelProd)', getCloudflareLangCode(i18n.language || 'fr'));
             }
+
+            // Populate the track with our already-parsed cuesRef.current
+            if (cuesRef.current && cuesRef.current.length > 0) {
+                cuesRef.current.forEach((c) => {
+                    try {
+                        const CueClass = (window as any).VTTCue || (window as any).TextTrackCue;
+                        if (CueClass) {
+                            const cue = new CueClass(c.start, c.end, c.text);
+                            track.addCue(cue);
+                        }
+                    } catch (cueErr) {
+                        console.error("Failed to add cue:", cueErr);
+                    }
+                });
+            }
+
+            // Set track mode based on subtitlesEnabled state
+            track.mode = subtitlesEnabled ? 'showing' : 'hidden';
 
             // Attach native PiP listeners to notify parent component
             if (!hasAttachedPiPListeners.current) {
@@ -569,7 +586,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 console.log("setupNativeSubtitles: successfully attached PiP event listeners");
             }
 
-            console.log("setupNativeSubtitles: successfully attached track", vttUrl);
+            console.log("setupNativeSubtitles: successfully set up programmatic text track");
         } catch (e) {
             console.error("Error setting up native subtitles:", e);
         }
@@ -596,7 +613,10 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             }
             if (videoElement && videoElement.textTracks) {
                 for (let i = 0; i < videoElement.textTracks.length; i++) {
-                    videoElement.textTracks[i].mode = subtitlesEnabled ? 'showing' : 'hidden';
+                    const track = videoElement.textTracks[i];
+                    if (track.label === 'Français (FeelProd)') {
+                        track.mode = subtitlesEnabled ? 'showing' : 'hidden';
+                    }
                 }
             }
         } catch (e) {
