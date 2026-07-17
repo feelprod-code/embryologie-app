@@ -41,12 +41,160 @@ export function AdminDashboard() {
     const [isEditingUrl, setIsEditingUrl] = useState(false);
     const [tempUrl, setTempUrl] = useState(lookerStudioUrl);
 
+    const [gaData, setGaData] = useState<{ dimension: string; activeUsers: number; pageViews: number }[] | null>(null);
+    const [isLoadingGa, setIsLoadingGa] = useState<boolean>(false);
+    const [gaError, setGaError] = useState<string | null>(null);
+
     // Calculate metrics
     const totalUsers = profiles.length;
     const premiumUsers = profiles.filter(p => p.access_tier === 'premium' || p.access_tier === 'legacy').length;
     const trialUsers = profiles.filter(p => p.access_tier === 'trial').length;
     const freeUsers = profiles.filter(p => p.access_tier === 'free').length;
     const conversionRate = totalUsers > 0 ? Math.round((premiumUsers / totalUsers) * 100) : 0;
+
+    useEffect(() => {
+        if (activeTab === 'analytics') {
+            const fetchGaData = async () => {
+                setIsLoadingGa(true);
+                setGaError(null);
+                try {
+                    const res = await fetch(`/api/analytics?timeframe=${timeframe}`);
+                    if (!res.ok) {
+                        throw new Error('Failed to fetch analytics');
+                    }
+                    const data = await res.json();
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    setGaData(data.rows || []);
+                } catch (err: any) {
+                    console.error('Error fetching GA data:', err);
+                    setGaError(err.message || 'Error fetching analytics');
+                    setGaData(null);
+                } finally {
+                    setIsLoadingGa(false);
+                }
+            };
+            fetchGaData();
+        }
+    }, [activeTab, timeframe]);
+
+    const getChartData = (): { label: string; pv: number; uv: number }[] => {
+        if (gaData && gaData.length > 0) {
+            return gaData.map(item => {
+                let label = item.dimension;
+                if (timeframe === 'week' || timeframe === 'month') {
+                    if (item.dimension.length === 8) {
+                        const day = item.dimension.substring(6, 8);
+                        const month = item.dimension.substring(4, 6);
+                        label = `${day}/${month}`;
+                    }
+                } else if (timeframe === 'year') {
+                    if (item.dimension.length === 6) {
+                        const monthStr = item.dimension.substring(4, 6);
+                        const months = ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"];
+                        const mIdx = parseInt(monthStr, 10) - 1;
+                        label = (mIdx >= 0 && mIdx < 12) ? months[mIdx] : item.dimension;
+                    }
+                }
+                return {
+                    label,
+                    pv: item.pageViews,
+                    uv: item.activeUsers
+                };
+            });
+        }
+
+        // Mock Fallback
+        if (timeframe === 'week') {
+            return [
+                { label: 'Lun', pv: 120, uv: 40 },
+                { label: 'Mar', pv: 150, uv: 50 },
+                { label: 'Mer', pv: 180, uv: 65 },
+                { label: 'Jeu', pv: 210, uv: 80 },
+                { label: 'Ven', pv: 190, uv: 70 },
+                { label: 'Sam', pv: 130, uv: 45 },
+                { label: 'Dim', pv: 145, uv: 55 }
+            ];
+        } else if (timeframe === 'month') {
+            return [
+                { label: 'Jan', pv: 1200, uv: 450 },
+                { label: 'Fév', pv: 1400, uv: 550 },
+                { label: 'Mar', pv: 1900, uv: 750 },
+                { label: 'Avr', pv: 2400, uv: 900 },
+                { label: 'Mai', pv: 2800, uv: 1100 },
+                { label: 'Juin', pv: 2200, uv: 850 },
+                { label: 'Juil', pv: 1600, uv: 600 },
+                { label: 'Août', pv: 1100, uv: 400 },
+                { label: 'Sep', pv: 2500, uv: 1000 },
+                { label: 'Oct', pv: 2900, uv: 1100 },
+                { label: 'Nov', pv: 3400, uv: 1300 },
+                { label: 'Déc', pv: 3100, uv: 1200 }
+            ];
+        } else {
+            return [
+                { label: '2024', pv: 15000, uv: 6000 },
+                { label: '2025', pv: 24000, uv: 10000 },
+                { label: '2026', pv: 32000, uv: 14000 }
+            ];
+        }
+    };
+
+    const formatValue = (val: number): string => {
+        if (val >= 1000000) {
+            return `${(val / 1000000).toFixed(1)}M`;
+        }
+        if (val >= 1000) {
+            return `${(val / 1000).toFixed(1)}k`;
+        }
+        return val.toString();
+    };
+
+    const getChartCoordinates = () => {
+        const chartData = getChartData();
+        const maxVal = Math.max(
+            10,
+            ...chartData.map(d => d.pv),
+            ...chartData.map(d => d.uv)
+        );
+
+        let startX = 40;
+        let endX = 560;
+        if (timeframe === 'week') {
+            startX = 50;
+            endX = 530;
+        } else if (timeframe === 'year') {
+            startX = 100;
+            endX = 500;
+        }
+
+        const count = chartData.length;
+        const pointsPv = chartData.map((pt, idx) => {
+            const x = count > 1 ? startX + idx * ((endX - startX) / (count - 1)) : startX;
+            const y = 220 - (pt.pv / maxVal) * 180;
+            return { x, y, val: pt.pv, label: pt.label };
+        });
+
+        const pointsUv = chartData.map((pt, idx) => {
+            const x = count > 1 ? startX + idx * ((endX - startX) / (count - 1)) : startX;
+            const y = 220 - (pt.uv / maxVal) * 180;
+            return { x, y, val: pt.uv, label: pt.label };
+        });
+
+        const pvPolylineString = pointsPv.map(p => `${p.x},${p.y}`).join(' ');
+        const uvPolylineString = pointsUv.map(p => `${p.x},${p.y}`).join(' ');
+
+        const pvAreaString = pointsPv.length > 0 
+            ? `M ${pointsPv[0].x},220 ` + pointsPv.map(p => `L ${p.x},${p.y}`).join(' ') + ` L ${pointsPv[pointsPv.length - 1].x},220 Z`
+            : '';
+        const uvAreaString = pointsUv.length > 0 
+            ? `M ${pointsUv[0].x},220 ` + pointsUv.map(p => `L ${p.x},${p.y}`).join(' ') + ` L ${pointsUv[pointsUv.length - 1].x},220 Z`
+            : '';
+
+        return { pointsPv, pointsUv, pvPolylineString, uvPolylineString, pvAreaString, uvAreaString, maxVal };
+    };
+
+    const { pointsPv, pointsUv, pvPolylineString, uvPolylineString, pvAreaString, uvAreaString, maxVal: chartMaxVal } = getChartCoordinates();
 
     const handleSaveLookerUrl = () => {
         localStorage.setItem('looker_studio_url', tempUrl);
@@ -525,9 +673,21 @@ export function AdminDashboard() {
                                 <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] lg:col-span-2 space-y-4">
                                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                                         <div>
-                                            <h3 className="font-bold text-slate-800 text-base">
-                                                {timeframe === 'week' ? 'Trafic Hebdomadaire' : timeframe === 'month' ? 'Trafic Mensuel' : 'Trafic Annuel'} (Estimation)
-                                            </h3>
+                                            <div className="flex items-center gap-2">
+                                                <h3 className="font-bold text-slate-800 text-base">
+                                                    {timeframe === 'week' ? 'Trafic Hebdomadaire' : timeframe === 'month' ? 'Trafic Mensuel' : 'Trafic Annuel'}
+                                                </h3>
+                                                {gaData && gaData.length > 0 ? (
+                                                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[9px] font-bold rounded-full flex items-center gap-1 shadow-sm">
+                                                        <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                                                        Direct Google Analytics
+                                                    </span>
+                                                ) : (
+                                                    <span className="px-2 py-0.5 bg-indigo-100 text-indigo-800 text-[9px] font-bold rounded-full">
+                                                        Estimation
+                                                    </span>
+                                                )}
+                                            </div>
                                             <p className="text-xs text-slate-400 font-medium mt-0.5">Visites sur le site public embryologie.techniquesdoucestissulaires.fr</p>
                                         </div>
                                         <div className="flex items-center gap-4">
@@ -568,8 +728,16 @@ export function AdminDashboard() {
                                         </div>
                                     </div>
 
-                                    {/* MOCK SVG LINE CHART */}
+                                    {/* DYNAMIC SVG LINE CHART */}
                                     <div className="w-full h-64 pt-4 relative">
+                                        {isLoadingGa && (
+                                            <div className="absolute inset-0 bg-white/70 backdrop-blur-[1px] flex items-center justify-center z-10 rounded-xl">
+                                                <div className="flex flex-col items-center gap-2">
+                                                    <div className="w-6 h-6 border-2 border-indigo-500/20 border-t-indigo-600 rounded-full animate-spin"></div>
+                                                    <span className="text-[10px] font-bold text-slate-500">Chargement de Google Analytics...</span>
+                                                </div>
+                                            </div>
+                                        )}
                                         <svg className="w-full h-full" viewBox="0 0 600 240">
                                             {/* Grid */}
                                             <line x1="40" y1="40" x2="570" y2="40" stroke="#f1f5f9" strokeWidth="1" />
@@ -577,261 +745,79 @@ export function AdminDashboard() {
                                             <line x1="40" y1="160" x2="570" y2="160" stroke="#f1f5f9" strokeWidth="1" />
                                             <line x1="40" y1="220" x2="570" y2="220" stroke="#e2e8f0" strokeWidth="1.5" />
 
-                                            {/* Left Y-axis labels */}
-                                            {timeframe === 'week' ? (
-                                                <>
-                                                    <text x="10" y="44" fill="#94a3b8" fontSize="9" fontWeight="bold">250</text>
-                                                    <text x="10" y="104" fill="#94a3b8" fontSize="9" fontWeight="bold">150</text>
-                                                    <text x="10" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">75</text>
-                                                    <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
-                                                </>
-                                            ) : timeframe === 'month' ? (
-                                                <>
-                                                    <text x="5" y="44" fill="#94a3b8" fontSize="9" fontWeight="bold">4000</text>
-                                                    <text x="5" y="104" fill="#94a3b8" fontSize="9" fontWeight="bold">2500</text>
-                                                    <text x="5" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">1200</text>
-                                                    <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <text x="5" y="44" fill="#94a3b8" fontSize="9" fontWeight="bold">40k</text>
-                                                    <text x="5" y="104" fill="#94a3b8" fontSize="9" fontWeight="bold">25k</text>
-                                                    <text x="5" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">12k</text>
-                                                    <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
-                                                </>
-                                            )}
+                                            {/* Left Y-axis labels dynamically calculated */}
+                                            <text x="5" y="44" fill="#94a3b8" fontSize="9" fontWeight="bold">{formatValue(chartMaxVal)}</text>
+                                            <text x="5" y="104" fill="#94a3b8" fontSize="9" fontWeight="bold">{formatValue(Math.round(chartMaxVal * 2 / 3))}</text>
+                                            <text x="5" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">{formatValue(Math.round(chartMaxVal * 1 / 3))}</text>
+                                            <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
 
                                             {/* Area under lines */}
-                                            {timeframe === 'week' && (
-                                                <>
-                                                    <path 
-                                                        d="M 50,220 L 50,120 L 130,95 L 210,70 L 290,45 L 370,62 L 450,112 L 530,100 L 530,220 Z" 
-                                                        fill="url(#indigoGrad)" 
-                                                        opacity="0.04"
-                                                    />
-                                                    <path 
-                                                        d="M 50,220 L 50,148 L 130,130 L 210,103 L 290,76 L 370,94 L 450,139 L 530,121 L 530,220 Z" 
-                                                        fill="url(#tealGrad)" 
-                                                        opacity="0.04"
-                                                    />
-
-                                                    {/* Page Views Path (Indigo) */}
-                                                    <polyline
-                                                        points="50,120 130,95 210,70 290,45 370,62 450,112 530,100"
-                                                        fill="none"
-                                                        stroke="#6366f1"
-                                                        strokeWidth="3.5"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-
-                                                    {/* Unique Visits Path (Teal) */}
-                                                    <polyline
-                                                        points="50,148 130,130 210,103 290,76 370,94 450,139 530,121"
-                                                        fill="none"
-                                                        stroke="#14b8a6"
-                                                        strokeWidth="3.5"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-
-                                                    {/* Dots & Labels for Page Views (Indigo) */}
-                                                    {[
-                                                        { x: 50, y: 120, val: 120 },
-                                                        { x: 130, y: 95, val: 150 },
-                                                        { x: 210, y: 70, val: 180 },
-                                                        { x: 290, y: 45, val: 210 },
-                                                        { x: 370, y: 62, val: 190 },
-                                                        { x: 450, y: 112, val: 130 },
-                                                        { x: 530, y: 100, val: 145 }
-                                                    ].map((pt, idx) => (
-                                                        <g key={`pv-${idx}`}>
-                                                            <circle cx={pt.x} cy={pt.y} r="4" fill="#6366f1" stroke="#ffffff" strokeWidth="1.5" />
-                                                            <text x={pt.x} y={pt.y - 10} fill="#4f46e5" fontSize="10" fontWeight="bold" textAnchor="middle">{pt.val}</text>
-                                                        </g>
-                                                    ))}
-
-                                                    {/* Dots & Labels for Unique Visits (Teal) */}
-                                                    {[
-                                                        { x: 50, y: 148, val: 40 },
-                                                        { x: 130, y: 130, val: 50 },
-                                                        { x: 210, y: 103, val: 65 },
-                                                        { x: 290, y: 76, val: 80 },
-                                                        { x: 370, y: 94, val: 70 },
-                                                        { x: 450, y: 139, val: 45 },
-                                                        { x: 530, y: 121, val: 55 }
-                                                    ].map((pt, idx) => (
-                                                        <g key={`uv-${idx}`}>
-                                                            <circle cx={pt.x} cy={pt.y} r="4" fill="#14b8a6" stroke="#ffffff" strokeWidth="1.5" />
-                                                            <text x={pt.x} y={pt.y + 15} fill="#0d9488" fontSize="10" fontWeight="bold" textAnchor="middle">{pt.val}</text>
-                                                        </g>
-                                                    ))}
-
-                                                    {/* X-axis labels */}
-                                                    <text x="50" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Lun</text>
-                                                    <text x="130" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Mar</text>
-                                                    <text x="210" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Mer</text>
-                                                    <text x="290" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Jeu</text>
-                                                    <text x="370" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Ven</text>
-                                                    <text x="450" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Sam</text>
-                                                    <text x="530" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Dim</text>
-                                                </>
+                                            {pvAreaString && (
+                                                <path d={pvAreaString} fill="url(#indigoGrad)" opacity="0.04" />
+                                            )}
+                                            {uvAreaString && (
+                                                <path d={uvAreaString} fill="url(#tealGrad)" opacity="0.04" />
                                             )}
 
-                                            {timeframe === 'month' && (
-                                                <>
-                                                    <path 
-                                                        d="M 40,220 L 40,166 L 88,154 L 136,134 L 184,112 L 232,94 L 280,121 L 328,148 L 376,170 L 424,107 L 472,89 L 520,67 L 568,80 L 568,220 Z" 
-                                                        fill="url(#indigoGrad)" 
-                                                        opacity="0.04"
-                                                    />
-                                                    <path 
-                                                        d="M 40,220 L 40,200 L 88,195 L 136,186 L 184,179 L 232,170 L 280,181 L 328,193 L 376,202 L 424,175 L 472,168 L 520,159 L 568,166 L 568,220 Z" 
-                                                        fill="url(#tealGrad)" 
-                                                        opacity="0.04"
-                                                    />
-
-                                                    {/* Page Views Path (Indigo) */}
-                                                    <polyline
-                                                        points="40,166 88,154 136,134 184,112 232,94 280,121 328,148 376,170 424,107 472,89 520,67 568,80"
-                                                        fill="none"
-                                                        stroke="#6366f1"
-                                                        strokeWidth="3.5"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-
-                                                    {/* Unique Visits Path (Teal) */}
-                                                    <polyline
-                                                        points="40,200 88,195 136,186 184,179 232,170 280,181 328,193 376,202 424,175 472,168 520,159 568,166"
-                                                        fill="none"
-                                                        stroke="#14b8a6"
-                                                        strokeWidth="3.5"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-
-                                                    {/* Dots & Labels for Page Views (Indigo) */}
-                                                    {[
-                                                        { x: 40, y: 166, val: '1.2k' },
-                                                        { x: 88, y: 154, val: '1.4k' },
-                                                        { x: 136, y: 134, val: '1.9k' },
-                                                        { x: 184, y: 112, val: '2.4k' },
-                                                        { x: 232, y: 94, val: '2.8k' },
-                                                        { x: 280, y: 121, val: '2.2k' },
-                                                        { x: 328, y: 148, val: '1.6k' },
-                                                        { x: 376, y: 170, val: '1.1k' },
-                                                        { x: 424, y: 107, val: '2.5k' },
-                                                        { x: 472, y: 89, val: '2.9k' },
-                                                        { x: 520, y: 67, val: '3.4k' },
-                                                        { x: 568, y: 80, val: '3.1k' }
-                                                    ].map((pt, idx) => (
-                                                        <g key={`pv-mo-${idx}`}>
-                                                            <circle cx={pt.x} cy={pt.y} r="3" fill="#6366f1" stroke="#ffffff" strokeWidth="1" />
-                                                            <text x={pt.x} y={pt.y - 7} fill="#4f46e5" fontSize="8" fontWeight="bold" textAnchor="middle">{pt.val}</text>
-                                                        </g>
-                                                    ))}
-
-                                                    {/* Dots & Labels for Unique Visits (Teal) */}
-                                                    {[
-                                                        { x: 40, y: 200, val: '450' },
-                                                        { x: 88, y: 195, val: '550' },
-                                                        { x: 136, y: 186, val: '750' },
-                                                        { x: 184, y: 179, val: '900' },
-                                                        { x: 232, y: 170, val: '1.1k' },
-                                                        { x: 280, y: 181, val: '850' },
-                                                        { x: 328, y: 193, val: '600' },
-                                                        { x: 376, y: 202, val: '400' },
-                                                        { x: 424, y: 175, val: '1k' },
-                                                        { x: 472, y: 168, val: '1.1k' },
-                                                        { x: 520, y: 159, val: '1.3k' },
-                                                        { x: 568, y: 166, val: '1.2k' }
-                                                    ].map((pt, idx) => (
-                                                        <g key={`uv-mo-${idx}`}>
-                                                            <circle cx={pt.x} cy={pt.y} r="3" fill="#14b8a6" stroke="#ffffff" strokeWidth="1" />
-                                                            <text x={pt.x} y={pt.y + 11} fill="#0d9488" fontSize="8" fontWeight="bold" textAnchor="middle">{pt.val}</text>
-                                                        </g>
-                                                    ))}
-
-                                                    {/* X-axis labels */}
-                                                    <text x="40" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Jan</text>
-                                                    <text x="88" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Fév</text>
-                                                    <text x="136" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Mar</text>
-                                                    <text x="184" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Avr</text>
-                                                    <text x="232" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Mai</text>
-                                                    <text x="280" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Juin</text>
-                                                    <text x="328" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Juil</text>
-                                                    <text x="376" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Août</text>
-                                                    <text x="424" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Sep</text>
-                                                    <text x="472" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Oct</text>
-                                                    <text x="520" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Nov</text>
-                                                    <text x="568" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Déc</text>
-                                                </>
+                                            {/* Page Views Path (Indigo) */}
+                                            {pvPolylineString && (
+                                                <polyline
+                                                    points={pvPolylineString}
+                                                    fill="none"
+                                                    stroke="#6366f1"
+                                                    strokeWidth="3.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
                                             )}
 
-                                            {timeframe === 'year' && (
-                                                <>
-                                                    <path 
-                                                        d="M 100,220 L 100,145 L 300,100 L 500,60 L 500,220 Z" 
-                                                        fill="url(#indigoGrad)" 
-                                                        opacity="0.04"
-                                                    />
-                                                    <path 
-                                                        d="M 100,220 L 100,190 L 300,170 L 500,150 L 500,220 Z" 
-                                                        fill="url(#tealGrad)" 
-                                                        opacity="0.04"
-                                                    />
-
-                                                    {/* Page Views Path (Indigo) */}
-                                                    <polyline
-                                                        points="100,145 300,100 500,60"
-                                                        fill="none"
-                                                        stroke="#6366f1"
-                                                        strokeWidth="3.5"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-
-                                                    {/* Unique Visits Path (Teal) */}
-                                                    <polyline
-                                                        points="100,190 300,170 500,150"
-                                                        fill="none"
-                                                        stroke="#14b8a6"
-                                                        strokeWidth="3.5"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-
-                                                    {/* Dots & Labels for Page Views (Indigo) */}
-                                                    {[
-                                                        { x: 100, y: 145, val: '15k' },
-                                                        { x: 300, y: 100, val: '24k' },
-                                                        { x: 500, y: 60, val: '32k' }
-                                                    ].map((pt, idx) => (
-                                                        <g key={`pv-yr-${idx}`}>
-                                                            <circle cx={pt.x} cy={pt.y} r="5" fill="#6366f1" stroke="#ffffff" strokeWidth="2" />
-                                                            <text x={pt.x} y={pt.y - 12} fill="#4f46e5" fontSize="11" fontWeight="bold" textAnchor="middle">{pt.val}</text>
-                                                        </g>
-                                                    ))}
-
-                                                    {/* Dots & Labels for Unique Visits (Teal) */}
-                                                    {[
-                                                        { x: 100, y: 190, val: '6k' },
-                                                        { x: 300, y: 170, val: '10k' },
-                                                        { x: 500, y: 150, val: '14k' }
-                                                    ].map((pt, idx) => (
-                                                        <g key={`uv-yr-${idx}`}>
-                                                            <circle cx={pt.x} cy={pt.y} r="5" fill="#14b8a6" stroke="#ffffff" strokeWidth="2" />
-                                                            <text x={pt.x} y={pt.y + 16} fill="#0d9488" fontSize="11" fontWeight="bold" textAnchor="middle">{pt.val}</text>
-                                                        </g>
-                                                    ))}
-
-                                                    {/* X-axis labels */}
-                                                    <text x="100" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">2024</text>
-                                                    <text x="300" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">2025</text>
-                                                    <text x="500" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">2026</text>
-                                                </>
+                                            {/* Unique Visits Path (Teal) */}
+                                            {uvPolylineString && (
+                                                <polyline
+                                                    points={uvPolylineString}
+                                                    fill="none"
+                                                    stroke="#14b8a6"
+                                                    strokeWidth="3.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
                                             )}
+
+                                            {/* Dots & Labels for Page Views (Indigo) */}
+                                            {pointsPv.map((pt, idx) => (
+                                                <g key={`pv-pt-${idx}`}>
+                                                    <circle cx={pt.x} cy={pt.y} r={timeframe === 'month' && pointsPv.length > 15 ? "2" : "3.5"} fill="#6366f1" stroke="#ffffff" strokeWidth="1" />
+                                                    {(timeframe !== 'month' || pointsPv.length <= 15 || idx % 3 === 0) && (
+                                                        <text x={pt.x} y={pt.y - 7} fill="#4f46e5" fontSize="8" fontWeight="bold" textAnchor="middle">
+                                                            {formatValue(pt.val)}
+                                                        </text>
+                                                    )}
+                                                </g>
+                                            ))}
+
+                                            {/* Dots & Labels for Unique Visits (Teal) */}
+                                            {pointsUv.map((pt, idx) => (
+                                                <g key={`uv-pt-${idx}`}>
+                                                    <circle cx={pt.x} cy={pt.y} r={timeframe === 'month' && pointsUv.length > 15 ? "2" : "3.5"} fill="#14b8a6" stroke="#ffffff" strokeWidth="1" />
+                                                    {(timeframe !== 'month' || pointsUv.length <= 15 || idx % 3 === 0) && (
+                                                        <text x={pt.x} y={pt.y + 11} fill="#0d9488" fontSize="8" fontWeight="bold" textAnchor="middle">
+                                                            {formatValue(pt.val)}
+                                                        </text>
+                                                    )}
+                                                </g>
+                                            ))}
+
+                                            {/* X-axis labels */}
+                                            {pointsPv.map((pt, idx) => {
+                                                if (timeframe === 'month' && pointsPv.length > 15 && idx % 4 !== 0) {
+                                                    return null;
+                                                }
+                                                return (
+                                                    <text key={`x-lbl-${idx}`} x={pt.x} y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">
+                                                        {pt.label}
+                                                    </text>
+                                                );
+                                            })}
 
                                             {/* Gradients */}
                                             <defs>
