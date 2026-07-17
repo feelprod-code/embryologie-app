@@ -145,10 +145,15 @@
 
 /* Cloudflare Stream / WebVTT Subtitle Overrides */
 /* Extrême Hiding of native controls for Safari/iOS that might bleed through */
-video::-webkit-media-controls {
+.video-player-mobile video::-webkit-media-controls {
   display: none !important;
 }
-video::-webkit-media-controls-enclosure {
+.video-player-mobile video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+/* On Desktop, hide only the control panel bar to allow native subtitles rendering */
+:not(.video-player-mobile) video::-webkit-media-controls-panel {
   display: none !important;
 }
 
