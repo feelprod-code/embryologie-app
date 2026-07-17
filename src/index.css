@@ -153,19 +153,19 @@ video::-webkit-media-controls-enclosure {
 }
 
 /* EXTREME HIDING of native subtitles for Safari/iOS that ignore display: none */
-video::-webkit-media-text-track-container {
+.video-player-mobile video::-webkit-media-text-track-container {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
 }
 
-video::-webkit-media-text-track-display {
+.video-player-mobile video::-webkit-media-text-track-display {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
 }
 
-video::cue {
+.video-player-mobile video::cue {
   color: transparent !important;
   background-color: transparent !important;
   background: transparent !important;
