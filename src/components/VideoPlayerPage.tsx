@@ -884,7 +884,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       <div className={cn(
         "w-full mx-auto flex flex-col transition-opacity duration-200",
         !isFullscreen && "bg-[#FAF6ED]",
-        isFullscreen ? "bg-[#000000] h-screen z-50 fixed inset-0" : "max-w-5xl h-full overflow-hidden relative mx-auto",
+        isFullscreen ? "bg-[#000000] h-screen z-50 fixed inset-0" : "max-w-5xl lg:max-w-[1400px] h-full overflow-hidden relative mx-auto",
         isPending ? "opacity-70" : "opacity-100"
       )}>
 
@@ -892,7 +892,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           "w-full pt-2 pb-3 md:pb-4 mb-3 shrink-0",
           isFullscreen ? "hidden" : ""
         )}>
-          <div className="w-full max-w-full lg:max-w-4xl mx-auto px-1 sm:px-2 md:px-4 lg:px-0">
+          <div className="w-full max-w-full lg:max-w-[1400px] mx-auto px-1 sm:px-2 md:px-4 lg:px-0">
             <div className="grid grid-cols-4 gap-1 sm:gap-2 md:gap-3 lg:gap-4 items-stretch justify-center w-full">
               {["L'Ectoderme", "L'Endoderme", "Le Mésoderme", "L'Oeil"].map(layer => {
                 const lmap = { "L'Ectoderme": "ectoderme", "Le Mésoderme": "mesoderme", "L'Endoderme": "endoderme", "L'Oeil": "oeil" };
@@ -955,32 +955,27 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
         </div>
 
-        {/* --- UNIFIED VIEW: Video Player at the top, Transcript/BottomContent below --- */}
-        <div className={cn("flex-1 flex flex-col min-h-0 w-full", !isFullscreen && "px-2")}>
-          <div className="w-full h-full flex flex-col min-h-0">
-            {/* Le conteneur du lecteur vidéo */}
-            <div
-              className={cn(
-                "w-full transition-all duration-300 ease-in-out",
-                isFullscreen ? "fixed inset-0 z-[100] bg-black h-full !p-0 !m-0 block" : "flex-none grid bg-[#FAF6ED]",
-                !isVideoVisible && !isFullscreen ? "opacity-0" : "opacity-100"
-              )}
-              style={!isFullscreen ? {
-                gridTemplateRows: isVideoVisible ? '1fr' : '0fr'
-              } : undefined}
-            >
-              <div className={cn("w-full", !isFullscreen && "overflow-hidden pb-1 pt-[env(safe-area-inset-top,0px)]", isFullscreen && "h-full")}>
-                {TopContent}
-              </div>
-            </div>
-
-            {/* La section basse (transcription) n'est rendue ou visible qu'en mode normal */}
-            {!isFullscreen && (
-              <div className="flex-1 min-h-0 pt-1 pb-[env(safe-area-inset-bottom,0px)]">
-                {BottomContent}
-              </div>
+        {/* --- RESPONSIVE SIDE-BY-SIDE OR STACKED LAYOUT --- */}
+        <div className={cn("flex-1 flex min-h-0 w-full", isFullscreen ? "" : "flex-col lg:flex-row lg:gap-6 lg:px-4 lg:py-2")}>
+          {/* LEFT COLUMN: Player */}
+          <div
+            className={cn(
+              "transition-all duration-300 ease-in-out",
+              isFullscreen ? "fixed inset-0 z-[100] bg-black h-full !p-0 !m-0 block w-full" : "flex-none lg:w-[56%] xl:w-[58%] flex flex-col bg-[#FAF6ED]",
+              !isVideoVisible && !isFullscreen ? "opacity-0" : "opacity-100"
             )}
+          >
+            <div className={cn("w-full", !isFullscreen && "overflow-hidden pb-1 pt-[env(safe-area-inset-top,0px)]", isFullscreen && "h-full")}>
+              {TopContent}
+            </div>
           </div>
+
+          {/* RIGHT COLUMN: Transcript & summary */}
+          {!isFullscreen && (
+            <div className="flex-1 min-h-0 pt-1 pb-[env(safe-area-inset-bottom,0px)] lg:pt-0 flex flex-col">
+              {BottomContent}
+            </div>
+          )}
         </div>
 
 

@@ -936,9 +936,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             }}
                             onPlay={() => {
                                 setIsPlaying(true);
-                                if (isDesktop && resolvedVttUrl) {
-                                    setupNativeSubtitles(resolvedVttUrl);
-                                }
                             }}
                             onPause={() => setIsPlaying(false)}
                             onTimeUpdate={() => {
@@ -983,9 +980,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             }}
                             onPlay={() => {
                                 setIsPlaying(true);
-                                if (isDesktop && resolvedVttUrl) {
-                                    setupNativeSubtitles(resolvedVttUrl);
-                                }
                             }}
                             onPause={() => setIsPlaying(false)}
                             onTimeUpdate={() => {
@@ -1067,7 +1061,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 )}
 
                 {/* 3. LAYER 2: Subtitle Overlay */}
-                {activeSubtitle && subtitlesEnabled && !isDesktop && (
+                {activeSubtitle && subtitlesEnabled && (
                     <div
                         className="absolute left-0 right-0 flex justify-center items-end pointer-events-none transition-all duration-300"
                         style={{
@@ -1201,18 +1195,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             )}
 
 
-
-                            {/* Picture-in-Picture Toggle */}
-                            {isPipSupported && isDesktop && (
-                                <button
-                                    onClick={(e) => { e.stopPropagation(); togglePiP(e); }}
-                                    className="text-white hover:text-white/80 transition-colors p-2 cursor-pointer touch-manipulation active:scale-90"
-                                    title="Mini-lecteur (PiP)"
-                                    aria-label="Mode incrustation d'image"
-                                >
-                                    <PictureInPicture2 size={22} />
-                                </button>
-                            )}
 
                             {/* Fullscreen Toggle */}
                             {!isFullscreen && (

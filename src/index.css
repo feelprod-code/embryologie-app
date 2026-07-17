@@ -145,32 +145,27 @@
 
 /* Cloudflare Stream / WebVTT Subtitle Overrides */
 /* Extrême Hiding of native controls for Safari/iOS that might bleed through */
-.video-player-mobile video::-webkit-media-controls {
+video::-webkit-media-controls {
   display: none !important;
 }
-.video-player-mobile video::-webkit-media-controls-enclosure {
-  display: none !important;
-}
-
-/* On Desktop, hide only the control panel bar to allow native subtitles rendering */
-:not(.video-player-mobile) video::-webkit-media-controls-panel {
+video::-webkit-media-controls-enclosure {
   display: none !important;
 }
 
 /* EXTREME HIDING of native subtitles for Safari/iOS that ignore display: none */
-.video-player-mobile video::-webkit-media-text-track-container {
+video::-webkit-media-text-track-container {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
 }
 
-.video-player-mobile video::-webkit-media-text-track-display {
+video::-webkit-media-text-track-display {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
 }
 
-.video-player-mobile video::cue {
+video::cue {
   color: transparent !important;
   background-color: transparent !important;
   background: transparent !important;
