@@ -42,6 +42,8 @@ export function AdminDashboard() {
     const [tempUrl, setTempUrl] = useState(lookerStudioUrl);
 
     const [gaData, setGaData] = useState<{ dimension: string; activeUsers: number; pageViews: number }[] | null>(null);
+    const [topCountries, setTopCountries] = useState<{ country: string; activeUsers: number }[] | null>(null);
+    const [topConcepts, setTopConcepts] = useState<{ pagePath: string; pageViews: number }[] | null>(null);
     const [isLoadingGa, setIsLoadingGa] = useState<boolean>(false);
     const [gaError, setGaError] = useState<string | null>(null);
 
@@ -67,10 +69,14 @@ export function AdminDashboard() {
                         throw new Error(data.error);
                     }
                     setGaData(data.rows || []);
+                    setTopCountries(data.topCountries || []);
+                    setTopConcepts(data.topConcepts || []);
                 } catch (err: any) {
                     console.error('Error fetching GA data:', err);
                     setGaError(err.message || 'Error fetching analytics');
                     setGaData(null);
+                    setTopCountries(null);
+                    setTopConcepts(null);
                 } finally {
                     setIsLoadingGa(false);
                 }
@@ -105,38 +111,35 @@ export function AdminDashboard() {
             });
         }
 
-        // Mock Fallback
+        // Return real dates initialized to 0 (no mock fallback/estimation data)
+        const fallbackData: { label: string; pv: number; uv: number }[] = [];
+        const now = new Date();
         if (timeframe === 'week') {
-            return [
-                { label: 'Lun', pv: 120, uv: 40 },
-                { label: 'Mar', pv: 150, uv: 50 },
-                { label: 'Mer', pv: 180, uv: 65 },
-                { label: 'Jeu', pv: 210, uv: 80 },
-                { label: 'Ven', pv: 190, uv: 70 },
-                { label: 'Sam', pv: 130, uv: 45 },
-                { label: 'Dim', pv: 145, uv: 55 }
-            ];
+            for (let i = 6; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(now.getDate() - i);
+                const day = String(d.getDate()).padStart(2, '0');
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                fallbackData.push({ label: `${day}/${month}`, pv: 0, uv: 0 });
+            }
+            return fallbackData;
         } else if (timeframe === 'month') {
-            return [
-                { label: 'Jan', pv: 1200, uv: 450 },
-                { label: 'Fév', pv: 1400, uv: 550 },
-                { label: 'Mar', pv: 1900, uv: 750 },
-                { label: 'Avr', pv: 2400, uv: 900 },
-                { label: 'Mai', pv: 2800, uv: 1100 },
-                { label: 'Juin', pv: 2200, uv: 850 },
-                { label: 'Juil', pv: 1600, uv: 600 },
-                { label: 'Août', pv: 1100, uv: 400 },
-                { label: 'Sep', pv: 2500, uv: 1000 },
-                { label: 'Oct', pv: 2900, uv: 1100 },
-                { label: 'Nov', pv: 3400, uv: 1300 },
-                { label: 'Déc', pv: 3100, uv: 1200 }
-            ];
+            for (let i = 29; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(now.getDate() - i);
+                const day = String(d.getDate()).padStart(2, '0');
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                fallbackData.push({ label: `${day}/${month}`, pv: 0, uv: 0 });
+            }
+            return fallbackData;
         } else {
-            return [
-                { label: '2024', pv: 15000, uv: 6000 },
-                { label: '2025', pv: 24000, uv: 10000 },
-                { label: '2026', pv: 32000, uv: 14000 }
-            ];
+            // year
+            const months = ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"];
+            for (let i = 11; i >= 0; i--) {
+                const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+                fallbackData.push({ label: months[d.getMonth()], pv: 0, uv: 0 });
+            }
+            return fallbackData;
         }
     };
 
@@ -677,16 +680,10 @@ export function AdminDashboard() {
                                                 <h3 className="font-bold text-slate-800 text-base">
                                                     {timeframe === 'week' ? 'Trafic Hebdomadaire' : timeframe === 'month' ? 'Trafic Mensuel' : 'Trafic Annuel'}
                                                 </h3>
-                                                {gaData && gaData.length > 0 ? (
-                                                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[9px] font-bold rounded-full flex items-center gap-1 shadow-sm">
-                                                        <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-                                                        Direct Google Analytics
-                                                    </span>
-                                                ) : (
-                                                    <span className="px-2 py-0.5 bg-indigo-100 text-indigo-800 text-[9px] font-bold rounded-full">
-                                                        Estimation
-                                                    </span>
-                                                )}
+                                                <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[9px] font-bold rounded-full flex items-center gap-1 shadow-sm">
+                                                    <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                                                    Direct Google Analytics
+                                                </span>
                                             </div>
                                             <p className="text-xs text-slate-400 font-medium mt-0.5">Visites sur le site public embryologie.techniquesdoucestissulaires.fr</p>
                                         </div>
@@ -836,27 +833,29 @@ export function AdminDashboard() {
 
                                 {/* SIDE PANEL: COUNTRY & SOURCE */}
                                 <div className="space-y-6">
-                                    {/* MOCK TOP VIEWS */}
+                                    {/* PAYS VISITEURS */}
                                     <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] space-y-4">
                                         <h4 className="font-bold text-slate-800 text-sm flex items-center gap-1.5"><Globe size={16} className="text-teal-600"/> Pays Visiteurs</h4>
                                         <div className="space-y-3">
-                                            {[
-                                                { country: 'France', percent: 78 },
-                                                { country: 'Belgique', percent: 12 },
-                                                { country: 'Suisse', percent: 6 },
-                                                { country: 'Canada', percent: 3 },
-                                                { country: 'Allemagne', percent: 1 }
-                                            ].map((item, idx) => (
-                                                <div key={idx} className="space-y-1">
-                                                    <div className="flex justify-between text-xs font-bold text-slate-700">
-                                                        <span>{item.country}</span>
-                                                        <span>{item.percent}%</span>
-                                                    </div>
-                                                    <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                                                        <div className="h-full bg-teal-500 rounded-full" style={{ width: `${item.percent}%` }} />
-                                                    </div>
-                                                </div>
-                                            ))}
+                                            {topCountries && topCountries.length > 0 ? (
+                                                topCountries.map((item, idx) => {
+                                                    const totalAcc = topCountries.reduce((acc, curr) => acc + curr.activeUsers, 0);
+                                                    const percent = totalAcc > 0 ? Math.round((item.activeUsers / totalAcc) * 100) : 0;
+                                                    return (
+                                                        <div key={idx} className="space-y-1">
+                                                            <div className="flex justify-between text-xs font-bold text-slate-700">
+                                                                <span>{item.country}</span>
+                                                                <span>{item.activeUsers} ({percent}%)</span>
+                                                            </div>
+                                                            <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                                                <div className="h-full bg-teal-500 rounded-full" style={{ width: `${percent}%` }} />
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                })
+                                            ) : (
+                                                <div className="text-xs font-semibold text-slate-400 py-4 text-center">Aucune donnée géographique</div>
+                                            )}
                                         </div>
                                     </div>
 
@@ -864,11 +863,25 @@ export function AdminDashboard() {
                                     <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] space-y-4">
                                         <h4 className="font-bold text-slate-800 text-sm flex items-center gap-1.5">📖 Concepts les plus consultés</h4>
                                         <div className="space-y-3 text-xs font-bold text-slate-700">
-                                            <div className="flex justify-between"><span>1. Ligne médiane (fr)</span><span className="text-slate-400">312 vues</span></div>
-                                            <div className="flex justify-between"><span>2. Fulgurance (fr)</span><span className="text-slate-400">240 vues</span></div>
-                                            <div className="flex justify-between"><span>3. Biodynamic Embryology (en)</span><span className="text-slate-400">195 vues</span></div>
-                                            <div className="flex justify-between"><span>4. Point d'immobilité (fr)</span><span className="text-slate-400">140 vues</span></div>
-                                            <div className="flex justify-between"><span>5. Generalités (es)</span><span className="text-slate-400">92 vues</span></div>
+                                            {topConcepts && topConcepts.length > 0 ? (
+                                                topConcepts.map((item, idx) => {
+                                                    let name = item.pagePath;
+                                                    if (name === '/') {
+                                                        name = 'Page d\'accueil';
+                                                    } else if (name.startsWith('/concept/')) {
+                                                        const cleanSlug = name.replace('/concept/', '');
+                                                        name = cleanSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                                                    }
+                                                    return (
+                                                        <div key={idx} className="flex justify-between items-center">
+                                                            <span className="truncate max-w-[200px]">{idx + 1}. {name}</span>
+                                                            <span className="text-slate-400 font-bold shrink-0">{item.pageViews} vues</span>
+                                                        </div>
+                                                    );
+                                                })
+                                            ) : (
+                                                <div className="text-xs font-semibold text-slate-400 py-4 text-center">Aucun concept visité</div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

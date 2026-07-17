@@ -88,30 +88,71 @@ export default async function handler(req, res) {
       dimensionName = 'yearMonth'; // YYYYMM
     }
 
-    // 4. Run Report
-    const reportRes = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        dateRanges: [{ startDate, endDate }],
-        dimensions: [{ name: dimensionName }],
-        metrics: [{ name: 'activeUsers' }, { name: 'screenPageViews' }],
-        orderBys: [{ dimension: { dimensionName }, desc: false }]
-      })
-    });
+    // 4. Run Reports in Parallel
+    const baseBody = {
+      dateRanges: [{ startDate, endDate }],
+    };
 
-    if (!reportRes.ok) {
-      const errText = await reportRes.text();
-      return res.status(500).json({ error: "Failed to fetch GA4 report", details: errText });
+    const [mainReportRes, countryReportRes, pagesReportRes] = await Promise.all([
+      fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...baseBody,
+          dimensions: [{ name: dimensionName }],
+          metrics: [{ name: 'activeUsers' }, { name: 'screenPageViews' }],
+          orderBys: [{ dimension: { dimensionName }, desc: false }]
+        })
+      }),
+      fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...baseBody,
+          dimensions: [{ name: 'country' }],
+          metrics: [{ name: 'activeUsers' }],
+          orderBys: [{ metric: { metricName: 'activeUsers' }, desc: true }],
+          limit: 5
+        })
+      }),
+      fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...baseBody,
+          dimensions: [{ name: 'pagePath' }],
+          metrics: [{ name: 'screenPageViews' }],
+          orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
+          limit: 5
+        })
+      })
+    ]);
+
+    if (!mainReportRes.ok || !countryReportRes.ok || !pagesReportRes.ok) {
+      const mainErr = !mainReportRes.ok ? await mainReportRes.text() : 'OK';
+      const countryErr = !countryReportRes.ok ? await countryReportRes.text() : 'OK';
+      const pagesErr = !pagesReportRes.ok ? await pagesReportRes.text() : 'OK';
+      return res.status(500).json({ 
+        error: "Failed to fetch GA4 reports", 
+        details: { mainErr, countryErr, pagesErr } 
+      });
     }
 
-    const reportData = await reportRes.json();
+    const mainData = await mainReportRes.json();
+    const countryData = await countryReportRes.json();
+    const pagesData = await pagesReportRes.json();
 
     // 5. Structure rows
-    const rows = (reportData.rows || []).map(row => {
+    const rows = (mainData.rows || []).map(row => {
       return {
         dimension: row.dimensionValues[0].value,
         activeUsers: parseInt(row.metricValues[0].value, 10),
@@ -119,10 +160,26 @@ export default async function handler(req, res) {
       };
     });
 
+    const topCountries = (countryData.rows || []).map(row => {
+      return {
+        country: row.dimensionValues[0].value,
+        activeUsers: parseInt(row.metricValues[0].value, 10)
+      };
+    });
+
+    const topConcepts = (pagesData.rows || []).map(row => {
+      return {
+        pagePath: row.dimensionValues[0].value,
+        pageViews: parseInt(row.metricValues[0].value, 10)
+      };
+    });
+
     return res.status(200).json({
       timeframe,
       propertyId,
-      rows
+      rows,
+      topCountries,
+      topConcepts
     });
 
   } catch (error) {
