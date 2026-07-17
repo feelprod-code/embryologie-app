@@ -933,7 +933,7 @@ export function AdminDashboard() {
                                         <button 
                                             type="button"
                                             onClick={() => {
-                                                const demoUrl = "https://lookerstudio.google.com/embed/reporting/0B5FF5J4uQ0pbODRraG50UXFMMGc/page/tqCH";
+                                                const demoUrl = "https://lookerstudio.google.com/embed/reporting/0B-sAo9A1vjC9RE9vTmt1YTlyX0E/page/1M";
                                                 setTempUrl(demoUrl);
                                                 localStorage.setItem('looker_studio_url', demoUrl);
                                                 setLookerStudioUrl(demoUrl);
