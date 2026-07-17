@@ -954,95 +954,33 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           </div>
         </div>
 
-        {/* --- MOBILE VIEW: Resizable Split Pane (Vertical) --- */}
-        {isMobileLayout && (
-          <div className={cn("flex-1 flex flex-col min-h-0 w-full", !isFullscreen && "px-2")}>
-            <div className="w-full h-full flex flex-col min-h-0">
-              {/* Le conteneur du lecteur vidéo */}
-              <div
-                className={cn(
-                  "w-full transition-all duration-300 ease-in-out",
-                  isFullscreen ? "fixed inset-0 z-[100] bg-black h-full !p-0 !m-0 block" : "flex-none grid bg-[#FAF6ED]",
-                  !isVideoVisible && !isFullscreen ? "opacity-0" : "opacity-100"
-                )}
-                style={!isFullscreen ? {
-                  gridTemplateRows: isVideoVisible ? '1fr' : '0fr'
-                } : undefined}
-              >
-                <div className={cn("w-full", !isFullscreen && "overflow-hidden pb-1 pt-[env(safe-area-inset-top,0px)]", isFullscreen && "h-full")}>
-                  {TopContent}
-                </div>
-              </div>
-
-              {/* La section basse (transcription) n'est rendue ou visible qu'en mode normal */}
-              {!isFullscreen && (
-                <div className="flex-1 min-h-0 pt-1 pb-[env(safe-area-inset-bottom,0px)]">
-                  {BottomContent}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* --- TABLET & DESKTOP VIEW: Floating Picture-in-Picture in Corner --- */}
-        {(isTabletLayout || isDesktopLayout) && (
-          <div className="flex-1 relative w-full h-full pb-4 px-4 min-h-0">
-            {/* Transcript Background (Full Tablet Width) */}
-            <div className="w-full h-full relative">
-              {BottomContent}
-            </div>
-
+        {/* --- UNIFIED VIEW: Video Player at the top, Transcript/BottomContent below --- */}
+        <div className={cn("flex-1 flex flex-col min-h-0 w-full", !isFullscreen && "px-2")}>
+          <div className="w-full h-full flex flex-col min-h-0">
+            {/* Le conteneur du lecteur vidéo */}
             <div
-              ref={pipContainerRef}
               className={cn(
-                "absolute bottom-[90px] right-6 z-[90] flex flex-col",
-                isFullscreen
-                  ? "fixed inset-0 !bottom-0 !right-0 w-full h-full border-none rounded-none bg-black/90 p-0"
-                  : "rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-[#FAF6ED]/95 backdrop-blur-xl border border-white/20 p-1.5",
-                (!isResizing && !isDragging && !isFullscreen) && "transition-transform duration-300 ease-out",
-                (!isVideoVisible || isNativePiPActive) && !isFullscreen && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
+                "w-full transition-all duration-300 ease-in-out",
+                isFullscreen ? "fixed inset-0 z-[100] bg-black h-full !p-0 !m-0 block" : "flex-none grid bg-[#FAF6ED]",
+                !isVideoVisible && !isFullscreen ? "opacity-0" : "opacity-100"
               )}
-              style={{
-                width: isFullscreen ? '100%' : (isVideoVisible ? `${pipWidth}px` : undefined),
-                height: isFullscreen ? '100%' : 'auto',
-                transform: isFullscreen ? 'none' : `translate(${pipTranslate.x}px, ${pipTranslate.y}px)`,
-                zIndex: isFullscreen ? 99990 : 90
-              }}
+              style={!isFullscreen ? {
+                gridTemplateRows: isVideoVisible ? '1fr' : '0fr'
+              } : undefined}
             >
-              {/* Drag Handle */}
-              {!isFullscreen && (
-                <div
-                  className="absolute -top-3 -left-3 w-8 h-8 bg-transparent border border-slate-200 shadow-[0_4px_10px_rgba(0,0,0,0.1)] rounded-full flex items-center justify-center cursor-nwse-resize z-50 touch-none active:bg-[#FAF6ED] transition-colors"
-                  onPointerDown={handlePipPointerDown}
-                >
-                  <div className="w-3 h-3 rounded-full bg-slate-300/50 flex items-center justify-center">
-                    <div className={cn(
-                      "w-1.5 h-1.5 rounded-full",
-                      course.categoryId === 'ectoderme' ? "bg-[#5A9C51]" :
-                        course.categoryId === 'endoderme' ? "bg-[#4171B5]" :
-                          course.categoryId === 'mesoderme' ? "bg-[#F27D33]" :
-                            course.categoryId === 'oeil' ? "bg-[#F2B729]" : "bg-slate-400"
-                    )} />
-                  </div>
-                </div>
-              )}
-
-              {/* PiP Controls Header */}
-              {!isFullscreen && (
-                <div
-                  className="flex items-center justify-between px-2 pb-1.5 pt-0.5 cursor-move touch-none active:bg-[#FAF6ED] rounded-t-lg transition-colors"
-                  onPointerDown={handlePipDragStart}
-                >
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0 pointer-events-none">Lecteur Vidéo</span>
-                </div>
-              )}
-
-              <div className="w-full flex flex-col h-full">
+              <div className={cn("w-full", !isFullscreen && "overflow-hidden pb-1 pt-[env(safe-area-inset-top,0px)]", isFullscreen && "h-full")}>
                 {TopContent}
               </div>
             </div>
+
+            {/* La section basse (transcription) n'est rendue ou visible qu'en mode normal */}
+            {!isFullscreen && (
+              <div className="flex-1 min-h-0 pt-1 pb-[env(safe-area-inset-bottom,0px)]">
+                {BottomContent}
+              </div>
+            )}
           </div>
-        )}
+        </div>
 
 
       </div >
