@@ -34,7 +34,7 @@ export function AdminDashboard() {
     const [tierFilter, setTierFilter] = useState<TierFilterType>('ALL');
     const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
     const [activeTab, setActiveTab] = useState<'users' | 'analytics'>('users');
-    const [timeframe, setTimeframe] = useState<'week' | 'month'>('week');
+    const [timeframe, setTimeframe] = useState<'week' | 'month' | 'year'>('week');
     const [lookerStudioUrl, setLookerStudioUrl] = useState<string>(() => {
         return typeof window !== 'undefined' ? localStorage.getItem('looker_studio_url') || '' : '';
     });
@@ -284,37 +284,25 @@ export function AdminDashboard() {
                             </div>
                             
                             {/* VIEW TOGGLE */}
-                            <div className="flex items-center gap-3">
-                                <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner max-w-xs">
-                                    <button 
-                                        onClick={() => setActiveTab('users')} 
-                                        className={cn(
-                                            "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
-                                            activeTab === 'users' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
-                                        )}
-                                    >
-                                        👥 Élèves
-                                    </button>
-                                    <button 
-                                        onClick={() => setActiveTab('analytics')} 
-                                        className={cn(
-                                            "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
-                                            activeTab === 'analytics' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
-                                        )}
-                                    >
-                                        📊 Trafic & Audience
-                                    </button>
-                                </div>
-
-                                {/* RETOUR LANDING PAGE */}
-                                <a 
-                                    href="https://embryologie.techniquesdoucestissulaires.fr" 
-                                    target="_blank" 
-                                    rel="noreferrer"
-                                    className="px-4 py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm w-fit"
+                            <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner max-w-xs">
+                                <button 
+                                    onClick={() => setActiveTab('users')} 
+                                    className={cn(
+                                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
+                                        activeTab === 'users' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                    )}
                                 >
-                                    <Globe size={14} className="text-slate-500" /> Voir le site public
-                                </a>
+                                    👥 Élèves
+                                </button>
+                                <button 
+                                    onClick={() => setActiveTab('analytics')} 
+                                    className={cn(
+                                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
+                                        activeTab === 'analytics' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                    )}
+                                >
+                                    📊 Trafic & Audience
+                                </button>
                             </div>
                         </div>
                         
@@ -527,9 +515,9 @@ export function AdminDashboard() {
                                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                                         <div>
                                             <h3 className="font-bold text-slate-800 text-base">
-                                                {timeframe === 'week' ? 'Trafic Hebdomadaire' : 'Trafic Mensuel'} (Estimation)
+                                                {timeframe === 'week' ? 'Trafic Hebdomadaire' : timeframe === 'month' ? 'Trafic Mensuel' : 'Trafic Annuel'} (Estimation)
                                             </h3>
-                                            <p className="text-xs text-slate-400 font-medium mt-0.5">Visites sur embryologie.techniquesdoucestissulaires.fr</p>
+                                            <p className="text-xs text-slate-400 font-medium mt-0.5">Visites sur le site public embryologie.techniquesdoucestissulaires.fr</p>
                                         </div>
                                         <div className="flex items-center gap-4">
                                             {/* TIMEFRAME SELECTOR */}
@@ -551,6 +539,15 @@ export function AdminDashboard() {
                                                     )}
                                                 >
                                                     Mois
+                                                </button>
+                                                <button 
+                                                    onClick={() => setTimeframe('year')}
+                                                    className={cn(
+                                                        "px-2.5 py-1 rounded-md text-[10px] font-bold transition-all cursor-pointer",
+                                                        timeframe === 'year' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                                    )}
+                                                >
+                                                    Année
                                                 </button>
                                             </div>
                                             <div className="flex items-center gap-3 text-[10px] font-bold">
@@ -577,17 +574,24 @@ export function AdminDashboard() {
                                                     <text x="10" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">75</text>
                                                     <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
                                                 </>
-                                            ) : (
+                                            ) : timeframe === 'month' ? (
                                                 <>
                                                     <text x="5" y="44" fill="#94a3b8" fontSize="9" fontWeight="bold">4000</text>
                                                     <text x="5" y="104" fill="#94a3b8" fontSize="9" fontWeight="bold">2500</text>
                                                     <text x="5" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">1200</text>
                                                     <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
                                                 </>
+                                            ) : (
+                                                <>
+                                                    <text x="5" y="44" fill="#94a3b8" fontSize="9" fontWeight="bold">40k</text>
+                                                    <text x="5" y="104" fill="#94a3b8" fontSize="9" fontWeight="bold">25k</text>
+                                                    <text x="5" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">12k</text>
+                                                    <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
+                                                </>
                                             )}
 
                                             {/* Area under lines */}
-                                            {timeframe === 'week' ? (
+                                            {timeframe === 'week' && (
                                                 <>
                                                     <path 
                                                         d="M 50,220 L 50,120 L 130,95 L 210,70 L 290,45 L 370,62 L 450,112 L 530,100 L 530,220 Z" 
@@ -661,7 +665,9 @@ export function AdminDashboard() {
                                                     <text x="450" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Sam</text>
                                                     <text x="530" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Dim</text>
                                                 </>
-                                            ) : (
+                                            )}
+
+                                            {timeframe === 'month' && (
                                                 <>
                                                     <path 
                                                         d="M 40,220 L 40,166 L 88,154 L 136,134 L 184,112 L 232,94 L 280,121 L 328,148 L 376,170 L 424,107 L 472,89 L 520,67 L 568,80 L 568,220 Z" 
@@ -749,6 +755,70 @@ export function AdminDashboard() {
                                                     <text x="472" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Oct</text>
                                                     <text x="520" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Nov</text>
                                                     <text x="568" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Déc</text>
+                                                </>
+                                            )}
+
+                                            {timeframe === 'year' && (
+                                                <>
+                                                    <path 
+                                                        d="M 100,220 L 100,145 L 300,100 L 500,60 L 500,220 Z" 
+                                                        fill="url(#indigoGrad)" 
+                                                        opacity="0.04"
+                                                    />
+                                                    <path 
+                                                        d="M 100,220 L 100,190 L 300,170 L 500,150 L 500,220 Z" 
+                                                        fill="url(#tealGrad)" 
+                                                        opacity="0.04"
+                                                    />
+
+                                                    {/* Page Views Path (Indigo) */}
+                                                    <polyline
+                                                        points="100,145 300,100 500,60"
+                                                        fill="none"
+                                                        stroke="#6366f1"
+                                                        strokeWidth="3.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
+
+                                                    {/* Unique Visits Path (Teal) */}
+                                                    <polyline
+                                                        points="100,190 300,170 500,150"
+                                                        fill="none"
+                                                        stroke="#14b8a6"
+                                                        strokeWidth="3.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
+
+                                                    {/* Dots & Labels for Page Views (Indigo) */}
+                                                    {[
+                                                        { x: 100, y: 145, val: '15k' },
+                                                        { x: 300, y: 100, val: '24k' },
+                                                        { x: 500, y: 60, val: '32k' }
+                                                    ].map((pt, idx) => (
+                                                        <g key={`pv-yr-${idx}`}>
+                                                            <circle cx={pt.x} cy={pt.y} r="5" fill="#6366f1" stroke="#ffffff" strokeWidth="2" />
+                                                            <text x={pt.x} y={pt.y - 12} fill="#4f46e5" fontSize="11" fontWeight="bold" textAnchor="middle">{pt.val}</text>
+                                                        </g>
+                                                    ))}
+
+                                                    {/* Dots & Labels for Unique Visits (Teal) */}
+                                                    {[
+                                                        { x: 100, y: 190, val: '6k' },
+                                                        { x: 300, y: 170, val: '10k' },
+                                                        { x: 500, y: 150, val: '14k' }
+                                                    ].map((pt, idx) => (
+                                                        <g key={`uv-yr-${idx}`}>
+                                                            <circle cx={pt.x} cy={pt.y} r="5" fill="#14b8a6" stroke="#ffffff" strokeWidth="2" />
+                                                            <text x={pt.x} y={pt.y + 16} fill="#0d9488" fontSize="11" fontWeight="bold" textAnchor="middle">{pt.val}</text>
+                                                        </g>
+                                                    ))}
+
+                                                    {/* X-axis labels */}
+                                                    <text x="100" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">2024</text>
+                                                    <text x="300" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">2025</text>
+                                                    <text x="500" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">2026</text>
                                                 </>
                                             )}
 
