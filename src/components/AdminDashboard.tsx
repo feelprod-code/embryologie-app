@@ -34,6 +34,7 @@ export function AdminDashboard() {
     const [tierFilter, setTierFilter] = useState<TierFilterType>('ALL');
     const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
     const [activeTab, setActiveTab] = useState<'users' | 'analytics'>('users');
+    const [timeframe, setTimeframe] = useState<'week' | 'month'>('week');
     const [lookerStudioUrl, setLookerStudioUrl] = useState<string>(() => {
         return typeof window !== 'undefined' ? localStorage.getItem('looker_studio_url') || '' : '';
     });
@@ -283,25 +284,37 @@ export function AdminDashboard() {
                             </div>
                             
                             {/* VIEW TOGGLE */}
-                            <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner max-w-xs">
-                                <button 
-                                    onClick={() => setActiveTab('users')} 
-                                    className={cn(
-                                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
-                                        activeTab === 'users' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
-                                    )}
+                            <div className="flex items-center gap-3">
+                                <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner max-w-xs">
+                                    <button 
+                                        onClick={() => setActiveTab('users')} 
+                                        className={cn(
+                                            "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
+                                            activeTab === 'users' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                        )}
+                                    >
+                                        👥 Élèves
+                                    </button>
+                                    <button 
+                                        onClick={() => setActiveTab('analytics')} 
+                                        className={cn(
+                                            "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
+                                            activeTab === 'analytics' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                        )}
+                                    >
+                                        📊 Trafic & Audience
+                                    </button>
+                                </div>
+
+                                {/* RETOUR LANDING PAGE */}
+                                <a 
+                                    href="https://embryologie.techniquesdoucestissulaires.fr" 
+                                    target="_blank" 
+                                    rel="noreferrer"
+                                    className="px-4 py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm w-fit"
                                 >
-                                    👥 Élèves
-                                </button>
-                                <button 
-                                    onClick={() => setActiveTab('analytics')} 
-                                    className={cn(
-                                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
-                                        activeTab === 'analytics' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
-                                    )}
-                                >
-                                    📊 Trafic & Audience
-                                </button>
+                                    <Globe size={14} className="text-slate-500" /> Voir le site public
+                                </a>
                             </div>
                         </div>
                         
@@ -511,14 +524,39 @@ export function AdminDashboard() {
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                                 {/* MOCK VISITS CHART */}
                                 <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] lg:col-span-2 space-y-4">
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                                         <div>
-                                            <h3 className="font-bold text-slate-800 text-base">Trafic Hebdomadaire (Estimation)</h3>
+                                            <h3 className="font-bold text-slate-800 text-base">
+                                                {timeframe === 'week' ? 'Trafic Hebdomadaire' : 'Trafic Mensuel'} (Estimation)
+                                            </h3>
                                             <p className="text-xs text-slate-400 font-medium mt-0.5">Visites sur embryologie.techniquesdoucestissulaires.fr</p>
                                         </div>
-                                        <div className="flex items-center gap-4 text-xs font-bold">
-                                            <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-indigo-500"/><span className="text-slate-600">Pages vues</span></div>
-                                            <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-teal-500"/><span className="text-slate-600">Visiteurs uniques</span></div>
+                                        <div className="flex items-center gap-4">
+                                            {/* TIMEFRAME SELECTOR */}
+                                            <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200/50 shadow-inner">
+                                                <button 
+                                                    onClick={() => setTimeframe('week')}
+                                                    className={cn(
+                                                        "px-2.5 py-1 rounded-md text-[10px] font-bold transition-all cursor-pointer",
+                                                        timeframe === 'week' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                                    )}
+                                                >
+                                                    Semaine
+                                                </button>
+                                                <button 
+                                                    onClick={() => setTimeframe('month')}
+                                                    className={cn(
+                                                        "px-2.5 py-1 rounded-md text-[10px] font-bold transition-all cursor-pointer",
+                                                        timeframe === 'month' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                                    )}
+                                                >
+                                                    Mois
+                                                </button>
+                                            </div>
+                                            <div className="flex items-center gap-3 text-[10px] font-bold">
+                                                <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-indigo-500"/><span className="text-slate-600">Pages vues</span></div>
+                                                <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-teal-500"/><span className="text-slate-600">Visiteurs uniques</span></div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -532,83 +570,187 @@ export function AdminDashboard() {
                                             <line x1="40" y1="220" x2="570" y2="220" stroke="#e2e8f0" strokeWidth="1.5" />
 
                                             {/* Left Y-axis labels */}
-                                            <text x="10" y="44" fill="#94a3b8" fontSize="9" fontWeight="bold">250</text>
-                                            <text x="10" y="104" fill="#94a3b8" fontSize="9" fontWeight="bold">150</text>
-                                            <text x="10" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">75</text>
-                                            <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
+                                            {timeframe === 'week' ? (
+                                                <>
+                                                    <text x="10" y="44" fill="#94a3b8" fontSize="9" fontWeight="bold">250</text>
+                                                    <text x="10" y="104" fill="#94a3b8" fontSize="9" fontWeight="bold">150</text>
+                                                    <text x="10" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">75</text>
+                                                    <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <text x="5" y="44" fill="#94a3b8" fontSize="9" fontWeight="bold">4000</text>
+                                                    <text x="5" y="104" fill="#94a3b8" fontSize="9" fontWeight="bold">2500</text>
+                                                    <text x="5" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">1200</text>
+                                                    <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
+                                                </>
+                                            )}
 
                                             {/* Area under lines */}
-                                            <path 
-                                                d="M 50,220 L 50,120 L 130,95 L 210,70 L 290,45 L 370,62 L 450,112 L 530,100 L 530,220 Z" 
-                                                fill="url(#indigoGrad)" 
-                                                opacity="0.04"
-                                            />
-                                            <path 
-                                                d="M 50,220 L 50,148 L 130,130 L 210,103 L 290,76 L 370,94 L 450,139 L 530,121 L 530,220 Z" 
-                                                fill="url(#tealGrad)" 
-                                                opacity="0.04"
-                                            />
+                                            {timeframe === 'week' ? (
+                                                <>
+                                                    <path 
+                                                        d="M 50,220 L 50,120 L 130,95 L 210,70 L 290,45 L 370,62 L 450,112 L 530,100 L 530,220 Z" 
+                                                        fill="url(#indigoGrad)" 
+                                                        opacity="0.04"
+                                                    />
+                                                    <path 
+                                                        d="M 50,220 L 50,148 L 130,130 L 210,103 L 290,76 L 370,94 L 450,139 L 530,121 L 530,220 Z" 
+                                                        fill="url(#tealGrad)" 
+                                                        opacity="0.04"
+                                                    />
 
-                                            {/* Page Views Path (Indigo) */}
-                                            <polyline
-                                                points="50,120 130,95 210,70 290,45 370,62 450,112 530,100"
-                                                fill="none"
-                                                stroke="#6366f1"
-                                                strokeWidth="3.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
+                                                    {/* Page Views Path (Indigo) */}
+                                                    <polyline
+                                                        points="50,120 130,95 210,70 290,45 370,62 450,112 530,100"
+                                                        fill="none"
+                                                        stroke="#6366f1"
+                                                        strokeWidth="3.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
 
-                                            {/* Unique Visits Path (Teal) */}
-                                            <polyline
-                                                points="50,148 130,130 210,103 290,76 370,94 450,139 530,121"
-                                                fill="none"
-                                                stroke="#14b8a6"
-                                                strokeWidth="3.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
+                                                    {/* Unique Visits Path (Teal) */}
+                                                    <polyline
+                                                        points="50,148 130,130 210,103 290,76 370,94 450,139 530,121"
+                                                        fill="none"
+                                                        stroke="#14b8a6"
+                                                        strokeWidth="3.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
 
-                                            {/* Dots & Labels for Page Views (Indigo) */}
-                                            {[
-                                                { x: 50, y: 120, val: 120 },
-                                                { x: 130, y: 95, val: 150 },
-                                                { x: 210, y: 70, val: 180 },
-                                                { x: 290, y: 45, val: 210 },
-                                                { x: 370, y: 62, val: 190 },
-                                                { x: 450, y: 112, val: 130 },
-                                                { x: 530, y: 100, val: 145 }
-                                            ].map((pt, idx) => (
-                                                <g key={`pv-${idx}`}>
-                                                    <circle cx={pt.x} cy={pt.y} r="4" fill="#6366f1" stroke="#ffffff" strokeWidth="1.5" />
-                                                    <text x={pt.x} y={pt.y - 10} fill="#4f46e5" fontSize="10" fontWeight="bold" textAnchor="middle">{pt.val}</text>
-                                                </g>
-                                            ))}
+                                                    {/* Dots & Labels for Page Views (Indigo) */}
+                                                    {[
+                                                        { x: 50, y: 120, val: 120 },
+                                                        { x: 130, y: 95, val: 150 },
+                                                        { x: 210, y: 70, val: 180 },
+                                                        { x: 290, y: 45, val: 210 },
+                                                        { x: 370, y: 62, val: 190 },
+                                                        { x: 450, y: 112, val: 130 },
+                                                        { x: 530, y: 100, val: 145 }
+                                                    ].map((pt, idx) => (
+                                                        <g key={`pv-${idx}`}>
+                                                            <circle cx={pt.x} cy={pt.y} r="4" fill="#6366f1" stroke="#ffffff" strokeWidth="1.5" />
+                                                            <text x={pt.x} y={pt.y - 10} fill="#4f46e5" fontSize="10" fontWeight="bold" textAnchor="middle">{pt.val}</text>
+                                                        </g>
+                                                    ))}
 
-                                            {/* Dots & Labels for Unique Visits (Teal) */}
-                                            {[
-                                                { x: 50, y: 148, val: 40 },
-                                                { x: 130, y: 130, val: 50 },
-                                                { x: 210, y: 103, val: 65 },
-                                                { x: 290, y: 76, val: 80 },
-                                                { x: 370, y: 94, val: 70 },
-                                                { x: 450, y: 139, val: 45 },
-                                                { x: 530, y: 121, val: 55 }
-                                            ].map((pt, idx) => (
-                                                <g key={`uv-${idx}`}>
-                                                    <circle cx={pt.x} cy={pt.y} r="4" fill="#14b8a6" stroke="#ffffff" strokeWidth="1.5" />
-                                                    <text x={pt.x} y={pt.y + 15} fill="#0d9488" fontSize="10" fontWeight="bold" textAnchor="middle">{pt.val}</text>
-                                                </g>
-                                            ))}
+                                                    {/* Dots & Labels for Unique Visits (Teal) */}
+                                                    {[
+                                                        { x: 50, y: 148, val: 40 },
+                                                        { x: 130, y: 130, val: 50 },
+                                                        { x: 210, y: 103, val: 65 },
+                                                        { x: 290, y: 76, val: 80 },
+                                                        { x: 370, y: 94, val: 70 },
+                                                        { x: 450, y: 139, val: 45 },
+                                                        { x: 530, y: 121, val: 55 }
+                                                    ].map((pt, idx) => (
+                                                        <g key={`uv-${idx}`}>
+                                                            <circle cx={pt.x} cy={pt.y} r="4" fill="#14b8a6" stroke="#ffffff" strokeWidth="1.5" />
+                                                            <text x={pt.x} y={pt.y + 15} fill="#0d9488" fontSize="10" fontWeight="bold" textAnchor="middle">{pt.val}</text>
+                                                        </g>
+                                                    ))}
 
-                                            {/* X-axis labels */}
-                                            <text x="50" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Lun</text>
-                                            <text x="130" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Mar</text>
-                                            <text x="210" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Mer</text>
-                                            <text x="290" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Jeu</text>
-                                            <text x="370" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Ven</text>
-                                            <text x="450" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Sam</text>
-                                            <text x="530" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Dim</text>
+                                                    {/* X-axis labels */}
+                                                    <text x="50" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Lun</text>
+                                                    <text x="130" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Mar</text>
+                                                    <text x="210" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Mer</text>
+                                                    <text x="290" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Jeu</text>
+                                                    <text x="370" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Ven</text>
+                                                    <text x="450" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Sam</text>
+                                                    <text x="530" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Dim</text>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <path 
+                                                        d="M 40,220 L 40,166 L 88,154 L 136,134 L 184,112 L 232,94 L 280,121 L 328,148 L 376,170 L 424,107 L 472,89 L 520,67 L 568,80 L 568,220 Z" 
+                                                        fill="url(#indigoGrad)" 
+                                                        opacity="0.04"
+                                                    />
+                                                    <path 
+                                                        d="M 40,220 L 40,200 L 88,195 L 136,186 L 184,179 L 232,170 L 280,181 L 328,193 L 376,202 L 424,175 L 472,168 L 520,159 L 568,166 L 568,220 Z" 
+                                                        fill="url(#tealGrad)" 
+                                                        opacity="0.04"
+                                                    />
+
+                                                    {/* Page Views Path (Indigo) */}
+                                                    <polyline
+                                                        points="40,166 88,154 136,134 184,112 232,94 280,121 328,148 376,170 424,107 472,89 520,67 568,80"
+                                                        fill="none"
+                                                        stroke="#6366f1"
+                                                        strokeWidth="3.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
+
+                                                    {/* Unique Visits Path (Teal) */}
+                                                    <polyline
+                                                        points="40,200 88,195 136,186 184,179 232,170 280,181 328,193 376,202 424,175 472,168 520,159 568,166"
+                                                        fill="none"
+                                                        stroke="#14b8a6"
+                                                        strokeWidth="3.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
+
+                                                    {/* Dots & Labels for Page Views (Indigo) */}
+                                                    {[
+                                                        { x: 40, y: 166, val: '1.2k' },
+                                                        { x: 88, y: 154, val: '1.4k' },
+                                                        { x: 136, y: 134, val: '1.9k' },
+                                                        { x: 184, y: 112, val: '2.4k' },
+                                                        { x: 232, y: 94, val: '2.8k' },
+                                                        { x: 280, y: 121, val: '2.2k' },
+                                                        { x: 328, y: 148, val: '1.6k' },
+                                                        { x: 376, y: 170, val: '1.1k' },
+                                                        { x: 424, y: 107, val: '2.5k' },
+                                                        { x: 472, y: 89, val: '2.9k' },
+                                                        { x: 520, y: 67, val: '3.4k' },
+                                                        { x: 568, y: 80, val: '3.1k' }
+                                                    ].map((pt, idx) => (
+                                                        <g key={`pv-mo-${idx}`}>
+                                                            <circle cx={pt.x} cy={pt.y} r="3" fill="#6366f1" stroke="#ffffff" strokeWidth="1" />
+                                                            <text x={pt.x} y={pt.y - 7} fill="#4f46e5" fontSize="8" fontWeight="bold" textAnchor="middle">{pt.val}</text>
+                                                        </g>
+                                                    ))}
+
+                                                    {/* Dots & Labels for Unique Visits (Teal) */}
+                                                    {[
+                                                        { x: 40, y: 200, val: '450' },
+                                                        { x: 88, y: 195, val: '550' },
+                                                        { x: 136, y: 186, val: '750' },
+                                                        { x: 184, y: 179, val: '900' },
+                                                        { x: 232, y: 170, val: '1.1k' },
+                                                        { x: 280, y: 181, val: '850' },
+                                                        { x: 328, y: 193, val: '600' },
+                                                        { x: 376, y: 202, val: '400' },
+                                                        { x: 424, y: 175, val: '1k' },
+                                                        { x: 472, y: 168, val: '1.1k' },
+                                                        { x: 520, y: 159, val: '1.3k' },
+                                                        { x: 568, y: 166, val: '1.2k' }
+                                                    ].map((pt, idx) => (
+                                                        <g key={`uv-mo-${idx}`}>
+                                                            <circle cx={pt.x} cy={pt.y} r="3" fill="#14b8a6" stroke="#ffffff" strokeWidth="1" />
+                                                            <text x={pt.x} y={pt.y + 11} fill="#0d9488" fontSize="8" fontWeight="bold" textAnchor="middle">{pt.val}</text>
+                                                        </g>
+                                                    ))}
+
+                                                    {/* X-axis labels */}
+                                                    <text x="40" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Jan</text>
+                                                    <text x="88" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Fév</text>
+                                                    <text x="136" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Mar</text>
+                                                    <text x="184" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Avr</text>
+                                                    <text x="232" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Mai</text>
+                                                    <text x="280" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Juin</text>
+                                                    <text x="328" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Juil</text>
+                                                    <text x="376" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Août</text>
+                                                    <text x="424" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Sep</text>
+                                                    <text x="472" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Oct</text>
+                                                    <text x="520" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Nov</text>
+                                                    <text x="568" y="235" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="middle">Déc</text>
+                                                </>
+                                            )}
 
                                             {/* Gradients */}
                                             <defs>
