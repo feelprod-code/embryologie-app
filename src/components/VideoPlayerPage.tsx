@@ -520,20 +520,21 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
   const TopContent = (
     <div className={cn(
-      "w-full flex justify-center items-center h-full max-h-full min-h-0",
-      isFullscreen ? "max-w-none px-0" : "flex-col justify-start md:px-0 lg:px-0"
+      "w-full flex justify-center items-center min-h-0",
+      isFullscreen ? "h-full max-h-full max-w-none px-0" : "h-auto flex-col justify-start md:px-0 lg:px-0"
     )}>
       <div
         ref={playerWrapperRef}
         className={cn(
-          "w-full flex-grow flex flex-col items-center justify-center min-h-0 h-full",
+          "w-full flex-grow flex flex-col items-center justify-center min-h-0",
+          isFullscreen ? "h-full" : "h-auto",
           !isFullscreen && "overflow-hidden"
         )}
       >
         <div
           className={cn(
             "relative transition-none flex-shrink-0 flex items-center justify-center mx-auto",
-            isFullscreen ? "w-full h-full" : (is43 ? "w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl aspect-[4/3]" : "w-full aspect-video")
+            isFullscreen ? "w-full h-full" : (is43 ? "w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl aspect-[4/3]" : "w-full max-w-3xl aspect-video")
           )}
         >
           <CustomVideoPlayer
