@@ -76,6 +76,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   const [pipTranslate, setPipTranslate] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isVideoVisible, setIsVideoVisible] = useState<boolean>(true);
+  const [isNativePiPActive, setIsNativePiPActive] = useState<boolean>(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [localScrubTime, setLocalScrubTime] = useState<number | null>(null);
@@ -547,7 +548,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             onPlayStateChange={setIsVideoPlaying}
             onCuesLoaded={setCues}
             onActiveCueChange={setActiveCueIndex}
-            
+            onPiPChange={setIsNativePiPActive}
             className={cn(
               isFullscreen ? "" : "rounded-2xl md:rounded-3xl shadow-xl border border-slate-800 w-full h-full object-cover mx-auto"
             )}
@@ -999,12 +1000,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   ? "fixed inset-0 !bottom-0 !right-0 w-full h-full border-none rounded-none bg-black/90 p-0"
                   : "rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] bg-[#FAF6ED]/95 backdrop-blur-xl border border-white/20 p-1.5",
                 (!isResizing && !isDragging && !isFullscreen) && "transition-transform duration-300 ease-out",
-                !isVideoVisible && !isFullscreen && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
+                (!isVideoVisible || isNativePiPActive) && !isFullscreen && "opacity-0 pointer-events-none scale-0 -z-50 right-0 bottom-0"
               )}
               style={{
                 width: isFullscreen ? '100%' : (isVideoVisible ? `${pipWidth}px` : undefined),
                 height: isFullscreen ? '100%' : 'auto',
-                touchAction: isFullscreen ? 'auto' : 'none',
                 transform: isFullscreen ? 'none' : `translate(${pipTranslate.x}px, ${pipTranslate.y}px)`,
                 zIndex: isFullscreen ? 99990 : 90
               }}

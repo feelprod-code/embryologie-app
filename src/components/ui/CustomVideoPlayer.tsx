@@ -46,6 +46,7 @@ interface CustomVideoPlayerProps {
     onCuesLoaded?: (cues: {start: number, end: number, text: string}[]) => void;
     onActiveCueChange?: (cueIndex: number) => void;
     onControlsChange?: (visible: boolean) => void;
+    onPiPChange?: (isActive: boolean) => void;
 }
 
 export interface CustomVideoPlayerRef {
@@ -68,6 +69,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     onCuesLoaded,
     onActiveCueChange,
     onControlsChange,
+    onPiPChange,
 }, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
@@ -93,6 +95,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const cuesRef = useRef<{ start: number, end: number, text: string }[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerWidth, setContainerWidth] = useState<number>(0);
+    const hasAttachedPiPListeners = useRef(false);
+
+    useEffect(() => {
+        hasAttachedPiPListeners.current = false;
+    }, [cloudflareId, localVideoUrl]);
 
     // Measure container width for responsive subtitles
     useEffect(() => {
@@ -536,11 +543,37 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (videoElement.textTracks && videoElement.textTracks[0]) {
                 videoElement.textTracks[0].mode = subtitlesEnabled ? 'showing' : 'hidden';
             }
+
+            // Attach native PiP listeners to notify parent component
+            if (!hasAttachedPiPListeners.current) {
+                const handleEnterPiP = () => {
+                    if (onPiPChange) onPiPChange(true);
+                };
+
+                const handleLeavePiP = () => {
+                    if (onPiPChange) onPiPChange(false);
+                };
+
+                videoElement.addEventListener('enterpictureinpicture', handleEnterPiP);
+                videoElement.addEventListener('leavepictureinpicture', handleLeavePiP);
+                
+                const handleWebkitPresentationModeChange = () => {
+                    const mode = (videoElement as any).webkitPresentationMode;
+                    if (onPiPChange) {
+                        onPiPChange(mode === 'picture-in-picture');
+                    }
+                };
+                videoElement.addEventListener('webkitpresentationmodechanged', handleWebkitPresentationModeChange);
+                
+                hasAttachedPiPListeners.current = true;
+                console.log("setupNativeSubtitles: successfully attached PiP event listeners");
+            }
+
             console.log("setupNativeSubtitles: successfully attached track", vttUrl);
         } catch (e) {
             console.error("Error setting up native subtitles:", e);
         }
-    }, [isDesktop, i18n.language, subtitlesEnabled]);
+    }, [isDesktop, i18n.language, subtitlesEnabled, onPiPChange]);
 
     // Sync subtitles visibility when toggled by the user
     useEffect(() => {
