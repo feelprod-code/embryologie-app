@@ -493,8 +493,19 @@ export function AdminDashboard() {
                                             placeholder="Ex: https://lookerstudio.google.com/embed/reporting/..."
                                         />
                                         <div className="flex gap-2">
-                                            <button onClick={handleSaveLookerUrl} className="px-4 py-1.5 bg-[#1c2e4a] text-white rounded-lg text-xs font-bold cursor-pointer">Enregistrer</button>
-                                            <button onClick={() => setIsEditingUrl(false)} className="px-4 py-1.5 bg-slate-200 text-slate-700 rounded-lg text-xs font-bold cursor-pointer">Annuler</button>
+                                            <button onClick={handleSaveLookerUrl} className="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-bold cursor-pointer transition-colors">Enregistrer</button>
+                                            <button 
+                                                onClick={() => {
+                                                    localStorage.removeItem('looker_studio_url');
+                                                    setLookerStudioUrl('');
+                                                    setTempUrl('');
+                                                    setIsEditingUrl(false);
+                                                }} 
+                                                className="px-4 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded-lg text-xs font-bold cursor-pointer transition-colors"
+                                            >
+                                                Débrancher
+                                            </button>
+                                            <button onClick={() => setIsEditingUrl(false)} className="px-4 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-xs font-bold cursor-pointer transition-colors">Annuler</button>
                                         </div>
                                     </div>
                                 ) : null}
@@ -918,6 +929,18 @@ export function AdminDashboard() {
                                             className="px-6 py-2.5 bg-indigo-500 hover:bg-indigo-400 transition-colors text-white font-bold text-xs rounded-xl shadow-md cursor-pointer flex items-center gap-1.5"
                                         >
                                             <ArrowUpRight size={14} /> Brancher le rapport
+                                        </button>
+                                        <button 
+                                            type="button"
+                                            onClick={() => {
+                                                const demoUrl = "https://lookerstudio.google.com/embed/reporting/0B5FF5J4uQ0pbODRraG50UXFMMGc/page/tqCH";
+                                                setTempUrl(demoUrl);
+                                                localStorage.setItem('looker_studio_url', demoUrl);
+                                                setLookerStudioUrl(demoUrl);
+                                            }}
+                                            className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 transition-colors text-white font-bold text-xs rounded-xl shadow-md cursor-pointer flex items-center gap-1.5 border border-white/10"
+                                        >
+                                            Visualiser une démo
                                         </button>
                                     </div>
                                 </div>
