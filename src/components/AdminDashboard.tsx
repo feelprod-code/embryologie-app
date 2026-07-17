@@ -449,7 +449,12 @@ export function AdminDashboard() {
                             <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
                                 <div>
                                     <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Taux Conversion</span>
-                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">{conversionRate}%</span>
+                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">
+                                        {conversionRate}%
+                                        <span className="text-xs font-sans font-bold text-slate-400 ml-2">
+                                            ({premiumUsers} / {totalUsers})
+                                        </span>
+                                    </span>
                                 </div>
                                 <div className="p-3 bg-green-50 text-green-600 rounded-xl">
                                     <TrendingUp size={22} />
@@ -519,47 +524,91 @@ export function AdminDashboard() {
 
                                     {/* MOCK SVG LINE CHART */}
                                     <div className="w-full h-64 pt-4 relative">
-                                        <svg className="w-full h-full" viewBox="0 0 600 240" preserveAspectRatio="none">
+                                        <svg className="w-full h-full" viewBox="0 0 600 240">
                                             {/* Grid */}
-                                            <line x1="0" y1="40" x2="600" y2="40" stroke="#f1f5f9" strokeWidth="1" />
-                                            <line x1="0" y1="100" x2="600" y2="100" stroke="#f1f5f9" strokeWidth="1" />
-                                            <line x1="0" y1="160" x2="600" y2="160" stroke="#f1f5f9" strokeWidth="1" />
-                                            <line x1="0" y1="220" x2="600" y2="220" stroke="#e2e8f0" strokeWidth="1.5" />
+                                            <line x1="40" y1="40" x2="570" y2="40" stroke="#f1f5f9" strokeWidth="1" />
+                                            <line x1="40" y1="100" x2="570" y2="100" stroke="#f1f5f9" strokeWidth="1" />
+                                            <line x1="40" y1="160" x2="570" y2="160" stroke="#f1f5f9" strokeWidth="1" />
+                                            <line x1="40" y1="220" x2="570" y2="220" stroke="#e2e8f0" strokeWidth="1.5" />
+
+                                            {/* Left Y-axis labels */}
+                                            <text x="10" y="44" fill="#94a3b8" fontSize="9" fontWeight="bold">250</text>
+                                            <text x="10" y="104" fill="#94a3b8" fontSize="9" fontWeight="bold">150</text>
+                                            <text x="10" y="164" fill="#94a3b8" fontSize="9" fontWeight="bold">75</text>
+                                            <text x="20" y="224" fill="#94a3b8" fontSize="9" fontWeight="bold">0</text>
+
+                                            {/* Area under lines */}
+                                            <path 
+                                                d="M 50,220 L 50,120 L 130,95 L 210,70 L 290,45 L 370,62 L 450,112 L 530,100 L 530,220 Z" 
+                                                fill="url(#indigoGrad)" 
+                                                opacity="0.04"
+                                            />
+                                            <path 
+                                                d="M 50,220 L 50,148 L 130,130 L 210,103 L 290,76 L 370,94 L 450,139 L 530,121 L 530,220 Z" 
+                                                fill="url(#tealGrad)" 
+                                                opacity="0.04"
+                                            />
 
                                             {/* Page Views Path (Indigo) */}
-                                            <path 
-                                                d="M 20 180 Q 110 120, 200 90 T 380 60 T 580 110" 
-                                                fill="none" 
-                                                stroke="#6366f1" 
-                                                strokeWidth="3.5" 
+                                            <polyline
+                                                points="50,120 130,95 210,70 290,45 370,62 450,112 530,100"
+                                                fill="none"
+                                                stroke="#6366f1"
+                                                strokeWidth="3.5"
                                                 strokeLinecap="round"
-                                            />
-                                            {/* Area under line */}
-                                            <path 
-                                                d="M 20 180 Q 110 120, 200 90 T 380 60 T 580 110 L 580 220 L 20 220 Z" 
-                                                fill="url(#indigoGrad)" 
-                                                opacity="0.06"
+                                                strokeLinejoin="round"
                                             />
 
                                             {/* Unique Visits Path (Teal) */}
-                                            <path 
-                                                d="M 20 200 Q 110 160, 200 130 T 380 110 T 580 145" 
-                                                fill="none" 
-                                                stroke="#14b8a6" 
-                                                strokeWidth="3.5" 
+                                            <polyline
+                                                points="50,148 130,130 210,103 290,76 370,94 450,139 530,121"
+                                                fill="none"
+                                                stroke="#14b8a6"
+                                                strokeWidth="3.5"
                                                 strokeLinecap="round"
-                                            />
-                                            <path 
-                                                d="M 20 200 Q 110 160, 200 130 T 380 110 T 580 145 L 580 220 L 20 220 Z" 
-                                                fill="url(#tealGrad)" 
-                                                opacity="0.06"
+                                                strokeLinejoin="round"
                                             />
 
-                                            {/* Interactive Points */}
-                                            <circle cx="200" cy="90" r="5" fill="#6366f1" stroke="#ffffff" strokeWidth="2" className="cursor-pointer hover:r-7 transition-all" />
-                                            <circle cx="200" cy="130" r="5" fill="#14b8a6" stroke="#ffffff" strokeWidth="2" className="cursor-pointer hover:r-7 transition-all" />
-                                            <circle cx="380" cy="60" r="5" fill="#6366f1" stroke="#ffffff" strokeWidth="2" />
-                                            <circle cx="380" cy="110" r="5" fill="#14b8a6" stroke="#ffffff" strokeWidth="2" />
+                                            {/* Dots & Labels for Page Views (Indigo) */}
+                                            {[
+                                                { x: 50, y: 120, val: 120 },
+                                                { x: 130, y: 95, val: 150 },
+                                                { x: 210, y: 70, val: 180 },
+                                                { x: 290, y: 45, val: 210 },
+                                                { x: 370, y: 62, val: 190 },
+                                                { x: 450, y: 112, val: 130 },
+                                                { x: 530, y: 100, val: 145 }
+                                            ].map((pt, idx) => (
+                                                <g key={`pv-${idx}`}>
+                                                    <circle cx={pt.x} cy={pt.y} r="4" fill="#6366f1" stroke="#ffffff" strokeWidth="1.5" />
+                                                    <text x={pt.x} y={pt.y - 10} fill="#4f46e5" fontSize="10" fontWeight="bold" textAnchor="middle">{pt.val}</text>
+                                                </g>
+                                            ))}
+
+                                            {/* Dots & Labels for Unique Visits (Teal) */}
+                                            {[
+                                                { x: 50, y: 148, val: 40 },
+                                                { x: 130, y: 130, val: 50 },
+                                                { x: 210, y: 103, val: 65 },
+                                                { x: 290, y: 76, val: 80 },
+                                                { x: 370, y: 94, val: 70 },
+                                                { x: 450, y: 139, val: 45 },
+                                                { x: 530, y: 121, val: 55 }
+                                            ].map((pt, idx) => (
+                                                <g key={`uv-${idx}`}>
+                                                    <circle cx={pt.x} cy={pt.y} r="4" fill="#14b8a6" stroke="#ffffff" strokeWidth="1.5" />
+                                                    <text x={pt.x} y={pt.y + 15} fill="#0d9488" fontSize="10" fontWeight="bold" textAnchor="middle">{pt.val}</text>
+                                                </g>
+                                            ))}
+
+                                            {/* X-axis labels */}
+                                            <text x="50" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Lun</text>
+                                            <text x="130" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Mar</text>
+                                            <text x="210" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Mer</text>
+                                            <text x="290" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Jeu</text>
+                                            <text x="370" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Ven</text>
+                                            <text x="450" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Sam</text>
+                                            <text x="530" y="235" fill="#94a3b8" fontSize="10" fontWeight="bold" textAnchor="middle">Dim</text>
 
                                             {/* Gradients */}
                                             <defs>
@@ -573,11 +622,6 @@ export function AdminDashboard() {
                                                 </linearGradient>
                                             </defs>
                                         </svg>
-
-                                        {/* X Axis Labels */}
-                                        <div className="flex justify-between text-[10px] font-bold text-slate-400 px-4 mt-2">
-                                            <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
-                                        </div>
                                     </div>
                                 </div>
 
