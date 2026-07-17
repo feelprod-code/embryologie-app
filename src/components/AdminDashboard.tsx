@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings } from 'lucide-react';
 import { cn } from '../utils';
 
 type Profile = {
@@ -33,6 +33,26 @@ export function AdminDashboard() {
     const [filter, setFilter] = useState<FilterType>('ALL');
     const [tierFilter, setTierFilter] = useState<TierFilterType>('ALL');
     const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
+    const [activeTab, setActiveTab] = useState<'users' | 'analytics'>('users');
+    const [lookerStudioUrl, setLookerStudioUrl] = useState<string>(() => {
+        return typeof window !== 'undefined' ? localStorage.getItem('looker_studio_url') || '' : '';
+    });
+    const [isEditingUrl, setIsEditingUrl] = useState(false);
+    const [tempUrl, setTempUrl] = useState(lookerStudioUrl);
+
+    // Calculate metrics
+    const totalUsers = profiles.length;
+    const premiumUsers = profiles.filter(p => p.access_tier === 'premium' || p.access_tier === 'legacy').length;
+    const trialUsers = profiles.filter(p => p.access_tier === 'trial').length;
+    const freeUsers = profiles.filter(p => p.access_tier === 'free').length;
+    const conversionRate = totalUsers > 0 ? Math.round((premiumUsers / totalUsers) * 100) : 0;
+
+    const handleSaveLookerUrl = () => {
+        localStorage.setItem('looker_studio_url', tempUrl);
+        setLookerStudioUrl(tempUrl);
+        setIsEditingUrl(false);
+    };
+
 
     useEffect(() => {
         fetchProfiles();
@@ -251,125 +271,410 @@ export function AdminDashboard() {
 
     return (
         <div className="w-full h-full animate-fade-in relative z-10 flex bg-slate-50 overflow-hidden min-h-0">
-            {/* MAIN LIST VIEW */}
-            <div className={cn("flex-1 flex flex-col h-full min-w-0 min-h-0 bg-[#FAF6ED] transition-all duration-300", selectedProfile ? "mr-0 xl:mr-[400px]" : "mr-0")}>
+            {/* MAIN VIEW */}
+            <div className={cn("flex-1 flex flex-col h-full min-w-0 min-h-0 bg-[#FAF6ED] transition-all duration-300", (selectedProfile && activeTab === 'users') ? "mr-0 xl:mr-[400px]" : "mr-0")}>
                 {/* TOOLBAR */}
                 <div className="flex-none pt-[max(env(safe-area-inset-top),16px)] px-4 md:px-6 pb-0 border-b border-slate-200 bg-white shadow-sm z-20">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 max-w-6xl mx-auto mb-6">
-                        <div>
-                            <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase leading-none">Tour de Contrôle</h1>
-                            <p className="text-slate-500 font-medium text-sm mt-1">Gestion des accès et transferts</p>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+                            <div>
+                                <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase leading-none">Tour de Contrôle</h1>
+                                <p className="text-slate-500 font-medium text-sm mt-1">Gestion des accès et statistiques</p>
+                            </div>
+                            
+                            {/* VIEW TOGGLE */}
+                            <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner max-w-xs">
+                                <button 
+                                    onClick={() => setActiveTab('users')} 
+                                    className={cn(
+                                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
+                                        activeTab === 'users' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                    )}
+                                >
+                                    👥 Élèves
+                                </button>
+                                <button 
+                                    onClick={() => setActiveTab('analytics')} 
+                                    className={cn(
+                                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
+                                        activeTab === 'analytics' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                    )}
+                                >
+                                    📊 Trafic & Audience
+                                </button>
+                            </div>
                         </div>
                         
-                        <div className="flex flex-col xl:flex-row items-stretch xl:items-center gap-3 w-full lg:w-auto">
-                            <div className="flex bg-slate-100 p-1 rounded-xl w-full xl:w-auto overflow-x-auto no-scrollbar hidden md:flex">
-                                <button onClick={() => setFilter('ALL')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'ALL' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>Vue globale</button>
-                                <button onClick={() => setFilter('ACTIVE')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'ACTIVE' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🟢 Actifs</button>
-                                <button onClick={() => setFilter('EXPIRED')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'EXPIRED' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🔴 Bloqués</button>
-                            </div>
+                        {activeTab === 'users' && (
+                            <div className="flex flex-col xl:flex-row items-stretch xl:items-center gap-3 w-full lg:w-auto">
+                                <div className="flex bg-slate-100 p-1 rounded-xl w-full xl:w-auto overflow-x-auto no-scrollbar hidden md:flex">
+                                    <button onClick={() => setFilter('ALL')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'ALL' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>Vue globale</button>
+                                    <button onClick={() => setFilter('ACTIVE')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'ACTIVE' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🟢 Actifs</button>
+                                    <button onClick={() => setFilter('EXPIRED')} className={cn("px-4 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap flex-1 text-center", filter === 'EXPIRED' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700")}>🔴 Bloqués</button>
+                                </div>
 
-                            <div className="relative w-full xl:w-64 shrink-0">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                                <input
-                                    type="text"
-                                    className="w-full pl-9 pr-3 py-2 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm font-medium"
-                                    placeholder="Chercher un nom ou e-mail..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* TIER TABS SYSTEM */}
-                    <div className="flex overflow-x-auto overflow-y-hidden touch-pan-x no-scrollbar max-w-6xl mx-auto gap-6 border-transparent -mx-4 px-4 md:-mx-6 md:px-6 snap-x snap-mandatory">
-                        {[
-                            { id: 'ALL', label: 'Tous', icon: '🌟' },
-                            { id: 'STANDARD', label: 'Standards', icon: '⚪' },
-                            { id: 'PREMIUM', label: 'Premiums', icon: '👑' },
-                            { id: 'LEGACY', label: 'Mise à jour', icon: '📜' },
-                            { id: 'FREE', label: 'Cadeaux', icon: '🎁' },
-                            { id: 'TRIAL', label: 'Essais 24h', icon: '⏱️' },
-                            { id: 'ADMIN', label: 'Admin', icon: '🛡️' }
-                        ].map((t) => (
-                            <button
-                                key={t.id}
-                                onClick={() => setTierFilter(t.id as TierFilterType)}
-                                className={cn(
-                                    "pb-3 text-sm font-bold whitespace-nowrap transition-colors relative flex items-center snap-start",
-                                    tierFilter === t.id ? "text-primary" : "text-slate-400 hover:text-slate-600"
-                                )}
-                            >
-                                <span className="mr-1.5">{t.icon}</span>
-                                {t.label} 
-                                <span className={cn(
-                                    "ml-2 text-[10px] px-2 py-0.5 rounded-full font-bold",
-                                    tierFilter === t.id ? "bg-primary/10 text-primary" : "bg-slate-100 text-slate-500"
-                                )}>
-                                    {getTierCount(t.id as TierFilterType)}
-                                </span>
-                                {tierFilter === t.id && (
-                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary transform translate-y-[2px]" />
-                                )}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                {/* THE SYNTHETIC TABLE */}
-                <div className="flex-1 overflow-y-auto w-full max-w-6xl mx-auto px-4 md:px-6 py-6 pb-[120px] will-change-scroll">
-                    <div className="bg-white rounded-2xl shadow-[0_5px_20px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden relative">
-                        {loading ? (
-                            <div className="p-12 text-center text-slate-400">Chargement des données...</div>
-                        ) : filteredProfiles.length === 0 ? (
-                            <div className="p-12 text-center text-slate-400">Aucun résultat.</div>
-                        ) : (
-                            <div className="divide-y divide-slate-100">
-                                {filteredProfiles.map((p) => (
-                                    <div 
-                                        key={p.id} 
-                                        onClick={() => setSelectedProfile(p)}
-                                        className={cn(
-                                            "group flex items-center justify-between p-4 px-6 cursor-pointer hover:bg-slate-50 transition-colors",
-                                            selectedProfile?.id === p.id && "bg-slate-50 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-primary"
-                                        )}
-                                    >
-                                        <div className="flex items-center gap-4 w-[50%] md:w-[40%]">
-                                            <div className="hidden md:flex h-10 w-10 shrink-0 rounded-full bg-slate-100 text-slate-500 font-bold items-center justify-center text-sm uppercase">
-                                                {p.first_name?.[0] || ''}{p.last_name?.[0] || ''}
-                                                {!p.first_name && !p.last_name && p.email?.[0]}
-                                            </div>
-                                            <div className="overflow-hidden">
-                                                <div className="font-bold text-slate-900 text-sm truncate">{p.first_name || p.last_name ? `${p.first_name || ''} ${p.last_name || ''}` : <span className="italic">Inconnu</span>}</div>
-                                                <div className="text-xs text-slate-500 font-medium truncate">
-                                                    {p.email} <span className="opacity-50 mx-1">•</span> <span className="text-[10px] uppercase tracking-wide">{new Date(p.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: '2-digit' })}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="hidden md:flex w-[25%]">
-                                            {renderTierBadge(p)}
-                                        </div>
-
-                                        <div className="w-[30%] md:w-[25%] flex justify-end md:justify-start">
-                                            {renderStatusBadge(p)}
-                                        </div>
-
-                                        <div className="w-[10%] flex justify-end">
-                                            <ChevronRight size={18} className={cn("text-slate-300 group-hover:text-primary transition-colors", selectedProfile?.id === p.id && "text-primary")} />
-                                        </div>
-                                    </div>
-                                ))}
+                                <div className="relative w-full xl:w-64 shrink-0">
+                                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                                    <input
+                                        type="text"
+                                        className="w-full pl-9 pr-3 py-2 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm font-medium"
+                                        placeholder="Chercher un nom ou e-mail..."
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                    />
+                                </div>
                             </div>
                         )}
                     </div>
+
+                    {/* TIER TABS SYSTEM - Only visible when managing users */}
+                    {activeTab === 'users' && (
+                        <div className="flex overflow-x-auto overflow-y-hidden touch-pan-x no-scrollbar max-w-6xl mx-auto gap-6 border-transparent -mx-4 px-4 md:-mx-6 md:px-6 snap-x snap-mandatory">
+                            {[
+                                { id: 'ALL', label: 'Tous', icon: '🌟' },
+                                { id: 'STANDARD', label: 'Standards', icon: '⚪' },
+                                { id: 'PREMIUM', label: 'Premiums', icon: '👑' },
+                                { id: 'LEGACY', label: 'Mise à jour', icon: '📜' },
+                                { id: 'FREE', label: 'Cadeaux', icon: '🎁' },
+                                { id: 'TRIAL', label: 'Essais 24h', icon: '⏱️' },
+                                { id: 'ADMIN', label: 'Admin', icon: '🛡️' }
+                            ].map((t) => (
+                                <button
+                                    key={t.id}
+                                    onClick={() => setTierFilter(t.id as TierFilterType)}
+                                    className={cn(
+                                        "pb-3 text-sm font-bold whitespace-nowrap transition-colors relative flex items-center snap-start",
+                                        tierFilter === t.id ? "text-primary" : "text-slate-400 hover:text-slate-600"
+                                    )}
+                                >
+                                    <span className="mr-1.5">{t.icon}</span>
+                                    {t.label} 
+                                    <span className={cn(
+                                        "ml-2 text-[10px] px-2 py-0.5 rounded-full font-bold",
+                                        tierFilter === t.id ? "bg-primary/10 text-primary" : "bg-slate-100 text-slate-500"
+                                    )}>
+                                        {getTierCount(t.id as TierFilterType)}
+                                    </span>
+                                    {tierFilter === t.id && (
+                                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary transform translate-y-[2px]" />
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    )}
                 </div>
+
+                {/* CONTENT AREA */}
+                {activeTab === 'users' ? (
+                    /* THE SYNTHETIC TABLE */
+                    <div className="flex-1 overflow-y-auto w-full max-w-6xl mx-auto px-4 md:px-6 py-6 pb-[120px] will-change-scroll">
+                        <div className="bg-white rounded-2xl shadow-[0_5px_20px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden relative">
+                            {loading ? (
+                                <div className="p-12 text-center text-slate-400">Chargement des données...</div>
+                            ) : filteredProfiles.length === 0 ? (
+                                <div className="p-12 text-center text-slate-400">Aucun résultat.</div>
+                            ) : (
+                                <div className="divide-y divide-slate-100">
+                                    {filteredProfiles.map((p) => (
+                                        <div 
+                                            key={p.id} 
+                                            onClick={() => setSelectedProfile(p)}
+                                            className={cn(
+                                                "group flex items-center justify-between p-4 px-6 cursor-pointer hover:bg-slate-50 transition-colors",
+                                                selectedProfile?.id === p.id && "bg-slate-50 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-primary"
+                                            )}
+                                        >
+                                            <div className="flex items-center gap-4 w-[50%] md:w-[40%]">
+                                                <div className="hidden md:flex h-10 w-10 shrink-0 rounded-full bg-slate-100 text-slate-500 font-bold items-center justify-center text-sm uppercase">
+                                                    {p.first_name?.[0] || ''}{p.last_name?.[0] || ''}
+                                                    {!p.first_name && !p.last_name && p.email?.[0]}
+                                                </div>
+                                                <div className="overflow-hidden">
+                                                    <div className="font-bold text-slate-900 text-sm truncate">{p.first_name || p.last_name ? `${p.first_name || ''} ${p.last_name || ''}` : <span className="italic">Inconnu</span>}</div>
+                                                    <div className="text-xs text-slate-500 font-medium truncate">
+                                                        {p.email} <span className="opacity-50 mx-1">•</span> <span className="text-[10px] uppercase tracking-wide">{new Date(p.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: '2-digit' })}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="hidden md:flex w-[25%]">
+                                                {renderTierBadge(p)}
+                                            </div>
+
+                                            <div className="w-[30%] md:w-[25%] flex justify-end md:justify-start">
+                                                {renderStatusBadge(p)}
+                                            </div>
+
+                                            <div className="w-[10%] flex justify-end">
+                                                <ChevronRight size={18} className={cn("text-slate-300 group-hover:text-primary transition-colors", selectedProfile?.id === p.id && "text-primary")} />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                ) : (
+                    /* THE ANALYTICS VIEW */
+                    <div className="flex-1 overflow-y-auto w-full max-w-6xl mx-auto px-4 md:px-6 py-6 pb-[120px] will-change-scroll space-y-6">
+                        {/* METRICS CARDS */}
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
+                                <div>
+                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Total Inscrits</span>
+                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">{totalUsers}</span>
+                                </div>
+                                <div className="p-3 bg-blue-50 text-blue-600 rounded-xl animate-pulse">
+                                    <Users size={22} />
+                                </div>
+                            </div>
+                            <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
+                                <div>
+                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Membres Premium</span>
+                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">{premiumUsers}</span>
+                                </div>
+                                <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
+                                    <Crown size={22} />
+                                </div>
+                            </div>
+                            <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
+                                <div>
+                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Essais Actifs</span>
+                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">{trialUsers}</span>
+                                </div>
+                                <div className="p-3 bg-amber-50 text-amber-600 rounded-xl">
+                                    <Clock size={22} />
+                                </div>
+                            </div>
+                            <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
+                                <div>
+                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Taux Conversion</span>
+                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">{conversionRate}%</span>
+                                </div>
+                                <div className="p-3 bg-green-50 text-green-600 rounded-xl">
+                                    <TrendingUp size={22} />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* LOOKER STUDIO IFRAME OR MOCK DASHBOARD */}
+                        {lookerStudioUrl ? (
+                            <div className="bg-white rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.03)] overflow-hidden p-4 space-y-4">
+                                <div className="flex justify-between items-center px-2">
+                                    <div className="flex items-center gap-2">
+                                        <BarChart2 className="text-indigo-600" size={20} />
+                                        <h3 className="font-bold text-slate-800 text-sm">Tableau de bord Google Analytics en direct</h3>
+                                    </div>
+                                    <button 
+                                        onClick={() => {
+                                            setTempUrl(lookerStudioUrl);
+                                            setIsEditingUrl(true);
+                                        }}
+                                        className="text-xs font-bold text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-1 cursor-pointer"
+                                    >
+                                        <Settings size={14} /> Configurer
+                                    </button>
+                                </div>
+
+                                {isEditingUrl ? (
+                                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200/50 space-y-3">
+                                        <label className="text-xs font-bold text-slate-600 block">Lien d'intégration Looker Studio / Analytics</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-3 py-2 border border-slate-200 rounded-xl bg-white text-sm font-mono text-xs focus:outline-none"
+                                            value={tempUrl}
+                                            onChange={(e) => setTempUrl(e.target.value)}
+                                            placeholder="Ex: https://lookerstudio.google.com/embed/reporting/..."
+                                        />
+                                        <div className="flex gap-2">
+                                            <button onClick={handleSaveLookerUrl} className="px-4 py-1.5 bg-[#1c2e4a] text-white rounded-lg text-xs font-bold cursor-pointer">Enregistrer</button>
+                                            <button onClick={() => setIsEditingUrl(false)} className="px-4 py-1.5 bg-slate-200 text-slate-700 rounded-lg text-xs font-bold cursor-pointer">Annuler</button>
+                                        </div>
+                                    </div>
+                                ) : null}
+
+                                <div className="relative w-full rounded-xl overflow-hidden bg-slate-100 border border-slate-200/50">
+                                    <iframe
+                                        src={lookerStudioUrl}
+                                        className="w-full h-[600px] border-0 bg-white"
+                                        allowFullScreen
+                                        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                                    />
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                {/* MOCK VISITS CHART */}
+                                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] lg:col-span-2 space-y-4">
+                                    <div className="flex justify-between items-center">
+                                        <div>
+                                            <h3 className="font-bold text-slate-800 text-base">Trafic Hebdomadaire (Estimation)</h3>
+                                            <p className="text-xs text-slate-400 font-medium mt-0.5">Visites sur embryologie.techniquesdoucestissulaires.fr</p>
+                                        </div>
+                                        <div className="flex items-center gap-4 text-xs font-bold">
+                                            <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-indigo-500"/><span className="text-slate-600">Pages vues</span></div>
+                                            <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-teal-500"/><span className="text-slate-600">Visiteurs uniques</span></div>
+                                        </div>
+                                    </div>
+
+                                    {/* MOCK SVG LINE CHART */}
+                                    <div className="w-full h-64 pt-4 relative">
+                                        <svg className="w-full h-full" viewBox="0 0 600 240" preserveAspectRatio="none">
+                                            {/* Grid */}
+                                            <line x1="0" y1="40" x2="600" y2="40" stroke="#f1f5f9" strokeWidth="1" />
+                                            <line x1="0" y1="100" x2="600" y2="100" stroke="#f1f5f9" strokeWidth="1" />
+                                            <line x1="0" y1="160" x2="600" y2="160" stroke="#f1f5f9" strokeWidth="1" />
+                                            <line x1="0" y1="220" x2="600" y2="220" stroke="#e2e8f0" strokeWidth="1.5" />
+
+                                            {/* Page Views Path (Indigo) */}
+                                            <path 
+                                                d="M 20 180 Q 110 120, 200 90 T 380 60 T 580 110" 
+                                                fill="none" 
+                                                stroke="#6366f1" 
+                                                strokeWidth="3.5" 
+                                                strokeLinecap="round"
+                                            />
+                                            {/* Area under line */}
+                                            <path 
+                                                d="M 20 180 Q 110 120, 200 90 T 380 60 T 580 110 L 580 220 L 20 220 Z" 
+                                                fill="url(#indigoGrad)" 
+                                                opacity="0.06"
+                                            />
+
+                                            {/* Unique Visits Path (Teal) */}
+                                            <path 
+                                                d="M 20 200 Q 110 160, 200 130 T 380 110 T 580 145" 
+                                                fill="none" 
+                                                stroke="#14b8a6" 
+                                                strokeWidth="3.5" 
+                                                strokeLinecap="round"
+                                            />
+                                            <path 
+                                                d="M 20 200 Q 110 160, 200 130 T 380 110 T 580 145 L 580 220 L 20 220 Z" 
+                                                fill="url(#tealGrad)" 
+                                                opacity="0.06"
+                                            />
+
+                                            {/* Interactive Points */}
+                                            <circle cx="200" cy="90" r="5" fill="#6366f1" stroke="#ffffff" strokeWidth="2" className="cursor-pointer hover:r-7 transition-all" />
+                                            <circle cx="200" cy="130" r="5" fill="#14b8a6" stroke="#ffffff" strokeWidth="2" className="cursor-pointer hover:r-7 transition-all" />
+                                            <circle cx="380" cy="60" r="5" fill="#6366f1" stroke="#ffffff" strokeWidth="2" />
+                                            <circle cx="380" cy="110" r="5" fill="#14b8a6" stroke="#ffffff" strokeWidth="2" />
+
+                                            {/* Gradients */}
+                                            <defs>
+                                                <linearGradient id="indigoGrad" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stopColor="#6366f1" />
+                                                    <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+                                                </linearGradient>
+                                                <linearGradient id="tealGrad" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stopColor="#14b8a6" />
+                                                    <stop offset="100%" stopColor="#14b8a6" stopOpacity="0" />
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+
+                                        {/* X Axis Labels */}
+                                        <div className="flex justify-between text-[10px] font-bold text-slate-400 px-4 mt-2">
+                                            <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* SIDE PANEL: COUNTRY & SOURCE */}
+                                <div className="space-y-6">
+                                    {/* MOCK TOP VIEWS */}
+                                    <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] space-y-4">
+                                        <h4 className="font-bold text-slate-800 text-sm flex items-center gap-1.5"><Globe size={16} className="text-teal-600"/> Pays Visiteurs</h4>
+                                        <div className="space-y-3">
+                                            {[
+                                                { country: 'France', percent: 78 },
+                                                { country: 'Belgique', percent: 12 },
+                                                { country: 'Suisse', percent: 6 },
+                                                { country: 'Canada', percent: 3 },
+                                                { country: 'Allemagne', percent: 1 }
+                                            ].map((item, idx) => (
+                                                <div key={idx} className="space-y-1">
+                                                    <div className="flex justify-between text-xs font-bold text-slate-700">
+                                                        <span>{item.country}</span>
+                                                        <span>{item.percent}%</span>
+                                                    </div>
+                                                    <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                                        <div className="h-full bg-teal-500 rounded-full" style={{ width: `${item.percent}%` }} />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* CONCEPTS PLUS LUS */}
+                                    <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] space-y-4">
+                                        <h4 className="font-bold text-slate-800 text-sm flex items-center gap-1.5">📖 Concepts les plus consultés</h4>
+                                        <div className="space-y-3 text-xs font-bold text-slate-700">
+                                            <div className="flex justify-between"><span>1. Ligne médiane (fr)</span><span className="text-slate-400">312 vues</span></div>
+                                            <div className="flex justify-between"><span>2. Fulgurance (fr)</span><span className="text-slate-400">240 vues</span></div>
+                                            <div className="flex justify-between"><span>3. Biodynamic Embryology (en)</span><span className="text-slate-400">195 vues</span></div>
+                                            <div className="flex justify-between"><span>4. Point d'immobilité (fr)</span><span className="text-slate-400">140 vues</span></div>
+                                            <div className="flex justify-between"><span>5. Generalités (es)</span><span className="text-slate-400">92 vues</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* INTEGRATE LOOKER STUDIO SETUP CARD */}
+                                <div className="bg-gradient-to-r from-indigo-900 to-slate-900 text-white p-6 rounded-2xl shadow-[0_10px_30px_rgba(28,46,74,0.15)] lg:col-span-3 space-y-4">
+                                    <div className="flex items-start gap-4">
+                                        <div className="p-3 bg-white/10 text-indigo-300 rounded-xl">
+                                            <BarChart2 size={24} />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-lg">Afficher vos vrais graphiques Google Analytics ici</h4>
+                                            <p className="text-xs text-slate-300 mt-1 leading-relaxed max-w-3xl">
+                                                Vous pouvez incruster vos vrais graphiques Google Analytics (via l'outil gratuit Google Looker Studio) directement dans cette application. Suivez simplement les étapes suivantes pour coller votre lien :
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300 pt-2 font-medium">
+                                        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
+                                            <span className="font-bold text-indigo-400 block mb-1">Étape 1</span>
+                                            Allez sur <a href="https://lookerstudio.google.com/" target="_blank" rel="noreferrer" className="text-white underline">Looker Studio</a> et créez un rapport connecté à votre compte *Embryologie TDT*.
+                                        </div>
+                                        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
+                                            <span className="font-bold text-indigo-400 block mb-1">Étape 2</span>
+                                            Cliquez sur **Partager** &rarr; **Intégrer le rapport**. Cochez "Activer l'intégration" et choisissez "Intégrer l'URL".
+                                        </div>
+                                        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
+                                            <span className="font-bold text-indigo-400 block mb-1">Étape 3</span>
+                                            Copiez l'URL fournie (ex: *https://lookerstudio.google.com/embed/...*) et collez-la ci-dessous :
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                                        <input
+                                            type="text"
+                                            className="flex-1 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-white/20 text-xs font-mono"
+                                            placeholder="Coller l'URL d'intégration (https://lookerstudio.google.com/embed/...)"
+                                            value={tempUrl}
+                                            onChange={(e) => setTempUrl(e.target.value)}
+                                        />
+                                        <button 
+                                            onClick={handleSaveLookerUrl}
+                                            className="px-6 py-2.5 bg-indigo-500 hover:bg-indigo-400 transition-colors text-white font-bold text-xs rounded-xl shadow-md cursor-pointer flex items-center gap-1.5"
+                                        >
+                                            <ArrowUpRight size={14} /> Brancher le rapport
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
 
             {/* SIDE DRAWER (THE DETAILS PANEL) */}
             <div className={cn(
                 "fixed top-0 lg:top-[60px] bottom-0 right-0 bg-white w-full md:w-80 lg:w-[400px] shadow-[-10px_0_40px_rgba(0,0,0,0.05)] border-l border-slate-200 z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto",
-                selectedProfile ? "translate-x-0" : "translate-x-full"
+                (selectedProfile && activeTab === 'users') ? "translate-x-0" : "translate-x-full"
             )}>
                 {selectedProfile && (
                     <div className="flex flex-col h-full">
