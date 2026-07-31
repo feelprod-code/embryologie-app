@@ -961,8 +961,12 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           <div
             className={cn(
               "transition-all duration-300 ease-in-out",
-              isFullscreen ? "fixed inset-0 z-[100] bg-black h-full !p-0 !m-0 block w-full" : "flex-none lg:w-[56%] xl:w-[58%] flex flex-col bg-[#FAF6ED]",
-              !isVideoVisible && !isFullscreen ? "opacity-0" : "opacity-100"
+              isFullscreen
+                ? "fixed inset-0 z-[100] bg-black h-full !p-0 !m-0 block w-full"
+                : (!isVideoVisible
+                    ? "hidden"
+                    : "flex-none lg:w-[56%] xl:w-[58%] flex flex-col bg-[#FAF6ED] opacity-100"
+                  )
             )}
           >
             <div className={cn("w-full", !isFullscreen && "overflow-hidden pb-1 pt-[env(safe-area-inset-top,0px)]", isFullscreen && "h-full")}>
