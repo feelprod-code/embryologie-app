@@ -72,7 +72,7 @@ function markdownToHtml(md: string, accentColor: string = '#0F172A'): string {
 /**
  * Professional Minimalist & Colorful A4 PDF Exporter
  */
-export function exportCoursePdf(course: VideoCourse, t?: (key: string, fallback?: string) => string): void {
+export function exportCoursePdf(course: VideoCourse, t?: any): void {
     if (!course) return;
 
     const categoryNames: Record<string, { label: string; color: string; bg: string }> = {
