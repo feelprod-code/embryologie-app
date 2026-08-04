@@ -6,10 +6,11 @@ import { videoCourses as videoCoursesIt } from '../data/videoCourses_it';
 import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
 import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
 import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
-import { Play, Clock, BookOpen, X, Lock } from 'lucide-react';
+import { Play, Clock, BookOpen, X, Lock, FileText, Share2 } from 'lucide-react';
 import { cn } from '../utils';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { exportCoursePdf } from '../utils/exportCoursePdf';
 
 
 
@@ -356,10 +357,22 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                             <h2 className="text-[20px] sm:text-[24px] md:text-[28px] font-bebas tracking-wide text-slate-800 leading-[1.1]">
                                                                 {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}. ` : '') + course.title.replace(/^\d+[.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
                                                             </h2>
-                                                            <div className="flex items-center gap-3 mt-3">
-                                                                <span className="px-4 py-1.5 rounded-full text-white font-sans font-bold text-[12px] sm:text-[14px] tracking-widest shadow-sm" style={{ backgroundColor: categoryColor }}>
+                                                            <div className="flex items-center gap-2 sm:gap-3 mt-3">
+                                                                <span className="px-3 py-1 rounded-full text-white font-sans font-bold text-[10px] sm:text-[11px] tracking-widest shadow-sm" style={{ backgroundColor: categoryColor }}>
                                                                     {t('videoLibrary.duration', 'DURÉE')} : {course.duration}
                                                                 </span>
+
+                                                                <button
+                                                                    onClick={(e) => {
+                                                                        e.stopPropagation();
+                                                                        exportCoursePdf(course, t);
+                                                                    }}
+                                                                    className="px-3 py-1 rounded-full bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 hover:text-slate-900 font-sans font-semibold text-[10px] sm:text-[11px] tracking-wider flex items-center gap-1.5 shadow-2xs transition-all active:scale-95 focus:outline-none"
+                                                                    title="Partager / Exporter le cours au format PDF"
+                                                                >
+                                                                    <Share2 className="w-3 h-3" style={{ color: categoryColor }} strokeWidth={2.5} />
+                                                                    <span>PDF</span>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                         <button 

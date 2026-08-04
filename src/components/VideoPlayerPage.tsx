@@ -7,11 +7,12 @@ import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
 import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
 import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
 import { cn } from '../utils';
-import { Clock, ChevronLeft, ChevronRight, Video, VideoOff, Play, Pause, DownloadCloud, Loader2, CheckCircle2, Trash2 } from 'lucide-react';
+import { Clock, ChevronLeft, ChevronRight, Video, VideoOff, Play, Pause, DownloadCloud, Loader2, CheckCircle2, Trash2, FileText } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { CustomVideoPlayer, type CustomVideoPlayerRef } from './ui/CustomVideoPlayer';
 import { useTranslation } from 'react-i18next';
+import { exportCoursePdf } from '../utils/exportCoursePdf';
 
 const CACHE_NAME = 'video-offline-cache';
 
@@ -607,13 +608,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             </div>
           )}
 
-          {/* RIGHT: OFFLINE AND DOWNLOAD */}
+          {/* RIGHT: OFFLINE DOWNLOAD */}
           <div className="flex flex-1 items-center justify-end z-10">
             {course.cloudflareId && (
               <button
                 onClick={handleOfflineCache}
                 disabled={isCaching}
-                className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-transparent text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-[#F5F1E8] active:bg-slate-200'} disabled:opacity-50 touch-manipulation active:scale-[0.98] shrink-0`}
+                className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all focus:outline-none focus:ring-0 ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-transparent text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-[#F5F1E8] active:bg-slate-200'} disabled:opacity-50 touch-manipulation active:scale-[0.98] shrink-0`}
                 title={isCaching ? "Enregistrement en cours..." : isCached ? "Supprimer la vidéo de cet appareil" : "Enregistrer pour accès hors-ligne"}
               >
                 <div className="relative flex items-center justify-center w-3.5 h-3.5 sm:w-4 sm:h-4">
@@ -694,11 +695,9 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         )}
 
         <div className="flex flex-1 items-center justify-end shrink-0 ml-1 gap-2 sm:gap-3">
-          {/* Audio Controls moved to dedicated row below */}
-
           <button
             onClick={() => setIsVideoVisible(!isVideoVisible)}
-            className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-transparent md:hover:bg-[#FAF6ED] active:bg-slate-200 active:scale-95 rounded-md sm:rounded-lg text-slate-500 md:hover:text-slate-700 transition-all border border-slate-200 shadow-sm shrink-0"
+            className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-transparent md:hover:bg-[#FAF6ED] active:bg-slate-200 active:scale-95 rounded-md sm:rounded-lg text-slate-500 md:hover:text-slate-700 transition-all border border-slate-200 shadow-sm shrink-0 focus:outline-none focus:ring-0"
             title={isVideoVisible ? "Masquer la vidéo" : "Afficher la vidéo"}
           >
             {isVideoVisible ? <VideoOff className="w-4 h-4" /> : <Video className="w-4 h-4" />}
