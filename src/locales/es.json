@@ -69,6 +69,8 @@
     "firstName": "Nombre",
     "lastName": "Apellido",
     "profession": "Profesión (ej: Osteópata)",
+    "location": "Dirección (ej: Ciudad, Código postal...)",
+    "address": "Dirección (ej: Ciudad, Código postal...)",
     "emailPlaceholder": "tu@email.com",
     "loginBtn": "INICIAR SESIÓN",
     "verifyEmails": "Revisa tus correos",

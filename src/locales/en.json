@@ -77,6 +77,8 @@
     "firstName": "First Name",
     "lastName": "Last Name",
     "profession": "Profession (e.g. Osteopath)",
+    "location": "Address (e.g. City, Zip, Country...)",
+    "address": "Address (e.g. City, Zip, Country...)",
     "emailPlaceholder": "your@email.com",
     "loginBtn": "LOG IN",
     "verifyEmails": "Check your emails",

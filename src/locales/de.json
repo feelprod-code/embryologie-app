@@ -65,6 +65,8 @@
     "firstName": "Vorname",
     "lastName": "Nachname",
     "profession": "Beruf (z.B. Osteopath)",
+    "location": "Adresse (z.B. Stadt, PLZ...)",
+    "address": "Adresse (z.B. Stadt, PLZ...)",
     "emailPlaceholder": "deine@email.com",
     "loginBtn": "EINLOGGEN",
     "verifyEmails": "Überprüfen Sie Ihre E-Mails",

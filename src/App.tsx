@@ -146,14 +146,7 @@ function App() {
   useEffect(() => {
     let mounted = true;
 
-    // AUTO-ENABLE DEV BYPASS FOR LOCAL NETWORK TESTING (e.g. iPhone)
-    if (isLocalNetwork()) {
-      localStorage.setItem('DEV_BYPASS_AUTH', 'true');
-    }
-
-
-
-    // DEV BYPASS LOGIC (Only in local development)
+    // DEV BYPASS LOGIC (Manual via button or storage)
     if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
       setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
       setIsAdmin(true);
@@ -190,7 +183,7 @@ function App() {
       while (retries > 0 && !profile) {
         const { data, error } = await supabase
           .from('profiles')
-          .select('device_id, is_active, first_name, last_name, profession, email, is_premium')
+          .select('device_id, is_active, first_name, last_name, profession, email, is_premium, address, location')
           .eq('id', currentSession.user.id)
           .single();
 
@@ -222,33 +215,38 @@ function App() {
           setIsPremium(false);
         }
 
-        if (!profile.first_name || !profile.last_name || !profile.profession) {
-          // Attempt to rescue names from localStorage if they got lost during OTP auth
-          const pendingFirstName = localStorage.getItem('pending_first_name') || 'Élève';
-          const pendingLastName = localStorage.getItem('pending_last_name') || 'Test';
-          const pendingProfession = localStorage.getItem('pending_profession') || 'Non renseignée';
+        // Always sync pending form details from login (for new or existing re-authenticating users)
+        const pendingFirstName = localStorage.getItem('pending_first_name');
+        const pendingLastName = localStorage.getItem('pending_last_name');
+        const pendingProfession = localStorage.getItem('pending_profession');
+        const pendingLocation = localStorage.getItem('pending_location') || localStorage.getItem('pending_address');
 
-          console.log("Profile missing details. Rescuing with:", { pendingFirstName, pendingLastName, pendingProfession });
+        if (pendingFirstName || pendingLastName || pendingProfession || pendingLocation || !profile.location || !profile.address) {
+          const updatePayload: any = {};
+          if (pendingFirstName) updatePayload.first_name = pendingFirstName;
+          if (pendingLastName) updatePayload.last_name = pendingLastName;
+          if (pendingProfession) updatePayload.profession = pendingProfession;
+          if (pendingLocation) {
+            updatePayload.location = pendingLocation;
+            updatePayload.address = pendingLocation;
+          }
 
-          const { error: updateError } = await supabase.from('profiles').update({
-            first_name: pendingFirstName,
-            last_name: pendingLastName,
-            profession: pendingProfession
-          }).eq('id', currentSession.user.id);
-
-          if (!updateError) {
-            // Update local profile object so the rest of the app sees the rescued data
-            profile.first_name = pendingFirstName;
-            profile.last_name = pendingLastName;
-            profile.profession = pendingProfession;
-          } else {
-             console.error("Failed to rescue profile details:", updateError);
+          if (Object.keys(updatePayload).length > 0) {
+            console.log("Syncing profile details from login form:", updatePayload);
+            const { error: updateError } = await supabase.from('profiles').update(updatePayload).eq('id', currentSession.user.id);
+            if (!updateError) {
+              Object.assign(profile, updatePayload);
+            } else {
+              console.error("Failed to sync profile details:", updateError);
+            }
           }
 
           // Clean up to prevent stale data for other users on same device
           localStorage.removeItem('pending_first_name');
           localStorage.removeItem('pending_last_name');
           localStorage.removeItem('pending_profession');
+          localStorage.removeItem('pending_location');
+          localStorage.removeItem('pending_address');
           localStorage.removeItem('pending_email');
         }
 

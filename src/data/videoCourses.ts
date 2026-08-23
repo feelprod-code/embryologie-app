@@ -9,6 +9,9 @@ export interface VideoCourse {
   fullSummary?: string;
   transcriptMarkdown: string;
   schemas?: string[];
+  pdfUrl?: string;
+  isGlobalPdf?: boolean;
+  pdfTotalPages?: number;
 }
 
 export const videoCourses: VideoCourse[] = [
@@ -4245,6 +4248,19 @@ Je reviens alors pleinement sur ma Terre, en parfaite harmonie avec mes émotion
 `,
   },
   {
+    id: "ecto-53",
+    categoryId: "ectoderme",
+    youtubeId: "",
+    duration: "203 p.",
+    title: "53. Support Intégral — Recueil PDF Global (01 à 52)",
+    shortSummary: "Manuel complet et recueil intégral du séminaire L'Ectoderme (203 pages). Comprend l'ensemble des 51 fiches de cours, transcriptions et planches anatomiques haute définition.",
+    fullSummary: "Ce document réunit l'intégralité du séminaire sur L'Ectoderme (de la leçon 1 à la leçon 52). Il reprend l'ensemble des fiches pédagogiques, les transcriptions intégrales, les synthèses cliniques et les planches anatomiques dans leur ordre chronologique de progression. Idéal pour une lecture continue, une impression A4 ou une révision globale hors-ligne.",
+    transcriptMarkdown: "# L'Ectoderme — Manuel Intégral du Séminaire (Recueil Global)\n\nRetrouvez ci-dessous le support complet du séminaire **L'Ectoderme** compilant les 51 leçons de la formation (203 pages au total).\n\nVous pouvez feuilleter ce recueil complet directement ci-dessous ou le télécharger au format PDF A4 haute définition.\n\n[📥 Télécharger le Recueil Intégral PDF (203 pages)](/pdfs/cours_complets/L-Ectoderme-Recueil-Integral.pdf)",
+    pdfUrl: "/pdfs/cours_complets/L-Ectoderme-Recueil-Integral.pdf",
+    isGlobalPdf: true,
+    pdfTotalPages: 203
+},
+  {
     id: "meso-01",
     categoryId: "mesoderme",
     youtubeId: "",
@@ -8308,6 +8324,19 @@ On est bien centré et on retrouve son équilibre, sa balance.
 `
   },
   {
+    id: "meso-48",
+    categoryId: "mesoderme",
+    youtubeId: "",
+    duration: "143 p.",
+    title: "48. Support Intégral — Recueil PDF Global (01 à 47)",
+    shortSummary: "Manuel complet et recueil intégral du séminaire Le Mésoderme (143 pages). Comprend l'ensemble des 45 fiches de cours, transcriptions et planches cliniques.",
+    fullSummary: "Ce document réunit l'intégralité du séminaire sur Le Mésoderme (de la leçon 1 à la leçon 47). Il reprend l'ensemble des fiches pédagogiques, les transcriptions intégrales, les synthèses cliniques et les planches anatomiques dans leur ordre chronologique de progression. Idéal pour une lecture continue, une impression A4 ou une révision globale hors-ligne.",
+    transcriptMarkdown: "# Le Mésoderme — Manuel Intégral du Séminaire (Recueil Global)\n\nRetrouvez ci-dessous le support complet du séminaire **Le Mésoderme** compilant les 45 leçons de la formation (143 pages au total).\n\nVous pouvez feuilleter ce recueil complet directement ci-dessous ou le télécharger au format PDF A4 haute définition.\n\n[📥 Télécharger le Recueil Intégral PDF (143 pages)](/pdfs/cours_complets/Le-Mesoderme-Recueil-Integral.pdf)",
+    pdfUrl: "/pdfs/cours_complets/Le-Mesoderme-Recueil-Integral.pdf",
+    isGlobalPdf: true,
+    pdfTotalPages: 143
+},
+  {
     id: "endo-01",
     categoryId: "endoderme",
     youtubeId: "",
@@ -10191,6 +10220,19 @@ Le praticien peut alors aborder des zones spécifiques comme l'hépatique et le 
 `,
   },
   {
+    id: "endo-42",
+    categoryId: "endoderme",
+    youtubeId: "",
+    duration: "162 p.",
+    title: "42. Support Intégral — Recueil PDF Global (01 à 41)",
+    shortSummary: "Manuel complet et recueil intégral du séminaire L'Endoderme (162 pages). Comprend l'ensemble des 40 fiches de cours, transcriptions et planches cliniques.",
+    fullSummary: "Ce document réunit l'intégralité du séminaire sur L'Endoderme (de la leçon 1 à la leçon 41). Il reprend l'ensemble des fiches pédagogiques, les transcriptions intégrales, les synthèses cliniques et les planches anatomiques dans leur ordre chronologique de progression. Idéal pour une lecture continue, une impression A4 ou une révision globale hors-ligne.",
+    transcriptMarkdown: "# L'Endoderme — Manuel Intégral du Séminaire (Recueil Global)\n\nRetrouvez ci-dessous le support complet du séminaire **L'Endoderme** compilant les 40 leçons de la formation (162 pages au total).\n\nVous pouvez feuilleter ce recueil complet directement ci-dessous ou le télécharger au format PDF A4 haute définition.\n\n[📥 Télécharger le Recueil Intégral PDF (162 pages)](/pdfs/cours_complets/L-Endoderme-Recueil-Integral.pdf)",
+    pdfUrl: "/pdfs/cours_complets/L-Endoderme-Recueil-Integral.pdf",
+    isGlobalPdf: true,
+    pdfTotalPages: 162
+},
+  {
     id: "oeil-1",
     categoryId: "oeil",
     youtubeId: "_bnk-aQx3d8",
@@ -11596,6 +11638,19 @@ Enfin, les axes d'information, tels que l'axe pétreux, montrent comment les dé
 
 `,
   },
+  {
+    id: "oeil-33",
+    categoryId: "oeil",
+    youtubeId: "",
+    duration: "103 p.",
+    title: "33. Support Intégral — Recueil PDF Global (01 à 32)",
+    shortSummary: "Manuel complet et recueil intégral du séminaire L'Œil (103 pages). Comprend l'ensemble des 32 fiches de cours, transcriptions et planches cliniques.",
+    fullSummary: "Ce document réunit l'intégralité du séminaire sur L'Œil (de la leçon 1 à la leçon 32). Il reprend l'ensemble des fiches pédagogiques, les transcriptions intégrales, les synthèses cliniques et les planches anatomiques dans leur ordre chronologique de progression. Idéal pour une lecture continue, une impression A4 ou une révision globale hors-ligne.",
+    transcriptMarkdown: "# L'Œil — Manuel Intégral du Séminaire (Recueil Global)\n\nRetrouvez ci-dessous le support complet du séminaire **L'Œil** compilant les 32 leçons de la formation (103 pages au total).\n\nVous pouvez feuilleter ce recueil complet directement ci-dessous ou le télécharger au format PDF A4 haute définition.\n\n[📥 Télécharger le Recueil Intégral PDF (103 pages)](/pdfs/cours_complets/L-Oeil-Recueil-Integral.pdf)",
+    pdfUrl: "/pdfs/cours_complets/L-Oeil-Recueil-Integral.pdf",
+    isGlobalPdf: true,
+    pdfTotalPages: 103
+},
 ];
 
 export const getCategoryTotalDuration = (categoryId: string): string => {

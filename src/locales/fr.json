@@ -80,6 +80,8 @@
     "firstName": "Prénom",
     "lastName": "Nom",
     "profession": "Profession (ex: Ostéopathe)",
+    "location": "Adresse (ex: Ville, Code postal...)",
+    "address": "Adresse (ex: Ville, Code postal...)",
     "emailPlaceholder": "votre@email.com",
     "loginBtn": "SE CONNECTER",
     "verifyEmails": "Vérifiez vos emails",

@@ -64,6 +64,8 @@
     "firstName": "名",
     "lastName": "姓",
     "profession": "職業 (例：オステオパシー医)",
+    "location": "住所 (例：市区町村、郵便番号...)",
+    "address": "住所 (例：市区町村、郵便番号...)",
     "emailPlaceholder": "あなたの@email.com",
     "loginBtn": "ログイン",
     "verifyEmails": "メールを確認してください",

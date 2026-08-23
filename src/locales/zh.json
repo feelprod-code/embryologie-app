@@ -64,6 +64,8 @@
     "firstName": "名字",
     "lastName": "姓氏",
     "profession": "职业 (例：骨疗师)",
+    "location": "地址 (例：城市、街道、邮编...)",
+    "address": "地址 (例：城市、街道、邮编...)",
     "emailPlaceholder": "你的@email.com",
     "loginBtn": "登录",
     "verifyEmails": "请检查您的电子邮件",

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin } from 'lucide-react';
 import { cn } from '../utils';
 
 type Profile = {
@@ -9,6 +9,8 @@ type Profile = {
     first_name: string;
     last_name: string;
     profession?: string;
+    location?: string;
+    address?: string;
     device_id: string | null;
     is_active: boolean;
     created_at: string;
@@ -361,7 +363,10 @@ export function AdminDashboard() {
     let filteredProfiles = profiles.filter(p =>
         p.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         p.first_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        p.last_name?.toLowerCase().includes(searchTerm.toLowerCase())
+        p.last_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.profession?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.location?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.address?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     if (filter === 'ACTIVE') {
@@ -534,9 +539,25 @@ export function AdminDashboard() {
                                                     {!p.first_name && !p.last_name && p.email?.[0]}
                                                 </div>
                                                 <div className="overflow-hidden">
-                                                    <div className="font-bold text-slate-900 text-sm truncate">{p.first_name || p.last_name ? `${p.first_name || ''} ${p.last_name || ''}` : <span className="italic">Inconnu</span>}</div>
-                                                    <div className="text-xs text-slate-500 font-medium truncate">
-                                                        {p.email} <span className="opacity-50 mx-1">•</span> <span className="text-[10px] uppercase tracking-wide">{new Date(p.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: '2-digit' })}</span>
+                                                    <div className="font-bold text-slate-900 text-sm truncate flex items-center gap-1.5 flex-wrap">
+                                                        <span>{p.first_name || p.last_name ? `${p.first_name || ''} ${p.last_name || ''}` : <span className="italic">Inconnu</span>}</span>
+                                                        {(p.location || p.address) && (
+                                                            <span className="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full inline-flex items-center gap-1 shrink-0 border border-slate-200/60">
+                                                                <MapPin size={9} className="text-[#F27D33]" />
+                                                                {p.location || p.address}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    <div className="text-xs text-slate-500 font-medium truncate flex items-center gap-1 mt-0.5">
+                                                        <span>{p.email}</span>
+                                                        {p.profession && (
+                                                            <>
+                                                                <span className="opacity-40">•</span>
+                                                                <span className="text-slate-600 font-semibold">{p.profession}</span>
+                                                            </>
+                                                        )}
+                                                        <span className="opacity-40">•</span>
+                                                        <span className="text-[10px] uppercase tracking-wide opacity-75">{new Date(p.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: '2-digit' })}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -855,6 +876,13 @@ export function AdminDashboard() {
                                     <div className="flex justify-between items-center text-sm">
                                         <span className="text-slate-500">Profession</span>
                                         <span className="font-medium text-slate-800">{selectedProfile.profession || '-'}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center text-sm">
+                                        <span className="text-slate-500">Adresse</span>
+                                        <span className="font-medium text-slate-800 inline-flex items-center gap-1">
+                                            {(selectedProfile.location || selectedProfile.address) && <MapPin size={13} className="text-[#F27D33]" />}
+                                            {selectedProfile.address || selectedProfile.location || '-'}
+                                        </span>
                                     </div>
                                     <div className="flex justify-between items-center text-sm">
                                         <span className="text-slate-500">Inscrit le</span>
