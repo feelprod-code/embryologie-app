@@ -16,14 +16,17 @@ function markdownToHtml(md: string, accentColor: string = '#5A9C51'): string {
     html = html.replace(/&lt;img\s+([^&]+)\/&gt;/g, '<img $1 />');
     html = html.replace(/&lt;img\s+([^&]+)&gt;/g, '<img $1 />');
 
-    // Markdown Images ![alt](url) matching in-app CustomMarkdownComponents (rounded-2xl card, shadow, italic caption)
+    // Markdown Images ![alt](url) matching in-app CustomMarkdownComponents (scientific anatomical diagram framing)
     html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_match, alt, src) => {
+        const captionText = alt ? alt.replace(/^Plan Anatomique\s*:\s*/i, '') : 'Structure & Vecteurs Biodynamiques';
         return `
-            <div style="margin: 28px auto; text-align: center; page-break-inside: avoid; break-inside: avoid;">
-                <div style="background: #FFFFFF; padding: 8px; border-radius: 16px; border: 1px solid #E2E8F0; box-shadow: 0 4px 16px rgba(0,0,0,0.05); display: inline-block; max-width: 90%;">
-                    <img src="${src}" alt="${alt || 'Schéma anatomique embryologique'}" style="max-width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto;" />
+            <div style="margin: 24px auto; text-align: center; page-break-inside: avoid; break-inside: avoid;">
+                <div style="background: #FFFFFF; padding: 10px; border-radius: 12px; border: 1.5px solid #CBD5E1; box-shadow: 0 4px 12px rgba(15,23,42,0.06); display: inline-block; max-width: 88%;">
+                    <img src="${src}" alt="${captionText}" style="max-width: 100%; height: auto; border-radius: 6px; display: block; margin: 0 auto;" />
                 </div>
-                ${alt ? `<p style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 500; color: #64748b; font-style: italic; margin-top: 8px; text-align: center; max-width: 85%; margin-left: auto; margin-right: auto; line-height: 1.4; page-break-inside: avoid;">${alt}</p>` : ''}
+                <p style="font-family: 'Roboto', sans-serif; font-size: 11.5px; font-weight: 700; color: #475569; letter-spacing: 0.5px; margin-top: 8px; text-align: center; max-width: 85%; margin-left: auto; margin-right: auto; line-height: 1.4; page-break-inside: avoid; text-transform: uppercase;">
+                    <span style="color: ${accentColor}; font-weight: 900;">FIG.</span> — ${captionText}
+                </p>
             </div>
         `;
     });
