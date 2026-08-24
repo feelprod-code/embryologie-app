@@ -491,7 +491,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   }, [isDragging]);
 
 
-  const categoryVideos = videoCourses.filter((v: VideoCourse) => v.categoryId === course.categoryId);
+  const categoryVideos = videoCourses.filter((v: VideoCourse) => v.categoryId === course.categoryId && !v.isGlobalPdf);
   const currentIndex = categoryVideos.findIndex((v: VideoCourse) => v.id === course.id);
   const prevVideo = currentIndex > 0 ? categoryVideos[currentIndex - 1] : null;
   const nextVideo = currentIndex < categoryVideos.length - 1 ? categoryVideos[currentIndex + 1] : null;
