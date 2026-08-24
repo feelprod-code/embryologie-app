@@ -35,6 +35,57 @@ const categories: Record<string, { label: string; color: string; bg: string; mas
     }
 };
 
+/**
+ * Resolves any image URL (Supabase or local path) to a local base64 Data URI
+ */
+function getLocalImageBase64(src: string): string | null {
+    let localPath: string | null = null;
+    const schemasDir = path.join(appDir, 'public', 'images', 'schemas');
+
+    if (src.includes('images/schemas/')) {
+        const rel = src.split('images/schemas/')[1].trim();
+        const p1 = path.join(schemasDir, rel);
+        if (fs.existsSync(p1)) {
+            localPath = p1;
+        } else {
+            const fname = path.basename(rel).toLowerCase();
+            const stem = fname.replace(/\.[^.]+$/, '').replace(/_0+(\d+)/, '_$1');
+            
+            const findFile = (dir: string): string | null => {
+                const entries = fs.readdirSync(dir, { withFileTypes: true });
+                for (const entry of entries) {
+                    const full = path.join(dir, entry.name);
+                    if (entry.isDirectory()) {
+                        const res = findFile(full);
+                        if (res) return res;
+                    } else {
+                        const entryName = entry.name.toLowerCase();
+                        const entryStem = entryName.replace(/\.[^.]+$/, '').replace(/_0+(\d+)/, '_$1');
+                        if (entryName === fname || entryStem === stem) {
+                            return full;
+                        }
+                    }
+                }
+                return null;
+            };
+            localPath = findFile(schemasDir);
+        }
+    } else {
+        const p = path.join(appDir, 'public', src.replace(/^\//, ''));
+        if (fs.existsSync(p)) {
+            localPath = p;
+        }
+    }
+
+    if (localPath && fs.existsSync(localPath)) {
+        const ext = path.extname(localPath).toLowerCase();
+        const mime = (ext === '.png') ? 'image/png' : (ext === '.webp') ? 'image/webp' : 'image/jpeg';
+        const buffer = fs.readFileSync(localPath);
+        return `data:${mime};base64,${buffer.toString('base64')}`;
+    }
+    return null;
+}
+
 function markdownToHtml(md: string, accentColor: string): string {
     if (!md) return '';
     let html = md
@@ -45,12 +96,13 @@ function markdownToHtml(md: string, accentColor: string): string {
     html = html.replace(/&lt;img\s+([^&]+)\/&gt;/g, '<img $1 />');
     html = html.replace(/&lt;img\s+([^&]+)&gt;/g, '<img $1 />');
 
-    // Schemas
+    // Schemas with Base64 embedded images
     html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_match, alt, src) => {
+        const b64 = getLocalImageBase64(src) || src;
         return `
             <div class="schema-wrapper">
                 <div class="schema-box">
-                    <img src="${src}" alt="${alt || 'Schéma anatomique'}" class="schema-img" />
+                    <img src="${b64}" alt="${alt || 'Schéma anatomique'}" class="schema-img" />
                 </div>
                 ${alt ? `<div class="schema-caption">${alt}</div>` : ''}
             </div>
@@ -368,7 +420,7 @@ function wrapFullDocument(contentHtml: string, catColor = '#5A9C51', catBg = 'rg
 }
 
 async function main() {
-    console.log("Starting Playwright high-definition A4 PDF generation with exact app styling...");
+    console.log("Starting Playwright high-definition A4 PDF generation with embedded Base64 images...");
     const browser = await chromium.launch();
     const page = await browser.newPage();
 
@@ -383,7 +435,7 @@ async function main() {
     for (const [catKey, catInfo] of Object.entries(categories)) {
         const catLessons = videoCourses.filter(c => c.categoryId === catKey && !c.isGlobalPdf);
         console.log(`\n======================================================`);
-        console.log(`Generating Master & Single PDFs for ${catInfo.label} (${catLessons.length} lessons)`);
+        console.log(`Generating Single PDFs for ${catInfo.label} (${catLessons.length} lessons)`);
         console.log(`======================================================`);
 
         const catSingleDir = path.join(pdfOutDir, catKey);
@@ -398,14 +450,13 @@ async function main() {
         }
 
         // 1. Generate All Single Lesson PDFs
-        let combinedHtml = '';
         for (let i = 0; i < catLessons.length; i++) {
             const lesson = catLessons[i];
             const lessonHtml = buildLessonHtml(lesson);
-            combinedHtml += lessonHtml;
-
             const fullHtml = wrapFullDocument(lessonHtml, catInfo.color, catInfo.bg);
-            await page.setContent(fullHtml, { waitUntil: 'networkidle' });
+
+            await page.setContent(fullHtml, { waitUntil: 'load' });
+            await page.waitForTimeout(100);
 
             const num = String(i + 1).padStart(2, '0');
             const cleanTitleStr = lesson.title.replace(/^\d+[.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ').replace(/[/\\?%*:|"<>]/g, '-').trim();
@@ -424,21 +475,6 @@ async function main() {
             console.log(`  [${i+1}/${catLessons.length}] Generated: ${singlePdfName}`);
         }
 
-        // 2. Generate Consolidated Master PDF
-        console.log(`  -> Generating Consolidated Master PDF: ${catInfo.masterFilename}...`);
-        const masterFullHtml = wrapFullDocument(combinedHtml, catInfo.color, catInfo.bg);
-        await page.setContent(masterFullHtml, { waitUntil: 'networkidle' });
-
-        const masterPdfPath = path.join(masterOutDir, catInfo.masterFilename);
-        await page.pdf({
-            path: masterPdfPath,
-            format: 'A4',
-            printBackground: true,
-            margin: { top: '14mm', right: '14mm', bottom: '14mm', left: '14mm' }
-        });
-        const stats = fs.statSync(masterPdfPath);
-        console.log(`  ✓ Master PDF Generated: ${catInfo.masterFilename} (${(stats.size / 1024 / 1024).toFixed(2)} MB)`);
-
         // Find master course item
         const masterCourse = videoCourses.find(c => c.categoryId === catKey && c.isGlobalPdf);
         if (masterCourse) {
@@ -452,7 +488,7 @@ async function main() {
     const mappingPath = path.join(appDir, 'src', 'data', 'pdfFileMapping.json');
     fs.writeFileSync(mappingPath, JSON.stringify(mapping, null, 2), 'utf8');
     console.log(`\nUpdated pdfFileMapping.json with ${Object.keys(mapping).length} items!`);
-    console.log("\n🎉 ALL in-app styled PDFs and Master Consolidations generated successfully!");
+    console.log("\n🎉 ALL in-app styled single PDFs generated successfully with Base64 embedded images!");
 }
 
 main().catch(err => {
