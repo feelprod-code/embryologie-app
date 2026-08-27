@@ -244,7 +244,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     return;
                                 }
                                 if (course.isGlobalPdf) {
-                                    const pdfUrl = (pdfFileMapping as Record<string, string>)[course.id] || course.pdfUrl;
+                                    const pdfUrl = getCoursePdfUrl(course, i18n.language);
                                     if (pdfUrl) {
                                         window.open(pdfUrl, '_blank');
                                         return;
