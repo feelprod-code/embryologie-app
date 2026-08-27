@@ -46,6 +46,7 @@ interface CustomVideoPlayerProps {
     onCuesLoaded?: (cues: {start: number, end: number, text: string}[]) => void;
     onActiveCueChange?: (cueIndex: number) => void;
     onControlsChange?: (visible: boolean) => void;
+    onPiPChange?: (isActive: boolean) => void;
 }
 
 export interface CustomVideoPlayerRef {

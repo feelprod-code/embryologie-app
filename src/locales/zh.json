@@ -46,6 +46,9 @@
     "noVideoSub": "此模块暂不可用。",
     "noVideoTitle": "视频不可用",
     "previous": "上一个",
+    "openGlobalPdf": "打开完整汇编讲义",
+    "playNow": "开始播放",
+    "duration": "时长",
     "layers": {
       "ectoderm": "外胚层",
       "endoderm": "内胚层",
@@ -64,6 +67,8 @@
     "firstName": "名字",
     "lastName": "姓氏",
     "profession": "职业 (例：骨疗师)",
+    "location": "地址 (例：城市、街道、邮编...)",
+    "address": "地址 (例：城市、街道、邮编...)",
     "emailPlaceholder": "你的@email.com",
     "loginBtn": "登录",
     "verifyEmails": "请检查您的电子邮件",

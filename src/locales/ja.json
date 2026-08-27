@@ -46,6 +46,9 @@
     "noVideoSub": "このモジュールはまだ利用できません。",
     "noVideoTitle": "ビデオは利用できません",
     "previous": "前へ",
+    "openGlobalPdf": "完全講義録を開く",
+    "playNow": "動画を再生",
+    "duration": "所要時間",
     "layers": {
       "ectoderm": "外胚葉",
       "endoderm": "内胚葉",
@@ -64,6 +67,8 @@
     "firstName": "名",
     "lastName": "姓",
     "profession": "職業 (例：オステオパシー医)",
+    "location": "住所 (例：市区町村、郵便番号...)",
+    "address": "住所 (例：市区町村、郵便番号...)",
     "emailPlaceholder": "あなたの@email.com",
     "loginBtn": "ログイン",
     "verifyEmails": "メールを確認してください",

@@ -686,6 +686,19 @@ export const videoCourses: VideoCourse[] = [
             "Ectoderme_10.jpeg"
         ]
     },
+    
+    {
+        "id": "ecto-53",
+        "categoryId": "ectoderme",
+        "youtubeId": "",
+        "duration": "203 p.",
+        "title": "53. Complete Handbook — Global PDF Collection (01 to 52)",
+        "shortSummary": "Complete manual and integral collection of the Ectoderm seminar (203 pages). Includes all 51 lesson sheets, transcripts, and high-definition anatomical plates.",
+        "fullSummary": "This document brings together the entire seminar on The Ectoderm (lessons 1 to 52). It includes all study sheets, full transcripts, clinical summaries, and anatomical diagrams in chronological order. Ideal for continuous reading, A4 printing, or offline review.",
+        "transcriptMarkdown": "# The Ectoderm — Complete Seminar Handbook (Global Collection)\\n\\nFind below the complete study material for **The Ectoderm** seminar compiling all 51 lessons of the training (203 pages in total).\\n\\nYou can browse this complete collection directly or export/download it as a high-definition A4 PDF.",
+        "isGlobalPdf": true,
+        "pdfTotalPages": 203
+    },
     {
         "id": "meso-01",
         "categoryId": "mesoderme",
@@ -1383,21 +1396,18 @@ export const videoCourses: VideoCourse[] = [
         "fullSummary": "In this session, the focus is on exploring the fibula through a biodynamic approach. Practitioners will learn to feel the density of the bone, observe its structure, and develop sensitivity to the micro-crystalline field. By adopting a cellular then molecular awareness, participants are guided to align with the primary respiration, allowing bodily fluids to integrate harmoniously. The practice addresses key concepts such as the neutral, maturation, and the embryonic nature of this membranous bone. Finally, participants are invited to explore deeper realities ranging from the atomic to the luminous plane, highlighting the importance of water in this dynamic.",
         "transcriptMarkdown": "# Practice: Accessing the Fluid Bone - The Fibula\n\nIn this practice, we will focus on the **fibula** to seek a sensation of **fluid**.\n\nBegin by positioning yourself correctly. Hold the fibula as if you were holding a large feather. Observe its position and the structure of the bone.\n\nIt is essential to first focus on **density**. Adjust yourself to allow the bone to find its perfect spatial position. Concentrate on the **micro-crystalline field**. You will notice a change in warmth, a **thermodynamic** variation.\n\nNext, move to **cellular awareness**. Imagine you are holding a packet of cells in your hands. Then, deepen your perception by adopting **molecular awareness**. Allow your primary respiration to guide you.\n\nRemember to remain in your **neutral** and allow the person's neutral to mature. It is important that there is no maturation of the neutral on both sides. Sometimes, I invite a partner to position themselves at the base of the skull.\n\nThe bone is fluid and gradually integrates into the fluid body. Discovering this bone is interesting because it is a **membranous bone**, originating from a membrane that has condensed over time. It is an **embryonic** bone.\n\nTo go further, explore the **atomic plane**, then the **vibrational plane**, and finally the **luminous plane**. We have mainly worked on the molecular plane, where the **H2O** combination is found."
     },
+    
     {
         "id": "meso-46",
         "categoryId": "mesoderme",
         "youtubeId": "",
-        "cloudflareId": "ad346f1bf924125f22b885c96d2f4668",
-        "duration": "04:46",
-        "title": "46-Birth",
-        "shortSummary": "Analysis of the effects of birth on the human body and presentation of techniques to release tensions. Exploration of the link between movement, spirituality, and the osteopathic approach.",
-        "fullSummary": "This video explores the profound impacts of birth on our lives and bodies, while offering practical methods to release tensions stored in bodily tissues. Key concepts include the importance of compression and decompression at the cranial, pelvic, and vascular levels, and how this affects the autonomous respiration of newborns. The speaker also highlights the central role of the spleen and oxygen transfer during the first breath, as well as the importance of fluid movement between the parietal and temporal bones to facilitate this crucial transition. Students will learn to better understand the link between bodily movements, spiritual dynamics, and the osteopathic approach, while integrating these principles into their therapeutic practice.",
-        "transcriptMarkdown": "# Birth: Impact and Mechanisms\n\nThe way you were **born** determines many aspects of your life. Every time you have to **be reborn** into something, like a job change, you can reconnect with that memory. It is sometimes necessary to release tensions in the bodily **tissue**, either by recompressing or decompressing it, in order to re-establish **respiratory disengagement**.\n\nIt is not enough to bring these memories to consciousness; they must be reborn in the tissue. In this approach, I will compress from the **parietals**. For a baby, if something seems necessary, I will work at the level of the **pelvis**. The child may need to be compressed or decompressed, and it is the feeling of the moment that guides this decision.\n\nThis process leads to a **spiritual** movement and dynamics in the body. At the **osseous-membranous** level, it is also crucial to consider compression at the **vascular** level. Imagine a sponge being compressed; this illustrates well what happens in the body.\n\nThe **spleen** plays an essential role during birth. If necessary, it will re-establish a flow, because a **rebalancing** is necessary throughout the vascular system, between the heart, the lungs, and the **umbilical cord**. This passage is fundamental, as it represents a major vascular change: you go from breathing and oxygenation via the cord to respiratory autonomy via your lungs.\n\nThe first **cry**, the first **breath**, is crucial. At that moment, you are in an umbilical axis, and blood enters through the **foramen ovale**. This is a major fluidic change. To facilitate this change, the **hepatic** and **splenic axis** intervenes, providing the necessary information. If this transition is not well performed, some children may be born with **splenic** characteristics, often melancholic, because they did not perform this first breath correctly.\n\nThis passage of oxygen, of the global and fluidic compression of the system, as well as membranous compression, is essential. The importance of the **parietals** and the movement of the body should be emphasised.\n\nThe fluid movement between **parietal** and **temporal** is a first disengagement. This movement leads to a rotation of the **neck**, essential for releasing the body. The key moment to give the first breath is marked by a slight movement of the neck, followed by a spiral that forms.\n\nThis occipital movement, associated with a torsion in the axis, is crucial. Hyperextension of the neck and disengagement of the limbs are also elements to consider. Thus, there is compression in the membranes and compression at the fluidic level that occur simultaneously.",
-        "schemas": [
-            "Mesoderme_166.jpeg",
-            "Mesoderme_167.jpeg",
-            "Mesoderme_169.png"
-        ]
+        "duration": "143 p.",
+        "title": "46. Complete Handbook — Global PDF Collection (01 to 45)",
+        "shortSummary": "Complete manual and integral collection of the Mesoderm seminar (143 pages). Includes all 45 lesson sheets, transcripts, and clinical diagrams.",
+        "fullSummary": "This document brings together the entire seminar on The Mesoderm (lessons 1 to 47). It includes all study sheets, full transcripts, clinical summaries, and anatomical diagrams in chronological order. Ideal for continuous reading, A4 printing, or offline review.",
+        "transcriptMarkdown": "# The Mesoderm — Complete Seminar Handbook (Global Collection)\\n\\nFind below the complete study material for **The Mesoderm** seminar compiling all 45 lessons of the training (143 pages in total).\\n\\nYou can browse this complete collection directly or export/download it as a high-definition A4 PDF.",
+        "isGlobalPdf": true,
+        "pdfTotalPages": 143
     },
     {
         "id": "endo-01",
@@ -1951,7 +1961,7 @@ export const videoCourses: VideoCourse[] = [
         "youtubeId": "",
         "cloudflareId": "6162f25bea38b8f59a962b902be32bc2",
         "duration": "04:27",
-        "title": "34- Global Synchronicity_Recap and Intro to Duodenum",
+        "title": "34-Global Synchronicity - Recap and Intro to Duodenum",
         "shortSummary": "Analysis of the relationship between embryology and biodynamics in osteopathy. Exploration of organic interconnections and synchronised development, with implications for therapeutic practice.",
         "fullSummary": "Study of the complexity of embryonic development, highlighting the interconnectedness of systems (cortex, heart, lungs, liver, pancreas). Analysis of their simultaneous evolution and the importance of polarity and the notochordal axis in morphogenesis. Clinical implications in osteopathy are discussed, emphasising the need to restore points of support and identify embryonic fulcrums. The development of the duodenum (rotation and organisation) is presented within the context of its interaction with the intestines.",
         "transcriptMarkdown": "# Global Synchronicity: Recall and Introduction for the Duodenum\n\nEmbryonic development involves a **complex interconnection** between several systems. Simultaneous development of the **cortex**, **heart**, **lungs**, as well as the **liver** and **digestive pancreas** is observed. This process is marked by phenomena of **colocalisation** and **synchronicity** during morphogenesis, where each element reintegrates within a **specific timing**.\n\nFor example, on **day 28**, the closure of the neural tube coincides with the **completion of a looping** in the heart and significant development of the lungs. What happens in the **cerebral cortex** during these phases of rotation and growth also occurs at the digestive level and on posterior mesodermal planes.\n\nThe objective is to gather as much information as possible that can serve as a **therapeutic tool**. It is essential to restore **points of support** to the system and to rediscover the **embryonic fulcrums**. This is part of a **kinetic biodynamic** approach that takes the environment into account.\n\nBy examining the chronology, a **polarity** is observed that allows for the organisation and expression of a **notochordal axis**. This axis is crucial for the formation of the neural tube, which in turn influences heart development. The heart relies on the **vitelline vesicle**, contributing to the creation of the diaphragm. Below, a space forms, as the flow of nutritional information leads to **sub-diaphragmatic congestion**.\n\nThis congestion is the origin of the **primitive impulse** on the mesodermal plane, within the endodermal mixture of the liver's developmental space. The liver consists of two major structures: one is purely digestive and the other is mesodermal. The meeting of these two structures creates a sub-diaphragmatic space, which is linked to embryonic development.\n\nThe liver is considered a product of **disassimilation**, developing from the body's exudates. It also receives information via the **umbilical** and **omphalomesenteric** systems, which allows it to occupy a new space. This development, influenced by the **laterality of the embryo**, leads to a reorganisation of the intra-peritoneal space.\n\nThe developmental phase of the duodenum is characterised by **rotation** and **organisation** that define the framework of the **duodeno-small intestine-colic**. This dynamic will be explored in relation to the duodenum."
@@ -2090,6 +2100,19 @@ export const videoCourses: VideoCourse[] = [
         "schemas": [
             "Endoderme_183.jpeg"
         ]
+    },
+    
+    {
+        "id": "endo-42",
+        "categoryId": "endoderme",
+        "youtubeId": "",
+        "duration": "162 p.",
+        "title": "42. Complete Handbook — Global PDF Collection (01 to 41)",
+        "shortSummary": "Complete manual and integral collection of the Endoderm seminar (162 pages). Includes all 40 lesson sheets, transcripts, and clinical diagrams.",
+        "fullSummary": "This document brings together the entire seminar on The Endoderm (lessons 1 to 41). It includes all study sheets, full transcripts, clinical summaries, and anatomical diagrams in chronological order.",
+        "transcriptMarkdown": "# The Endoderm — Complete Seminar Handbook (Global Collection)\\n\\nFind below the complete study material for **The Endoderm** seminar compiling all 40 lessons of the training (162 pages in total).\\n\\nYou can browse this complete collection directly or export/download it as a high-definition A4 PDF.",
+        "isGlobalPdf": true,
+        "pdfTotalPages": 162
     },
     {
         "id": "oeil-1",
@@ -2504,6 +2527,17 @@ Le point de recueillement, ramener sur soi, puis laisser l'expansion. Sèche, la
 L'important c'est de garder ce mouvement asymétrique et continuel, rien ne s'arrête jamais. Pour revenir sur l'essentiel, à la maison : l'humain. C'est vous, par la respiration. 
 
 Puis laisser reposer, refermer.`
+    },
+    {
+        "id": "oeil-33",
+        "categoryId": "oeil",
+        "youtubeId": "",
+        "duration": "103 p.",
+        "title": "33. Complete Handbook — Global PDF Collection (01 to 32)",
+        "shortSummary": "Complete manual and integral collection of The Eye seminar (103 pages). Includes all 32 lesson sheets, transcripts, and clinical diagrams.",
+        "fullSummary": "This document brings together the entire seminar on The Eye (lessons 1 to 32). It includes all study sheets, full transcripts, clinical summaries, and anatomical diagrams in chronological order.",
+        "transcriptMarkdown": "# The Eye — Complete Seminar Handbook (Global Collection)\\n\\nFind below the complete study material for **The Eye** seminar compiling all 32 lessons of the training (103 pages in total).\\n\\nYou can browse this complete collection directly or export/download it as a high-definition A4 PDF.",
+        "isGlobalPdf": true,
+        "pdfTotalPages": 103
     }
-    
 ];

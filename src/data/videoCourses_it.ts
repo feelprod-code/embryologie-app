@@ -686,6 +686,19 @@ export const videoCourses: VideoCourse[] = [
             "Ectoderme_10.jpeg"
         ]
     },
+    
+    {
+        "id": "ecto-53",
+        "categoryId": "ectoderme",
+        "youtubeId": "",
+        "duration": "203 p.",
+        "title": "53. Manuale Integrale — Raccolta PDF Globale (01 a 52)",
+        "shortSummary": "Manuale completo e raccolta integrale del seminario L'Ectoderma (203 pagine). Include tutte le 51 schede di corso, trascrizioni e tavole anatomiche ad alta definizione.",
+        "fullSummary": "Questo documento raccoglie l'intero seminario su L'Ectoderma (lezioni da 1 a 52). Comprende tutte le schede didattiche, trascrizioni integrali, sintesi cliniche e diagrammi anatomici in ordine cronologico. Ideale per la lettura continua, la stampa A4 o la consultazione offline.",
+        "transcriptMarkdown": "# L'Ectoderma — Manuale Integrale del Seminario (Raccolta Globale)\\n\\nDi seguito trovate il supporto completo del seminario **L'Ectoderma** che compila le 51 lezioni del corso (203 pagine in totale).\\n\\nÈ possibile sfogliare questa raccolta completa direttamente o esportarla/scaricarla in formato PDF A4 ad alta definizione.",
+        "isGlobalPdf": true,
+        "pdfTotalPages": 203
+    },
     {
         "id": "meso-01",
         "categoryId": "mesoderme",
@@ -1383,21 +1396,18 @@ export const videoCourses: VideoCourse[] = [
         "fullSummary": "In questa sessione, l'attenzione è focalizzata sull'esplorazione del perone attraverso un approccio biodinamico. I praticanti impareranno a percepire la densità dell'osso, a osservarne la struttura e a sviluppare una sensibilità al campo micro-cristallino. Adottando una consapevolezza cellulare e poi molecolare, i partecipanti sono guidati ad allinearsi con la respirazione primaria, permettendo ai fluidi corporei di integrarsi armoniosamente. La pratica affronta concetti chiave come il neutro, la maturazione e la natura embrionale di quest'osso membranoso. Infine, i partecipanti sono invitati a esplorare realtà più profonde che vanno dal piano atomico al piano luminoso, evidenziando l'importanza dell'acqua in questa dinamica.",
         "transcriptMarkdown": "# Pratica: Accedere all'Osso Fluido - Il Perone\n\nIn questa pratica, ci concentreremo sul **perone** per cercare una sensazione di **liquido**.\n\nIniziate posizionandovi correttamente. Prendete il perone come se teneste una grande piuma. Osservate la sua posizione e la struttura dell'osso.\n\nÈ essenziale concentrarsi prima sulla **densità**. Adattatevi per permettere all'osso di trovare la sua perfetta posizione spaziale. Concentratevi sul **campo micro-cristallino**. Noterete un cambiamento di calore, una variazione **termodinamica**.\n\nSuccessivamente, passate a una **consapevolezza cellulare**. Immaginate di tenere un pacchetto di cellule nelle vostre mani. Poi, approfondite la vostra percezione adottando una **consapevolezza molecolare**. Lasciatevi guidare dalla vostra respirazione primaria.\n\nNon dimenticate di rimanere nel vostro **neutro** e di lasciare che il neutro della persona maturi. È importante che non ci sia una maturazione del neutro da entrambi i lati. A volte, invito un partner a posizionarsi a livello della base del cranio.\n\nL'osso è fluido e si integra progressivamente nel corpo fluido. Scoprire quest'osso è interessante perché è un **osso membranoso**, derivato da una membrana che si è condensata nel tempo. È un osso **embrionale**.\n\nPer andare oltre, esplorate il **piano atomico**, poi il **piano vibratorio**, e infine il **piano luminoso**. Abbiamo principalmente lavorato sul piano molecolare, dove si trova la combinazione **H2O**."
     },
+    
     {
         "id": "meso-46",
         "categoryId": "mesoderme",
         "youtubeId": "",
-        "cloudflareId": "ad346f1bf924125f22b885c96d2f4668",
-        "duration": "04:46",
-        "title": "46-La Nascita",
-        "shortSummary": "Analisi degli effetti della nascita sul corpo umano e presentazione di tecniche per rilasciare le tensioni. Esplorazione del legame tra movimento, spiritualità e approccio osteopatico.",
-        "fullSummary": "Questo video esplora i profondi impatti della nascita sulla nostra vita e sul nostro corpo, proponendo al contempo metodi pratici per rilasciare le tensioni memorizzate nei tessuti corporei. I concetti chiave includono l'importanza della compressione e decompressione a livello cranico, pelvico e vascolare, e come ciò influenzi la respirazione autonoma dei neonati. L'oratore sottolinea anche il ruolo centrale della milza e del trasferimento di ossigeno durante la prima respirazione, così come l'importanza del movimento fluido tra le ossa parietali e temporali per facilitare questa transizione capitale. Gli studenti impareranno a comprendere meglio il legame tra i movimenti corporei, la dinamica spirituale e l'approccio osteopatico, integrando questi principi nella loro pratica terapeutica.",
-        "transcriptMarkdown": "# La Nascita: Impatto e Meccanismi\n\nIl modo in cui siete **nati** determina molti aspetti della vostra vita. Ogni volta che dovete **rinascere** a qualcosa, come un cambio di lavoro, potete riconnettervi a questa memoria. A volte è necessario liberare tensioni nel **tessuto** corporeo, ricomprimendolo o decomprimendolo, al fine di ristabilire un **disimpegno respiratorio**.\n\nNon basta portare questi ricordi alla coscienza; bisogna farli rinascere nel tessuto. Durante questo approccio, comprimerò a partire dai **parietali**. Per un neonato, se qualcosa sembra necessario, lavorerò a livello del **bacino**. Il bambino potrebbe aver bisogno di essere compresso o decompresso, ed è la sensazione del momento a guidare questa decisione.\n\nQuesto processo comporta un movimento **spirituale** e una dinamica nel corpo. Sul piano **osseo-membranoso**, è anche cruciale considerare la compressione a livello **vascolare**. Immaginate una spugna che viene compressa; questo illustra bene ciò che accade nel corpo.\n\nLa **milza** gioca un ruolo essenziale durante la nascita. Se necessario, ristabilirà un flusso, poiché un **riequilibrio** è necessario in tutto il sistema vascolare, tra il cuore, i polmoni e il **cordone ombelicale**. Questo passaggio è fondamentale, poiché rappresenta un grande cambiamento vascolare: si passa da una respirazione e un'ossigenazione tramite il cordone a un'autonomia respiratoria tramite i polmoni.\n\nIl primo **grido**, il primo **respiro**, è cruciale. In quel momento, siete in un asse ombelicale, e il sangue entra attraverso il **foro di Botallo**. È un cambiamento fluidico maggiore. Per facilitare questo cambiamento, l'**asse epatico** e **splancnico** interviene, fornendo l'informazione necessaria. Se questa transizione non è ben realizzata, alcuni bambini possono nascere con caratteristiche **splancniche**, spesso malinconiche, perché non hanno effettuato correttamente questa prima respirazione.\n\nQuesto passaggio di ossigeno, della compressione globale e fluidica del sistema, così come della compressione membranosa, è essenziale. L'importanza dei **parietali** e del movimento del corpo è da sottolineare.\n\nIl movimento fluido tra **parietale** e **temporale** è un primo disimpegno. Questo movimento comporta una rotazione della **nuca**, essenziale per liberare il corpo. Il momento chiave per ridare il primo respiro è segnato da un leggero movimento della nuca, seguito da una spirale che si forma.\n\nQuesto movimento occipitale, associato a una torsione nell'asse, è cruciale. L'iperestensione della nuca e il disimpegno degli arti sono anche elementi da considerare. Così, esiste una compressione nelle membrane e una compressione a livello fluidico che si verificano simultaneamente.",
-        "schemas": [
-            "Mesoderme_166.jpeg",
-            "Mesoderme_167.jpeg",
-            "Mesoderme_169.png"
-        ]
+        "duration": "143 p.",
+        "title": "46. Manuale Integrale — Raccolta PDF Globale (01 a 45)",
+        "shortSummary": "Manuale completo e raccolta integrale del seminario Il Mesoderma (143 pagine). Include tutte le 45 schede di corso, trascrizioni e tavole cliniche.",
+        "fullSummary": "Questo documento raccoglie l'intero seminario su Il Mesoderma (lezioni da 1 a 47). Comprende tutte le schede didattiche, trascrizioni integrali, sintesi cliniche e diagrammi anatomici in ordine cronologico.",
+        "transcriptMarkdown": "# Il Mesoderma — Manuale Integrale del Seminario (Raccolta Globale)\\n\\nDi seguito trovate il supporto completo del seminario **Il Mesoderma** che compila le 45 lezioni del corso (143 pagine in totale).\\n\\nÈ possibile sfogliare questa raccolta completa direttamente o esportarla/scaricarla in formato PDF A4 ad alta definizione.",
+        "isGlobalPdf": true,
+        "pdfTotalPages": 143
     },
     {
         "id": "endo-01",
@@ -2091,6 +2101,19 @@ export const videoCourses: VideoCourse[] = [
             "Endoderme_183.jpeg"
         ]
     },
+    
+    {
+        "id": "endo-42",
+        "categoryId": "endoderme",
+        "youtubeId": "",
+        "duration": "162 p.",
+        "title": "42. Manuale Integrale — Raccolta PDF Globale (01 a 41)",
+        "shortSummary": "Manuale completo e raccolta integrale del seminario L'Endoderma (162 pagine). Include tutte le 40 schede di corso, trascrizioni e tavole cliniche.",
+        "fullSummary": "Questo documento raccoglie l'intero seminario su L'Endoderma (lezioni da 1 a 41). Comprende tutte le schede didattiche, trascrizioni integrali, sintesi cliniche e diagrammi anatomici in ordine cronologico.",
+        "transcriptMarkdown": "# L'Endoderma — Manuale Integrale del Seminario (Raccolta Globale)\\n\\nDi seguito trovate il supporto completo del seminario **L'Endoderma** che compila le 40 lezioni del corso (162 pagine in totale).\\n\\nÈ possibile sfogliare questa raccolta completa direttamente o esportarla/scaricarla in formato PDF A4 ad alta definizione.",
+        "isGlobalPdf": true,
+        "pdfTotalPages": 162
+    },
     {
         "id": "oeil-1",
         "categoryId": "oeil",
@@ -2504,6 +2527,17 @@ Le point de recueillement, ramener sur soi, puis laisser l'expansion. Sèche, la
 L'important c'est de garder ce mouvement asymétrique et continuel, rien ne s'arrête jamais. Pour revenir sur l'essentiel, à la maison : l'humain. C'est vous, par la respiration. 
 
 Puis laisser reposer, refermer.`
+    },
+    {
+        "id": "oeil-33",
+        "categoryId": "oeil",
+        "youtubeId": "",
+        "duration": "103 p.",
+        "title": "33. Manuale Integrale — Raccolta PDF Globale (01 a 32)",
+        "shortSummary": "Manuale completo e raccolta integrale del seminario L'Occhio (103 pagine). Include tutte le 32 schede di corso, trascrizioni e tavole cliniche.",
+        "fullSummary": "Questo documento raccoglie l'intero seminario su L'Occhio (lezioni da 1 a 32). Comprende tutte le schede didattiche, trascrizioni integrali, sintesi cliniche e diagrammi anatomici in ordine cronologico.",
+        "transcriptMarkdown": "# L'Occhio — Manuale Integrale del Seminario (Raccolta Globale)\\n\\nDi seguito trovate il supporto completo del seminario **L'Occhio** che compila le 32 lezioni del corso (103 pagine in totale).\\n\\nÈ possibile sfogliare questa raccolta completa direttamente o esportarla/scaricarla in formato PDF A4 ad alta definizione.",
+        "isGlobalPdf": true,
+        "pdfTotalPages": 103
     }
-    
 ];

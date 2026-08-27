@@ -53,6 +53,9 @@
     "noVideoSub": "Ce module n'est pas encore disponible.",
     "noVideoTitle": "Vidéo non disponible",
     "previous": "Précédent",
+    "openGlobalPdf": "OUVRIR LE RECUEIL INTÉGRAL",
+    "playNow": "DÉMARRER LA VIDÉO",
+    "duration": "DURÉE",
     "layers": {
       "ectoderm": "L'Ectoderme",
       "endoderm": "L'Endoderme",
@@ -80,6 +83,8 @@
     "firstName": "Prénom",
     "lastName": "Nom",
     "profession": "Profession (ex: Ostéopathe)",
+    "location": "Adresse (ex: Ville, Code postal...)",
+    "address": "Adresse (ex: Ville, Code postal...)",
     "emailPlaceholder": "votre@email.com",
     "loginBtn": "SE CONNECTER",
     "verifyEmails": "Vérifiez vos emails",

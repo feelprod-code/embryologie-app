@@ -6,10 +6,13 @@ import { videoCourses as videoCoursesIt } from '../data/videoCourses_it';
 import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
 import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
 import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
-import { Play, Clock, BookOpen, X, Lock } from 'lucide-react';
+import { Play, Clock, BookOpen, X, Lock, FileText, Share2 } from 'lucide-react';
 import { cn } from '../utils';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { exportCoursePdf } from '../utils/exportCoursePdf';
+import { getCoursePdfUrl } from '../utils/getPdfUrl';
+import PDFShareDropdown from './PDFShareDropdown';
 
 
 
@@ -304,11 +307,13 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                     exit={{ opacity: 0, transition: { duration: 0.1 } }}
                                                     className={cn("flex flex-row items-center w-full", isLocked && "opacity-60 grayscale-[0.3]")}
                                                 >
-                                                    {/* Minimalist Play/Lock Icon */}
+                                                    {/* Minimalist Play/Lock/PDF Icon */}
                                                     <div className="flex-shrink-0 w-10 h-10 sm:w-10 sm:h-10 md:w-8 md:h-8 lg:w-8 lg:h-8 flex items-center justify-center mr-3 sm:mr-4 md:mr-4 lg:mr-3 relative">
                                                         <div className="absolute inset-0 bg-[#F4F1E8] rounded-full shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)] opacity-100"></div>
                                                         {isLocked ? (
                                                             <Lock className={cn("w-4 h-4 sm:w-4 sm:h-4 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 transition-colors relative z-10", activeListStyle.textColor)} strokeWidth={2.5} />
+                                                        ) : course.isGlobalPdf ? (
+                                                            <FileText className="w-4 h-4 sm:w-4 sm:h-4 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 relative z-10" style={{ color: categoryColor }} strokeWidth={2.5} />
                                                         ) : (
                                                             <Play className={cn("w-4 h-4 sm:w-4 sm:h-4 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 transition-colors translate-x-[1.5px] relative z-10", activeListStyle.textColor)} fill="currentColor" strokeWidth={0} />
                                                         )}
@@ -356,10 +361,20 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                             <h2 className="text-[20px] sm:text-[24px] md:text-[28px] font-bebas tracking-wide text-slate-800 leading-[1.1]">
                                                                 {(course.title.match(/^(\d+)/) ? `${course.title.match(/^(\d+)/)?.[1].padStart(2, '0')}. ` : '') + course.title.replace(/^\d+[.\-\s_:]*/, '').replace(/\s*_\s*/g, ' : ')}
                                                             </h2>
-                                                            <div className="flex items-center gap-3 mt-3">
-                                                                <span className="px-4 py-1.5 rounded-full text-white font-sans font-bold text-[12px] sm:text-[14px] tracking-widest shadow-sm" style={{ backgroundColor: categoryColor }}>
+                                                            <div className="flex items-center gap-2 sm:gap-3 mt-3">
+                                                                <span className="px-3 py-1 rounded-full text-white font-sans font-bold text-[10px] sm:text-[11px] tracking-widest shadow-sm" style={{ backgroundColor: categoryColor }}>
                                                                     {t('videoLibrary.duration', 'DURÉE')} : {course.duration}
                                                                 </span>
+
+                                                                <PDFShareDropdown
+                                                                    pdfUrl={getCoursePdfUrl(course, i18n.language)}
+                                                                    title={course.title}
+                                                                    courseTitle={course.title}
+                                                                    accentColor={categoryColor}
+                                                                    variant="pill"
+                                                                    buttonClassName="shadow-2xs text-[10px] sm:text-[11px] py-1 px-3"
+                                                                    course={course}
+                                                                />
                                                             </div>
                                                         </div>
                                                         <button 
@@ -377,7 +392,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                         </p>
                                                     </div>
 
-                                                    {/* Play Button matching design */}
+                                                    {/* Play / Open PDF Button matching design */}
                                                     <div className="flex items-center justify-center mt-auto pb-1">
                                                         <button 
                                                             onClick={handlePlayTap}
@@ -385,9 +400,13 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                             style={{ backgroundColor: categoryColor }}
                                                         >
                                                             <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                                                            <Play className="w-5 h-5 sm:w-6 sm:h-6 text-white fill-white relative z-10" />
+                                                            {course.isGlobalPdf ? (
+                                                                <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-white relative z-10" />
+                                                            ) : (
+                                                                <Play className="w-5 h-5 sm:w-6 sm:h-6 text-white fill-white relative z-10" />
+                                                            )}
                                                             <span className="text-white font-bebas text-[20px] sm:text-2xl tracking-widest pt-0.5 relative z-10">
-                                                                {t('videoLibrary.playNow', 'DÉMARRER LA VIDÉO')}
+                                                                {course.isGlobalPdf ? t('videoLibrary.openGlobalPdf', 'OUVRIR LE RECUEIL INTÉGRAL') : t('videoLibrary.playNow', 'DÉMARRER LA VIDÉO')}
                                                             </span>
                                                         </button>
                                                     </div>

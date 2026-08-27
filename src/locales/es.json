@@ -46,6 +46,9 @@
     "noVideoSub": "Este módulo aún no está disponible.",
     "noVideoTitle": "Video no disponible",
     "previous": "Anterior",
+    "openGlobalPdf": "ABRIR EL MANUAL INTEGRAL",
+    "playNow": "INICIAR VIDEO",
+    "duration": "DURACIÓN",
     "layers": {
       "ectoderm": "Ectodermo",
       "endoderm": "Endodermo",
@@ -69,6 +72,8 @@
     "firstName": "Nombre",
     "lastName": "Apellido",
     "profession": "Profesión (ej: Osteópata)",
+    "location": "Dirección (ej: Ciudad, Código postal...)",
+    "address": "Dirección (ej: Ciudad, Código postal...)",
     "emailPlaceholder": "tu@email.com",
     "loginBtn": "INICIAR SESIÓN",
     "verifyEmails": "Revisa tus correos",
