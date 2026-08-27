@@ -69,6 +69,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     onCuesLoaded,
     onActiveCueChange,
     onControlsChange,
+    onPiPChange,
 }, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
@@ -78,16 +79,27 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
     const [hasSubtitles, setHasSubtitles] = useState(false);
     const [isPipSupported, setIsPipSupported] = useState(false);
+    const [resolvedVttUrl, setResolvedVttUrl] = useState<string>('');
 
     useEffect(() => {
         const standardPip = 'pictureInPictureEnabled' in document;
         const safariPip = typeof HTMLVideoElement !== 'undefined' && 'webkitSetPresentationMode' in HTMLVideoElement.prototype;
         setIsPipSupported(standardPip || safariPip);
     }, []);
+
+    const isDesktop = React.useMemo(() => {
+        return !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && 
+               !(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }, []);
     const [activeSubtitle, setActiveSubtitle] = useState<string | null>(null);
     const cuesRef = useRef<{ start: number, end: number, text: string }[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerWidth, setContainerWidth] = useState<number>(0);
+    const hasAttachedPiPListeners = useRef(false);
+
+    useEffect(() => {
+        hasAttachedPiPListeners.current = false;
+    }, [cloudflareId, localVideoUrl]);
 
     // Measure container width for responsive subtitles
     useEffect(() => {
@@ -487,6 +499,131 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         }
     };
 
+    const setupNativeSubtitles = React.useCallback((vttUrl: string) => {
+        if (!isDesktop) return;
+        try {
+            let videoElement = playerRef.current;
+            
+            // Resolve native video element from ref / container
+            if (videoElement && typeof (videoElement as any).querySelector !== 'function') {
+                if ((videoElement as any).video) {
+                    videoElement = (videoElement as any).video;
+                } else if (containerRef.current) {
+                    let v = containerRef.current.querySelector('video');
+                    if (!v) {
+                        const streamRoot = containerRef.current.querySelector('stream');
+                        if (streamRoot && streamRoot.shadowRoot) {
+                            v = streamRoot.shadowRoot.querySelector('video');
+                        }
+                    }
+                    if (v) videoElement = v as any;
+                }
+            }
+
+            if (!videoElement) {
+                console.warn("setupNativeSubtitles: No video element found.");
+                return;
+            }
+
+            // Remove any track element we added previously to avoid duplicates
+            const existingTracks = videoElement.querySelectorAll('track');
+            existingTracks.forEach((t: any) => t.remove());
+
+            // Reuse or create programmatic TextTrack
+            let track = Array.from(videoElement.textTracks || []).find(
+                (t: any) => t.label === 'Français (FeelProd)'
+            ) as any;
+
+            if (track) {
+                // Clear existing cues
+                const cues = Array.from(track.cues || []);
+                cues.forEach((c: any) => track.removeCue(c));
+            } else {
+                // Create a new in-memory track
+                track = videoElement.addTextTrack('subtitles', 'Français (FeelProd)', getCloudflareLangCode(i18n.language || 'fr'));
+            }
+
+            // Populate the track with our already-parsed cuesRef.current
+            if (cuesRef.current && cuesRef.current.length > 0) {
+                cuesRef.current.forEach((c) => {
+                    try {
+                        const CueClass = (window as any).VTTCue || (window as any).TextTrackCue;
+                        if (CueClass) {
+                            const cue = new CueClass(c.start, c.end, c.text);
+                            track.addCue(cue);
+                        }
+                    } catch (cueErr) {
+                        console.error("Failed to add cue:", cueErr);
+                    }
+                });
+            }
+
+            // Set track mode based on subtitlesEnabled state
+            track.mode = subtitlesEnabled ? 'showing' : 'hidden';
+
+            // Attach native PiP listeners to notify parent component
+            if (!hasAttachedPiPListeners.current) {
+                const handleEnterPiP = () => {
+                    if (onPiPChange) onPiPChange(true);
+                };
+
+                const handleLeavePiP = () => {
+                    if (onPiPChange) onPiPChange(false);
+                };
+
+                videoElement.addEventListener('enterpictureinpicture', handleEnterPiP);
+                videoElement.addEventListener('leavepictureinpicture', handleLeavePiP);
+                
+                const handleWebkitPresentationModeChange = () => {
+                    const mode = (videoElement as any).webkitPresentationMode;
+                    if (onPiPChange) {
+                        onPiPChange(mode === 'picture-in-picture');
+                    }
+                };
+                videoElement.addEventListener('webkitpresentationmodechanged', handleWebkitPresentationModeChange);
+                
+                hasAttachedPiPListeners.current = true;
+                console.log("setupNativeSubtitles: successfully attached PiP event listeners");
+            }
+
+            console.log("setupNativeSubtitles: successfully set up programmatic text track");
+        } catch (e) {
+            console.error("Error setting up native subtitles:", e);
+        }
+    }, [isDesktop, i18n.language, subtitlesEnabled, onPiPChange]);
+
+    // Sync subtitles visibility when toggled by the user
+    useEffect(() => {
+        if (!isDesktop) return;
+        try {
+            let videoElement = playerRef.current;
+            if (videoElement && typeof (videoElement as any).querySelector !== 'function') {
+                if ((videoElement as any).video) {
+                    videoElement = (videoElement as any).video;
+                } else if (containerRef.current) {
+                    let v = containerRef.current.querySelector('video');
+                    if (!v) {
+                        const streamRoot = containerRef.current.querySelector('stream');
+                        if (streamRoot && streamRoot.shadowRoot) {
+                            v = streamRoot.shadowRoot.querySelector('video');
+                        }
+                    }
+                    if (v) videoElement = v as any;
+                }
+            }
+            if (videoElement && videoElement.textTracks) {
+                for (let i = 0; i < videoElement.textTracks.length; i++) {
+                    const track = videoElement.textTracks[i];
+                    if (track.label === 'Français (FeelProd)') {
+                        track.mode = subtitlesEnabled ? 'showing' : 'hidden';
+                    }
+                }
+            }
+        } catch (e) {
+            console.error("Error toggling native subtitles:", e);
+        }
+    }, [subtitlesEnabled, isDesktop]);
+
 
     // Dynamically allow zoom and handle status bar in fullscreen
     useEffect(() => {
@@ -553,6 +690,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             try {
                 const langCode = getCloudflareLangCode(i18n.language || 'fr');
                 let vttText = '';
+                let resolvedUrl = '';
 
                 // Try fetching directly from Cloudflare downloads first via local proxy
                 const vttUrl = `/cf-stream/${cloudflareId}/downloads/default.vtt?lang=${langCode}`;
@@ -562,14 +700,17 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     if (response.ok) {
                         const buffer = await response.arrayBuffer();
                         vttText = new TextDecoder('utf-8').decode(buffer);
+                        resolvedUrl = vttUrl;
                     }
                     
                     // Si l'API renvoie index.html (fallback SPA en local), vttText ne commence pas par WEBVTT
                     if (!response.ok || !vttText.trim().startsWith('WEBVTT')) {
-                        const localVttRes = await fetch(`/vtt/${cloudflareId}_${langCode}.vtt`);
+                        const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt`;
+                        const localVttRes = await fetch(localVttUrl);
                         if (localVttRes.ok) {
                             const buffer = await localVttRes.arrayBuffer();
                             vttText = new TextDecoder('utf-8').decode(buffer);
+                            resolvedUrl = localVttUrl;
                         } else {
                             throw new Error('Not found locally either');
                         }
@@ -581,10 +722,12 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 } catch {
                     // Try to fetch FR as a last resort just to see if we have ANY subtitles
                     try {
-                        const localVttRes = await fetch(`/vtt/${cloudflareId}_fr.vtt`);
+                        const fallbackUrl = `/vtt/${cloudflareId}_fr.vtt`;
+                        const localVttRes = await fetch(fallbackUrl);
                         if (localVttRes.ok) {
                             const buffer = await localVttRes.arrayBuffer();
                             vttText = new TextDecoder('utf-8').decode(buffer);
+                            resolvedUrl = fallbackUrl;
                         }
                     } catch {
                         // ignore
@@ -592,6 +735,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 }
 
                 setHasSubtitles(!!vttText); // Always activate CC button if ANY text exists
+                setResolvedVttUrl(vttText ? resolvedUrl : '');
                 if (!vttText) return;
 
                 const lines = vttText.split('\n');
@@ -669,6 +813,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 if (parsedCues.length > 0) {
                     setHasSubtitles(cuesRef.current.length > 0); // Keep tracking it properly based on cues
                     if (onCuesLoaded) onCuesLoaded(parsedCues);
+                    if (resolvedUrl) {
+                        setupNativeSubtitles(resolvedUrl);
+                    }
                 }
             } catch (err) {
                 console.error("VTT Parse err", err);
@@ -750,7 +897,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 ref={containerRef}
                 className={cn(
                     "relative w-full bg-transparent overflow-hidden group",
-                    isFullscreen ? 'video-player-fullscreen-active' : className || 'aspect-video rounded-xl shadow-2xl'
+                    isFullscreen ? 'video-player-fullscreen-active' : className || 'aspect-video rounded-xl shadow-2xl',
+                    !isDesktop && "video-player-mobile"
                 )}
                 onMouseMove={() => {
                     // Only trigger mouse move if we are inside the window!
@@ -786,7 +934,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 setIsPlaying(false);
                                 if (onEnded) onEnded();
                             }}
-                            onPlay={() => setIsPlaying(true)}
+                            onPlay={() => {
+                                setIsPlaying(true);
+                            }}
                             onPause={() => setIsPlaying(false)}
                             onTimeUpdate={() => {
                                 const player = playerRef.current;
@@ -828,7 +978,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 setIsPlaying(false);
                                 if (onEnded) onEnded();
                             }}
-                            onPlay={() => setIsPlaying(true)}
+                            onPlay={() => {
+                                setIsPlaying(true);
+                            }}
                             onPause={() => setIsPlaying(false)}
                             onTimeUpdate={() => {
                                 const player = playerRef.current;

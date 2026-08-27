@@ -243,6 +243,13 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     onLockedVideoClick?.();
                                     return;
                                 }
+                                if (course.isGlobalPdf) {
+                                    const pdfUrl = (pdfFileMapping as Record<string, string>)[course.id] || course.pdfUrl;
+                                    if (pdfUrl) {
+                                        window.open(pdfUrl, '_blank');
+                                        return;
+                                    }
+                                }
                                 onSelectVideo(course);
                             };
 
