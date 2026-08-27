@@ -479,7 +479,7 @@ Deux fonctions différentes impliquent deux formes différentes. Le mot **"biody
 
 ### B. Les Frontières et la Réponse Cellulaire
 
-**Blechmit**, un théoricien, parle de différents champs métaboliques. Le champ métabolique n'est pas un simple environnement, il est structuré.
+**Blechschmidt**, un théoricien, parle de différents champs métaboliques. Le champ métabolique n'est pas un simple environnement, il est structuré.
 
 Imaginez une cellule dans son espace. Tant qu'elle reste dans cet espace, tout va bien. Mais si elle touche une frontière, cela peut provoquer :
 
@@ -522,7 +522,7 @@ Ce cours nous a permis de poser les bases de la compréhension de l'embryologie 
     duration: "47:51",
     title: "6. Les 3 Tissus Embryologiques",
     shortSummary: "Présentation des trois tissus embryologiques : ectoderme, endoderme et mésoderme, et de leur impact sur le corps en lien avec la pratique thérapeutique.",
-    fullSummary: "Cette session explore les trois tissus embryologiques : l'ectoderme, l'endoderme et le mésoderme, en les reliant aux concepts de biodynamique. En introduisant la classification de Blech-Schmidt, l'enseignement met en lumière la relation entre les tissus de limite et d'intérieur, illustrée par des exemples concrets comme le tympan. L'importance des tissus conjonctifs, leur rôle nutritif pour les tissus épithéliaux et les dynamiques de congestion et d'assèchement sont discutées. Comprendre ces éléments vous permettra d'intégrer une approche holistique dans votre pratique thérapeutique.",
+    fullSummary: "Cette session explore les trois tissus embryologiques : l'ectoderme, l'endoderme et le mésoderme, en les reliant aux concepts de biodynamique. En introduisant la classification de Blechschmidt, l'enseignement met en lumière la relation entre les tissus de limite et d'intérieur, illustrée par des exemples concrets comme le tympan. L'importance des tissus conjonctifs, leur rôle nutritif pour les tissus épithéliaux et les dynamiques de congestion et d'assèchement sont discutées. Comprendre ces éléments vous permettra d'intégrer une approche holistique dans votre pratique thérapeutique.",
     transcriptMarkdown: `
 # Les 3 Tissus Embryologiques : Une Approche Biodynamique
 
@@ -537,9 +537,9 @@ En embryologie classique, nous distinguons trois tissus fondamentaux : **l'ectod
 * **Les tissus conjonctifs/connectifs :**
   * D'origine mésodermique.
 
-### La Vision de Blech-Schmidt : Tissus de Limite et Tissus d'Intérieur
+### La Vision de Blechschmidt : Tissus de Limite et Tissus d'Intérieur
 
-Blech-Schmidt introduit une perspective intéressante en classifiant les tissus selon leur fonction et leur position :
+Blechschmidt introduit une perspective intéressante en classifiant les tissus selon leur fonction et leur position :
 
 * **Tissus de limite (ou de frontière) :** L'ectoderme et l'endoderme.
 * **Tissus d'intérieur (ou conjonctifs) :** Le mésoderme.
@@ -1518,13 +1518,13 @@ L'axe crânio-sacré primitif se forme entre le **14ème** et le **21ème jour**
 
 Lors du **développement embryonnaire**, nous partons d'un bouton embryonnaire et d'une cavité, le **blastocèle**. 
 
-Au moment de l'**implantation** dans la muqueuse utérine, une deuxième cavité apparaît. À ce stade, deux types de cellules s'échangent : l'une regarde la cavité ancienne, et c'est à ce moment-là que Blech-Schmidt introduit les concepts d'**endocyste**, d'**épiblaste** et d'**hypoblaste**.
+Au moment de l'**implantation** dans la muqueuse utérine, une deuxième cavité apparaît. À ce stade, deux types de cellules s'échangent : l'une regarde la cavité ancienne, et c'est à ce moment-là que Blechschmidt introduit les concepts d'**endocyste**, d'**épiblaste** et d'**hypoblaste**.
 
 Lorsque la troisième chambre apparaît, un nouveau système s'instaure, caractérisé par une **vitesse de croissance différentielle** entre l'extérieur et l'intérieur. À l'intérieur, la croissance est légèrement moins rapide, car l'**apport trophique** arrive moins vite.
 
 Un phénomène important se produit au niveau du tissu, induisant de nouvelles informations. Ce sont ce qu'on appelle des **champs métaboliques** de **précession**, de **perméation**, de **parméation** et d'**infusion** dans l'apport trophique de l'information. En d'autres termes, il s'agit d'une organisation de la manière dont l'information trophique, la **nourriture primitive**, se distribue dans les tissus pour les transformer.
 
-Blech-Schmidt a compris comment cela se passait et a introduit de nouvelles notions que l'on ne retrouve que dans l'**embryologie biodynamique**. L'information se distribue à la fois par ce que l'on appelle un **champ de parméation**, de **perméation** ou d'**infusion**.
+Blechschmidt a compris comment cela se passait et a introduit de nouvelles notions que l'on ne retrouve que dans l'**embryologie biodynamique**. L'information se distribue à la fois par ce que l'on appelle un **champ de parméation**, de **perméation** ou d'**infusion**.
 
 ## Champs Métaboliques : Définitions et Mécanismes de Diffusion
 
@@ -4666,7 +4666,7 @@ Pour qu'il y ait une **cinétique** et une formation des vaisseaux, quatre compo
 3. La présence de **vacuolisation**.
 4. La présence de **trajectoires**.
 
-Blechmit compare cela à un **arc-en-ciel**, qui nécessite de l'eau, de la pluie, du soleil et une certaine angulation. Si un seul élément est retiré, l'arc-en-ciel disparaît immédiatement. C'est la même chose pour les vaisseaux. Si l'on retire une trajectoire ou une concentration, le processus s'arrête. Le système vasculaire est en constante adaptation tout au long de la vie.
+Blechschmidt compare cela à un **arc-en-ciel**, qui nécessite de l'eau, de la pluie, du soleil et une certaine angulation. Si un seul élément est retiré, l'arc-en-ciel disparaît immédiatement. C'est la même chose pour les vaisseaux. Si l'on retire une trajectoire ou une concentration, le processus s'arrête. Le système vasculaire est en constante adaptation tout au long de la vie.
 
 ## 4. Développement du réseau vasculaire
 
@@ -7972,7 +7972,7 @@ Mais n'oubliez pas qu'à ce moment-là, une phase s'installe avec l'intégration
 
 C'est donc le système vasculaire qui est à l'origine de la segmentation et non le système neuronal, comme c'est souvent décrit. Il faut d'abord le système neuronal, qui va organiser le système vasculaire, et de ce système neuronal va ressortir le système veineux.
 
-La **segmentation primaire** apparaît, comme l'a très bien décrit **Blechmit**, par une région qui se développe sous forme d'espace et de fragmentation du système pour former les somites. L'embryon aura des zones de **dermalgie**, et c'est une segmentation : les somites se segmentent.
+La **segmentation primaire** apparaît, comme l'a très bien décrit **Blechschmidt**, par une région qui se développe sous forme d'espace et de fragmentation du système pour former les somites. L'embryon aura des zones de **dermalgie**, et c'est une segmentation : les somites se segmentent.
 
 C'est "métamérisé", si vous voulez, cela vient de la segmentation organisée par le système vasculaire sur un plan primitif, par la flexion et la réabsorption de l'aorte.
 

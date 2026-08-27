@@ -111,7 +111,7 @@ Deux fonctions différentes impliquent deux formes différentes. Le mot **"biody
 
 ### B. Les Frontières et la Réponse Cellulaire
 
-**Blechmit**, un théoricien, parle de différents champs métaboliques. Le champ métabolique n'est pas un simple environnement, il est structuré.
+**Blechschmidt**, un théoricien, parle de différents champs métaboliques. Le champ métabolique n'est pas un simple environnement, il est structuré.
 
 Imaginez une cellule dans son espace. Tant qu'elle reste dans cet espace, tout va bien. Mais si elle touche une frontière, cela peut provoquer :
 

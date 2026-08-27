@@ -71,7 +71,7 @@ Mais n'oubliez pas qu'à ce moment-là, une phase s'installe avec l'intégration
 
 C'est donc le système vasculaire qui est à l'origine de la segmentation et non le système neuronal, comme c'est souvent décrit. Il faut d'abord le système neuronal, qui va organiser le système vasculaire, et de ce système neuronal va ressortir le système veineux.
 
-La **segmentation primaire** apparaît, comme l'a très bien décrit **Blechmit**, par une région qui se développe sous forme d'espace et de fragmentation du système pour former les somites. L'embryon aura des zones de **dermalgie**, et c'est une segmentation : les somites se segmentent.
+La **segmentation primaire** apparaît, comme l'a très bien décrit **Blechschmidt**, par une région qui se développe sous forme d'espace et de fragmentation du système pour former les somites. L'embryon aura des zones de **dermalgie**, et c'est une segmentation : les somites se segmentent.
 
 C'est "métamérisé", si vous voulez, cela vient de la segmentation organisée par le système vasculaire sur un plan primitif, par la flexion et la réabsorption de l'aorte.
 

@@ -17,13 +17,13 @@ Dans cette vidéo, nous explorons l'organisation des champs métaboliques durant
 
 Lors du **développement embryonnaire**, nous partons d'un bouton embryonnaire et d'une cavité, le **blastocèle**. 
 
-Au moment de l'**implantation** dans la muqueuse utérine, une deuxième cavité apparaît. À ce stade, deux types de cellules s'échangent : l'une regarde la cavité ancienne, et c'est à ce moment-là que Blech-Schmidt introduit les concepts d'**endocyste**, d'**épiblaste** et d'**hypoblaste**.
+Au moment de l'**implantation** dans la muqueuse utérine, une deuxième cavité apparaît. À ce stade, deux types de cellules s'échangent : l'une regarde la cavité ancienne, et c'est à ce moment-là que Blechschmidt introduit les concepts d'**endocyste**, d'**épiblaste** et d'**hypoblaste**.
 
 Lorsque la troisième chambre apparaît, un nouveau système s'instaure, caractérisé par une **vitesse de croissance différentielle** entre l'extérieur et l'intérieur. À l'intérieur, la croissance est légèrement moins rapide, car l'**apport trophique** arrive moins vite.
 
 Un phénomène important se produit au niveau du tissu, induisant de nouvelles informations. Ce sont ce qu'on appelle des **champs métaboliques** de **précession**, de **perméation**, de **parméation** et d'**infusion** dans l'apport trophique de l'information. En d'autres termes, il s'agit d'une organisation de la manière dont l'information trophique, la **nourriture primitive**, se distribue dans les tissus pour les transformer.
 
-Blech-Schmidt a compris comment cela se passait et a introduit de nouvelles notions que l'on ne retrouve que dans l'**embryologie biodynamique**. L'information se distribue à la fois par ce que l'on appelle un **champ de parméation**, de **perméation** ou d'**infusion**.
+Blechschmidt a compris comment cela se passait et a introduit de nouvelles notions que l'on ne retrouve que dans l'**embryologie biodynamique**. L'information se distribue à la fois par ce que l'on appelle un **champ de parméation**, de **perméation** ou d'**infusion**.
 
 ## Champs Métaboliques : Définitions et Mécanismes de Diffusion
 

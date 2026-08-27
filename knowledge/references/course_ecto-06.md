@@ -9,7 +9,7 @@ timestamp: 2026-06-17T07:07:34.707Z
 ---
 # 6. Les 3 Tissus Embryologiques (Catégorie: ectoderme)
 
-Cette session explore les trois tissus embryologiques : l'ectoderme, l'endoderme et le mésoderme, en les reliant aux concepts de biodynamique. En introduisant la classification de Blech-Schmidt, l'enseignement met en lumière la relation entre les tissus de limite et d'intérieur, illustrée par des exemples concrets comme le tympan. L'importance des tissus conjonctifs, leur rôle nutritif pour les tissus épithéliaux et les dynamiques de congestion et d'assèchement sont discutées. Comprendre ces éléments vous permettra d'intégrer une approche holistique dans votre pratique thérapeutique.
+Cette session explore les trois tissus embryologiques : l'ectoderme, l'endoderme et le mésoderme, en les reliant aux concepts de biodynamique. En introduisant la classification de Blechschmidt, l'enseignement met en lumière la relation entre les tissus de limite et d'intérieur, illustrée par des exemples concrets comme le tympan. L'importance des tissus conjonctifs, leur rôle nutritif pour les tissus épithéliaux et les dynamiques de congestion et d'assèchement sont discutées. Comprendre ces éléments vous permettra d'intégrer une approche holistique dans votre pratique thérapeutique.
 
 ## Retranscription
 
@@ -26,9 +26,9 @@ En embryologie classique, nous distinguons trois tissus fondamentaux : **l'ectod
 * **Les tissus conjonctifs/connectifs :**
   * D'origine mésodermique.
 
-### La Vision de Blech-Schmidt : Tissus de Limite et Tissus d'Intérieur
+### La Vision de Blechschmidt : Tissus de Limite et Tissus d'Intérieur
 
-Blech-Schmidt introduit une perspective intéressante en classifiant les tissus selon leur fonction et leur position :
+Blechschmidt introduit une perspective intéressante en classifiant les tissus selon leur fonction et leur position :
 
 * **Tissus de limite (ou de frontière) :** L'ectoderme et l'endoderme.
 * **Tissus d'intérieur (ou conjonctifs) :** Le mésoderme.

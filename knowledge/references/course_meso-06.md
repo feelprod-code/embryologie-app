@@ -32,7 +32,7 @@ Pour qu'il y ait une **cinétique** et une formation des vaisseaux, quatre compo
 3. La présence de **vacuolisation**.
 4. La présence de **trajectoires**.
 
-Blechmit compare cela à un **arc-en-ciel**, qui nécessite de l'eau, de la pluie, du soleil et une certaine angulation. Si un seul élément est retiré, l'arc-en-ciel disparaît immédiatement. C'est la même chose pour les vaisseaux. Si l'on retire une trajectoire ou une concentration, le processus s'arrête. Le système vasculaire est en constante adaptation tout au long de la vie.
+Blechschmidt compare cela à un **arc-en-ciel**, qui nécessite de l'eau, de la pluie, du soleil et une certaine angulation. Si un seul élément est retiré, l'arc-en-ciel disparaît immédiatement. C'est la même chose pour les vaisseaux. Si l'on retire une trajectoire ou une concentration, le processus s'arrête. Le système vasculaire est en constante adaptation tout au long de la vie.
 
 ## 4. Développement du réseau vasculaire
 
