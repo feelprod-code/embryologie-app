@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Loader2, X, Download, Share2, ZoomIn, ZoomOut } from "lucide-react";
+import { type VideoCourse } from "../data/videoCourses";
 import PDFShareDropdown from "./PDFShareDropdown";
 
 interface PDFCanvasViewerProps {
@@ -8,6 +9,8 @@ interface PDFCanvasViewerProps {
   courseTitle?: string;
   author?: string;
   accentColor?: string;
+  course?: VideoCourse;
+  onOpenPdfUrl?: (url?: string) => void;
   onClose?: () => void;
 }
 
@@ -17,6 +20,8 @@ export default function PDFCanvasViewer({
   courseTitle,
   author = "Marc Damoiseaux",
   accentColor = "#5A9C51",
+  course,
+  onOpenPdfUrl,
   onClose,
 }: PDFCanvasViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -183,6 +188,8 @@ export default function PDFCanvasViewer({
             author={author}
             variant="viewer-bar"
             accentColor={accentColor}
+            course={course}
+            onViewInPlayer={onOpenPdfUrl}
           />
         </div>
       </div>

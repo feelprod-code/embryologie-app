@@ -357,7 +357,7 @@ function buildLessonSheetHtml(
  * Professional In-App Styled A4 PDF Exporter (Multilingual Support)
  * Exports a single course or an entire category Master Book in any of the 7 supported languages.
  */
-export function exportCoursePdf(course: VideoCourse, langInput: string = 'fr', t?: any): void {
+export function exportCoursePdf(course: VideoCourse, langInput: string = 'fr', t?: any, forceGlobal?: boolean): void {
     if (!course) return;
 
     const lang = getNormalizedLang(langInput);
@@ -366,7 +366,7 @@ export function exportCoursePdf(course: VideoCourse, langInput: string = 'fr', t
     const categoryLabel = dict.categories[course.categoryId] || course.categoryId;
 
     const allCoursesForLang = getCoursesByLang(lang);
-    const isGlobalMaster = Boolean(course.isGlobalPdf);
+    const isGlobalMaster = forceGlobal !== undefined ? forceGlobal : Boolean(course.isGlobalPdf);
 
     // If it's a global PDF, collect all non-global lessons in the category
     const coursesToExport: VideoCourse[] = isGlobalMaster

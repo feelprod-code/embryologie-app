@@ -9417,7 +9417,7 @@ Il est important de noter que les reflux ne se manifestent pas toujours par des 
 
 
 
-La **jonction diaphragmatique** est cruciale, car elle est en rapport avec les **fibres de Juvara** et l'espace **péri-œsophagien**, qui est adaptatif. Une dysfonction à ce niveau peut bloquer la qualité et l'ouverture du diaphragme. Steele a dit : "Si ton diaphragme n'est pas libre, la porte de ta vie n'est pas libre."
+La **jonction diaphragmatique** est cruciale, car elle est en rapport avec les **fibres de Juvara** et l'espace **péri-œsophagien**, qui est adaptatif. Une dysfonction à ce niveau peut bloquer la qualité et l'ouverture du diaphragme. Still a dit : "Si ton diaphragme n'est pas libre, la porte de ta vie n'est pas libre."
 
 ![Œsophage abdominal](https://eqcjgucfpmhvxkckokwb.supabase.co/storage/v1/object/public/schemas/images/schemas/endoderme/endo-23/Endoderme_75.jpeg)
 

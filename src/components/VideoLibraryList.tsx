@@ -71,7 +71,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
         if (v.categoryId === 'endoderme') mappedCategory = "L'Endoderme";
         if (v.categoryId === 'mesoderme') mappedCategory = "Le Mésoderme";
         if (v.categoryId === 'oeil') mappedCategory = "L'Oeil";
-        return selectedLayer === mappedCategory;
+        return selectedLayer === mappedCategory && !v.isGlobalPdf;
     });
 
     const containerVariants: Variants = {

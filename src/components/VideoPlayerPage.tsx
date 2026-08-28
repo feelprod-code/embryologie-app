@@ -94,11 +94,15 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   
   const videoUrl = course.cloudflareId ? `/cf-stream/${course.cloudflareId}/downloads/default.mp4` : '';
   const currentPdfUrl = getCoursePdfUrl(course, i18n.language);
+  const [activeViewerPdfUrl, setActiveViewerPdfUrl] = useState<string | null>(null);
   const [isPdfReaderOpen, setIsPdfReaderOpen] = useState<boolean>(course.isGlobalPdf || false);
 
   useEffect(() => {
     setIsPdfReaderOpen(course.isGlobalPdf || false);
+    setActiveViewerPdfUrl(null);
   }, [course.id, course.isGlobalPdf]);
+
+  const effectiveViewerUrl = activeViewerPdfUrl || currentPdfUrl;
 
   // Transition state for UI fluidity
   const [optimisticLayer, setOptimisticLayer] = useState<string | null>(null);
@@ -540,11 +544,15 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       {(isPdfReaderOpen || course.isGlobalPdf) ? (
         <div className="w-full flex-1 flex flex-col min-h-[500px] h-[75vh] md:h-[82vh] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-slate-800 my-1">
           <PDFCanvasViewer
-            url={currentPdfUrl}
+            url={effectiveViewerUrl}
             title={course.title}
             courseTitle={course.title}
             accentColor={categoryColor}
-            onClose={!course.isGlobalPdf ? () => setIsPdfReaderOpen(false) : undefined}
+            course={course}
+            onOpenPdfUrl={(targetUrl) => {
+              if (targetUrl) setActiveViewerPdfUrl(targetUrl);
+            }}
+            onClose={() => setIsPdfReaderOpen(false)}
           />
         </div>
       ) : (
@@ -637,17 +645,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
               <div className="flex flex-1 items-center justify-end gap-1.5 sm:gap-2 z-10">
                 <button
                   onClick={() => {
-                    if (course.isGlobalPdf || !currentPdfUrl) {
-                      exportCoursePdf(course, i18n.language, t);
-                    } else {
-                      setIsPdfReaderOpen(true);
-                    }
+                    setIsPdfReaderOpen(true);
                   }}
                   className="flex items-center gap-1 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg shadow-sm border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-[10px] sm:text-xs font-bold tracking-wider transition-all active:scale-95 shrink-0 cursor-pointer"
-                  title="Consulter ou exporter le support PDF"
+                  title="Consulter le support PDF"
                 >
                   <BookOpen className="w-3.5 h-3.5" style={{ color: categoryColor }} />
-                  <span className="hidden sm:inline">{course.isGlobalPdf ? 'RECUEIL' : 'LIRE'}</span>
+                  <span className="hidden sm:inline">LIRE</span>
                   <span>PDF</span>
                 </button>
 
@@ -659,6 +663,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   variant="header"
                   buttonClassName="border border-slate-200 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs"
                   course={course}
+                  onViewInPlayer={(targetUrl) => {
+                    if (targetUrl) setActiveViewerPdfUrl(targetUrl);
+                    setIsPdfReaderOpen(true);
+                  }}
                 />
 
                 {course.cloudflareId && (
