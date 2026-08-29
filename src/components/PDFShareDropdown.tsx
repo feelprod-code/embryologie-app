@@ -30,6 +30,7 @@ interface PDFShareDropdownProps {
   accentColor?: string;
   onViewInPlayer?: (targetUrl?: string) => void;
   course?: VideoCourse;
+  label?: string;
 }
 
 const DROPDOWN_TEXTS: Record<string, {
@@ -277,6 +278,7 @@ export default function PDFShareDropdown({
   accentColor = "#5A9C51",
   onViewInPlayer,
   course,
+  label,
 }: PDFShareDropdownProps) {
   const { t, i18n } = useTranslation();
   const langKey = getNormalizedLang(i18n.language);
@@ -610,10 +612,10 @@ export default function PDFShareDropdown({
             setIsOpen(!isOpen);
           }}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-800 text-xs font-bold shadow-xs border border-[#E2D8CC] transition-all active:scale-98 cursor-pointer ${buttonClassName}`}
-          title={labels.shareBtn}
+          title={label || "PDF"}
         >
           <Share2 className="w-3.5 h-3.5" style={{ color: accentColor }} strokeWidth={2.5} />
-          <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wider">{labels.shareBtn}</span>
+          <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wider">{label || "PDF"}</span>
           <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         </button>
       )}

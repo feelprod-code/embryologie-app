@@ -7,7 +7,7 @@ import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
 import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
 import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
 import { cn } from '../utils';
-import { Clock, ChevronLeft, ChevronRight, Video, VideoOff, Play, Pause, DownloadCloud, Loader2, CheckCircle2, Trash2, FileText, BookOpen } from 'lucide-react';
+import { Clock, ChevronLeft, ChevronRight, Video, VideoOff, Play, Pause, DownloadCloud, Loader2, CheckCircle2, Trash2, FileText } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { CustomVideoPlayer, type CustomVideoPlayerRef } from './ui/CustomVideoPlayer';
@@ -643,24 +643,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
               {/* RIGHT: OFFLINE DOWNLOAD, PDF VIEWER & TDT SHARE */}
               <div className="flex flex-1 items-center justify-end gap-1.5 sm:gap-2 z-10">
-                <button
-                  onClick={() => {
-                    setIsPdfReaderOpen(true);
-                  }}
-                  className="flex items-center gap-1 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg shadow-sm border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-[10px] sm:text-xs font-bold tracking-wider transition-all active:scale-95 shrink-0 cursor-pointer"
-                  title="Consulter le support PDF"
-                >
-                  <BookOpen className="w-3.5 h-3.5" style={{ color: categoryColor }} />
-                  <span className="hidden sm:inline">LIRE</span>
-                  <span>PDF</span>
-                </button>
-
                 <PDFShareDropdown
                   pdfUrl={currentPdfUrl}
                   title={course.title}
                   courseTitle={course.title}
                   accentColor={categoryColor}
                   variant="header"
+                  label="PDF"
                   buttonClassName="border border-slate-200 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs"
                   course={course}
                   onViewInPlayer={(targetUrl) => {
