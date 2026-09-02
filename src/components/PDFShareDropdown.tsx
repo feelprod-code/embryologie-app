@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Share2, Download, Mail, Copy, Check, ChevronDown, FileText, Printer, ExternalLink, Sparkles } from "lucide-react";
+import { Share2, Download, Mail, Copy, Check, ChevronDown, FileText, Printer, ExternalLink, Sparkles, Lock } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { type VideoCourse } from "../data/videoCourses";
 import { exportCoursePdf, getNormalizedLang } from "../utils/exportCoursePdf";
@@ -17,6 +17,8 @@ interface PDFShareDropdownProps {
   accentColor?: string;
   onViewInPlayer?: () => void;
   course?: VideoCourse;
+  hasFullAccess?: boolean;
+  onLockedClick?: () => void;
 }
 
 const DROPDOWN_TEXTS: Record<string, {
@@ -191,10 +193,18 @@ export default function PDFShareDropdown({
   buttonClassName = "",
   accentColor = "#5A9C51",
   course,
+  hasFullAccess = false,
+  onLockedClick,
 }: PDFShareDropdownProps) {
   const { t, i18n } = useTranslation();
   const langKey = getNormalizedLang(i18n.language);
   const labels = DROPDOWN_TEXTS[langKey] || DROPDOWN_TEXTS.fr;
+
+  const isIntegral = Boolean(
+    course?.isGlobalPdf ||
+    (pdfUrl && (pdfUrl.includes('cours_complets') || pdfUrl.toLowerCase().includes('integral') || pdfUrl.toLowerCase().includes('recueil')))
+  );
+  const isLocked = isIntegral && !hasFullAccess;
 
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -207,6 +217,17 @@ export default function PDFShareDropdown({
 
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const handleTriggerClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isLocked) {
+      if (onLockedClick) {
+        onLockedClick();
+      }
+      return;
+    }
+    setIsOpen(!isOpen);
+  };
 
   // Compute fixed position on open, resize, or scroll
   const updatePosition = () => {
@@ -305,6 +326,11 @@ export default function PDFShareDropdown({
   // 1. Partager natif (Web Share API)
   const handleNativeShare = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (isLocked) {
+      setIsOpen(false);
+      onLockedClick?.();
+      return;
+    }
     setIsOpen(false);
     const fullUrl = getFullUrl();
     const cleanTitle = title || "Document PDF";
@@ -349,6 +375,11 @@ export default function PDFShareDropdown({
   // 2. Enregistrer sur disque / Télécharger
   const handleSaveToDisk = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (isLocked) {
+      setIsOpen(false);
+      onLockedClick?.();
+      return;
+    }
     setIsOpen(false);
 
     const fullUrl = getFullUrl();
@@ -392,6 +423,11 @@ export default function PDFShareDropdown({
   // 3. Envoyer par e-mail
   const handleSendEmail = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (isLocked) {
+      setIsOpen(false);
+      onLockedClick?.();
+      return;
+    }
     setIsOpen(false);
     const fullUrl = getFullUrl();
     const cleanTitle = title || "Document PDF";
@@ -414,6 +450,11 @@ export default function PDFShareDropdown({
   // 4. Copier le lien
   const handleCopyLink = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
+    if (isLocked) {
+      setIsOpen(false);
+      onLockedClick?.();
+      return;
+    }
     const fullUrl = getFullUrl();
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard.writeText(fullUrl).then(() => {
@@ -426,6 +467,11 @@ export default function PDFShareDropdown({
   // 5. Imprimer
   const handlePrint = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (isLocked) {
+      setIsOpen(false);
+      onLockedClick?.();
+      return;
+    }
     setIsOpen(false);
     if (course) {
       exportCoursePdf(course, i18n.language, t);
@@ -445,14 +491,15 @@ export default function PDFShareDropdown({
         <button
           ref={buttonRef}
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsOpen(!isOpen);
-          }}
+          onClick={handleTriggerClick}
           className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold transition-all border border-[#E2D8CC] shadow-xs active:scale-98 cursor-pointer ${buttonClassName}`}
-          title={labels.shareBtn}
+          title={isLocked ? "Recueil Intégral réservé aux membres" : labels.shareBtn}
         >
-          <Share2 className="w-3.5 h-3.5" style={{ color: accentColor }} strokeWidth={2.5} />
+          {isLocked ? (
+            <Lock className="w-3.5 h-3.5 text-amber-600" strokeWidth={2.5} />
+          ) : (
+            <Share2 className="w-3.5 h-3.5" style={{ color: accentColor }} strokeWidth={2.5} />
+          )}
           <span>{labels.shareBtn}</span>
           <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         </button>
@@ -462,14 +509,15 @@ export default function PDFShareDropdown({
         <button
           ref={buttonRef}
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsOpen(!isOpen);
-          }}
+          onClick={handleTriggerClick}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-800 text-xs font-bold shadow-xs border border-[#E2D8CC] transition-all active:scale-98 cursor-pointer ${buttonClassName}`}
-          title={labels.shareBtn}
+          title={isLocked ? "Recueil Intégral réservé aux membres" : labels.shareBtn}
         >
-          <Share2 className="w-3.5 h-3.5" style={{ color: accentColor }} strokeWidth={2.5} />
+          {isLocked ? (
+            <Lock className="w-3.5 h-3.5 text-amber-600" strokeWidth={2.5} />
+          ) : (
+            <Share2 className="w-3.5 h-3.5" style={{ color: accentColor }} strokeWidth={2.5} />
+          )}
           <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wider">{labels.shareBtn}</span>
           <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         </button>
@@ -479,13 +527,15 @@ export default function PDFShareDropdown({
         <button
           ref={buttonRef}
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsOpen(!isOpen);
-          }}
+          onClick={handleTriggerClick}
           className={`flex items-center gap-1.5 px-3 py-1 rounded-full bg-white hover:bg-[#FAF6ED] text-slate-700 hover:text-slate-900 font-sans font-bold text-[10px] sm:text-[11px] tracking-wider border border-[#E2D8CC] shadow-2xs transition-all active:scale-95 cursor-pointer ${buttonClassName}`}
+          title={isLocked ? "Recueil Intégral réservé aux membres" : "Télécharger ou exporter le PDF"}
         >
-          <Share2 className="w-3 h-3" style={{ color: accentColor }} strokeWidth={2.5} />
+          {isLocked ? (
+            <Lock className="w-3 h-3 text-amber-600" strokeWidth={2.5} />
+          ) : (
+            <Share2 className="w-3 h-3" style={{ color: accentColor }} strokeWidth={2.5} />
+          )}
           <span>PDF</span>
           <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         </button>
@@ -495,14 +545,15 @@ export default function PDFShareDropdown({
         <button
           ref={buttonRef}
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsOpen(!isOpen);
-          }}
+          onClick={handleTriggerClick}
           className={`p-2 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-700 border border-[#E2D8CC] shadow-xs transition-colors flex-shrink-0 cursor-pointer ${buttonClassName}`}
-          title={labels.shareBtn}
+          title={isLocked ? "Recueil Intégral réservé aux membres" : labels.shareBtn}
         >
-          <Share2 className="w-4 h-4" style={{ color: accentColor }} strokeWidth={2.2} />
+          {isLocked ? (
+            <Lock className="w-4 h-4 text-amber-600" strokeWidth={2.2} />
+          ) : (
+            <Share2 className="w-4 h-4" style={{ color: accentColor }} strokeWidth={2.2} />
+          )}
         </button>
       )}
 
@@ -549,6 +600,10 @@ export default function PDFShareDropdown({
                 type="button"
                 onClick={() => {
                   setIsOpen(false);
+                  if (isLocked) {
+                    onLockedClick?.();
+                    return;
+                  }
                   exportCoursePdf(course, i18n.language, t);
                 }}
                 className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
@@ -557,11 +612,12 @@ export default function PDFShareDropdown({
                   className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105"
                   style={{ backgroundColor: `${accentColor}20`, border: `1px solid ${accentColor}40`, color: accentColor }}
                 >
-                  <Sparkles className="w-4 h-4" />
+                  {isLocked ? <Lock className="w-4 h-4 text-amber-600" /> : <Sparkles className="w-4 h-4" />}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors">
-                    {labels.exportPdf}
+                  <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
+                    <span>{labels.exportPdf}</span>
+                    {isLocked && <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>}
                   </div>
                   <div className="text-[10.5px] text-slate-500 truncate">
                     {labels.exportPdfSub}
@@ -617,6 +673,10 @@ export default function PDFShareDropdown({
               type="button"
               onClick={() => {
                 setIsOpen(false);
+                if (isLocked) {
+                  onLockedClick?.();
+                  return;
+                }
                 if (course && !pdfUrl) {
                   exportCoursePdf(course, i18n.language, t);
                   return;
