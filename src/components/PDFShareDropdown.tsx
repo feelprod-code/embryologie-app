@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Share2, Download, Mail, Copy, Check, ChevronDown, FileText, Printer, Sparkles, Lock, ExternalLink, X } from "lucide-react";
+import { Share2, Download, ChevronDown, FileText, Printer, Sparkles, Lock, ExternalLink, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { videoCourses as videoCoursesFr, type VideoCourse } from "../data/videoCourses";
 import { videoCourses as videoCoursesEn } from "../data/videoCourses_en";
@@ -434,25 +434,6 @@ export default function PDFShareDropdown({
     if (course) exportCoursePdf(course, i18n.language, t);
   };
 
-  const handleSendEmail = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (activeTab === 'integral' && isGlobalLocked) {
-      setIsOpen(false);
-      onLockedClick?.();
-      return;
-    }
-    setIsOpen(false);
-    const fullUrl = activeTab === 'integral' ? globalPdfUrl : getFullUrl();
-    const cleanTitle = activeTab === 'integral' ? (globalCourse?.title || "Recueil Intégral") : (title || "Document PDF");
-    const subject = `[Embryologie App] Document PDF : ${cleanTitle}`;
-    const bodyLines = [
-      `Bonjour,`, ``, `Voici le document PDF d'étude : "${cleanTitle}"${courseTitle ? ` (${courseTitle})` : ""}${author ? ` par ${author}` : ""}.`,
-      ``, `🔗 Lien direct de consultation :`, fullUrl, ``, `Bonne lecture,`, `Embryologie App • FeelProd`
-    ];
-    const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
-    window.location.href = mailtoUrl;
-  };
-
   const handleCopyLink = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     if (activeTab === 'integral' && isGlobalLocked) {
@@ -765,40 +746,28 @@ export default function PDFShareDropdown({
                   </div>
                 </div>
               </button>
-            </div>
-
-            <div className="border-t border-[#EFE8DE] mt-2.5 pt-1.5 flex items-center justify-between px-1">
-              <button
-                type="button"
-                onClick={handleSendEmail}
-                className="flex items-center gap-1.5 px-2 py-1 rounded-xl hover:bg-[#FAF6ED] text-slate-600 hover:text-slate-900 text-xs font-medium transition-colors cursor-pointer"
-                title={labels.email}
-              >
-                <Mail className="w-3.5 h-3.5 text-blue-600" />
-                <span className="text-[11px]">{labels.email}</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleCopyLink()}
-                className="flex items-center gap-1.5 px-2 py-1 rounded-xl hover:bg-[#FAF6ED] text-slate-600 hover:text-slate-900 text-xs font-medium transition-colors cursor-pointer"
-                title={labels.copy}
-              >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-slate-600" />}
-                <span className="text-[11px]">{copied ? labels.copied : labels.copy}</span>
-              </button>
 
               <button
                 type="button"
                 onClick={handlePrint}
-                className="w-full flex items-center gap-3 px-3 py-1.5 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-2xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
               >
-                <div className="w-7 h-7 rounded-lg bg-slate-50 border border-slate-200/80 flex items-center justify-center flex-shrink-0 text-slate-500 transition-all group-hover:scale-105">
-                  <Printer className="w-3.5 h-3.5" />
+                <div className="w-10 h-10 rounded-2xl bg-[#F0EEF8] border border-[#DDD8EF] flex items-center justify-center flex-shrink-0 text-[#63589F] transition-all group-hover:scale-105">
+                  {activeTab === 'integral' && isGlobalLocked ? (
+                    <Lock className="w-5 h-5 text-amber-600" />
+                  ) : (
+                    <Printer className="w-5 h-5" />
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-medium text-slate-700 group-hover:text-slate-950 transition-colors">
-                    {labels.print}
+                  <div className="text-xs font-bold text-slate-900 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
+                    <span>{labels.print}</span>
+                    {activeTab === 'integral' && isGlobalLocked && (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>
+                    )}
+                  </div>
+                  <div className="text-[11px] text-slate-500 truncate">
+                    {labels.printSub}
                   </div>
                 </div>
               </button>
