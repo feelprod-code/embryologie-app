@@ -491,6 +491,27 @@ function App() {
         </div>
       )}
 
+      {/* Global Paywall Overlay for locked videos and integral PDF manual */}
+      {showPaywallModal && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+          <div 
+            className="absolute inset-0 bg-slate-900/60 backdrop-blur-md transition-opacity" 
+            onClick={() => setShowPaywallModal(false)}
+          ></div>
+          <div className="relative w-full max-w-md z-10 animate-fade-in-up">
+            <button 
+              onClick={() => setShowPaywallModal(false)} 
+              className="absolute -top-4 -right-2 sm:-top-5 sm:-right-5 z-20 w-12 h-12 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 shadow-xl border border-slate-100 transition-colors touch-manipulation cursor-pointer select-none"
+            >
+              <X size={20} strokeWidth={2.5} />
+            </button>
+            <div className="overflow-hidden rounded-3xl shadow-2xl bg-white">
+              <Paywall />
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className={cn("flex flex-col items-center h-[100dvh] w-full max-w-full relative bg-[#FAF6ED] text-slate-800 overflow-hidden", isPending && "transition-all duration-300")}>
         {/* Cinematic Background Gradients (Global) */}
       {activeNav !== 'video-player' && (
@@ -740,27 +761,6 @@ function App() {
                   }}
                   onLockedVideoClick={() => setShowPaywallModal(true)}
                 />
-                
-                {/* Paywall Overlay */}
-                {showPaywallModal && (
-                  <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div 
-                        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" 
-                        onClick={() => setShowPaywallModal(false)}
-                    ></div>
-                    <div className="relative w-full max-w-md z-10 animate-fade-in-up">
-                      <button 
-                        onClick={() => setShowPaywallModal(false)} 
-                        className="absolute -top-4 -right-2 sm:-top-5 sm:-right-5 z-20 w-12 h-12 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 shadow-xl border border-slate-100 transition-colors touch-manipulation cursor-pointer select-none"
-                      >
-                        <X size={20} strokeWidth={2.5} />
-                      </button>
-                      <div className="overflow-hidden rounded-3xl shadow-2xl">
-                        <Paywall />
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           )}

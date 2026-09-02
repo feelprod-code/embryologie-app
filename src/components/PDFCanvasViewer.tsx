@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Loader2, X, Download, Share2, ZoomIn, ZoomOut } from "lucide-react";
-import { type VideoCourse } from "../data/videoCourses";
+import { Loader2, X, Download, Share2, ZoomIn, ZoomOut, Lock, Sparkles } from "lucide-react";
 import PDFShareDropdown from "./PDFShareDropdown";
 
 interface PDFCanvasViewerProps {
@@ -9,9 +8,9 @@ interface PDFCanvasViewerProps {
   courseTitle?: string;
   author?: string;
   accentColor?: string;
-  course?: VideoCourse;
-  onOpenPdfUrl?: (url?: string) => void;
   onClose?: () => void;
+  hasFullAccess?: boolean;
+  onLockedClick?: () => void;
 }
 
 export default function PDFCanvasViewer({
@@ -20,17 +19,27 @@ export default function PDFCanvasViewer({
   courseTitle,
   author = "Marc Damoiseaux",
   accentColor = "#5A9C51",
-  course,
-  onOpenPdfUrl,
   onClose,
+  hasFullAccess = false,
+  onLockedClick,
 }: PDFCanvasViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(true);
+  const isIntegral = Boolean(
+    url && (url.includes('cours_complets') || url.toLowerCase().includes('integral') || url.toLowerCase().includes('recueil'))
+  );
+  const isLocked = isIntegral && !hasFullAccess;
+
+  const [loading, setLoading] = useState(!isLocked);
   const [error, setError] = useState<string | null>(null);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [zoomScale, setZoomScale] = useState<number>(1.0);
 
   useEffect(() => {
+    if (isLocked) {
+      setLoading(false);
+      return;
+    }
+
     let active = true;
     setLoading(true);
     setError(null);
@@ -128,7 +137,7 @@ export default function PDFCanvasViewer({
     return () => {
       active = false;
     };
-  }, [url, zoomScale]);
+  }, [url, zoomScale, isLocked]);
 
   return (
     <div className="w-full flex-1 flex flex-col h-full bg-[#F5ECE0] text-slate-800 overflow-hidden relative">
@@ -150,36 +159,39 @@ export default function PDFCanvasViewer({
 
         {/* Center: Title & Page Count */}
         <div className="flex flex-col items-center max-w-[50%] sm:max-w-[60%] text-center">
-          <span className="text-xs sm:text-sm font-bold text-slate-800 truncate max-w-full font-bebas tracking-wide">
-            {title}
+          <span className="text-xs sm:text-sm font-bold text-slate-800 truncate max-w-full font-bebas tracking-wide flex items-center gap-1.5">
+            {isLocked && <Lock className="w-3.5 h-3.5 text-amber-600 inline shrink-0" />}
+            <span>{title}</span>
           </span>
           <span className="text-[10px] text-slate-500 font-medium">
-            {loading ? "Chargement du document..." : `${totalPages} page${totalPages > 1 ? "s" : ""} • Format A4`}
+            {isLocked ? "Recueil Intégral • Réservé aux membres" : loading ? "Chargement du document..." : `${totalPages} page${totalPages > 1 ? "s" : ""} • Format A4`}
           </span>
         </div>
 
         {/* Right: Actions & Share */}
         <div className="flex items-center gap-2">
           {/* Zoom controls */}
-          <div className="hidden md:flex items-center gap-1 bg-white rounded-xl p-0.5 border border-[#E2D8CC] shadow-xs">
-            <button
-              onClick={() => setZoomScale((prev) => Math.max(0.7, prev - 0.15))}
-              className="p-1 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-50 cursor-pointer"
-              title="Dézoomer"
-            >
-              <ZoomOut className="w-3.5 h-3.5" />
-            </button>
-            <span className="text-[10px] font-mono px-1 text-slate-600 font-bold">
-              {Math.round(zoomScale * 100)}%
-            </span>
-            <button
-              onClick={() => setZoomScale((prev) => Math.min(1.6, prev + 0.15))}
-              className="p-1 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-50 cursor-pointer"
-              title="Zoomer"
-            >
-              <ZoomIn className="w-3.5 h-3.5" />
-            </button>
-          </div>
+          {!isLocked && (
+            <div className="hidden md:flex items-center gap-1 bg-white rounded-xl p-0.5 border border-[#E2D8CC] shadow-xs">
+              <button
+                onClick={() => setZoomScale((prev) => Math.max(0.7, prev - 0.15))}
+                className="p-1 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-50 cursor-pointer"
+                title="Dézoomer"
+              >
+                <ZoomOut className="w-3.5 h-3.5" />
+              </button>
+              <span className="text-[10px] font-mono px-1 text-slate-600 font-bold">
+                {Math.round(zoomScale * 100)}%
+              </span>
+              <button
+                onClick={() => setZoomScale((prev) => Math.min(1.6, prev + 0.15))}
+                className="p-1 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-50 cursor-pointer"
+                title="Zoomer"
+              >
+                <ZoomIn className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
 
           <PDFShareDropdown
             pdfUrl={url}
@@ -188,50 +200,83 @@ export default function PDFCanvasViewer({
             author={author}
             variant="viewer-bar"
             accentColor={accentColor}
-            course={course}
-            onViewInPlayer={onOpenPdfUrl}
+            hasFullAccess={hasFullAccess}
+            onLockedClick={onLockedClick}
           />
         </div>
       </div>
 
       {/* PDF CANVAS BODY */}
       <div className="w-full flex-1 overflow-y-auto p-3 sm:p-6 flex flex-col items-center scroll-smooth bg-[#ECE5D8]">
-        {loading && (
-          <div className="flex flex-col items-center justify-center py-24 text-slate-500">
-            <Loader2 className="w-8 h-8 animate-spin mb-3" style={{ color: accentColor }} />
-            <span className="text-sm font-medium">Génération des pages haute définition...</span>
-          </div>
-        )}
-
-        {error && (
-          <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
-            <div className="bg-white border border-red-200 text-red-700 p-6 rounded-2xl max-w-md shadow-md">
-              <p className="font-bold text-sm">Erreur de chargement du PDF</p>
-              <p className="text-xs mt-2 opacity-80">{error}</p>
-              <a
-                href={url}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-white text-xs font-bold transition-all shadow-sm"
-                style={{ backgroundColor: accentColor }}
+        {isLocked ? (
+          <div className="flex flex-col items-center justify-center py-16 px-4 text-center max-w-lg mx-auto my-auto animate-fade-in">
+            <div className="w-16 h-16 rounded-3xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-5 shadow-xs border border-amber-500/20">
+              <Lock className="w-8 h-8" />
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bebas tracking-wide text-slate-800 mb-2 uppercase">
+              Recueil Intégral — Version Complète
+            </h2>
+            <p className="text-sm text-slate-600 mb-6 leading-relaxed font-sans font-medium">
+              Ce manuel de cours intégral réunissant l'ensemble des leçons, synthèses et planches cliniques haute définition est réservé aux membres de la formation.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+              <button
+                onClick={onLockedClick}
+                className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm tracking-wide shadow-lg transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
               >
-                <Download className="w-3.5 h-3.5" />
-                Télécharger le PDF directement
-              </a>
+                <Sparkles className="w-4 h-4 text-amber-400" />
+                <span>Débloquer l'accès complet</span>
+              </button>
+              {onClose && (
+                <button
+                  onClick={onClose}
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-sm border border-[#E2D8CC] transition-all active:scale-95 cursor-pointer"
+                >
+                  Retour
+                </button>
+              )}
             </div>
           </div>
-        )}
+        ) : (
+          <>
+            {loading && (
+              <div className="flex flex-col items-center justify-center py-24 text-slate-500">
+                <Loader2 className="w-8 h-8 animate-spin mb-3" style={{ color: accentColor }} />
+                <span className="text-sm font-medium">Génération des pages haute définition...</span>
+              </div>
+            )}
 
-        <div ref={containerRef} className="w-full max-w-[850px] flex flex-col items-center"></div>
+            {error && (
+              <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
+                <div className="bg-white border border-red-200 text-red-700 p-6 rounded-2xl max-w-md shadow-md">
+                  <p className="font-bold text-sm">Erreur de chargement du PDF</p>
+                  <p className="text-xs mt-2 opacity-80">{error}</p>
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-white text-xs font-bold transition-all shadow-sm"
+                    style={{ backgroundColor: accentColor }}
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    Télécharger le PDF directement
+                  </a>
+                </div>
+              </div>
+            )}
 
-        {!loading && !error && onClose && (
-          <button
-            onClick={onClose}
-            className="mt-6 mb-12 px-6 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs transition-all border border-[#E2D8CC] hover:scale-102 active:scale-98 flex items-center gap-2 cursor-pointer shadow-md"
-          >
-            <X className="w-3.5 h-3.5 text-slate-500" />
-            <span>Fermer le document & Retour au lecteur</span>
-          </button>
+            <div ref={containerRef} className="w-full max-w-[850px] flex flex-col items-center"></div>
+
+            {!loading && !error && onClose && (
+              <button
+                onClick={onClose}
+                className="mt-6 mb-12 px-6 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs transition-all border border-[#E2D8CC] hover:scale-102 active:scale-98 flex items-center gap-2 cursor-pointer shadow-md"
+              >
+                <X className="w-3.5 h-3.5 text-slate-500" />
+                <span>Fermer le document & Retour au lecteur</span>
+              </button>
+            )}
+          </>
         )}
       </div>
     </div>

@@ -71,7 +71,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
         if (v.categoryId === 'endoderme') mappedCategory = "L'Endoderme";
         if (v.categoryId === 'mesoderme') mappedCategory = "Le Mésoderme";
         if (v.categoryId === 'oeil') mappedCategory = "L'Oeil";
-        return selectedLayer === mappedCategory && !v.isGlobalPdf;
+        return selectedLayer === mappedCategory;
     });
 
     const containerVariants: Variants = {
@@ -200,7 +200,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                 {
                     filteredCourses.length > 0 ? (
                         filteredCourses.map((course, index) => {
-                            const isLocked = !hasFullAccess && index >= 2;
+                            const isLocked = !hasFullAccess && (index >= 2 || Boolean(course.isGlobalPdf));
 
                             const activeListStyle = {
                                 "L'Ectoderme": { textHover: "md:group-hover:text-[#5A9C51]", hoverBg: "md:hover:bg-[#5A9C51]/5", whileTapBg: "rgba(90,156,81,0.15)", textColor: "text-[#5A9C51]" },
@@ -381,6 +381,8 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                                     variant="pill"
                                                                     buttonClassName="shadow-2xs text-[10px] sm:text-[11px] py-1 px-3"
                                                                     course={course}
+                                                                    hasFullAccess={hasFullAccess}
+                                                                    onLockedClick={onLockedVideoClick}
                                                                 />
                                                             </div>
                                                         </div>

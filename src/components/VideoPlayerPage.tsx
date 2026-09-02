@@ -7,7 +7,7 @@ import { videoCourses as videoCoursesDe } from '../data/videoCourses_de';
 import { videoCourses as videoCoursesZh } from '../data/videoCourses_zh';
 import { videoCourses as videoCoursesJa } from '../data/videoCourses_ja';
 import { cn } from '../utils';
-import { Clock, ChevronLeft, ChevronRight, Video, VideoOff, Play, Pause, DownloadCloud, Loader2, CheckCircle2, Trash2, FileText } from 'lucide-react';
+import { Clock, ChevronLeft, ChevronRight, Video, VideoOff, Play, Pause, DownloadCloud, Loader2, CheckCircle2, Trash2, FileText, BookOpen, Lock, Sparkles } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { CustomVideoPlayer, type CustomVideoPlayerRef } from './ui/CustomVideoPlayer';
@@ -31,31 +31,51 @@ interface VideoPlayerPageProps {
   onLockedVideoClick?: () => void;
 }
 
-const CustomMarkdownComponents = {
-  img: ({ node, ...props }: any) => {
-    return (
-      <span className="block my-12 relative w-full sm:w-5/6 md:w-3/4 max-w-2xl mx-auto group">
-        <span className="block relative bg-white p-2 shadow-sm rounded-2xl border border-slate-200">
-          <img 
-            {...props} 
-            src={props.src}
-            className="w-full h-auto rounded-xl !my-0 shadow-sm" 
-            loading="lazy"
-            alt={props.alt || "Schéma embryologique"}
-          />
-        </span>
-        {props.alt && (
-          <span className="block text-center mt-3 sm:mt-4 text-[13px] sm:text-sm font-medium text-slate-500 max-w-xl mx-auto px-4 italic leading-relaxed">
-            {props.alt}
-          </span>
-        )}
-      </span>
-    );
-  }
-};
-
 export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initialCourse, onSelectVideo, hasFullAccess = false, onLockedVideoClick }) => {
   const { t, i18n } = useTranslation();
+
+  const customMarkdownComponents = React.useMemo(() => ({
+    img: ({ node, ...props }: any) => {
+      return (
+        <span className="block my-12 relative w-full sm:w-5/6 md:w-3/4 max-w-2xl mx-auto group">
+          <span className="block relative bg-white p-2 shadow-sm rounded-2xl border border-slate-200">
+            <img 
+              {...props} 
+              src={props.src}
+              className="w-full h-auto rounded-xl !my-0 shadow-sm" 
+              loading="lazy"
+              alt={props.alt || "Schéma embryologique"}
+            />
+          </span>
+          {props.alt && (
+            <span className="block text-center mt-3 sm:mt-4 text-[13px] sm:text-sm font-medium text-slate-500 max-w-xl mx-auto px-4 italic leading-relaxed">
+              {props.alt}
+            </span>
+          )}
+        </span>
+      );
+    },
+    a: ({ href, children, ...props }: any) => {
+      const isIntegralPdf = href && (href.includes('cours_complets') || href.toLowerCase().includes('integral') || href.toLowerCase().includes('recueil'));
+      if (isIntegralPdf && !hasFullAccess) {
+        return (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              onLockedVideoClick?.();
+            }}
+            className="inline-flex items-center gap-1.5 text-amber-700 font-semibold underline decoration-amber-400 hover:text-amber-900 cursor-pointer text-left"
+            title="Recueil Intégral réservé aux membres"
+          >
+            <Lock className="w-3.5 h-3.5 inline shrink-0" />
+            <span>{children}</span>
+          </button>
+        );
+      }
+      return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
+    }
+  }), [hasFullAccess, onLockedVideoClick]);
 
   const videoCourses = i18n.language.startsWith('en')
     ? videoCoursesEn
@@ -94,15 +114,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   
   const videoUrl = course.cloudflareId ? `/cf-stream/${course.cloudflareId}/downloads/default.mp4` : '';
   const currentPdfUrl = getCoursePdfUrl(course, i18n.language);
-  const [activeViewerPdfUrl, setActiveViewerPdfUrl] = useState<string | null>(null);
-  const [isPdfReaderOpen, setIsPdfReaderOpen] = useState<boolean>(course.isGlobalPdf || false);
-
-  useEffect(() => {
-    setIsPdfReaderOpen(course.isGlobalPdf || false);
-    setActiveViewerPdfUrl(null);
-  }, [course.id, course.isGlobalPdf]);
-
-  const effectiveViewerUrl = activeViewerPdfUrl || currentPdfUrl;
 
   // Transition state for UI fluidity
   const [optimisticLayer, setOptimisticLayer] = useState<string | null>(null);
@@ -541,18 +552,15 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       "w-full flex justify-center items-center min-h-0",
       isFullscreen ? "h-full max-h-full max-w-none px-0" : "h-auto flex-col justify-start md:px-0 lg:px-0"
     )}>
-      {(isPdfReaderOpen || course.isGlobalPdf) ? (
+      {course.isGlobalPdf ? (
         <div className="w-full flex-1 flex flex-col min-h-[500px] h-[75vh] md:h-[82vh] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-slate-800 my-1">
           <PDFCanvasViewer
-            url={effectiveViewerUrl}
+            url={currentPdfUrl}
             title={course.title}
             courseTitle={course.title}
             accentColor={categoryColor}
-            course={course}
-            onOpenPdfUrl={(targetUrl) => {
-              if (targetUrl) setActiveViewerPdfUrl(targetUrl);
-            }}
-            onClose={() => setIsPdfReaderOpen(false)}
+            hasFullAccess={hasFullAccess}
+            onLockedClick={onLockedVideoClick}
           />
         </div>
       ) : (
@@ -649,13 +657,10 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   courseTitle={course.title}
                   accentColor={categoryColor}
                   variant="header"
-                  label="PDF"
                   buttonClassName="border border-slate-200 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs"
                   course={course}
-                  onViewInPlayer={(targetUrl) => {
-                    if (targetUrl) setActiveViewerPdfUrl(targetUrl);
-                    setIsPdfReaderOpen(true);
-                  }}
+                  hasFullAccess={hasFullAccess}
+                  onLockedClick={onLockedVideoClick}
                 />
 
                 {course.cloudflareId && (
@@ -745,13 +750,15 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         )}
 
         <div className="flex flex-1 items-center justify-end shrink-0 ml-1 gap-2 sm:gap-3">
-          <button
-            onClick={() => setIsVideoVisible(!isVideoVisible)}
-            className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-transparent md:hover:bg-[#FAF6ED] active:bg-slate-200 active:scale-95 rounded-md sm:rounded-lg text-slate-500 md:hover:text-slate-700 transition-all border border-slate-200 shadow-sm shrink-0 focus:outline-none focus:ring-0"
-            title={isVideoVisible ? "Masquer la vidéo" : "Afficher la vidéo"}
-          >
-            {isVideoVisible ? <VideoOff className="w-4 h-4" /> : <Video className="w-4 h-4" />}
-          </button>
+          {!isVideoVisible && (
+            <button
+              onClick={() => setIsVideoVisible(true)}
+              className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-[#5A9C51] text-white active:scale-95 rounded-md sm:rounded-lg transition-all border border-[#5A9C51] shadow-sm shrink-0 focus:outline-none focus:ring-0 cursor-pointer"
+              title="Réafficher la vidéo"
+            >
+              <Video className="w-4 h-4" />
+            </button>
+          )}
           <span className={cn(
             "font-bebas text-sm sm:text-base tracking-wider pt-0.5 shrink-0 transition-colors hidden md:block",
             course.categoryId === 'ectoderme' ? "text-[#5A9C51]" :
@@ -916,7 +923,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
           <div ref={markdownContainerRef} className="pb-16 transition-all duration-500 overflow-visible px-0 sm:px-4">
             <ReactMarkdown 
               rehypePlugins={[rehypeRaw]}
-              components={CustomMarkdownComponents}
+              components={customMarkdownComponents}
             >
               {contentMode === 'summary' && course.fullSummary
                 ? course.fullSummary.replace(/\n/g, '\n\n')
