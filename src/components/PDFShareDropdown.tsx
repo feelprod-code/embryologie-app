@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Share2, Download, Mail, Copy, Check, ChevronDown, FileText, Printer, Sparkles, Lock, Eye, X } from "lucide-react";
+import { Share2, Download, Mail, Copy, Check, ChevronDown, FileText, Printer, Sparkles, Lock, ExternalLink, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { videoCourses as videoCoursesFr, type VideoCourse } from "../data/videoCourses";
 import { videoCourses as videoCoursesEn } from "../data/videoCourses_en";
@@ -31,8 +31,8 @@ const DROPDOWN_TEXTS: Record<string, {
   docTitle: string;
   tabChapter: string;
   tabIntegral: string;
-  readInViewer: string;
-  readInViewerSub: string;
+  openNewTab: string;
+  openNewTabSub: string;
   generateA4Chapter: string;
   generateA4Integral: string;
   generateA4Sub: string;
@@ -55,8 +55,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "DOCUMENT PDF",
     tabChapter: "Fiche Chapitre",
     tabIntegral: "Recueil Intégral",
-    readInViewer: "Consulter dans le lecteur",
-    readInViewerSub: "Afficher les pages du PDF directement",
+    openNewTab: "Ouvrir dans un onglet séparé",
+    openNewTabSub: "Plein écran dans le navigateur",
     generateA4Chapter: "Générer la Fiche A4 (Chapitre)",
     generateA4Integral: "Générer le Recueil A4 (Intégral)",
     generateA4Sub: "Export HD épuré et personnalisé",
@@ -79,8 +79,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "PDF DOCUMENT",
     tabChapter: "Chapter Sheet",
     tabIntegral: "Integral Book",
-    readInViewer: "View in reader",
-    readInViewerSub: "Display PDF pages directly in a new tab",
+    openNewTab: "Open in a new tab",
+    openNewTabSub: "Full screen in browser",
     generateA4Chapter: "Generate A4 Sheet (Chapter)",
     generateA4Integral: "Generate A4 Book (Integral)",
     generateA4Sub: "Clean custom HD export",
@@ -103,8 +103,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "PDF DOKUMENT",
     tabChapter: "Kapitelblatt",
     tabIntegral: "Gesamtwerk",
-    readInViewer: "Im Reader ansehen",
-    readInViewerSub: "PDF-Seiten direkt in neuem Tab anzeigen",
+    openNewTab: "In neuem Tab öffnen",
+    openNewTabSub: "Vollbild im Browser",
     generateA4Chapter: "A4-Blatt generieren (Kapitel)",
     generateA4Integral: "Gesamtwerk A4 generieren",
     generateA4Sub: "Hochauflösender Export",
@@ -127,8 +127,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "DOCUMENTO PDF",
     tabChapter: "Ficha Capítulo",
     tabIntegral: "Manual Integral",
-    readInViewer: "Consultar en el lector",
-    readInViewerSub: "Mostrar páginas del PDF directamente",
+    openNewTab: "Abrir en una pestaña separada",
+    openNewTabSub: "Pantalla completa en el navegador",
     generateA4Chapter: "Generar Ficha A4 (Capítulo)",
     generateA4Integral: "Generar Manual A4 (Integral)",
     generateA4Sub: "Exportación HD personalizada",
@@ -151,8 +151,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "DOCUMENTO PDF",
     tabChapter: "Scheda Capitolo",
     tabIntegral: "Raccolta Integrale",
-    readInViewer: "Consulta nel lettore",
-    readInViewerSub: "Mostra le pagine del PDF direttamente",
+    openNewTab: "Apri in una nuova scheda",
+    openNewTabSub: "Schermo intero nel browser",
     generateA4Chapter: "Genera Scheda A4 (Capitolo)",
     generateA4Integral: "Genera Raccolta A4 (Integrale)",
     generateA4Sub: "Esportazione HD personalizzata",
@@ -175,8 +175,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "PDFドキュメント",
     tabChapter: "章のシート",
     tabIntegral: "完全版マニュアル",
-    readInViewer: "リーダーで表示",
-    readInViewerSub: "新しいタブでPDFページを直接表示",
+    openNewTab: "新しいタブで開く",
+    openNewTabSub: "ブラウザで全画面表示",
     generateA4Chapter: "A4シートを生成 (章)",
     generateA4Integral: "完全版A4を生成",
     generateA4Sub: "カスタム高解像度エクスポート",
@@ -199,8 +199,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "PDF 文档",
     tabChapter: "章节学习单",
     tabIntegral: "完整全书",
-    readInViewer: "在阅读器中查看",
-    readInViewerSub: "在新标签页中直接查看 PDF",
+    openNewTab: "在新标签页中打开",
+    openNewTabSub: "在浏览器中全屏查看",
     generateA4Chapter: "生成 A4 学习单 (课时)",
     generateA4Integral: "生成完整 A4 教材 (全套)",
     generateA4Sub: "高清个性化导出",
@@ -663,17 +663,17 @@ export default function PDFShareDropdown({
                 className="w-full flex items-center gap-3 px-3 py-2 rounded-2xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
               >
                 <div className="w-10 h-10 rounded-2xl bg-[#E6EFF5] border border-[#D0E2ED] flex items-center justify-center flex-shrink-0 text-[#3B7293] transition-all group-hover:scale-105">
-                  <Eye className="w-5 h-5" />
+                  <ExternalLink className="w-5 h-5" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-xs font-bold text-slate-900 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
-                    <span>{labels.readInViewer}</span>
+                    <span>{labels.openNewTab}</span>
                     {activeTab === 'integral' && isGlobalLocked && (
                       <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>
                     )}
                   </div>
                   <div className="text-[11px] text-slate-500 truncate">
-                    {labels.readInViewerSub}
+                    {labels.openNewTabSub}
                   </div>
                 </div>
               </button>
