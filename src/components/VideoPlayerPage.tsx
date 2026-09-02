@@ -750,13 +750,15 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
         )}
 
         <div className="flex flex-1 items-center justify-end shrink-0 ml-1 gap-2 sm:gap-3">
-          <button
-            onClick={() => setIsVideoVisible(!isVideoVisible)}
-            className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-transparent md:hover:bg-[#FAF6ED] active:bg-slate-200 active:scale-95 rounded-md sm:rounded-lg text-slate-500 md:hover:text-slate-700 transition-all border border-slate-200 shadow-sm shrink-0 focus:outline-none focus:ring-0"
-            title={isVideoVisible ? "Masquer la vidéo" : "Afficher la vidéo"}
-          >
-            {isVideoVisible ? <VideoOff className="w-4 h-4" /> : <Video className="w-4 h-4" />}
-          </button>
+          {!isVideoVisible && (
+            <button
+              onClick={() => setIsVideoVisible(true)}
+              className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-[#5A9C51] text-white active:scale-95 rounded-md sm:rounded-lg transition-all border border-[#5A9C51] shadow-sm shrink-0 focus:outline-none focus:ring-0 cursor-pointer"
+              title="Réafficher la vidéo"
+            >
+              <Video className="w-4 h-4" />
+            </button>
+          )}
           <span className={cn(
             "font-bebas text-sm sm:text-base tracking-wider pt-0.5 shrink-0 transition-colors hidden md:block",
             course.categoryId === 'ectoderme' ? "text-[#5A9C51]" :

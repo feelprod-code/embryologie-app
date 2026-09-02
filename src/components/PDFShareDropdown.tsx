@@ -492,6 +492,47 @@ export default function PDFShareDropdown({
 
   return (
     <>
+      {/* 1. VARIANT HEADER (Under video controls bar & transcript header) */}
+      {(variant === "header" || (!variant && variant !== "viewer-bar" && variant !== "pill" && variant !== "icon")) && (
+        <button
+          ref={buttonRef}
+          type="button"
+          onClick={handleTriggerClick}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-800 text-xs font-bold shadow-xs border border-[#E2D8CC] transition-all active:scale-98 cursor-pointer ${buttonClassName}`}
+          title={isLocked ? "Recueil Intégral réservé aux membres" : "Support PDF"}
+        >
+          {isLocked ? (
+            <Lock className="w-3.5 h-3.5 text-amber-600" strokeWidth={2.5} />
+          ) : (
+            <Share2 className="w-3.5 h-3.5" style={{ color: accentColor }} strokeWidth={2.5} />
+          )}
+          <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wider">
+            {course?.isGlobalPdf ? 'RECUEIL PDF' : 'PDF'}
+          </span>
+          <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+        </button>
+      )}
+
+      {/* 2. VARIANT PILL (Library list course details) */}
+      {variant === "pill" && (
+        <button
+          ref={buttonRef}
+          type="button"
+          onClick={handleTriggerClick}
+          className={`flex items-center gap-1.5 px-3 py-1 rounded-full bg-white hover:bg-[#FAF6ED] text-slate-700 hover:text-slate-900 font-sans font-bold text-[10px] sm:text-[11px] tracking-wider border border-[#E2D8CC] shadow-2xs transition-all active:scale-95 cursor-pointer ${buttonClassName}`}
+          title={isLocked ? "Recueil Intégral réservé aux membres" : "Support PDF"}
+        >
+          {isLocked ? (
+            <Lock className="w-3 h-3 text-amber-600" strokeWidth={2.5} />
+          ) : (
+            <Share2 className="w-3 h-3" style={{ color: accentColor }} strokeWidth={2.5} />
+          )}
+          <span>PDF</span>
+          <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+        </button>
+      )}
+
+      {/* 3. VARIANT VIEWER-BAR */}
       {variant === "viewer-bar" && (
         <button
           ref={buttonRef}
@@ -507,6 +548,23 @@ export default function PDFShareDropdown({
           )}
           <span>{labels.shareBtn}</span>
           <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+        </button>
+      )}
+
+      {/* 4. VARIANT ICON */}
+      {variant === "icon" && (
+        <button
+          ref={buttonRef}
+          type="button"
+          onClick={handleTriggerClick}
+          className={`p-2 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-700 border border-[#E2D8CC] shadow-xs transition-colors flex-shrink-0 cursor-pointer ${buttonClassName}`}
+          title={isLocked ? "Recueil Intégral réservé aux membres" : labels.shareBtn}
+        >
+          {isLocked ? (
+            <Lock className="w-4 h-4 text-amber-600" strokeWidth={2.2} />
+          ) : (
+            <Share2 className="w-4 h-4" style={{ color: accentColor }} strokeWidth={2.2} />
+          )}
         </button>
       )}
 
