@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Share2, Download, Mail, Copy, Check, ChevronDown, FileText, Printer, ExternalLink, Sparkles, Lock } from "lucide-react";
+import { Share2, Download, Mail, Copy, Check, ChevronDown, FileText, Printer, ExternalLink, Sparkles, Lock, BookOpen } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { type VideoCourse } from "../data/videoCourses";
 import { exportCoursePdf, getNormalizedLang } from "../utils/exportCoursePdf";
@@ -40,10 +40,14 @@ const DROPDOWN_TEXTS: Record<string, {
   printSub: string;
   exportPdf: string;
   exportPdfSub: string;
+  readInApp: string;
+  readInAppSub: string;
 }> = {
   fr: {
     shareBtn: "Partager",
     docTitle: "DOCUMENT PDF",
+    readInApp: "Consulter dans l'application",
+    readInAppSub: "Visionneuse haute définition",
     nativeShare: "Partager",
     nativeShareSub: "AirDrop, Messages, Réseaux",
     download: "Enregistrer sur l'appareil",
@@ -64,6 +68,8 @@ const DROPDOWN_TEXTS: Record<string, {
   en: {
     shareBtn: "Share",
     docTitle: "PDF DOCUMENT",
+    readInApp: "Read in app",
+    readInAppSub: "High-definition viewer",
     nativeShare: "Share",
     nativeShareSub: "AirDrop, Messages, Socials",
     download: "Save to device",
@@ -79,11 +85,11 @@ const DROPDOWN_TEXTS: Record<string, {
     print: "Print document",
     printSub: "Standard A4 format",
     exportPdf: "Generate A4 Sheet",
-    exportPdfSub: "High-definition export"
-  },
-  de: {
+    exportPdfSub: "High-definiti  de: {
     shareBtn: "Teilen",
     docTitle: "PDF DOKUMENT",
+    readInApp: "In der App lesen",
+    readInAppSub: "HD-Viewer",
     nativeShare: "Teilen",
     nativeShareSub: "AirDrop, Nachrichten, Netzwerke",
     download: "Auf Gerät speichern",
@@ -104,6 +110,8 @@ const DROPDOWN_TEXTS: Record<string, {
   es: {
     shareBtn: "Compartir",
     docTitle: "DOCUMENTO PDF",
+    readInApp: "Leer en la aplicación",
+    readInAppSub: "Visor de alta definición",
     nativeShare: "Compartir",
     nativeShareSub: "AirDrop, Mensajes, Redes",
     download: "Guardar en el dispositivo",
@@ -124,6 +132,8 @@ const DROPDOWN_TEXTS: Record<string, {
   it: {
     shareBtn: "Condividi",
     docTitle: "DOCUMENTO PDF",
+    readInApp: "Leggi nell'app",
+    readInAppSub: "Visualizzatore HD",
     nativeShare: "Condividi",
     nativeShareSub: "AirDrop, Messaggi, Social",
     download: "Salva sul dispositivo",
@@ -144,6 +154,8 @@ const DROPDOWN_TEXTS: Record<string, {
   ja: {
     shareBtn: "共有",
     docTitle: "PDFドキュメント",
+    readInApp: "アプリ内で読む",
+    readInAppSub: "HDビューア",
     nativeShare: "共有",
     nativeShareSub: "AirDrop、メッセージ、SNS",
     download: "端末に保存",
@@ -164,6 +176,8 @@ const DROPDOWN_TEXTS: Record<string, {
   zh: {
     shareBtn: "分享",
     docTitle: "PDF 文档",
+    readInApp: "在应用中阅读",
+    readInAppSub: "高清阅读器",
     nativeShare: "分享",
     nativeShareSub: "隔空投送、信息、社交应用",
     download: "保存到设备",
@@ -192,6 +206,7 @@ export default function PDFShareDropdown({
   align = "right",
   buttonClassName = "",
   accentColor = "#5A9C51",
+  onViewInPlayer,
   course,
   hasFullAccess = false,
   onLockedClick,
@@ -511,14 +526,14 @@ export default function PDFShareDropdown({
           type="button"
           onClick={handleTriggerClick}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-800 text-xs font-bold shadow-xs border border-[#E2D8CC] transition-all active:scale-98 cursor-pointer ${buttonClassName}`}
-          title={isLocked ? "Recueil Intégral réservé aux membres" : labels.shareBtn}
+          title={isLocked ? "Recueil Intégral réservé aux membres" : "Support PDF"}
         >
           {isLocked ? (
             <Lock className="w-3.5 h-3.5 text-amber-600" strokeWidth={2.5} />
           ) : (
             <Share2 className="w-3.5 h-3.5" style={{ color: accentColor }} strokeWidth={2.5} />
           )}
-          <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wider">{labels.shareBtn}</span>
+          <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wider">{course?.isGlobalPdf ? 'RECUEIL PDF' : 'PDF'}</span>
           <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         </button>
       )}
@@ -529,7 +544,7 @@ export default function PDFShareDropdown({
           type="button"
           onClick={handleTriggerClick}
           className={`flex items-center gap-1.5 px-3 py-1 rounded-full bg-white hover:bg-[#FAF6ED] text-slate-700 hover:text-slate-900 font-sans font-bold text-[10px] sm:text-[11px] tracking-wider border border-[#E2D8CC] shadow-2xs transition-all active:scale-95 cursor-pointer ${buttonClassName}`}
-          title={isLocked ? "Recueil Intégral réservé aux membres" : "Télécharger ou exporter le PDF"}
+          title={isLocked ? "Recueil Intégral réservé aux membres" : "Support PDF"}
         >
           {isLocked ? (
             <Lock className="w-3 h-3 text-amber-600" strokeWidth={2.5} />
@@ -593,6 +608,38 @@ export default function PDFShareDropdown({
                 {title}
               </div>
             </div>
+
+            {/* Option : Consulter dans le lecteur intégré */}
+            {onViewInPlayer && (
+              <button
+                type="button"
+                onClick={() => {
+                  setIsOpen(false);
+                  if (isLocked) {
+                    onLockedClick?.();
+                    return;
+                  }
+                  onViewInPlayer();
+                }}
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
+              >
+                <div
+                  className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105"
+                  style={{ backgroundColor: `${accentColor}20`, border: `1px solid ${accentColor}40`, color: accentColor }}
+                >
+                  {isLocked ? <Lock className="w-4 h-4 text-amber-600" /> : <BookOpen className="w-4 h-4" style={{ color: accentColor }} />}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
+                    <span>{labels.readInApp}</span>
+                    {isLocked && <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>}
+                  </div>
+                  <div className="text-[10.5px] text-slate-500 truncate">
+                    {labels.readInAppSub}
+                  </div>
+                </div>
+              </button>
+            )}
 
             {/* Option Export A4 direct */}
             {course && (

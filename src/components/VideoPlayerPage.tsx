@@ -657,30 +657,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
               {/* RIGHT: OFFLINE DOWNLOAD, PDF VIEWER & TDT SHARE */}
               <div className="flex flex-1 items-center justify-end gap-1.5 sm:gap-2 z-10">
-                <button
-                  onClick={() => {
-                    if (course.isGlobalPdf && !hasFullAccess) {
-                      onLockedVideoClick?.();
-                      return;
-                    }
-                    if (course.isGlobalPdf || !currentPdfUrl) {
-                      exportCoursePdf(course, i18n.language, t);
-                    } else {
-                      setIsPdfReaderOpen(true);
-                    }
-                  }}
-                  className="flex items-center gap-1 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg shadow-sm border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-[10px] sm:text-xs font-bold tracking-wider transition-all active:scale-95 shrink-0 cursor-pointer"
-                  title={course.isGlobalPdf && !hasFullAccess ? "Recueil Intégral réservé aux membres" : "Consulter ou exporter le support PDF"}
-                >
-                  {course.isGlobalPdf && !hasFullAccess ? (
-                    <Lock className="w-3.5 h-3.5 text-amber-600" />
-                  ) : (
-                    <BookOpen className="w-3.5 h-3.5" style={{ color: categoryColor }} />
-                  )}
-                  <span className="hidden sm:inline">{course.isGlobalPdf ? 'RECUEIL' : 'LIRE'}</span>
-                  <span>PDF</span>
-                </button>
-
                 <PDFShareDropdown
                   pdfUrl={currentPdfUrl}
                   title={course.title}
@@ -691,6 +667,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   course={course}
                   hasFullAccess={hasFullAccess}
                   onLockedClick={onLockedVideoClick}
+                  onViewInPlayer={() => setIsPdfReaderOpen(true)}
                 />
 
                 {course.cloudflareId && (
