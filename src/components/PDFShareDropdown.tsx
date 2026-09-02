@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Share2, Download, Mail, Copy, Check, ChevronDown, FileText, Printer, ExternalLink, Sparkles, Lock, BookOpen } from "lucide-react";
+import { Share2, Download, Mail, Copy, Check, ChevronDown, FileText, Printer, Sparkles, Lock, Eye, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { videoCourses as videoCoursesFr, type VideoCourse } from "../data/videoCourses";
 import { videoCourses as videoCoursesEn } from "../data/videoCourses_en";
@@ -21,7 +21,6 @@ interface PDFShareDropdownProps {
   align?: "left" | "right";
   buttonClassName?: string;
   accentColor?: string;
-  onViewInPlayer?: () => void;
   course?: VideoCourse;
   hasFullAccess?: boolean;
   onLockedClick?: () => void;
@@ -30,26 +29,18 @@ interface PDFShareDropdownProps {
 const DROPDOWN_TEXTS: Record<string, {
   shareBtn: string;
   docTitle: string;
-  chapterSection: string;
-  integralSection: string;
-  openChapterTab: string;
-  openChapterTabSub: string;
-  openIntegralTab: string;
-  openIntegralTabSub: string;
-  exportChapter: string;
-  exportChapterSub: string;
-  exportIntegral: string;
-  exportIntegralSub: string;
-  downloadChapter: string;
-  downloadChapterSub: string;
-  downloadIntegral: string;
-  downloadIntegralSub: string;
-  nativeShare: string;
-  nativeShareSub: string;
-  download: string;
-  downloadSub: string;
-  openNewTab: string;
-  openNewTabSub: string;
+  tabChapter: string;
+  tabIntegral: string;
+  readInViewer: string;
+  readInViewerSub: string;
+  generateA4Chapter: string;
+  generateA4Integral: string;
+  generateA4Sub: string;
+  share: string;
+  shareSub: string;
+  saveToDevice: string;
+  saveToDeviceSubChapter: string;
+  saveToDeviceSubIntegral: string;
   email: string;
   emailSub: string;
   copy: string;
@@ -58,246 +49,174 @@ const DROPDOWN_TEXTS: Record<string, {
   copiedSub: string;
   print: string;
   printSub: string;
-  exportPdf: string;
-  exportPdfSub: string;
 }> = {
   fr: {
     shareBtn: "Partager",
-    docTitle: "DOCUMENTS PDF",
-    chapterSection: "Fiche du Chapitre",
-    integralSection: "Recueil Intégral",
-    openChapterTab: "Ouvrir la Fiche (Plein écran)",
-    openChapterTabSub: "Dans un nouvel onglet",
-    openIntegralTab: "Ouvrir le Recueil (Plein écran)",
-    openIntegralTabSub: "Manuel complet du séminaire",
-    exportChapter: "Générer la Fiche A4",
-    exportChapterSub: "Export HD de la leçon",
-    exportIntegral: "Générer le Recueil A4",
-    exportIntegralSub: "Toutes les leçons du séminaire",
-    downloadChapter: "Télécharger la Fiche (.pdf)",
-    downloadChapterSub: "Fichier PDF de la leçon",
-    downloadIntegral: "Télécharger le Recueil (.pdf)",
-    downloadIntegralSub: "Manuel complet officiel",
-    nativeShare: "Partager",
-    nativeShareSub: "AirDrop, Messages, Réseaux",
-    download: "Enregistrer sur l'appareil",
-    downloadSub: "Télécharger le fichier A4 (.pdf)",
-    openNewTab: "Plein écran / Onglet séparé",
-    openNewTabSub: "Ouvrir dans le navigateur",
+    docTitle: "DOCUMENT PDF",
+    tabChapter: "Fiche Chapitre",
+    tabIntegral: "Recueil Intégral",
+    readInViewer: "Consulter dans le lecteur",
+    readInViewerSub: "Afficher les pages du PDF directement",
+    generateA4Chapter: "Générer la Fiche A4 (Chapitre)",
+    generateA4Integral: "Générer le Recueil A4 (Intégral)",
+    generateA4Sub: "Export HD épuré et personnalisé",
+    share: "Partager",
+    shareSub: "AirDrop, Messages, Réseaux",
+    saveToDevice: "Enregistrer sur l'appareil",
+    saveToDeviceSubChapter: "Télécharger le fichier A4 (.pdf)",
+    saveToDeviceSubIntegral: "Télécharger le recueil complet (.pdf)",
     email: "Envoyer par e-mail",
     emailSub: "Lien pré-rempli dans Mail",
-    copy: "Copier le lien direct",
+    copy: "Copier le lien",
     copySub: "Copier l'adresse URL du document",
     copied: "Lien copié !",
     copiedSub: "Prêt à être collé",
-    print: "Imprimer le document",
+    print: "Imprimer",
     printSub: "Format A4 standard",
-    exportPdf: "Générer la Fiche A4",
-    exportPdfSub: "Export HD personnalisé"
   },
   en: {
     shareBtn: "Share",
-    docTitle: "PDF DOCUMENTS",
-    chapterSection: "Chapter Sheet",
-    integralSection: "Integral Book",
-    openChapterTab: "Open Sheet (Full screen)",
-    openChapterTabSub: "In a new tab",
-    openIntegralTab: "Open Book (Full screen)",
-    openIntegralTabSub: "Complete seminar manual",
-    exportChapter: "Generate A4 Sheet",
-    exportChapterSub: "HD lesson export",
-    exportIntegral: "Generate Full Book A4",
-    exportIntegralSub: "All seminar lessons",
-    downloadChapter: "Download Sheet (.pdf)",
-    downloadChapterSub: "Lesson PDF document",
-    downloadIntegral: "Download Full Book (.pdf)",
-    downloadIntegralSub: "Official complete manual",
-    nativeShare: "Share",
-    nativeShareSub: "AirDrop, Messages, Socials",
-    download: "Save to device",
-    downloadSub: "Download A4 file (.pdf)",
-    openNewTab: "Full screen / New tab",
-    openNewTabSub: "Open in browser",
+    docTitle: "PDF DOCUMENT",
+    tabChapter: "Chapter Sheet",
+    tabIntegral: "Integral Book",
+    readInViewer: "View in reader",
+    readInViewerSub: "Display PDF pages directly in a new tab",
+    generateA4Chapter: "Generate A4 Sheet (Chapter)",
+    generateA4Integral: "Generate A4 Book (Integral)",
+    generateA4Sub: "Clean custom HD export",
+    share: "Share",
+    shareSub: "AirDrop, Messages, Socials",
+    saveToDevice: "Save to device",
+    saveToDeviceSubChapter: "Download A4 file (.pdf)",
+    saveToDeviceSubIntegral: "Download complete manual (.pdf)",
     email: "Send by email",
     emailSub: "Pre-filled link in Mail",
-    copy: "Copy direct link",
+    copy: "Copy link",
     copySub: "Copy document URL address",
     copied: "Link copied!",
     copiedSub: "Ready to paste",
-    print: "Print document",
+    print: "Print",
     printSub: "Standard A4 format",
-    exportPdf: "Generate A4 Sheet",
-    exportPdfSub: "High-definition export"
   },
   de: {
     shareBtn: "Teilen",
-    docTitle: "PDF DOKUMENTE",
-    chapterSection: "Kapitelblatt",
-    integralSection: "Gesamtwerk",
-    openChapterTab: "Blatt öffnen (Vollbild)",
-    openChapterTabSub: "In neuem Tab",
-    openIntegralTab: "Gesamtwerk öffnen (Vollbild)",
-    openIntegralTabSub: "Vollständiges Seminarhandbuch",
-    exportChapter: "A4-Blatt generieren",
-    exportChapterSub: "HD-Export der Lektion",
-    exportIntegral: "Gesamtwerk A4 generieren",
-    exportIntegralSub: "Alle Lektionen des Seminars",
-    downloadChapter: "Blatt herunterladen (.pdf)",
-    downloadChapterSub: "PDF-Datei der Lektion",
-    downloadIntegral: "Gesamtwerk herunterladen (.pdf)",
-    downloadIntegralSub: "Offizielles Handbuch",
-    nativeShare: "Teilen",
-    nativeShareSub: "AirDrop, Nachrichten, Netzwerke",
-    download: "Auf Gerät speichern",
-    downloadSub: "A4-Datei herunterladen (.pdf)",
-    openNewTab: "Vollbild / Neuer Tab",
-    openNewTabSub: "Im Browser öffnen",
+    docTitle: "PDF DOKUMENT",
+    tabChapter: "Kapitelblatt",
+    tabIntegral: "Gesamtwerk",
+    readInViewer: "Im Reader ansehen",
+    readInViewerSub: "PDF-Seiten direkt in neuem Tab anzeigen",
+    generateA4Chapter: "A4-Blatt generieren (Kapitel)",
+    generateA4Integral: "Gesamtwerk A4 generieren",
+    generateA4Sub: "Hochauflösender Export",
+    share: "Teilen",
+    shareSub: "AirDrop, Nachrichten, Netzwerke",
+    saveToDevice: "Auf Gerät speichern",
+    saveToDeviceSubChapter: "A4-Datei herunterladen (.pdf)",
+    saveToDeviceSubIntegral: "Gesamtwerk herunterladen (.pdf)",
     email: "Per E-Mail senden",
     emailSub: "Vorausgefüllter Link in Mail",
-    copy: "Direkten Link kopieren",
+    copy: "Link kopieren",
     copySub: "Dokument-URL kopieren",
     copied: "Link kopiert!",
     copiedSub: "Bereit zum Einfügen",
-    print: "Dokument drucken",
+    print: "Drucken",
     printSub: "Standard A4-Format",
-    exportPdf: "A4-Blatt generieren",
-    exportPdfSub: "HD-Export"
   },
   es: {
     shareBtn: "Compartir",
-    docTitle: "DOCUMENTOS PDF",
-    chapterSection: "Ficha del Capítulo",
-    integralSection: "Manual Integral",
-    openChapterTab: "Abrir Ficha (Pantalla completa)",
-    openChapterTabSub: "En una nueva pestaña",
-    openIntegralTab: "Abrir Manual (Pantalla completa)",
-    openIntegralTabSub: "Manual completo del seminario",
-    exportChapter: "Generar Ficha A4",
-    exportChapterSub: "Exportación HD de la lección",
-    exportIntegral: "Generar Manual A4",
-    exportIntegralSub: "Todas las lecciones",
-    downloadChapter: "Descargar Ficha (.pdf)",
-    downloadChapterSub: "Archivo PDF de la lección",
-    downloadIntegral: "Descargar Manual (.pdf)",
-    downloadIntegralSub: "Manual completo oficial",
-    nativeShare: "Compartir",
-    nativeShareSub: "AirDrop, Mensajes, Redes",
-    download: "Guardar en el dispositivo",
-    downloadSub: "Descargar archivo A4 (.pdf)",
-    openNewTab: "Pantalla completa / Nueva pestaña",
-    openNewTabSub: "Abrir en el navegador",
+    docTitle: "DOCUMENTO PDF",
+    tabChapter: "Ficha Capítulo",
+    tabIntegral: "Manual Integral",
+    readInViewer: "Consultar en el lector",
+    readInViewerSub: "Mostrar páginas del PDF directamente",
+    generateA4Chapter: "Generar Ficha A4 (Capítulo)",
+    generateA4Integral: "Generar Manual A4 (Integral)",
+    generateA4Sub: "Exportación HD personalizada",
+    share: "Compartir",
+    shareSub: "AirDrop, Mensajes, Redes",
+    saveToDevice: "Guardar en el dispositivo",
+    saveToDeviceSubChapter: "Descargar archivo A4 (.pdf)",
+    saveToDeviceSubIntegral: "Descargar manual completo (.pdf)",
     email: "Enviar por correo",
     emailSub: "Enlace preparado en Mail",
-    copy: "Copiar enlace directo",
+    copy: "Copiar enlace",
     copySub: "Copiar dirección URL",
     copied: "¡Enlace copiado!",
     copiedSub: "Listo para pegar",
-    print: "Imprimir documento",
+    print: "Imprimir",
     printSub: "Formato A4 estándar",
-    exportPdf: "Generar Ficha A4",
-    exportPdfSub: "Exportación HD"
   },
   it: {
     shareBtn: "Condividi",
-    docTitle: "DOCUMENTI PDF",
-    chapterSection: "Scheda del Capitolo",
-    integralSection: "Raccolta Integrale",
-    openChapterTab: "Apri Scheda (Schermo intero)",
-    openChapterTabSub: "In una nuova scheda",
-    openIntegralTab: "Apri Raccolta (Schermo intero)",
-    openIntegralTabSub: "Manuale completo del seminario",
-    exportChapter: "Genera Scheda A4",
-    exportChapterSub: "Esportazione HD della lezione",
-    exportIntegral: "Genera Raccolta A4",
-    exportIntegralSub: "Tutte le lezioni del seminario",
-    downloadChapter: "Scarica Scheda (.pdf)",
-    downloadChapterSub: "File PDF della lezione",
-    downloadIntegral: "Scarica Raccolta (.pdf)",
-    downloadIntegralSub: "Manuale completo ufficiale",
-    nativeShare: "Condividi",
-    nativeShareSub: "AirDrop, Messaggi, Social",
-    download: "Salva sul dispositivo",
-    downloadSub: "Scarica file A4 (.pdf)",
-    openNewTab: "Schermo intero / Nuova scheda",
-    openNewTabSub: "Apri nel browser",
+    docTitle: "DOCUMENTO PDF",
+    tabChapter: "Scheda Capitolo",
+    tabIntegral: "Raccolta Integrale",
+    readInViewer: "Consulta nel lettore",
+    readInViewerSub: "Mostra le pagine del PDF direttamente",
+    generateA4Chapter: "Genera Scheda A4 (Capitolo)",
+    generateA4Integral: "Genera Raccolta A4 (Integrale)",
+    generateA4Sub: "Esportazione HD personalizzata",
+    share: "Condividi",
+    shareSub: "AirDrop, Messaggi, Social",
+    saveToDevice: "Salva sul dispositivo",
+    saveToDeviceSubChapter: "Scarica file A4 (.pdf)",
+    saveToDeviceSubIntegral: "Scarica manuale completo (.pdf)",
     email: "Invia per e-mail",
     emailSub: "Link precompilato in Mail",
-    copy: "Copia link direct",
+    copy: "Copia link",
     copySub: "Copia indirizzo URL",
     copied: "Link copiato!",
     copiedSub: "Pronto per essere incollato",
-    print: "Stampa documento",
+    print: "Stampa",
     printSub: "Formato A4 standard",
-    exportPdf: "Genera Scheda A4",
-    exportPdfSub: "Esportazione HD"
   },
   ja: {
     shareBtn: "共有",
     docTitle: "PDFドキュメント",
-    chapterSection: "章のシート",
-    integralSection: "完全版マニュアル",
-    openChapterTab: "シートを開く (全画面)",
-    openChapterTabSub: "新しいタブで開く",
-    openIntegralTab: "完全版を開く (全画面)",
-    openIntegralTabSub: "セミナー完全版テキスト",
-    exportChapter: "A4シートを生成",
-    exportChapterSub: "レッスンの高解像度エクスポート",
-    exportIntegral: "完全版A4を生成",
-    exportIntegralSub: "すべてのレッスンを収録",
-    downloadChapter: "シートをダウンロード (.pdf)",
-    downloadChapterSub: "レッスンPDFファイル",
-    downloadIntegral: "完全版をダウンロード (.pdf)",
-    downloadIntegralSub: "公式完全版マニュアル",
-    nativeShare: "共有",
-    nativeShareSub: "AirDrop、メッセージ、SNS",
-    download: "端末に保存",
-    downloadSub: "A4ファイルをダウンロード (.pdf)",
-    openNewTab: "全画面 / 新規タブ",
-    openNewTabSub: "ブラウザで開く",
+    tabChapter: "章のシート",
+    tabIntegral: "完全版マニュアル",
+    readInViewer: "リーダーで表示",
+    readInViewerSub: "新しいタブでPDFページを直接表示",
+    generateA4Chapter: "A4シートを生成 (章)",
+    generateA4Integral: "完全版A4を生成",
+    generateA4Sub: "カスタム高解像度エクスポート",
+    share: "共有",
+    shareSub: "AirDrop、メッセージ、SNS",
+    saveToDevice: "端末に保存",
+    saveToDeviceSubChapter: "A4ファイルをダウンロード (.pdf)",
+    saveToDeviceSubIntegral: "完全版をダウンロード (.pdf)",
     email: "メールで送信",
     emailSub: "メールでリンクを送信",
-    copy: "直接リンクをコピー",
+    copy: "リンクをコピー",
     copySub: "ドキュメントURLをコピー",
     copied: "コピーしました！",
     copiedSub: "貼り付け可能です",
-    print: "印刷する",
+    print: "印刷",
     printSub: "標準A4フォーマット",
-    exportPdf: "A4シートを生成",
-    exportPdfSub: "高解像度エクスポート"
   },
   zh: {
     shareBtn: "分享",
     docTitle: "PDF 文档",
-    chapterSection: "章节学习单",
-    integralSection: "完整全书",
-    openChapterTab: "打开学习单 (全屏)",
-    openChapterTabSub: "在新标签页中打开",
-    openIntegralTab: "打开全书 (全屏)",
-    openIntegralTabSub: "研讨会完整教材",
-    exportChapter: "生成 A4 学习单",
-    exportChapterSub: "单课高清导出",
-    exportIntegral: "生成全套 A4 教材",
-    exportIntegralSub: "收录所有课时",
-    downloadChapter: "下载学习单 (.pdf)",
-    downloadChapterSub: "单课 PDF 文件",
-    downloadIntegral: "下载完整全书 (.pdf)",
-    downloadIntegralSub: "官方完整教材",
-    nativeShare: "分享",
-    nativeShareSub: "隔空投送、信息、社交应用",
-    download: "保存到设备",
-    downloadSub: "下载 A4 文件 (.pdf)",
-    openNewTab: "全屏 / 新标签页",
-    openNewTabSub: "在浏览器中打开",
+    tabChapter: "章节学习单",
+    tabIntegral: "完整全书",
+    readInViewer: "在阅读器中查看",
+    readInViewerSub: "在新标签页中直接查看 PDF",
+    generateA4Chapter: "生成 A4 学习单 (课时)",
+    generateA4Integral: "生成完整 A4 教材 (全套)",
+    generateA4Sub: "高清个性化导出",
+    share: "分享",
+    shareSub: "隔空投送、信息、社交应用",
+    saveToDevice: "保存到设备",
+    saveToDeviceSubChapter: "下载 A4 文件 (.pdf)",
+    saveToDeviceSubIntegral: "下载完整全书 (.pdf)",
     email: "通过邮件发送",
     emailSub: "在邮件中打开预填链接",
-    copy: "复制直接链接",
+    copy: "复制链接",
     copySub: "复制文档网址",
     copied: "链接已复制！",
     copiedSub: "已准备好粘贴",
-    print: "打印文档",
+    print: "打印",
     printSub: "标准 A4 格式",
-    exportPdf: "生成 A4 学习单",
-    exportPdfSub: "高清导出"
   }
 };
 
@@ -310,7 +229,6 @@ export default function PDFShareDropdown({
   align = "right",
   buttonClassName = "",
   accentColor = "#5A9C51",
-  onViewInPlayer,
   course,
   hasFullAccess = false,
   onLockedClick,
@@ -318,6 +236,10 @@ export default function PDFShareDropdown({
   const { t, i18n } = useTranslation();
   const langKey = getNormalizedLang(i18n.language);
   const labels = DROPDOWN_TEXTS[langKey] || DROPDOWN_TEXTS.fr;
+
+  const [activeTab, setActiveTab] = useState<'chapter' | 'integral'>(
+    course?.isGlobalPdf ? 'integral' : 'chapter'
+  );
 
   const isIntegral = Boolean(
     course?.isGlobalPdf ||
@@ -331,7 +253,7 @@ export default function PDFShareDropdown({
   const [position, setPosition] = useState<{ top: number; left: number; width: number }>({
     top: 0,
     left: 0,
-    width: 320,
+    width: 340,
   });
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -348,17 +270,15 @@ export default function PDFShareDropdown({
     setIsOpen(!isOpen);
   };
 
-  // Compute fixed position on open, resize, or scroll
   const updatePosition = () => {
     if (!buttonRef.current) return;
     const rect = buttonRef.current.getBoundingClientRect();
     const windowWidth = typeof window !== "undefined" ? window.innerWidth : 1000;
     const windowHeight = typeof window !== "undefined" ? window.innerHeight : 1000;
 
-    const menuWidth = Math.min(320, windowWidth - 24);
-    const menuHeight = 380; // Estimated max height
+    const menuWidth = Math.min(340, windowWidth - 24);
+    const menuHeight = 440;
 
-    // Horizontal position
     let left = align === "right" ? rect.right - menuWidth : rect.left;
     if (left + menuWidth > windowWidth - 12) {
       left = windowWidth - menuWidth - 12;
@@ -367,13 +287,11 @@ export default function PDFShareDropdown({
       left = 12;
     }
 
-    // Vertical position (open upward if near bottom edge)
     let top = rect.bottom + 6;
     if (rect.bottom + menuHeight > windowHeight - 16 && rect.top > menuHeight) {
       top = rect.top - menuHeight - 6;
     }
 
-    // Ensure it doesn't go above screen
     if (top < 12) top = 12;
 
     setPosition({ top, left, width: menuWidth });
@@ -382,19 +300,10 @@ export default function PDFShareDropdown({
   useEffect(() => {
     if (isOpen) {
       updatePosition();
-
-      const handleScrollOrResize = () => {
-        updatePosition();
-      };
-
+      const handleScrollOrResize = () => updatePosition();
       const handleClickOutside = (e: MouseEvent | TouchEvent) => {
         const target = e.target as Node;
-        if (
-          buttonRef.current &&
-          !buttonRef.current.contains(target) &&
-          menuRef.current &&
-          !menuRef.current.contains(target)
-        ) {
+        if (buttonRef.current && !buttonRef.current.contains(target) && menuRef.current && !menuRef.current.contains(target)) {
           setIsOpen(false);
         }
       };
@@ -430,13 +339,10 @@ export default function PDFShareDropdown({
   const globalPdfUrl = globalCourse ? getCoursePdfUrl(globalCourse, currentLang) : '';
   const isGlobalLocked = !hasFullAccess;
 
-  // Resolve absolute URL
   const getFullUrl = () => {
     const targetUrl = resolvedPdfUrl || pdfUrl;
     if (!targetUrl) return "";
-    if (targetUrl.startsWith("http://") || targetUrl.startsWith("https://")) {
-      return targetUrl;
-    }
+    if (targetUrl.startsWith("http://") || targetUrl.startsWith("https://")) return targetUrl;
     if (typeof window !== "undefined") {
       const origin = window.location.origin;
       return targetUrl.startsWith("/") ? `${origin}${targetUrl}` : `${origin}/${targetUrl}`;
@@ -449,71 +355,53 @@ export default function PDFShareDropdown({
     if (!targetUrl) return `${title || "document"}.pdf`;
     const parts = targetUrl.split("/");
     let rawName = decodeURIComponent(parts[parts.length - 1] || "");
-    if (!rawName.toLowerCase().endsWith(".pdf")) {
-      rawName = `${title || "document"}.pdf`;
-    }
+    if (!rawName.toLowerCase().endsWith(".pdf")) rawName = `${title || "document"}.pdf`;
     return rawName;
   };
 
-  // 1. Partager natif (Web Share API)
-  const handleNativeShare = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (isLocked) {
+  const handleNativeShare = async (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (activeTab === 'integral' && isGlobalLocked) {
       setIsOpen(false);
       onLockedClick?.();
       return;
     }
     setIsOpen(false);
-    const fullUrl = getFullUrl();
-    const cleanTitle = title || "Document PDF";
+    const shareUrl = activeTab === 'integral' ? globalPdfUrl : getFullUrl();
+    const shareTitle = activeTab === 'integral' ? (globalCourse?.title || "Recueil Intégral") : (title || course?.title || "Fiche de cours");
 
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         let fileToShare: File | null = null;
         try {
-          const res = await fetch(fullUrl);
-          if (res.ok) {
+          if (shareUrl) {
+            const res = await fetch(shareUrl);
             const blob = await res.blob();
             fileToShare = new File([blob], getCleanFileName(), { type: "application/pdf" });
           }
         } catch {}
-
         if (fileToShare && navigator.canShare && navigator.canShare({ files: [fileToShare] })) {
-          await navigator.share({
-            files: [fileToShare],
-            title: cleanTitle,
-            text: courseTitle ? `${cleanTitle} (${courseTitle})` : cleanTitle,
-          });
+          await navigator.share({ title: `[Embryologie App] ${shareTitle}`, text: `Support PDF : ${shareTitle}`, files: [fileToShare] });
           return;
         }
-
-        await navigator.share({
-          title: cleanTitle,
-          text: courseTitle ? `${cleanTitle} (${courseTitle})` : cleanTitle,
-          url: fullUrl,
-        });
-      } catch (err: any) {
-        if (err.name !== "AbortError") {
-          handleCopyLink();
-        }
+        await navigator.share({ title: `[Embryologie App] ${shareTitle}`, text: `Support PDF : ${shareTitle}`, url: shareUrl });
+      } catch (err) {
+        if ((err as Error).name !== "AbortError") handleCopyLink();
       }
     } else {
       handleCopyLink();
     }
   };
 
-  const handleSaveToDisk = async (customUrl?: string, customFilename?: string) => {
-    const urlToUse = (typeof customUrl === 'string' && customUrl) ? customUrl : getFullUrl();
-    const isTargetLocked = (urlToUse.includes('cours_complets') || urlToUse.toLowerCase().includes('integral')) && !hasFullAccess;
+  const handleSaveToDisk = async (urlToUse?: string) => {
+    const isTargetLocked = (urlToUse?.includes('cours_complets') || urlToUse?.toLowerCase().includes('integral')) && !hasFullAccess;
     if (isTargetLocked) {
       setIsOpen(false);
       onLockedClick?.();
       return;
     }
     setIsOpen(false);
-
-    const fileName = customFilename || (urlToUse ? urlToUse.split("/").pop() : undefined) || getCleanFileName();
-
+    const fileName = (urlToUse ? urlToUse.split("/").pop() : undefined) || getCleanFileName();
     if (urlToUse) {
       setIsDownloading(true);
       try {
@@ -543,33 +431,23 @@ export default function PDFShareDropdown({
       setIsDownloading(false);
       return;
     }
-
-    if (course) {
-      exportCoursePdf(course, i18n.language, t);
-    }
+    if (course) exportCoursePdf(course, i18n.language, t);
   };
 
   const handleSendEmail = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isLocked) {
+    if (activeTab === 'integral' && isGlobalLocked) {
       setIsOpen(false);
       onLockedClick?.();
       return;
     }
     setIsOpen(false);
-    const fullUrl = getFullUrl();
-    const cleanTitle = title || "Document PDF";
+    const fullUrl = activeTab === 'integral' ? globalPdfUrl : getFullUrl();
+    const cleanTitle = activeTab === 'integral' ? (globalCourse?.title || "Recueil Intégral") : (title || "Document PDF");
     const subject = `[Embryologie App] Document PDF : ${cleanTitle}`;
     const bodyLines = [
-      `Bonjour,`,
-      ``,
-      `Voici le document PDF d'étude : "${cleanTitle}"${courseTitle ? ` (${courseTitle})` : ""}${author ? ` par ${author}` : ""}.`,
-      ``,
-      `🔗 Lien direct de consultation :`,
-      fullUrl,
-      ``,
-      `Bonne lecture,`,
-      `Embryologie App • FeelProd`
+      `Bonjour,`, ``, `Voici le document PDF d'étude : "${cleanTitle}"${courseTitle ? ` (${courseTitle})` : ""}${author ? ` par ${author}` : ""}.`,
+      ``, `🔗 Lien direct de consultation :`, fullUrl, ``, `Bonne lecture,`, `Embryologie App • FeelProd`
     ];
     const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
     window.location.href = mailtoUrl;
@@ -577,12 +455,12 @@ export default function PDFShareDropdown({
 
   const handleCopyLink = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (isLocked) {
+    if (activeTab === 'integral' && isGlobalLocked) {
       setIsOpen(false);
       onLockedClick?.();
       return;
     }
-    const fullUrl = getFullUrl();
+    const fullUrl = activeTab === 'integral' ? globalPdfUrl : getFullUrl();
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard.writeText(fullUrl).then(() => {
         setCopied(true);
@@ -593,21 +471,23 @@ export default function PDFShareDropdown({
 
   const handlePrint = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isLocked) {
+    if (activeTab === 'integral' && isGlobalLocked) {
       setIsOpen(false);
       onLockedClick?.();
       return;
     }
     setIsOpen(false);
-    if (course) {
+    if (activeTab === 'chapter' && course) {
       exportCoursePdf(course, i18n.language, t);
       return;
     }
-    const fullUrl = getFullUrl();
-    const printWindow = window.open(fullUrl, '_blank');
-    if (printWindow) {
-      printWindow.focus();
+    if (activeTab === 'integral' && globalCourse) {
+      exportCoursePdf(globalCourse, i18n.language, t, hasFullAccess);
+      return;
     }
+    const fullUrl = activeTab === 'integral' ? globalPdfUrl : getFullUrl();
+    const printWindow = window.open(fullUrl, '_blank');
+    if (printWindow) printWindow.focus();
   };
 
   return (
@@ -630,58 +510,6 @@ export default function PDFShareDropdown({
         </button>
       )}
 
-      {variant === "header" && (
-        <button
-          ref={buttonRef}
-          type="button"
-          onClick={handleTriggerClick}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-800 text-xs font-bold shadow-xs border border-[#E2D8CC] transition-all active:scale-98 cursor-pointer ${buttonClassName}`}
-          title={isLocked ? "Recueil Intégral réservé aux membres" : "Support PDF"}
-        >
-          {isLocked ? (
-            <Lock className="w-3.5 h-3.5 text-amber-600" strokeWidth={2.5} />
-          ) : (
-            <Share2 className="w-3.5 h-3.5" style={{ color: accentColor }} strokeWidth={2.5} />
-          )}
-          <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wider">{course?.isGlobalPdf ? 'RECUEIL PDF' : 'PDF'}</span>
-          <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
-        </button>
-      )}
-
-      {variant === "pill" && (
-        <button
-          ref={buttonRef}
-          type="button"
-          onClick={handleTriggerClick}
-          className={`flex items-center gap-1.5 px-3 py-1 rounded-full bg-white hover:bg-[#FAF6ED] text-slate-700 hover:text-slate-900 font-sans font-bold text-[10px] sm:text-[11px] tracking-wider border border-[#E2D8CC] shadow-2xs transition-all active:scale-95 cursor-pointer ${buttonClassName}`}
-          title={isLocked ? "Recueil Intégral réservé aux membres" : "Support PDF"}
-        >
-          {isLocked ? (
-            <Lock className="w-3 h-3 text-amber-600" strokeWidth={2.5} />
-          ) : (
-            <Share2 className="w-3 h-3" style={{ color: accentColor }} strokeWidth={2.5} />
-          )}
-          <span>PDF</span>
-          <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
-        </button>
-      )}
-
-      {variant === "icon" && (
-        <button
-          ref={buttonRef}
-          type="button"
-          onClick={handleTriggerClick}
-          className={`p-2 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-700 border border-[#E2D8CC] shadow-xs transition-colors flex-shrink-0 cursor-pointer ${buttonClassName}`}
-          title={isLocked ? "Recueil Intégral réservé aux membres" : labels.shareBtn}
-        >
-          {isLocked ? (
-            <Lock className="w-4 h-4 text-amber-600" strokeWidth={2.2} />
-          ) : (
-            <Share2 className="w-4 h-4" style={{ color: accentColor }} strokeWidth={2.2} />
-          )}
-        </button>
-      )}
-
       {isOpen &&
         typeof document !== "undefined" &&
         createPortal(
@@ -695,359 +523,213 @@ export default function PDFShareDropdown({
               zIndex: 999999,
               textShadow: "none",
             }}
-            className="rounded-2xl bg-[#FFFFFF] border border-[#E2D8CC] shadow-[0_20px_50px_rgba(0,0,0,0.18)] overflow-hidden p-1.5 animate-in fade-in zoom-in-95 duration-150 text-left max-h-[85vh] overflow-y-auto"
+            className="rounded-3xl bg-[#FFFFFF] border border-[#E2D8CC] shadow-[0_20px_50px_rgba(0,0,0,0.18)] overflow-hidden p-3 animate-in fade-in zoom-in-95 duration-150 text-left max-h-[88vh] overflow-y-auto"
           >
-            <div className="px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-[#EFE8DE] mb-1.5 relative">
+            <div className="px-3.5 py-3 rounded-2xl bg-[#FAF8F5] border border-[#EFE8DE] mb-2.5 relative">
               <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5" style={{ color: accentColor }} />
-                  <span className="text-[10px] font-bold tracking-widest uppercase text-slate-400">
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-[#D47A3A]" />
+                  <span className="text-[11px] font-extrabold tracking-wider uppercase text-[#D47A3A]">
                     {labels.docTitle}
                   </span>
+                  <span className="px-2 py-0.5 rounded-full text-[9.5px] font-black uppercase tracking-wider text-white bg-[#334E43]">
+                    A4
+                  </span>
                 </div>
-                <span
-                  className="px-2 py-0.5 rounded-full text-[9.5px] font-bold uppercase tracking-wider text-white"
-                  style={{ backgroundColor: accentColor }}
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  className="text-slate-400 hover:text-slate-700 p-1 -mr-1 rounded-lg hover:bg-slate-200/50 transition-colors cursor-pointer"
+                  title="Fermer"
                 >
-                  A4
-                </span>
+                  <X className="w-4 h-4" />
+                </button>
               </div>
-              <div className="text-xs font-bold text-slate-800 truncate mt-1" title={title}>
-                {title}
+              <div className="text-sm font-bold text-slate-900 truncate mt-1.5" title={course?.title || title}>
+                {course?.title || title || "Sélectionnez un chapitre"}
               </div>
             </div>
 
-            {/* Si nous sommes sur un cours individuel (leçon normale) */}
-            {course && !course.isGlobalPdf ? (
-              <>
-                {/* SECTION 1 : LE CHAPITRE */}
-                <div className="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase text-slate-400 flex items-center justify-between">
-                  <span>{labels.chapterSection}</span>
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">LEÇON</span>
-                </div>
-
-                {/* 1.1 Ouvrir la Fiche en Plein Écran (Onglet séparé) */}
+            {course && !course.isGlobalPdf && (
+              <div className="bg-[#EFEBE3] p-1 rounded-2xl flex items-center gap-1 mb-2.5">
                 <button
                   type="button"
-                  onClick={() => {
-                    setIsOpen(false);
-                    const chapterUrl = resolvedPdfUrl || getFullUrl();
-                    if (chapterUrl) {
-                      window.open(chapterUrl, '_blank');
-                    } else if (course) {
-                      exportCoursePdf(course, i18n.language, t);
-                    }
-                  }}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
+                  onClick={() => setActiveTab('chapter')}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    activeTab === 'chapter'
+                      ? 'bg-white text-slate-900 shadow-sm'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'
+                  }`}
                 >
-                  <div className="w-8 h-8 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center flex-shrink-0 text-amber-600 transition-all group-hover:scale-105">
-                    <ExternalLink className="w-4 h-4" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors">
-                      {labels.openChapterTab}
-                    </div>
-                    <div className="text-[10.5px] text-slate-500 truncate">
-                      {labels.openChapterTabSub}
-                    </div>
-                  </div>
+                  <FileText className={`w-3.5 h-3.5 ${activeTab === 'chapter' ? 'text-[#D47A3A]' : 'text-slate-500'}`} />
+                  <span>{labels.tabChapter}</span>
                 </button>
 
-                {/* 1.2 Générer la Fiche A4 */}
                 <button
                   type="button"
-                  onClick={() => {
-                    setIsOpen(false);
-                    exportCoursePdf(course, i18n.language, t);
-                  }}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
+                  onClick={() => setActiveTab('integral')}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    activeTab === 'integral'
+                      ? 'bg-white text-slate-900 shadow-sm'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'
+                  }`}
                 >
-                  <div
-                    className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105"
-                    style={{ backgroundColor: `${accentColor}20`, border: `1px solid ${accentColor}40`, color: accentColor }}
-                  >
-                    <Sparkles className="w-4 h-4" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors">
-                      {labels.exportChapter}
-                    </div>
-                    <div className="text-[10.5px] text-slate-500 truncate">
-                      {labels.exportChapterSub}
-                    </div>
-                  </div>
-                </button>
-
-                {/* 1.3 Télécharger la Fiche */}
-                <button
-                  type="button"
-                  onClick={() => handleSaveToDisk(resolvedPdfUrl || pdfUrl)}
-                  disabled={isDownloading}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer disabled:opacity-50"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center flex-shrink-0 text-emerald-600 transition-all group-hover:scale-105">
-                    <Download className="w-4 h-4" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors">
-                      {labels.downloadChapter}
-                    </div>
-                    <div className="text-[10.5px] text-slate-500 truncate">
-                      {labels.downloadChapterSub}
-                    </div>
-                  </div>
-                </button>
-
-                {/* SECTION 2 : RECUEIL INTÉGRAL */}
-                <div className="px-2.5 pt-2.5 pb-1 text-[10px] font-bold tracking-wider uppercase text-slate-400 flex items-center justify-between border-t border-[#EFE8DE] mt-1.5">
-                  <span>{labels.integralSection}</span>
                   {isGlobalLocked ? (
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold flex items-center gap-1">
-                      <Lock className="w-2.5 h-2.5" /> PREMIUM
-                    </span>
+                    <Lock className="w-3.5 h-3.5 text-amber-600" />
                   ) : (
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 font-bold">INTÉGRAL</span>
+                    <Sparkles className={`w-3.5 h-3.5 ${activeTab === 'integral' ? 'text-[#D47A3A]' : 'text-slate-500'}`} />
                   )}
-                </div>
-
-                {/* 2.1 Ouvrir le Recueil Intégral en Plein Écran (Onglet séparé) */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsOpen(false);
-                    if (isGlobalLocked) {
-                      onLockedClick?.();
-                      return;
-                    }
-                    if (globalPdfUrl) {
-                      window.open(globalPdfUrl, '_blank');
-                    } else if (globalCourse) {
-                      exportCoursePdf(globalCourse, i18n.language, t, hasFullAccess);
-                    }
-                  }}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-indigo-50 border border-indigo-200/80 flex items-center justify-center flex-shrink-0 text-indigo-600 transition-all group-hover:scale-105">
-                    {isGlobalLocked ? <Lock className="w-4 h-4 text-amber-600" /> : <ExternalLink className="w-4 h-4" />}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
-                      <span>{labels.openIntegralTab}</span>
-                      {isGlobalLocked && <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>}
-                    </div>
-                    <div className="text-[10.5px] text-slate-500 truncate">
-                      {labels.openIntegralTabSub}
-                    </div>
-                  </div>
+                  <span>{labels.tabIntegral}</span>
                 </button>
-
-                {/* 2.2 Générer le Recueil A4 */}
-                {globalCourse && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsOpen(false);
-                      if (isGlobalLocked) {
-                        onLockedClick?.();
-                        return;
-                      }
-                      exportCoursePdf(globalCourse, i18n.language, t, hasFullAccess);
-                    }}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
-                  >
-                    <div
-                      className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105"
-                      style={{ backgroundColor: `${accentColor}20`, border: `1px solid ${accentColor}40`, color: accentColor }}
-                    >
-                      {isGlobalLocked ? <Lock className="w-4 h-4 text-amber-600" /> : <Sparkles className="w-4 h-4" />}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
-                        <span>{labels.exportIntegral}</span>
-                        {isGlobalLocked && <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>}
-                      </div>
-                      <div className="text-[10.5px] text-slate-500 truncate">
-                        {labels.exportIntegralSub}
-                      </div>
-                    </div>
-                  </button>
-                )}
-
-                {/* 2.3 Télécharger le Recueil Complet */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (isGlobalLocked) {
-                      setIsOpen(false);
-                      onLockedClick?.();
-                      return;
-                    }
-                    handleSaveToDisk(globalPdfUrl);
-                  }}
-                  disabled={isDownloading}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer disabled:opacity-50"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center flex-shrink-0 text-emerald-600 transition-all group-hover:scale-105">
-                    {isGlobalLocked ? <Lock className="w-4 h-4 text-amber-600" /> : <Download className="w-4 h-4" />}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
-                      <span>{labels.downloadIntegral}</span>
-                      {isGlobalLocked && <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>}
-                    </div>
-                    <div className="text-[10.5px] text-slate-500 truncate">
-                      {labels.downloadIntegralSub}
-                    </div>
-                  </div>
-                </button>
-              </>
-            ) : (
-              <>
-                {/* Options pour le Recueil Intégral standalone */}
-                {/* Ouvrir en Plein Écran (Onglet séparé) */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsOpen(false);
-                    if (isLocked) {
-                      onLockedClick?.();
-                      return;
-                    }
-                    if (course && !pdfUrl) {
-                      exportCoursePdf(course, i18n.language, t, hasFullAccess);
-                      return;
-                    }
-                    window.open(getFullUrl(), '_blank');
-                  }}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center flex-shrink-0 text-amber-600 transition-all group-hover:scale-105">
-                    {isLocked ? <Lock className="w-4 h-4 text-amber-600" /> : <ExternalLink className="w-4 h-4" />}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
-                      <span>{labels.openNewTab}</span>
-                      {isLocked && <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>}
-                    </div>
-                    <div className="text-[10.5px] text-slate-500 truncate">
-                      {labels.openNewTabSub}
-                    </div>
-                  </div>
-                </button>
-
-                {/* Générer A4 direct */}
-                {course && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsOpen(false);
-                      if (isLocked) {
-                        onLockedClick?.();
-                        return;
-                      }
-                      exportCoursePdf(course, i18n.language, t, hasFullAccess);
-                    }}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
-                  >
-                    <div
-                      className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105"
-                      style={{ backgroundColor: `${accentColor}20`, border: `1px solid ${accentColor}40`, color: accentColor }}
-                    >
-                      {isLocked ? <Lock className="w-4 h-4 text-amber-600" /> : <Sparkles className="w-4 h-4" />}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
-                        <span>{labels.exportPdf}</span>
-                        {isLocked && <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>}
-                      </div>
-                      <div className="text-[10.5px] text-slate-500 truncate">
-                        {labels.exportPdfSub}
-                      </div>
-                    </div>
-                  </button>
-                )}
-
-                {/* Télécharger sur l'appareil */}
-                <button
-                  type="button"
-                  onClick={() => handleSaveToDisk()}
-                  disabled={isDownloading}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer disabled:opacity-50"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center flex-shrink-0 text-emerald-600 transition-all group-hover:scale-105">
-                    {isLocked ? <Lock className="w-4 h-4 text-amber-600" /> : <Download className="w-4 h-4" />}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-slate-800 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
-                      <span>{isDownloading ? "..." : labels.download}</span>
-                      {isLocked && <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>}
-                    </div>
-                    <div className="text-[10.5px] text-slate-500 truncate">
-                      {labels.downloadSub}
-                    </div>
-                  </div>
-                </button>
-              </>
+              </div>
             )}
 
-            {/* SECTION 3 : PARTAGE & ACTIONS */}
-            <div className="border-t border-[#EFE8DE] my-1 pt-1">
-              {/* Partager nativement */}
+            <div className="space-y-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsOpen(false);
+                  if (activeTab === 'integral' && isGlobalLocked) {
+                    onLockedClick?.();
+                    return;
+                  }
+                  const targetUrl = activeTab === 'integral' ? globalPdfUrl : (resolvedPdfUrl || getFullUrl());
+                  if (targetUrl) {
+                    window.open(targetUrl, '_blank');
+                  } else if (activeTab === 'chapter' && course) {
+                    exportCoursePdf(course, i18n.language, t);
+                  } else if (activeTab === 'integral' && globalCourse) {
+                    exportCoursePdf(globalCourse, i18n.language, t, hasFullAccess);
+                  }
+                }}
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-2xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
+              >
+                <div className="w-10 h-10 rounded-2xl bg-[#E6EFF5] border border-[#D0E2ED] flex items-center justify-center flex-shrink-0 text-[#3B7293] transition-all group-hover:scale-105">
+                  <Eye className="w-5 h-5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs font-bold text-slate-900 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
+                    <span>{labels.readInViewer}</span>
+                    {activeTab === 'integral' && isGlobalLocked && (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>
+                    )}
+                  </div>
+                  <div className="text-[11px] text-slate-500 truncate">
+                    {labels.readInViewerSub}
+                  </div>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setIsOpen(false);
+                  if (activeTab === 'integral' && isGlobalLocked) {
+                    onLockedClick?.();
+                    return;
+                  }
+                  if (activeTab === 'chapter' && course) {
+                    exportCoursePdf(course, i18n.language, t);
+                  } else if (activeTab === 'integral' && globalCourse) {
+                    exportCoursePdf(globalCourse, i18n.language, t, hasFullAccess);
+                  }
+                }}
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-2xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
+              >
+                <div className="w-10 h-10 rounded-2xl bg-[#FCEFE3] border border-[#F5DCBE] flex items-center justify-center flex-shrink-0 text-[#D47A3A] transition-all group-hover:scale-105">
+                  {activeTab === 'integral' && isGlobalLocked ? (
+                    <Lock className="w-5 h-5 text-amber-600" />
+                  ) : (
+                    <Sparkles className="w-5 h-5" />
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs font-bold text-slate-900 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
+                    <span>{activeTab === 'chapter' ? labels.generateA4Chapter : labels.generateA4Integral}</span>
+                    {activeTab === 'integral' && isGlobalLocked && (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>
+                    )}
+                  </div>
+                  <div className="text-[11px] text-slate-500 truncate">
+                    {labels.generateA4Sub}
+                  </div>
+                </div>
+              </button>
+
               <button
                 type="button"
                 onClick={handleNativeShare}
-                className="w-full flex items-center gap-3 px-3 py-1.5 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-2xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
               >
-                <div
-                  className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105"
-                  style={{ backgroundColor: `${accentColor}18`, border: `1px solid ${accentColor}30`, color: accentColor }}
-                >
-                  <Share2 className="w-3.5 h-3.5" />
+                <div className="w-10 h-10 rounded-2xl bg-[#FDEEEA] border border-[#F8D5CE] flex items-center justify-center flex-shrink-0 text-[#DE6A52] transition-all group-hover:scale-105">
+                  <Share2 className="w-5 h-5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-medium text-slate-700 group-hover:text-slate-950 transition-colors">
-                    {labels.nativeShare}
+                  <div className="text-xs font-bold text-slate-900 group-hover:text-slate-950 transition-colors">
+                    {labels.share}
+                  </div>
+                  <div className="text-[11px] text-slate-500 truncate">
+                    {labels.shareSub}
                   </div>
                 </div>
               </button>
 
-              {/* Envoyer par e-mail */}
               <button
                 type="button"
-                onClick={handleSendEmail}
-                className="w-full flex items-center gap-3 px-3 py-1.5 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
+                onClick={() => {
+                  if (activeTab === 'integral' && isGlobalLocked) {
+                    setIsOpen(false);
+                    onLockedClick?.();
+                    return;
+                  }
+                  const targetUrl = activeTab === 'integral' ? globalPdfUrl : (resolvedPdfUrl || pdfUrl);
+                  handleSaveToDisk(targetUrl);
+                }}
+                disabled={isDownloading}
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-2xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer disabled:opacity-50"
               >
-                <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200/80 flex items-center justify-center flex-shrink-0 text-blue-600 transition-all group-hover:scale-105">
-                  <Mail className="w-3.5 h-3.5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-xs font-medium text-slate-700 group-hover:text-slate-950 transition-colors">
-                    {labels.email}
-                  </div>
-                </div>
-              </button>
-
-              {/* Copier le lien direct */}
-              <button
-                type="button"
-                onClick={() => handleCopyLink()}
-                className="w-full flex items-center gap-3 px-3 py-1.5 rounded-xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
-              >
-                <div className="w-7 h-7 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 text-slate-700 transition-all group-hover:scale-105">
-                  {copied ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <div className="w-10 h-10 rounded-2xl bg-[#EAF5EC] border border-[#CFE8D3] flex items-center justify-center flex-shrink-0 text-[#488B59] transition-all group-hover:scale-105">
+                  {activeTab === 'integral' && isGlobalLocked ? (
+                    <Lock className="w-5 h-5 text-amber-600" />
                   ) : (
-                    <Copy className="w-3.5 h-3.5" />
+                    <Download className="w-5 h-5" />
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-medium text-slate-700 group-hover:text-slate-950 transition-colors">
-                    {copied ? labels.copied : labels.copy}
+                  <div className="text-xs font-bold text-slate-900 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
+                    <span>{isDownloading ? "..." : labels.saveToDevice}</span>
+                    {activeTab === 'integral' && isGlobalLocked && (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>
+                    )}
+                  </div>
+                  <div className="text-[11px] text-slate-500 truncate">
+                    {activeTab === 'chapter' ? labels.saveToDeviceSubChapter : labels.saveToDeviceSubIntegral}
                   </div>
                 </div>
               </button>
+            </div>
 
-              {/* Imprimer */}
+            <div className="border-t border-[#EFE8DE] mt-2.5 pt-1.5 flex items-center justify-between px-1">
+              <button
+                type="button"
+                onClick={handleSendEmail}
+                className="flex items-center gap-1.5 px-2 py-1 rounded-xl hover:bg-[#FAF6ED] text-slate-600 hover:text-slate-900 text-xs font-medium transition-colors cursor-pointer"
+                title={labels.email}
+              >
+                <Mail className="w-3.5 h-3.5 text-blue-600" />
+                <span className="text-[11px]">{labels.email}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleCopyLink()}
+                className="flex items-center gap-1.5 px-2 py-1 rounded-xl hover:bg-[#FAF6ED] text-slate-600 hover:text-slate-900 text-xs font-medium transition-colors cursor-pointer"
+                title={labels.copy}
+              >
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-slate-600" />}
+                <span className="text-[11px]">{copied ? labels.copied : labels.copy}</span>
+              </button>
+
               <button
                 type="button"
                 onClick={handlePrint}
