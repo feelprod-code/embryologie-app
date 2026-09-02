@@ -92,7 +92,7 @@ export function Home({}: HomeProps) {
                         <div className="flex-[0.5] sm:flex-1 min-h-[0.5vh] max-h-[3vh] sm:max-h-[6vh]"></div>
 
                         {/* Podcast Thumbnail/Vignette */}
-                        <div className="relative w-[92vw] max-w-[420px] sm:max-w-[400px] lg:w-[28rem] xl:w-[32rem] aspect-square shrink-0 mb-4 mt-2 sm:mt-4 border border-slate-300 shadow-xl overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                        <div className="relative w-[75vw] max-w-[320px] sm:max-w-[340px] md:max-w-[360px] lg:w-[21rem] xl:w-[23rem] aspect-square shrink-0 mb-3 sm:mb-4 mt-1.5 sm:mt-3 rounded-xl sm:rounded-2xl border border-slate-300/80 shadow-lg overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                             <img
                                 src={`${import.meta.env.BASE_URL}PODCAST.png`}
                                 alt="Podcast Embryologie Biodynamique"
