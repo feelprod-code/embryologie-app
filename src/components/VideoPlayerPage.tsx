@@ -114,11 +114,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   
   const videoUrl = course.cloudflareId ? `/cf-stream/${course.cloudflareId}/downloads/default.mp4` : '';
   const currentPdfUrl = getCoursePdfUrl(course, i18n.language);
-  const [isPdfReaderOpen, setIsPdfReaderOpen] = useState<boolean>(course.isGlobalPdf || false);
-
-  useEffect(() => {
-    setIsPdfReaderOpen(course.isGlobalPdf || false);
-  }, [course.id, course.isGlobalPdf]);
 
   // Transition state for UI fluidity
   const [optimisticLayer, setOptimisticLayer] = useState<string | null>(null);
@@ -557,14 +552,13 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       "w-full flex justify-center items-center min-h-0",
       isFullscreen ? "h-full max-h-full max-w-none px-0" : "h-auto flex-col justify-start md:px-0 lg:px-0"
     )}>
-      {(isPdfReaderOpen || course.isGlobalPdf) ? (
+      {course.isGlobalPdf ? (
         <div className="w-full flex-1 flex flex-col min-h-[500px] h-[75vh] md:h-[82vh] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-slate-800 my-1">
           <PDFCanvasViewer
             url={currentPdfUrl}
             title={course.title}
             courseTitle={course.title}
             accentColor={categoryColor}
-            onClose={!course.isGlobalPdf ? () => setIsPdfReaderOpen(false) : undefined}
             hasFullAccess={hasFullAccess}
             onLockedClick={onLockedVideoClick}
           />
@@ -667,7 +661,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   course={course}
                   hasFullAccess={hasFullAccess}
                   onLockedClick={onLockedVideoClick}
-                  onViewInPlayer={() => setIsPdfReaderOpen(true)}
                 />
 
                 {course.cloudflareId && (
