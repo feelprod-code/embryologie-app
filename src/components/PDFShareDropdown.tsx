@@ -85,7 +85,9 @@ const DROPDOWN_TEXTS: Record<string, {
     print: "Print document",
     printSub: "Standard A4 format",
     exportPdf: "Generate A4 Sheet",
-    exportPdfSub: "High-definiti  de: {
+    exportPdfSub: "High-definition export"
+  },
+  de: {
     shareBtn: "Teilen",
     docTitle: "PDF DOKUMENT",
     readInApp: "In der App lesen",
