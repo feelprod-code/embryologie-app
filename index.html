@@ -33,14 +33,14 @@
 
 <script>
   // FORCED DEV BYPASS TO BREAK PWA CACHE ON MOBILE
-  if (window.location.hash.includes('magic-dev')) {
+  if (window.location.hash.includes('magic-dev') || window.location.search.includes('admin=dev') || window.location.search.includes('dev=admin')) {
     localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+    localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations().then(function (registrations) {
         for (let registration of registrations) { registration.unregister() }
       });
     }
-    window.location.href = '/';
   }
 </script>
 
