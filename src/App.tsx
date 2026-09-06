@@ -146,8 +146,15 @@ function App() {
   useEffect(() => {
     let mounted = true;
 
-    // DEV BYPASS LOGIC (Manual via button or storage)
-    if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+    // DEV / ADMIN BYPASS LOGIC (via URL param ?admin=dev, hash #magic-dev, or localStorage)
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasAdminParam = urlParams.get('admin') === 'dev' || urlParams.get('dev') === 'admin' || urlParams.get('bypass') === 'admin';
+    const hasMagicHash = window.location.hash.includes('magic-dev');
+    const hasStoredBypass = localStorage.getItem('DEV_BYPASS_AUTH') === 'true' || localStorage.getItem('DEV_ADMIN_BYPASS') === 'true';
+
+    if (hasAdminParam || hasMagicHash || hasStoredBypass) {
+      localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+      localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
       setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
       setIsAdmin(true);
       setIsPremium(true);
@@ -158,10 +165,12 @@ function App() {
     const checkProfileDevice = async (currentSession: any, isExplicitSignIn: boolean = false) => {
 
 
-      // DEV BYPASS: If local dev AND bypass is enabled, don't check device ID
-      if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+      // DEV BYPASS: If bypass is enabled, don't check device ID
+      if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true' || localStorage.getItem('DEV_ADMIN_BYPASS') === 'true') {
         if (mounted) {
-          setSession(currentSession);
+          setSession(currentSession || { user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
+          setIsAdmin(true);
+          setIsPremium(true);
           setIsInitializing(false);
         }
         return;
@@ -349,12 +358,13 @@ function App() {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (_event === 'SIGNED_OUT') {
         localStorage.removeItem('DEV_BYPASS_AUTH');
+        localStorage.removeItem('DEV_ADMIN_BYPASS');
 
         if (mounted) setSession(null);
         setIsAdmin(false);
         setIsPremium(false);
       } else {
-        if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+        if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true' || localStorage.getItem('DEV_ADMIN_BYPASS') === 'true') {
           setIsAdmin(true);
           setIsPremium(true);
         } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
