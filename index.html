@@ -40,15 +40,24 @@
 
 <script>
   // FORCED DEV BYPASS TO BREAK PWA CACHE ON MOBILE
-  if (window.location.hash.includes('magic-dev') || window.location.search.includes('admin=dev') || window.location.search.includes('dev=admin')) {
-    localStorage.setItem('DEV_BYPASS_AUTH', 'true');
-    localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function (registrations) {
-        for (let registration of registrations) { registration.unregister() }
-      });
+  try {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (
+      window.location.hash.includes('dev') ||
+      searchParams.get('admin') !== null ||
+      searchParams.get('dev') !== null ||
+      searchParams.get('bypass') !== null ||
+      window.location.pathname.startsWith('/dev')
+    ) {
+      localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+      localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+          for (let registration of registrations) { registration.unregister() }
+        });
+      }
     }
-  }
+  } catch (e) {}
 </script>
 
 <body style="background-color: #FAF6ED;">

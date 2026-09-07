@@ -92,14 +92,46 @@ const ADMIN_EMAILS = [
 function App() {
   const { t, i18n } = useTranslation();
 
-  const [session, setSession] = useState<any>(null);
-  const [isInitializing, setIsInitializing] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isPremium, setIsPremium] = useState(false);
+  const isDevUser = () => {
+    if (typeof window === 'undefined') return false;
+    const urlParams = new URLSearchParams(window.location.search);
+    return (
+      urlParams.get('admin') !== null ||
+      urlParams.get('dev') !== null ||
+      urlParams.get('bypass') !== null ||
+      window.location.hash.includes('dev') ||
+      window.location.pathname.startsWith('/dev') ||
+      localStorage.getItem('DEV_BYPASS_AUTH') === 'true' ||
+      localStorage.getItem('DEV_ADMIN_BYPASS') === 'true'
+    );
+  };
+
+  const devSessionObj = {
+    user: {
+      id: 'dev-bypass-guillaume',
+      email: 'guillaumephilippe1968@gmail.com',
+      user_metadata: { first_name: 'Guillaume', last_name: 'Philippe' }
+    }
+  };
+
+  const [session, setSession] = useState<any>(() => {
+    if (isDevUser()) {
+      try {
+        localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+        localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
+      } catch (e) {}
+      return devSessionObj;
+    }
+    return null;
+  });
+  const [isInitializing, setIsInitializing] = useState<boolean>(() => !isDevUser());
+  const [isAdmin, setIsAdmin] = useState<boolean>(() => isDevUser());
+  const [isPremium, setIsPremium] = useState<boolean>(() => isDevUser());
 
 
   const handleLogout = async () => {
     localStorage.removeItem('DEV_BYPASS_AUTH');
+    localStorage.removeItem('DEV_ADMIN_BYPASS');
     localStorage.removeItem('VIP_BYPASS');
 
     // Remove device from 3-device limit list
@@ -146,16 +178,11 @@ function App() {
   useEffect(() => {
     let mounted = true;
 
-    // DEV / ADMIN BYPASS LOGIC (via URL param ?admin=dev, hash #magic-dev, or localStorage)
-    const urlParams = new URLSearchParams(window.location.search);
-    const hasAdminParam = urlParams.get('admin') === 'dev' || urlParams.get('dev') === 'admin' || urlParams.get('bypass') === 'admin';
-    const hasMagicHash = window.location.hash.includes('magic-dev');
-    const hasStoredBypass = localStorage.getItem('DEV_BYPASS_AUTH') === 'true' || localStorage.getItem('DEV_ADMIN_BYPASS') === 'true';
-
-    if (hasAdminParam || hasMagicHash || hasStoredBypass) {
+    // DEV / ADMIN BYPASS LOGIC (via URL param ?admin=dev, ?dev, hash #dev, /dev, or localStorage)
+    if (isDevUser()) {
       localStorage.setItem('DEV_BYPASS_AUTH', 'true');
       localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
-      setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
+      setSession(devSessionObj);
       setIsAdmin(true);
       setIsPremium(true);
       setIsInitializing(false);

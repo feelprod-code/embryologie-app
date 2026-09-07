@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/dev",
+      "destination": "/dev.html"
+    },
+    {
       "source": "/cf-stream/:match*",
       "destination": "https://customer-6i2z59dst7q6iswv.cloudflarestream.com/:match*"
     }
@@ -16,7 +20,7 @@
       ]
     },
     {
-      "source": "/index.html",
+      "source": "/(index.html|dev.html)",
       "headers": [
         {
           "key": "Cache-Control",
