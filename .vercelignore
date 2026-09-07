@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+.vercel
+.vercel-backup
+public/pdfs/
+scripts/
+knowledge/
+*.log
