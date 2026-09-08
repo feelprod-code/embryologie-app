@@ -39,8 +39,13 @@
 </head>
 
 <script>
-  // FORCED DEV BYPASS TO BREAK PWA CACHE ON MOBILE
+  // UNREGISTER OLD SERVICE WORKERS ON MOBILE TO ALWAYS SERVE FRESH CODE
   try {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) { registration.unregister() }
+      });
+    }
     const searchParams = new URLSearchParams(window.location.search);
     if (
       window.location.hash.includes('dev') ||
@@ -51,11 +56,6 @@
     ) {
       localStorage.setItem('DEV_BYPASS_AUTH', 'true');
       localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function (registrations) {
-          for (let registration of registrations) { registration.unregister() }
-        });
-      }
     }
   } catch (e) {}
 </script>
