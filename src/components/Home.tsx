@@ -89,7 +89,7 @@ export function Home({}: HomeProps) {
                         </div>
 
                         {/* Spacer: Lowers the Podcast Image with generous breathing space */}
-                        <div className="h-6 sm:h-8 lg:h-7 flex-none"></div>
+                        <div className="h-9 sm:h-11 lg:h-10 flex-none"></div>
 
                         {/* Podcast Thumbnail/Vignette (Strictly Centered) */}
                         <div className="w-full flex justify-center items-center shrink-0">
@@ -106,7 +106,7 @@ export function Home({}: HomeProps) {
                 )}
 
                 {/* ===== PLAYER (always visible) ===== */}
-                <div className="flex flex-col items-center justify-center w-full flex-none mt-2.5 sm:mt-3.5">
+                <div className="flex flex-col items-center justify-center w-full flex-none mt-4 sm:mt-5">
                     <div className="w-full flex flex-col items-center justify-center z-20">
                         <PodcastPlayerInteractive 
                             key={`${activePodcast.id}-${currentLang}`}
@@ -114,7 +114,7 @@ export function Home({}: HomeProps) {
                             onTranscriptToggle={setIsTranscriptMode}
                         />
                         {!isTranscriptMode && (
-                            <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-2 sm:mt-3 lg:mt-2 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                            <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-3 sm:mt-4 lg:mt-3.5 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                                 {t('home.start')}
                             </span>
                         )}
