@@ -49,16 +49,16 @@ export function Home({}: HomeProps) {
                 "flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 mx-auto min-h-full transition-all duration-500",
                 isTranscriptMode 
                     ? "pt-4 min-[380px]:pt-6 sm:pt-4 lg:pt-6 pb-20 lg:pb-12" // Transcript open padding
-                    : "pt-12 min-[380px]:pt-16 sm:pt-6 lg:pt-10 pb-32 sm:pb-36" // Intermediate top padding to lower elements a notch, pb-32 prevents nav bar overlap
+                    : "pt-4 sm:pt-6 lg:pt-2 pb-20 sm:pb-24 lg:pb-6 justify-center" // Perfectly centered vertically
             )}>
 
                 {/* ===== POSTER MODE: Title + Vignette (hidden when transcript is open) ===== */}
                 {!isTranscriptMode && (
                     <>
                         {/* Top Section: Credits & Title */}
-                        <div className="flex flex-col items-center w-full justify-center flex-none -mt-8 sm:-mt-0">
+                        <div className="flex flex-col items-center w-full justify-center flex-none">
                             {/* Top Poster Credits */}
-                            <div className="relative z-10 w-full text-center animate-fade-in-up -mt-2 sm:-mt-2">
+                            <div className="relative z-10 w-full text-center animate-fade-in-up">
                                 <div className="text-[10px] sm:text-xs md:text-sm font-sans font-semibold tracking-[0.4em] sm:tracking-[0.6em] text-slate-500 uppercase">
                                     {t('home.training_by')}
                                 </div>
@@ -68,7 +68,7 @@ export function Home({}: HomeProps) {
                             </div>
 
                             {/* Main Cinematic Title */}
-                            <div className="relative z-10 w-full text-center flex flex-col items-center mt-6 sm:mt-8 px-2 h-[62px] min-[380px]:h-[78px] sm:h-[110px] lg:h-[130px] justify-center">
+                            <div className="relative z-10 w-full text-center flex flex-col items-center mt-2.5 sm:mt-4 px-2 justify-center">
                                 <h1 className={cn(
                                     "font-anton text-slate-700 uppercase leading-[0.85] whitespace-nowrap",
                                     (currentLang === 'ja' || currentLang === 'zh')
@@ -78,22 +78,22 @@ export function Home({}: HomeProps) {
                                     {t('home.title_part1')}
                                 </h1>
                                 <h2 className={cn(
-                                    "font-anton text-[#F27D33] uppercase leading-[0.9] mt-1 whitespace-nowrap",
+                                    "font-anton text-[#F27D33] uppercase leading-[0.9] mt-1.5 whitespace-nowrap",
                                     (currentLang === 'ja' || currentLang === 'zh')
                                         ? "text-[28px] min-[380px]:text-[34px] sm:text-5xl tracking-normal"
-                                        : "text-3xl min-[380px]:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-widest pr-2"
+                                        : "text-3xl min-[380px]:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-widest"
                                 )}>
                                     {t('home.title_part2')}
                                 </h2>
                             </div>
                         </div>
 
-                        {/* Spacer */}
-                        <div className="flex-[0.5] sm:flex-1 min-h-[0.5vh] max-h-[3vh] sm:max-h-[6vh]"></div>
+                        {/* Spacer: Lowers the Podcast Image with generous breathing space */}
+                        <div className="h-6 sm:h-8 lg:h-7 flex-none"></div>
 
                         {/* Podcast Thumbnail/Vignette (Strictly Centered) */}
                         <div className="w-full flex justify-center items-center shrink-0">
-                            <div className="relative w-[75vw] max-w-[320px] sm:max-w-[340px] md:max-w-[360px] lg:w-[21rem] xl:w-[23rem] aspect-square mx-auto mb-3 sm:mb-4 mt-1.5 sm:mt-3 rounded-xl sm:rounded-2xl border border-slate-300/80 shadow-lg overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                            <div className="relative w-[75vw] max-w-[300px] sm:max-w-[320px] md:max-w-[340px] lg:w-[18.5rem] xl:w-[20rem] aspect-square mx-auto rounded-xl sm:rounded-2xl border border-slate-300/80 shadow-lg overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                                 <img
                                     src={`${import.meta.env.BASE_URL}PODCAST.png`}
                                     alt="Podcast Embryologie Biodynamique"
@@ -106,7 +106,7 @@ export function Home({}: HomeProps) {
                 )}
 
                 {/* ===== PLAYER (always visible) ===== */}
-                <div className="flex flex-col items-center justify-center w-full flex-none mt-2 sm:mt-0">
+                <div className="flex flex-col items-center justify-center w-full flex-none mt-2.5 sm:mt-3.5">
                     <div className="w-full flex flex-col items-center justify-center z-20">
                         <PodcastPlayerInteractive 
                             key={`${activePodcast.id}-${currentLang}`}
@@ -120,11 +120,6 @@ export function Home({}: HomeProps) {
                         )}
                     </div>
                 </div>
-
-                {/* ===== POSTER MODE: Spacer (hidden when transcript is open) ===== */}
-                {!isTranscriptMode && (
-                    <div className="flex-[2.5] sm:flex-[2.5] min-h-[7vh] sm:min-h-[4.5vh]"></div>
-                )}
 
             </div>
         </div>

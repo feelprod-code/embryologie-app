@@ -178,7 +178,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
     return (
         <div className="w-full flex flex-col items-center">
             {/* Lecteur Audio Custom */}
-            <div className="w-[92%] sm:w-2/3 md:w-3/4 max-w-[380px] md:max-w-[460px] lg:max-w-[380px] z-40 mt-1 flex flex-col items-center gap-3">
+            <div className="w-full max-w-[300px] sm:max-w-[320px] md:max-w-[340px] lg:max-w-[18.5rem] xl:max-w-[20rem] z-40 flex flex-col items-center gap-2.5 sm:gap-3">
                 <audio
                     ref={audioRef}
                     src={podcast.audioUrl}
@@ -192,7 +192,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                 />
                 
                 {/* Minimalist Player UI */}
-                <div id="podcast-player-pill" className="w-[105%] -ml-[2.5%] sm:w-full sm:ml-0 flex items-center bg-[#FAF6ED]/95 backdrop-blur-md pl-1 sm:pr-2 py-2 relative z-50">
+                <div id="podcast-player-pill" className="w-full flex items-center bg-[#FAF6ED]/95 backdrop-blur-md px-1 py-1.5 sm:py-2 relative z-50">
                     <button
                         onClick={togglePlay}
                         className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#E87C3E] text-white hover:bg-[#D66B2D] active:scale-95 transition-all mx-1 shrink-0"
@@ -263,7 +263,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                 {/* Transcription Toggle */}
                 <button
                     onClick={toggleTranscript}
-                    className="w-[92%] sm:w-2/3 md:w-3/4 max-w-[380px] md:max-w-[460px] lg:max-w-[380px] py-2 sm:py-2.5 px-4 mt-2 bg-[#EFE8D8] hover:bg-[#E5DCC5] text-[#8E5A3E] rounded-full text-[11px] sm:text-xs font-semibold tracking-wide uppercase transition-all flex items-center justify-center gap-2 active:scale-95 group border-none"
+                    className="w-full py-2 sm:py-2.5 px-4 bg-[#EFE8D8] hover:bg-[#E5DCC5] text-[#8E5A3E] rounded-full text-[11px] sm:text-xs font-semibold tracking-wide uppercase transition-all flex items-center justify-center gap-2 active:scale-95 group border-none"
                 >
                     <BookOpen size={14} className="text-[#8E5A3E]" />
                     {isTranscriptVisible ? t('podcasts.hideTranscript', 'Masquer la retranscription') : t('podcasts.showTranscript', 'Afficher la retranscription')}
