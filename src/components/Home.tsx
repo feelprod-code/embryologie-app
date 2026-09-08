@@ -49,7 +49,7 @@ export function Home({}: HomeProps) {
                 "flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 mx-auto min-h-full transition-all duration-500",
                 isTranscriptMode 
                     ? "pt-4 min-[380px]:pt-6 sm:pt-4 lg:pt-6 pb-20 lg:pb-12" // Transcript open padding
-                    : "pt-2 min-[380px]:pt-2 sm:pt-3 lg:pt-0 pb-20 min-[380px]:pb-28 sm:pb-32 lg:pb-5 justify-center -translate-y-2 sm:-translate-y-3 lg:-translate-y-1.5" // Remonté et équilibré
+                    : "pt-2 min-[380px]:pt-2 min-[430px]:pt-4 sm:pt-3 lg:pt-2 pb-20 min-[380px]:pb-28 min-[430px]:pb-28 sm:pb-32 lg:pb-3 justify-center -translate-y-2 min-[430px]:-translate-y-3 sm:-translate-y-3 lg:translate-y-0" // Calibré au pixel près pour iPhone 17 Pro Max & Desktop
             )}>
 
                 {/* ===== POSTER MODE: Title + Vignette (hidden when transcript is open) ===== */}
@@ -89,11 +89,11 @@ export function Home({}: HomeProps) {
                         </div>
 
                         {/* Spacer: Gives breathing space above the strictly centered Podcast Image */}
-                        <div className="h-9 min-[380px]:h-16 sm:h-20 lg:h-11 flex-none"></div>
+                        <div className="h-9 min-[380px]:h-16 min-[430px]:h-22 sm:h-20 lg:h-9 flex-none"></div>
 
                         {/* Podcast Thumbnail/Vignette (Strictly Centered) */}
                         <div className="w-full flex justify-center items-center shrink-0">
-                            <div className="relative w-[72vw] max-w-[275px] min-[380px]:w-[75vw] min-[380px]:max-w-[300px] sm:max-w-[320px] md:max-w-[340px] lg:w-[17.5rem] xl:w-[19rem] aspect-square mx-auto rounded-xl sm:rounded-2xl border border-slate-300/80 shadow-lg overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                            <div className="relative w-[72vw] max-w-[275px] min-[380px]:w-[75vw] min-[380px]:max-w-[300px] min-[430px]:max-w-[305px] sm:max-w-[320px] md:max-w-[340px] lg:w-[17.5rem] xl:w-[19rem] aspect-square mx-auto rounded-xl sm:rounded-2xl border border-slate-300/80 shadow-lg overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                                 <img
                                     src={`${import.meta.env.BASE_URL}PODCAST.png`}
                                     alt="Podcast Embryologie Biodynamique"
@@ -106,7 +106,7 @@ export function Home({}: HomeProps) {
                 )}
 
                 {/* ===== PLAYER (always visible) ===== */}
-                <div className="flex flex-col items-center justify-center w-full flex-none mt-4.5 min-[380px]:mt-9 sm:mt-11 lg:mt-6">
+                <div className="flex flex-col items-center justify-center w-full flex-none mt-4.5 min-[380px]:mt-9 min-[430px]:mt-12 sm:mt-11 lg:mt-6">
                     <div className="w-full flex flex-col items-center justify-center z-20">
                         <PodcastPlayerInteractive 
                             key={`${activePodcast.id}-${currentLang}`}
@@ -114,7 +114,7 @@ export function Home({}: HomeProps) {
                             onTranscriptToggle={setIsTranscriptMode}
                         />
                         {!isTranscriptMode && (
-                            <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-3 min-[380px]:mt-5 sm:mt-6 lg:mt-3.5 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                            <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-3 min-[380px]:mt-5 min-[430px]:mt-6 sm:mt-6 lg:mt-3.5 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                                 {t('home.start')}
                             </span>
                         )}
