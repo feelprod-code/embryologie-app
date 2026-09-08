@@ -89,7 +89,7 @@ export function Home({}: HomeProps) {
                         </div>
 
                         {/* Spacer: Gives breathing space above the strictly centered Podcast Image */}
-                        <div className="h-9 min-[380px]:h-16 min-[430px]:h-22 sm:h-20 lg:h-9 flex-none"></div>
+                        <div className="h-9 min-[380px]:h-16 min-[430px]:h-24 sm:h-20 lg:h-9 flex-none"></div>
 
                         {/* Podcast Thumbnail/Vignette (Strictly Centered) */}
                         <div className="w-full flex justify-center items-center shrink-0">
