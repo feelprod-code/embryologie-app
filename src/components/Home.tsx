@@ -44,12 +44,12 @@ export function Home({}: HomeProps) {
             "w-full h-full relative bg-[#FAF6ED] flex flex-col items-center no-scrollbar overscroll-none",
             isTranscriptMode ? "overflow-y-auto" : "overflow-hidden touch-pan-y"
         )}>
-            {/* Inner responsive layout container */}
+                {/* Inner responsive layout container */}
             <div className={cn(
                 "flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 mx-auto min-h-full transition-all duration-500",
                 isTranscriptMode 
                     ? "pt-4 min-[380px]:pt-6 sm:pt-4 lg:pt-6 pb-20 lg:pb-12" // Transcript open padding
-                    : "pt-4 sm:pt-6 lg:pt-2 pb-20 sm:pb-24 lg:pb-6 justify-center" // Perfectly centered vertically
+                    : "pt-3 min-[380px]:pt-4 sm:pt-6 lg:pt-1 pb-16 min-[380px]:pb-20 sm:pb-24 lg:pb-3 justify-center" // Perfectly centered vertically
             )}>
 
                 {/* ===== POSTER MODE: Title + Vignette (hidden when transcript is open) ===== */}
@@ -68,7 +68,7 @@ export function Home({}: HomeProps) {
                             </div>
 
                             {/* Main Cinematic Title */}
-                            <div className="relative z-10 w-full text-center flex flex-col items-center mt-2.5 sm:mt-4 px-2 justify-center">
+                            <div className="relative z-10 w-full text-center flex flex-col items-center mt-2 min-[380px]:mt-2.5 sm:mt-4 lg:mt-2 px-2 justify-center">
                                 <h1 className={cn(
                                     "font-anton text-slate-700 uppercase leading-[0.85] whitespace-nowrap",
                                     (currentLang === 'ja' || currentLang === 'zh')
@@ -88,12 +88,12 @@ export function Home({}: HomeProps) {
                             </div>
                         </div>
 
-                        {/* Spacer: Lowers the Podcast Image with generous breathing space */}
-                        <div className="h-9 sm:h-11 lg:h-10 flex-none"></div>
+                        {/* Spacer: Gives breathing space above the strictly centered Podcast Image */}
+                        <div className="h-7 min-[380px]:h-11 sm:h-14 lg:h-9 flex-none"></div>
 
                         {/* Podcast Thumbnail/Vignette (Strictly Centered) */}
                         <div className="w-full flex justify-center items-center shrink-0">
-                            <div className="relative w-[75vw] max-w-[300px] sm:max-w-[320px] md:max-w-[340px] lg:w-[18.5rem] xl:w-[20rem] aspect-square mx-auto rounded-xl sm:rounded-2xl border border-slate-300/80 shadow-lg overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                            <div className="relative w-[72vw] max-w-[275px] min-[380px]:w-[75vw] min-[380px]:max-w-[300px] sm:max-w-[320px] md:max-w-[340px] lg:w-[17.5rem] xl:w-[19rem] aspect-square mx-auto rounded-xl sm:rounded-2xl border border-slate-300/80 shadow-lg overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                                 <img
                                     src={`${import.meta.env.BASE_URL}PODCAST.png`}
                                     alt="Podcast Embryologie Biodynamique"
@@ -106,7 +106,7 @@ export function Home({}: HomeProps) {
                 )}
 
                 {/* ===== PLAYER (always visible) ===== */}
-                <div className="flex flex-col items-center justify-center w-full flex-none mt-4 sm:mt-5">
+                <div className="flex flex-col items-center justify-center w-full flex-none mt-3.5 min-[380px]:mt-6 sm:mt-7 lg:mt-5">
                     <div className="w-full flex flex-col items-center justify-center z-20">
                         <PodcastPlayerInteractive 
                             key={`${activePodcast.id}-${currentLang}`}
@@ -114,7 +114,7 @@ export function Home({}: HomeProps) {
                             onTranscriptToggle={setIsTranscriptMode}
                         />
                         {!isTranscriptMode && (
-                            <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-3 sm:mt-4 lg:mt-3.5 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                            <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-2.5 min-[380px]:mt-3.5 sm:mt-4 lg:mt-3 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                                 {t('home.start')}
                             </span>
                         )}
