@@ -44,12 +44,12 @@ export function Home({}: HomeProps) {
             "w-full h-full relative bg-[#FAF6ED] flex flex-col items-center no-scrollbar overscroll-none",
             isTranscriptMode ? "overflow-y-auto" : "overflow-hidden touch-pan-y"
         )}>
-                {/* Inner responsive layout container */}
+            {/* Inner responsive layout container */}
             <div className={cn(
                 "flex-1 w-full max-w-5xl flex flex-col items-center px-4 sm:px-6 mx-auto min-h-full transition-all duration-500",
                 isTranscriptMode 
                     ? "pt-4 min-[380px]:pt-6 sm:pt-4 lg:pt-6 pb-20 lg:pb-12" // Transcript open padding
-                    : "pt-3 min-[380px]:pt-4 sm:pt-6 lg:pt-1 pb-16 min-[380px]:pb-20 sm:pb-24 lg:pb-3 justify-center" // Perfectly centered vertically
+                    : "pt-2 min-[380px]:pt-2 sm:pt-3 lg:pt-0 pb-20 min-[380px]:pb-28 sm:pb-32 lg:pb-5 justify-center -translate-y-2 sm:-translate-y-3 lg:-translate-y-1.5" // Remonté et équilibré
             )}>
 
                 {/* ===== POSTER MODE: Title + Vignette (hidden when transcript is open) ===== */}
@@ -89,7 +89,7 @@ export function Home({}: HomeProps) {
                         </div>
 
                         {/* Spacer: Gives breathing space above the strictly centered Podcast Image */}
-                        <div className="h-8 min-[380px]:h-14 sm:h-16 lg:h-9 flex-none"></div>
+                        <div className="h-9 min-[380px]:h-16 sm:h-20 lg:h-11 flex-none"></div>
 
                         {/* Podcast Thumbnail/Vignette (Strictly Centered) */}
                         <div className="w-full flex justify-center items-center shrink-0">
@@ -106,7 +106,7 @@ export function Home({}: HomeProps) {
                 )}
 
                 {/* ===== PLAYER (always visible) ===== */}
-                <div className="flex flex-col items-center justify-center w-full flex-none mt-4 min-[380px]:mt-8 sm:mt-9 lg:mt-5">
+                <div className="flex flex-col items-center justify-center w-full flex-none mt-4.5 min-[380px]:mt-9 sm:mt-11 lg:mt-6">
                     <div className="w-full flex flex-col items-center justify-center z-20">
                         <PodcastPlayerInteractive 
                             key={`${activePodcast.id}-${currentLang}`}
@@ -114,7 +114,7 @@ export function Home({}: HomeProps) {
                             onTranscriptToggle={setIsTranscriptMode}
                         />
                         {!isTranscriptMode && (
-                            <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-3 min-[380px]:mt-5 sm:mt-5 lg:mt-3 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                            <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-3 min-[380px]:mt-5 sm:mt-6 lg:mt-3.5 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                                 {t('home.start')}
                             </span>
                         )}
