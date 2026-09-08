@@ -89,7 +89,7 @@ export function Home({}: HomeProps) {
                         </div>
 
                         {/* Spacer: Gives breathing space above the strictly centered Podcast Image */}
-                        <div className="h-7 min-[380px]:h-11 sm:h-14 lg:h-9 flex-none"></div>
+                        <div className="h-8 min-[380px]:h-14 sm:h-16 lg:h-9 flex-none"></div>
 
                         {/* Podcast Thumbnail/Vignette (Strictly Centered) */}
                         <div className="w-full flex justify-center items-center shrink-0">
@@ -106,7 +106,7 @@ export function Home({}: HomeProps) {
                 )}
 
                 {/* ===== PLAYER (always visible) ===== */}
-                <div className="flex flex-col items-center justify-center w-full flex-none mt-3.5 min-[380px]:mt-6 sm:mt-7 lg:mt-5">
+                <div className="flex flex-col items-center justify-center w-full flex-none mt-4 min-[380px]:mt-8 sm:mt-9 lg:mt-5">
                     <div className="w-full flex flex-col items-center justify-center z-20">
                         <PodcastPlayerInteractive 
                             key={`${activePodcast.id}-${currentLang}`}
@@ -114,7 +114,7 @@ export function Home({}: HomeProps) {
                             onTranscriptToggle={setIsTranscriptMode}
                         />
                         {!isTranscriptMode && (
-                            <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-2.5 min-[380px]:mt-3.5 sm:mt-4 lg:mt-3 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
+                            <span className="font-handwriting text-2xl sm:text-3xl lg:text-3xl text-slate-600 mt-3 min-[380px]:mt-5 sm:mt-5 lg:mt-3 -rotate-2 transform hover:scale-105 transition-transform cursor-pointer">
                                 {t('home.start')}
                             </span>
                         )}
