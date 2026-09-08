@@ -89,11 +89,11 @@ export function Home({}: HomeProps) {
                         </div>
 
                         {/* Spacer: Gives breathing space above the strictly centered Podcast Image */}
-                        <div className="h-9 min-[380px]:h-16 min-[430px]:h-24 sm:h-20 lg:h-9 flex-none"></div>
+                        <div className="h-9 min-[380px]:h-16 min-[430px]:h-20 sm:h-20 lg:h-9 flex-none"></div>
 
                         {/* Podcast Thumbnail/Vignette (Strictly Centered) */}
                         <div className="w-full flex justify-center items-center shrink-0">
-                            <div className="relative w-[72vw] max-w-[275px] min-[380px]:w-[75vw] min-[380px]:max-w-[300px] min-[430px]:max-w-[305px] sm:max-w-[320px] md:max-w-[340px] lg:w-[17.5rem] xl:w-[19rem] aspect-square mx-auto rounded-xl sm:rounded-2xl border border-slate-300/80 shadow-lg overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
+                            <div className="relative w-[72vw] max-w-[275px] min-[380px]:w-[75vw] min-[380px]:max-w-[300px] min-[430px]:max-w-[320px] sm:max-w-[320px] md:max-w-[340px] lg:w-[17.5rem] xl:w-[19rem] aspect-square mx-auto rounded-xl sm:rounded-2xl border border-slate-300/80 shadow-lg overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                                 <img
                                     src={`${import.meta.env.BASE_URL}PODCAST.png`}
                                     alt="Podcast Embryologie Biodynamique"
