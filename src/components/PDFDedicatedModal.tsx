@@ -51,7 +51,7 @@ export default function PDFDedicatedModal({
       onClick={onClose}
     >
       <div 
-        className="relative w-full h-full sm:h-[94vh] sm:max-h-[960px] sm:max-w-5xl bg-[#FAF8F5] rounded-none sm:rounded-3xl shadow-2xl border-0 sm:border border-[#E2D8CC] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-full h-[100dvh] sm:h-[94vh] sm:max-h-[960px] sm:max-w-5xl bg-[#FAF8F5] rounded-none sm:rounded-3xl shadow-2xl border-0 sm:border border-[#E2D8CC] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]"
         onClick={(e) => e.stopPropagation()}
       >
         <PDFCanvasViewer
