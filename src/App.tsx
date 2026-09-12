@@ -107,6 +107,11 @@ function App() {
     if (urlParams.get('client') !== null || urlParams.get('mode') === 'client') {
       return false;
     }
+    // Si l'URL contient ?dev=true (pilule développeur), on ne bypass pas automatiquement
+    // pour afficher l'écran de connexion avec le bouton développeur visible
+    if (urlParams.get('dev') !== null && urlParams.get('admin') !== 'dev') {
+      return false;
+    }
     return (
       urlParams.get('admin') === 'dev' ||
       urlParams.get('bypass') === 'true' ||
@@ -202,9 +207,9 @@ function App() {
 
 
       // DEV BYPASS: If bypass is enabled, don't check device ID
-      if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true' || localStorage.getItem('DEV_ADMIN_BYPASS') === 'true') {
+      if (isDevUser()) {
         if (mounted) {
-          setSession(currentSession || { user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
+          setSession(currentSession || devSessionObj);
           setIsAdmin(true);
           setIsPremium(true);
           setIsInitializing(false);
@@ -412,7 +417,7 @@ function App() {
         setIsPremium(false);
       } else {
         const email = session?.user?.email?.toLowerCase();
-        if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true' || localStorage.getItem('DEV_ADMIN_BYPASS') === 'true') {
+        if (isDevUser()) {
           setIsAdmin(true);
           setIsPremium(true);
         } else if (email && ADMIN_EMAILS.includes(email)) {
