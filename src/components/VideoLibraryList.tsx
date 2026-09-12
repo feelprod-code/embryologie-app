@@ -17,7 +17,7 @@ import PDFShareDropdown from './PDFShareDropdown';
 
 
 interface VideoLibraryListProps {
-    onSelectVideo: (video: VideoCourse, openPdf?: boolean) => void;
+    onSelectVideo: (video: VideoCourse) => void;
     hasFullAccess?: boolean;
     onLockedVideoClick?: () => void;
 }
@@ -243,7 +243,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     onLockedVideoClick?.();
                                     return;
                                 }
-                                onSelectVideo(course, Boolean(course.isGlobalPdf));
+                                onSelectVideo(course);
                             };
 
                             const bgColors = {
@@ -376,21 +376,6 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                                     course={course}
                                                                     hasFullAccess={hasFullAccess}
                                                                     onLockedClick={onLockedVideoClick}
-                                                                    onOpenInAppViewer={(targetUrl) => {
-                                                                        if (course.isGlobalPdf) {
-                                                                            onSelectVideo(course, true);
-                                                                        } else {
-                                                                            const isIntegral = targetUrl && (targetUrl.includes('cours_complets') || targetUrl.toLowerCase().includes('integral') || targetUrl.toLowerCase().includes('recueil'));
-                                                                            if (isIntegral) {
-                                                                                const globalCourse = videoCourses.find(c => c.categoryId === course.categoryId && c.isGlobalPdf);
-                                                                                if (globalCourse) {
-                                                                                    onSelectVideo(globalCourse, true);
-                                                                                    return;
-                                                                                }
-                                                                            }
-                                                                            onSelectVideo(course, true);
-                                                                        }
-                                                                    }}
                                                                 />
                                                             </div>
                                                         </div>

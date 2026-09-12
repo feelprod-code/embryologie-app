@@ -334,7 +334,7 @@ function App() {
             (currentSession?.user?.email && SUPER_ADMIN_EMAILS.includes(currentSession.user.email.toLowerCase())) ||
             (profile.email && SUPER_ADMIN_EMAILS.includes(profile.email.toLowerCase()));
 
-          const MAX_DEVICES = isSuperAdmin ? 99 : (isAdminUser ? 3 : 1);
+          const MAX_DEVICES = (isSuperAdmin || isAdminUser) ? 99 : 3;
 
           if (!isMatch) {
             if (deviceIds.length < MAX_DEVICES) {
@@ -498,7 +498,6 @@ function App() {
   type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'bibliographie' | 'admin' | 'admin-users' | 'admin-prompts';
   const [currentView, setCurrentView] = useState<View>('home');
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
-  const [openInPdfMode, setOpenInPdfMode] = useState<boolean>(false);
   const [optimisticView, setOptimisticView] = useState<View | null>(null);
   const [isPending, startTransition] = useTransition();
   const [showPaywallModal, setShowPaywallModal] = useState(false);
@@ -814,9 +813,8 @@ function App() {
               <div className="w-full relative">
                 <VideoLibraryList
                   hasFullAccess={isPremium || isAdmin}
-                  onSelectVideo={(video, openPdf) => {
+                  onSelectVideo={(video) => {
                     setActiveVideo(video);
-                    setOpenInPdfMode(Boolean(openPdf || video.isGlobalPdf));
                     setCurrentView('video-player');
                   }}
                   onLockedVideoClick={() => setShowPaywallModal(true)}
@@ -829,12 +827,7 @@ function App() {
             <div className="w-full animate-fade-in h-full">
               <VideoPlayerPage
                 course={activeVideo}
-                initialPdfMode={openInPdfMode}
-                onSelectVideo={(video) => {
-                  setActiveVideo(video);
-                  setOpenInPdfMode(Boolean(video.isGlobalPdf));
-                }}
-                onBackToLibrary={() => setCurrentView('video-library')}
+                onSelectVideo={setActiveVideo}
                 hasFullAccess={isPremium || isAdmin}
                 onLockedVideoClick={() => setShowPaywallModal(true)}
               />
