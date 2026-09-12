@@ -24,6 +24,7 @@ type TierFilterType = 'ALL' | 'LEGACY' | 'PREMIUM' | 'FREE' | 'TRIAL' | 'STANDAR
 
 const ADMIN_EMAILS = [
     'guillaumephilippe1968@gmail.com',
+    'guillaumephilippe@me.com',
     'marc@damoiseaux.be',
     'vip@feelprod.com'
 ];

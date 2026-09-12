@@ -87,8 +87,16 @@ const getDeviceId = () => {
 
 const ADMIN_EMAILS = [
   'guillaumephilippe1968@gmail.com',
-  'marc@damoiseaux.be'
+  'guillaumephilippe@me.com',
+  'marc@damoiseaux.be',
+  'vip@feelprod.com'
 ];
+
+const SUPER_ADMIN_EMAILS = [
+  'guillaumephilippe1968@gmail.com',
+  'guillaumephilippe@me.com'
+];
+
 function App() {
   const { t, i18n } = useTranslation();
 
@@ -245,11 +253,20 @@ function App() {
           return;
         }
 
-        if (profile.is_premium) {
+        const isAdminUserEarly =
+          (currentSession?.user?.email && ADMIN_EMAILS.includes(currentSession.user.email.toLowerCase())) ||
+          (profile.email && ADMIN_EMAILS.includes(profile.email.toLowerCase()));
+
+        if (profile.is_premium || isAdminUserEarly) {
           setIsPremium(true);
         } else {
           setIsPremium(false);
         }
+
+        if (isAdminUserEarly) {
+          setIsAdmin(true);
+        }
+
 
         // Always sync pending form details from login (for new or existing re-authenticating users)
         const pendingFirstName = localStorage.getItem('pending_first_name');
@@ -314,8 +331,8 @@ function App() {
             (profile.email && ADMIN_EMAILS.includes(profile.email.toLowerCase()));
 
           const isSuperAdmin =
-            (currentSession?.user?.email && currentSession.user.email.toLowerCase() === 'guillaumephilippe1968@gmail.com') ||
-            (profile.email && profile.email.toLowerCase() === 'guillaumephilippe1968@gmail.com');
+            (currentSession?.user?.email && SUPER_ADMIN_EMAILS.includes(currentSession.user.email.toLowerCase())) ||
+            (profile.email && SUPER_ADMIN_EMAILS.includes(profile.email.toLowerCase()));
 
           const MAX_DEVICES = isSuperAdmin ? 99 : (isAdminUser ? 3 : 1);
 
@@ -372,8 +389,10 @@ function App() {
     };
 
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
+      const email = session?.user?.email?.toLowerCase();
+      if (email && ADMIN_EMAILS.includes(email)) {
         setIsAdmin(true);
+        setIsPremium(true);
       } else {
         setIsAdmin(false);
       }
@@ -391,11 +410,13 @@ function App() {
         setIsAdmin(false);
         setIsPremium(false);
       } else {
+        const email = session?.user?.email?.toLowerCase();
         if (localStorage.getItem('DEV_BYPASS_AUTH') === 'true' || localStorage.getItem('DEV_ADMIN_BYPASS') === 'true') {
           setIsAdmin(true);
           setIsPremium(true);
-        } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
+        } else if (email && ADMIN_EMAILS.includes(email)) {
           setIsAdmin(true);
+          setIsPremium(true);
         } else {
           setIsAdmin(false);
         }
@@ -477,6 +498,7 @@ function App() {
   type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'bibliographie' | 'admin' | 'admin-users' | 'admin-prompts';
   const [currentView, setCurrentView] = useState<View>('home');
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
+  const [openInPdfMode, setOpenInPdfMode] = useState<boolean>(false);
   const [optimisticView, setOptimisticView] = useState<View | null>(null);
   const [isPending, startTransition] = useTransition();
   const [showPaywallModal, setShowPaywallModal] = useState(false);
@@ -792,8 +814,9 @@ function App() {
               <div className="w-full relative">
                 <VideoLibraryList
                   hasFullAccess={isPremium || isAdmin}
-                  onSelectVideo={(video) => {
+                  onSelectVideo={(video, openPdf) => {
                     setActiveVideo(video);
+                    setOpenInPdfMode(Boolean(openPdf || video.isGlobalPdf));
                     setCurrentView('video-player');
                   }}
                   onLockedVideoClick={() => setShowPaywallModal(true)}
@@ -806,7 +829,12 @@ function App() {
             <div className="w-full animate-fade-in h-full">
               <VideoPlayerPage
                 course={activeVideo}
-                onSelectVideo={setActiveVideo}
+                initialPdfMode={openInPdfMode}
+                onSelectVideo={(video) => {
+                  setActiveVideo(video);
+                  setOpenInPdfMode(Boolean(video.isGlobalPdf));
+                }}
+                onBackToLibrary={() => setCurrentView('video-library')}
                 hasFullAccess={isPremium || isAdmin}
                 onLockedVideoClick={() => setShowPaywallModal(true)}
               />

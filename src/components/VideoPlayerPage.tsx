@@ -29,9 +29,18 @@ interface VideoPlayerPageProps {
   onSelectVideo: (video: VideoCourse) => void;
   hasFullAccess?: boolean;
   onLockedVideoClick?: () => void;
+  initialPdfMode?: boolean;
+  onBackToLibrary?: () => void;
 }
 
-export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initialCourse, onSelectVideo, hasFullAccess = false, onLockedVideoClick }) => {
+export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ 
+  course: initialCourse, 
+  onSelectVideo, 
+  hasFullAccess = false, 
+  onLockedVideoClick,
+  initialPdfMode = false,
+  onBackToLibrary
+}) => {
   const { t, i18n } = useTranslation();
 
   const customMarkdownComponents = React.useMemo(() => ({
@@ -114,6 +123,17 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   
   const videoUrl = course.cloudflareId ? `/cf-stream/${course.cloudflareId}/downloads/default.mp4` : '';
   const currentPdfUrl = getCoursePdfUrl(course, i18n.language);
+
+  // In-App PDF Viewer state
+  const [inAppPdfMode, setInAppPdfMode] = useState<boolean>(initialPdfMode || Boolean(course.isGlobalPdf));
+  const [inAppPdfUrl, setInAppPdfUrl] = useState<string>(currentPdfUrl);
+  const [inAppPdfTitle, setInAppPdfTitle] = useState<string>(course.title);
+
+  useEffect(() => {
+    setInAppPdfMode(initialPdfMode || Boolean(course.isGlobalPdf));
+    setInAppPdfUrl(getCoursePdfUrl(course, i18n.language));
+    setInAppPdfTitle(course.title);
+  }, [course.id, i18n.language, initialPdfMode]);
 
   // Transition state for UI fluidity
   const [optimisticLayer, setOptimisticLayer] = useState<string | null>(null);
@@ -552,15 +572,22 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
       "w-full flex justify-center items-center min-h-0",
       isFullscreen ? "h-full max-h-full max-w-none px-0" : "h-auto flex-col justify-start md:px-0 lg:px-0"
     )}>
-      {course.isGlobalPdf ? (
+      {(course.isGlobalPdf || inAppPdfMode) ? (
         <div className="w-full flex-1 flex flex-col min-h-[500px] h-[75vh] md:h-[82vh] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-slate-800 my-1">
           <PDFCanvasViewer
-            url={currentPdfUrl}
-            title={course.title}
+            url={inAppPdfUrl || currentPdfUrl}
+            title={inAppPdfTitle || course.title}
             courseTitle={course.title}
             accentColor={categoryColor}
             hasFullAccess={hasFullAccess}
             onLockedClick={onLockedVideoClick}
+            onClose={() => {
+              if (course.isGlobalPdf) {
+                if (onBackToLibrary) onBackToLibrary();
+              } else {
+                setInAppPdfMode(false);
+              }
+            }}
           />
         </div>
       ) : (
@@ -605,7 +632,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             isFullscreen && "hidden"
           )}>
             <div className="flex items-center justify-between gap-1 sm:gap-2 max-w-3xl mx-auto w-full">
-              {/* LEFT: SPEED & PIP */}
+              {/* LEFT: SPEED, PIP & PDF IN-APP */}
               <div className="flex flex-1 items-center justify-start gap-1 sm:gap-2 z-10">
                 <button
                   onClick={() => handleSpeedChange(currentSpeed === 1 ? 1.25 : currentSpeed === 1.25 ? 1.5 : 1)}
@@ -624,6 +651,19 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   title={isVideoVisible ? "Détacher la vidéo (PiP)" : "Réintégrer la vidéo"}
                 >
                   {!isVideoVisible ? <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <VideoOff className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
+                </button>
+
+                <button
+                  onClick={() => {
+                    setInAppPdfUrl(currentPdfUrl);
+                    setInAppPdfTitle(course.title);
+                    setInAppPdfMode(true);
+                  }}
+                  className="flex items-center gap-1 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 bg-white active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-700 text-[10px] sm:text-xs font-semibold rounded-md md:rounded-lg shadow-sm transition-all border border-slate-200 shrink-0"
+                  title="Consulter le support PDF dans l'application"
+                >
+                  <FileText className="w-3.5 h-3.5" style={{ color: categoryColor }} />
+                  <span className="font-bold">PDF</span>
                 </button>
               </div>
 
@@ -661,6 +701,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   course={course}
                   hasFullAccess={hasFullAccess}
                   onLockedClick={onLockedVideoClick}
+                  onOpenInAppViewer={(url, tTitle) => {
+                    setInAppPdfUrl(url);
+                    if (tTitle) setInAppPdfTitle(tTitle);
+                    setInAppPdfMode(true);
+                  }}
                 />
 
                 {course.cloudflareId && (

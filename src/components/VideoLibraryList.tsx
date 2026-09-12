@@ -17,7 +17,7 @@ import PDFShareDropdown from './PDFShareDropdown';
 
 
 interface VideoLibraryListProps {
-    onSelectVideo: (video: VideoCourse) => void;
+    onSelectVideo: (video: VideoCourse, openPdf?: boolean) => void;
     hasFullAccess?: boolean;
     onLockedVideoClick?: () => void;
 }
@@ -243,14 +243,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     onLockedVideoClick?.();
                                     return;
                                 }
-                                if (course.isGlobalPdf) {
-                                    const pdfUrl = getCoursePdfUrl(course, i18n.language);
-                                    if (pdfUrl) {
-                                        window.open(pdfUrl, '_blank');
-                                        return;
-                                    }
-                                }
-                                onSelectVideo(course);
+                                onSelectVideo(course, Boolean(course.isGlobalPdf));
                             };
 
                             const bgColors = {
@@ -383,6 +376,21 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                                                     course={course}
                                                                     hasFullAccess={hasFullAccess}
                                                                     onLockedClick={onLockedVideoClick}
+                                                                    onOpenInAppViewer={(targetUrl) => {
+                                                                        if (course.isGlobalPdf) {
+                                                                            onSelectVideo(course, true);
+                                                                        } else {
+                                                                            const isIntegral = targetUrl && (targetUrl.includes('cours_complets') || targetUrl.toLowerCase().includes('integral') || targetUrl.toLowerCase().includes('recueil'));
+                                                                            if (isIntegral) {
+                                                                                const globalCourse = videoCourses.find(c => c.categoryId === course.categoryId && c.isGlobalPdf);
+                                                                                if (globalCourse) {
+                                                                                    onSelectVideo(globalCourse, true);
+                                                                                    return;
+                                                                                }
+                                                                            }
+                                                                            onSelectVideo(course, true);
+                                                                        }
+                                                                    }}
                                                                 />
                                                             </div>
                                                         </div>
