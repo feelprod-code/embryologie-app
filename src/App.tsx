@@ -103,12 +103,13 @@ function App() {
   const isDevUser = () => {
     if (typeof window === 'undefined') return false;
     const urlParams = new URLSearchParams(window.location.search);
+    // Mode client explicite : désactive tout bypass pour tester fidèlement la vue élève
+    if (urlParams.get('client') !== null || urlParams.get('mode') === 'client') {
+      return false;
+    }
     return (
-      urlParams.get('admin') !== null ||
-      urlParams.get('dev') !== null ||
-      urlParams.get('bypass') !== null ||
-      window.location.hash.includes('dev') ||
-      window.location.pathname.startsWith('/dev') ||
+      urlParams.get('admin') === 'dev' ||
+      urlParams.get('bypass') === 'true' ||
       localStorage.getItem('DEV_BYPASS_AUTH') === 'true' ||
       localStorage.getItem('DEV_ADMIN_BYPASS') === 'true'
     );
