@@ -714,41 +714,6 @@ export default function PDFShareDropdown({
                 </div>
               </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setIsOpen(false);
-                  if (activeTab === 'integral' && isGlobalLocked) {
-                    onLockedClick?.();
-                    return;
-                  }
-                  if (activeTab === 'chapter' && course) {
-                    exportCoursePdf(course, i18n.language, t);
-                  } else if (activeTab === 'integral' && globalCourse) {
-                    exportCoursePdf(globalCourse, i18n.language, t, hasFullAccess);
-                  }
-                }}
-                className="w-full flex items-center gap-3 px-3 py-2 rounded-2xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
-              >
-                <div className="w-10 h-10 rounded-2xl bg-[#FCEFE3] border border-[#F5DCBE] flex items-center justify-center flex-shrink-0 text-[#D47A3A] transition-all group-hover:scale-105">
-                  {activeTab === 'integral' && isGlobalLocked ? (
-                    <Lock className="w-5 h-5 text-amber-600" />
-                  ) : (
-                    <Sparkles className="w-5 h-5" />
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-xs font-bold text-slate-900 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
-                    <span>{activeTab === 'chapter' ? labels.generateA4Chapter : labels.generateA4Integral}</span>
-                    {activeTab === 'integral' && isGlobalLocked && (
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>
-                    )}
-                  </div>
-                  <div className="text-[11px] text-slate-500 truncate">
-                    {labels.generateA4Sub}
-                  </div>
-                </div>
-              </button>
 
               <button
                 type="button"
