@@ -275,6 +275,27 @@ export const AuthScreen: React.FC = () => {
                                     t('auth.loginBtn', "SE CONNECTER")
                                 )}
                             </button>
+
+                            {/* Bouton visible UNIQUEMENT sur l'URL Développeur privée de Guillaume (?dev=true ou ?admin=dev) */}
+                            {typeof window !== 'undefined' && (
+                                window.location.search.includes('dev') ||
+                                window.location.search.includes('admin') ||
+                                window.location.hash.includes('dev') ||
+                                window.location.pathname.startsWith('/dev')
+                            ) && (
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+                                        localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
+                                        window.location.href = '/?admin=dev';
+                                    }}
+                                    className="w-full flex items-center justify-center py-2.5 px-3 rounded-xl sm:rounded-2xl text-xs font-bold text-white bg-gradient-to-r from-[#8C4E33] to-[#EA580C] hover:brightness-105 transition-all mt-2 shadow-sm cursor-pointer border border-amber-400"
+                                >
+                                    <ShieldAlert className="w-4 h-4 mr-1.5 shrink-0" />
+                                    <span>⚡ Accès Développeur Direct (Guillaume)</span>
+                                </button>
+                            )}
                         </form>
                     )}
                 </div>
