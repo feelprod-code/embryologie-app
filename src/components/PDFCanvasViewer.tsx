@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Loader2, X, Download, Share2, ZoomIn, ZoomOut, Lock, Sparkles } from "lucide-react";
+import { Loader2, X, Download, Share2, ZoomIn, ZoomOut, Lock, Sparkles, Layers, ExternalLink } from "lucide-react";
 import PDFShareDropdown from "./PDFShareDropdown";
 
 interface PDFCanvasViewerProps {
@@ -24,18 +24,20 @@ export default function PDFCanvasViewer({
   onLockedClick,
 }: PDFCanvasViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const encodedUrl = url ? encodeURI(url) : "";
   const isIntegral = Boolean(
     url && (url.includes('cours_complets') || url.toLowerCase().includes('integral') || url.toLowerCase().includes('recueil'))
   );
   const isLocked = isIntegral && !hasFullAccess;
 
-  const [loading, setLoading] = useState(!isLocked);
+  const [viewMode, setViewMode] = useState<"native" | "hd-canvas">("native");
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [zoomScale, setZoomScale] = useState<number>(1.0);
 
   useEffect(() => {
-    if (isLocked) {
+    if (isLocked || viewMode !== "hd-canvas" || !encodedUrl) {
       setLoading(false);
       return;
     }
@@ -45,32 +47,28 @@ export default function PDFCanvasViewer({
     setError(null);
 
     const renderPDF = async () => {
-      // Dynamic import of pdfjs-dist
       try {
         let pdfjsLib: any = (window as any).pdfjsLib;
 
         if (!pdfjsLib) {
           try {
-            pdfjsLib = await import("pdfjs-dist");
-          } catch {
-            // CDN fallback
-            await new Promise((resolve, reject) => {
-              const script = document.createElement("script");
-              script.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
-              script.onload = () => resolve((window as any).pdfjsLib);
-              script.onerror = reject;
-              document.head.appendChild(script);
-            });
-            pdfjsLib = (window as any).pdfjsLib;
+            const pdfjsModule = await import("pdfjs-dist");
+            pdfjsLib = pdfjsModule;
+            const workerModule = await import("pdfjs-dist/build/pdf.worker.min.mjs?url");
+            pdfjsLib.GlobalWorkerOptions.workerSrc = workerModule.default || workerModule;
+          } catch (importErr) {
+            console.warn("Local worker load failed, falling back to CDN worker with matching version:", importErr);
+            const pdfjsModule = await import("pdfjs-dist");
+            pdfjsLib = pdfjsModule;
+            pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version || "5.5.207"}/pdf.worker.min.js`;
           }
         }
 
-        if (pdfjsLib?.GlobalWorkerOptions) {
-          pdfjsLib.GlobalWorkerOptions.workerSrc =
-            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-        }
-
-        const loadingTask = pdfjsLib.getDocument(url);
+        const loadingTask = pdfjsLib.getDocument({
+          url: encodedUrl,
+          cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+          cMapPacked: true,
+        });
         const pdf = await loadingTask.promise;
 
         if (!active) return;
@@ -126,9 +124,11 @@ export default function PDFCanvasViewer({
           await page.render(renderContext).promise;
         }
       } catch (err: any) {
-        console.error("Error rendering PDF:", err);
-        setError(err.message || "Impossible de charger le document PDF");
-        setLoading(false);
+        console.warn("Canvas HD rendering failed, graceful fallback to Native Vector:", err);
+        if (active) {
+          setViewMode("native");
+          setLoading(false);
+        }
       }
     };
 
@@ -137,42 +137,81 @@ export default function PDFCanvasViewer({
     return () => {
       active = false;
     };
-  }, [url, zoomScale, isLocked]);
+  }, [encodedUrl, zoomScale, isLocked, viewMode]);
 
   return (
     <div className="w-full flex-1 flex flex-col h-full bg-[#F5ECE0] text-slate-800 overflow-hidden relative">
       {/* TDT PLAYER HEADER BAR FOR PDF — LIGHT THEME */}
-      <div className="flex items-center justify-between px-3 sm:px-6 py-2.5 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E2D8CC] z-20 shrink-0 shadow-2xs">
-        {/* Left: Close Button */}
-        {onClose ? (
-          <button
-            onClick={onClose}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-800 transition-all text-xs font-bold shadow-xs border border-[#E2D8CC] active:scale-98 cursor-pointer"
-            title="Fermer le PDF et retourner à la vidéo"
-          >
-            <X className="w-4 h-4 text-slate-500" />
-            <span className="hidden sm:inline">Fermer le PDF</span>
-          </button>
-        ) : (
-          <div className="w-8" />
-        )}
+      <div className="flex items-center justify-between px-3 sm:px-5 py-2 sm:py-2.5 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E2D8CC] z-20 shrink-0 shadow-2xs gap-2">
+        {/* Left: Close Button & Mode Switcher */}
+        <div className="flex items-center gap-2">
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-800 transition-all text-xs font-bold shadow-xs border border-[#E2D8CC] active:scale-98 cursor-pointer shrink-0"
+              title="Fermer le PDF"
+            >
+              <X className="w-4 h-4 text-slate-500" />
+              <span className="hidden md:inline">Fermer</span>
+            </button>
+          )}
+
+          {/* Mode Switcher */}
+          {!isLocked && (
+            <div className="flex items-center bg-[#EFEBE3] p-0.5 rounded-xl border border-[#E2D8CC]">
+              <button
+                type="button"
+                onClick={() => setViewMode("native")}
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-lg font-bold text-[11px] transition-all cursor-pointer ${
+                  viewMode === "native"
+                    ? "bg-white text-slate-900 shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+                title="Affichage Vectoriel Natif (Ultra-net, zoom & recherche intégrés)"
+              >
+                <Sparkles className="w-3.5 h-3.5" style={{ color: viewMode === "native" ? accentColor : undefined }} />
+                <span className="hidden sm:inline">Vectoriel HD</span>
+                <span className="sm:hidden">HD</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setViewMode("hd-canvas")}
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-lg font-bold text-[11px] transition-all cursor-pointer ${
+                  viewMode === "hd-canvas"
+                    ? "bg-white text-slate-900 shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+                title="Pages Défilantes Haute Résolution"
+              >
+                <Layers className="w-3.5 h-3.5" style={{ color: viewMode === "hd-canvas" ? accentColor : undefined }} />
+                <span className="hidden sm:inline">Pages</span>
+                <span className="sm:hidden">Pages</span>
+              </button>
+            </div>
+          )}
+        </div>
 
         {/* Center: Title & Page Count */}
-        <div className="flex flex-col items-center max-w-[50%] sm:max-w-[60%] text-center">
+        <div className="flex flex-col items-center max-w-[40%] sm:max-w-[50%] text-center">
           <span className="text-xs sm:text-sm font-bold text-slate-800 truncate max-w-full font-bebas tracking-wide flex items-center gap-1.5">
             {isLocked && <Lock className="w-3.5 h-3.5 text-amber-600 inline shrink-0" />}
             <span>{title}</span>
           </span>
-          <span className="text-[10px] text-slate-500 font-medium">
-            {isLocked ? "Recueil Intégral • Réservé aux membres" : loading ? "Chargement du document..." : `${totalPages} page${totalPages > 1 ? "s" : ""} • Format A4`}
+          <span className="text-[10px] text-slate-500 font-medium truncate max-w-full">
+            {isLocked
+              ? "Recueil Intégral • Réservé aux membres"
+              : viewMode === "hd-canvas" && totalPages > 0
+              ? `${totalPages} page${totalPages > 1 ? "s" : ""} • Format A4`
+              : "Support pédagogique A4"}
           </span>
         </div>
 
         {/* Right: Actions & Share */}
-        <div className="flex items-center gap-2">
-          {/* Zoom controls */}
-          {!isLocked && (
-            <div className="hidden md:flex items-center gap-1 bg-white rounded-xl p-0.5 border border-[#E2D8CC] shadow-xs">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Zoom controls for canvas mode */}
+          {!isLocked && viewMode === "hd-canvas" && (
+            <div className="hidden lg:flex items-center gap-1 bg-white rounded-xl p-0.5 border border-[#E2D8CC] shadow-xs">
               <button
                 onClick={() => setZoomScale((prev) => Math.max(0.7, prev - 0.15))}
                 className="p-1 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-50 cursor-pointer"
@@ -193,6 +232,17 @@ export default function PDFCanvasViewer({
             </div>
           )}
 
+          <a
+            href={encodedUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-700 text-xs font-bold border border-[#E2D8CC] shadow-xs cursor-pointer"
+            title="Ouvrir dans un nouvel onglet"
+          >
+            <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
+            <span className="hidden md:inline">Plein Écran</span>
+          </a>
+
           <PDFShareDropdown
             pdfUrl={url}
             title={title}
@@ -206,8 +256,8 @@ export default function PDFCanvasViewer({
         </div>
       </div>
 
-      {/* PDF CANVAS BODY */}
-      <div className="w-full flex-1 overflow-y-auto p-3 sm:p-6 flex flex-col items-center scroll-smooth bg-[#ECE5D8]">
+      {/* PDF CONTENT BODY */}
+      <div className="w-full flex-1 overflow-hidden flex flex-col items-center bg-[#ECE5D8] relative">
         {isLocked ? (
           <div className="flex flex-col items-center justify-center py-16 px-4 text-center max-w-lg mx-auto my-auto animate-fade-in">
             <div className="w-16 h-16 rounded-3xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-5 shadow-xs border border-amber-500/20">
@@ -237,8 +287,18 @@ export default function PDFCanvasViewer({
               )}
             </div>
           </div>
+        ) : viewMode === "native" ? (
+          /* NATIVE VECTOR HD MODE (Instant, crisp vector, built-in zoom & search) */
+          <div className="w-full h-full flex flex-col items-center p-1 sm:p-3 md:p-4">
+            <iframe
+              src={`${encodedUrl}#view=FitH&toolbar=1`}
+              className="w-full h-full rounded-xl sm:rounded-2xl border border-[#E2D8CC] shadow-md bg-white"
+              title={title}
+            />
+          </div>
         ) : (
-          <>
+          /* HD CANVAS MODE (Flowing pages) */
+          <div className="w-full flex-1 overflow-y-auto p-3 sm:p-6 flex flex-col items-center scroll-smooth">
             {loading && (
               <div className="flex flex-col items-center justify-center py-24 text-slate-500">
                 <Loader2 className="w-8 h-8 animate-spin mb-3" style={{ color: accentColor }} />
@@ -246,37 +306,18 @@ export default function PDFCanvasViewer({
               </div>
             )}
 
-            {error && (
-              <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
-                <div className="bg-white border border-red-200 text-red-700 p-6 rounded-2xl max-w-md shadow-md">
-                  <p className="font-bold text-sm">Erreur de chargement du PDF</p>
-                  <p className="text-xs mt-2 opacity-80">{error}</p>
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-white text-xs font-bold transition-all shadow-sm"
-                    style={{ backgroundColor: accentColor }}
-                  >
-                    <Download className="w-3.5 h-3.5" />
-                    Télécharger le PDF directement
-                  </a>
-                </div>
-              </div>
-            )}
-
             <div ref={containerRef} className="w-full max-w-[850px] flex flex-col items-center"></div>
 
-            {!loading && !error && onClose && (
+            {!loading && onClose && (
               <button
                 onClick={onClose}
                 className="mt-6 mb-12 px-6 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs transition-all border border-[#E2D8CC] hover:scale-102 active:scale-98 flex items-center gap-2 cursor-pointer shadow-md"
               >
                 <X className="w-3.5 h-3.5 text-slate-500" />
-                <span>Fermer le document & Retour au lecteur</span>
+                <span>Fermer le document & Retour</span>
               </button>
             )}
-          </>
+          </div>
         )}
       </div>
     </div>
