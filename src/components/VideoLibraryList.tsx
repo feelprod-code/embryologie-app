@@ -13,8 +13,16 @@ import { useTranslation } from 'react-i18next';
 import { exportCoursePdf } from '../utils/exportCoursePdf';
 import { getCoursePdfUrl } from '../utils/getPdfUrl';
 import PDFShareDropdown from './PDFShareDropdown';
+import PDFDedicatedModal from './PDFDedicatedModal';
 
 
+
+const LAYER_BG_COLORS: Record<string, string> = {
+    ectoderme: "#5A9C51",
+    mesoderme: "#F27D33",
+    endoderme: "#4171B5",
+    oeil: "#F2B729"
+};
 
 interface VideoLibraryListProps {
     onSelectVideo: (video: VideoCourse) => void;
@@ -43,6 +51,7 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
     const [activeTab, setActiveTab] = useState<string>("L'Ectoderme");
     const [expandedCourseId, setExpandedCourseId] = useState<string | null>(null);
     const [highlightedCourseId, setHighlightedCourseId] = useState<string | null>(null);
+    const [dedicatedModalCourse, setDedicatedModalCourse] = useState<VideoCourse | null>(null);
     const touchStartPos = useRef<{ x: number, y: number } | null>(null);
 
     const itemRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
@@ -243,6 +252,10 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                     onLockedVideoClick?.();
                                     return;
                                 }
+                                if (course.isGlobalPdf) {
+                                    setDedicatedModalCourse(course);
+                                    return;
+                                }
                                 onSelectVideo(course);
                             };
 
@@ -435,6 +448,20 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                 </span>
                 <div className="w-12 h-[1px] bg-slate-300/50 mt-1 mb-1"></div>
             </div>
+
+            {dedicatedModalCourse && (
+                <PDFDedicatedModal
+                    isOpen={Boolean(dedicatedModalCourse)}
+                    onClose={() => setDedicatedModalCourse(null)}
+                    url={getCoursePdfUrl(dedicatedModalCourse, i18n.language)}
+                    title={dedicatedModalCourse.title}
+                    courseTitle={dedicatedModalCourse.title}
+                    author="Marc Damoiseaux"
+                    accentColor={LAYER_BG_COLORS[dedicatedModalCourse.categoryId] || "#8B1111"}
+                    hasFullAccess={hasFullAccess}
+                    onLockedClick={onLockedVideoClick}
+                />
+            )}
         </div >
     );
 };

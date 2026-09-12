@@ -11,6 +11,7 @@ import { videoCourses as videoCoursesZh } from "../data/videoCourses_zh";
 import { videoCourses as videoCoursesJa } from "../data/videoCourses_ja";
 import { exportCoursePdf, getNormalizedLang } from "../utils/exportCoursePdf";
 import { getCoursePdfUrl } from "../utils/getPdfUrl";
+import PDFDedicatedModal from "./PDFDedicatedModal";
 
 interface PDFShareDropdownProps {
   pdfUrl: string;
@@ -31,6 +32,8 @@ const DROPDOWN_TEXTS: Record<string, {
   docTitle: string;
   tabChapter: string;
   tabIntegral: string;
+  openDedicated: string;
+  openDedicatedSub: string;
   openNewTab: string;
   openNewTabSub: string;
   generateA4Chapter: string;
@@ -55,6 +58,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "DOCUMENT PDF",
     tabChapter: "Fiche Chapitre",
     tabIntegral: "Recueil Intégral",
+    openDedicated: "Consulter dans l'application",
+    openDedicatedSub: "Fenêtre dédiée haute définition",
     openNewTab: "Ouvrir dans un onglet séparé",
     openNewTabSub: "Plein écran dans le navigateur",
     generateA4Chapter: "Générer la Fiche A4 (Chapitre)",
@@ -79,6 +84,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "PDF DOCUMENT",
     tabChapter: "Chapter Sheet",
     tabIntegral: "Integral Book",
+    openDedicated: "View inside the app",
+    openDedicatedSub: "Dedicated high-definition window",
     openNewTab: "Open in a new tab",
     openNewTabSub: "Full screen in browser",
     generateA4Chapter: "Generate A4 Sheet (Chapter)",
@@ -103,6 +110,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "PDF DOKUMENT",
     tabChapter: "Kapitelblatt",
     tabIntegral: "Gesamtwerk",
+    openDedicated: "In der App ansehen",
+    openDedicatedSub: "Eigenes HD-Fenster",
     openNewTab: "In neuem Tab öffnen",
     openNewTabSub: "Vollbild im Browser",
     generateA4Chapter: "A4-Blatt generieren (Kapitel)",
@@ -127,6 +136,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "DOCUMENTO PDF",
     tabChapter: "Ficha Capítulo",
     tabIntegral: "Manual Integral",
+    openDedicated: "Ver en la aplicación",
+    openDedicatedSub: "Ventana dedicada de alta definición",
     openNewTab: "Abrir en una pestaña separada",
     openNewTabSub: "Pantalla completa en el navegador",
     generateA4Chapter: "Generar Ficha A4 (Capítulo)",
@@ -143,7 +154,7 @@ const DROPDOWN_TEXTS: Record<string, {
     copySub: "Copiar dirección URL",
     copied: "¡Enlace copiado!",
     copiedSub: "Listo para pegar",
-    print: "Imprimir",
+    print: "Imprimer",
     printSub: "Formato A4 estándar",
   },
   it: {
@@ -151,6 +162,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "DOCUMENTO PDF",
     tabChapter: "Scheda Capitolo",
     tabIntegral: "Raccolta Integrale",
+    openDedicated: "Visualizza nell'app",
+    openDedicatedSub: "Finestra dedicata ad alta definizione",
     openNewTab: "Apri in una nuova scheda",
     openNewTabSub: "Schermo intero nel browser",
     generateA4Chapter: "Genera Scheda A4 (Capitolo)",
@@ -175,6 +188,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "PDFドキュメント",
     tabChapter: "章のシート",
     tabIntegral: "完全版マニュアル",
+    openDedicated: "アプリ内で閲覧",
+    openDedicatedSub: "専用HDウィンドウ",
     openNewTab: "新しいタブで開く",
     openNewTabSub: "ブラウザで全画面表示",
     generateA4Chapter: "A4シートを生成 (章)",
@@ -199,6 +214,8 @@ const DROPDOWN_TEXTS: Record<string, {
     docTitle: "PDF 文档",
     tabChapter: "章节学习单",
     tabIntegral: "完整全书",
+    openDedicated: "在应用内浏览",
+    openDedicatedSub: "专属高清窗口",
     openNewTab: "在新标签页中打开",
     openNewTabSub: "在浏览器中全屏查看",
     generateA4Chapter: "生成 A4 学习单 (课时)",
@@ -248,6 +265,7 @@ export default function PDFShareDropdown({
   const isLocked = isIntegral && !hasFullAccess;
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isDedicatedModalOpen, setIsDedicatedModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [position, setPosition] = useState<{ top: number; left: number; width: number }>({
@@ -630,6 +648,36 @@ export default function PDFShareDropdown({
             )}
 
             <div className="space-y-1">
+              {variant !== "viewer-bar" && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsOpen(false);
+                    if (activeTab === "integral" && isGlobalLocked) {
+                      onLockedClick?.();
+                      return;
+                    }
+                    setIsDedicatedModalOpen(true);
+                  }}
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-2xl hover:bg-[#FAF6ED] transition-colors text-left group cursor-pointer"
+                >
+                  <div className="w-10 h-10 rounded-2xl bg-[#EAF5EC] border border-[#CFE8D3] flex items-center justify-center flex-shrink-0 text-[#334E43] transition-all group-hover:scale-105">
+                    <Eye className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-xs font-bold text-slate-900 group-hover:text-slate-950 transition-colors flex items-center gap-1.5">
+                      <span>{labels.openDedicated}</span>
+                      {activeTab === "integral" && isGlobalLocked && (
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">PREMIUM</span>
+                      )}
+                    </div>
+                    <div className="text-[11px] text-slate-500 truncate">
+                      {labels.openDedicatedSub}
+                    </div>
+                  </div>
+                </button>
+              )}
+
               <button
                 type="button"
                 onClick={() => {
@@ -782,6 +830,20 @@ export default function PDFShareDropdown({
           </div>,
           document.body
         )}
+
+      {variant !== "viewer-bar" && isDedicatedModalOpen && (
+        <PDFDedicatedModal
+          isOpen={isDedicatedModalOpen}
+          onClose={() => setIsDedicatedModalOpen(false)}
+          url={activeTab === "integral" ? (globalPdfUrl || resolvedPdfUrl || pdfUrl) : (resolvedPdfUrl || pdfUrl)}
+          title={activeTab === "integral" ? (globalCourse?.title || "Recueil Intégral") : (course?.title || title)}
+          courseTitle={course?.title || title}
+          author={author}
+          accentColor={accentColor}
+          hasFullAccess={hasFullAccess}
+          onLockedClick={onLockedClick}
+        />
+      )}
     </>
   );
 }
