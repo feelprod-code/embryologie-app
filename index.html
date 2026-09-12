@@ -48,11 +48,8 @@
     }
     const searchParams = new URLSearchParams(window.location.search);
     if (
-      window.location.hash.includes('dev') ||
-      searchParams.get('admin') !== null ||
-      searchParams.get('dev') !== null ||
-      searchParams.get('bypass') !== null ||
-      window.location.pathname.startsWith('/dev')
+      searchParams.get('admin') === 'dev' ||
+      searchParams.get('bypass') === 'true'
     ) {
       localStorage.setItem('DEV_BYPASS_AUTH', 'true');
       localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
