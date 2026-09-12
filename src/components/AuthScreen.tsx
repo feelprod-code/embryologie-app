@@ -275,19 +275,6 @@ export const AuthScreen: React.FC = () => {
                                     t('auth.loginBtn', "SE CONNECTER")
                                 )}
                             </button>
-
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    localStorage.setItem('DEV_BYPASS_AUTH', 'true');
-                                    localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
-                                    window.location.href = '/?admin=dev';
-                                }}
-                                className="w-full flex items-center justify-center py-2.5 px-3 rounded-xl sm:rounded-2xl text-xs font-bold text-white bg-gradient-to-r from-[#8C4E33] to-[#EA580C] hover:brightness-105 transition-all mt-2 shadow-sm cursor-pointer"
-                            >
-                                <ShieldAlert className="w-4 h-4 mr-1.5 shrink-0" />
-                                <span>⚡ Accès Développeur Direct (Guillaume)</span>
-                            </button>
                         </form>
                     )}
                 </div>
@@ -313,7 +300,20 @@ export const AuthScreen: React.FC = () => {
                         <Trash2 className="w-3 h-3" /> {t('auth.clearCache', "Vider le cache de l'appareil")}
                     </button>
                     <div className="flex flex-col items-center justify-center">
-                        <span className="text-[9px] sm:text-[10px] text-slate-500/80 font-medium uppercase tracking-[0.25em] text-center relative z-20">
+                        <span 
+                            onClick={() => {
+                                const now = Date.now();
+                                (window as any).__fpClicks = ((window as any).__fpClicks || []).filter((t: number) => now - t < 1500);
+                                (window as any).__fpClicks.push(now);
+                                if ((window as any).__fpClicks.length >= 3) {
+                                    localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+                                    localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
+                                    window.location.href = '/?admin=dev';
+                                }
+                            }}
+                            className="text-[9px] sm:text-[10px] text-slate-500/80 font-medium uppercase tracking-[0.25em] text-center relative z-20 cursor-default select-none"
+                            title=""
+                        >
                             Réalisation FeelProd
                         </span>
                         <div className="w-8 h-[1px] bg-slate-300/50 mt-0.5"></div>
