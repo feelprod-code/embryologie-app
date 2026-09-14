@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin, FileText, Mail, Printer, DollarSign, Wallet, Share2, Send } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin, FileText, Mail, Printer, DollarSign, Wallet, Share2, Send, Sparkles, Lock } from 'lucide-react';
 import { cn } from '../utils';
 import { openInvoiceWindow, openEmailForInvoice, shareInvoice, openDamoiseauxSummaryWindow, openMarcTransferSheetWindow, openEmailForMarcTransfer, shareMarcTransferSheet, type PartnerSale } from '../utils/exportInvoicePdf';
 
@@ -62,8 +62,10 @@ export function AdminDashboard() {
     const totalUsers = profiles.length;
     // Clients ayant réellement réglé sur Stripe (400 €) = 2 (Gilles Ducret & Karl Massou)
     const paidStripeUsers = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || '') && (!!p.stripe_payment_id || p.access_tier === 'premium')).length;
-    // Transferts historiques (anciens élèves de Marc) = 14
+    // Transferts historiques (anciens élèves de Marc réactivés en accès libre)
     const legacyUsers = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || '') && p.access_tier === 'legacy').length;
+    // Inscrits Gratuits Découverte (sans paiement Stripe)
+    const standardUsers = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || '') && !p.stripe_payment_id && p.access_tier !== 'premium' && p.access_tier !== 'legacy').length;
     const trialUsers = profiles.filter(p => getEffectiveTier(p) === 'TRIAL').length;
     const freeUsers = profiles.filter(p => getEffectiveTier(p) === 'FREE').length;
     const conversionRate = totalUsers > 0 ? Math.round((paidStripeUsers / totalUsers) * 100) : 0;
@@ -685,11 +687,18 @@ export function AdminDashboard() {
                             </div>
                             <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
                                 <div>
-                                    <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider block">Accès Transférés</span>
-                                    <span className="text-3xl font-bold text-amber-700 font-bebas block mt-1">{legacyUsers}</span>
+                                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Inscrits Découverte</span>
+                                    <span className="text-3xl font-bold text-slate-700 font-bebas block mt-1">
+                                        {standardUsers}
+                                        {legacyUsers > 0 && (
+                                            <span className="text-xs font-sans font-bold text-amber-600 ml-2">
+                                                (+{legacyUsers} libre)
+                                            </span>
+                                        )}
+                                    </span>
                                 </div>
-                                <div className="p-3 bg-amber-50 text-amber-600 rounded-xl">
-                                    <History size={22} />
+                                <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
+                                    <Users size={22} />
                                 </div>
                             </div>
                             <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
@@ -1183,6 +1192,29 @@ export function AdminDashboard() {
                                                 <ChevronRight size={16} className="rotate-90" />
                                             </div>
                                         </div>
+
+                                        {/* BOUTON RAPIDE 1-CLIC : RÉOUVRIR L'ACCÈS LIBRE (ANCIEN ÉLÈVE MARC) */}
+                                        {getEffectiveTier(selectedProfile) === 'STANDARD' && (
+                                            <button 
+                                                type="button"
+                                                onClick={() => updateTier(selectedProfile.id, 'LEGACY')}
+                                                className="w-full mt-2 py-2.5 px-3 rounded-xl font-bold text-xs bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.98]"
+                                            >
+                                                <Sparkles size={14} className="text-amber-600" />
+                                                🔓 Réouvrir en Accès Libre (Ancien Élève)
+                                            </button>
+                                        )}
+
+                                        {getEffectiveTier(selectedProfile) === 'LEGACY' && (
+                                            <button 
+                                                type="button"
+                                                onClick={() => updateTier(selectedProfile.id, 'STANDARD')}
+                                                className="w-full mt-2 py-2.5 px-3 rounded-xl font-bold text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.98]"
+                                            >
+                                                <Lock size={14} className="text-slate-500" />
+                                                🔒 Repasser en Gratuit Découverte (Verrouiller)
+                                            </button>
+                                        )}
                                     </div>
 
                                     <div className="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-100 mt-2">
