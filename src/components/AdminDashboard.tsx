@@ -48,7 +48,14 @@ export function AdminDashboard() {
     const [filter, setFilter] = useState<FilterType>('ALL');
     const [tierFilter, setTierFilter] = useState<TierFilterType>('ALL');
     const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
-    const [activeTab, setActiveTab] = useState<'users' | 'analytics' | 'payments' | 'compta'>('users');
+    const [activeTab, setActiveTab] = useState<'users' | 'analytics' | 'payments' | 'compta'>(() => {
+        if (typeof window !== 'undefined') {
+            const p = new URLSearchParams(window.location.search);
+            const t = p.get('tab');
+            if (t === 'payments' || t === 'analytics' || t === 'compta' || t === 'users') return t;
+        }
+        return 'users';
+    });
     const [timeframe, setTimeframe] = useState<'week' | 'month' | 'year'>('week');
     const [paymentMonthFilter, setPaymentMonthFilter] = useState<string>('ALL');
 

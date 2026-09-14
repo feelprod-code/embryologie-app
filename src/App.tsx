@@ -516,7 +516,18 @@ function App() {
   const [playingVideoIdx, setPlayingVideoIdx] = useState<number | null>(null);
 
   type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'bibliographie' | 'admin' | 'admin-users' | 'admin-prompts';
-  const [currentView, setCurrentView] = useState<View>('home');
+  const [currentView, setCurrentView] = useState<View>(() => {
+    if (typeof window !== 'undefined') {
+      const p = new URLSearchParams(window.location.search);
+      const v = p.get('view');
+      if (v === 'admin') return 'admin';
+      if (v === 'timeline') return 'timeline';
+      if (v === 'videos' || v === 'video-library') return 'video-library';
+      if (v === 'embryo-ai') return 'embryo-ai';
+      if (v === 'bibliographie') return 'bibliographie';
+    }
+    return 'home';
+  });
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
   const [optimisticView, setOptimisticView] = useState<View | null>(null);
   const [isPending, startTransition] = useTransition();
