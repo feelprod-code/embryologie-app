@@ -26,6 +26,7 @@ import { DesktopMenu } from './components/DesktopMenu';
 import { FullscreenProvider } from './contexts/FullscreenContext';
 import { OrientationLock } from './components/OrientationLock';
 import { SuccessOverlay } from './components/SuccessOverlay';
+import { openInvoiceWindow } from './utils/exportInvoicePdf';
 
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -187,6 +188,19 @@ function App() {
     setIsAdmin(false);
     setIsPremium(false);
     window.location.reload();
+  };
+
+  const handleOpenInvoice = () => {
+    openInvoiceWindow({
+      firstName: session?.user?.user_metadata?.first_name || '',
+      lastName: session?.user?.user_metadata?.last_name || '',
+      email: session?.user?.email || '',
+      profession: session?.user?.user_metadata?.profession || 'Praticien de santé',
+      address: session?.user?.user_metadata?.address || '',
+      location: session?.user?.user_metadata?.location || '',
+      stripePaymentId: session?.user?.stripe_payment_id || null,
+      createdAt: session?.user?.created_at
+    });
   };
 
   useEffect(() => {
@@ -586,7 +600,14 @@ function App() {
       )}
 
       {/* New Fixed Desktop Navigation */}
-      <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} isAdmin={isAdmin} onLogout={handleLogout} />
+      <DesktopMenu 
+        currentView={currentView} 
+        setCurrentView={setCurrentView} 
+        isAdmin={isAdmin} 
+        isPremium={isPremium} 
+        onOpenInvoice={handleOpenInvoice} 
+        onLogout={handleLogout} 
+      />
 
       {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
       {(

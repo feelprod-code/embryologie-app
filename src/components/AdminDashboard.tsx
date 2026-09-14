@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin, FileText } from 'lucide-react';
 import { cn } from '../utils';
+import { openInvoiceWindow } from '../utils/exportInvoicePdf';
 
 type Profile = {
     id: string;
@@ -15,6 +16,7 @@ type Profile = {
     is_active: boolean;
     created_at: string;
     access_tier?: 'legacy' | 'premium' | 'free' | 'trial' | null;
+    is_premium?: boolean;
     expires_at?: string | null;
     stripe_payment_id?: string | null;
 };
@@ -28,6 +30,16 @@ const ADMIN_EMAILS = [
     'marc@damoiseaux.be',
     'vip@feelprod.com'
 ];
+
+export const getEffectiveTier = (p: Profile): 'ADMIN' | 'PREMIUM' | 'LEGACY' | 'FREE' | 'TRIAL' | 'STANDARD' => {
+    if (ADMIN_EMAILS.includes(p.email?.toLowerCase() || '')) return 'ADMIN';
+    if (p.access_tier?.toUpperCase() === 'PREMIUM' || p.stripe_payment_id) return 'PREMIUM';
+    if (p.access_tier?.toUpperCase() === 'TRIAL') return 'TRIAL';
+    if (p.access_tier?.toUpperCase() === 'FREE') return 'FREE';
+    if (p.access_tier?.toUpperCase() === 'LEGACY') return 'LEGACY';
+    if (p.is_premium) return 'LEGACY'; // Élèves actifs / transférés
+    return 'STANDARD';
+};
 
 export function AdminDashboard() {
     const [profiles, setProfiles] = useState<Profile[]>([]);
@@ -48,9 +60,9 @@ export function AdminDashboard() {
 
     // Calculate metrics
     const totalUsers = profiles.length;
-    const premiumUsers = profiles.filter(p => p.access_tier === 'premium' || p.access_tier === 'legacy').length;
-    const trialUsers = profiles.filter(p => p.access_tier === 'trial').length;
-    const freeUsers = profiles.filter(p => p.access_tier === 'free').length;
+    const premiumUsers = profiles.filter(p => getEffectiveTier(p) === 'PREMIUM' || getEffectiveTier(p) === 'LEGACY').length;
+    const trialUsers = profiles.filter(p => getEffectiveTier(p) === 'TRIAL').length;
+    const freeUsers = profiles.filter(p => getEffectiveTier(p) === 'FREE').length;
     const conversionRate = totalUsers > 0 ? Math.round((premiumUsers / totalUsers) * 100) : 0;
 
     useEffect(() => {
@@ -352,12 +364,7 @@ export function AdminDashboard() {
 
     const getTierCount = (tier: TierFilterType) => {
         if (tier === 'ALL') return profiles.length;
-        if (tier === 'ADMIN') return profiles.filter(p => ADMIN_EMAILS.includes(p.email?.toLowerCase() || '')).length;
-        
-        // Pour les autres filtres, on exclut systématiquement les administrateurs
-        const nonAdminProfiles = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || ''));
-        if (tier === 'STANDARD') return nonAdminProfiles.filter(p => !p.access_tier).length;
-        return nonAdminProfiles.filter(p => p.access_tier?.toUpperCase() === tier).length;
+        return profiles.filter(p => getEffectiveTier(p) === tier).length;
     };
 
     // Derived filtered profiles
@@ -375,33 +382,32 @@ export function AdminDashboard() {
     } else if (filter === 'EXPIRED') {
         filteredProfiles = filteredProfiles.filter(p => !p.is_active || isExpired(p.expires_at));
     } else if (filter === 'TRIAL') {
-        filteredProfiles = filteredProfiles.filter(p => p.access_tier === 'trial');
+        filteredProfiles = filteredProfiles.filter(p => getEffectiveTier(p) === 'TRIAL');
     }
 
     if (tierFilter !== 'ALL') {
-        filteredProfiles = filteredProfiles.filter(p => {
-            const isAdmin = ADMIN_EMAILS.includes(p.email?.toLowerCase() || '');
-            if (tierFilter === 'ADMIN') return isAdmin;
-            
-            // Si le filtre n'est ni ALL ni ADMIN, on exclut d'office les administrateurs
-            if (isAdmin) return false;
-
-            if (tierFilter === 'STANDARD') return !p.access_tier; // Pas de tier défini = standard
-            return p.access_tier?.toUpperCase() === tierFilter;
-        });
+        filteredProfiles = filteredProfiles.filter(p => getEffectiveTier(p) === tierFilter);
     }
 
     const renderTierBadge = (profile: Profile) => {
-        if (ADMIN_EMAILS.includes(profile.email?.toLowerCase() || '')) {
-            return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-purple-50 border border-purple-200 text-purple-700"><Shield size={12}/> Admin</span>;
-        }
-
-        switch (profile.access_tier) {
-            case 'premium': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700"><Crown size={12}/> Plein Tarif</span>;
-            case 'legacy': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-amber-50 border border-amber-200 text-amber-700"><History size={12}/> Transfert</span>;
-            case 'free': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-pink-50 border border-pink-200 text-pink-700"><Gift size={12}/> Cadeau</span>;
-            case 'trial': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-blue-50 border border-blue-200 text-blue-700"><Clock size={12}/> Essai 24h</span>;
-            default: return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-slate-100 border border-slate-200 text-slate-500">Standard</span>;
+        const tier = getEffectiveTier(profile);
+        switch (tier) {
+            case 'ADMIN':
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-purple-50 border border-purple-200 text-purple-700"><Shield size={12}/> Admin</span>;
+            case 'PREMIUM':
+                return (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700" title={profile.stripe_payment_id ? `Payé sur Stripe (${profile.stripe_payment_id})` : 'Plein Tarif'}>
+                        <Crown size={12}/> Plein Tarif {profile.stripe_payment_id && <span className="text-[10px] bg-indigo-200/60 px-1.5 py-0.5 rounded font-mono">Stripe</span>}
+                    </span>
+                );
+            case 'LEGACY':
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-amber-50 border border-amber-200 text-amber-700"><History size={12}/> Transfert</span>;
+            case 'FREE':
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-pink-50 border border-pink-200 text-pink-700"><Gift size={12}/> Cadeau</span>;
+            case 'TRIAL':
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-blue-50 border border-blue-200 text-blue-700"><Clock size={12}/> Essai 24h</span>;
+            default:
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-slate-100 border border-slate-200 text-slate-500">Standard</span>;
         }
     };
 
@@ -988,17 +994,32 @@ export function AdminDashboard() {
                                 </button>
                             </div>
                             
-                            {/* Facturation Stripe */}
+                            {/* Facturation Stripe & Facture Officielle */}
                             <div>
                                 <h3 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
-                                    <Crown size={14} /> Paiement & Remboursement
+                                    <Crown size={14} /> Facturation & Règlement
                                 </h3>
                                 <p className="text-xs text-indigo-900/70 mb-3 leading-relaxed">
-                                    Identifiant de transaction Stripe unique lié à ce compte. Utilisé pour lancer un remboursement automatique.
+                                    Identifiant de transaction Stripe lié à ce compte. Vous pouvez imprimer ou télécharger la facture officielle FeelProd.
                                 </p>
                                 <div className="bg-white border text-sm border-slate-200 rounded-xl p-3 mb-3 text-slate-700 max-h-32 overflow-y-auto break-all font-mono text-[10px]">
                                     {selectedProfile.stripe_payment_id || "Aucun paiement Stripe enregistré en base."}
                                 </div>
+                                <button
+                                    onClick={() => openInvoiceWindow({
+                                        firstName: selectedProfile.first_name,
+                                        lastName: selectedProfile.last_name,
+                                        email: selectedProfile.email,
+                                        profession: selectedProfile.profession,
+                                        address: selectedProfile.address,
+                                        location: selectedProfile.location,
+                                        stripePaymentId: selectedProfile.stripe_payment_id,
+                                        createdAt: selectedProfile.created_at
+                                    })}
+                                    className="w-full py-2.5 mb-2 rounded-xl text-slate-800 bg-white border border-slate-300 font-bold text-sm hover:bg-slate-50 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                                >
+                                    <FileText size={16} className="text-amber-600" /> 📄 Générer la Facture FeelProd (PDF)
+                                </button>
                                 <button
                                     onClick={() => refundPayment(selectedProfile.id)}
                                     disabled={!selectedProfile.stripe_payment_id}

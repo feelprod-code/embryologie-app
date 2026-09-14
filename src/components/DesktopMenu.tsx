@@ -3,16 +3,18 @@ import { cn } from '../utils';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './ui/LanguageSwitcher';
 
-import { LogOut, BookOpen } from 'lucide-react';
+import { LogOut, BookOpen, FileText } from 'lucide-react';
 
 interface DesktopMenuProps {
     currentView: string;
     setCurrentView: (view: any) => void;
     isAdmin?: boolean;
+    isPremium?: boolean;
+    onOpenInvoice?: () => void;
     onLogout?: () => void;
 }
 
-export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: DesktopMenuProps) {
+export function DesktopMenu({ currentView, setCurrentView, isAdmin, isPremium, onOpenInvoice, onLogout }: DesktopMenuProps) {
     const { t } = useTranslation();
 
     return (
@@ -101,7 +103,17 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, onLogout }: 
             </div>
 
             {/* Language / Tools */}
-            <div className="flex flex-1 items-center justify-end gap-5">
+            <div className="flex flex-1 items-center justify-end gap-3 xl:gap-4">
+                {isPremium && onOpenInvoice && (
+                    <button
+                        onClick={onOpenInvoice}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-slate-900 hover:border-slate-300 transition-all text-xs font-bold shadow-xs cursor-pointer"
+                        title="Télécharger ma facture officielle FeelProd"
+                    >
+                        <FileText size={14} className="text-amber-600" />
+                        <span className="hidden xl:inline">Ma Facture</span>
+                    </button>
+                )}
                 <LanguageSwitcher variant="desktop-nav" />
                 {onLogout && (
                     <button
