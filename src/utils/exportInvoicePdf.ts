@@ -644,7 +644,7 @@ export function openDamoiseauxSummaryWindow(sales: PartnerSale[], options?: { st
   printWindow.document.close();
 }
 
-export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stripe_and_platform' | 'stripe_only' = 'stripe_and_platform') {
+export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stripe_and_platform' | 'stripe_only' = 'stripe_only') {
   const printWindow = window.open('', '_blank', 'width=950,height=1150');
   if (!printWindow) {
     alert("Veuillez autoriser l'ouverture des fenêtres pop-up pour afficher la fiche de virement.");
@@ -1066,9 +1066,9 @@ export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stri
           <p style="font-weight: 800; color: #0F172A; text-transform: uppercase; font-size: 10.5px; margin-bottom: 6px;">
             Décomposition des Frais & Assiette Partagée
           </p>
-          <p>• <strong>Frais de transaction Stripe :</strong> -${totalStripeFees.toFixed(2)} € (1,5% + 0,25 € par transaction sécurisée CB).</p>
-          <p>• <strong>Quote-part technique & plateforme FeelProd (5%) :</strong> -${totalPlatformFees.toFixed(2)} € (hébergement bande passante Cloudflare R2, streaming HD 24h, tokens assistant IA Claude 3.5 Sonnet).</p>
-          <p>• <strong>Total des déductions partagées :</strong> -${totalFees.toFixed(2)} € déduits à parts égales de la recette brute.</p>
+          <p>• <strong>Frais de transaction bancaire Stripe :</strong> -${totalStripeFees.toFixed(2)} € (1,5% + 0,25 € par transaction CB sécurisée retenus à la source).</p>
+          <p>• <strong>Hébergement vidéo & plateforme Cloudflare R2 :</strong> ${platformFeeRate > 0 ? `-${totalPlatformFees.toFixed(2)} € (5% streaming)` : '<strong style="color: #059669;">0,00 € (100% pris en charge par FEELPROD / Offert à Marc)</strong>'}.</p>
+          <p>• <strong>Total des déductions partagées :</strong> -${totalFees.toFixed(2)} € déduits de la recette brute.</p>
           <p style="margin-top: 4px; font-weight: 600; color: #0F172A;">
             • <strong>Assiette nette 50/50 :</strong> ${totalNet.toFixed(2)} € répartie à 50% FeelProd (${partMarc.toFixed(2)} €) et 50% Marc Damoiseaux (${partMarc.toFixed(2)} €).
           </p>
@@ -1080,19 +1080,19 @@ export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stri
             <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #0F172A;">${totalBrut.toFixed(2)} €</span>
           </div>
           <div class="calc-row" style="color: #DC2626;">
-            <span>Frais Stripe :</span>
+            <span>Frais bancaires Stripe :</span>
             <span style="font-family: 'JetBrains Mono', monospace;">-${totalStripeFees.toFixed(2)} €</span>
           </div>
-          <div class="calc-row" style="color: #DC2626;">
-            <span>Frais Plateforme & Vidéo (5%) :</span>
-            <span style="font-family: 'JetBrains Mono', monospace;">-${totalPlatformFees.toFixed(2)} €</span>
+          <div class="calc-row" style="${platformFeeRate > 0 ? 'color: #DC2626;' : 'color: #059669; font-weight: 700;'}">
+            <span>Frais Vidéo Cloudflare :</span>
+            <span style="font-family: 'JetBrains Mono', monospace;">${platformFeeRate > 0 ? `-${totalPlatformFees.toFixed(2)} €` : 'Offert (0,00 €)'}</span>
           </div>
           <div class="calc-row" style="border-top: 1px dashed #CBD5E1; padding-top: 6px; margin-top: 6px; color: #0F172A; font-weight: 700;">
             <span>Assiette Nette Totale :</span>
             <span style="font-family: 'JetBrains Mono', monospace;">${totalNet.toFixed(2)} €</span>
           </div>
           <div class="calc-row total">
-            <span style="color: #1D4ED8; font-size: 12.5px;">Net à Virer à Marc :</span>
+            <span style="color: #1D4ED8; font-size: 12.5px;">Net à Virer à Marc (50%) :</span>
             <span style="font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 900; color: #1D4ED8;">${partMarc.toFixed(2)} €</span>
           </div>
         </div>
@@ -1145,7 +1145,7 @@ export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stri
   printWindow.document.close();
 }
 
-export function openEmailForMarcTransfer(sales: PartnerSale[], feeMode: 'stripe_and_platform' | 'stripe_only' = 'stripe_and_platform') {
+export function openEmailForMarcTransfer(sales: PartnerSale[], feeMode: 'stripe_and_platform' | 'stripe_only' = 'stripe_only') {
   const totalBrut = sales.reduce((acc, s) => acc + s.amount, 0);
   const stripeFeePerSale = 6.25;
   const platformFeeRate = feeMode === 'stripe_and_platform' ? 0.05 : 0;
@@ -1169,8 +1169,8 @@ ${salesSummary}
 
 Chiffres clés du décompte :
 - Total brut encaissé : ${totalBrut.toFixed(2)} €
-- Frais Stripe opérateur bancaire : -${totalStripeFees.toFixed(2)} €
-- Frais techniques & plateforme vidéo FeelProd (5%) : -${totalPlatformFees.toFixed(2)} €
+- Frais bancaires Stripe (retenus à la source) : -${totalStripeFees.toFixed(2)} €
+- Frais hébergement vidéo & plateforme Cloudflare R2 : ${platformFeeRate > 0 ? `-${totalPlatformFees.toFixed(2)} €` : '0,00 € (100% pris en charge par FeelProd)'}
 - Total des déductions partagées : -${totalFees.toFixed(2)} €
 - Assiette nette totale répartissable (50/50) : ${totalNet.toFixed(2)} €
 
@@ -1187,7 +1187,7 @@ Guillaume Philippe — FeelProd`
   window.location.href = `mailto:marc@damoiseaux.be?subject=${subject}&body=${body}`;
 }
 
-export async function shareMarcTransferSheet(sales: PartnerSale[], feeMode: 'stripe_and_platform' | 'stripe_only' = 'stripe_and_platform') {
+export async function shareMarcTransferSheet(sales: PartnerSale[], feeMode: 'stripe_and_platform' | 'stripe_only' = 'stripe_only') {
   const totalBrut = sales.reduce((acc, s) => acc + s.amount, 0);
   const stripeFeePerSale = 6.25;
   const platformFeeRate = feeMode === 'stripe_and_platform' ? 0.05 : 0;

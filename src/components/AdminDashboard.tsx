@@ -70,8 +70,8 @@ export function AdminDashboard() {
     const freeUsers = profiles.filter(p => getEffectiveTier(p) === 'FREE').length;
     const conversionRate = totalUsers > 0 ? Math.round((paidStripeUsers / totalUsers) * 100) : 0;
 
-    // Mode de déduction des frais pour le bilan Marc Damoiseaux
-    const [feeMode, setFeeMode] = useState<'stripe_and_platform' | 'stripe_only'>('stripe_and_platform');
+    // Mode de déduction des frais pour le bilan Marc Damoiseaux (Par défaut : stripe_only, FeelProd offre 100% des frais Cloudflare / hébergement)
+    const [feeMode, setFeeMode] = useState<'stripe_and_platform' | 'stripe_only'>('stripe_only');
 
     // Partner & Accounting Sales (Marc Damoiseaux 50% / FeelProd 50%)
     const partnerSales: PartnerSale[] = profiles
