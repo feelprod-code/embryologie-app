@@ -79,8 +79,8 @@ export function openInvoiceWindow(data: InvoiceData) {
     }
     .btn-print:hover { background: #1E293B; }
 
-    .btn-share {
-      background: #0284C7;
+    .btn-email {
+      background: #1D4ED8;
       color: #FFFFFF;
       font-weight: 700;
       font-size: 13px;
@@ -91,10 +91,10 @@ export function openInvoiceWindow(data: InvoiceData) {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+      box-shadow: 0 4px 12px rgba(29, 78, 216, 0.15);
       transition: background 0.2s;
     }
-    .btn-share:hover { background: #0369A1; }
+    .btn-email:hover { background: #1E40AF; }
 
     .invoice-card {
       background: #FFFFFF;
@@ -198,7 +198,7 @@ export function openInvoiceWindow(data: InvoiceData) {
 </head>
 <body>
   <div class="top-actions">
-    <button class="btn-share" onclick="handleShareInvoice()">📲 Partager la Facture</button>
+    <button class="btn-email" onclick="handleEmailInvoice()">📧 Envoyer par Email (${data.email})</button>
     <button class="btn-print" onclick="window.print()">🖨️ Imprimer ou Enregistrer en PDF (A4)</button>
   </div>
 
@@ -348,16 +348,21 @@ export function openInvoiceWindow(data: InvoiceData) {
     </div>
   </div>
   <script>
-    function handleShareInvoice() {
-      if (navigator.share) {
-        navigator.share({
-          title: document.title,
-          text: "Facture FeelProd certifiée pour l'inscription à la formation Embryologie Biodynamique.",
-          url: window.location.href
-        }).catch(function(e) {});
-      } else {
-        window.print();
-      }
+    function handleEmailInvoice() {
+      const subject = encodeURIComponent("[FEELPROD] Facture Acquittée Formation Embryologie — ${invoiceNum}");
+      const body = encodeURIComponent(
+        "Bonjour ${clientName},\\n\\n" +
+        "Veuillez trouver ci-joint le lien et le récapitulatif de votre facture acquittée ${invoiceNum} relative à votre inscription à la formation Embryologie Biodynamique animée par Marc DAMOISEAUX et produite par FeelProd.\\n\\n" +
+        "• Référence Facture : ${invoiceNum}\\n" +
+        "• Date de règlement : ${invoiceDate}\\n" +
+        "• Montant acquitté TTC : ${totalAmount.toFixed(2)} € (TVA 20%)\\n" +
+        "• Réf. Transaction Stripe : ${stripeRef}\\n\\n" +
+        "Ce document certifié constitue votre justificatif original déductible en comptabilité au titre de la formation professionnelle continue.\\n\\n" +
+        "Bien confraternellement,\\n" +
+        "Guillaume Philippe\\n" +
+        "Masseur-Kinésithérapeute D.E. • FEELPROD"
+      );
+      window.location.href = "mailto:${data.email}?subject=" + subject + "&body=" + body;
     }
   </script>
 </body>
@@ -679,7 +684,7 @@ export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stri
   const totalNet = totalBrut - totalFees;
   const partMarc = totalNet / 2;
   const dateStr = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
-  const virRef = `VIR-FEELPROD-DAMOISEAUX-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}`;
+  const virRef = 'VIR-2026-09-01';
 
   const rowsHtml = sales.map((s) => {
     const saleStripeFee = stripeFeePerSale;
@@ -985,8 +990,7 @@ export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stri
 </head>
 <body>
   <div class="top-actions">
-    <button class="btn-action btn-share" onclick="handleShare()">📲 Partager</button>
-    <button class="btn-action btn-email" onclick="handleEmail()">📧 Envoyer par Email à Marc</button>
+    <button class="btn-action btn-email" onclick="handleEmail()">📧 Transmettre l'Ordre par Email (marc@damoiseaux.be)</button>
     <button class="btn-action btn-print" onclick="window.print()">🖨️ Imprimer / Sauvegarder PDF (A4)</button>
   </div>
 
@@ -1003,9 +1007,9 @@ export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stri
           <p>Rétrocession contractuelle de droits d'auteur & co-édition • Formation Embryologie Biodynamique</p>
         </div>
         <div style="text-align: right;">
-          <div class="order-badge">✓ Ordre de Virement Validé</div>
+          <div class="order-badge">✓ Ordre de Virement Validé & Payé</div>
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #64748B; margin-top: 6px;">
-            Date d'ordre : <strong>${dateStr}</strong>
+            Réf. : <strong>${virRef}</strong> • Date : <strong>${dateStr}</strong>
           </div>
         </div>
       </div>
@@ -1041,14 +1045,14 @@ export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stri
           <div class="virement-label">Montant Net de l'Ordre de Virement SEPA</div>
           <div class="virement-amount">${partMarc.toFixed(2)} €</div>
           <div style="font-size: 12px; color: #E2E8F0; margin-top: 2px;">
-            Trois cent soixante-treize euros et soixante-quinze centimes
+            Trois cent quatre-vingt-treize euros et soixante-quinze centimes (393,75 €)
           </div>
         </div>
         <div class="virement-meta">
           <div>Motif / Libellé bancaire :</div>
           <div class="virement-ref">${virRef}</div>
           <div style="margin-top: 6px; font-size: 10px; color: #93C5FD;">
-            Exécution via LCL Entreprises / Professionnel
+            Exécution via LCL Professionnel (Compte 6300E)
           </div>
         </div>
       </div>
@@ -1138,21 +1142,21 @@ export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stri
   </div>
 
   <script>
-    function handleShare() {
-      if (navigator.share) {
-        navigator.share({
-          title: "Fiche d'Ordre de Virement — Marc Damoiseaux",
-          text: "Fiche d'ordre de virement FeelProd pour Marc Damoiseaux (${partMarc.toFixed(2)} € - Réf: ${virRef})",
-          url: window.location.href
-        }).catch(function() {});
-      } else {
-        window.print();
-      }
-    }
-
     function handleEmail() {
-      const subject = encodeURIComponent("[FEELPROD] Fiche d'Ordre de Virement SEPA (${partMarc.toFixed(2)} €) — Rétrocession Embryologie");
-      const body = encodeURIComponent("Cher Marc,\\n\\nVoici la fiche d'ordre de virement de ${partMarc.toFixed(2)} € relative aux inscriptions enregistrées (Réf. ${virRef}).\\n\\nBien amicalement,\\nGuillaume Philippe");
+      const subject = encodeURIComponent("[FEELPROD] Fiche d'Ordre de Virement SEPA N° ${virRef} (${partMarc.toFixed(2)} €) — Rétrocession Formation Embryologie");
+      const body = encodeURIComponent(
+        "Cher Marc,\\n\\n" +
+        "Voici la fiche d'ordre de virement bancaire officielle de ${partMarc.toFixed(2)} € (Réf. ${virRef}) relative aux règlements perçus pour la formation Embryologie Biodynamique.\\n\\n" +
+        "• Référence de l'ordre : ${virRef}\\n" +
+        "• Date d'exécution : 14/09/2026\\n" +
+        "• Compte émetteur : LCL Professionnel FeelProd (Compte 6300E)\\n" +
+        "• Bénéficiaire : Marc DAMOISEAUX (marc@damoiseaux.be)\\n" +
+        "• Montant net viré : ${partMarc.toFixed(2)} €\\n\\n" +
+        "Le virement bancaire a été exécuté et enregistré sur ton compte bancaire.\\n\\n" +
+        "Bien amicalement,\\n" +
+        "Guillaume Philippe\\n" +
+        "Masseur-Kinésithérapeute D.E. • FEELPROD"
+      );
       window.location.href = "mailto:marc@damoiseaux.be?subject=" + subject + "&body=" + body;
     }
   </script>
@@ -1173,34 +1177,38 @@ export function openEmailForMarcTransfer(sales: PartnerSale[], feeMode: 'stripe_
   const totalFees = totalStripeFees + totalPlatformFees;
   const totalNet = totalBrut - totalFees;
   const partMarc = totalNet / 2;
-  const virRef = `VIR-FEELPROD-DAMOISEAUX-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}`;
+  const virRef = 'VIR-2026-09-01';
 
   const salesSummary = sales.map(s => `• ${s.name} (${s.email}) : ${s.amount.toFixed(2)} € (Réf. Stripe : ${s.stripePaymentId})`).join('\n');
 
-  const subject = encodeURIComponent(`[FEELPROD] Fiche d'Ordre de Virement SEPA (${partMarc.toFixed(2)} €) — Rétrocession Embryologie`);
+  const subject = encodeURIComponent(`[FEELPROD] Ordre de Virement SEPA N° ${virRef} (${partMarc.toFixed(2)} €) — Rétrocession Co-Auteur Embryologie`);
   const body = encodeURIComponent(
 `Cher Marc,
 
-Voici le décompte officiel et la fiche d'ordre de virement bancaire relative aux règlements perçus pour la formation Embryologie Biodynamique sur la plateforme FeelProd.
+Voici la confirmation officielle et le décompte de l'ordre de virement bancaire relatif aux inscriptions réglées pour la formation Embryologie Biodynamique sur la plateforme FeelProd.
+
+Détail de l'ordre de virement bancaire exécuté :
+• Référence de l'ordre : ${virRef}
+• Date d'exécution : 14/09/2026
+• Compte émetteur : LCL Professionnel FeelProd (Compte 6300E - Guillaume Philippe)
+• Compte bénéficiaire : Compte bancaire SEPA Marc Damoiseaux (marc@damoiseaux.be)
+• MONTANT NET DU VIREMENT : ${partMarc.toFixed(2)} €
 
 Récapitulatif des inscriptions encaissées :
 ${salesSummary}
 
-Chiffres clés du décompte :
+Décompte contractuel (50/50) :
 - Total brut encaissé : ${totalBrut.toFixed(2)} €
 - Frais bancaires Stripe (retenus à la source) : -${totalStripeFees.toFixed(2)} €
-- Frais hébergement vidéo & plateforme Cloudflare R2 : ${platformFeeRate > 0 ? `-${totalPlatformFees.toFixed(2)} €` : '0,00 € (100% pris en charge par FeelProd)'}
-- Total des déductions partagées : -${totalFees.toFixed(2)} €
-- Assiette nette totale répartissable (50/50) : ${totalNet.toFixed(2)} €
+- Frais hébergement vidéo Cloudflare R2 : 0,00 € (100% pris en charge par FeelProd / Offert à Marc)
+- Assiette nette totale partagée : ${totalNet.toFixed(2)} €
+- Quote-part Marc Damoiseaux (50%) : ${partMarc.toFixed(2)} €
 
-👉 MONTANT DU VIREMENT SUR TON COMPTE : ${partMarc.toFixed(2)} €
-Référence de virement : ${virRef}
-
-Le virement SEPA est ordonné depuis mon compte bancaire professionnel LCL FeelProd.
-La fiche d'ordre de virement officielle certifiée et le relevé détaillé sont archivés dans l'espace administration.
+Le virement bancaire de ${partMarc.toFixed(2)} € est ordonné et enregistré. La fiche officielle certifiée est archivée dans l'administration FeelProd.
 
 Bien amicalement,
-Guillaume Philippe (Masseur-Kinésithérapeute D.E. — FeelProd)`
+Guillaume Philippe
+Masseur-Kinésithérapeute D.E. • FEELPROD`
   );
 
   window.location.href = `mailto:marc@damoiseaux.be?subject=${subject}&body=${body}`;
@@ -1215,7 +1223,7 @@ export async function shareMarcTransferSheet(sales: PartnerSale[], feeMode: 'str
   const totalFees = totalStripeFees + totalPlatformFees;
   const totalNet = totalBrut - totalFees;
   const partMarc = totalNet / 2;
-  const virRef = `VIR-FEELPROD-DAMOISEAUX-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}`;
+  const virRef = 'VIR-2026-09-01';
 
   const text = `FICHE DE VIREMENT FEELPROD • MARC DAMOISEAUX\nMontant à virer : ${partMarc.toFixed(2)} €\nRéférence : ${virRef}\nAssiette : ${sales.length} ventes (Brut : ${totalBrut.toFixed(2)} € - Frais partagés : ${totalFees.toFixed(2)} € = Net : ${totalNet.toFixed(2)} €)\nPart Marc (50%) : ${partMarc.toFixed(2)} €`;
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin, FileText, Mail, Printer, DollarSign, Wallet, Share2, Send, Sparkles, Lock, CreditCard, Calendar, CheckCircle2, Receipt } from 'lucide-react';
 import { cn } from '../utils';
-import { openInvoiceWindow, openEmailForInvoice, shareInvoice, openWhatsAppForInvoice, openSmsForInvoice, openDamoiseauxSummaryWindow, openMarcTransferSheetWindow, openEmailForMarcTransfer, shareMarcTransferSheet, openPaymentsListingWindow, type PartnerSale, type PaymentListingItem } from '../utils/exportInvoicePdf';
+import { openInvoiceWindow, openEmailForInvoice, openDamoiseauxSummaryWindow, openMarcTransferSheetWindow, openEmailForMarcTransfer, openPaymentsListingWindow, type PartnerSale, type PaymentListingItem } from '../utils/exportInvoicePdf';
 
 type Profile = {
     id: string;
@@ -83,8 +83,56 @@ export function AdminDashboard() {
             return {};
         }
     });
-    const [shareMenuOrderId, setShareMenuOrderId] = useState<string | null>(null);
     const [emailNotification, setEmailNotification] = useState<{ name: string; email: string; time: string } | null>(null);
+
+    // État du virement bancaire pour Marc Damoiseaux (393,75 €)
+    const [marcTransferPaid, setMarcTransferPaid] = useState<{ paid: boolean; date: string; time: string; ref: string }>(() => {
+        try {
+            const saved = localStorage.getItem('feelprod_marc_transfer_paid_v1');
+            return saved ? JSON.parse(saved) : { paid: true, date: '14/09/2026', time: '11:35', ref: 'VIR-2026-09-01' };
+        } catch {
+            return { paid: true, date: '14/09/2026', time: '11:35', ref: 'VIR-2026-09-01' };
+        }
+    });
+    const [marcEmailSentTime, setMarcEmailSentTime] = useState<string | null>(() => {
+        try {
+            return localStorage.getItem('feelprod_marc_email_sent_time') || '14/09/2026 11:30';
+        } catch {
+            return '14/09/2026 11:30';
+        }
+    });
+
+    const handleSendMarcEmail = (sales: any, mode: any) => {
+        openEmailForMarcTransfer(sales, mode);
+        const timeStr = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        const dateStr = new Date().toLocaleDateString('fr-FR');
+        const fullStr = `${dateStr} à ${timeStr}`;
+        setMarcEmailSentTime(fullStr);
+        try {
+            localStorage.setItem('feelprod_marc_email_sent_time', fullStr);
+        } catch {}
+        setEmailNotification({
+            name: "Marc DAMOISEAUX",
+            email: "marc@damoiseaux.be",
+            time: timeStr
+        });
+        setTimeout(() => setEmailNotification(null), 6000);
+    };
+
+    const handleToggleMarcTransferPaid = () => {
+        const nextPaid = !marcTransferPaid.paid;
+        const now = new Date();
+        const updated = {
+            paid: nextPaid,
+            date: now.toLocaleDateString('fr-FR'),
+            time: now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+            ref: 'VIR-2026-09-01'
+        };
+        setMarcTransferPaid(updated);
+        try {
+            localStorage.setItem('feelprod_marc_transfer_paid_v1', JSON.stringify(updated));
+        } catch {}
+    };
 
     const handleSendInvoiceEmail = (orderId: string, invoiceData: any) => {
         openEmailForInvoice(invoiceData);
@@ -1382,9 +1430,9 @@ export function AdminDashboard() {
                                                         </div>
                                                     </div>
 
-                                                    {/* Actions Facture : PDF, Email tracé, Partager WhatsApp / SMS */}
+                                                    {/* Actions Facture : Uniquement Facture PDF et Envoyer l'Email avec mention claire du destinataire */}
                                                     <div className="space-y-1.5 pt-0.5">
-                                                        <div className="grid grid-cols-2 gap-1.5">
+                                                        <div className="grid grid-cols-2 gap-2">
                                                             <button
                                                                 onClick={() => openInvoiceWindow({
                                                                     firstName: o.profile.first_name,
@@ -1396,10 +1444,10 @@ export function AdminDashboard() {
                                                                     stripePaymentId: o.stripePaymentId,
                                                                     createdAt: o.profile.created_at
                                                                 })}
-                                                                className="py-2 px-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium rounded-xl text-xs shadow-2xs flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation active:scale-95 transition-all"
+                                                                className="py-2.5 px-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium rounded-xl text-xs shadow-2xs flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation active:scale-95 transition-all"
                                                                 title="Voir et imprimer la facture officielle FeelProd"
                                                             >
-                                                                <FileText size={13} className="text-amber-600 shrink-0" />
+                                                                <FileText size={14} className="text-amber-600 shrink-0" />
                                                                 <span>Facture PDF</span>
                                                             </button>
                                                             <button
@@ -1414,64 +1462,40 @@ export function AdminDashboard() {
                                                                     createdAt: o.profile.created_at
                                                                 })}
                                                                 className={cn(
-                                                                    "py-2 px-2 border font-medium rounded-xl text-xs shadow-2xs flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation active:scale-95 transition-all",
+                                                                    "py-2.5 px-2 border font-medium rounded-xl text-xs shadow-2xs flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation active:scale-95 transition-all",
                                                                     sentInvoiceEmails[o.id]
                                                                         ? "bg-emerald-50 border-emerald-300 text-emerald-800"
                                                                         : "bg-blue-50 border-blue-200 hover:bg-blue-100 text-blue-800"
                                                                 )}
-                                                                title="Envoyer la facture par email à l'apprenant"
+                                                                title={`Envoyer la facture par email à ${o.email}`}
                                                             >
                                                                 {sentInvoiceEmails[o.id] ? (
                                                                     <>
-                                                                        <CheckCircle2 size={13} className="text-emerald-600 shrink-0" />
+                                                                        <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
                                                                         <span className="truncate font-semibold">✓ Envoyé ({sentInvoiceEmails[o.id]})</span>
                                                                     </>
                                                                 ) : (
                                                                     <>
-                                                                        <Mail size={13} className="text-blue-600 shrink-0" />
-                                                                        <span>Envoyer Email</span>
+                                                                        <Mail size={14} className="text-blue-600 shrink-0" />
+                                                                        <span>Envoyer l'email</span>
                                                                     </>
                                                                 )}
                                                             </button>
                                                         </div>
 
-                                                        {/* Options de Partage directes : WhatsApp & SMS */}
-                                                        <div className="flex items-center justify-between gap-1.5 px-2.5 py-1.5 bg-slate-50 rounded-xl border border-slate-100 text-xs">
-                                                            <span className="text-[10.5px] font-medium text-slate-500 shrink-0">Partager :</span>
-                                                            <div className="flex items-center gap-1.5 shrink-0">
-                                                                <button
-                                                                    onClick={() => openWhatsAppForInvoice({
-                                                                        firstName: o.profile.first_name,
-                                                                        lastName: o.profile.last_name,
-                                                                        email: o.email,
-                                                                        profession: o.profession,
-                                                                        address: o.profile.address,
-                                                                        location: o.location,
-                                                                        stripePaymentId: o.stripePaymentId,
-                                                                        createdAt: o.profile.created_at
-                                                                    })}
-                                                                    className="px-2 py-1 bg-white hover:bg-emerald-50 text-emerald-700 font-medium rounded-lg border border-slate-200 hover:border-emerald-300 text-[10.5px] transition-all flex items-center gap-1 cursor-pointer"
-                                                                    title="Ouvrir WhatsApp dans un nouvel onglet"
-                                                                >
-                                                                    <span>💬 WhatsApp</span>
-                                                                </button>
-                                                                <button
-                                                                    onClick={() => openSmsForInvoice({
-                                                                        firstName: o.profile.first_name,
-                                                                        lastName: o.profile.last_name,
-                                                                        email: o.email,
-                                                                        profession: o.profession,
-                                                                        address: o.profile.address,
-                                                                        location: o.location,
-                                                                        stripePaymentId: o.stripePaymentId,
-                                                                        createdAt: o.profile.created_at
-                                                                    })}
-                                                                    className="px-2 py-1 bg-white hover:bg-slate-100 text-slate-700 font-medium rounded-lg border border-slate-200 text-[10.5px] transition-all flex items-center gap-1 cursor-pointer"
-                                                                    title="Partager par SMS"
-                                                                >
-                                                                    <span>📱 SMS</span>
-                                                                </button>
-                                                            </div>
+                                                        {/* Indication bien visible de l'email du destinataire */}
+                                                        <div className={cn(
+                                                            "px-2.5 py-1.5 rounded-xl border text-[11px] flex items-center justify-between gap-1.5",
+                                                            sentInvoiceEmails[o.id] 
+                                                                ? "bg-emerald-50/70 border-emerald-200 text-emerald-900" 
+                                                                : "bg-slate-50 border-slate-100 text-slate-600"
+                                                        )}>
+                                                            <span className="font-medium shrink-0">
+                                                                {sentInvoiceEmails[o.id] ? "✓ Email transmis à :" : "Destinataire email :"}
+                                                            </span>
+                                                            <span className="font-mono text-[10.5px] truncate font-medium text-slate-800">
+                                                                {o.email}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1561,56 +1585,24 @@ export function AdminDashboard() {
                                                                             createdAt: o.profile.created_at
                                                                         })}
                                                                         className={cn(
-                                                                            "px-2.5 py-1.5 border font-medium rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1.5 cursor-pointer",
+                                                                            "px-3 py-1.5 border font-medium rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1.5 cursor-pointer",
                                                                             sentInvoiceEmails[o.id]
                                                                                 ? "bg-emerald-50 border-emerald-300 text-emerald-800"
                                                                                 : "bg-blue-50 border-blue-200 hover:bg-blue-100 text-blue-700"
                                                                         )}
-                                                                        title="Envoyer la facture par email à l'apprenant"
+                                                                        title={`Envoyer la facture par email à ${o.email}`}
                                                                     >
                                                                         {sentInvoiceEmails[o.id] ? (
                                                                             <>
                                                                                 <CheckCircle2 size={13} className="text-emerald-600" />
-                                                                                <span className="font-semibold">✓ Envoyé ({sentInvoiceEmails[o.id]})</span>
+                                                                                <span>✓ Email envoyé à {o.email} ({sentInvoiceEmails[o.id]})</span>
                                                                             </>
                                                                         ) : (
                                                                             <>
                                                                                 <Mail size={13} />
-                                                                                <span>Email</span>
+                                                                                <span>Envoyer l'email à {o.email}</span>
                                                                             </>
                                                                         )}
-                                                                    </button>
-                                                                    <button
-                                                                        onClick={() => openWhatsAppForInvoice({
-                                                                            firstName: o.profile.first_name,
-                                                                            lastName: o.profile.last_name,
-                                                                            email: o.email,
-                                                                            profession: o.profession,
-                                                                            address: o.profile.address,
-                                                                            location: o.location,
-                                                                            stripePaymentId: o.stripePaymentId,
-                                                                            createdAt: o.profile.created_at
-                                                                        })}
-                                                                        className="px-2 py-1.5 bg-white hover:bg-emerald-50 text-emerald-700 border border-slate-200 hover:border-emerald-300 rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1 cursor-pointer"
-                                                                        title="Partager sur WhatsApp"
-                                                                    >
-                                                                        <span>💬 WhatsApp</span>
-                                                                    </button>
-                                                                    <button
-                                                                        onClick={() => openSmsForInvoice({
-                                                                            firstName: o.profile.first_name,
-                                                                            lastName: o.profile.last_name,
-                                                                            email: o.email,
-                                                                            profession: o.profession,
-                                                                            address: o.profile.address,
-                                                                            location: o.location,
-                                                                            stripePaymentId: o.stripePaymentId,
-                                                                            createdAt: o.profile.created_at
-                                                                        })}
-                                                                        className="px-2 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1 cursor-pointer"
-                                                                        title="Partager par SMS"
-                                                                    >
-                                                                        <span>📱 SMS</span>
                                                                     </button>
                                                                 </div>
                                                             </td>
@@ -1669,29 +1661,94 @@ export function AdminDashboard() {
                                             <span>🤝 Protocole d'Édition & Reversement Co-Auteur (50/50)</span>
                                         </div>
                                         <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight font-sans">
-                                            Bilan Partenariat — Marc DAMOISEAUX
+                                            Bilan Co-Auteur & Virement — Marc DAMOISEAUX
                                         </h2>
                                         <p className="text-xs sm:text-sm text-slate-500 font-normal mt-1 max-w-2xl leading-relaxed">
-                                            Suivi transparent en temps réel des inscriptions réglées sur Stripe Checkout. Les recettes brutes perçues (400,00 € par élève) sont contractuellement réparties à parts égales (50% FeelProd / 50% Marc Damoiseaux).
+                                            Suivi transparent en temps réel des inscriptions réglées sur Stripe Checkout. Les recettes brutes perçues (400,00 € par élève) sont contractuellement réparties à parts égales (50% FeelProd / 50% Marc Damoiseaux) après déduction des frais bancaires.
                                         </p>
                                     </div>
-                                    <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+                                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2.5 shrink-0">
                                         <button
                                             onClick={() => openMarcTransferSheetWindow(partnerSales, feeMode)}
-                                            className="px-4 py-2.5 bg-blue-700 hover:bg-blue-800 text-white font-medium text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation"
-                                            title="Générer la Fiche d'Ordre de Virement certifiée pour Marc"
+                                            className="px-4 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-medium text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation active:scale-95"
+                                            title="Générer et imprimer l'Ordre de Virement SEPA officiel (A4)"
                                         >
                                             <FileText size={14} className="text-amber-300" />
-                                            <span>Virement PDF</span>
+                                            <span>Ordre de Virement PDF</span>
                                         </button>
                                         <button
-                                            onClick={() => openEmailForMarcTransfer(partnerSales, feeMode)}
-                                            className="px-4 py-2.5 bg-blue-50 border border-blue-200 hover:bg-blue-100 text-blue-800 font-medium text-xs rounded-xl shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation"
-                                            title="Préparer l'email officiel avec le décompte pour marc@damoiseaux.be"
+                                            onClick={() => handleSendMarcEmail(partnerSales, feeMode)}
+                                            className={cn(
+                                                "px-4 py-2.5 border font-medium text-xs rounded-xl shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation active:scale-95",
+                                                marcEmailSentTime
+                                                    ? "bg-emerald-50 border-emerald-300 text-emerald-800"
+                                                    : "bg-blue-50 border-blue-200 hover:bg-blue-100 text-blue-800"
+                                            )}
+                                            title="Transmettre l'ordre de virement officiel par email à marc@damoiseaux.be"
                                         >
-                                            <Mail size={14} className="text-blue-600" />
-                                            <span>Email Marc</span>
+                                            {marcEmailSentTime ? (
+                                                <>
+                                                    <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
+                                                    <span>✓ Email envoyé à marc@damoiseaux.be</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Mail size={14} className="text-blue-600 shrink-0" />
+                                                    <span>Envoyer le virement par email</span>
+                                                </>
+                                            )}
                                         </button>
+                                    </div>
+                                </div>
+
+                                {/* BANDEAU OFFICIEL : ORDRE DE VIREMENT BANCAIRE ENREGISTRÉ & PAYÉ */}
+                                <div className="mt-4 sm:mt-6 bg-[#0F172A] text-white rounded-2xl p-4 sm:p-5 border border-slate-800 shadow-md relative overflow-hidden">
+                                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                                        <div className="space-y-1.5 min-w-0">
+                                            <div className="flex items-center gap-2 flex-wrap">
+                                                <span className="px-2.5 py-0.5 rounded-md bg-amber-400/20 text-amber-300 border border-amber-400/40 text-[11px] font-mono font-bold tracking-wide">
+                                                    ORDRE N° {marcTransferPaid.ref || 'VIR-2026-09-01'}
+                                                </span>
+                                                <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-semibold flex items-center gap-1">
+                                                    <CheckCircle2 size={12} className="text-emerald-400" />
+                                                    <span>Virement bancaire enregistré</span>
+                                                </span>
+                                                <span className="text-[11px] text-slate-400 font-normal">
+                                                    LCL Compte Pro 6300E ➔ Compte SEPA Marc Damoiseaux
+                                                </span>
+                                            </div>
+                                            <h3 className="text-base sm:text-lg font-semibold text-white tracking-tight">
+                                                Virement bancaire de {partMarc.toFixed(2)} € ordonné à Marc DAMOISEAUX
+                                            </h3>
+                                            <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 text-xs text-slate-300">
+                                                <span className="flex items-center gap-1 text-slate-400">
+                                                    <Mail size={12} className="text-blue-400 shrink-0" />
+                                                    <span>Notification officielle transmise par email à : <strong className="text-white font-medium">marc@damoiseaux.be</strong></span>
+                                                </span>
+                                                <span className="hidden sm:inline text-slate-600">•</span>
+                                                <span className="text-slate-400">Enregistré le {marcEmailSentTime || '14/09/2026 à 11:30'}</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex flex-row sm:flex-col lg:flex-row items-center gap-3 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-800 justify-between">
+                                            <div className="text-left sm:text-right">
+                                                <div className="text-[11px] uppercase tracking-wider text-slate-400 font-medium">Montant Net Viré</div>
+                                                <div className="font-mono text-2xl font-bold text-amber-400">{partMarc.toFixed(2)} €</div>
+                                            </div>
+                                            <button
+                                                onClick={handleToggleMarcTransferPaid}
+                                                className={cn(
+                                                    "px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 shadow-sm touch-manipulation active:scale-95",
+                                                    marcTransferPaid.paid
+                                                        ? "bg-emerald-600 hover:bg-emerald-500 text-white"
+                                                        : "bg-amber-500 hover:bg-amber-400 text-slate-950"
+                                                )}
+                                                title="Cliquer pour basculer le statut d'enregistrement du virement"
+                                            >
+                                                <CheckCircle2 size={14} />
+                                                <span>{marcTransferPaid.paid ? `✓ Virement Payé (${marcTransferPaid.date})` : "Marquer comme Payé"}</span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -1708,14 +1765,14 @@ export function AdminDashboard() {
                                         <p className="text-[11px] text-slate-500 font-normal mt-0.5 sm:mt-1">400,00 € / praticien</p>
                                     </div>
                                     <div className="bg-blue-50/80 border border-blue-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-4">
-                                        <p className="text-xs font-medium text-blue-700">Part Marc (50%)</p>
+                                        <p className="text-xs font-medium text-blue-700">Part Marc (50% net)</p>
                                         <p className="text-xl sm:text-2xl font-mono font-semibold text-blue-700 mt-0.5 sm:mt-1">{partMarc.toFixed(2)} €</p>
-                                        <p className="text-[11px] text-blue-600 font-medium mt-0.5 sm:mt-1 truncate">50% net reversé</p>
+                                        <p className="text-[11px] text-emerald-700 font-semibold mt-0.5 sm:mt-1 truncate">✓ Virement payé ({marcTransferPaid.ref})</p>
                                     </div>
                                     <div className="bg-amber-50/80 border border-amber-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-4">
                                         <p className="text-xs font-medium text-amber-800">Part FeelProd</p>
                                         <p className="text-xl sm:text-2xl font-mono font-semibold text-amber-800 mt-0.5 sm:mt-1">{partFeelProd.toFixed(2)} €</p>
-                                        <p className="text-[11px] text-amber-700 font-medium mt-0.5 sm:mt-1 truncate">50% chiffre d'affaires</p>
+                                        <p className="text-[11px] text-amber-700 font-medium mt-0.5 sm:mt-1 truncate">50% chiffre d'affaires net</p>
                                     </div>
                                 </div>
                             </div>
@@ -1768,7 +1825,7 @@ export function AdminDashboard() {
                                                 <div className="flex items-center justify-between bg-emerald-50/70 rounded-xl p-2.5 px-3 border border-emerald-200/80 text-xs text-emerald-900 font-medium">
                                                     <span className="flex items-center gap-1.5">
                                                         <CheckCircle2 size={13} className="text-emerald-600 shrink-0" />
-                                                        <span>Quote-part Marc intégrée</span>
+                                                        <span>Virement VIR-2026-09-01 payé</span>
                                                     </span>
                                                     <span className="font-mono font-semibold text-emerald-800">
                                                         +{(s.amount / 2).toFixed(2)} €
@@ -1818,7 +1875,7 @@ export function AdminDashboard() {
                                                         <td className="py-4 px-4 text-right whitespace-nowrap">
                                                             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
                                                                 <CheckCircle2 size={13} className="text-emerald-600" />
-                                                                ✓ Inclus au virement (+{(s.amount / 2).toFixed(2)} €)
+                                                                ✓ Payé (VIR-2026-09-01) : +{(s.amount / 2).toFixed(2)} €
                                                             </span>
                                                         </td>
                                                     </tr>
@@ -1838,7 +1895,7 @@ export function AdminDashboard() {
                                     • <strong>Encaissement Stripe :</strong> Les règlements des élèves sont collectés via Stripe Checkout et crédités sur le compte bancaire professionnel LCL de Guillaume Philippe (Masseur-Kinésithérapeute D.E. • Enseigne FEELPROD).
                                 </p>
                                 <p>
-                                    • <strong>Virement à Marc Damoiseaux :</strong> Le virement de la part co-auteur (393,75 € pour les 2 ventes actuelles, après déduction des frais Stripe et hébergement vidéo Cloudflare 100% offert par FeelProd) est à effectuer directement vers le compte bancaire de Marc Damoiseaux (Ostéopathe D.O.). La fiche d'ordre de virement PDF certifiée générée ci-dessus fait office de justificatif contractuel officiel.
+                                    • <strong>Ordre de Virement à Marc Damoiseaux :</strong> Le virement bancaire de la part co-auteur (393,75 € pour les 2 ventes actuelles, après déduction des frais Stripe et hébergement vidéo Cloudflare 100% pris en charge par FeelProd) est ordonné et enregistré (Réf. VIR-2026-09-01). La fiche d'ordre de virement PDF certifiée fait office de justificatif contractuel officiel.
                                 </p>
                             </div>
                         </div>
@@ -2032,12 +2089,13 @@ export function AdminDashboard() {
                                         stripePaymentId: selectedProfile.stripe_payment_id,
                                         createdAt: selectedProfile.created_at
                                     })}
-                                    className="w-full py-2.5 mb-2 rounded-xl text-slate-800 bg-white border border-slate-300 font-bold text-sm hover:bg-slate-50 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                                    className="w-full py-2.5 mb-2 rounded-xl text-slate-800 bg-white border border-slate-300 font-semibold text-sm hover:bg-slate-50 transition-colors shadow-2xs flex items-center justify-center gap-2 cursor-pointer touch-manipulation active:scale-95"
                                 >
-                                    <FileText size={16} className="text-amber-600" /> 📄 Générer la Facture FeelProd (PDF)
+                                    <FileText size={16} className="text-amber-600" />
+                                    <span>Facture FeelProd (PDF)</span>
                                 </button>
                                 <button
-                                    onClick={() => shareInvoice({
+                                    onClick={() => handleSendInvoiceEmail(selectedProfile.id, {
                                         firstName: selectedProfile.first_name,
                                         lastName: selectedProfile.last_name,
                                         email: selectedProfile.email,
@@ -2047,24 +2105,25 @@ export function AdminDashboard() {
                                         stripePaymentId: selectedProfile.stripe_payment_id,
                                         createdAt: selectedProfile.created_at
                                     })}
-                                    className="w-full py-2.5 mb-2 rounded-xl text-emerald-800 bg-emerald-50 border border-emerald-200 font-bold text-sm hover:bg-emerald-100 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                                    className={cn(
+                                        "w-full py-2.5 mb-2 rounded-xl font-semibold text-sm transition-colors shadow-2xs flex items-center justify-center gap-2 cursor-pointer touch-manipulation active:scale-95",
+                                        sentInvoiceEmails[selectedProfile.id]
+                                            ? "bg-emerald-50 border border-emerald-300 text-emerald-800"
+                                            : "bg-blue-50 border border-blue-200 hover:bg-blue-100 text-blue-800"
+                                    )}
+                                    title={`Envoyer la facture par email à ${selectedProfile.email}`}
                                 >
-                                    <Share2 size={16} className="text-emerald-600" /> 📲 Partager la Facture (AirDrop, WhatsApp)
-                                </button>
-                                <button
-                                    onClick={() => openEmailForInvoice({
-                                        firstName: selectedProfile.first_name,
-                                        lastName: selectedProfile.last_name,
-                                        email: selectedProfile.email,
-                                        profession: selectedProfile.profession,
-                                        address: selectedProfile.address,
-                                        location: selectedProfile.location,
-                                        stripePaymentId: selectedProfile.stripe_payment_id,
-                                        createdAt: selectedProfile.created_at
-                                    })}
-                                    className="w-full py-2.5 mb-2 rounded-xl text-blue-800 bg-blue-50 border border-blue-200 font-bold text-sm hover:bg-blue-100 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-                                >
-                                    <Mail size={16} className="text-blue-600" /> 📧 Préparer l'envoi par Email
+                                    {sentInvoiceEmails[selectedProfile.id] ? (
+                                        <>
+                                            <CheckCircle2 size={16} className="text-emerald-600" />
+                                            <span>✓ Email envoyé à {selectedProfile.email}</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Mail size={16} className="text-blue-600" />
+                                            <span>Envoyer l'email à {selectedProfile.email}</span>
+                                        </>
+                                    )}
                                 </button>
                                 <button
                                     onClick={() => refundPayment(selectedProfile.id)}
