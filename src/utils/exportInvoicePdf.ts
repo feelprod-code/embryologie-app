@@ -421,6 +421,25 @@ FeelProd Studio
   window.location.href = `mailto:${data.email}?subject=${subject}&body=${body}`;
 }
 
+export function openWhatsAppForInvoice(data: InvoiceData) {
+  const clientName = `${data.firstName || ''} ${data.lastName || ''}`.trim() || data.email;
+  const amountStr = (data.amount || 400).toFixed(2);
+  const stripeId = data.stripePaymentId || 'Stripe';
+  const text = encodeURIComponent(
+    `Bonjour ${clientName},\n\nVotre facture FeelProd (${amountStr} €) pour votre inscription à la Formation Intégrale d'Embryologie Dynamique est disponible.\nRéf. règlement : ${stripeId}.\n\nVous pouvez consulter et imprimer votre justificatif officiel directement sur votre espace apprenant FeelProd :\n${window.location.origin}\n\nBien confraternellement,\nGuillaume PHILIPPE & Marc DAMOISEAUX`
+  );
+  window.open(`https://wa.me/?text=${text}`, '_blank');
+}
+
+export function openSmsForInvoice(data: InvoiceData) {
+  const clientName = `${data.firstName || ''} ${data.lastName || ''}`.trim() || data.email;
+  const amountStr = (data.amount || 400).toFixed(2);
+  const text = encodeURIComponent(
+    `Bonjour ${clientName}, votre facture FeelProd (${amountStr} €) pour l'Embryologie Dynamique est disponible. Réf: ${data.stripePaymentId || 'Stripe'}. Espace : ${window.location.origin}`
+  );
+  window.location.href = `sms:?&body=${text}`;
+}
+
 export interface PartnerSale {
   date: string;
   name: string;
