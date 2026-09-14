@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin, FileText } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin, FileText, Mail, Printer, DollarSign, Wallet, Share2, Send } from 'lucide-react';
 import { cn } from '../utils';
-import { openInvoiceWindow } from '../utils/exportInvoicePdf';
+import { openInvoiceWindow, openEmailForInvoice, shareInvoice, openDamoiseauxSummaryWindow, openMarcTransferSheetWindow, openEmailForMarcTransfer, shareMarcTransferSheet, type PartnerSale } from '../utils/exportInvoicePdf';
 
 type Profile = {
     id: string;
@@ -48,7 +48,7 @@ export function AdminDashboard() {
     const [filter, setFilter] = useState<FilterType>('ALL');
     const [tierFilter, setTierFilter] = useState<TierFilterType>('ALL');
     const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
-    const [activeTab, setActiveTab] = useState<'users' | 'analytics'>('users');
+    const [activeTab, setActiveTab] = useState<'users' | 'analytics' | 'compta'>('users');
     const [timeframe, setTimeframe] = useState<'week' | 'month' | 'year'>('week');
 
 
@@ -60,10 +60,40 @@ export function AdminDashboard() {
 
     // Calculate metrics
     const totalUsers = profiles.length;
-    const premiumUsers = profiles.filter(p => getEffectiveTier(p) === 'PREMIUM' || getEffectiveTier(p) === 'LEGACY').length;
+    // Clients ayant réellement réglé sur Stripe (400 €) = 2 (Gilles Ducret & Karl Massou)
+    const paidStripeUsers = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || '') && (!!p.stripe_payment_id || p.access_tier === 'premium')).length;
+    // Transferts historiques (anciens élèves de Marc) = 14
+    const legacyUsers = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || '') && p.access_tier === 'legacy').length;
     const trialUsers = profiles.filter(p => getEffectiveTier(p) === 'TRIAL').length;
     const freeUsers = profiles.filter(p => getEffectiveTier(p) === 'FREE').length;
-    const conversionRate = totalUsers > 0 ? Math.round((premiumUsers / totalUsers) * 100) : 0;
+    const conversionRate = totalUsers > 0 ? Math.round((paidStripeUsers / totalUsers) * 100) : 0;
+
+    // Mode de déduction des frais pour le bilan Marc Damoiseaux
+    const [feeMode, setFeeMode] = useState<'stripe_and_platform' | 'stripe_only'>('stripe_and_platform');
+
+    // Partner & Accounting Sales (Marc Damoiseaux 50% / FeelProd 50%)
+    const partnerSales: PartnerSale[] = profiles
+        .filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || ''))
+        .filter(p => !!p.stripe_payment_id || p.access_tier === 'premium')
+        .map(p => ({
+            date: p.created_at ? new Date(p.created_at).toLocaleDateString('fr-FR') : '19/06/2026',
+            name: `${p.first_name || ''} ${p.last_name || ''}`.trim() || p.email,
+            email: p.email,
+            profession: p.profession,
+            location: p.address || p.location,
+            stripePaymentId: p.stripe_payment_id || 'Stripe Checkout',
+            amount: 400.00
+        }));
+
+    const totalBrut = partnerSales.reduce((acc, s) => acc + s.amount, 0);
+    const stripeFeePerSale = 6.25; // 1.5% + 0.25€ par tx 400€
+    const platformFeeRate = feeMode === 'stripe_and_platform' ? 0.05 : 0; // 5% frais techniques, hébergement vidéo R2 FeelProd
+    const totalStripeFees = partnerSales.length * stripeFeePerSale;
+    const totalPlatformFees = totalBrut * platformFeeRate;
+    const totalFeesDeducted = totalStripeFees + totalPlatformFees;
+    const totalNet = totalBrut - totalFeesDeducted;
+    const partMarc = totalNet / 2;
+    const partFeelProd = totalNet / 2;
 
     useEffect(() => {
         if (activeTab === 'analytics') {
@@ -71,13 +101,33 @@ export function AdminDashboard() {
                 setIsLoadingGa(true);
                 setGaError(null);
                 try {
-                    const res = await fetch(`/api/analytics?timeframe=${timeframe}`);
-                    if (!res.ok) {
-                        throw new Error('Failed to fetch analytics');
+                    let data: any = null;
+                    try {
+                        const res = await fetch(`/api/analytics?timeframe=${timeframe}`);
+                        if (res.ok) {
+                            const ct = res.headers.get('content-type') || '';
+                            if (ct.includes('application/json')) {
+                                data = await res.json();
+                            }
+                        }
+                    } catch {
+                        data = null;
                     }
-                    const data = await res.json();
-                    if (data.error) {
-                        throw new Error(data.error);
+
+                    // Fallback to production live endpoint if local relative API returned HTML or failed
+                    if (!data || data.error || !data.rows || data.rows.length === 0) {
+                        try {
+                            const fallbackRes = await fetch(`https://app.feelprod.com/api/analytics?timeframe=${timeframe}`);
+                            if (fallbackRes.ok) {
+                                data = await fallbackRes.json();
+                            }
+                        } catch (err) {
+                            console.warn("Analytics fallback fetch failed:", err);
+                        }
+                    }
+
+                    if (!data || data.error) {
+                        throw new Error(data?.error || 'Données analytics indisponibles');
                     }
                     setGaData(data.rows || []);
                     setTopCountries(data.topCountries || []);
@@ -95,6 +145,7 @@ export function AdminDashboard() {
             fetchGaData();
         }
     }, [activeTab, timeframe]);
+
 
     const getChartData = (): { label: string; pv: number; uv: number }[] => {
         if (gaData && gaData.length > 0) {
@@ -396,18 +447,18 @@ export function AdminDashboard() {
                 return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-purple-50 border border-purple-200 text-purple-700"><Shield size={12}/> Admin</span>;
             case 'PREMIUM':
                 return (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700" title={profile.stripe_payment_id ? `Payé sur Stripe (${profile.stripe_payment_id})` : 'Plein Tarif'}>
-                        <Crown size={12}/> Plein Tarif {profile.stripe_payment_id && <span className="text-[10px] bg-indigo-200/60 px-1.5 py-0.5 rounded font-mono">Stripe</span>}
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800" title={profile.stripe_payment_id ? `Payé sur Stripe (${profile.stripe_payment_id})` : 'Payant 400 €'}>
+                        <Crown size={12} className="text-emerald-600"/> Payé Stripe (400 €)
                     </span>
                 );
             case 'LEGACY':
-                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-amber-50 border border-amber-200 text-amber-700"><History size={12}/> Transfert</span>;
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-amber-50 border border-amber-200 text-amber-800" title="Ancien élève transféré sans paiement"><History size={12}/> Transfert Marc (Gratuit)</span>;
             case 'FREE':
-                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-pink-50 border border-pink-200 text-pink-700"><Gift size={12}/> Cadeau</span>;
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700"><Gift size={12}/> Accès Offert</span>;
             case 'TRIAL':
                 return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-blue-50 border border-blue-200 text-blue-700"><Clock size={12}/> Essai 24h</span>;
             default:
-                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-slate-100 border border-slate-200 text-slate-500">Standard</span>;
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-slate-100 border border-slate-200 text-slate-500">Gratuit Découverte</span>;
         }
     };
 
@@ -439,11 +490,11 @@ export function AdminDashboard() {
                             </div>
                             
                             {/* VIEW TOGGLE */}
-                            <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner max-w-xs">
+                            <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner">
                                 <button 
                                     onClick={() => setActiveTab('users')} 
                                     className={cn(
-                                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
+                                        "px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
                                         activeTab === 'users' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
                                     )}
                                 >
@@ -452,14 +503,35 @@ export function AdminDashboard() {
                                 <button 
                                     onClick={() => setActiveTab('analytics')} 
                                     className={cn(
-                                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
+                                        "px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
                                         activeTab === 'analytics' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
                                     )}
                                 >
-                                    📊 Trafic & Audience
+                                    📊 Trafic
+                                </button>
+                                <button 
+                                    onClick={() => setActiveTab('compta')} 
+                                    className={cn(
+                                        "px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
+                                        activeTab === 'compta' ? "bg-white shadow text-blue-900 font-extrabold" : "text-slate-500 hover:text-slate-700"
+                                    )}
+                                >
+                                    💰 Bilan Damoiseaux (50%)
                                 </button>
                             </div>
                         </div>
+
+                        {activeTab === 'compta' && (
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() => openDamoiseauxSummaryWindow(partnerSales)}
+                                    className="px-4 py-2 bg-[#0F172A] text-white hover:bg-[#1E293B] font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-2 cursor-pointer"
+                                >
+                                    <Printer size={14} className="text-amber-400" />
+                                    <span>Imprimer Bilan Marc Damoiseaux (PDF)</span>
+                                </button>
+                            </div>
+                        )}
                         
                         {activeTab === 'users' && (
                             <div className="flex flex-col xl:flex-row items-stretch xl:items-center gap-3 w-full lg:w-auto">
@@ -488,10 +560,10 @@ export function AdminDashboard() {
                         <div className="flex overflow-x-auto overflow-y-hidden touch-pan-x no-scrollbar max-w-6xl mx-auto gap-6 border-transparent -mx-4 px-4 md:-mx-6 md:px-6 snap-x snap-mandatory">
                             {[
                                 { id: 'ALL', label: 'Tous', icon: '🌟' },
-                                { id: 'STANDARD', label: 'Standards', icon: '⚪' },
-                                { id: 'PREMIUM', label: 'Premiums', icon: '👑' },
-                                { id: 'LEGACY', label: 'Mise à jour', icon: '📜' },
-                                { id: 'FREE', label: 'Cadeaux', icon: '🎁' },
+                                { id: 'PREMIUM', label: 'Payés Stripe (400€)', icon: '👑' },
+                                { id: 'LEGACY', label: 'Transferts Marc', icon: '📜' },
+                                { id: 'STANDARD', label: 'Gratuits Découverte', icon: '⚪' },
+                                { id: 'FREE', label: 'Offerts', icon: '🎁' },
                                 { id: 'TRIAL', label: 'Essais 24h', icon: '⏱️' },
                                 { id: 'ADMIN', label: 'Admin', icon: '🛡️' }
                             ].map((t) => (
@@ -521,7 +593,7 @@ export function AdminDashboard() {
                 </div>
 
                 {/* CONTENT AREA */}
-                {activeTab === 'users' ? (
+                {activeTab === 'users' && (
                     /* THE SYNTHETIC TABLE */
                     <div className="flex-1 overflow-y-auto w-full max-w-6xl mx-auto px-4 md:px-6 py-6 pb-[120px] will-change-scroll">
                         <div className="bg-white rounded-2xl shadow-[0_5px_20px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden relative">
@@ -586,7 +658,9 @@ export function AdminDashboard() {
                             )}
                         </div>
                     </div>
-                ) : (
+                )}
+
+                {activeTab === 'analytics' && (
                     /* THE ANALYTICS VIEW */
                     <div className="flex-1 overflow-y-auto w-full max-w-6xl mx-auto px-4 md:px-6 py-6 pb-[120px] will-change-scroll space-y-6">
                         {/* METRICS CARDS */}
@@ -602,20 +676,20 @@ export function AdminDashboard() {
                             </div>
                             <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
                                 <div>
-                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Membres Premium</span>
-                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">{premiumUsers}</span>
+                                    <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider block">Clients Stripe (400€)</span>
+                                    <span className="text-3xl font-bold text-emerald-600 font-bebas block mt-1">{paidStripeUsers}</span>
                                 </div>
-                                <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
+                                <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
                                     <Crown size={22} />
                                 </div>
                             </div>
                             <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
                                 <div>
-                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Essais Actifs</span>
-                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">{trialUsers}</span>
+                                    <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider block">Accès Transférés</span>
+                                    <span className="text-3xl font-bold text-amber-700 font-bebas block mt-1">{legacyUsers}</span>
                                 </div>
                                 <div className="p-3 bg-amber-50 text-amber-600 rounded-xl">
-                                    <Clock size={22} />
+                                    <History size={22} />
                                 </div>
                             </div>
                             <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
@@ -624,7 +698,7 @@ export function AdminDashboard() {
                                     <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">
                                         {conversionRate}%
                                         <span className="text-xs font-sans font-bold text-slate-400 ml-2">
-                                            ({premiumUsers} / {totalUsers})
+                                            ({paidStripeUsers} / {totalUsers})
                                         </span>
                                     </span>
                                 </div>
@@ -851,6 +925,195 @@ export function AdminDashboard() {
                             </div>
                     </div>
                 )}
+
+                {activeTab === 'compta' && (
+                    <div className="flex-1 overflow-y-auto p-4 md:p-8 min-h-0 bg-[#FAF6ED]">
+                        <div className="max-w-6xl mx-auto space-y-6">
+                            {/* Header Banner */}
+                            <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/80 shadow-sm relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-900 via-slate-900 to-amber-500" />
+                                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                    <div>
+                                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
+                                            <span>🤝 Protocole d'Édition & Reversement Co-Auteur (50/50)</span>
+                                        </div>
+                                        <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
+                                            Bilan Partenariat — Marc DAMOISEAUX
+                                        </h2>
+                                        <p className="text-sm text-slate-500 font-medium mt-1 max-w-2xl">
+                                            Suivi transparent en temps réel des inscriptions réglées sur Stripe Checkout. Les recettes brutes perçues (400,00 € par élève) sont contractuellement réparties à parts égales (50% FeelProd / 50% Marc Damoiseaux).
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                                        <button
+                                            onClick={() => openMarcTransferSheetWindow(partnerSales, feeMode)}
+                                            className="px-4 py-2.5 bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                                            title="Générer la Fiche d'Ordre de Virement certifiée pour Marc"
+                                        >
+                                            <FileText size={15} className="text-amber-300" />
+                                            <span>Fiche de Virement (PDF)</span>
+                                        </button>
+                                        <button
+                                            onClick={() => openEmailForMarcTransfer(partnerSales, feeMode)}
+                                            className="px-4 py-2.5 bg-blue-50 border border-blue-200 hover:bg-blue-100 text-blue-800 font-bold text-xs rounded-xl shadow-2xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+                                            title="Préparer l'email officiel avec le décompte pour marc@damoiseaux.be"
+                                        >
+                                            <Mail size={15} className="text-blue-600" />
+                                            <span>Envoyer à Marc</span>
+                                        </button>
+                                        <button
+                                            onClick={() => shareMarcTransferSheet(partnerSales, feeMode)}
+                                            className="px-3.5 py-2.5 bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 font-bold text-xs rounded-xl shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                                            title="Partager par WhatsApp, AirDrop ou Messages"
+                                        >
+                                            <Share2 size={14} className="text-emerald-600" />
+                                            <span>Partager</span>
+                                        </button>
+                                        <button
+                                            onClick={() => openDamoiseauxSummaryWindow(partnerSales)}
+                                            className="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                                            title="Imprimer le Relevé Comptable Global A4"
+                                        >
+                                            <Printer size={14} className="text-amber-400" />
+                                            <span>Relevé A4</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* KPI Cards */}
+                                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                                    <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-2xl p-4">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Ventes Réglées</p>
+                                        <p className="text-2xl font-mono font-black text-slate-900 mt-1">{partnerSales.length}</p>
+                                        <p className="text-[11px] text-emerald-600 font-bold mt-1">✓ 100% encaissé sur Stripe</p>
+                                    </div>
+                                    <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-2xl p-4">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Total Encaissé Brut</p>
+                                        <p className="text-2xl font-mono font-black text-slate-900 mt-1">{totalBrut.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-slate-500 font-medium mt-1">400,00 € par praticien</p>
+                                    </div>
+                                    <div className="bg-blue-50/80 border border-blue-200/80 rounded-2xl p-4">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-blue-600">Part Marc Damoiseaux</p>
+                                        <p className="text-2xl font-mono font-black text-blue-700 mt-1">{partMarc.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-blue-600 font-bold mt-1">50% du chiffre d'affaires</p>
+                                    </div>
+                                    <div className="bg-amber-50/80 border border-amber-200/80 rounded-2xl p-4">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-amber-700">Part FeelProd</p>
+                                        <p className="text-2xl font-mono font-black text-amber-800 mt-1">{partFeelProd.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-amber-700 font-bold mt-1">50% du chiffre d'affaires</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Sales Table Card */}
+                            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
+                                <div className="p-5 md:p-6 border-b border-slate-100 flex items-center justify-between">
+                                    <div>
+                                        <h3 className="font-bold text-base text-slate-900">Détail des Enregistrements & Factures Clients</h3>
+                                        <p className="text-xs text-slate-500 font-medium mt-0.5">Téléchargez la facture officielle ou préparez son envoi par email</p>
+                                    </div>
+                                    <span className="text-xs font-bold px-3 py-1 bg-slate-100 text-slate-700 rounded-full">
+                                        {partnerSales.length} {partnerSales.length > 1 ? 'transactions' : 'transaction'}
+                                    </span>
+                                </div>
+
+                                <div className="overflow-x-auto">
+                                    <table className="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr className="bg-slate-50/70 border-b border-slate-100 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                                                <th className="py-3 px-4">Date de Règlement</th>
+                                                <th className="py-3 px-4">Praticien / Acheteur</th>
+                                                <th className="py-3 px-4 text-center">Réf. Stripe</th>
+                                                <th className="py-3 px-4 text-right">Montant Encaissé</th>
+                                                <th className="py-3 px-4 text-right">Part Marc (50%)</th>
+                                                <th className="py-3 px-4 text-right">Actions Facturation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-slate-100 text-xs">
+                                            {partnerSales.map((s, idx) => {
+                                                const profile = profiles.find(p => p.email === s.email);
+                                                return (
+                                                    <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
+                                                        <td className="py-4 px-4 whitespace-nowrap font-medium text-slate-600">
+                                                            {s.date}
+                                                        </td>
+                                                        <td className="py-4 px-4">
+                                                            <div className="font-bold text-slate-900 text-sm">{s.name}</div>
+                                                            <div className="text-slate-500 text-[11px]">{s.profession || 'Praticien'} • {s.location || 'France'}</div>
+                                                            <div className="text-slate-400 font-mono text-[11px]">{s.email}</div>
+                                                        </td>
+                                                        <td className="py-4 px-4 text-center">
+                                                            <span className="inline-block font-mono text-[10px] bg-indigo-50 border border-indigo-200 text-indigo-700 px-2 py-0.5 rounded-md">
+                                                                {s.stripePaymentId ? s.stripePaymentId.slice(0, 14) + '...' : 'Stripe'}
+                                                            </span>
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right font-mono font-bold text-slate-900 text-sm">
+                                                            {s.amount.toFixed(2)} €
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right font-mono font-black text-blue-700 text-sm">
+                                                            {(s.amount / 2).toFixed(2)} €
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right whitespace-nowrap">
+                                                            <div className="flex items-center justify-end gap-2">
+                                                                <button
+                                                                    onClick={() => openInvoiceWindow({
+                                                                        firstName: profile?.first_name || s.name,
+                                                                        lastName: profile?.last_name,
+                                                                        email: s.email,
+                                                                        profession: s.profession,
+                                                                        address: profile?.address,
+                                                                        location: s.location,
+                                                                        stripePaymentId: s.stripePaymentId,
+                                                                        createdAt: profile?.created_at
+                                                                    })}
+                                                                    className="px-3 py-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1.5 cursor-pointer"
+                                                                    title="Télécharger ou imprimer la facture officielle au format PDF A4"
+                                                                >
+                                                                    <FileText size={13} className="text-amber-600" />
+                                                                    <span>Facture PDF</span>
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => openEmailForInvoice({
+                                                                        firstName: profile?.first_name || s.name,
+                                                                        lastName: profile?.last_name,
+                                                                        email: s.email,
+                                                                        profession: s.profession,
+                                                                        address: profile?.address,
+                                                                        location: s.location,
+                                                                        stripePaymentId: s.stripePaymentId,
+                                                                        createdAt: profile?.created_at
+                                                                    })}
+                                                                    className="px-3 py-1.5 bg-blue-50 border border-blue-200 hover:bg-blue-100 text-blue-700 font-bold rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1.5 cursor-pointer"
+                                                                    title="Ouvrir un e-mail pré-rempli pour envoyer la facture à l'apprenant"
+                                                                >
+                                                                    <Mail size={13} />
+                                                                    <span>Envoyer Email</span>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {/* Explanatory Info Card */}
+                            <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-3xl p-6 text-xs text-slate-600 space-y-2">
+                                <p className="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <span>💡</span> Note Comptable & Reversement Confrère
+                                </p>
+                                <p>
+                                    • <strong>Encaissement Stripe :</strong> Les règlements des élèves sont collectés via Stripe Checkout et crédités sur le compte bancaire professionnel LCL de Guillaume Philippe (FEELPROD).
+                                </p>
+                                <p>
+                                    • <strong>Virement à Marc Damoiseaux :</strong> Le virement de la part co-auteur (400,00 € pour les 2 ventes actuelles) est à effectuer directement vers le compte bancaire de Marc Damoiseaux. Le relevé PDF certifié généré ci-dessus fait office de justificatif contractuel officiel.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* SIDE DRAWER (THE DETAILS PANEL) */}
@@ -910,9 +1173,9 @@ export function AdminDashboard() {
                                                 onChange={(e) => updateTier(selectedProfile.id, e.target.value as TierFilterType)}
                                                 className="w-full appearance-none bg-white border border-slate-200 text-slate-800 text-sm font-bold rounded-xl px-4 py-2.5 pr-10 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm"
                                             >
-                                                <option value="STANDARD">⚪ Standard (Gratuit)</option>
-                                                <option value="PREMIUM">👑 Plein Tarif (Premium)</option>
-                                                <option value="LEGACY">📜 Mise à jour (Réduit)</option>
+                                                <option value="STANDARD">⚪ Gratuit Découverte (Non Payé)</option>
+                                                <option value="PREMIUM">👑 Payé Stripe (Plein Tarif 400 €)</option>
+                                                <option value="LEGACY">📜 Transfert Ancien Élève (Marc - Gratuit)</option>
                                                 <option value="FREE">🎁 Accès Offert (Cadeau)</option>
                                                 <option value="TRIAL">⏱️ Essai 24h</option>
                                             </select>
@@ -1019,6 +1282,36 @@ export function AdminDashboard() {
                                     className="w-full py-2.5 mb-2 rounded-xl text-slate-800 bg-white border border-slate-300 font-bold text-sm hover:bg-slate-50 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
                                 >
                                     <FileText size={16} className="text-amber-600" /> 📄 Générer la Facture FeelProd (PDF)
+                                </button>
+                                <button
+                                    onClick={() => shareInvoice({
+                                        firstName: selectedProfile.first_name,
+                                        lastName: selectedProfile.last_name,
+                                        email: selectedProfile.email,
+                                        profession: selectedProfile.profession,
+                                        address: selectedProfile.address,
+                                        location: selectedProfile.location,
+                                        stripePaymentId: selectedProfile.stripe_payment_id,
+                                        createdAt: selectedProfile.created_at
+                                    })}
+                                    className="w-full py-2.5 mb-2 rounded-xl text-emerald-800 bg-emerald-50 border border-emerald-200 font-bold text-sm hover:bg-emerald-100 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                                >
+                                    <Share2 size={16} className="text-emerald-600" /> 📲 Partager la Facture (AirDrop, WhatsApp)
+                                </button>
+                                <button
+                                    onClick={() => openEmailForInvoice({
+                                        firstName: selectedProfile.first_name,
+                                        lastName: selectedProfile.last_name,
+                                        email: selectedProfile.email,
+                                        profession: selectedProfile.profession,
+                                        address: selectedProfile.address,
+                                        location: selectedProfile.location,
+                                        stripePaymentId: selectedProfile.stripe_payment_id,
+                                        createdAt: selectedProfile.created_at
+                                    })}
+                                    className="w-full py-2.5 mb-2 rounded-xl text-blue-800 bg-blue-50 border border-blue-200 font-bold text-sm hover:bg-blue-100 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                                >
+                                    <Mail size={16} className="text-blue-600" /> 📧 Préparer l'envoi par Email
                                 </button>
                                 <button
                                     onClick={() => refundPayment(selectedProfile.id)}
