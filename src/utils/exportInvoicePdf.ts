@@ -209,11 +209,11 @@ export function openInvoiceWindow(data: InvoiceData) {
       <div class="header">
         <div>
           <div class="brand-title">FEELPROD <span class="dot"></span></div>
-          <div class="brand-subtitle">Guillaume PHILIPPE — Profession Libérale • Enseigne : FEELPROD</div>
+          <div class="brand-subtitle">Guillaume PHILIPPE — Masseur-Kinésithérapeute D.E. • Enseigne : FEELPROD</div>
           <div class="brand-legal">
-            Production Audiovisuelle, Édition & Formations Numériques<br>
+            Masseur-Kinésithérapeute D.E. • Édition Multimédia Médicale & Formations Numériques<br>
             28 bis boulevard de Sébastopol, 75004 Paris<br>
-            <strong>SIRET :</strong> 480 342 901 00021 • <strong>Code NAF :</strong> 5911B / 8690E<br>
+            <strong>SIRET :</strong> 480 342 901 00021 • <strong>Code NAF :</strong> 8690E / 5911B<br>
             <strong>TVA Intracommunautaire :</strong> FR 48 480342901
           </div>
         </div>
@@ -540,7 +540,7 @@ export function openDamoiseauxSummaryWindow(sales: PartnerSale[], options?: { st
       <div class="header">
         <div>
           <h2 style="font-size: 22px; font-weight: 900; letter-spacing: 0.1em; color: #0F172A;">FEELPROD</h2>
-          <p style="font-size: 11.5px; color: #64748B; margin-top: 2px;">Guillaume PHILIPPE • SIRET : 480 342 901 00021 • LCL Pro : 6300E</p>
+          <p style="font-size: 11.5px; color: #64748B; margin-top: 2px;">Guillaume PHILIPPE (Masseur-Kinésithérapeute D.E.) • SIRET : 480 342 901 00021 • LCL Pro : 6300E • NAF : 8690E / 5911B</p>
         </div>
         <div style="text-align: right;">
           <span style="background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 800;">REVERSEMENT NET 50 / 50</span>
@@ -552,7 +552,7 @@ export function openDamoiseauxSummaryWindow(sales: PartnerSale[], options?: { st
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px;">
         <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px;">
           <p style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #64748B;">Éditeur & Gestionnaire</p>
-          <p style="font-weight: 700; color: #0F172A; margin-top: 2px;">FEELPROD (Guillaume Philippe)</p>
+          <p style="font-weight: 700; color: #0F172A; margin-top: 2px;">FEELPROD (Guillaume Philippe — Masseur-Kinésithérapeute D.E.)</p>
           <p style="font-size: 11px; color: #475569; margin-top: 2px;">28 bis bd de Sébastopol, 75004 Paris</p>
         </div>
         <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px;">
@@ -995,11 +995,11 @@ export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stri
       <div class="parties-grid">
         <div class="party-card">
           <div class="party-label">Donneur d'Ordre (Émetteur du Virement)</div>
-          <div class="party-name">Guillaume PHILIPPE (FEELPROD)</div>
+          <div class="party-name">Guillaume PHILIPPE — Masseur-Kinésithérapeute D.E. (FEELPROD)</div>
           <div class="party-details">
-            Activité Libérale & Édition Multimédia Médicale<br>
+            Masseur-Kinésithérapeute D.E. & Édition Multimédia Médicale<br>
             28 bis boulevard de Sébastopol, 75004 Paris<br>
-            SIRET : 480 342 901 00021 • NAF : 5911B / 8690E<br>
+            SIRET : 480 342 901 00021 • NAF : 8690E / 5911B<br>
             <strong>Compte Débiteur :</strong> LCL Professionnel (Compte 6300E)
           </div>
         </div>
@@ -1107,7 +1107,7 @@ export function openMarcTransferSheetWindow(sales: PartnerSale[], feeMode: 'stri
         </div>
         <div class="visa-box">
           <div class="visa-title">Visa Donneur d'Ordre</div>
-          <div class="visa-name">Guillaume PHILIPPE</div>
+          <div class="visa-name">Guillaume PHILIPPE (Masseur-Kinésithérapeute D.E.)</div>
           <div class="visa-date">Émis le ${dateStr} • Bon pour virement</div>
         </div>
       </div>
@@ -1181,7 +1181,7 @@ Le virement SEPA est ordonné depuis mon compte bancaire professionnel LCL FeelP
 La fiche d'ordre de virement officielle certifiée et le relevé détaillé sont archivés dans l'espace administration.
 
 Bien amicalement,
-Guillaume Philippe — FeelProd`
+Guillaume Philippe (Masseur-Kinésithérapeute D.E. — FeelProd)`
   );
 
   window.location.href = `mailto:marc@damoiseaux.be?subject=${subject}&body=${body}`;
@@ -1219,6 +1219,243 @@ export async function shareMarcTransferSheet(sales: PartnerSale[], feeMode: 'str
   } catch {
     openEmailForMarcTransfer(sales, feeMode);
   }
+}
+
+export interface PaymentListingItem {
+  date: string;
+  name: string;
+  email: string;
+  profession?: string;
+  location?: string;
+  stripePaymentId: string;
+  amount: number;
+}
+
+export function openPaymentsListingWindow(payments: PaymentListingItem[], periodLabel: string = 'Année 2026') {
+  const printWindow = window.open('', '_blank', 'width=950,height=1100');
+  if (!printWindow) {
+    alert("Veuillez autoriser l'ouverture des fenêtres pop-up pour afficher le listing des paiements.");
+    return;
+  }
+
+  const totalBrut = payments.reduce((acc, p) => acc + p.amount, 0);
+  const totalStripeFees = payments.length * 6.25;
+  const totalNet = totalBrut - totalStripeFees;
+  const dateStr = new Date().toLocaleDateString('fr-FR');
+
+  const rowsHtml = payments.length === 0 ? `
+    <tr>
+      <td colspan="5" style="text-align: center; padding: 40px; color: #64748B; font-style: italic;">
+        Aucun paiement enregistré pour cette période (${periodLabel}).
+      </td>
+    </tr>
+  ` : payments.map((p) => `
+    <tr style="border-bottom: 1px solid #E2E8F0; font-size: 11.5px;">
+      <td style="padding: 10px 12px; font-family: 'JetBrains Mono', monospace; color: #475569;">${p.date}</td>
+      <td style="padding: 10px 12px;">
+        <div style="font-weight: 700; color: #0F172A;">${p.name}</div>
+        <div style="font-size: 10px; color: #64748B;">${p.profession || 'Praticien'} • ${p.location || ''}</div>
+        <div style="font-size: 10px; color: #475569;">${p.email}</div>
+      </td>
+      <td style="padding: 10px 12px; text-align: center;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; background: #F1F5F9; padding: 2px 6px; border-radius: 4px; border: 1px solid #CBD5E1;">
+          ${p.stripePaymentId}
+        </span>
+      </td>
+      <td style="padding: 10px 12px; text-align: right; font-family: 'JetBrains Mono', monospace; color: #DC2626; font-size: 11px;">
+        -6.25 €
+      </td>
+      <td style="padding: 10px 12px; text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #059669; font-size: 13px;">
+        +${p.amount.toFixed(2)} €
+      </td>
+    </tr>
+  `).join('');
+
+  const html = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>FEELPROD — Listing des Règlements Encaissés • ${periodLabel}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #FAF6ED;
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: #0F172A;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .print-actions {
+      width: 820px;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 16px;
+    }
+    .btn-print {
+      background: #0F172A;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .sheet {
+      width: 820px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+    .title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #0F172A;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 4px;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 14px 18px;
+    }
+    .kpi-label {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #64748B;
+      letter-spacing: 0.05em;
+    }
+    .kpi-value {
+      font-size: 22px;
+      font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      color: #0F172A;
+      margin-top: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    th {
+      background: #F8FAFC;
+      padding: 10px 12px;
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #64748B;
+      text-align: left;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .footer {
+      border-top: 1px solid #E2E8F0;
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      font-size: 10.5px;
+      color: #94A3B8;
+      line-height: 1.5;
+    }
+    @media print {
+      body { background: transparent !important; padding: 0 !important; }
+      .print-actions { display: none !important; }
+      .sheet { box-shadow: none !important; width: 100% !important; padding: 15mm !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-actions">
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimer / Sauvegarder en PDF</button>
+  </div>
+  <div class="sheet">
+    <div class="header">
+      <div>
+        <div style="font-size: 11px; font-weight: 800; color: #1D4ED8; text-transform: uppercase; letter-spacing: 0.06em;">FEELPROD • Registre des Recettes</div>
+        <h1 class="title">Listing des Paiements Encaissés</h1>
+        <div class="subtitle">Formation Embryologie Biodynamique • Période : <strong>${periodLabel}</strong></div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 11px; font-weight: 800; color: #059669; background: #ECFDF5; padding: 4px 10px; border-radius: 20px; display: inline-block;">✓ Relevé Officiel</div>
+        <div style="font-size: 10.5px; color: #64748B; margin-top: 6px;">Édité le ${dateStr}</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-label">Nombre de Règlements</div>
+        <div class="kpi-value">${payments.length}</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Total Brut Encaissé</div>
+        <div class="kpi-value" style="color: #059669;">${totalBrut.toFixed(2)} €</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Net Après Frais Stripe</div>
+        <div class="kpi-value" style="color: #1D4ED8;">${totalNet.toFixed(2)} €</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 15%;">Date</th>
+          <th style="width: 40%;">Apprenant / Praticien</th>
+          <th style="width: 20%; text-align: center;">Réf. Stripe</th>
+          <th style="width: 12%; text-align: right;">Frais CB</th>
+          <th style="width: 13%; text-align: right;">Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rowsHtml}
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <div style="max-width: 540px;">
+        <strong>Éditeur :</strong> FEELPROD (Guillaume PHILIPPE — Masseur-Kinésithérapeute D.E.)<br>
+        SIRET : 480 342 901 00021 • NAF : 8690E / 5911B • 28 bis bd de Sébastopol, 75004 Paris
+      </div>
+      <div style="text-align: right; font-weight: 600; color: #64748B;">
+        ✓ Journal des ventes Stripe<br>
+        Relevé comptable certifié conforme
+      </div>
+    </div>
+  </div>
+</body>
+</html>`;
+
+  printWindow.document.open();
+  printWindow.document.write(html);
+  printWindow.document.close();
 }
 
 

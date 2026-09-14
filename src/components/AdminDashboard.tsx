@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin, FileText, Mail, Printer, DollarSign, Wallet, Share2, Send, Sparkles, Lock } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin, FileText, Mail, Printer, DollarSign, Wallet, Share2, Send, Sparkles, Lock, CreditCard, Calendar, CheckCircle2, Receipt } from 'lucide-react';
 import { cn } from '../utils';
-import { openInvoiceWindow, openEmailForInvoice, shareInvoice, openDamoiseauxSummaryWindow, openMarcTransferSheetWindow, openEmailForMarcTransfer, shareMarcTransferSheet, type PartnerSale } from '../utils/exportInvoicePdf';
+import { openInvoiceWindow, openEmailForInvoice, shareInvoice, openDamoiseauxSummaryWindow, openMarcTransferSheetWindow, openEmailForMarcTransfer, shareMarcTransferSheet, openPaymentsListingWindow, type PartnerSale, type PaymentListingItem } from '../utils/exportInvoicePdf';
 
 type Profile = {
     id: string;
@@ -48,8 +48,25 @@ export function AdminDashboard() {
     const [filter, setFilter] = useState<FilterType>('ALL');
     const [tierFilter, setTierFilter] = useState<TierFilterType>('ALL');
     const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
-    const [activeTab, setActiveTab] = useState<'users' | 'analytics' | 'compta'>('users');
+    const [activeTab, setActiveTab] = useState<'users' | 'analytics' | 'payments' | 'compta'>('users');
     const [timeframe, setTimeframe] = useState<'week' | 'month' | 'year'>('week');
+    const [paymentMonthFilter, setPaymentMonthFilter] = useState<string>('ALL');
+
+    const MONTHS_LIST = [
+        { key: 'ALL', label: 'Toutes les dates (2026)' },
+        { key: '2026-12', label: 'Décembre 2026' },
+        { key: '2026-11', label: 'Novembre 2026' },
+        { key: '2026-10', label: 'Octobre 2026' },
+        { key: '2026-09', label: 'Septembre 2026' },
+        { key: '2026-08', label: 'Août 2026' },
+        { key: '2026-07', label: 'Juillet 2026' },
+        { key: '2026-06', label: 'Juin 2026' },
+        { key: '2026-05', label: 'Mai 2026' },
+        { key: '2026-04', label: 'Avril 2026' },
+        { key: '2026-03', label: 'Mars 2026' },
+        { key: '2026-02', label: 'Février 2026' },
+        { key: '2026-01', label: 'Janvier 2026' }
+    ];
 
 
     const [gaData, setGaData] = useState<{ dimension: string; activeUsers: number; pageViews: number }[] | null>(null);
@@ -96,6 +113,47 @@ export function AdminDashboard() {
     const totalNet = totalBrut - totalFeesDeducted;
     const partMarc = totalNet / 2;
     const partFeelProd = totalNet / 2;
+
+    // Structured paid orders for the "Paiements déjà effectués" tab
+    const paidOrders = profiles
+        .filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || ''))
+        .filter(p => !!p.stripe_payment_id || p.access_tier === 'premium')
+        .map(p => {
+            const dateObj = p.created_at ? new Date(p.created_at) : new Date('2026-06-19');
+            const year = dateObj.getFullYear();
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const monthKey = `${year}-${month}`;
+            const monthLabel = dateObj.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+            return {
+                id: p.id,
+                profile: p,
+                date: dateObj.toLocaleDateString('fr-FR'),
+                dateTime: dateObj.toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+                monthKey,
+                monthLabel: monthLabel.charAt(0).toUpperCase() + monthLabel.slice(1),
+                name: `${p.first_name || ''} ${p.last_name || ''}`.trim() || p.email,
+                email: p.email,
+                profession: p.profession,
+                location: p.address || p.location,
+                stripePaymentId: p.stripe_payment_id || 'Stripe Checkout',
+                amount: 400.00
+            };
+        })
+        .sort((a, b) => {
+            const dateA = a.profile.created_at ? new Date(a.profile.created_at).getTime() : 0;
+            const dateB = b.profile.created_at ? new Date(b.profile.created_at).getTime() : 0;
+            return dateB - dateA;
+        });
+
+    const filteredPaidOrders = paymentMonthFilter === 'ALL'
+        ? paidOrders
+        : paidOrders.filter(o => o.monthKey === paymentMonthFilter);
+
+    const filteredTotalBrut = filteredPaidOrders.reduce((acc, o) => acc + o.amount, 0);
+    const filteredTotalStripeFees = filteredPaidOrders.length * stripeFeePerSale;
+    const filteredTotalNet = filteredTotalBrut - filteredTotalStripeFees;
+    const selectedMonthObj = MONTHS_LIST.find(m => m.key === paymentMonthFilter);
+    const selectedMonthLabel = selectedMonthObj ? selectedMonthObj.label : paymentMonthFilter;
 
     useEffect(() => {
         if (activeTab === 'analytics') {
@@ -492,36 +550,62 @@ export function AdminDashboard() {
                             </div>
                             
                             {/* VIEW TOGGLE */}
-                            <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner">
+                            <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner overflow-x-auto no-scrollbar max-w-full">
                                 <button 
                                     onClick={() => setActiveTab('users')} 
                                     className={cn(
-                                        "px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
+                                        "px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
                                         activeTab === 'users' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
                                     )}
                                 >
                                     👥 Élèves
                                 </button>
                                 <button 
-                                    onClick={() => setActiveTab('analytics')} 
+                                    onClick={() => setActiveTab('payments')} 
                                     className={cn(
-                                        "px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
-                                        activeTab === 'analytics' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                        "px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
+                                        activeTab === 'payments' ? "bg-white shadow text-emerald-800 font-extrabold" : "text-slate-500 hover:text-slate-700"
                                     )}
                                 >
-                                    📊 Trafic
+                                    <CreditCard size={14} className={activeTab === 'payments' ? "text-emerald-600" : "text-slate-400"} />
+                                    <span>Paiements déjà effectués</span>
+                                    <span className="ml-1 px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-full text-[10px] font-black">
+                                        {paidStripeUsers}
+                                    </span>
                                 </button>
                                 <button 
                                     onClick={() => setActiveTab('compta')} 
                                     className={cn(
-                                        "px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
+                                        "px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
                                         activeTab === 'compta' ? "bg-white shadow text-blue-900 font-extrabold" : "text-slate-500 hover:text-slate-700"
                                     )}
                                 >
                                     💰 Bilan Damoiseaux (50%)
                                 </button>
+                                <button 
+                                    onClick={() => setActiveTab('analytics')} 
+                                    className={cn(
+                                        "px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
+                                        activeTab === 'analytics' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                    )}
+                                >
+                                    📊 Trafic
+                                </button>
                             </div>
                         </div>
+
+                        {activeTab === 'payments' && (
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() => openPaymentsListingWindow(filteredPaidOrders, selectedMonthLabel)}
+                                    className="px-4 py-2 bg-[#0F172A] text-white hover:bg-[#1E293B] font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-2 cursor-pointer"
+                                    title="Imprimer ou enregistrer le listing en PDF A4"
+                                >
+                                    <Printer size={14} className="text-emerald-400" />
+                                    <span>Imprimer Listing (PDF)</span>
+                                </button>
+                            </div>
+                        )}
 
                         {activeTab === 'compta' && (
                             <div className="flex items-center gap-3">
@@ -935,6 +1019,298 @@ export function AdminDashboard() {
                     </div>
                 )}
 
+                {/* TAB: PAIEMENTS DÉJÀ EFFECTUÉS */}
+                {activeTab === 'payments' && (
+                    <div className="flex-1 overflow-y-auto p-4 md:p-8 min-h-0 bg-[#FAF6ED]">
+                        <div className="max-w-6xl mx-auto space-y-6">
+                            {/* Header Banner */}
+                            <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/80 shadow-sm relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-600 via-teal-700 to-blue-900" />
+                                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                    <div>
+                                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
+                                            <Receipt size={13} className="text-emerald-600" />
+                                            <span>Registre Officiel des Règlements Encaissés (Stripe)</span>
+                                        </div>
+                                        <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
+                                            Paiements déjà effectués
+                                        </h2>
+                                        <p className="text-sm text-slate-500 font-medium mt-1 max-w-2xl">
+                                            Listing chronologique et comptable des inscriptions réglées par carte bancaire. Filtrez par mois pour vérifier qui a payé, à quelle date, combien et connaître instantanément le total encaissé.
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                                        <button
+                                            onClick={() => openPaymentsListingWindow(filteredPaidOrders, selectedMonthLabel)}
+                                            className="px-4 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                                            title="Imprimer ou enregistrer le listing en PDF A4"
+                                        >
+                                            <Printer size={15} className="text-emerald-400" />
+                                            <span>Imprimer Relevé A4</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Month Filter Bar */}
+                                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-50 border border-slate-200/80 rounded-2xl p-3.5 mt-6">
+                                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                                        <Calendar size={18} className="text-emerald-600 shrink-0" />
+                                        <label className="text-xs font-bold uppercase tracking-wider text-slate-600 shrink-0">Période / Mois :</label>
+                                        <div className="relative flex-1 sm:w-64">
+                                            <select
+                                                value={paymentMonthFilter}
+                                                onChange={(e) => setPaymentMonthFilter(e.target.value)}
+                                                className="w-full appearance-none bg-white border border-slate-200 text-slate-900 text-xs font-bold rounded-xl px-3.5 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-2xs cursor-pointer"
+                                            >
+                                                {MONTHS_LIST.map(m => {
+                                                    const count = m.key === 'ALL' 
+                                                        ? paidOrders.length 
+                                                        : paidOrders.filter(o => o.monthKey === m.key).length;
+                                                    return (
+                                                        <option key={m.key} value={m.key}>
+                                                            {m.label} ({count} {count > 1 ? 'règlements' : 'règlement'})
+                                                        </option>
+                                                    );
+                                                })}
+                                            </select>
+                                            <ChevronRight size={14} className="rotate-90 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" />
+                                        </div>
+                                    </div>
+
+                                    {/* Quick Pills */}
+                                    <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto">
+                                        <button
+                                            onClick={() => setPaymentMonthFilter('ALL')}
+                                            className={cn(
+                                                "px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap",
+                                                paymentMonthFilter === 'ALL' ? "bg-emerald-700 text-white shadow-xs" : "bg-white hover:bg-slate-100 text-slate-600 border border-slate-200/70"
+                                            )}
+                                        >
+                                            Tous ({paidOrders.length})
+                                        </button>
+                                        <button
+                                            onClick={() => setPaymentMonthFilter('2026-09')}
+                                            className={cn(
+                                                "px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap",
+                                                paymentMonthFilter === '2026-09' ? "bg-emerald-700 text-white shadow-xs" : "bg-white hover:bg-slate-100 text-slate-600 border border-slate-200/70"
+                                            )}
+                                        >
+                                            Sept. 2026
+                                        </button>
+                                        <button
+                                            onClick={() => setPaymentMonthFilter('2026-06')}
+                                            className={cn(
+                                                "px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap",
+                                                paymentMonthFilter === '2026-06' ? "bg-emerald-700 text-white shadow-xs" : "bg-white hover:bg-slate-100 text-slate-600 border border-slate-200/70"
+                                            )}
+                                        >
+                                            Juin 2026
+                                        </button>
+                                        <button
+                                            onClick={() => setPaymentMonthFilter('2026-12')}
+                                            className={cn(
+                                                "px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap",
+                                                paymentMonthFilter === '2026-12' ? "bg-emerald-700 text-white shadow-xs" : "bg-white hover:bg-slate-100 text-slate-600 border border-slate-200/70"
+                                            )}
+                                        >
+                                            Déc. 2026
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* KPI Summary Cards */}
+                                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                                    <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-2xl p-4">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Règlements Encaissés</p>
+                                        <p className="text-2xl font-mono font-black text-slate-900 mt-1">{filteredPaidOrders.length}</p>
+                                        <p className="text-[11px] text-emerald-600 font-bold mt-1">
+                                            {paymentMonthFilter === 'ALL' ? 'Sur l\'année 2026' : selectedMonthLabel}
+                                        </p>
+                                    </div>
+                                    <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-2xl p-4">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Total Brut Encaissé</p>
+                                        <p className="text-2xl font-mono font-black text-emerald-700 mt-1">{filteredTotalBrut.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-emerald-700 font-medium mt-1">400,00 € par praticien</p>
+                                    </div>
+                                    <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-2xl p-4">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Frais Bancaires Stripe</p>
+                                        <p className="text-2xl font-mono font-black text-red-600 mt-1">-{filteredTotalStripeFees.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-slate-500 font-medium mt-1">~1,5% + 0,25 € par vente</p>
+                                    </div>
+                                    <div className="bg-blue-50/80 border border-blue-200/80 rounded-2xl p-4">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-blue-800">Net en Trésorerie</p>
+                                        <p className="text-2xl font-mono font-black text-blue-700 mt-1">{filteredTotalNet.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-blue-700 font-medium mt-1">Avant rétrocession Marc</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Listing Table Card */}
+                            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
+                                <div className="p-5 md:p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                    <div>
+                                        <h3 className="font-bold text-base text-slate-900 flex items-center gap-2">
+                                            <span>Listing des Règlements</span>
+                                            <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                                                {selectedMonthLabel}
+                                            </span>
+                                        </h3>
+                                        <p className="text-xs text-slate-500 font-medium mt-0.5">
+                                            Détail des praticiens ayant payé, horodatage, montants et justificatifs officiels
+                                        </p>
+                                    </div>
+                                    <span className="text-xs font-bold px-3 py-1 bg-slate-100 text-slate-700 rounded-full self-start sm:self-auto">
+                                        {filteredPaidOrders.length} {filteredPaidOrders.length > 1 ? 'règlements' : 'règlement'}
+                                    </span>
+                                </div>
+
+                                {filteredPaidOrders.length === 0 ? (
+                                    <div className="p-12 text-center flex flex-col items-center justify-center space-y-3">
+                                        <div className="w-16 h-16 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center shadow-inner">
+                                            <Calendar size={32} />
+                                        </div>
+                                        <h4 className="font-bold text-slate-800 text-base">Aucun paiement enregistré pour {selectedMonthLabel}</h4>
+                                        <p className="text-xs text-slate-500 max-w-md leading-relaxed">
+                                            Il n'y a pas eu d'encaissement Stripe sur cette période. Le total pour ce mois est actuellement de <strong className="text-slate-800">0,00 €</strong>.<br />
+                                            Dès qu'un praticien effectuera son règlement, son nom, son email, sa date exacte et sa facture PDF apparaîtront automatiquement ici.
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr className="bg-slate-50/70 border-b border-slate-100 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                                                    <th className="py-3 px-4">Date & Heure</th>
+                                                    <th className="py-3 px-4">Praticien / Acheteur</th>
+                                                    <th className="py-3 px-4 text-center">Réf. Stripe</th>
+                                                    <th className="py-3 px-4 text-right">Frais Stripe</th>
+                                                    <th className="py-3 px-4 text-right">Montant Encaissé</th>
+                                                    <th className="py-3 px-4 text-right">Actions Facture</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-slate-100 text-xs">
+                                                {filteredPaidOrders.map((o) => (
+                                                    <tr key={o.id} className="hover:bg-slate-50/80 transition-colors">
+                                                        <td className="py-4 px-4 font-mono text-slate-600 whitespace-nowrap">
+                                                            <div className="font-bold text-slate-900">{o.date}</div>
+                                                            <div className="text-[10px] text-slate-400">{o.dateTime.split(' ')[1] || ''}</div>
+                                                        </td>
+                                                        <td className="py-4 px-4">
+                                                            <div className="font-bold text-slate-900 text-sm">{o.name}</div>
+                                                            <div className="text-[11px] text-slate-500">{o.email}</div>
+                                                            <div className="text-[10.5px] text-slate-400 mt-0.5">
+                                                                {o.profession || 'Praticien'} {o.location ? `• ${o.location}` : ''}
+                                                            </div>
+                                                        </td>
+                                                        <td className="py-4 px-4 text-center whitespace-nowrap">
+                                                            <span className="font-mono text-[10.5px] bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200">
+                                                                {o.stripePaymentId}
+                                                            </span>
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right font-mono text-red-600 whitespace-nowrap">
+                                                            -6,25 €
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right whitespace-nowrap">
+                                                            <span className="font-mono font-black text-emerald-700 text-base">
+                                                                +{o.amount.toFixed(2)} €
+                                                            </span>
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right whitespace-nowrap">
+                                                            <div className="flex items-center justify-end gap-2">
+                                                                <button
+                                                                    onClick={() => openInvoiceWindow({
+                                                                        firstName: o.profile.first_name,
+                                                                        lastName: o.profile.last_name,
+                                                                        email: o.email,
+                                                                        profession: o.profession,
+                                                                        address: o.profile.address,
+                                                                        location: o.location,
+                                                                        stripePaymentId: o.stripePaymentId,
+                                                                        createdAt: o.profile.created_at
+                                                                    })}
+                                                                    className="px-3 py-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1.5 cursor-pointer"
+                                                                    title="Voir et imprimer la facture officielle FeelProd"
+                                                                >
+                                                                    <FileText size={13} className="text-amber-600" />
+                                                                    <span>Facture PDF</span>
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => openEmailForInvoice({
+                                                                        firstName: o.profile.first_name,
+                                                                        lastName: o.profile.last_name,
+                                                                        email: o.email,
+                                                                        profession: o.profession,
+                                                                        address: o.profile.address,
+                                                                        location: o.location,
+                                                                        stripePaymentId: o.stripePaymentId,
+                                                                        createdAt: o.profile.created_at
+                                                                    })}
+                                                                    className="px-3 py-1.5 bg-blue-50 border border-blue-200 hover:bg-blue-100 text-blue-700 font-bold rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1.5 cursor-pointer"
+                                                                    title="Envoyer la facture par email à l'apprenant"
+                                                                >
+                                                                    <Mail size={13} />
+                                                                    <span>Email</span>
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => shareInvoice({
+                                                                        firstName: o.profile.first_name,
+                                                                        lastName: o.profile.last_name,
+                                                                        email: o.email,
+                                                                        profession: o.profession,
+                                                                        address: o.profile.address,
+                                                                        location: o.location,
+                                                                        stripePaymentId: o.stripePaymentId,
+                                                                        createdAt: o.profile.created_at
+                                                                    })}
+                                                                    className="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1 cursor-pointer"
+                                                                    title="Partager la facture (AirDrop, WhatsApp, SMS)"
+                                                                >
+                                                                    <Share2 size={13} />
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                            {/* Table Footer with Total */}
+                                            <tfoot>
+                                                <tr className="bg-slate-50 font-bold border-t-2 border-slate-200 text-slate-900">
+                                                    <td colSpan={3} className="py-4 px-4 text-xs uppercase tracking-wider text-slate-700">
+                                                        TOTAL ({selectedMonthLabel}) — {filteredPaidOrders.length} {filteredPaidOrders.length > 1 ? 'règlements' : 'règlement'}
+                                                    </td>
+                                                    <td className="py-4 px-4 text-right font-mono text-red-600">
+                                                        -{filteredTotalStripeFees.toFixed(2)} €
+                                                    </td>
+                                                    <td className="py-4 px-4 text-right font-mono text-lg font-black text-emerald-700">
+                                                        {filteredTotalBrut.toFixed(2)} €
+                                                    </td>
+                                                    <td className="py-4 px-4 text-right text-[11px] text-slate-500 font-medium">
+                                                        Net : {filteredTotalNet.toFixed(2)} €
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Explanatory Info Card */}
+                            <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-3xl p-6 text-xs text-slate-600 space-y-2">
+                                <p className="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <CheckCircle2 size={16} className="text-emerald-600" />
+                                    <span>Garantie de Rapprochement Bancaire & Justificatifs Fiscaux</span>
+                                </p>
+                                <p>
+                                    • <strong>Journal des Ventes :</strong> Chaque règlement listé ci-dessus est adossé à un identifiant unique Stripe Checkout (`pi_...`) et à une facture officielle FeelProd acquittée avec TVA et mentions légales.
+                                </p>
+                                <p>
+                                    • <strong>Vérification par Mois :</strong> Vous pouvez sélectionner n'importe quel mois de l'année 2026 (par exemple <em>Décembre 2026</em>) pour connaître le nombre d'apprenants ayant réglé, le montant brut total et le net bancaire correspondant.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {activeTab === 'compta' && (
                     <div className="flex-1 overflow-y-auto p-4 md:p-8 min-h-0 bg-[#FAF6ED]">
                         <div className="max-w-6xl mx-auto space-y-6">
@@ -1111,13 +1487,13 @@ export function AdminDashboard() {
                             {/* Explanatory Info Card */}
                             <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-3xl p-6 text-xs text-slate-600 space-y-2">
                                 <p className="font-bold text-slate-800 text-sm flex items-center gap-2">
-                                    <span>💡</span> Note Comptable & Reversement Confrère
+                                    <span>💡</span> Note Comptable & Reversement Co-Auteur
                                 </p>
                                 <p>
-                                    • <strong>Encaissement Stripe :</strong> Les règlements des élèves sont collectés via Stripe Checkout et crédités sur le compte bancaire professionnel LCL de Guillaume Philippe (FEELPROD).
+                                    • <strong>Encaissement Stripe :</strong> Les règlements des élèves sont collectés via Stripe Checkout et crédités sur le compte bancaire professionnel LCL de Guillaume Philippe (Masseur-Kinésithérapeute D.E. • Enseigne FEELPROD).
                                 </p>
                                 <p>
-                                    • <strong>Virement à Marc Damoiseaux :</strong> Le virement de la part co-auteur (400,00 € pour les 2 ventes actuelles) est à effectuer directement vers le compte bancaire de Marc Damoiseaux. Le relevé PDF certifié généré ci-dessus fait office de justificatif contractuel officiel.
+                                    • <strong>Virement à Marc Damoiseaux :</strong> Le virement de la part co-auteur (393,75 € pour les 2 ventes actuelles, après déduction des frais Stripe et hébergement vidéo Cloudflare 100% offert par FeelProd) est à effectuer directement vers le compte bancaire de Marc Damoiseaux (Ostéopathe D.O.). La fiche d'ordre de virement PDF certifiée générée ci-dessus fait office de justificatif contractuel officiel.
                                 </p>
                             </div>
                         </div>
