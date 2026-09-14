@@ -662,11 +662,11 @@ export function AdminDashboard() {
                                 {activeTab === 'compta' && (
                                     <button
                                         onClick={() => openMarcTransferSheetWindow(partnerSales, feeMode)}
-                                        className="sm:hidden px-3 py-1.5 bg-blue-700 text-white hover:bg-blue-800 font-medium text-[11px] rounded-xl shadow-xs transition-all flex items-center gap-1.5 cursor-pointer touch-manipulation"
-                                        title="Fiche Virement Marc"
+                                        className="sm:hidden px-3 py-1.5 bg-[#0F172A] text-white hover:bg-[#1E293B] font-medium text-[11px] rounded-xl shadow-xs transition-all flex items-center gap-1.5 cursor-pointer touch-manipulation"
+                                        title="Ordre de Virement Marc (PDF A4)"
                                     >
                                         <FileText size={13} className="text-amber-300" />
-                                        <span>Virement</span>
+                                        <span>Ordre PDF</span>
                                     </button>
                                 )}
                             </div>
