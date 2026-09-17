@@ -18,7 +18,7 @@ import { Paywall } from './components/Paywall';
 import { AdminDashboard } from './components/AdminDashboard';
 import { Bibliographie } from './components/Bibliographie';
 import { supabase } from './lib/supabase';
-import { type VideoCourse } from './data/videoCourses';
+import { videoCourses as videoCoursesFr, type VideoCourse } from './data/videoCourses';
 import { cn, isLocalNetwork } from './utils';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './components/ui/LanguageSwitcher';
@@ -523,12 +523,26 @@ function App() {
       if (v === 'admin') return 'admin';
       if (v === 'timeline') return 'timeline';
       if (v === 'videos' || v === 'video-library') return 'video-library';
+      if (v === 'video-player' || v === 'video') return 'video-player';
       if (v === 'embryo-ai') return 'embryo-ai';
       if (v === 'bibliographie') return 'bibliographie';
     }
     return 'home';
   });
-  const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
+  const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(() => {
+    if (typeof window !== 'undefined') {
+      const p = new URLSearchParams(window.location.search);
+      const vid = p.get('video');
+      if (vid) {
+        const found = videoCoursesFr.find(v => v.id === vid);
+        if (found) return found;
+      }
+      if (p.get('view') === 'video-player' || p.get('view') === 'video') {
+        return videoCoursesFr[0];
+      }
+    }
+    return null;
+  });
   const [optimisticView, setOptimisticView] = useState<View | null>(null);
   const [isPending, startTransition] = useTransition();
   const [showPaywallModal, setShowPaywallModal] = useState(false);
