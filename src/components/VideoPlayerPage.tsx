@@ -614,16 +614,75 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
             isFullscreen && "hidden"
           )}>
             <div className="flex items-center justify-between gap-1 sm:gap-2 max-w-3xl mx-auto w-full">
-              {/* LEFT: SPEED, PIP & PDF IN-APP */}
+              {/* LEFT: SPEED CONTROLS (x1, x1.5) & PDF OPTIONS */}
               <div className="flex flex-1 items-center justify-start gap-1 sm:gap-2 z-10">
-                <button
-                  onClick={() => handleSpeedChange(currentSpeed === 1 ? 1.25 : currentSpeed === 1.25 ? 1.5 : 1)}
-                  className="py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-700 text-[10px] sm:text-xs font-semibold rounded-md md:rounded-lg shadow-sm transition-all border border-slate-200 shrink-0"
-                  title="Vitesse de lecture"
-                >
-                  {currentSpeed}x
-                </button>
+                <div className="flex items-center gap-1 shrink-0">
+                  <button
+                    onClick={() => handleSpeedChange(1)}
+                    className={cn(
+                      "py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md md:rounded-lg text-[10px] sm:text-xs font-bold transition-all border shrink-0 cursor-pointer active:scale-95 touch-manipulation",
+                      currentSpeed === 1
+                        ? "bg-white shadow-xs font-extrabold"
+                        : "bg-transparent text-slate-500 border-slate-200 hover:text-slate-800 hover:bg-[#F5F1E8]"
+                    )}
+                    style={currentSpeed === 1 ? { color: categoryColor, borderColor: `${categoryColor}60` } : undefined}
+                    title="Vitesse normale (x1)"
+                  >
+                    x1
+                  </button>
+                  <button
+                    onClick={() => handleSpeedChange(1.5)}
+                    className={cn(
+                      "py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md md:rounded-lg text-[10px] sm:text-xs font-bold transition-all border shrink-0 cursor-pointer active:scale-95 touch-manipulation",
+                      currentSpeed === 1.5
+                        ? "bg-white shadow-xs font-extrabold"
+                        : "bg-transparent text-slate-500 border-slate-200 hover:text-slate-800 hover:bg-[#F5F1E8]"
+                    )}
+                    style={currentSpeed === 1.5 ? { color: categoryColor, borderColor: `${categoryColor}60` } : undefined}
+                    title="Vitesse accélérée (x1.5)"
+                  >
+                    x1.5
+                  </button>
+                </div>
 
+                <PDFShareDropdown
+                  pdfUrl={currentPdfUrl}
+                  title={course.title}
+                  courseTitle={course.title}
+                  accentColor={categoryColor}
+                  variant="header"
+                  align="left"
+                  buttonClassName="border border-slate-200 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs"
+                  course={course}
+                  hasFullAccess={hasFullAccess}
+                  onLockedClick={onLockedVideoClick}
+                />
+              </div>
+
+              {/* CENTER: PREV/NEXT */}
+              {(!isDesktopLayout && !isTabletLayout) && (
+                <div className="flex items-center justify-center gap-1.5 sm:gap-3 z-10 shrink-0">
+                  <button
+                    onClick={() => prevVideo && handleSelectVideo(prevVideo)}
+                    disabled={!prevVideo}
+                    className="flex items-center justify-center py-1 md:py-1.5 w-12 sm:w-20 md:w-28 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+                    title={t('videoLibrary.previous')}
+                  >
+                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </button>
+                  <button
+                    onClick={() => nextVideo && handleSelectVideo(nextVideo)}
+                    disabled={!nextVideo}
+                    className="flex items-center justify-center py-1 md:py-1.5 w-12 sm:w-20 md:w-28 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
+                    title={t('videoLibrary.next')}
+                  >
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </button>
+                </div>
+              )}
+
+              {/* RIGHT: VIDEO DETACH/ATTACH & OFFLINE DOWNLOAD */}
+              <div className="flex flex-1 items-center justify-end gap-1.5 sm:gap-2 z-10">
                 <button
                   onClick={() => setIsVideoVisible(!isVideoVisible)}
                   className={cn(
@@ -634,52 +693,6 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
                 >
                   {!isVideoVisible ? <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <VideoOff className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
                 </button>
-
-                <button
-                  onClick={() => setIsDedicatedPdfModalOpen(true)}
-                  className="flex items-center gap-1 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 bg-white active:bg-slate-200 hover:bg-[#FAF6ED] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-700 text-[10px] sm:text-xs font-semibold rounded-md md:rounded-lg shadow-sm transition-all border border-slate-200 shrink-0"
-                  title="Consulter le support PDF dans l'application"
-                >
-                  <FileText className="w-3.5 h-3.5" style={{ color: categoryColor }} />
-                  <span className="font-bold">PDF</span>
-                </button>
-              </div>
-
-              {/* CENTER: PREV/NEXT */}
-              {(!isDesktopLayout && !isTabletLayout) && (
-                <div className="flex items-center justify-center gap-2 sm:gap-3 z-10 shrink-0">
-                  <button
-                    onClick={() => prevVideo && handleSelectVideo(prevVideo)}
-                    disabled={!prevVideo}
-                    className="flex items-center justify-center py-1 md:py-1.5 w-16 sm:w-24 md:w-32 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
-                    title={t('videoLibrary.previous')}
-                  >
-                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </button>
-                  <button
-                    onClick={() => nextVideo && handleSelectVideo(nextVideo)}
-                    disabled={!nextVideo}
-                    className="flex items-center justify-center py-1 md:py-1.5 w-16 sm:w-24 md:w-32 bg-transparent active:bg-slate-200 hover:bg-[#F5F1E8] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-600 rounded-md md:rounded-lg shadow-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed border border-slate-200"
-                    title={t('videoLibrary.next')}
-                  >
-                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </button>
-                </div>
-              )}
-
-              {/* RIGHT: OFFLINE DOWNLOAD, PDF VIEWER & TDT SHARE */}
-              <div className="flex flex-1 items-center justify-end gap-1.5 sm:gap-2 z-10">
-                <PDFShareDropdown
-                  pdfUrl={currentPdfUrl}
-                  title={course.title}
-                  courseTitle={course.title}
-                  accentColor={categoryColor}
-                  variant="header"
-                  buttonClassName="border border-slate-200 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs"
-                  course={course}
-                  hasFullAccess={hasFullAccess}
-                  onLockedClick={onLockedVideoClick}
-                />
 
                 {course.cloudflareId && (
                   <button
