@@ -681,7 +681,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
                 </div>
               )}
 
-              {/* RIGHT: VIDEO DETACH/ATTACH */}
+              {/* RIGHT: VIDEO DETACH/ATTACH & OFFLINE DOWNLOAD */}
               <div className="flex flex-1 items-center justify-end gap-1.5 sm:gap-2 z-10">
                 <button
                   onClick={() => setIsVideoVisible(!isVideoVisible)}
@@ -693,6 +693,34 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
                 >
                   {!isVideoVisible ? <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <VideoOff className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
                 </button>
+
+                {course.cloudflareId && (
+                  <button
+                    onClick={handleOfflineCache}
+                    disabled={isCaching}
+                    className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all focus:outline-none focus:ring-0 ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-transparent text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-[#F5F1E8] active:bg-slate-200'} disabled:opacity-50 touch-manipulation active:scale-[0.98] shrink-0`}
+                    title={isCaching ? "Enregistrement en cours..." : isCached ? "Supprimer la vidéo de cet appareil" : "Enregistrer pour accès hors-ligne"}
+                  >
+                    <div className="relative flex items-center justify-center w-3.5 h-3.5 sm:w-4 sm:h-4">
+                      {isCaching ? (
+                        <Loader2 className="w-full h-full animate-spin" strokeWidth={2.5} />
+                      ) : showSuccessCheck ? (
+                        <CheckCircle2 className="w-full h-full text-[#5A9C51] animate-in zoom-in duration-300" strokeWidth={2.5} />
+                      ) : isCached ? (
+                        isConfirmingDelete ? (
+                          <Trash2 className="w-full h-full text-red-500 animate-in zoom-in duration-200" strokeWidth={2.5} />
+                        ) : (
+                          <>
+                            <CheckCircle2 className="w-full h-full text-[#5A9C51] md:group-hover:opacity-0 transition-opacity absolute" strokeWidth={2.5} />
+                            <Trash2 className="w-full h-full text-red-500 opacity-0 md:group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />
+                          </>
+                        )
+                      ) : (
+                        <DownloadCloud className="w-full h-full" strokeWidth={2.5} />
+                      )}
+                    </div>
+                  </button>
+                )}
               </div>
 
             </div>
