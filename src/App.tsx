@@ -26,6 +26,7 @@ import { DesktopMenu } from './components/DesktopMenu';
 import { FullscreenProvider } from './contexts/FullscreenContext';
 import { OrientationLock } from './components/OrientationLock';
 import { SuccessOverlay } from './components/SuccessOverlay';
+import { openInvoiceWindow } from './utils/exportInvoicePdf';
 
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -87,19 +88,65 @@ const getDeviceId = () => {
 
 const ADMIN_EMAILS = [
   'guillaumephilippe1968@gmail.com',
-  'marc@damoiseaux.be'
+  'guillaumephilippe@me.com',
+  'marc@damoiseaux.be',
+  'vip@feelprod.com'
 ];
+
+const SUPER_ADMIN_EMAILS = [
+  'guillaumephilippe1968@gmail.com',
+  'guillaumephilippe@me.com'
+];
+
 function App() {
   const { t, i18n } = useTranslation();
 
-  const [session, setSession] = useState<any>(null);
-  const [isInitializing, setIsInitializing] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isPremium, setIsPremium] = useState(false);
+  const isDevUser = () => {
+    if (typeof window === 'undefined') return false;
+    const urlParams = new URLSearchParams(window.location.search);
+    // Mode client explicite : désactive tout bypass pour tester fidèlement la vue élève
+    if (urlParams.get('client') !== null || urlParams.get('mode') === 'client') {
+      return false;
+    }
+    // Si l'URL contient ?dev=true (pilule développeur), on ne bypass pas automatiquement
+    // pour afficher l'écran de connexion avec le bouton développeur visible
+    if (urlParams.get('dev') !== null && urlParams.get('admin') !== 'dev') {
+      return false;
+    }
+    return (
+      urlParams.get('admin') === 'dev' ||
+      urlParams.get('bypass') === 'true' ||
+      localStorage.getItem('DEV_BYPASS_AUTH') === 'true' ||
+      localStorage.getItem('DEV_ADMIN_BYPASS') === 'true'
+    );
+  };
+
+  const devSessionObj = {
+    user: {
+      id: 'dev-bypass-guillaume',
+      email: 'guillaumephilippe1968@gmail.com',
+      user_metadata: { first_name: 'Guillaume', last_name: 'Philippe' }
+    }
+  };
+
+  const [session, setSession] = useState<any>(() => {
+    if (isDevUser()) {
+      try {
+        localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+        localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
+      } catch (e) {}
+      return devSessionObj;
+    }
+    return null;
+  });
+  const [isInitializing, setIsInitializing] = useState<boolean>(() => !isDevUser());
+  const [isAdmin, setIsAdmin] = useState<boolean>(() => isDevUser());
+  const [isPremium, setIsPremium] = useState<boolean>(() => isDevUser());
 
 
   const handleLogout = async () => {
     localStorage.removeItem('DEV_BYPASS_AUTH');
+    localStorage.removeItem('DEV_ADMIN_BYPASS');
     localStorage.removeItem('VIP_BYPASS');
 
     // Remove device from 3-device limit list
@@ -143,12 +190,27 @@ function App() {
     window.location.reload();
   };
 
+  const handleOpenInvoice = () => {
+    openInvoiceWindow({
+      firstName: session?.user?.user_metadata?.first_name || '',
+      lastName: session?.user?.user_metadata?.last_name || '',
+      email: session?.user?.email || '',
+      profession: session?.user?.user_metadata?.profession || 'Praticien de santé',
+      address: session?.user?.user_metadata?.address || '',
+      location: session?.user?.user_metadata?.location || '',
+      stripePaymentId: session?.user?.stripe_payment_id || null,
+      createdAt: session?.user?.created_at
+    });
+  };
+
   useEffect(() => {
     let mounted = true;
 
-    // DEV BYPASS LOGIC (Manual via button or storage)
-    if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
-      setSession({ user: { id: 'dev-bypass', email: 'guillaumephilippe1968@gmail.com' } });
+    // DEV / ADMIN BYPASS LOGIC (via URL param ?admin=dev, ?dev, hash #dev, /dev, or localStorage)
+    if (isDevUser()) {
+      localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+      localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
+      setSession(devSessionObj);
       setIsAdmin(true);
       setIsPremium(true);
       setIsInitializing(false);
@@ -158,10 +220,12 @@ function App() {
     const checkProfileDevice = async (currentSession: any, isExplicitSignIn: boolean = false) => {
 
 
-      // DEV BYPASS: If local dev AND bypass is enabled, don't check device ID
-      if ((import.meta.env.DEV || isLocalNetwork()) && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+      // DEV BYPASS: If bypass is enabled, don't check device ID
+      if (isDevUser()) {
         if (mounted) {
-          setSession(currentSession);
+          setSession(currentSession || devSessionObj);
+          setIsAdmin(true);
+          setIsPremium(true);
           setIsInitializing(false);
         }
         return;
@@ -209,11 +273,20 @@ function App() {
           return;
         }
 
-        if (profile.is_premium) {
+        const isAdminUserEarly =
+          (currentSession?.user?.email && ADMIN_EMAILS.includes(currentSession.user.email.toLowerCase())) ||
+          (profile.email && ADMIN_EMAILS.includes(profile.email.toLowerCase()));
+
+        if (profile.is_premium || isAdminUserEarly) {
           setIsPremium(true);
         } else {
           setIsPremium(false);
         }
+
+        if (isAdminUserEarly) {
+          setIsAdmin(true);
+        }
+
 
         // Always sync pending form details from login (for new or existing re-authenticating users)
         const pendingFirstName = localStorage.getItem('pending_first_name');
@@ -278,10 +351,10 @@ function App() {
             (profile.email && ADMIN_EMAILS.includes(profile.email.toLowerCase()));
 
           const isSuperAdmin =
-            (currentSession?.user?.email && currentSession.user.email.toLowerCase() === 'guillaumephilippe1968@gmail.com') ||
-            (profile.email && profile.email.toLowerCase() === 'guillaumephilippe1968@gmail.com');
+            (currentSession?.user?.email && SUPER_ADMIN_EMAILS.includes(currentSession.user.email.toLowerCase())) ||
+            (profile.email && SUPER_ADMIN_EMAILS.includes(profile.email.toLowerCase()));
 
-          const MAX_DEVICES = isSuperAdmin ? 99 : (isAdminUser ? 3 : 1);
+          const MAX_DEVICES = (isSuperAdmin || isAdminUser) ? 99 : 3;
 
           if (!isMatch) {
             if (deviceIds.length < MAX_DEVICES) {
@@ -336,8 +409,10 @@ function App() {
     };
 
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
+      const email = session?.user?.email?.toLowerCase();
+      if (email && ADMIN_EMAILS.includes(email)) {
         setIsAdmin(true);
+        setIsPremium(true);
       } else {
         setIsAdmin(false);
       }
@@ -349,16 +424,19 @@ function App() {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (_event === 'SIGNED_OUT') {
         localStorage.removeItem('DEV_BYPASS_AUTH');
+        localStorage.removeItem('DEV_ADMIN_BYPASS');
 
         if (mounted) setSession(null);
         setIsAdmin(false);
         setIsPremium(false);
       } else {
-        if (import.meta.env.DEV && localStorage.getItem('DEV_BYPASS_AUTH') === 'true') {
+        const email = session?.user?.email?.toLowerCase();
+        if (isDevUser()) {
           setIsAdmin(true);
           setIsPremium(true);
-        } else if (session?.user?.email && ADMIN_EMAILS.includes(session.user.email.toLowerCase())) {
+        } else if (email && ADMIN_EMAILS.includes(email)) {
           setIsAdmin(true);
+          setIsPremium(true);
         } else {
           setIsAdmin(false);
         }
@@ -438,7 +516,18 @@ function App() {
   const [playingVideoIdx, setPlayingVideoIdx] = useState<number | null>(null);
 
   type View = 'home' | 'timeline' | 'embryo-ai' | 'video-library' | 'video-player' | 'bibliographie' | 'admin' | 'admin-users' | 'admin-prompts';
-  const [currentView, setCurrentView] = useState<View>('home');
+  const [currentView, setCurrentView] = useState<View>(() => {
+    if (typeof window !== 'undefined') {
+      const p = new URLSearchParams(window.location.search);
+      const v = p.get('view');
+      if (v === 'admin') return 'admin';
+      if (v === 'timeline') return 'timeline';
+      if (v === 'videos' || v === 'video-library') return 'video-library';
+      if (v === 'embryo-ai') return 'embryo-ai';
+      if (v === 'bibliographie') return 'bibliographie';
+    }
+    return 'home';
+  });
   const [activeVideo, setActiveVideo] = useState<VideoCourse | null>(null);
   const [optimisticView, setOptimisticView] = useState<View | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -522,7 +611,14 @@ function App() {
       )}
 
       {/* New Fixed Desktop Navigation */}
-      <DesktopMenu currentView={currentView} setCurrentView={setCurrentView} isAdmin={isAdmin} onLogout={handleLogout} />
+      <DesktopMenu 
+        currentView={currentView} 
+        setCurrentView={setCurrentView} 
+        isAdmin={isAdmin} 
+        isPremium={isPremium} 
+        onOpenInvoice={handleOpenInvoice} 
+        onLogout={handleLogout} 
+      />
 
       {/* iOS-Style Bottom Tab Bar for Mobile - FIXED OUTSIDE SCROLL */}
       {(

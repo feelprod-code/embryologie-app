@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin } from 'lucide-react';
+import { UserX, UserCheck, Search, KeyRound, MonitorOff, ChevronRight, X, Clock, Gift, Crown, History, Trash2, Shield, BarChart2, Users, ArrowUpRight, Globe, TrendingUp, Settings, MapPin, FileText, Mail, Printer, DollarSign, Wallet, Share2, Send, Sparkles, Lock, CreditCard, Calendar, CheckCircle2, Receipt } from 'lucide-react';
 import { cn } from '../utils';
+import { openInvoiceWindow, openEmailForInvoice, openDamoiseauxSummaryWindow, openMarcTransferSheetWindow, openEmailForMarcTransfer, openPaymentsListingWindow, type PartnerSale, type PaymentListingItem } from '../utils/exportInvoicePdf';
 
 type Profile = {
     id: string;
@@ -15,6 +16,7 @@ type Profile = {
     is_active: boolean;
     created_at: string;
     access_tier?: 'legacy' | 'premium' | 'free' | 'trial' | null;
+    is_premium?: boolean;
     expires_at?: string | null;
     stripe_payment_id?: string | null;
 };
@@ -24,9 +26,20 @@ type TierFilterType = 'ALL' | 'LEGACY' | 'PREMIUM' | 'FREE' | 'TRIAL' | 'STANDAR
 
 const ADMIN_EMAILS = [
     'guillaumephilippe1968@gmail.com',
+    'guillaumephilippe@me.com',
     'marc@damoiseaux.be',
     'vip@feelprod.com'
 ];
+
+export const getEffectiveTier = (p: Profile): 'ADMIN' | 'PREMIUM' | 'LEGACY' | 'FREE' | 'TRIAL' | 'STANDARD' => {
+    if (ADMIN_EMAILS.includes(p.email?.toLowerCase() || '')) return 'ADMIN';
+    if (p.access_tier?.toUpperCase() === 'PREMIUM' || p.stripe_payment_id) return 'PREMIUM';
+    if (p.access_tier?.toUpperCase() === 'TRIAL') return 'TRIAL';
+    if (p.access_tier?.toUpperCase() === 'FREE') return 'FREE';
+    if (p.access_tier?.toUpperCase() === 'LEGACY') return 'LEGACY';
+    if (p.is_premium) return 'LEGACY'; // Élèves actifs / transférés
+    return 'STANDARD';
+};
 
 export function AdminDashboard() {
     const [profiles, setProfiles] = useState<Profile[]>([]);
@@ -35,9 +48,107 @@ export function AdminDashboard() {
     const [filter, setFilter] = useState<FilterType>('ALL');
     const [tierFilter, setTierFilter] = useState<TierFilterType>('ALL');
     const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
-    const [activeTab, setActiveTab] = useState<'users' | 'analytics'>('users');
+    const [activeTab, setActiveTab] = useState<'users' | 'analytics' | 'payments' | 'compta'>(() => {
+        if (typeof window !== 'undefined') {
+            const p = new URLSearchParams(window.location.search);
+            const t = p.get('tab');
+            if (t === 'payments' || t === 'analytics' || t === 'compta' || t === 'users') return t;
+        }
+        return 'users';
+    });
     const [timeframe, setTimeframe] = useState<'week' | 'month' | 'year'>('week');
+    const [paymentMonthFilter, setPaymentMonthFilter] = useState<string>('ALL');
 
+    const MONTHS_LIST = [
+        { key: 'ALL', label: 'Toutes les dates (2026)' },
+        { key: '2026-12', label: 'Décembre 2026' },
+        { key: '2026-11', label: 'Novembre 2026' },
+        { key: '2026-10', label: 'Octobre 2026' },
+        { key: '2026-09', label: 'Septembre 2026' },
+        { key: '2026-08', label: 'Août 2026' },
+        { key: '2026-07', label: 'Juillet 2026' },
+        { key: '2026-06', label: 'Juin 2026' },
+        { key: '2026-05', label: 'Mai 2026' },
+        { key: '2026-04', label: 'Avril 2026' },
+        { key: '2026-03', label: 'Mars 2026' },
+        { key: '2026-02', label: 'Février 2026' },
+        { key: '2026-01', label: 'Janvier 2026' }
+    ];
+
+    const [sentInvoiceEmails, setSentInvoiceEmails] = useState<Record<string, string>>(() => {
+        try {
+            const saved = localStorage.getItem('feelprod_sent_invoice_emails');
+            return saved ? JSON.parse(saved) : {};
+        } catch {
+            return {};
+        }
+    });
+    const [emailNotification, setEmailNotification] = useState<{ name: string; email: string; time: string } | null>(null);
+
+    // État du virement bancaire pour Marc Damoiseaux (393,75 €)
+    const [marcTransferPaid, setMarcTransferPaid] = useState<{ paid: boolean; date: string; time: string; ref: string }>(() => {
+        try {
+            const saved = localStorage.getItem('feelprod_marc_transfer_paid_v1');
+            return saved ? JSON.parse(saved) : { paid: true, date: '14/09/2026', time: '11:35', ref: 'VIR-2026-09-01' };
+        } catch {
+            return { paid: true, date: '14/09/2026', time: '11:35', ref: 'VIR-2026-09-01' };
+        }
+    });
+    const [marcEmailSentTime, setMarcEmailSentTime] = useState<string | null>(() => {
+        try {
+            return localStorage.getItem('feelprod_marc_email_sent_time') || '14/09/2026 11:30';
+        } catch {
+            return '14/09/2026 11:30';
+        }
+    });
+
+    const handleSendMarcEmail = (sales: any, mode: any) => {
+        openEmailForMarcTransfer(sales, mode);
+        const timeStr = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        const dateStr = new Date().toLocaleDateString('fr-FR');
+        const fullStr = `${dateStr} à ${timeStr}`;
+        setMarcEmailSentTime(fullStr);
+        try {
+            localStorage.setItem('feelprod_marc_email_sent_time', fullStr);
+        } catch {}
+        setEmailNotification({
+            name: "Marc DAMOISEAUX",
+            email: "marc@damoiseaux.be",
+            time: timeStr
+        });
+        setTimeout(() => setEmailNotification(null), 6000);
+    };
+
+    const handleToggleMarcTransferPaid = () => {
+        const nextPaid = !marcTransferPaid.paid;
+        const now = new Date();
+        const updated = {
+            paid: nextPaid,
+            date: now.toLocaleDateString('fr-FR'),
+            time: now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+            ref: 'VIR-2026-09-01'
+        };
+        setMarcTransferPaid(updated);
+        try {
+            localStorage.setItem('feelprod_marc_transfer_paid_v1', JSON.stringify(updated));
+        } catch {}
+    };
+
+    const handleSendInvoiceEmail = (orderId: string, invoiceData: any) => {
+        openEmailForInvoice(invoiceData);
+        const timeStr = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        const updated = { ...sentInvoiceEmails, [orderId]: timeStr };
+        setSentInvoiceEmails(updated);
+        try {
+            localStorage.setItem('feelprod_sent_invoice_emails', JSON.stringify(updated));
+        } catch {}
+        setEmailNotification({
+            name: `${invoiceData.firstName || ''} ${invoiceData.lastName || ''}`.trim() || invoiceData.email,
+            email: invoiceData.email,
+            time: timeStr
+        });
+        setTimeout(() => setEmailNotification(null), 6000);
+    };
 
     const [gaData, setGaData] = useState<{ dimension: string; activeUsers: number; pageViews: number }[] | null>(null);
     const [topCountries, setTopCountries] = useState<{ country: string; activeUsers: number }[] | null>(null);
@@ -47,10 +158,83 @@ export function AdminDashboard() {
 
     // Calculate metrics
     const totalUsers = profiles.length;
-    const premiumUsers = profiles.filter(p => p.access_tier === 'premium' || p.access_tier === 'legacy').length;
-    const trialUsers = profiles.filter(p => p.access_tier === 'trial').length;
-    const freeUsers = profiles.filter(p => p.access_tier === 'free').length;
-    const conversionRate = totalUsers > 0 ? Math.round((premiumUsers / totalUsers) * 100) : 0;
+    // Clients ayant réellement réglé sur Stripe (400 €) = 2 (Gilles Ducret & Karl Massou)
+    const paidStripeUsers = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || '') && (!!p.stripe_payment_id || p.access_tier === 'premium')).length;
+    // Transferts historiques (anciens élèves de Marc réactivés en accès libre)
+    const legacyUsers = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || '') && p.access_tier === 'legacy').length;
+    // Inscrits Gratuits Découverte (sans paiement Stripe)
+    const standardUsers = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || '') && !p.stripe_payment_id && p.access_tier !== 'premium' && p.access_tier !== 'legacy').length;
+    const trialUsers = profiles.filter(p => getEffectiveTier(p) === 'TRIAL').length;
+    const freeUsers = profiles.filter(p => getEffectiveTier(p) === 'FREE').length;
+    const conversionRate = totalUsers > 0 ? Math.round((paidStripeUsers / totalUsers) * 100) : 0;
+
+    // Mode de déduction des frais pour le bilan Marc Damoiseaux (Par défaut : stripe_only, FeelProd offre 100% des frais Cloudflare / hébergement)
+    const [feeMode, setFeeMode] = useState<'stripe_and_platform' | 'stripe_only'>('stripe_only');
+
+    // Partner & Accounting Sales (Marc Damoiseaux 50% / FeelProd 50%)
+    const partnerSales: PartnerSale[] = profiles
+        .filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || ''))
+        .filter(p => !!p.stripe_payment_id || p.access_tier === 'premium')
+        .map(p => ({
+            date: p.created_at ? new Date(p.created_at).toLocaleDateString('fr-FR') : '19/06/2026',
+            name: `${p.first_name || ''} ${p.last_name || ''}`.trim() || p.email,
+            email: p.email,
+            profession: p.profession,
+            location: p.address || p.location,
+            stripePaymentId: p.stripe_payment_id || 'Stripe Checkout',
+            amount: 400.00
+        }));
+
+    const totalBrut = partnerSales.reduce((acc, s) => acc + s.amount, 0);
+    const stripeFeePerSale = 6.25; // 1.5% + 0.25€ par tx 400€
+    const platformFeeRate = feeMode === 'stripe_and_platform' ? 0.05 : 0; // 5% frais techniques, hébergement vidéo R2 FeelProd
+    const totalStripeFees = partnerSales.length * stripeFeePerSale;
+    const totalPlatformFees = totalBrut * platformFeeRate;
+    const totalFeesDeducted = totalStripeFees + totalPlatformFees;
+    const totalNet = totalBrut - totalFeesDeducted;
+    const partMarc = totalNet / 2;
+    const partFeelProd = totalNet / 2;
+
+    // Structured paid orders for the "Paiements déjà effectués" tab
+    const paidOrders = profiles
+        .filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || ''))
+        .filter(p => !!p.stripe_payment_id || p.access_tier === 'premium')
+        .map(p => {
+            const dateObj = p.created_at ? new Date(p.created_at) : new Date('2026-06-19');
+            const year = dateObj.getFullYear();
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const monthKey = `${year}-${month}`;
+            const monthLabel = dateObj.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+            return {
+                id: p.id,
+                profile: p,
+                date: dateObj.toLocaleDateString('fr-FR'),
+                dateTime: dateObj.toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+                monthKey,
+                monthLabel: monthLabel.charAt(0).toUpperCase() + monthLabel.slice(1),
+                name: `${p.first_name || ''} ${p.last_name || ''}`.trim() || p.email,
+                email: p.email,
+                profession: p.profession,
+                location: p.address || p.location,
+                stripePaymentId: p.stripe_payment_id || 'Stripe Checkout',
+                amount: 400.00
+            };
+        })
+        .sort((a, b) => {
+            const dateA = a.profile.created_at ? new Date(a.profile.created_at).getTime() : 0;
+            const dateB = b.profile.created_at ? new Date(b.profile.created_at).getTime() : 0;
+            return dateB - dateA;
+        });
+
+    const filteredPaidOrders = paymentMonthFilter === 'ALL'
+        ? paidOrders
+        : paidOrders.filter(o => o.monthKey === paymentMonthFilter);
+
+    const filteredTotalBrut = filteredPaidOrders.reduce((acc, o) => acc + o.amount, 0);
+    const filteredTotalStripeFees = filteredPaidOrders.length * stripeFeePerSale;
+    const filteredTotalNet = filteredTotalBrut - filteredTotalStripeFees;
+    const selectedMonthObj = MONTHS_LIST.find(m => m.key === paymentMonthFilter);
+    const selectedMonthLabel = selectedMonthObj ? selectedMonthObj.label : paymentMonthFilter;
 
     useEffect(() => {
         if (activeTab === 'analytics') {
@@ -58,13 +242,33 @@ export function AdminDashboard() {
                 setIsLoadingGa(true);
                 setGaError(null);
                 try {
-                    const res = await fetch(`/api/analytics?timeframe=${timeframe}`);
-                    if (!res.ok) {
-                        throw new Error('Failed to fetch analytics');
+                    let data: any = null;
+                    try {
+                        const res = await fetch(`/api/analytics?timeframe=${timeframe}`);
+                        if (res.ok) {
+                            const ct = res.headers.get('content-type') || '';
+                            if (ct.includes('application/json')) {
+                                data = await res.json();
+                            }
+                        }
+                    } catch {
+                        data = null;
                     }
-                    const data = await res.json();
-                    if (data.error) {
-                        throw new Error(data.error);
+
+                    // Fallback to production live endpoint if local relative API returned HTML or failed
+                    if (!data || data.error || !data.rows || data.rows.length === 0) {
+                        try {
+                            const fallbackRes = await fetch(`https://app.feelprod.com/api/analytics?timeframe=${timeframe}`);
+                            if (fallbackRes.ok) {
+                                data = await fallbackRes.json();
+                            }
+                        } catch (err) {
+                            console.warn("Analytics fallback fetch failed:", err);
+                        }
+                    }
+
+                    if (!data || data.error) {
+                        throw new Error(data?.error || 'Données analytics indisponibles');
                     }
                     setGaData(data.rows || []);
                     setTopCountries(data.topCountries || []);
@@ -82,6 +286,7 @@ export function AdminDashboard() {
             fetchGaData();
         }
     }, [activeTab, timeframe]);
+
 
     const getChartData = (): { label: string; pv: number; uv: number }[] => {
         if (gaData && gaData.length > 0) {
@@ -351,12 +556,7 @@ export function AdminDashboard() {
 
     const getTierCount = (tier: TierFilterType) => {
         if (tier === 'ALL') return profiles.length;
-        if (tier === 'ADMIN') return profiles.filter(p => ADMIN_EMAILS.includes(p.email?.toLowerCase() || '')).length;
-        
-        // Pour les autres filtres, on exclut systématiquement les administrateurs
-        const nonAdminProfiles = profiles.filter(p => !ADMIN_EMAILS.includes(p.email?.toLowerCase() || ''));
-        if (tier === 'STANDARD') return nonAdminProfiles.filter(p => !p.access_tier).length;
-        return nonAdminProfiles.filter(p => p.access_tier?.toUpperCase() === tier).length;
+        return profiles.filter(p => getEffectiveTier(p) === tier).length;
     };
 
     // Derived filtered profiles
@@ -374,85 +574,174 @@ export function AdminDashboard() {
     } else if (filter === 'EXPIRED') {
         filteredProfiles = filteredProfiles.filter(p => !p.is_active || isExpired(p.expires_at));
     } else if (filter === 'TRIAL') {
-        filteredProfiles = filteredProfiles.filter(p => p.access_tier === 'trial');
+        filteredProfiles = filteredProfiles.filter(p => getEffectiveTier(p) === 'TRIAL');
     }
 
     if (tierFilter !== 'ALL') {
-        filteredProfiles = filteredProfiles.filter(p => {
-            const isAdmin = ADMIN_EMAILS.includes(p.email?.toLowerCase() || '');
-            if (tierFilter === 'ADMIN') return isAdmin;
-            
-            // Si le filtre n'est ni ALL ni ADMIN, on exclut d'office les administrateurs
-            if (isAdmin) return false;
-
-            if (tierFilter === 'STANDARD') return !p.access_tier; // Pas de tier défini = standard
-            return p.access_tier?.toUpperCase() === tierFilter;
-        });
+        filteredProfiles = filteredProfiles.filter(p => getEffectiveTier(p) === tierFilter);
     }
 
-    const renderTierBadge = (profile: Profile) => {
-        if (ADMIN_EMAILS.includes(profile.email?.toLowerCase() || '')) {
-            return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-purple-50 border border-purple-200 text-purple-700"><Shield size={12}/> Admin</span>;
-        }
+    const isPaidUser = (p: Profile | null | undefined): boolean => {
+        if (!p) return false;
+        return !ADMIN_EMAILS.includes(p.email?.toLowerCase() || '') && (
+            p.access_tier === 'premium' || 
+            p.is_premium === true || 
+            !!p.stripe_payment_id
+        );
+    };
 
-        switch (profile.access_tier) {
-            case 'premium': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700"><Crown size={12}/> Plein Tarif</span>;
-            case 'legacy': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-amber-50 border border-amber-200 text-amber-700"><History size={12}/> Transfert</span>;
-            case 'free': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-pink-50 border border-pink-200 text-pink-700"><Gift size={12}/> Cadeau</span>;
-            case 'trial': return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-blue-50 border border-blue-200 text-blue-700"><Clock size={12}/> Essai 24h</span>;
-            default: return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full bg-slate-100 border border-slate-200 text-slate-500">Standard</span>;
+    const getProfileLocation = (p: Profile | null | undefined): string => {
+        if (!p) return '';
+        const raw = (p.address || p.location || '').trim();
+        if (!raw) return '';
+        if (raw.toLowerCase().includes('mansar')) {
+            return '29 rue François Mansart, 83100 Toulon';
+        }
+        return raw;
+    };
+
+    const renderTierBadge = (profile: Profile) => {
+        const tier = getEffectiveTier(profile);
+        switch (tier) {
+            case 'ADMIN':
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full bg-purple-50 border border-purple-200 text-purple-700"><Shield size={12}/> Admin</span>;
+            case 'PREMIUM':
+                return (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-amber-50 border border-amber-300 text-amber-900 shadow-2xs" title={profile.stripe_payment_id ? `Payé sur Stripe (${profile.stripe_payment_id})` : 'Payant 400 €'}>
+                        <span>⭐</span> Payé Stripe (400 €)
+                    </span>
+                );
+            case 'LEGACY':
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full bg-amber-50 border border-amber-200 text-amber-800" title="Ancien élève transféré sans paiement"><History size={12}/> Transfert Marc (Gratuit)</span>;
+            case 'FREE':
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700"><Gift size={12}/> Accès Offert</span>;
+            case 'TRIAL':
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full bg-blue-50 border border-blue-200 text-blue-700"><Clock size={12}/> Essai 24h</span>;
+            default:
+                return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 border border-slate-200 text-slate-500">Gratuit Découverte</span>;
         }
     };
 
     const renderStatusBadge = (profile: Profile) => {
         const expired = isExpired(profile.expires_at);
         if (!profile.is_active) {
-            return <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-red-500"/><span className="text-sm font-semibold text-slate-700">Verrouillé</span></div>;
+            return <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-red-500"/><span className="text-xs font-medium text-slate-600">Verrouillé</span></div>;
         }
         if (expired) {
-            return <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-slate-400"/><span className="text-sm font-semibold text-slate-700">Expiré</span></div>;
+            return <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-slate-400"/><span className="text-xs font-medium text-slate-600">Expiré</span></div>;
         }
         if (profile.access_tier === 'trial' && profile.expires_at) {
-            return <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"/><span className="text-sm font-semibold text-slate-700">En cours d'essai</span></div>;
+            return <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"/><span className="text-xs font-medium text-slate-600">En cours d'essai</span></div>;
         }
-        return <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-green-500"/><span className="text-sm font-semibold text-slate-700">Actif</span></div>;
+        return <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-emerald-500"/><span className="text-xs font-medium text-slate-700">Actif</span></div>;
     };
 
     return (
-        <div className="w-full h-full animate-fade-in relative z-10 flex bg-slate-50 overflow-hidden min-h-0">
+        <div className="w-full h-full animate-fade-in relative z-10 flex bg-slate-50 overflow-hidden min-h-0 admin-scope font-sans">
             {/* MAIN VIEW */}
             <div className={cn("flex-1 flex flex-col h-full min-w-0 min-h-0 bg-[#FAF6ED] transition-all duration-300", (selectedProfile && activeTab === 'users') ? "mr-0 xl:mr-[400px]" : "mr-0")}>
                 {/* TOOLBAR */}
-                <div className="flex-none pt-[max(env(safe-area-inset-top),16px)] px-4 md:px-6 pb-0 border-b border-slate-200 bg-white shadow-sm z-20">
-                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 max-w-6xl mx-auto mb-6">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-                            <div>
-                                <h1 className="text-3xl font-bebas tracking-wide text-slate-900 uppercase leading-none">Tour de Contrôle</h1>
-                                <p className="text-slate-500 font-medium text-sm mt-1">Gestion des accès et statistiques</p>
+                <div className="flex-none pt-[max(env(safe-area-inset-top),12px)] px-3 sm:px-4 md:px-6 pb-2 sm:pb-0 border-b border-slate-200 bg-white shadow-sm z-20">
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-6 max-w-6xl mx-auto mb-3 sm:mb-6">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-900 leading-tight">Tour de contrôle</h1>
+                                    <p className="text-slate-500 font-normal text-xs sm:text-sm mt-0.5">Gestion des accès et statistiques</p>
+                                </div>
+                                {activeTab === 'payments' && (
+                                    <button
+                                        onClick={() => openPaymentsListingWindow(filteredPaidOrders, selectedMonthLabel)}
+                                        className="sm:hidden px-3 py-1.5 bg-[#0F172A] text-white hover:bg-[#1E293B] font-medium text-[11px] rounded-xl shadow-xs transition-all flex items-center gap-1.5 cursor-pointer touch-manipulation"
+                                        title="Imprimer ou enregistrer le listing en PDF A4"
+                                    >
+                                        <Printer size={13} className="text-emerald-400" />
+                                        <span>Relevé A4</span>
+                                    </button>
+                                )}
+                                {activeTab === 'compta' && (
+                                    <button
+                                        onClick={() => openMarcTransferSheetWindow(partnerSales, feeMode)}
+                                        className="sm:hidden px-3 py-1.5 bg-[#0F172A] text-white hover:bg-[#1E293B] font-medium text-[11px] rounded-xl shadow-xs transition-all flex items-center gap-1.5 cursor-pointer touch-manipulation"
+                                        title="Ordre de Virement Marc (PDF A4)"
+                                    >
+                                        <FileText size={13} className="text-amber-300" />
+                                        <span>Ordre PDF</span>
+                                    </button>
+                                )}
                             </div>
                             
                             {/* VIEW TOGGLE */}
-                            <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner max-w-xs">
+                            <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200/50 shadow-inner overflow-x-auto no-scrollbar max-w-full -mx-1 px-1">
                                 <button 
                                     onClick={() => setActiveTab('users')} 
                                     className={cn(
-                                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
-                                        activeTab === 'users' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                        "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap", 
+                                        activeTab === 'users' ? "bg-white shadow text-slate-900 font-semibold" : "text-slate-500 hover:text-slate-700"
                                     )}
                                 >
                                     👥 Élèves
                                 </button>
                                 <button 
-                                    onClick={() => setActiveTab('analytics')} 
+                                    onClick={() => setActiveTab('payments')} 
                                     className={cn(
-                                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer", 
-                                        activeTab === 'analytics' ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-700"
+                                        "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap", 
+                                        activeTab === 'payments' ? "bg-white shadow text-emerald-800 font-semibold" : "text-slate-500 hover:text-slate-700"
                                     )}
                                 >
-                                    📊 Trafic & Audience
+                                    <CreditCard size={13} className={activeTab === 'payments' ? "text-emerald-600" : "text-slate-400"} />
+                                    <span className="hidden sm:inline">Paiements déjà effectués</span>
+                                    <span className="sm:hidden">Paiements</span>
+                                    <span className="ml-0.5 sm:ml-1 px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded-full text-[10px] font-semibold">
+                                        {paidStripeUsers}
+                                    </span>
+                                </button>
+                                <button 
+                                    onClick={() => setActiveTab('compta')} 
+                                    className={cn(
+                                        "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap", 
+                                        activeTab === 'compta' ? "bg-white shadow text-blue-900 font-semibold" : "text-slate-500 hover:text-slate-700"
+                                    )}
+                                >
+                                    <span className="hidden sm:inline">💰 Bilan Damoiseaux (50%)</span>
+                                    <span className="sm:hidden">💰 Bilan Marc</span>
+                                </button>
+                                <button 
+                                    onClick={() => setActiveTab('analytics')} 
+                                    className={cn(
+                                        "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap", 
+                                        activeTab === 'analytics' ? "bg-white shadow text-slate-900 font-semibold" : "text-slate-500 hover:text-slate-700"
+                                    )}
+                                >
+                                    📊 Trafic
                                 </button>
                             </div>
                         </div>
+
+                        {activeTab === 'payments' && (
+                            <div className="hidden sm:flex items-center gap-3">
+                                <button
+                                    onClick={() => openPaymentsListingWindow(filteredPaidOrders, selectedMonthLabel)}
+                                    className="px-4 py-2 bg-[#0F172A] text-white hover:bg-[#1E293B] font-medium text-xs rounded-xl shadow-sm transition-all flex items-center gap-2 cursor-pointer"
+                                    title="Imprimer ou enregistrer le listing en PDF A4"
+                                >
+                                    <Printer size={14} className="text-emerald-400" />
+                                    <span>Imprimer Listing (PDF)</span>
+                                </button>
+                            </div>
+                        )}
+
+                        {activeTab === 'compta' && (
+                            <div className="hidden sm:flex items-center gap-3">
+                                <button
+                                    onClick={() => openDamoiseauxSummaryWindow(partnerSales)}
+                                    className="px-4 py-2 bg-[#0F172A] text-white hover:bg-[#1E293B] font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-2 cursor-pointer"
+                                >
+                                    <Printer size={14} className="text-amber-400" />
+                                    <span>Imprimer Bilan Marc Damoiseaux (PDF)</span>
+                                </button>
+                            </div>
+                        )}
                         
                         {activeTab === 'users' && (
                             <div className="flex flex-col xl:flex-row items-stretch xl:items-center gap-3 w-full lg:w-auto">
@@ -481,10 +770,10 @@ export function AdminDashboard() {
                         <div className="flex overflow-x-auto overflow-y-hidden touch-pan-x no-scrollbar max-w-6xl mx-auto gap-6 border-transparent -mx-4 px-4 md:-mx-6 md:px-6 snap-x snap-mandatory">
                             {[
                                 { id: 'ALL', label: 'Tous', icon: '🌟' },
-                                { id: 'STANDARD', label: 'Standards', icon: '⚪' },
-                                { id: 'PREMIUM', label: 'Premiums', icon: '👑' },
-                                { id: 'LEGACY', label: 'Mise à jour', icon: '📜' },
-                                { id: 'FREE', label: 'Cadeaux', icon: '🎁' },
+                                { id: 'PREMIUM', label: 'Payés Stripe (400€)', icon: '👑' },
+                                { id: 'LEGACY', label: 'Transferts Marc', icon: '📜' },
+                                { id: 'STANDARD', label: 'Gratuits Découverte', icon: '⚪' },
+                                { id: 'FREE', label: 'Offerts', icon: '🎁' },
                                 { id: 'TRIAL', label: 'Essais 24h', icon: '⏱️' },
                                 { id: 'ADMIN', label: 'Admin', icon: '🛡️' }
                             ].map((t) => (
@@ -514,7 +803,7 @@ export function AdminDashboard() {
                 </div>
 
                 {/* CONTENT AREA */}
-                {activeTab === 'users' ? (
+                {activeTab === 'users' && (
                     /* THE SYNTHETIC TABLE */
                     <div className="flex-1 overflow-y-auto w-full max-w-6xl mx-auto px-4 md:px-6 py-6 pb-[120px] will-change-scroll">
                         <div className="bg-white rounded-2xl shadow-[0_5px_20px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden relative">
@@ -524,100 +813,177 @@ export function AdminDashboard() {
                                 <div className="p-12 text-center text-slate-400">Aucun résultat.</div>
                             ) : (
                                 <div className="divide-y divide-slate-100">
-                                    {filteredProfiles.map((p) => (
-                                        <div 
-                                            key={p.id} 
-                                            onClick={() => setSelectedProfile(p)}
-                                            className={cn(
-                                                "group flex items-center justify-between p-4 px-6 cursor-pointer hover:bg-slate-50 transition-colors",
-                                                selectedProfile?.id === p.id && "bg-slate-50 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-primary"
-                                            )}
-                                        >
-                                            <div className="flex items-center gap-4 w-[50%] md:w-[40%]">
-                                                <div className="hidden md:flex h-10 w-10 shrink-0 rounded-full bg-slate-100 text-slate-500 font-bold items-center justify-center text-sm uppercase">
-                                                    {p.first_name?.[0] || ''}{p.last_name?.[0] || ''}
-                                                    {!p.first_name && !p.last_name && p.email?.[0]}
-                                                </div>
-                                                <div className="overflow-hidden">
-                                                    <div className="font-bold text-slate-900 text-sm truncate flex items-center gap-1.5 flex-wrap">
-                                                        <span>{p.first_name || p.last_name ? `${p.first_name || ''} ${p.last_name || ''}` : <span className="italic">Inconnu</span>}</span>
-                                                        {(p.location || p.address) && (
-                                                            <span className="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full inline-flex items-center gap-1 shrink-0 border border-slate-200/60">
-                                                                <MapPin size={9} className="text-[#F27D33]" />
-                                                                {p.location || p.address}
+                                    {filteredProfiles.map((p) => {
+                                        const paid = isPaidUser(p);
+                                        const location = getProfileLocation(p);
+                                        const isSelected = selectedProfile?.id === p.id;
+                                        return (
+                                            <div 
+                                                key={p.id} 
+                                                onClick={() => setSelectedProfile(p)}
+                                                className={cn(
+                                                    "cursor-pointer hover:bg-slate-50/80 transition-colors",
+                                                    isSelected && "bg-slate-50/90"
+                                                )}
+                                            >
+                                                {/* 1. VUE MOBILE (iPhone 17 Pro Max 440px - Tout est 100% visible, zéro coupure) */}
+                                                <div className={cn(
+                                                    "md:hidden p-3.5 space-y-2 relative border-b border-slate-100",
+                                                    isSelected && "border-l-4 border-l-primary bg-slate-50"
+                                                )}>
+                                                    {/* Ligne 1 : Nom + Étoile Payé + Statut */}
+                                                    <div className="flex items-start justify-between gap-2">
+                                                        <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+                                                            <span className="font-semibold text-slate-900 text-sm">
+                                                                {p.first_name || p.last_name ? `${p.first_name || ''} ${p.last_name || ''}` : <span className="italic">Inconnu</span>}
                                                             </span>
-                                                        )}
+                                                            {paid && (
+                                                                <span className="inline-flex items-center gap-1 text-amber-800 bg-amber-50 border border-amber-300 px-1.5 py-0.2 rounded-md text-[10px] font-semibold" title="Client Payé Stripe (400€)">
+                                                                    <span>⭐</span> Payé
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                        <div className="flex items-center gap-1.5 shrink-0">
+                                                            {renderStatusBadge(p)}
+                                                            <ChevronRight size={16} className={cn("text-slate-300", isSelected && "text-primary")} />
+                                                        </div>
                                                     </div>
-                                                    <div className="text-xs text-slate-500 font-medium truncate flex items-center gap-1 mt-0.5">
-                                                        <span>{p.email}</span>
-                                                        {p.profession && (
-                                                            <>
+
+                                                    {/* Ligne 2 : Profession (Entièrement visible, sans coupure de Kinésithérapeute) */}
+                                                    {p.profession && (
+                                                        <div className="pt-0.5">
+                                                            <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-blue-50/80 text-blue-900 text-xs font-medium border border-blue-200/60 leading-normal">
+                                                                {p.profession}
+                                                            </span>
+                                                        </div>
+                                                    )}
+
+                                                    {/* Ligne 3 : E-mail & Date */}
+                                                    <div className="flex items-center justify-between text-xs text-slate-500 gap-2">
+                                                        <span className="truncate text-slate-600">{p.email}</span>
+                                                        <span className="text-[11px] text-slate-400 shrink-0">
+                                                            {new Date(p.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: '2-digit' })}
+                                                        </span>
+                                                    </div>
+
+                                                    {/* Ligne 4 : Ville & Adresse (ex: 29 rue François Mansart, 83100 Toulon) */}
+                                                    {location && (
+                                                        <div className="text-xs text-slate-700 bg-[#FAF8F5] border border-[#EFE9DE] px-2.5 py-1 rounded-lg flex items-center gap-1.5">
+                                                            <MapPin size={12} className="text-[#F27D33] shrink-0" />
+                                                            <span className="font-medium text-[11.5px] leading-tight">{location}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+
+                                                {/* 2. VUE DESKTOP (Tableau synthétique harmonieux) */}
+                                                <div className={cn(
+                                                    "hidden md:flex items-center justify-between p-4 px-6 border-b border-slate-100 relative",
+                                                    isSelected && "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-primary"
+                                                )}>
+                                                    <div className="flex items-center gap-4 w-[45%]">
+                                                        <div className="relative h-10 w-10 shrink-0 rounded-full bg-slate-100 text-slate-600 font-semibold items-center justify-center text-sm uppercase flex">
+                                                            {p.first_name?.[0] || ''}{p.last_name?.[0] || ''}
+                                                            {!p.first_name && !p.last_name && p.email?.[0]}
+                                                            {paid && (
+                                                                <span className="absolute -top-1 -right-1 text-xs" title="Payé Stripe (400€)">⭐</span>
+                                                            )}
+                                                        </div>
+                                                        <div className="overflow-hidden">
+                                                            <div className="font-semibold text-slate-900 text-sm flex items-center gap-1.5 flex-wrap">
+                                                                <span>{p.first_name || p.last_name ? `${p.first_name || ''} ${p.last_name || ''}` : <span className="italic">Inconnu</span>}</span>
+                                                                {paid && (
+                                                                    <span className="text-amber-700 text-[10px] font-semibold bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200 inline-flex items-center gap-0.5">
+                                                                        ⭐ Payé
+                                                                    </span>
+                                                                )}
+                                                                {location && (
+                                                                    <span className="text-[10px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full inline-flex items-center gap-1 shrink-0 border border-slate-200/60">
+                                                                        <MapPin size={9} className="text-[#F27D33]" />
+                                                                        {location}
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                            <div className="text-xs text-slate-500 font-normal flex items-center gap-1.5 mt-0.5 flex-wrap">
+                                                                <span className="text-slate-600">{p.email}</span>
+                                                                {p.profession && (
+                                                                    <>
+                                                                        <span className="opacity-40">•</span>
+                                                                        <span className="text-blue-900 bg-blue-50 px-1.5 py-0.2 rounded font-medium text-[11px] border border-blue-100">{p.profession}</span>
+                                                                    </>
+                                                                )}
                                                                 <span className="opacity-40">•</span>
-                                                                <span className="text-slate-600 font-semibold">{p.profession}</span>
-                                                            </>
-                                                        )}
-                                                        <span className="opacity-40">•</span>
-                                                        <span className="text-[10px] uppercase tracking-wide opacity-75">{new Date(p.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: '2-digit' })}</span>
+                                                                <span className="text-[10.5px] text-slate-400">{new Date(p.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="w-[25%] flex items-center">
+                                                        {renderTierBadge(p)}
+                                                    </div>
+
+                                                    <div className="w-[20%] flex items-center justify-start">
+                                                        {renderStatusBadge(p)}
+                                                    </div>
+
+                                                    <div className="w-[10%] flex justify-end">
+                                                        <ChevronRight size={18} className={cn("text-slate-300 group-hover:text-primary transition-colors", isSelected && "text-primary")} />
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div className="hidden md:flex w-[25%]">
-                                                {renderTierBadge(p)}
-                                            </div>
-
-                                            <div className="w-[30%] md:w-[25%] flex justify-end md:justify-start">
-                                                {renderStatusBadge(p)}
-                                            </div>
-
-                                            <div className="w-[10%] flex justify-end">
-                                                <ChevronRight size={18} className={cn("text-slate-300 group-hover:text-primary transition-colors", selectedProfile?.id === p.id && "text-primary")} />
-                                            </div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             )}
                         </div>
                     </div>
-                ) : (
+                )}
+
+                {activeTab === 'analytics' && (
                     /* THE ANALYTICS VIEW */
                     <div className="flex-1 overflow-y-auto w-full max-w-6xl mx-auto px-4 md:px-6 py-6 pb-[120px] will-change-scroll space-y-6">
                         {/* METRICS CARDS */}
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                             <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
                                 <div>
-                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Total Inscrits</span>
-                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">{totalUsers}</span>
+                                    <span className="text-xs font-medium text-slate-500 block">Total Inscrits</span>
+                                    <span className="text-3xl font-semibold text-slate-900 font-mono block mt-1">{totalUsers}</span>
                                 </div>
-                                <div className="p-3 bg-blue-50 text-blue-600 rounded-xl animate-pulse">
+                                <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">
                                     <Users size={22} />
                                 </div>
                             </div>
                             <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
                                 <div>
-                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Membres Premium</span>
-                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">{premiumUsers}</span>
+                                    <span className="text-xs font-medium text-emerald-700 block">Clients Stripe (400€)</span>
+                                    <span className="text-3xl font-semibold text-emerald-600 font-mono block mt-1">{paidStripeUsers}</span>
                                 </div>
-                                <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
+                                <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
                                     <Crown size={22} />
                                 </div>
                             </div>
                             <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
                                 <div>
-                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Essais Actifs</span>
-                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">{trialUsers}</span>
+                                    <span className="text-xs font-medium text-slate-500 block">Inscrits Découverte</span>
+                                    <span className="text-3xl font-semibold text-slate-800 font-mono block mt-1">
+                                        {standardUsers}
+                                        {legacyUsers > 0 && (
+                                            <span className="text-xs font-sans font-medium text-amber-600 ml-2">
+                                                (+{legacyUsers} libre)
+                                            </span>
+                                        )}
+                                    </span>
                                 </div>
-                                <div className="p-3 bg-amber-50 text-amber-600 rounded-xl">
-                                    <Clock size={22} />
+                                <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
+                                    <Users size={22} />
                                 </div>
                             </div>
                             <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_5px_20px_rgba(0,0,0,0.02)] flex items-center justify-between">
                                 <div>
-                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Taux Conversion</span>
-                                    <span className="text-3xl font-bold text-slate-800 font-bebas block mt-1">
+                                    <span className="text-xs font-medium text-slate-500 block">Taux Conversion</span>
+                                    <span className="text-3xl font-semibold text-slate-900 font-mono block mt-1">
                                         {conversionRate}%
-                                        <span className="text-xs font-sans font-bold text-slate-400 ml-2">
-                                            ({premiumUsers} / {totalUsers})
+                                        <span className="text-xs font-sans font-normal text-slate-400 ml-2">
+                                            ({paidStripeUsers} / {totalUsers})
                                         </span>
                                     </span>
                                 </div>
@@ -844,6 +1210,697 @@ export function AdminDashboard() {
                             </div>
                     </div>
                 )}
+
+                {/* TAB: PAIEMENTS DÉJÀ EFFECTUÉS */}
+                {activeTab === 'payments' && (
+                    <div className="flex-1 overflow-y-auto p-3 sm:p-6 md:p-8 min-h-0 bg-[#FAF6ED] pb-[140px]">
+                        <div className="max-w-6xl mx-auto space-y-4 sm:space-y-6">
+                            {/* Header Banner */}
+                            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-slate-200/80 shadow-sm relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-600 via-teal-700 to-blue-900" />
+                                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
+                                    <div>
+                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-medium mb-1.5 sm:mb-2">
+                                            <Receipt size={12} className="text-emerald-600" />
+                                            <span>Registre des Règlements Encaissés (Stripe)</span>
+                                        </div>
+                                        <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight font-sans">
+                                            Paiements déjà effectués
+                                        </h2>
+                                        <p className="text-xs sm:text-sm text-slate-500 font-normal mt-1 max-w-2xl leading-relaxed">
+                                            Listing chronologique et comptable des inscriptions réglées par carte bancaire. Filtrez par mois pour vérifier qui a payé, à quelle date, le montant perçu et le total encaissé.
+                                        </p>
+                                    </div>
+                                    <div className="hidden sm:flex flex-wrap items-center gap-2.5 shrink-0">
+                                        <button
+                                            onClick={() => openPaymentsListingWindow(filteredPaidOrders, selectedMonthLabel)}
+                                            className="px-4 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-medium text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                                            title="Imprimer ou enregistrer le listing en PDF A4"
+                                        >
+                                            <Printer size={15} className="text-emerald-400" />
+                                            <span>Imprimer Relevé A4</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Month Filter Bar */}
+                                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50 border border-slate-200/80 rounded-2xl p-3 sm:p-3.5 mt-4 sm:mt-6">
+                                    <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                                        <Calendar size={16} className="text-emerald-600 shrink-0" />
+                                        <label className="text-xs font-medium text-slate-600 shrink-0">Période :</label>
+                                        <div className="relative flex-1 sm:w-64">
+                                            <select
+                                                value={paymentMonthFilter}
+                                                onChange={(e) => setPaymentMonthFilter(e.target.value)}
+                                                className="w-full appearance-none bg-white border border-slate-200 text-slate-800 text-xs font-medium rounded-xl px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-2xs cursor-pointer"
+                                            >
+                                                {MONTHS_LIST.map(m => {
+                                                    const count = m.key === 'ALL' 
+                                                        ? paidOrders.length 
+                                                        : paidOrders.filter(o => o.monthKey === m.key).length;
+                                                    return (
+                                                        <option key={m.key} value={m.key}>
+                                                            {m.label} ({count} {count > 1 ? 'règlements' : 'règlement'})
+                                                        </option>
+                                                    );
+                                                })}
+                                            </select>
+                                            <ChevronRight size={14} className="rotate-90 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" />
+                                        </div>
+                                    </div>
+
+                                    {/* Quick Pills */}
+                                    <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto pt-1 sm:pt-0 -mx-1 px-1">
+                                        <button
+                                            onClick={() => setPaymentMonthFilter('ALL')}
+                                            className={cn(
+                                                "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap",
+                                                paymentMonthFilter === 'ALL' ? "bg-emerald-700 text-white shadow-xs" : "bg-white hover:bg-slate-100 text-slate-600 border border-slate-200/70"
+                                            )}
+                                        >
+                                            Tous ({paidOrders.length})
+                                        </button>
+                                        <button
+                                            onClick={() => setPaymentMonthFilter('2026-09')}
+                                            className={cn(
+                                                "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap",
+                                                paymentMonthFilter === '2026-09' ? "bg-emerald-700 text-white shadow-xs" : "bg-white hover:bg-slate-100 text-slate-600 border border-slate-200/70"
+                                            )}
+                                        >
+                                            Sept. 2026
+                                        </button>
+                                        <button
+                                            onClick={() => setPaymentMonthFilter('2026-06')}
+                                            className={cn(
+                                                "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap",
+                                                paymentMonthFilter === '2026-06' ? "bg-emerald-700 text-white shadow-xs" : "bg-white hover:bg-slate-100 text-slate-600 border border-slate-200/70"
+                                            )}
+                                        >
+                                            Juin 2026
+                                        </button>
+                                        <button
+                                            onClick={() => setPaymentMonthFilter('2026-12')}
+                                            className={cn(
+                                                "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap",
+                                                paymentMonthFilter === '2026-12' ? "bg-emerald-700 text-white shadow-xs" : "bg-white hover:bg-slate-100 text-slate-600 border border-slate-200/70"
+                                            )}
+                                        >
+                                            Déc. 2026
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* KPI Summary Cards */}
+                                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mt-4 sm:mt-6">
+                                    <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                                        <p className="text-xs font-medium text-slate-500">Règlements</p>
+                                        <p className="text-xl sm:text-2xl font-mono font-semibold text-slate-900 mt-0.5 sm:mt-1">{filteredPaidOrders.length}</p>
+                                        <p className="text-[11px] text-emerald-600 font-medium mt-0.5 sm:mt-1 truncate">
+                                            {paymentMonthFilter === 'ALL' ? 'Sur l\'année 2026' : selectedMonthLabel}
+                                        </p>
+                                    </div>
+                                    <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                                        <p className="text-xs font-medium text-emerald-800">Total Brut</p>
+                                        <p className="text-xl sm:text-2xl font-mono font-semibold text-emerald-700 mt-0.5 sm:mt-1">{filteredTotalBrut.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-emerald-700/80 font-normal mt-0.5 sm:mt-1">400,00 € / praticien</p>
+                                    </div>
+                                    <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                                        <p className="text-xs font-medium text-slate-500">Frais Stripe</p>
+                                        <p className="text-xl sm:text-2xl font-mono font-semibold text-red-600 mt-0.5 sm:mt-1">-{filteredTotalStripeFees.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-slate-500 font-normal mt-0.5 sm:mt-1">~1,5% + 0,25 €</p>
+                                    </div>
+                                    <div className="bg-blue-50/80 border border-blue-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                                        <p className="text-xs font-medium text-blue-800">Net Trésorerie</p>
+                                        <p className="text-xl sm:text-2xl font-mono font-semibold text-blue-700 mt-0.5 sm:mt-1">{filteredTotalNet.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-blue-700/80 font-normal mt-0.5 sm:mt-1">Avant rétrocession</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Toast Notification Envoi Email Réussi */}
+                            {emailNotification && (
+                                <div className="bg-emerald-50 border border-emerald-300 text-emerald-900 rounded-2xl p-4 flex items-center justify-between gap-3 shadow-xs animate-in fade-in slide-in-from-top-2 duration-300">
+                                    <div className="flex items-center gap-2.5 min-w-0">
+                                        <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-700">
+                                            <CheckCircle2 size={18} />
+                                        </div>
+                                        <div className="min-w-0 text-xs">
+                                            <div className="font-semibold truncate">Email de facturation prêt & adressé à {emailNotification.name}</div>
+                                            <div className="text-[11px] text-emerald-700 font-mono truncate">{emailNotification.email} • Envoi initialisé à {emailNotification.time}</div>
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={() => setEmailNotification(null)}
+                                        className="text-emerald-700 hover:text-emerald-900 p-1 cursor-pointer shrink-0"
+                                    >
+                                        <X size={16} />
+                                    </button>
+                                </div>
+                            )}
+
+                            {/* Listing Table Card */}
+                            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
+                                <div className="p-4 sm:p-5 md:p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
+                                    <div>
+                                        <h3 className="font-semibold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+                                            <span>Listing des Règlements</span>
+                                            <span className="text-[11px] font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                                                {selectedMonthLabel}
+                                            </span>
+                                        </h3>
+                                        <p className="text-xs text-slate-500 font-normal mt-0.5">
+                                            Détail des praticiens ayant payé, horodatage, montants et justificatifs officiels
+                                        </p>
+                                    </div>
+                                    <span className="text-xs font-medium px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full self-start sm:self-auto">
+                                        {filteredPaidOrders.length} {filteredPaidOrders.length > 1 ? 'règlements' : 'règlement'}
+                                    </span>
+                                </div>
+
+                                {filteredPaidOrders.length === 0 ? (
+                                    <div className="p-8 sm:p-12 text-center flex flex-col items-center justify-center space-y-3">
+                                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center shadow-inner">
+                                            <Calendar size={28} />
+                                        </div>
+                                        <h4 className="font-semibold text-slate-800 text-sm sm:text-base">Aucun paiement enregistré pour {selectedMonthLabel}</h4>
+                                        <p className="text-xs text-slate-500 max-w-md leading-relaxed">
+                                            Il n'y a pas eu d'encaissement Stripe sur cette période. Le total pour ce mois est actuellement de <strong className="text-slate-700 font-semibold">0,00 €</strong>.<br />
+                                            Dès qu'un praticien effectuera son règlement, son nom, son email, sa date exacte et sa facture PDF apparaîtront automatiquement ici.
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <>
+                                        {/* 1. VUE MOBILE (iPhone 17 Pro Max 440px) */}
+                                        <div className="md:hidden divide-y divide-slate-100">
+                                            {filteredPaidOrders.map((o) => (
+                                                <div key={o.id} className="p-3.5 space-y-2.5 hover:bg-slate-50/60 transition-colors">
+                                                    {/* Header: Nom + Badge + Montant */}
+                                                    <div className="flex items-start justify-between gap-2">
+                                                        <div className="min-w-0 flex-1">
+                                                            <div className="flex items-center gap-1.5 flex-wrap">
+                                                                <h4 className="font-semibold text-slate-900 text-sm">{o.name}</h4>
+                                                                <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-medium border border-emerald-200">
+                                                                    <CheckCircle2 size={10} className="text-emerald-600" />
+                                                                    Payé
+                                                                </span>
+                                                            </div>
+                                                            <div className="text-[11px] text-slate-500 truncate mt-0.5">{o.email}</div>
+                                                            <div className="text-[10.5px] text-slate-400 mt-0.5">
+                                                                {o.profession || 'Praticien'} {o.location ? `• ${o.location}` : ''}
+                                                            </div>
+                                                        </div>
+                                                        <div className="text-right shrink-0">
+                                                            <div className="font-mono font-semibold text-emerald-700 text-base">
+                                                                +{o.amount.toFixed(2)} €
+                                                            </div>
+                                                            <div className="text-[10px] font-mono text-red-500">
+                                                                Frais: -6,25 €
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Date & Réf Stripe */}
+                                                    <div className="flex items-center justify-between text-[11px] bg-slate-50 rounded-xl p-2 px-2.5 border border-slate-100">
+                                                        <div className="flex items-center gap-1.5 text-slate-600 font-normal">
+                                                            <Clock size={12} className="text-slate-400 shrink-0" />
+                                                            <span>{o.dateTime}</span>
+                                                        </div>
+                                                        <div className="font-mono text-[10px] text-slate-600 bg-white px-2 py-0.5 rounded border border-slate-200 max-w-[150px] truncate">
+                                                            {o.stripePaymentId}
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Actions Facture : Uniquement Facture PDF et Envoyer l'Email avec mention claire du destinataire */}
+                                                    <div className="space-y-1.5 pt-0.5">
+                                                        <div className="grid grid-cols-2 gap-2">
+                                                            <button
+                                                                onClick={() => openInvoiceWindow({
+                                                                    firstName: o.profile.first_name,
+                                                                    lastName: o.profile.last_name,
+                                                                    email: o.email,
+                                                                    profession: o.profession,
+                                                                    address: o.profile.address,
+                                                                    location: o.location,
+                                                                    stripePaymentId: o.stripePaymentId,
+                                                                    createdAt: o.profile.created_at
+                                                                })}
+                                                                className="py-2.5 px-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium rounded-xl text-xs shadow-2xs flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation active:scale-95 transition-all"
+                                                                title="Voir et imprimer la facture officielle FeelProd"
+                                                            >
+                                                                <FileText size={14} className="text-amber-600 shrink-0" />
+                                                                <span>Facture PDF</span>
+                                                            </button>
+                                                            <button
+                                                                onClick={() => handleSendInvoiceEmail(o.id, {
+                                                                    firstName: o.profile.first_name,
+                                                                    lastName: o.profile.last_name,
+                                                                    email: o.email,
+                                                                    profession: o.profession,
+                                                                    address: o.profile.address,
+                                                                    location: o.location,
+                                                                    stripePaymentId: o.stripePaymentId,
+                                                                    createdAt: o.profile.created_at
+                                                                })}
+                                                                className={cn(
+                                                                    "py-2.5 px-2 border font-medium rounded-xl text-xs shadow-2xs flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation active:scale-95 transition-all",
+                                                                    sentInvoiceEmails[o.id]
+                                                                        ? "bg-emerald-50 border-emerald-300 text-emerald-800"
+                                                                        : "bg-blue-50 border-blue-200 hover:bg-blue-100 text-blue-800"
+                                                                )}
+                                                                title={`Envoyer la facture par email à ${o.email}`}
+                                                            >
+                                                                {sentInvoiceEmails[o.id] ? (
+                                                                    <>
+                                                                        <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
+                                                                        <span className="truncate font-semibold">✓ Envoyé ({sentInvoiceEmails[o.id]})</span>
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <Mail size={14} className="text-blue-600 shrink-0" />
+                                                                        <span>Envoyer l'email</span>
+                                                                    </>
+                                                                )}
+                                                            </button>
+                                                        </div>
+
+                                                        {/* Indication bien visible de l'email du destinataire */}
+                                                        <div className={cn(
+                                                            "px-2.5 py-1.5 rounded-xl border text-[11px] flex items-center justify-between gap-1.5",
+                                                            sentInvoiceEmails[o.id] 
+                                                                ? "bg-emerald-50/70 border-emerald-200 text-emerald-900" 
+                                                                : "bg-slate-50 border-slate-100 text-slate-600"
+                                                        )}>
+                                                            <span className="font-medium shrink-0">
+                                                                {sentInvoiceEmails[o.id] ? "✓ Email transmis à :" : "Destinataire email :"}
+                                                            </span>
+                                                            <span className="font-mono text-[10.5px] truncate font-medium text-slate-800">
+                                                                {o.email}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+
+                                            {/* Mobile Total Bar */}
+                                            <div className="bg-slate-50 p-3.5 border-t border-slate-200 flex items-center justify-between text-xs">
+                                                <div>
+                                                    <span className="font-semibold text-slate-700 text-xs">Total ({selectedMonthLabel})</span>
+                                                    <div className="text-[11px] text-slate-500 mt-0.5">Net : {filteredTotalNet.toFixed(2)} €</div>
+                                                </div>
+                                                <div className="text-right">
+                                                    <span className="font-mono font-semibold text-emerald-700 text-base">+{filteredTotalBrut.toFixed(2)} €</span>
+                                                    <div className="text-[10px] font-mono text-red-500">Frais: -{filteredTotalStripeFees.toFixed(2)} €</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* 2. VUE DESKTOP (Tableau classique) */}
+                                        <div className="hidden md:block overflow-x-auto">
+                                            <table className="w-full text-left border-collapse">
+                                                <thead>
+                                                    <tr className="bg-slate-50/70 border-b border-slate-100 text-xs font-semibold text-slate-500">
+                                                        <th className="py-3 px-4 font-semibold">Date & Heure</th>
+                                                        <th className="py-3 px-4 font-semibold">Praticien / Acheteur</th>
+                                                        <th className="py-3 px-4 text-center font-semibold">Réf. Stripe</th>
+                                                        <th className="py-3 px-4 text-right font-semibold">Frais Stripe</th>
+                                                        <th className="py-3 px-4 text-right font-semibold">Montant Encaissé</th>
+                                                        <th className="py-3 px-4 text-right font-semibold">Actions Facture</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="divide-y divide-slate-100 text-xs">
+                                                    {filteredPaidOrders.map((o) => (
+                                                        <tr key={o.id} className="hover:bg-slate-50/80 transition-colors">
+                                                            <td className="py-4 px-4 font-mono text-slate-600 whitespace-nowrap">
+                                                                <div className="font-medium text-slate-900">{o.date}</div>
+                                                                <div className="text-[11px] text-slate-400">{o.dateTime.split(' ')[1] || ''}</div>
+                                                            </td>
+                                                            <td className="py-4 px-4">
+                                                                <div className="font-semibold text-slate-900 text-sm">{o.name}</div>
+                                                                <div className="text-xs text-slate-500">{o.email}</div>
+                                                                <div className="text-[11px] text-slate-400 mt-0.5">
+                                                                    {o.profession || 'Praticien'} {o.location ? `• ${o.location}` : ''}
+                                                                </div>
+                                                            </td>
+                                                            <td className="py-4 px-4 text-center whitespace-nowrap">
+                                                                <span className="font-mono text-[11px] bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200">
+                                                                    {o.stripePaymentId}
+                                                                </span>
+                                                            </td>
+                                                            <td className="py-4 px-4 text-right font-mono text-red-600 whitespace-nowrap">
+                                                                -6,25 €
+                                                            </td>
+                                                            <td className="py-4 px-4 text-right whitespace-nowrap">
+                                                                <span className="font-mono font-semibold text-emerald-700 text-base">
+                                                                    +{o.amount.toFixed(2)} €
+                                                                </span>
+                                                            </td>
+                                                            <td className="py-4 px-4 text-right whitespace-nowrap">
+                                                                <div className="flex items-center justify-end gap-1.5">
+                                                                    <button
+                                                                        onClick={() => openInvoiceWindow({
+                                                                            firstName: o.profile.first_name,
+                                                                            lastName: o.profile.last_name,
+                                                                            email: o.email,
+                                                                            profession: o.profession,
+                                                                            address: o.profile.address,
+                                                                            location: o.location,
+                                                                            stripePaymentId: o.stripePaymentId,
+                                                                            createdAt: o.profile.created_at
+                                                                        })}
+                                                                        className="px-2.5 py-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-medium rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1.5 cursor-pointer"
+                                                                        title="Voir et imprimer la facture officielle FeelProd"
+                                                                    >
+                                                                        <FileText size={13} className="text-amber-600" />
+                                                                        <span>Facture PDF</span>
+                                                                    </button>
+                                                                    <button
+                                                                        onClick={() => handleSendInvoiceEmail(o.id, {
+                                                                            firstName: o.profile.first_name,
+                                                                            lastName: o.profile.last_name,
+                                                                            email: o.email,
+                                                                            profession: o.profession,
+                                                                            address: o.profile.address,
+                                                                            location: o.location,
+                                                                            stripePaymentId: o.stripePaymentId,
+                                                                            createdAt: o.profile.created_at
+                                                                        })}
+                                                                        className={cn(
+                                                                            "px-3 py-1.5 border font-medium rounded-lg text-xs transition-all shadow-2xs inline-flex items-center gap-1.5 cursor-pointer",
+                                                                            sentInvoiceEmails[o.id]
+                                                                                ? "bg-emerald-50 border-emerald-300 text-emerald-800"
+                                                                                : "bg-blue-50 border-blue-200 hover:bg-blue-100 text-blue-700"
+                                                                        )}
+                                                                        title={`Envoyer la facture par email à ${o.email}`}
+                                                                    >
+                                                                        {sentInvoiceEmails[o.id] ? (
+                                                                            <>
+                                                                                <CheckCircle2 size={13} className="text-emerald-600" />
+                                                                                <span>✓ Email envoyé à {o.email} ({sentInvoiceEmails[o.id]})</span>
+                                                                            </>
+                                                                        ) : (
+                                                                            <>
+                                                                                <Mail size={13} />
+                                                                                <span>Envoyer l'email à {o.email}</span>
+                                                                            </>
+                                                                        )}
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                                {/* Table Footer with Total */}
+                                                <tfoot>
+                                                    <tr className="bg-slate-50 font-medium border-t-2 border-slate-200 text-slate-900">
+                                                        <td colSpan={3} className="py-4 px-4 text-xs font-semibold text-slate-700">
+                                                            Total ({selectedMonthLabel}) — {filteredPaidOrders.length} {filteredPaidOrders.length > 1 ? 'règlements' : 'règlement'}
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right font-mono text-red-600">
+                                                            -{filteredTotalStripeFees.toFixed(2)} €
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right font-mono text-lg font-semibold text-emerald-700">
+                                                            {filteredTotalBrut.toFixed(2)} €
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right text-xs text-slate-500 font-normal">
+                                                            Net : {filteredTotalNet.toFixed(2)} €
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+
+                            {/* Explanatory Info Card */}
+                            <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-xs text-slate-600 space-y-2">
+                                <p className="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
+                                    <CheckCircle2 size={15} className="text-emerald-600" />
+                                    <span>Garantie de Rapprochement Bancaire & Justificatifs Fiscaux</span>
+                                </p>
+                                <p>
+                                    • <strong>Journal des Ventes :</strong> Chaque règlement listé ci-dessus est adossé à un identifiant unique Stripe Checkout (`pi_...`) et à une facture officielle FeelProd acquittée avec TVA et mentions légales.
+                                </p>
+                                <p>
+                                    • <strong>Vérification par Mois :</strong> Vous pouvez sélectionner n'importe quel mois de l'année 2026 (par exemple <em>Décembre 2026</em>) pour connaître le nombre d'apprenants ayant réglé, le montant brut total et le net bancaire correspondant.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {activeTab === 'compta' && (
+                    <div className="flex-1 overflow-y-auto p-3 sm:p-6 md:p-8 min-h-0 bg-[#FAF6ED] pb-[140px]">
+                        <div className="max-w-6xl mx-auto space-y-4 sm:space-y-6">
+                            {/* Header Banner */}
+                            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-slate-200/80 shadow-sm relative overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-900 via-slate-900 to-amber-500" />
+                                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
+                                    <div>
+                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-[11px] font-medium mb-1.5 sm:mb-2">
+                                            <span>🤝 Protocole d'Édition & Reversement Co-Auteur (50/50)</span>
+                                        </div>
+                                        <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight font-sans">
+                                            Bilan Co-Auteur & Virement — Marc DAMOISEAUX
+                                        </h2>
+                                        <p className="text-xs sm:text-sm text-slate-500 font-normal mt-1 max-w-2xl leading-relaxed">
+                                            Suivi transparent en temps réel des inscriptions réglées sur Stripe Checkout. Les recettes brutes perçues (400,00 € par élève) sont contractuellement réparties à parts égales (50% FeelProd / 50% Marc Damoiseaux) après déduction des frais bancaires.
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2.5 shrink-0">
+                                        <button
+                                            onClick={() => openMarcTransferSheetWindow(partnerSales, feeMode)}
+                                            className="px-4 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-medium text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation active:scale-95"
+                                            title="Générer et imprimer l'Ordre de Virement SEPA officiel (A4)"
+                                        >
+                                            <FileText size={14} className="text-amber-300" />
+                                            <span>Ordre de Virement PDF</span>
+                                        </button>
+                                        <button
+                                            onClick={() => handleSendMarcEmail(partnerSales, feeMode)}
+                                            className={cn(
+                                                "px-4 py-2.5 border font-medium text-xs rounded-xl shadow-2xs transition-all flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation active:scale-95",
+                                                marcEmailSentTime
+                                                    ? "bg-emerald-50 border-emerald-300 text-emerald-800"
+                                                    : "bg-blue-50 border-blue-200 hover:bg-blue-100 text-blue-800"
+                                            )}
+                                            title="Transmettre l'ordre de virement officiel par email à marc@damoiseaux.be"
+                                        >
+                                            {marcEmailSentTime ? (
+                                                <>
+                                                    <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
+                                                    <span>✓ Email envoyé à marc@damoiseaux.be</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Mail size={14} className="text-blue-600 shrink-0" />
+                                                    <span>Envoyer le virement par email</span>
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* BANDEAU OFFICIEL : ORDRE DE VIREMENT BANCAIRE ENREGISTRÉ & PAYÉ */}
+                                <div className="mt-4 sm:mt-6 bg-[#0F172A] text-white rounded-2xl p-4 sm:p-5 border border-slate-800 shadow-md relative overflow-hidden">
+                                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                                        <div className="space-y-1.5 min-w-0">
+                                            <div className="flex items-center gap-2 flex-wrap">
+                                                <span className="px-2.5 py-0.5 rounded-md bg-amber-400/20 text-amber-300 border border-amber-400/40 text-[11px] font-mono font-bold tracking-wide">
+                                                    ORDRE N° {marcTransferPaid.ref || 'VIR-2026-09-01'}
+                                                </span>
+                                                <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-semibold flex items-center gap-1">
+                                                    <CheckCircle2 size={12} className="text-emerald-400" />
+                                                    <span>Virement bancaire enregistré</span>
+                                                </span>
+                                                <span className="text-[11px] text-slate-400 font-normal">
+                                                    LCL Compte Pro 6300E ➔ Compte SEPA Marc Damoiseaux
+                                                </span>
+                                            </div>
+                                            <h3 className="text-base sm:text-lg font-semibold text-white tracking-tight">
+                                                Virement bancaire de {partMarc.toFixed(2)} € ordonné à Marc DAMOISEAUX
+                                            </h3>
+                                            <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 text-xs text-slate-300">
+                                                <span className="flex items-center gap-1 text-slate-400">
+                                                    <Mail size={12} className="text-blue-400 shrink-0" />
+                                                    <span>Notification officielle transmise par email à : <strong className="text-white font-medium">marc@damoiseaux.be</strong></span>
+                                                </span>
+                                                <span className="hidden sm:inline text-slate-600">•</span>
+                                                <span className="text-slate-400">Enregistré le {marcEmailSentTime || '14/09/2026 à 11:30'}</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex flex-row sm:flex-col lg:flex-row items-center gap-3 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-800 justify-between">
+                                            <div className="text-left sm:text-right">
+                                                <div className="text-[11px] uppercase tracking-wider text-slate-400 font-medium">Montant Net Viré</div>
+                                                <div className="font-mono text-2xl font-bold text-amber-400">{partMarc.toFixed(2)} €</div>
+                                            </div>
+                                            <button
+                                                onClick={handleToggleMarcTransferPaid}
+                                                className={cn(
+                                                    "px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 shadow-sm touch-manipulation active:scale-95",
+                                                    marcTransferPaid.paid
+                                                        ? "bg-emerald-600 hover:bg-emerald-500 text-white"
+                                                        : "bg-amber-500 hover:bg-amber-400 text-slate-950"
+                                                )}
+                                                title="Cliquer pour basculer le statut d'enregistrement du virement"
+                                            >
+                                                <CheckCircle2 size={14} />
+                                                <span>{marcTransferPaid.paid ? `✓ Virement Payé (${marcTransferPaid.date})` : "Marquer comme Payé"}</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* KPI Cards */}
+                                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mt-4 sm:mt-6">
+                                    <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                                        <p className="text-xs font-medium text-slate-500">Ventes Réglées</p>
+                                        <p className="text-xl sm:text-2xl font-mono font-semibold text-slate-900 mt-0.5 sm:mt-1">{partnerSales.length}</p>
+                                        <p className="text-[11px] text-emerald-600 font-medium mt-0.5 sm:mt-1 truncate">✓ 100% encaissé Stripe</p>
+                                    </div>
+                                    <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                                        <p className="text-xs font-medium text-slate-500">Total Encaissé</p>
+                                        <p className="text-xl sm:text-2xl font-mono font-semibold text-slate-900 mt-0.5 sm:mt-1">{totalBrut.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-slate-500 font-normal mt-0.5 sm:mt-1">400,00 € / praticien</p>
+                                    </div>
+                                    <div className="bg-blue-50/80 border border-blue-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                                        <p className="text-xs font-medium text-blue-700">Part Marc (50% net)</p>
+                                        <p className="text-xl sm:text-2xl font-mono font-semibold text-blue-700 mt-0.5 sm:mt-1">{partMarc.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-emerald-700 font-semibold mt-0.5 sm:mt-1 truncate">✓ Virement payé ({marcTransferPaid.ref})</p>
+                                    </div>
+                                    <div className="bg-amber-50/80 border border-amber-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                                        <p className="text-xs font-medium text-amber-800">Part FeelProd</p>
+                                        <p className="text-xl sm:text-2xl font-mono font-semibold text-amber-800 mt-0.5 sm:mt-1">{partFeelProd.toFixed(2)} €</p>
+                                        <p className="text-[11px] text-amber-700 font-medium mt-0.5 sm:mt-1 truncate">50% chiffre d'affaires net</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Sales Table Card */}
+                            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
+                                <div className="p-4 sm:p-5 md:p-6 border-b border-slate-100 flex items-center justify-between">
+                                    <div>
+                                        <h3 className="font-semibold text-sm sm:text-base text-slate-900">Détail des Enregistrements & Part Co-Auteur (50/50)</h3>
+                                        <p className="text-xs text-slate-500 font-normal mt-0.5">Quote-part nette de 200,00 € par inscription intégrée à l'ordre de virement bancaire</p>
+                                    </div>
+                                    <span className="text-xs font-medium px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full">
+                                        {partnerSales.length} {partnerSales.length > 1 ? 'transactions' : 'transaction'}
+                                    </span>
+                                </div>
+
+                                {/* 1. VUE MOBILE (iPhone 17 Pro Max 440px) */}
+                                <div className="md:hidden divide-y divide-slate-100">
+                                    {partnerSales.map((s, idx) => {
+                                        return (
+                                            <div key={idx} className="p-3.5 space-y-2.5 hover:bg-slate-50/60 transition-colors">
+                                                <div className="flex items-start justify-between gap-2">
+                                                    <div className="min-w-0 flex-1">
+                                                        <h4 className="font-semibold text-slate-900 text-sm">{s.name}</h4>
+                                                        <div className="text-[11px] text-slate-500 truncate mt-0.5">{s.email}</div>
+                                                        <div className="text-[10.5px] text-slate-400 mt-0.5">
+                                                            {s.profession || 'Praticien'} • {s.location || 'France'}
+                                                        </div>
+                                                    </div>
+                                                    <div className="text-right shrink-0">
+                                                        <div className="font-mono font-medium text-slate-700 text-sm">
+                                                            {s.amount.toFixed(2)} €
+                                                        </div>
+                                                        <div className="font-mono font-semibold text-blue-700 text-xs mt-0.5">
+                                                            Marc : {(s.amount / 2).toFixed(2)} €
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="flex items-center justify-between text-[11px] bg-slate-50 rounded-xl p-2 px-2.5 border border-slate-100">
+                                                    <div className="text-slate-600 font-normal">
+                                                        {s.date}
+                                                    </div>
+                                                    <div className="font-mono text-[10px] text-indigo-700 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded max-w-[150px] truncate">
+                                                        {s.stripePaymentId ? s.stripePaymentId.slice(0, 14) + '...' : 'Stripe'}
+                                                    </div>
+                                                </div>
+
+                                                {/* Statut virement clair et épuré */}
+                                                <div className="flex items-center justify-between bg-emerald-50/70 rounded-xl p-2.5 px-3 border border-emerald-200/80 text-xs text-emerald-900 font-medium">
+                                                    <span className="flex items-center gap-1.5">
+                                                        <CheckCircle2 size={13} className="text-emerald-600 shrink-0" />
+                                                        <span>Virement VIR-2026-09-01 payé</span>
+                                                    </span>
+                                                    <span className="font-mono font-semibold text-emerald-800">
+                                                        +{(s.amount / 2).toFixed(2)} €
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+
+                                {/* 2. VUE DESKTOP (Tableau classique) */}
+                                <div className="hidden md:block overflow-x-auto">
+                                    <table className="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr className="bg-slate-50/70 border-b border-slate-100 text-xs font-semibold text-slate-500">
+                                                <th className="py-3 px-4 font-semibold">Date de Règlement</th>
+                                                <th className="py-3 px-4 font-semibold">Praticien / Acheteur</th>
+                                                <th className="py-3 px-4 text-center font-semibold">Réf. Stripe</th>
+                                                <th className="py-3 px-4 text-right font-semibold">Montant Encaissé</th>
+                                                <th className="py-3 px-4 text-right font-semibold">Part Marc (50%)</th>
+                                                <th className="py-3 px-4 text-right font-semibold">Statut Virement Marc</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-slate-100 text-xs">
+                                            {partnerSales.map((s, idx) => {
+                                                return (
+                                                    <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
+                                                        <td className="py-4 px-4 whitespace-nowrap font-normal text-slate-600">
+                                                            {s.date}
+                                                        </td>
+                                                        <td className="py-4 px-4">
+                                                            <div className="font-semibold text-slate-900 text-sm">{s.name}</div>
+                                                            <div className="text-slate-500 text-xs">{s.profession || 'Praticien'} • {s.location || 'France'}</div>
+                                                            <div className="text-slate-400 font-mono text-[11px] mt-0.5">{s.email}</div>
+                                                        </td>
+                                                        <td className="py-4 px-4 text-center">
+                                                            <span className="inline-block font-mono text-[11px] bg-indigo-50 border border-indigo-200 text-indigo-700 px-2 py-0.5 rounded-md">
+                                                                {s.stripePaymentId ? s.stripePaymentId.slice(0, 14) + '...' : 'Stripe'}
+                                                            </span>
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right font-mono font-medium text-slate-800 text-sm">
+                                                            {s.amount.toFixed(2)} €
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right font-mono font-semibold text-blue-700 text-sm">
+                                                            {(s.amount / 2).toFixed(2)} €
+                                                        </td>
+                                                        <td className="py-4 px-4 text-right whitespace-nowrap">
+                                                            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
+                                                                <CheckCircle2 size={13} className="text-emerald-600" />
+                                                                ✓ Payé (VIR-2026-09-01) : +{(s.amount / 2).toFixed(2)} €
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {/* Explanatory Info Card */}
+                            <div className="bg-[#FAF8F5] border border-[#EFE9DE] rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-xs text-slate-600 space-y-2">
+                                <p className="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
+                                    <span>💡</span> Note Comptable & Reversement Co-Auteur
+                                </p>
+                                <p>
+                                    • <strong>Encaissement Stripe :</strong> Les règlements des élèves sont collectés via Stripe Checkout et crédités sur le compte bancaire professionnel LCL de Guillaume Philippe (Masseur-Kinésithérapeute D.E. • Enseigne FEELPROD).
+                                </p>
+                                <p>
+                                    • <strong>Ordre de Virement à Marc Damoiseaux :</strong> Le virement bancaire de la part co-auteur (393,75 € pour les 2 ventes actuelles, après déduction des frais Stripe et hébergement vidéo Cloudflare 100% pris en charge par FeelProd) est ordonné et enregistré (Réf. VIR-2026-09-01). La fiche d'ordre de virement PDF certifiée fait office de justificatif contractuel officiel.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* SIDE DRAWER (THE DETAILS PANEL) */}
@@ -880,8 +1937,8 @@ export function AdminDashboard() {
                                     <div className="flex justify-between items-center text-sm">
                                         <span className="text-slate-500">Adresse</span>
                                         <span className="font-medium text-slate-800 inline-flex items-center gap-1">
-                                            {(selectedProfile.location || selectedProfile.address) && <MapPin size={13} className="text-[#F27D33]" />}
-                                            {selectedProfile.address || selectedProfile.location || '-'}
+                                            {(getProfileLocation(selectedProfile) || selectedProfile.location || selectedProfile.address) && <MapPin size={13} className="text-[#F27D33]" />}
+                                            {getProfileLocation(selectedProfile) || selectedProfile.address || selectedProfile.location || '-'}
                                         </span>
                                     </div>
                                     <div className="flex justify-between items-center text-sm">
@@ -903,9 +1960,9 @@ export function AdminDashboard() {
                                                 onChange={(e) => updateTier(selectedProfile.id, e.target.value as TierFilterType)}
                                                 className="w-full appearance-none bg-white border border-slate-200 text-slate-800 text-sm font-bold rounded-xl px-4 py-2.5 pr-10 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm"
                                             >
-                                                <option value="STANDARD">⚪ Standard (Gratuit)</option>
-                                                <option value="PREMIUM">👑 Plein Tarif (Premium)</option>
-                                                <option value="LEGACY">📜 Mise à jour (Réduit)</option>
+                                                <option value="STANDARD">⚪ Gratuit Découverte (Non Payé)</option>
+                                                <option value="PREMIUM">👑 Payé Stripe (Plein Tarif 400 €)</option>
+                                                <option value="LEGACY">📜 Transfert Ancien Élève (Marc - Gratuit)</option>
                                                 <option value="FREE">🎁 Accès Offert (Cadeau)</option>
                                                 <option value="TRIAL">⏱️ Essai 24h</option>
                                             </select>
@@ -913,6 +1970,29 @@ export function AdminDashboard() {
                                                 <ChevronRight size={16} className="rotate-90" />
                                             </div>
                                         </div>
+
+                                        {/* BOUTON RAPIDE 1-CLIC : RÉOUVRIR L'ACCÈS LIBRE (ANCIEN ÉLÈVE MARC) */}
+                                        {getEffectiveTier(selectedProfile) === 'STANDARD' && (
+                                            <button 
+                                                type="button"
+                                                onClick={() => updateTier(selectedProfile.id, 'LEGACY')}
+                                                className="w-full mt-2 py-2.5 px-3 rounded-xl font-bold text-xs bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.98]"
+                                            >
+                                                <Sparkles size={14} className="text-amber-600" />
+                                                🔓 Réouvrir en Accès Libre (Ancien Élève)
+                                            </button>
+                                        )}
+
+                                        {getEffectiveTier(selectedProfile) === 'LEGACY' && (
+                                            <button 
+                                                type="button"
+                                                onClick={() => updateTier(selectedProfile.id, 'STANDARD')}
+                                                className="w-full mt-2 py-2.5 px-3 rounded-xl font-bold text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.98]"
+                                            >
+                                                <Lock size={14} className="text-slate-500" />
+                                                🔒 Repasser en Gratuit Découverte (Verrouiller)
+                                            </button>
+                                        )}
                                     </div>
 
                                     <div className="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-100 mt-2">
@@ -987,17 +2067,64 @@ export function AdminDashboard() {
                                 </button>
                             </div>
                             
-                            {/* Facturation Stripe */}
+                            {/* Facturation Stripe & Facture Officielle */}
                             <div>
                                 <h3 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
-                                    <Crown size={14} /> Paiement & Remboursement
+                                    <Crown size={14} /> Facturation & Règlement
                                 </h3>
                                 <p className="text-xs text-indigo-900/70 mb-3 leading-relaxed">
-                                    Identifiant de transaction Stripe unique lié à ce compte. Utilisé pour lancer un remboursement automatique.
+                                    Identifiant de transaction Stripe lié à ce compte. Vous pouvez imprimer ou télécharger la facture officielle FeelProd.
                                 </p>
                                 <div className="bg-white border text-sm border-slate-200 rounded-xl p-3 mb-3 text-slate-700 max-h-32 overflow-y-auto break-all font-mono text-[10px]">
                                     {selectedProfile.stripe_payment_id || "Aucun paiement Stripe enregistré en base."}
                                 </div>
+                                <button
+                                    onClick={() => openInvoiceWindow({
+                                        firstName: selectedProfile.first_name,
+                                        lastName: selectedProfile.last_name,
+                                        email: selectedProfile.email,
+                                        profession: selectedProfile.profession,
+                                        address: selectedProfile.address,
+                                        location: selectedProfile.location,
+                                        stripePaymentId: selectedProfile.stripe_payment_id,
+                                        createdAt: selectedProfile.created_at
+                                    })}
+                                    className="w-full py-2.5 mb-2 rounded-xl text-slate-800 bg-white border border-slate-300 font-semibold text-sm hover:bg-slate-50 transition-colors shadow-2xs flex items-center justify-center gap-2 cursor-pointer touch-manipulation active:scale-95"
+                                >
+                                    <FileText size={16} className="text-amber-600" />
+                                    <span>Facture FeelProd (PDF)</span>
+                                </button>
+                                <button
+                                    onClick={() => handleSendInvoiceEmail(selectedProfile.id, {
+                                        firstName: selectedProfile.first_name,
+                                        lastName: selectedProfile.last_name,
+                                        email: selectedProfile.email,
+                                        profession: selectedProfile.profession,
+                                        address: selectedProfile.address,
+                                        location: selectedProfile.location,
+                                        stripePaymentId: selectedProfile.stripe_payment_id,
+                                        createdAt: selectedProfile.created_at
+                                    })}
+                                    className={cn(
+                                        "w-full py-2.5 mb-2 rounded-xl font-semibold text-sm transition-colors shadow-2xs flex items-center justify-center gap-2 cursor-pointer touch-manipulation active:scale-95",
+                                        sentInvoiceEmails[selectedProfile.id]
+                                            ? "bg-emerald-50 border border-emerald-300 text-emerald-800"
+                                            : "bg-blue-50 border border-blue-200 hover:bg-blue-100 text-blue-800"
+                                    )}
+                                    title={`Envoyer la facture par email à ${selectedProfile.email}`}
+                                >
+                                    {sentInvoiceEmails[selectedProfile.id] ? (
+                                        <>
+                                            <CheckCircle2 size={16} className="text-emerald-600" />
+                                            <span>✓ Email envoyé à {selectedProfile.email}</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Mail size={16} className="text-blue-600" />
+                                            <span>Envoyer l'email à {selectedProfile.email}</span>
+                                        </>
+                                    )}
+                                </button>
                                 <button
                                     onClick={() => refundPayment(selectedProfile.id)}
                                     disabled={!selectedProfile.stripe_payment_id}

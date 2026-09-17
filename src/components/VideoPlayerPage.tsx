@@ -16,6 +16,7 @@ import { exportCoursePdf } from '../utils/exportCoursePdf';
 import { getCoursePdfUrl } from '../utils/getPdfUrl';
 import PDFShareDropdown from './PDFShareDropdown';
 import PDFCanvasViewer from './PDFCanvasViewer';
+import PDFDedicatedModal from './PDFDedicatedModal';
 
 const CACHE_NAME = 'video-offline-cache';
 
@@ -31,7 +32,12 @@ interface VideoPlayerPageProps {
   onLockedVideoClick?: () => void;
 }
 
-export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initialCourse, onSelectVideo, hasFullAccess = false, onLockedVideoClick }) => {
+export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ 
+  course: initialCourse, 
+  onSelectVideo, 
+  hasFullAccess = false, 
+  onLockedVideoClick
+}) => {
   const { t, i18n } = useTranslation();
 
   const customMarkdownComponents = React.useMemo(() => ({
@@ -114,6 +120,9 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
   
   const videoUrl = course.cloudflareId ? `/cf-stream/${course.cloudflareId}/downloads/default.mp4` : '';
   const currentPdfUrl = getCoursePdfUrl(course, i18n.language);
+
+  // In-App PDF dedicated modal
+  const [isDedicatedPdfModalOpen, setIsDedicatedPdfModalOpen] = useState(false);
 
   // Transition state for UI fluidity
   const [optimisticLayer, setOptimisticLayer] = useState<string | null>(null);
@@ -605,7 +614,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
             isFullscreen && "hidden"
           )}>
             <div className="flex items-center justify-between gap-1 sm:gap-2 max-w-3xl mx-auto w-full">
-              {/* LEFT: SPEED & PIP */}
+              {/* LEFT: SPEED, PIP & PDF IN-APP */}
               <div className="flex flex-1 items-center justify-start gap-1 sm:gap-2 z-10">
                 <button
                   onClick={() => handleSpeedChange(currentSpeed === 1 ? 1.25 : currentSpeed === 1.25 ? 1.5 : 1)}
@@ -624,6 +633,15 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
                   title={isVideoVisible ? "Détacher la vidéo (PiP)" : "Réintégrer la vidéo"}
                 >
                   {!isVideoVisible ? <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <VideoOff className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
+                </button>
+
+                <button
+                  onClick={() => setIsDedicatedPdfModalOpen(true)}
+                  className="flex items-center gap-1 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 bg-white active:bg-slate-200 hover:bg-[#FAF6ED] cursor-pointer touch-manipulation active:scale-[0.98] text-slate-700 text-[10px] sm:text-xs font-semibold rounded-md md:rounded-lg shadow-sm transition-all border border-slate-200 shrink-0"
+                  title="Consulter le support PDF dans l'application"
+                >
+                  <FileText className="w-3.5 h-3.5" style={{ color: categoryColor }} />
+                  <span className="font-bold">PDF</span>
                 </button>
               </div>
 
@@ -1040,6 +1058,19 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ course: initia
 
 
       </div >
+
+      {isDedicatedPdfModalOpen && (
+        <PDFDedicatedModal
+          isOpen={isDedicatedPdfModalOpen}
+          onClose={() => setIsDedicatedPdfModalOpen(false)}
+          url={currentPdfUrl}
+          title={course.title}
+          courseTitle={course.title}
+          accentColor={categoryColor}
+          hasFullAccess={hasFullAccess}
+          onLockedClick={onLockedVideoClick}
+        />
+      )}
     </>
   );
 };

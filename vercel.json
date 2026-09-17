@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/dev",
+      "destination": "/dev.html"
+    },
+    {
       "source": "/cf-stream/:match*",
       "destination": "https://customer-6i2z59dst7q6iswv.cloudflarestream.com/:match*"
     }
@@ -16,7 +20,24 @@
       ]
     },
     {
-      "source": "/index.html",
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Pragma",
+          "value": "no-cache"
+        },
+        {
+          "key": "Expires",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "source": "/(index.html|dev.html)",
       "headers": [
         {
           "key": "Cache-Control",

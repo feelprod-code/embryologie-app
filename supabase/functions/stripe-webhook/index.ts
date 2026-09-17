@@ -66,6 +66,7 @@ serve(async (req: Request) => {
           .from("profiles")
           .update({ 
             is_premium: true,
+            access_tier: 'premium',
             stripe_payment_id: session.payment_intent || null
           })
           .eq("id", userId);
