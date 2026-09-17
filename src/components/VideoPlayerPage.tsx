@@ -614,21 +614,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
             isFullscreen && "hidden"
           )}>
             <div className="flex items-center justify-between gap-1 sm:gap-2 max-w-3xl mx-auto w-full">
-              {/* LEFT: PDF OPTIONS & SPEED CONTROLS */}
+              {/* LEFT: SPEED CONTROLS (x1, x1.5) & PDF OPTIONS */}
               <div className="flex flex-1 items-center justify-start gap-1 sm:gap-2 z-10">
-                <PDFShareDropdown
-                  pdfUrl={currentPdfUrl}
-                  title={course.title}
-                  courseTitle={course.title}
-                  accentColor={categoryColor}
-                  variant="header"
-                  align="left"
-                  buttonClassName="border border-slate-200 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs"
-                  course={course}
-                  hasFullAccess={hasFullAccess}
-                  onLockedClick={onLockedVideoClick}
-                />
-
                 <div className="flex items-center gap-1 shrink-0">
                   <button
                     onClick={() => handleSpeedChange(1)}
@@ -644,32 +631,32 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
                     x1
                   </button>
                   <button
-                    onClick={() => handleSpeedChange(currentSpeed === 1 ? 1.25 : currentSpeed === 1.25 ? 1.5 : currentSpeed === 1.5 ? 2 : 1.25)}
+                    onClick={() => handleSpeedChange(1.5)}
                     className={cn(
                       "py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md md:rounded-lg text-[10px] sm:text-xs font-bold transition-all border shrink-0 cursor-pointer active:scale-95 touch-manipulation",
-                      currentSpeed > 1 && currentSpeed < 2
+                      currentSpeed === 1.5
                         ? "bg-white shadow-xs font-extrabold"
                         : "bg-transparent text-slate-500 border-slate-200 hover:text-slate-800 hover:bg-[#F5F1E8]"
                     )}
-                    style={currentSpeed > 1 && currentSpeed < 2 ? { color: categoryColor, borderColor: `${categoryColor}60` } : undefined}
-                    title="Accélérer la lecture (cliquer pour cycler : x1.25, x1.5)"
+                    style={currentSpeed === 1.5 ? { color: categoryColor, borderColor: `${categoryColor}60` } : undefined}
+                    title="Vitesse accélérée (x1.5)"
                   >
-                    {currentSpeed === 1.5 ? 'x1.5' : 'x1.25'}
-                  </button>
-                  <button
-                    onClick={() => handleSpeedChange(2)}
-                    className={cn(
-                      "py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md md:rounded-lg text-[10px] sm:text-xs font-bold transition-all border shrink-0 cursor-pointer active:scale-95 touch-manipulation",
-                      currentSpeed === 2
-                        ? "bg-white shadow-xs font-extrabold"
-                        : "bg-transparent text-slate-500 border-slate-200 hover:text-slate-800 hover:bg-[#F5F1E8]"
-                    )}
-                    style={currentSpeed === 2 ? { color: categoryColor, borderColor: `${categoryColor}60` } : undefined}
-                    title="Vitesse double (x2)"
-                  >
-                    x2
+                    x1.5
                   </button>
                 </div>
+
+                <PDFShareDropdown
+                  pdfUrl={currentPdfUrl}
+                  title={course.title}
+                  courseTitle={course.title}
+                  accentColor={categoryColor}
+                  variant="header"
+                  align="left"
+                  buttonClassName="border border-slate-200 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs"
+                  course={course}
+                  hasFullAccess={hasFullAccess}
+                  onLockedClick={onLockedVideoClick}
+                />
               </div>
 
               {/* CENTER: PREV/NEXT */}
