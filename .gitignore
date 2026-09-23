@@ -33,3 +33,4 @@ scratch/
 *.mov
 *.mp4
 gen-lang-client-0754661614-09b6668250b7.json
+public/audio/cache_*/
