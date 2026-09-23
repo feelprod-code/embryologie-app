@@ -12,7 +12,7 @@ export const podcastsData: PodcastItem[] = [
         "isHighlight": true,
         "transcript": `00:09 Philippe Guillaume
 Hello everyone and welcome to the gentle tissue techniques podcast.
-I'm Philippe Guillaume, a physiotherapist and biokinergist. In this
+I'm Philippe Guillaume, a physiotherapist. In this
 podcast season, I share with you innovative approaches that have
 truly shaped my practice. Today, I'm hosting Marc Damoiseaux. Marc
 Damoiseaux is an osteopath who has particularly developed

@@ -30,8 +30,7 @@ Un dialogue rare et inspirant, où l’embryologie devient un art d’écoute du
         transcript: `
 00:09 Philippe Guillaume
 Bonjour à tous et bienvenue sur le podcast des techniques douces
-tissulaires. Je suis Philippe Guillaume, kinésithérapeute et
-biokinergiste. Dans cette saison de podcast, je partage avec vous des
+tissulaires. Je suis Philippe Guillaume, kinésithérapeute. Dans cette saison de podcast, je partage avec vous des
 approches innovantes qui ont vraiment façonné ma pratique.
 Aujourd'hui, je reçois Marc Damoiseaux. Marc Damoiseaux est un
 ostéopathe qui a particulièrement développé l'embryologie au sein
