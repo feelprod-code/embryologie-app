@@ -24,8 +24,8 @@ Marc redéfinit des notions essentielles comme le juste pattern, qui consiste à
 
 Un dialogue rare et inspirant, où l’embryologie devient un art d’écoute du monde intérieur.`,
         aushaId: "6r2X8f6LVNAp",
-        audioUrl: "https://audio.ausha.co/6r2X8f6LVNAp.mp3",
-        thumbnailUrl: "https://images.ausha.co/covers/0V3K7h4bQpRl/400x400.jpg",
+        audioUrl: "/audio/podcast_tdt_fr.mp3",
+        thumbnailUrl: "/PODCAST_fr.png",
         isHighlight: true,
         transcript: `
 00:09 Philippe Guillaume

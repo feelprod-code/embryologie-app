@@ -95,7 +95,11 @@ export function Home({}: HomeProps) {
                         <div className="w-full flex justify-center items-center shrink-0">
                             <div className="relative w-[72vw] max-w-[275px] min-[380px]:w-[75vw] min-[380px]:max-w-[300px] min-[430px]:max-w-[320px] sm:max-w-[320px] md:max-w-[340px] lg:w-[17.5rem] xl:w-[19rem] aspect-square mx-auto rounded-xl sm:rounded-2xl border border-slate-300/80 shadow-lg overflow-hidden group z-10 transition-transform duration-700 hover:scale-[1.02]">
                                 <img
-                                    src={`${import.meta.env.BASE_URL}PODCAST.png`}
+                                    key={currentLang}
+                                    src={`${import.meta.env.BASE_URL}PODCAST_${currentLang}.png`}
+                                    onError={(e) => {
+                                        e.currentTarget.src = `${import.meta.env.BASE_URL}PODCAST.png`;
+                                    }}
                                     alt="Podcast Embryologie Biodynamique"
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-in-out group-hover:scale-[1.03] origin-center"
                                     loading="eager"

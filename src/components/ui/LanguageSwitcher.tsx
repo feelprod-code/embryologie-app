@@ -23,14 +23,18 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
 
     // Close when clicking outside
     useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
+        function handleClickOutside(event: MouseEvent | TouchEvent) {
             if (isAutoCycle) return;
             if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
                 setIsOpen(false);
             }
         }
         document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+        document.addEventListener("touchstart", handleClickOutside, { passive: true });
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("touchstart", handleClickOutside);
+        };
     }, [isAutoCycle]);
 
     // Force it open if autocycle is enabled
@@ -54,13 +58,22 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
         return () => clearInterval(interval);
     }, [isAutoCycle, i18n]);
 
+    const handleSelectLanguage = (code: string) => {
+        i18n.changeLanguage(code);
+        setIsOpen(false);
+    };
+
     return (
         <div className="relative w-full h-full flex flex-col" ref={menuRef}>
             {/* Trigger Button - A circle containing the flag exactly the size of other icons (e.g. 24px inner for mobile) */}
             <button
-                onClick={() => !isAutoCycle && setIsOpen(!isOpen)}
+                type="button"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isAutoCycle) setIsOpen(!isOpen);
+                }}
                 className={cn(
-                    "flex flex-col items-center justify-start transition-all duration-200 group active:scale-95 w-full",
+                    "flex flex-col items-center justify-start transition-all duration-200 group active:scale-95 w-full cursor-pointer select-none touch-manipulation",
                     variant === 'bottom-nav' ? "pt-3 pb-2 gap-1 overflow-hidden" : "w-10 h-10 rounded-full hover:bg-slate-100 justify-center"
                 )}
                 aria-label="Changer de langue"
@@ -86,26 +99,27 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
             {isOpen && (
                 <div
                     className={cn(
-                        "absolute right-0 flex flex-col bg-[#FAF6ED]/95 backdrop-blur-xl border border-slate-200/60 shadow-xl rounded-xl overflow-hidden min-w-[130px] z-[60] animate-in fade-in zoom-in-95 duration-100",
-                        variant === 'bottom-nav' ? "bottom-full mb-4 origin-bottom-right shadow-[0_4px_24px_-8px_rgba(0,0,0,0.3)] right-2" : "top-full mt-2 origin-top-right"
+                        "absolute right-0 flex flex-col bg-[#FAF6ED]/95 backdrop-blur-xl border border-slate-200/60 shadow-2xl rounded-xl overflow-hidden min-w-[130px] z-[100] animate-in fade-in zoom-in-95 duration-100 select-none",
+                        variant === 'bottom-nav' ? "bottom-full mb-3 origin-bottom-right shadow-[0_4px_24px_-8px_rgba(0,0,0,0.3)] right-1" : "top-full mt-2 origin-top-right"
                     )}
                 >
                     {languages.map((lang) => (
                         <button
                             key={lang.code}
-                            onClick={() => {
-                                i18n.changeLanguage(lang.code);
-                                setIsOpen(false);
+                            type="button"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleSelectLanguage(lang.code);
                             }}
                             className={cn(
-                                "flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors hover:bg-[#F5F1E8] active:bg-[#EAE4D3]",
-                                activeLang.code === lang.code ? "text-[#F27D33] bg-orange-50/50" : "text-slate-700"
+                                "flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors hover:bg-[#F5F1E8] active:bg-[#EAE4D3] cursor-pointer touch-manipulation text-left w-full",
+                                activeLang.code === lang.code ? "text-[#F27D33] bg-orange-50/50 font-semibold" : "text-slate-700"
                             )}
                         >
-                            <div className="w-5 h-5 rounded-full overflow-hidden shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-[#FAF6ED] flex-shrink-0">
+                            <div className="w-5 h-5 rounded-full overflow-hidden shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-[#FAF6ED] flex-shrink-0 pointer-events-none">
                                 {lang.flag}
                             </div>
-                            <span>{lang.label}</span>
+                            <span className="pointer-events-none">{lang.label}</span>
                         </button>
                     ))}
                 </div>

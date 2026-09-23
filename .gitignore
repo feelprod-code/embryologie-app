@@ -28,6 +28,7 @@ dist-ssr
 .env.vercel
 scripts/pdfs_cours/
 .env*.local
+scratch/
 *.m4v
 *.mov
 *.mp4
