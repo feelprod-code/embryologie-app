@@ -13,6 +13,18 @@ export function getNormalizedLanguage(lang?: string): string {
   return 'fr';
 }
 
+export const CATEGORY_MASTER_IDS: Record<string, string> = {
+  ectoderme: 'ecto-53',
+  mesoderme: 'meso-46',
+  endoderme: 'endo-42',
+  oeil: 'oeil-33',
+};
+
+export function getCategoryMasterPdfUrl(categoryId: string, currentLang: string = 'fr'): string {
+  const masterId = CATEGORY_MASTER_IDS[categoryId] || 'ecto-53';
+  return getCoursePdfUrl(masterId, currentLang);
+}
+
 export function getCoursePdfUrl(courseIdOrCourse: string | VideoCourse, currentLang: string = 'fr'): string {
   const courseId = typeof courseIdOrCourse === 'string' ? courseIdOrCourse : courseIdOrCourse?.id;
   if (!courseId) return '';
@@ -37,3 +49,4 @@ export function getCoursePdfUrl(courseIdOrCourse: string | VideoCourse, currentL
 
   return '';
 }
+

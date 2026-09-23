@@ -1,0 +1,28 @@
+{
+    "name": "TDT Embryo Dev",
+    "short_name": "Embryo Dev",
+    "start_url": "/?admin=dev",
+    "display": "standalone",
+    "background_color": "#FAF6ED",
+    "theme_color": "#FAF6ED",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "icon-emb-dev.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "icon-emb-dev.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-emb-dev.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ]
+}
