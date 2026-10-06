@@ -526,6 +526,12 @@ function App() {
       if (v === 'video-player' || v === 'video') return 'video-player';
       if (v === 'embryo-ai') return 'embryo-ai';
       if (v === 'bibliographie') return 'bibliographie';
+      if (v === 'home') return 'home';
+
+      // Par défaut sur dev.html : ouvrir directement l'Assistant IA et sa Chronologie
+      if (window.location.pathname.includes('dev.html') || window.location.pathname.includes('/dev')) {
+        return 'embryo-ai';
+      }
     }
     return 'home';
   });
