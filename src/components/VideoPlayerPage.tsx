@@ -682,41 +682,48 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
               )}
 
               {/* RIGHT: VIDEO DETACH/ATTACH & OFFLINE DOWNLOAD */}
-              <div className="flex flex-1 items-center justify-end gap-1.5 sm:gap-2 z-10">
+              <div className="flex flex-1 items-center justify-end gap-2.5 sm:gap-3 z-10">
                 <button
                   onClick={() => setIsVideoVisible(!isVideoVisible)}
                   className={cn(
-                    "flex items-center justify-center p-1 sm:p-1 md:p-1.5 rounded-md md:rounded-lg shadow-sm border transition-all active:scale-[0.98] cursor-pointer shrink-0",
-                    !isVideoVisible ? "bg-[#5A9C51] text-white border-[#5A9C51]" : "bg-transparent text-slate-700 border-slate-200 hover:bg-[#F5F1E8]"
+                    "flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl shadow-xs border transition-all active:scale-[0.96] cursor-pointer shrink-0",
+                    !isVideoVisible
+                      ? "bg-[#4A7C9B] text-white border-[#4A7C9B] shadow-sm"
+                      : "bg-[#EAF1F7] text-[#3D6E8D] border-[#D0DFEB] hover:bg-[#DEE9F3]"
                   )}
                   title={isVideoVisible ? "Détacher la vidéo (PiP)" : "Réintégrer la vidéo"}
                 >
-                  {!isVideoVisible ? <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <VideoOff className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
+                  {!isVideoVisible ? <Video className="w-4 h-4 sm:w-[18px] sm:h-[18px]" strokeWidth={2.2} /> : <VideoOff className="w-4 h-4 sm:w-[18px] sm:h-[18px]" strokeWidth={2.2} />}
                 </button>
 
                 {course.cloudflareId && (
                   <button
                     onClick={handleOfflineCache}
                     disabled={isCaching}
-                    className={`group relative flex justify-center items-center w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg shadow-sm border transition-all focus:outline-none focus:ring-0 ${isCached ? 'bg-[#5A9C51]/10 text-[#5A9C51] border-[#5A9C51]/20' : 'bg-transparent text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-[#F5F1E8] active:bg-slate-200'} disabled:opacity-50 touch-manipulation active:scale-[0.98] shrink-0`}
+                    className={cn(
+                      "group relative flex justify-center items-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl shadow-xs border transition-all focus:outline-none focus:ring-0 disabled:opacity-50 touch-manipulation active:scale-[0.96] shrink-0",
+                      isCached
+                        ? "bg-[#EEF6F0] text-[#3B7A49] border-[#D1E7D6]"
+                        : "bg-[#FAF1EC] text-[#9A5538] border-[#F2DDD1] hover:bg-[#F5E6DD]"
+                    )}
                     title={isCaching ? "Enregistrement en cours..." : isCached ? "Supprimer la vidéo de cet appareil" : "Enregistrer pour accès hors-ligne"}
                   >
-                    <div className="relative flex items-center justify-center w-3.5 h-3.5 sm:w-4 sm:h-4">
+                    <div className="relative flex items-center justify-center w-4 h-4 sm:w-[18px] sm:h-[18px]">
                       {isCaching ? (
-                        <Loader2 className="w-full h-full animate-spin" strokeWidth={2.5} />
+                        <Loader2 className="w-full h-full animate-spin text-[#9A5538]" strokeWidth={2.2} />
                       ) : showSuccessCheck ? (
-                        <CheckCircle2 className="w-full h-full text-[#5A9C51] animate-in zoom-in duration-300" strokeWidth={2.5} />
+                        <CheckCircle2 className="w-full h-full text-[#3B7A49] animate-in zoom-in duration-300" strokeWidth={2.2} />
                       ) : isCached ? (
                         isConfirmingDelete ? (
-                          <Trash2 className="w-full h-full text-red-500 animate-in zoom-in duration-200" strokeWidth={2.5} />
+                          <Trash2 className="w-full h-full text-red-500 animate-in zoom-in duration-200" strokeWidth={2.2} />
                         ) : (
                           <>
-                            <CheckCircle2 className="w-full h-full text-[#5A9C51] md:group-hover:opacity-0 transition-opacity absolute" strokeWidth={2.5} />
-                            <Trash2 className="w-full h-full text-red-500 opacity-0 md:group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />
+                            <CheckCircle2 className="w-full h-full text-[#3B7A49] md:group-hover:opacity-0 transition-opacity absolute" strokeWidth={2.2} />
+                            <Trash2 className="w-full h-full text-red-500 opacity-0 md:group-hover:opacity-100 transition-opacity" strokeWidth={2.2} />
                           </>
                         )
                       ) : (
-                        <DownloadCloud className="w-full h-full" strokeWidth={2.5} />
+                        <DownloadCloud className="w-full h-full text-[#9A5538]" strokeWidth={2.2} />
                       )}
                     </div>
                   </button>
