@@ -616,11 +616,11 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
             <div className="flex items-center justify-between gap-1 sm:gap-2 max-w-3xl mx-auto w-full">
               {/* LEFT: SPEED CONTROLS (x1, x1.5) & PDF OPTIONS */}
               <div className="flex flex-1 items-center justify-start gap-1 sm:gap-2 z-10">
-                <div className="flex items-center gap-1 shrink-0">
+                <div className="flex items-center gap-1.5 shrink-0">
                   <button
                     onClick={() => handleSpeedChange(1)}
                     className={cn(
-                      "py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md md:rounded-lg text-[10px] sm:text-xs font-bold transition-all border shrink-0 cursor-pointer active:scale-95 touch-manipulation",
+                      "py-1.5 px-3 rounded-full text-[11px] sm:text-xs font-bold transition-all border shrink-0 cursor-pointer active:scale-95 touch-manipulation shadow-2xs",
                       currentSpeed === 1
                         ? "bg-white shadow-xs font-extrabold"
                         : "bg-transparent text-slate-500 border-slate-200 hover:text-slate-800 hover:bg-[#F5F1E8]"
@@ -633,7 +633,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
                   <button
                     onClick={() => handleSpeedChange(1.5)}
                     className={cn(
-                      "py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md md:rounded-lg text-[10px] sm:text-xs font-bold transition-all border shrink-0 cursor-pointer active:scale-95 touch-manipulation",
+                      "py-1.5 px-3 rounded-full text-[11px] sm:text-xs font-bold transition-all border shrink-0 cursor-pointer active:scale-95 touch-manipulation shadow-2xs",
                       currentSpeed === 1.5
                         ? "bg-white shadow-xs font-extrabold"
                         : "bg-transparent text-slate-500 border-slate-200 hover:text-slate-800 hover:bg-[#F5F1E8]"
@@ -652,7 +652,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
                   accentColor={categoryColor}
                   variant="header"
                   align="left"
-                  buttonClassName="border border-slate-200 py-1 sm:py-1 md:py-1.5 px-2 sm:px-2.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs"
+                  buttonClassName="border border-slate-200 py-1.5 px-3.5 rounded-full text-[11px] sm:text-xs shadow-2xs"
                   course={course}
                   hasFullAccess={hasFullAccess}
                   onLockedClick={onLockedVideoClick}

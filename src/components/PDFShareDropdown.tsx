@@ -503,7 +503,7 @@ export default function PDFShareDropdown({
           ref={buttonRef}
           type="button"
           onClick={handleTriggerClick}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF6ED] text-slate-800 text-xs font-bold shadow-xs border border-[#E2D8CC] transition-all active:scale-98 cursor-pointer ${buttonClassName}`}
+          className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-[#FAF6ED] text-slate-800 text-xs font-bold shadow-xs border border-[#E2D8CC] transition-all active:scale-98 cursor-pointer ${buttonClassName}`}
           title={isLocked ? "Recueil Intégral réservé aux membres" : "Support PDF"}
         >
           {isLocked ? (
@@ -614,11 +614,11 @@ export default function PDFShareDropdown({
             </div>
 
             {course && !course.isGlobalPdf && (
-              <div className="bg-[#EFEBE3] p-1 rounded-2xl flex items-center gap-1 mb-2.5">
+              <div className="bg-[#EFEBE3] p-1 rounded-full flex items-center gap-1 mb-2.5">
                 <button
                   type="button"
                   onClick={() => setActiveTab('chapter')}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-full text-xs font-bold transition-all cursor-pointer ${
                     activeTab === 'chapter'
                       ? 'bg-white text-slate-900 shadow-sm'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'
@@ -631,7 +631,7 @@ export default function PDFShareDropdown({
                 <button
                   type="button"
                   onClick={() => setActiveTab('integral')}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-full text-xs font-bold transition-all cursor-pointer ${
                     activeTab === 'integral'
                       ? 'bg-white text-slate-900 shadow-sm'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'

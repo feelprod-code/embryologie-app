@@ -168,21 +168,21 @@ export const VideoLibraryList: React.FC<VideoLibraryListProps> = ({ onSelectVide
                                         }
                                     }}
                                     className={cn(
-                                        "relative flex flex-col items-center justify-center py-2.5 sm:py-3 px-0 min-[375px]:px-1 sm:px-4 md:px-4 lg:px-3 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0 active:scale-[0.98]",
+                                        "relative flex flex-col items-center justify-center py-3 sm:py-3.5 px-1 min-[375px]:px-1.5 sm:px-4 md:px-4 lg:px-3 rounded-2xl sm:rounded-3xl border transition-all duration-200 cursor-pointer touch-manipulation w-full min-w-0 active:scale-[0.98]",
                                         isSelected
                                             ? `shadow-md scale-100 ${style.activeBg} ${style.activeBorder} text-white z-10`
                                             : `${style.unselectedBg} ${style.unselectedBorder} ${style.unselectedText} shadow-sm ${style.hover}`
                                     )}
                                 >
                                     <span className={cn(
-                                        "pointer-events-none font-bebas text-[12px] min-[375px]:text-[14px] sm:text-xl md:text-lg lg:text-lg tracking-wider leading-[1.1] mb-1 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
+                                        "pointer-events-none font-bebas text-[13px] min-[375px]:text-[15px] sm:text-xl md:text-lg lg:text-lg tracking-wide leading-[1.15] mb-0.5 md:mb-1 w-full text-center overflow-hidden text-ellipsis whitespace-nowrap",
                                         isSelected ? "text-white" : style.unselectedText
                                     )}>
                                         {t(`videoLibrary.layers.${tKeys[layer as keyof typeof tKeys]}`)}
                                     </span>
 
                                     <span className={cn(
-                                        "pointer-events-none text-[9px] sm:text-[10px] md:text-[10px] uppercase font-bold truncate w-full px-0 sm:px-1 opacity-80 text-center",
+                                        "pointer-events-none text-[9.5px] sm:text-[10px] md:text-[10px] uppercase font-bold tracking-wider truncate w-full px-0 sm:px-1 opacity-85 text-center",
                                         isSelected ? "text-white/80" : style.unselectedText
                                     )}>
                                         <Clock size={10} className="hidden lg:inline mr-1 mb-[1px]" />
