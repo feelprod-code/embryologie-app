@@ -135,8 +135,8 @@ export function useGeminiLive({ language, courseContext, onTranscript }: UseGemi
 
     try {
       // 1. Establish WebSocket connection to Gemini Multimodal Live API
-      // We use v1alpha for the BidiGenerateContent live stream API
-      const wsUrl = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=${apiKey}`;
+      // We use v1beta for the BidiGenerateContent live stream API
+      const wsUrl = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=${apiKey}`;
       const ws = new WebSocket(wsUrl);
       wsRef.current = ws;
 
@@ -172,7 +172,7 @@ ${courseContext.substring(0, 8000)}`;
 
         const setupMessage = {
           setup: {
-            model: "models/gemini-2.0-flash-exp",
+            model: "models/gemini-3.8-live",
             generationConfig: {
               responseModalities: ["AUDIO"],
               speechConfig: {
