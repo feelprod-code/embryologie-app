@@ -526,9 +526,10 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
         setIsLoading(true);
         setError(null);
 
-        const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
+        const geminiApiKey = import.meta.env.VITE_GEMINI_API_KEY;
+        const openrouterApiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
 
-        if (!apiKey) {
+        if (!geminiApiKey && !openrouterApiKey) {
             setError(t('chatbot.apiKeyMissing'));
             setIsLoading(false);
             return;
@@ -538,50 +539,119 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             let currentContext: string | undefined = undefined;
 
             if (isFastMode) {
-                const { data: pineconeData, error: pineconeError } = await supabase.functions.invoke('ask-pinecone', {
-                    body: { query: userMessage, topK: 5 }
-                });
+                // Tenter Pinecone si disponible, sinon repli automatique sur OKF local
+                try {
+                    const { data: pineconeData, error: pineconeError } = await supabase.functions.invoke('ask-pinecone', {
+                        body: { query: userMessage, topK: 5 }
+                    });
 
-                if (pineconeError) {
-                    console.error("Pinecone search error:", pineconeError);
-                } else if (pineconeData && pineconeData.results) {
-                    currentContext = "EXTRAITS PERTINENTS DE LA BASE DE CONNAISSANCES:\n---\n" +
-                        pineconeData.results.map((r: any) => `Document: ${r.metadata.title || 'Inconnu'}\nAuteur: ${r.metadata.author || 'Inconnu'}\nContenu: ${r.text || r.metadata.text}`).join('\n\n') +
-                        "\n---";
+                    if (!pineconeError && pineconeData?.results && pineconeData.results.length > 0) {
+                        currentContext = "EXTRAITS PERTINENTS DE LA BASE DE CONNAISSANCES:\n---\n" +
+                            pineconeData.results.map((r: any) => `Document: ${r.metadata.title || 'Inconnu'}\nAuteur: ${r.metadata.author || 'Inconnu'}\nContenu: ${r.text || r.metadata.text}`).join('\n\n') +
+                            "\n---";
+                    }
+                } catch (pineconeErr) {
+                    console.warn("Pinecone search not available, using OKF:", pineconeErr);
+                }
+
+                if (!currentContext) {
+                    currentContext = getOKFContext(userMessage, 4);
                 }
             } else {
-                // Mode DEEP : recherche locale ultra-rapide et structurée dans OKF
+                // Mode DEEP : recherche locale structurée dans OKF (8 fiches thématiques)
                 currentContext = getOKFContext(userMessage, 8);
             }
 
-            const apiMessages = [
-                { role: 'system', content: getSystemPrompt(i18n.language, currentContext) },
-                ...messages.filter(m => m.role !== 'system'),
-                { role: 'user', content: userMessage }
-            ];
+            const systemPrompt = getSystemPrompt(i18n.language, currentContext);
+            let assistantMessage: string | null = null;
 
-            const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Authorization": `Bearer ${apiKey}`,
-                    "HTTP-Referer": window.location.origin,
-                    "X-Title": "Embryologie Biodynamique App",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    model: "google/gemini-2.5-pro", // Modèle Pro beaucoup plus performant demandé
-                    messages: apiMessages,
-                })
-            });
+            if (geminiApiKey) {
+                // Modèle officiel Google Gemini (gemini-2.5-flash en FAST / gemini-2.5-pro en DEEP)
+                const contents = [
+                    ...messages
+                        .filter(m => m.role !== 'system')
+                        .map(m => ({
+                            role: m.role === 'assistant' ? 'model' : 'user',
+                            parts: [{ text: m.content }]
+                        })),
+                    {
+                        role: 'user',
+                        parts: [{ text: userMessage }]
+                    }
+                ];
 
-            if (!response.ok) {
-                throw new Error(`${t('chatbot.networkError')}${response.status}`);
+                const callGemini = async (model: string) => {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiApiKey}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            system_instruction: {
+                                parts: [{ text: systemPrompt }]
+                            },
+                            contents,
+                            generationConfig: {
+                                temperature: 0.3
+                            }
+                        })
+                    });
+
+                    if (!response.ok) {
+                        const err = await response.json().catch(() => null);
+                        throw new Error(`Gemini ${model} HTTP ${response.status}: ${JSON.stringify(err)}`);
+                    }
+
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || null;
+                };
+
+                const targetModel = isFastMode ? 'gemini-3.8-flash' : 'gemini-2.5-pro';
+                try {
+                    assistantMessage = await callGemini(targetModel);
+                } catch (primaryErr) {
+                    console.warn(`Primary model ${targetModel} error, trying fallback to gemini-3.8-flash:`, primaryErr);
+                    if (targetModel !== 'gemini-3.8-flash') {
+                        assistantMessage = await callGemini('gemini-3.8-flash');
+                    } else {
+                        throw primaryErr;
+                    }
+                }
+            } else if (openrouterApiKey) {
+                // Repli OpenRouter
+                const apiMessages = [
+                    { role: 'system', content: systemPrompt },
+                    ...messages.filter(m => m.role !== 'system'),
+                    { role: 'user', content: userMessage }
+                ];
+
+                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${openrouterApiKey}`,
+                        "HTTP-Referer": window.location.origin,
+                        "X-Title": "Embryologie Biodynamique App",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        model: "google/gemini-2.5-flash",
+                        messages: apiMessages,
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`${t('chatbot.networkError')}${response.status}`);
+                }
+
+                const data = await response.json();
+                assistantMessage = data.choices?.[0]?.message?.content || null;
             }
 
-            const data = await response.json();
-            const assistantMessage = data.choices[0].message.content;
+            if (!assistantMessage) {
+                throw new Error("No response generated from AI");
+            }
 
-            setMessages(prev => [...prev, { role: 'assistant', content: assistantMessage }]);
+            setMessages(prev => [...prev, { role: 'assistant', content: assistantMessage! }]);
         } catch (err: any) {
             console.error("ChatBot Error:", err);
             setError(t('chatbot.generalError'));
@@ -616,7 +686,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                             ? "bg-[#A06C50] text-white shadow-sm"
                                             : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
                                     )}
-                                    title="Mode Rapide (RAG Pinecone) : Recherche uniquement la pertinence"
+                                    title="Mode Rapide (Gemini 3.8 Flash) : Réponse quasi-instantanée"
                                 >
                                     FAST
                                 </button>
@@ -629,7 +699,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                             ? "bg-[#A06C50] text-white shadow-sm"
                                             : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
                                     )}
-                                    title="Mode Profond : Donne le cours intégral à lire à l'IA (- rapide)"
+                                    title="Mode Approfondi (Gemini 2.5 Pro) : Analyse clinique approfondie"
                                 >
                                     DEEP
                                 </button>
