@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { ArrowRight, Loader2, PlayCircle, X, Download, Mic, MicOff, History, Search, Trash2, Copy, Check, RotateCcw } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { useGeminiLive } from '../hooks/useGeminiLive';
@@ -912,7 +913,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                             <div className={cn(
                                 "max-w-[90%] md:max-w-[85%] rounded-3xl p-4 md:p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]",
                                 msg.role === 'user'
-                                    ? "bg-slate-800 text-white rounded-br-md"
+                                    ? "bg-[#334155] text-white rounded-br-md"
                                     : "bg-white text-slate-800 rounded-bl-md relative group border border-slate-100"
                             )}>
                                 {msg.role === 'user' ? (
@@ -1037,10 +1038,10 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                 </div>
             </div>
 
-            {/* Modal / Tiroir Chronologie des Réponses */}
-            {showChronology && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-3 sm:p-6 animate-fadeIn">
-                    <div className="bg-[#FAF6ED] border border-[#AE7D5C]/30 rounded-3xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden">
+            {/* Modal / Tiroir Chronologie des Réponses - Monté directement dans le body pour couvrir 100% de l'écran mobile */}
+            {showChronology && typeof document !== 'undefined' && createPortal(
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-3 sm:p-6 animate-fadeIn">
+                    <div className="bg-[#FAF6ED] border border-[#AE7D5C]/30 rounded-3xl shadow-2xl w-full max-w-3xl max-h-[85vh] sm:max-h-[90vh] flex flex-col overflow-hidden">
                         {/* Header Modal */}
                         <div className="flex items-center justify-between px-5 sm:px-7 py-4 border-b border-[#AE7D5C]/15 bg-white/60">
                             <div className="flex items-center gap-2.5">
@@ -1048,7 +1049,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                     <History size={18} />
                                 </div>
                                 <div>
-                                    <h3 className="font-bebas text-xl sm:text-2xl text-slate-800 tracking-wide m-0 leading-none">
+                                    <h3 className="font-bebas text-xl sm:text-2xl text-slate-700 tracking-wide m-0 leading-none">
                                         CHRONOLOGIE DES RÉPONSES
                                     </h3>
                                     <p className="text-[11px] sm:text-xs text-slate-500 font-medium m-0 mt-0.5">
@@ -1073,8 +1074,8 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                     type="text"
                                     value={chronologySearch}
                                     onChange={(e) => setChronologySearch(e.target.value)}
-                                    placeholder="Rechercher par mot-clé (ex: somites, 4e feuillet, J28...)"
-                                    className="w-full pl-10 pr-4 py-2.5 bg-white rounded-xl border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#A06C50]/20 font-medium"
+                                    placeholder="Rechercher par mot-clé (somites, J28, 4e feuillet...)"
+                                    className="w-full pl-10 pr-4 py-2.5 bg-white rounded-xl border border-slate-200 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#A06C50]/20 font-medium"
                                 />
                                 {chronologySearch && (
                                     <button
@@ -1160,7 +1161,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                                 <div className="text-[10px] font-extrabold text-[#A06C50] uppercase tracking-wider mb-1">
                                                     Question
                                                 </div>
-                                                <p className="text-sm font-semibold text-slate-800 leading-snug">
+                                                <p className="text-sm font-semibold text-slate-700 leading-snug">
                                                     {item.question}
                                                 </p>
                                             </div>
@@ -1192,13 +1193,14 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                             <button
                                 type="button"
                                 onClick={() => setShowChronology(false)}
-                                className="px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold uppercase tracking-wider shadow-sm transition-colors"
+                                className="px-5 py-2 rounded-xl bg-[#475569] hover:bg-[#334155] text-white text-xs font-bold uppercase tracking-wider shadow-sm transition-colors"
                             >
                                 Fermer
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </div>
     );
