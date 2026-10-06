@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ArrowRight, Loader2, PlayCircle, X, Download, Mic, MicOff } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { ArrowRight, Loader2, PlayCircle, X, Download, Mic, MicOff, History, Search, Trash2, Copy, Check, RotateCcw } from 'lucide-react';
+import { v4 as uuidv4 } from 'uuid';
 import { useGeminiLive } from '../hooks/useGeminiLive';
 import { getOKFContext, getCoreStagesContext } from '../utils/okf';
 
@@ -115,6 +116,15 @@ type Message = {
     content: string;
 };
 
+export interface ChronologyItem {
+    id: string;
+    timestamp: number;
+    dateStr: string;
+    question: string;
+    answer: string;
+    mode: 'FAST' | 'DEEP' | 'VOCAL';
+}
+
 export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => void; isAdmin?: boolean }> = ({ onNavigateToVideo, isAdmin = false }) => {
     const { t, i18n } = useTranslation();
     const videoCourses = i18n.language.startsWith('en') ? videoCoursesEn 
@@ -144,11 +154,123 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
     const [isFastMode, setIsFastMode] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
+    // --- CHRONOLOGIE DES RÉPONSES ---
+    const [chronology, setChronology] = useState<ChronologyItem[]>(() => {
+        const saved = localStorage.getItem('embryo_chat_chronology');
+        if (saved) {
+            try {
+                return JSON.parse(saved);
+            } catch (e) {
+                console.error("Failed to parse chronology");
+            }
+        }
+        // Pré-remplissage depuis messages existants si chronologie vide
+        const savedMessages = localStorage.getItem('embryo_chat_history');
+        if (savedMessages) {
+            try {
+                const parsed: Message[] = JSON.parse(savedMessages);
+                const items: ChronologyItem[] = [];
+                for (let i = 0; i < parsed.length; i++) {
+                    if (parsed[i].role === 'user' && parsed[i + 1]?.role === 'assistant') {
+                        items.push({
+                            id: `seed-${i}`,
+                            timestamp: Date.now() - (parsed.length - i) * 60000,
+                            dateStr: 'Antérieur',
+                            question: parsed[i].content,
+                            answer: parsed[i + 1].content,
+                            mode: 'FAST'
+                        });
+                    }
+                }
+                if (items.length > 0) {
+                    try {
+                        localStorage.setItem('embryo_chat_chronology', JSON.stringify(items));
+                    } catch (e) {}
+                    return items;
+                }
+            } catch (e) {}
+        }
+        return [];
+    });
+
+    const [showChronology, setShowChronology] = useState(false);
+    const [chronologySearch, setChronologySearch] = useState('');
+    const [copiedId, setCopiedId] = useState<string | null>(null);
+
+    const filteredChronology = useMemo(() => {
+        if (!chronologySearch.trim()) return chronology;
+        const q = chronologySearch.toLowerCase();
+        return chronology.filter(item => 
+            item.question.toLowerCase().includes(q) || 
+            item.answer.toLowerCase().includes(q)
+        );
+    }, [chronology, chronologySearch]);
+
+    const handleRestoreExchange = (item: ChronologyItem) => {
+        setMessages([
+            { role: 'assistant', content: t('chatbot.welcomeMessage', { defaultValue: "Bonjour ! Je suis l'Assistant IA, dédié au cours d'embryologie de Marc Damoiseaux.\n\nPosez-moi vos questions sur les **cascades cinétiques**, les **feuillets** ou la **pratique biodynamique**." }) },
+            { role: 'user', content: item.question },
+            { role: 'assistant', content: item.answer }
+        ]);
+        setShowChronology(false);
+    };
+
+    const handleCopyExchange = (item: ChronologyItem) => {
+        navigator.clipboard.writeText(`Question: ${item.question}\n\nRéponse Embryo AI:\n${item.answer}`);
+        setCopiedId(item.id);
+        setTimeout(() => setCopiedId(null), 2000);
+    };
+
+    const handleDeleteExchange = (id: string) => {
+        setChronology(prev => {
+            const updated = prev.filter(item => item.id !== id);
+            try {
+                localStorage.setItem('embryo_chat_chronology', JSON.stringify(updated));
+            } catch (e) {}
+            return updated;
+        });
+    };
+
+    const handleClearChronology = () => {
+        if (window.confirm("Voulez-vous vraiment effacer toute la chronologie des réponses ?")) {
+            setChronology([]);
+            localStorage.removeItem('embryo_chat_chronology');
+        }
+    };
+
     // --- VOCAL MODE (Admin only) ---
+    const lastUserVoiceMsgRef = useRef<string>('');
     const handleVoiceTranscript = useCallback((role: 'user' | 'assistant', text: string) => {
         if (!text.trim()) return;
         setMessages(prev => [...prev, { role, content: text }]);
-    }, []);
+        if (role === 'user') {
+            lastUserVoiceMsgRef.current = text.trim();
+        } else if (role === 'assistant' && lastUserVoiceMsgRef.current) {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString(i18n.language || 'fr-FR', {
+                day: '2-digit',
+                month: 'short',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            const newItem: ChronologyItem = {
+                id: uuidv4(),
+                timestamp: Date.now(),
+                dateStr,
+                question: lastUserVoiceMsgRef.current,
+                answer: text.trim(),
+                mode: 'VOCAL'
+            };
+            setChronology(prev => {
+                const updated = [newItem, ...prev.filter(item => item.question !== newItem.question)];
+                try {
+                    localStorage.setItem('embryo_chat_chronology', JSON.stringify(updated));
+                } catch (e) {}
+                return updated;
+            });
+            lastUserVoiceMsgRef.current = '';
+        }
+    }, [i18n.language]);
 
     const { status: voiceStatus, connect: voiceConnect, disconnect: voiceDisconnect, isConnected: isVoiceConnected, isConnecting: isVoiceConnecting } = useGeminiLive({
         language: i18n.language,
@@ -652,6 +774,30 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             }
 
             setMessages(prev => [...prev, { role: 'assistant', content: assistantMessage! }]);
+
+            // Enregistrer dans la chronologie persistante
+            const now = new Date();
+            const dateStr = now.toLocaleDateString(i18n.language || 'fr-FR', {
+                day: '2-digit',
+                month: 'short',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            const newItem: ChronologyItem = {
+                id: uuidv4(),
+                timestamp: Date.now(),
+                dateStr,
+                question: userMessage,
+                answer: assistantMessage!,
+                mode: isFastMode ? 'FAST' : 'DEEP'
+            };
+            setChronology(prev => {
+                const updated = [newItem, ...prev.filter(item => item.question !== newItem.question)];
+                try {
+                    localStorage.setItem('embryo_chat_chronology', JSON.stringify(updated));
+                } catch (e) {}
+                return updated;
+            });
         } catch (err: any) {
             console.error("ChatBot Error:", err);
             setError(t('chatbot.generalError'));
@@ -721,6 +867,22 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                                 </button>
                             </div>
                         )}
+                        <button
+                            type="button"
+                            onClick={() => setShowChronology(true)}
+                            className="text-slate-700 hover:text-slate-900 transition-colors p-1 sm:p-1.5 md:p-2 bg-white/90 border border-slate-200/80 rounded-full shadow-sm hover:bg-white active:scale-95 flex items-center justify-center shrink-0 gap-1.5 px-2.5 sm:px-3"
+                            title="Historique & Chronologie des questions et réponses"
+                        >
+                            <History size={15} className="text-[#A06C50]" />
+                            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 pt-0.5">
+                                Chronologie
+                            </span>
+                            {chronology.length > 0 && (
+                                <span className="bg-[#A06C50] text-white text-[9px] sm:text-[10px] font-extrabold rounded-full px-1.5 py-0.2 min-w-[17px] text-center leading-tight">
+                                    {chronology.length}
+                                </span>
+                            )}
+                        </button>
                         {messages.length > 1 && (
                             <button
                                 type="button"
@@ -874,6 +1036,170 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
                     </form>
                 </div>
             </div>
+
+            {/* Modal / Tiroir Chronologie des Réponses */}
+            {showChronology && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-3 sm:p-6 animate-fadeIn">
+                    <div className="bg-[#FAF6ED] border border-[#AE7D5C]/30 rounded-3xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden">
+                        {/* Header Modal */}
+                        <div className="flex items-center justify-between px-5 sm:px-7 py-4 border-b border-[#AE7D5C]/15 bg-white/60">
+                            <div className="flex items-center gap-2.5">
+                                <div className="w-8 h-8 rounded-full bg-[#A06C50]/10 flex items-center justify-center text-[#A06C50]">
+                                    <History size={18} />
+                                </div>
+                                <div>
+                                    <h3 className="font-bebas text-xl sm:text-2xl text-slate-800 tracking-wide m-0 leading-none">
+                                        CHRONOLOGIE DES RÉPONSES
+                                    </h3>
+                                    <p className="text-[11px] sm:text-xs text-slate-500 font-medium m-0 mt-0.5">
+                                        {chronology.length} échange{chronology.length > 1 ? 's' : ''} enregistré{chronology.length > 1 ? 's' : ''}
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setShowChronology(false)}
+                                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors"
+                            >
+                                <X size={18} />
+                            </button>
+                        </div>
+
+                        {/* Search Bar */}
+                        <div className="p-4 sm:p-5 border-b border-[#AE7D5C]/10 bg-white/30">
+                            <div className="relative">
+                                <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                                <input
+                                    type="text"
+                                    value={chronologySearch}
+                                    onChange={(e) => setChronologySearch(e.target.value)}
+                                    placeholder="Rechercher par mot-clé (ex: somites, 4e feuillet, J28...)"
+                                    className="w-full pl-10 pr-4 py-2.5 bg-white rounded-xl border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#A06C50]/20 font-medium"
+                                />
+                                {chronologySearch && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setChronologySearch('')}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold"
+                                    >
+                                        Effacer
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Liste des Questions / Réponses */}
+                        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
+                            {filteredChronology.length === 0 ? (
+                                <div className="text-center py-12 px-4">
+                                    <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
+                                        <History size={24} />
+                                    </div>
+                                    <p className="text-sm font-bold text-slate-700 uppercase tracking-wide">
+                                        {chronologySearch ? "Aucun échange ne correspond à votre recherche" : "Aucun échange dans la chronologie"}
+                                    </p>
+                                    <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+                                        {chronologySearch ? "Essayez avec d'autres termes anatomiques ou réinitialisez la recherche." : "Posez une question en mode FAST, DEEP ou au micro pour qu'elle s'enregistre automatiquement ici."}
+                                    </p>
+                                </div>
+                            ) : (
+                                filteredChronology.map((item) => {
+                                    const modeColor = item.mode === 'VOCAL' ? 'bg-red-50 text-red-700 border-red-200' :
+                                                      item.mode === 'DEEP' ? 'bg-purple-50 text-purple-700 border-purple-200' :
+                                                      'bg-emerald-50 text-emerald-700 border-emerald-200';
+                                    const modeLabel = item.mode === 'VOCAL' ? '🎙️ Vocal' :
+                                                      item.mode === 'DEEP' ? '🧠 Deep (2.5 Pro)' :
+                                                      '⚡ Fast (3.8 Flash)';
+
+                                    return (
+                                        <div
+                                            key={item.id}
+                                            className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 sm:p-5 hover:shadow-md transition-shadow flex flex-col gap-3"
+                                        >
+                                            <div className="flex items-center justify-between gap-2 flex-wrap">
+                                                <div className="flex items-center gap-2">
+                                                    <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-full border", modeColor)}>
+                                                        {modeLabel}
+                                                    </span>
+                                                    <span className="text-[11px] text-slate-400 font-medium">
+                                                        {item.dateStr}
+                                                    </span>
+                                                </div>
+                                                <div className="flex items-center gap-1.5">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleCopyExchange(item)}
+                                                        className="text-slate-500 hover:text-slate-700 text-xs font-semibold px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors flex items-center gap-1"
+                                                        title="Copier la question et la réponse"
+                                                    >
+                                                        {copiedId === item.id ? <Check size={13} className="text-emerald-600" /> : <Copy size={13} />}
+                                                        <span>{copiedId === item.id ? 'Copié' : 'Copier'}</span>
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleRestoreExchange(item)}
+                                                        className="bg-[#A06C50] text-white hover:bg-[#8d5c41] text-xs font-bold px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1 shadow-sm"
+                                                        title="Afficher cet échange dans le chat principal"
+                                                    >
+                                                        <RotateCcw size={13} />
+                                                        <span>Revoir dans le chat</span>
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleDeleteExchange(item.id)}
+                                                        className="text-slate-400 hover:text-red-600 p-1 rounded-lg hover:bg-red-50 transition-colors"
+                                                        title="Supprimer cet échange"
+                                                    >
+                                                        <Trash2 size={13} />
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            {/* Question */}
+                                            <div className="bg-[#FAF6ED]/70 rounded-xl p-3 border border-[#AE7D5C]/15">
+                                                <div className="text-[10px] font-extrabold text-[#A06C50] uppercase tracking-wider mb-1">
+                                                    Question
+                                                </div>
+                                                <p className="text-sm font-semibold text-slate-800 leading-snug">
+                                                    {item.question}
+                                                </p>
+                                            </div>
+
+                                            {/* Réponse preview */}
+                                            <div className="text-xs text-slate-600 leading-relaxed max-h-32 overflow-hidden relative">
+                                                <div className="line-clamp-4 font-normal">
+                                                    {item.answer.replace(/#{1,6}\s/g, '').replace(/\*\*/g, '')}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            )}
+                        </div>
+
+                        {/* Footer Modal */}
+                        <div className="px-5 py-3 border-t border-[#AE7D5C]/15 bg-white/70 flex items-center justify-between">
+                            {chronology.length > 0 ? (
+                                <button
+                                    type="button"
+                                    onClick={handleClearChronology}
+                                    className="text-xs text-red-600 hover:text-red-700 font-semibold flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
+                                >
+                                    <Trash2 size={14} />
+                                    <span>Effacer toute la chronologie</span>
+                                </button>
+                            ) : <div />}
+                            <button
+                                type="button"
+                                onClick={() => setShowChronology(false)}
+                                className="px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold uppercase tracking-wider shadow-sm transition-colors"
+                            >
+                                Fermer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
