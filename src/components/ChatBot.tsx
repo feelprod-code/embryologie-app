@@ -152,7 +152,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [isFastMode, setIsFastMode] = useState(false);
+    const [isFastMode, setIsFastMode] = useState(true); // Verrouillé par défaut sur le mode FAST ultra-rapide et économique
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     // --- CHRONOLOGIE DES RÉPONSES ---
@@ -239,10 +239,10 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
         }
     };
 
-    // --- VOCAL MODE (Admin only) ---
+    // --- VOCAL MODE (Strictement réservé à l'administrateur - Désactivé pour les abonnés lambda) ---
     const lastUserVoiceMsgRef = useRef<string>('');
     const handleVoiceTranscript = useCallback((role: 'user' | 'assistant', text: string) => {
-        if (!text.trim()) return;
+        if (!isAdmin || !text.trim()) return;
         setMessages(prev => [...prev, { role, content: text }]);
         if (role === 'user') {
             lastUserVoiceMsgRef.current = text.trim();
@@ -271,7 +271,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
             });
             lastUserVoiceMsgRef.current = '';
         }
-    }, [i18n.language]);
+    }, [isAdmin, i18n.language]);
 
     const { status: voiceStatus, connect: voiceConnect, disconnect: voiceDisconnect, isConnected: isVoiceConnected, isConnecting: isVoiceConnecting } = useGeminiLive({
         language: i18n.language,
@@ -280,6 +280,7 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
     });
 
     const handleVoiceToggle = () => {
+        if (!isAdmin) return; // Sécurité absolue : aucun accès vocal pour le client lambda
         if (isVoiceConnected || isVoiceConnecting) {
             voiceDisconnect();
         } else {
@@ -287,9 +288,11 @@ export const ChatBot: React.FC<{ onNavigateToVideo?: (video: VideoCourse) => voi
         }
     };
 
-    // Sync isFastMode if isAdmin prop changes dynamically
+    // Les abonnés lambda utilisent TOUJOURS le mode FAST (économique et instantané)
     useEffect(() => {
-        setIsFastMode(false); // Default to OKF mode (DEEP)
+        if (!isAdmin) {
+            setIsFastMode(true);
+        }
     }, [isAdmin]);
 
     // Prevent body vertical bounce on iOS devices
