@@ -34,3 +34,7 @@ scratch/
 *.mp4
 gen-lang-client-0754661614-09b6668250b7.json
 public/audio/cache_*/
+public/audio/podcast_tdt_ko.mp3
+public/audio/podcast_tdt_nl.mp3
+public/audio/podcast_tdt_pt.mp3
+public/audio/podcast_tdt_ru.mp3
