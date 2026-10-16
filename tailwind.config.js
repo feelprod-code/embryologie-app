@@ -5,6 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'xs': '380px',
+      'promax': '425px',
+      'promax-tall': { 'raw': '(min-width: 425px) and (max-width: 639px) and (min-height: 840px)' },
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+      'ipad-13': { 'raw': '(min-width: 1024px) and (max-width: 1180px) and (min-height: 950px)' },
+    },
     extend: {
       colors: {
         background: '#FAF6ED', // beige premium TDT (exact icon color)

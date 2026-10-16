@@ -74,7 +74,7 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
                 }}
                 className={cn(
                     "flex flex-col items-center justify-start transition-all duration-200 group active:scale-95 w-full cursor-pointer select-none touch-manipulation",
-                    variant === 'bottom-nav' ? "pt-3 pb-2 gap-1 overflow-hidden" : "w-10 h-10 rounded-full hover:bg-slate-100 justify-center"
+                    variant === 'bottom-nav' ? "pt-3 pb-2 gap-1 overflow-hidden" : "w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full hover:bg-slate-100 justify-center"
                 )}
                 aria-label="Changer de langue"
             >
@@ -84,7 +84,7 @@ export function LanguageSwitcher({ variant = 'desktop-nav' }: { variant?: 'deskt
                 )}>
                     <div className={cn(
                         "overflow-hidden flex items-center justify-center rounded-full shadow-[0_0_0_0.5px_rgba(0,0,0,0.05)] bg-[#FAF6ED]",
-                        variant === 'bottom-nav' ? "w-[24px] h-[24px]" : "w-7 h-7"
+                        variant === 'bottom-nav' ? "w-[24px] h-[24px]" : "w-7 h-7 promax:w-8 promax:h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-7 lg:h-7 ipad-13:w-11 ipad-13:h-11"
                     )}>
                         {activeLang.flag}
                     </div>

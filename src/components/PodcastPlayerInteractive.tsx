@@ -178,7 +178,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
     return (
         <div className="w-full flex flex-col items-center">
             {/* Lecteur Audio Custom */}
-            <div className="w-full max-w-[300px] sm:max-w-[320px] md:max-w-[340px] lg:max-w-[18.5rem] xl:max-w-[20rem] z-40 flex flex-col items-center gap-2.5 sm:gap-3">
+            <div className="w-full max-w-[275px] xs:max-w-[300px] promax:max-w-[325px] promax-tall:max-w-[340px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[17rem] xl:max-w-[19rem] ipad-13:max-w-[500px] z-40 flex flex-col items-center gap-2 sm:gap-3">
                 <audio
                     ref={audioRef}
                     src={podcast.audioUrl}
@@ -192,17 +192,17 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                 />
                 
                 {/* Minimalist Player UI */}
-                <div id="podcast-player-pill" className="w-full flex items-center bg-[#FAF6ED]/95 backdrop-blur-md px-1 py-1.5 sm:py-2 relative z-50">
+                <div id="podcast-player-pill" className="w-full flex items-center bg-[#FAF6ED]/95 backdrop-blur-md px-1 py-1 sm:py-2 relative z-50">
                     <button
                         onClick={togglePlay}
-                        className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#E87C3E] text-white hover:bg-[#D66B2D] active:scale-95 transition-all mx-1 shrink-0"
+                        className="flex items-center justify-center w-8 h-8 promax:w-9 promax:h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-8 lg:h-8 ipad-13:w-12 ipad-13:h-12 rounded-full bg-[#E87C3E] text-white hover:bg-[#D66B2D] active:scale-95 transition-all mx-1 shrink-0"
                         aria-label={isPlaying ? "Pause" : "Play"}
                     >
-                        {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-[2px]" />}
+                        {isPlaying ? <Pause size={15} fill="currentColor" /> : <Play size={15} fill="currentColor" className="ml-[2px]" />}
                     </button>
 
                     <div className="flex flex-1 items-center gap-2 sm:gap-3 shrink-0 ml-1">
-                        <span ref={timeDisplayRef} className="text-xs text-slate-500 font-medium tabular-nums min-w-[36px] text-right">
+                        <span ref={timeDisplayRef} className="text-xs sm:text-sm lg:text-xs ipad-13:text-base text-slate-500 font-medium tabular-nums min-w-[36px] sm:min-w-[42px] text-right">
                             {formatTime(displayTime)}
                         </span>
                         
@@ -239,7 +239,7 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 touch-none"
                                 aria-label="Seek podcast"
                             />
-                            <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden pointer-events-none">
+                            <div className="w-full h-1.5 sm:h-2 lg:h-1.5 ipad-13:h-2.5 bg-slate-200 rounded-full overflow-hidden pointer-events-none">
                                 <div
                                     ref={scrubFillRef}
                                     className="h-full bg-[#E87C3E]"
@@ -249,12 +249,12 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                             {/* Thumb */}
                             <div
                                 ref={scrubThumbRef}
-                                className="absolute h-3.5 w-3.5 bg-[#E87C3E] rounded-full pointer-events-none -translate-x-1/2"
+                                className="absolute h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-3.5 lg:w-3.5 ipad-13:h-4.5 ipad-13:w-4.5 bg-[#E87C3E] rounded-full pointer-events-none -translate-x-1/2"
                                 style={{ left: `${(displayTime / (duration || 100)) * 100}%` }}
                             />
                         </div>
 
-                        <span ref={timeRemainingRef} className="text-xs text-slate-400 font-medium tabular-nums min-w-[36px]">
+                        <span ref={timeRemainingRef} className="text-xs sm:text-sm lg:text-xs ipad-13:text-base text-slate-400 font-medium tabular-nums min-w-[36px] sm:min-w-[44px]">
                             -{formatTime(remainingTime)}
                         </span>
                     </div>
@@ -263,9 +263,9 @@ export const PodcastPlayerInteractive: React.FC<PodcastPlayerInteractiveProps> =
                 {/* Transcription Toggle */}
                 <button
                     onClick={toggleTranscript}
-                    className="w-full py-2 sm:py-2.5 px-4 bg-[#EFE8D8] hover:bg-[#E5DCC5] text-[#8E5A3E] rounded-full text-[11px] sm:text-xs font-semibold tracking-wide uppercase transition-all flex items-center justify-center gap-2 active:scale-95 group border-none"
+                    className="w-full py-2 sm:py-3 md:py-3.5 lg:py-2 ipad-13:py-4 px-4 bg-[#EFE8D8] hover:bg-[#E5DCC5] text-[#8E5A3E] rounded-full text-[11px] promax:text-xs sm:text-xs md:text-sm lg:text-[11px] ipad-13:text-base font-semibold tracking-wide uppercase transition-all flex items-center justify-center gap-2 active:scale-95 group border-none"
                 >
-                    <BookOpen size={14} className="text-[#8E5A3E]" />
+                    <BookOpen size={14} className="text-[#8E5A3E] sm:w-4 sm:h-4 lg:w-3.5 lg:h-3.5 ipad-13:w-5 ipad-13:h-5" />
                     {isTranscriptVisible ? t('podcasts.hideTranscript', 'Masquer la retranscription') : t('podcasts.showTranscript', 'Afficher la retranscription')}
                 </button>
             </div>

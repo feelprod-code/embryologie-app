@@ -26,11 +26,11 @@ export const AnimatedLanguageFooter = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 gap-2 text-[10px] sm:text-xs font-bold text-[#A06C50] uppercase tracking-[0.2em] w-full max-w-[320px] translate-x-6">
-      <div className="flex justify-end items-center text-right">
+    <div className="grid grid-cols-2 gap-2.5 text-[11px] xs:text-xs promax:text-[13.5px] sm:text-[15px] md:text-base lg:text-[13px] ipad-13:text-xl font-bold text-[#A06C50] uppercase tracking-[0.2em] w-full max-w-[340px] sm:max-w-[440px] md:max-w-[480px] ipad-13:max-w-[560px] translate-x-5 sm:translate-x-6">
+      <div className="flex justify-end items-center text-right whitespace-nowrap">
         <span>{t('home.available_in', "Disponible en")}</span>
       </div>
-      <div className="relative h-5 sm:h-6 overflow-hidden flex justify-start items-center text-left">
+      <div className="relative h-6 sm:h-7 md:h-8 ipad-13:h-9 overflow-hidden flex justify-start items-center text-left">
         <AnimatePresence mode="wait">
           <motion.span
             key={LANGUAGES[index]}
