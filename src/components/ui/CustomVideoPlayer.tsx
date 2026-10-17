@@ -1025,7 +1025,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             {isJaLang && cloudflareId && (
                                 <audio
                                     ref={jaAudioRef}
-                                    src={`/audio_ja/${cloudflareId}_ja.mp3`}
+                                    src={`/audio_ja/${cloudflareId}_ja.mp3?v=2`}
                                     preload="auto"
                                     onCanPlay={() => {
                                         setJaAudioError(false);
@@ -1078,6 +1078,12 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                         }
                                     }
                                 }}
+                                onPlaying={() => {
+                                    if (isJaDubActive && playerRef.current) {
+                                        playerRef.current.muted = true;
+                                        playerRef.current.volume = 0;
+                                    }
+                                }}
                                 onPause={() => {
                                     setIsPlaying(false);
                                     if (jaAudioRef.current) jaAudioRef.current.pause();
@@ -1085,6 +1091,10 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 onTimeUpdate={() => {
                                     const player = playerRef.current;
                                     if (!player) return;
+                                    if (isJaDubActive) {
+                                        player.muted = true;
+                                        player.volume = 0;
+                                    }
                                     const time = player.currentTime || 0;
                                     
                                     // Initialize duration cleanly
