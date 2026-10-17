@@ -73,7 +73,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 }, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
+    const jaAudioRef = useRef<HTMLAudioElement | null>(null);
+    const [hasJaAudio, setHasJaAudio] = useState(false);
     const { i18n } = useTranslation();
+    const isJaLang = getCloudflareLangCode(i18n.language || 'fr') === 'ja';
+    const isJaDubActive = isJaLang && hasJaAudio && !!cloudflareId && !localVideoUrl;
 
     // State
     const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
@@ -99,7 +103,36 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
     useEffect(() => {
         hasAttachedPiPListeners.current = false;
+        setHasJaAudio(false);
+        if (playerRef.current) {
+            playerRef.current.muted = false;
+        }
     }, [cloudflareId, localVideoUrl]);
+
+    useEffect(() => {
+        if (!isJaDubActive) {
+            if (jaAudioRef.current) {
+                jaAudioRef.current.pause();
+            }
+            if (playerRef.current) {
+                playerRef.current.muted = false;
+            }
+        } else {
+            if (playerRef.current) {
+                playerRef.current.muted = true;
+            }
+            if (jaAudioRef.current) {
+                jaAudioRef.current.playbackRate = speed;
+                const vTime = playerRef.current?.currentTime || 0;
+                if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.25) {
+                    jaAudioRef.current.currentTime = vTime;
+                }
+                if (playerRef.current && !playerRef.current.paused) {
+                    jaAudioRef.current.play().catch(() => {});
+                }
+            }
+        }
+    }, [isJaDubActive, speed]);
 
     // Measure container width for responsive subtitles
     useEffect(() => {
@@ -159,6 +192,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             setCurrentTime(time);
             if (onTimeUpdate) onTimeUpdate(time, duration || 0);
 
+            if (isJaDubActive && jaAudioRef.current) {
+                playerRef.current.muted = true;
+                if (Math.abs(jaAudioRef.current.currentTime - time) > 0.25) {
+                    jaAudioRef.current.currentTime = time;
+                }
+                if (jaAudioRef.current.paused) {
+                    jaAudioRef.current.play().catch(() => {});
+                }
+            }
+
             let activeText = null;
             let activeIndex = -1;
             for (let i = 0; i < cuesRef.current.length; i++) {
@@ -176,7 +219,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
             requestRef.current = requestAnimationFrame(updateTimeSmoothly);
         }
-    }, [isPlaying, localScrubTime, duration, onTimeUpdate, onActiveCueChange]);
+    }, [isPlaying, localScrubTime, duration, onTimeUpdate, onActiveCueChange, isJaDubActive]);
 
     useEffect(() => {
         if (isPlaying && localScrubTime === null) {
@@ -198,6 +241,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             setCurrentTime(time);
             if (playerRef.current) {
                 playerRef.current.currentTime = time;
+            }
+            if (isJaDubActive && jaAudioRef.current) {
+                jaAudioRef.current.currentTime = time;
             }
             if (onTimeUpdate) onTimeUpdate(time, duration || 0);
             let activeText = null;
@@ -223,9 +269,18 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         if (playerRef.current) {
             if (isPlaying) {
                 playerRef.current.pause();
+                if (jaAudioRef.current) jaAudioRef.current.pause();
                 setIsPlaying(false);
                 onPlayStateChange?.(false);
             } else {
+                if (isJaDubActive) {
+                    playerRef.current.muted = true;
+                    if (jaAudioRef.current) {
+                        jaAudioRef.current.playbackRate = speed;
+                        jaAudioRef.current.currentTime = playerRef.current.currentTime || 0;
+                        jaAudioRef.current.play().catch(() => {});
+                    }
+                }
                 playerRef.current.play();
                 setIsPlaying(true);
                 onPlayStateChange?.(true);
@@ -238,6 +293,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         setCurrentTime(val);
         if (playerRef.current) {
             playerRef.current.currentTime = val;
+        }
+        if (isJaDubActive && jaAudioRef.current) {
+            jaAudioRef.current.currentTime = val;
         }
         if (onTimeUpdate) onTimeUpdate(val, duration || 0);
         let activeText = null;
@@ -262,6 +320,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         if (playerRef.current) {
             const newTime = Math.max(0, Math.min(currentTime + secondsOffset, duration));
             playerRef.current.currentTime = newTime;
+            if (isJaDubActive && jaAudioRef.current) {
+                jaAudioRef.current.currentTime = newTime;
+            }
             setCurrentTime(newTime);
             if (onTimeUpdate) onTimeUpdate(newTime, duration || 0);
             let activeText = null;
@@ -965,55 +1026,98 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             }}
                         />
                     ) : (
-                        <Stream
-                            streamRef={playerRef}
-                            className="w-full h-full object-cover"
-                            src={cloudflareId!}
-                            controls={false} // Disable native UI to avoid iOS taking over fullscreen
-                            width="100%"
-                            height="100%"
-                            playbackRate={speed}
-                            responsive={false}
-                            onEnded={() => {
-                                setIsPlaying(false);
-                                if (onEnded) onEnded();
-                            }}
-                            onPlay={() => {
-                                setIsPlaying(true);
-                            }}
-                            onPause={() => setIsPlaying(false)}
-                            onTimeUpdate={() => {
-                                const player = playerRef.current;
-                                if (!player) return;
-                                const time = player.currentTime || 0;
-                                
-                                // Initialize duration cleanly
-                                if (player.duration && player.duration > 0 && duration === 0) {
-                                    setDuration(player.duration);
-                                }
-
-                                // Protect current time if user is scrubbing
-                                if (localScrubTime === null && !isPlaying) { // Only update statically if paused (rAF handles playing state)
-                                    setCurrentTime(time);
-                                    if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
-
-                                    let activeText = null;
-                                    let activeIndex = -1;
-                                    for (let i = 0; i < cuesRef.current.length; i++) {
-                                        const c = cuesRef.current[i];
-                                        if (time >= c.start && time <= c.end) {
-                                            activeText = c.text;
-                                            activeIndex = i;
-                                            break;
+                        <>
+                            {isJaLang && cloudflareId && (
+                                <audio
+                                    ref={jaAudioRef}
+                                    src={`/audio_ja/${cloudflareId}_ja.mp3`}
+                                    preload="auto"
+                                    onCanPlay={() => {
+                                        setHasJaAudio(true);
+                                        if (playerRef.current) {
+                                            playerRef.current.muted = true;
+                                            if (jaAudioRef.current) {
+                                                jaAudioRef.current.playbackRate = speed;
+                                                const vTime = playerRef.current.currentTime || 0;
+                                                if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.25) {
+                                                    jaAudioRef.current.currentTime = vTime;
+                                                }
+                                                if (!playerRef.current.paused) {
+                                                    jaAudioRef.current.play().catch(() => {});
+                                                }
+                                            }
+                                        }
+                                    }}
+                                    onError={() => {
+                                        setHasJaAudio(false);
+                                        if (playerRef.current) {
+                                            playerRef.current.muted = false;
+                                        }
+                                    }}
+                                />
+                            )}
+                            <Stream
+                                streamRef={playerRef}
+                                className="w-full h-full object-cover"
+                                src={cloudflareId!}
+                                controls={false} // Disable native UI to avoid iOS taking over fullscreen
+                                width="100%"
+                                height="100%"
+                                playbackRate={speed}
+                                responsive={false}
+                                onEnded={() => {
+                                    if (jaAudioRef.current) jaAudioRef.current.pause();
+                                    setIsPlaying(false);
+                                    if (onEnded) onEnded();
+                                }}
+                                onPlay={() => {
+                                    setIsPlaying(true);
+                                    if (isJaDubActive && playerRef.current) {
+                                        playerRef.current.muted = true;
+                                        if (jaAudioRef.current) {
+                                            jaAudioRef.current.playbackRate = speed;
+                                            jaAudioRef.current.currentTime = playerRef.current.currentTime || 0;
+                                            jaAudioRef.current.play().catch(() => {});
                                         }
                                     }
-                                    setActiveSubtitle(activeText);
-                                    if (onActiveCueChange && activeIndex !== -1) {
-                                        onActiveCueChange(activeIndex);
+                                }}
+                                onPause={() => {
+                                    setIsPlaying(false);
+                                    if (jaAudioRef.current) jaAudioRef.current.pause();
+                                }}
+                                onTimeUpdate={() => {
+                                    const player = playerRef.current;
+                                    if (!player) return;
+                                    const time = player.currentTime || 0;
+                                    
+                                    // Initialize duration cleanly
+                                    if (player.duration && player.duration > 0 && duration === 0) {
+                                        setDuration(player.duration);
                                     }
-                                }
-                            }}
-                        />
+
+                                    // Protect current time if user is scrubbing
+                                    if (localScrubTime === null && !isPlaying) { // Only update statically if paused (rAF handles playing state)
+                                        setCurrentTime(time);
+                                        if (onTimeUpdate) onTimeUpdate(time, player.duration || 0);
+
+                                        let activeText = null;
+                                        let activeIndex = -1;
+                                        for (let i = 0; i < cuesRef.current.length; i++) {
+                                            const c = cuesRef.current[i];
+                                            if (time >= c.start && time <= c.end) {
+                                                activeText = c.text;
+                                                activeIndex = i;
+                                                break;
+                                            }
+                                        }
+                                        setActiveSubtitle(activeText);
+                                        if (onActiveCueChange && activeIndex !== -1) {
+                                            onActiveCueChange(activeIndex);
+                                        }
+                                    }
+                                }}
+                            />
+                        </>
                     )}
                 </div>
 
