@@ -74,10 +74,10 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const playerRef = useRef<any>(null);
     const jaAudioRef = useRef<HTMLAudioElement | null>(null);
-    const [hasJaAudio, setHasJaAudio] = useState(false);
+    const [jaAudioError, setJaAudioError] = useState(false);
     const { i18n } = useTranslation();
     const isJaLang = getCloudflareLangCode(i18n.language || 'fr') === 'ja';
-    const isJaDubActive = isJaLang && hasJaAudio && !!cloudflareId && !localVideoUrl;
+    const isJaDubActive = isJaLang && !jaAudioError && !!cloudflareId && !localVideoUrl;
 
     // State
     const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
@@ -103,10 +103,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
     useEffect(() => {
         hasAttachedPiPListeners.current = false;
-        setHasJaAudio(false);
-        if (playerRef.current) {
-            playerRef.current.muted = false;
-        }
+        setJaAudioError(false);
     }, [cloudflareId, localVideoUrl]);
 
     useEffect(() => {
@@ -116,20 +113,15 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             }
             if (playerRef.current) {
                 playerRef.current.muted = false;
+                playerRef.current.volume = 1;
             }
         } else {
             if (playerRef.current) {
                 playerRef.current.muted = true;
+                playerRef.current.volume = 0;
             }
             if (jaAudioRef.current) {
                 jaAudioRef.current.playbackRate = speed;
-                const vTime = playerRef.current?.currentTime || 0;
-                if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.25) {
-                    jaAudioRef.current.currentTime = vTime;
-                }
-                if (playerRef.current && !playerRef.current.paused) {
-                    jaAudioRef.current.play().catch(() => {});
-                }
             }
         }
     }, [isJaDubActive, speed]);
@@ -188,19 +180,22 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
     const updateTimeSmoothly = React.useCallback(() => {
         if (playerRef.current && isPlaying && localScrubTime === null) {
-            const time = playerRef.current.currentTime || 0;
-            setCurrentTime(time);
-            if (onTimeUpdate) onTimeUpdate(time, duration || 0);
+            const vTime = playerRef.current.currentTime || 0;
+            let time = vTime;
 
             if (isJaDubActive && jaAudioRef.current) {
                 playerRef.current.muted = true;
-                if (Math.abs(jaAudioRef.current.currentTime - time) > 0.25) {
-                    jaAudioRef.current.currentTime = time;
+                playerRef.current.volume = 0;
+                if (!jaAudioRef.current.paused) {
+                    time = jaAudioRef.current.currentTime;
                 }
-                if (jaAudioRef.current.paused) {
-                    jaAudioRef.current.play().catch(() => {});
+                if (vTime > 0.5 && Math.abs(jaAudioRef.current.currentTime - vTime) > 2.5) {
+                    jaAudioRef.current.currentTime = vTime;
                 }
             }
+
+            setCurrentTime(time);
+            if (onTimeUpdate) onTimeUpdate(time, duration || 0);
 
             let activeText = null;
             let activeIndex = -1;
@@ -1033,34 +1028,32 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                     src={`/audio_ja/${cloudflareId}_ja.mp3`}
                                     preload="auto"
                                     onCanPlay={() => {
-                                        setHasJaAudio(true);
+                                        setJaAudioError(false);
                                         if (playerRef.current) {
                                             playerRef.current.muted = true;
+                                            playerRef.current.volume = 0;
                                             if (jaAudioRef.current) {
                                                 jaAudioRef.current.playbackRate = speed;
-                                                const vTime = playerRef.current.currentTime || 0;
-                                                if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.25) {
-                                                    jaAudioRef.current.currentTime = vTime;
-                                                }
-                                                if (!playerRef.current.paused) {
-                                                    jaAudioRef.current.play().catch(() => {});
-                                                }
                                             }
                                         }
                                     }}
                                     onError={() => {
-                                        setHasJaAudio(false);
+                                        setJaAudioError(true);
                                         if (playerRef.current) {
                                             playerRef.current.muted = false;
+                                            playerRef.current.volume = 1;
                                         }
                                     }}
                                 />
                             )}
                             <Stream
+                                key={`${cloudflareId}_${isJaDubActive ? 'ja' : 'orig'}`}
                                 streamRef={playerRef}
                                 className="w-full h-full object-cover"
                                 src={cloudflareId!}
                                 controls={false} // Disable native UI to avoid iOS taking over fullscreen
+                                muted={isJaDubActive}
+                                volume={isJaDubActive ? 0 : 1}
                                 width="100%"
                                 height="100%"
                                 playbackRate={speed}
@@ -1074,9 +1067,13 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                     setIsPlaying(true);
                                     if (isJaDubActive && playerRef.current) {
                                         playerRef.current.muted = true;
+                                        playerRef.current.volume = 0;
                                         if (jaAudioRef.current) {
                                             jaAudioRef.current.playbackRate = speed;
-                                            jaAudioRef.current.currentTime = playerRef.current.currentTime || 0;
+                                            const vTime = playerRef.current.currentTime || 0;
+                                            if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.5) {
+                                                jaAudioRef.current.currentTime = vTime;
+                                            }
                                             jaAudioRef.current.play().catch(() => {});
                                         }
                                     }
