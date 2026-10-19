@@ -76,8 +76,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const jaAudioRef = useRef<HTMLAudioElement | null>(null);
     const [jaAudioError, setJaAudioError] = useState(false);
     const { i18n } = useTranslation();
-    const isJaLang = getCloudflareLangCode(i18n.language || 'fr') === 'ja';
-    const isJaDubActive = isJaLang && !jaAudioError && !!cloudflareId && !localVideoUrl;
+    const activeLangCode = getCloudflareLangCode(i18n.language || 'fr');
+    const isDubLang = activeLangCode === 'ja' || activeLangCode === 'zh';
+    const isJaDubActive = isDubLang && !jaAudioError && !!cloudflareId && !localVideoUrl;
 
     // State
     const [subtitlesEnabled, setSubtitlesEnabled] = useState(true);
@@ -104,7 +105,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     useEffect(() => {
         hasAttachedPiPListeners.current = false;
         setJaAudioError(false);
-    }, [cloudflareId, localVideoUrl]);
+    }, [cloudflareId, localVideoUrl, activeLangCode]);
 
     useEffect(() => {
         if (!isJaDubActive) {
@@ -1022,10 +1023,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         />
                     ) : (
                         <>
-                            {isJaLang && cloudflareId && (
+                            {isDubLang && cloudflareId && (
                                 <audio
+                                    key={`${cloudflareId}_${activeLangCode}_audio`}
                                     ref={jaAudioRef}
-                                    src={`/audio_ja/${cloudflareId}_ja.mp3?v=2`}
+                                    src={`/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=2`}
                                     preload="auto"
                                     onCanPlay={() => {
                                         setJaAudioError(false);
@@ -1047,7 +1049,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 />
                             )}
                             <Stream
-                                key={`${cloudflareId}_${isJaDubActive ? 'ja' : 'orig'}`}
+                                key={`${cloudflareId}_${isJaDubActive ? activeLangCode : 'orig'}`}
                                 streamRef={playerRef}
                                 className="w-full h-full object-cover"
                                 src={cloudflareId!}

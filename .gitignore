@@ -38,3 +38,5 @@ public/audio/podcast_tdt_ko.mp3
 public/audio/podcast_tdt_nl.mp3
 public/audio/podcast_tdt_pt.mp3
 public/audio/podcast_tdt_ru.mp3
+.cache_voix_ja/
+.cache_voix_zh/
