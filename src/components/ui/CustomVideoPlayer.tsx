@@ -190,7 +190,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 if (!jaAudioRef.current.paused) {
                     time = jaAudioRef.current.currentTime;
                 }
-                if (vTime > 0.5 && Math.abs(jaAudioRef.current.currentTime - vTime) > 2.5) {
+                if (vTime > 1.0 && !jaAudioRef.current.seeking && Math.abs(jaAudioRef.current.currentTime - vTime) > 6.0) {
                     jaAudioRef.current.currentTime = vTime;
                 }
             }
@@ -1027,7 +1027,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 <audio
                                     key={`${cloudflareId}_${activeLangCode}_audio`}
                                     ref={jaAudioRef}
-                                    src={`/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=3`}
+                                    src={`/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=5`}
                                     preload="auto"
                                     onCanPlay={() => {
                                         setJaAudioError(false);
