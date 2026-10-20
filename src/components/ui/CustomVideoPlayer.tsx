@@ -77,7 +77,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const [jaAudioError, setJaAudioError] = useState(false);
     const { i18n } = useTranslation();
     const activeLangCode = getCloudflareLangCode(i18n.language || 'fr');
-    const isDubLang = activeLangCode === 'ja' || activeLangCode === 'zh';
+    const isDubLang = ['ja', 'zh', 'en', 'es', 'it', 'de'].includes(activeLangCode);
     const isJaDubActive = isDubLang && !jaAudioError && !!cloudflareId && !localVideoUrl;
 
     // State
