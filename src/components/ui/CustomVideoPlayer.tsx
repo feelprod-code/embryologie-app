@@ -1027,7 +1027,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 <audio
                                     key={`${cloudflareId}_${activeLangCode}_audio`}
                                     ref={jaAudioRef}
-                                    src={`/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=2`}
+                                    src={`/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=3`}
                                     preload="auto"
                                     onCanPlay={() => {
                                         setJaAudioError(false);
