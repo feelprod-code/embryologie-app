@@ -107,6 +107,16 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         setJaAudioError(false);
     }, [cloudflareId, localVideoUrl, activeLangCode]);
 
+    // Custom Controls State
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const [localScrubTime, setLocalScrubTime] = useState<number | null>(null);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const nativeFullscreenActive = useRef(false);
+    const [showControls, setShowControls] = useState(true);
+    const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
     useEffect(() => {
         if (!isJaDubActive) {
             if (jaAudioRef.current) {
@@ -136,7 +146,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 }
             }
         }
-    }, [isJaDubActive, activeLangCode, speed, isPlaying]);
+    }, [isJaDubActive, activeLangCode, speed, isPlaying, currentTime]);
 
     // Measure container width for responsive subtitles
     useEffect(() => {
@@ -153,16 +163,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
         setContainerWidth(containerRef.current.getBoundingClientRect().width);
         return () => observer.disconnect();
     }, []);
-
-    // Custom Controls State
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [duration, setDuration] = useState(0);
-    const [localScrubTime, setLocalScrubTime] = useState<number | null>(null);
-    const [isFullscreen, setIsFullscreen] = useState(false);
-    const nativeFullscreenActive = useRef(false);
-    const [showControls, setShowControls] = useState(true);
-    const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const handleSetShowControls = React.useCallback((visible: boolean) => {
         setShowControls(visible);
