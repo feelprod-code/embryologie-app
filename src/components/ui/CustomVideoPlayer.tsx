@@ -146,7 +146,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 }
             }
         }
-    }, [isJaDubActive, activeLangCode, speed, isPlaying, currentTime]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isJaDubActive, activeLangCode, speed, isPlaying]);
 
     // Measure container width for responsive subtitles
     useEffect(() => {
@@ -760,30 +761,30 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 let vttText = '';
                 let resolvedUrl = '';
 
-                // Try fetching directly from Cloudflare downloads first via local proxy
+                // Always prioritize our local v14 precision-synced & 1-2 line mastered VTT first (all 7 languages incl. FR)
+                const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt?v=14`;
                 const vttUrl = `/cf-stream/${cloudflareId}/downloads/default.vtt?lang=${langCode}`;
 
                 try {
-                    const response = await fetch(vttUrl);
-                    if (response.ok) {
-                        const buffer = await response.arrayBuffer();
+                    const localVttRes = await fetch(localVttUrl);
+                    if (localVttRes.ok) {
+                        const buffer = await localVttRes.arrayBuffer();
                         vttText = new TextDecoder('utf-8').decode(buffer);
-                        resolvedUrl = vttUrl;
+                        resolvedUrl = localVttUrl;
                     }
-                    
-                    // Si l'API renvoie index.html (fallback SPA en local), vttText ne commence pas par WEBVTT
-                    if (!response.ok || !vttText.trim().startsWith('WEBVTT') || isDubLang) {
-                        const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt?v=10`;
-                        const localVttRes = await fetch(localVttUrl);
-                        if (localVttRes.ok) {
-                            const buffer = await localVttRes.arrayBuffer();
+
+                    // Fallback to Cloudflare stream VTT if local VTT not found or invalid
+                    if (!localVttRes.ok || !vttText.trim().startsWith('WEBVTT')) {
+                        const response = await fetch(vttUrl);
+                        if (response.ok) {
+                            const buffer = await response.arrayBuffer();
                             vttText = new TextDecoder('utf-8').decode(buffer);
-                            resolvedUrl = localVttUrl;
+                            resolvedUrl = vttUrl;
                         } else {
-                            throw new Error('Not found locally either');
+                            throw new Error('Not found on stream either');
                         }
                     }
-                    
+
                     if (!vttText.trim().startsWith('WEBVTT')) {
                         throw new Error('Invalid VTT format');
                     }
@@ -858,10 +859,10 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         if (textAcc.trim() && !textAcc.includes('WEBVTT')) {
                             const cleanFull = textAcc.trim();
                             const isCjk = activeLangCode === 'ja' || activeLangCode === 'zh';
-                            const maxCharsPerCue = isCjk ? 34 : 95;
+                            const maxCharsPerCue = isCjk ? 22 : 52;
                             const cueDuration = Math.max(0.1, end - start);
 
-                            if (cueDuration > 5.5 || cleanFull.length > maxCharsPerCue) {
+                            if (cueDuration > 3.8 || cleanFull.length > maxCharsPerCue) {
                                 // 1. Non-destructively split into sentences (preserving any trailing text without punctuation)
                                 const rawSentences = cleanFull.match(/[^.!?。！？]+(?:[.!?。！？]+|$)/g) || [cleanFull];
                                 const fineChunks: string[] = [];
@@ -884,18 +885,25 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                                     buf += p;
                                                 }
                                             }
-                                            if (buf.trim()) fineChunks.push(buf.trim());
+                                            if (buf.trim()) {
+                                                let rem = buf.trim();
+                                                while (rem.length > maxCharsPerCue) {
+                                                    fineChunks.push(rem.slice(0, maxCharsPerCue));
+                                                    rem = rem.slice(maxCharsPerCue);
+                                                }
+                                                if (rem) fineChunks.push(rem);
+                                            }
                                         } else {
                                             const words = s.split(/\s+/);
                                             let buf = '';
                                             for (const w of words) {
                                                 const candidate = buf ? `${buf} ${w}` : w;
-                                                if (candidate.length > maxCharsPerCue && buf.length >= 35) {
+                                                if (candidate.length > maxCharsPerCue && buf.length > 0) {
                                                     fineChunks.push(buf.trim());
                                                     buf = w;
                                                 } else {
                                                     buf = candidate;
-                                                    if (buf.length >= 60 && /[,;:—]$/.test(w)) {
+                                                    if (buf.length >= 32 && /[,;:—]$/.test(w)) {
                                                         fineChunks.push(buf.trim());
                                                         buf = '';
                                                     }
@@ -1088,7 +1096,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 <audio
                                     key={`${cloudflareId}_dub_audio`}
                                     ref={jaAudioRef}
-                                    src={isDubLang ? `/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=13` : undefined}
+                                    src={isDubLang ? `/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=14` : undefined}
                                     preload="auto"
                                     onCanPlay={() => {
                                         if (!isDubLang) return;
@@ -1171,7 +1179,9 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                         player.muted = true;
                                         player.volume = 0;
                                     }
-                                    const time = player.currentTime || 0;
+                                    const time = (isJaDubActive && jaAudioRef.current && jaAudioRef.current.currentTime > 0)
+                                        ? jaAudioRef.current.currentTime
+                                        : (player.currentTime || 0);
                                     
                                     // Initialize duration cleanly
                                     if (player.duration && player.duration > 0 && duration === 0) {

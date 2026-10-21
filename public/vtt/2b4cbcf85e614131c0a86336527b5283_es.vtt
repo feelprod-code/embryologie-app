@@ -1,894 +1,1566 @@
 WEBVTT
 
 1
-00:00:00.760 --> 00:00:04.190
-Este movimiento volverá a tener una fuerza de crecimiento,
+00:00:00.760 --> 00:00:03.220
+Este movimiento volverá a tener una fuerza de
 
 2
-00:00:04.190 --> 00:00:06.730
-solo tomaremos el tejido epiblástico.
+00:00:03.260 --> 00:00:04.180
+crecimiento,
 
 3
-00:00:07.540 --> 00:00:10.960
-Tengo células que están hacia arriba, en la divergencia,
+00:00:04.880 --> 00:00:07.430
+solo tomaremos el tejido epiblástico.
 
 4
-00:00:10.960 --> 00:00:14.880
-y aquí, las mismas que se orientan hacia la convergencia.
+00:00:07.540 --> 00:00:09.570
+Tengo células que están hacia arriba,
 
 5
-00:00:16.000 --> 00:00:19.350
-Por lo tanto, células que están en un domo de expansión,
+00:00:09.610 --> 00:00:10.950
+en la divergencia,
 
 6
-00:00:19.350 --> 00:00:22.110
-y las otras que están en un domo de impensión.
+00:00:11.360 --> 00:00:14.060
+y aquí, las mismas que se orientan hacia la
 
 7
-00:00:22.720 --> 00:00:28.260
-Así que tengo células que están en la convexidad, y células que se disponen en la concavidad.
+00:00:14.100 --> 00:00:15.290
+convergencia.
 
 8
-00:00:28.260 --> 00:00:29.881
-¿Y qué observamos de nuevo?
+00:00:16.000 --> 00:00:18.600
+Por lo tanto, células que están en un domo de
 
 9
-00:00:29.881 --> 00:00:32.521
-Que el algoritmo interviene nuevamente allí.
+00:00:18.640 --> 00:00:19.370
+expansión,
 
 10
-00:00:32.753 --> 00:00:37.393
-Observamos que las células que se disponen en la parte anterior se desarrollarán
+00:00:19.660 --> 00:00:22.400
+y las otras que están en un domo de impensión.
 
 11
-00:00:37.393 --> 00:00:40.683
-mucho más rápido que las células que están en la parte posterior.
+00:00:22.720 --> 00:00:25.460
+Así que tengo células que están en la convexidad,
 
 12
-00:00:44.553 --> 00:00:48.803
-Y observamos que hay un punto de apoyo aquí. Tengo poco crecimiento aquí.
+00:00:25.704 --> 00:00:28.214
+y células que se disponen en la concavidad.
 
 13
-00:00:49.653 --> 00:00:54.153
-Si añado mi embrión con más detalles, entonces aquí ya tengo...
+00:00:28.244 --> 00:00:29.843
+¿Y qué observamos de nuevo?
 
 14
-00:00:56.146 --> 00:01:00.716
-La polaridad céfalo-caudal, que se delinea desde el momento en que se produce una
+00:00:29.873 --> 00:00:32.513
+Que el algoritmo interviene nuevamente allí.
 
 15
-00:01:00.716 --> 00:01:02.123
-creación de una película.
+00:00:32.753 --> 00:00:35.373
+Observamos que las células que se disponen en la
 
 16
+00:00:35.413 --> 00:00:36.273
+parte anterior
+
+17
+00:00:37.953 --> 00:00:40.773
+se desarrollarán mucho más rápido que las células
+
+18
+00:00:40.813 --> 00:00:42.363
+que están en la parte posterior.
+
+19
+00:00:44.553 --> 00:00:47.153
+Y observamos que hay un punto de apoyo aquí.
+
+20
+00:00:47.633 --> 00:00:49.283
+Tengo poco crecimiento aquí.
+
+21
+00:00:49.653 --> 00:00:52.043
+Si añado mi embrión con más detalles,
+
+22
+00:00:53.813 --> 00:00:55.923
+entonces aquí ya tengo...
+
+23
+00:00:56.130 --> 00:00:59.390
+La polaridad céfalo-caudal, que se delinea desde el
+
+24
+00:00:59.430 --> 00:01:01.380
+momento en que se produce una creación
+
+25
+00:01:01.410 --> 00:01:02.107
+de una película.
+
+26
 00:01:02.426 --> 00:01:05.925
 Debajo, ¿qué tengo yo? Tengo otra capa de células.
 
-17
-00:01:07.886 --> 00:01:12.926
-Sí, pero dentro de mi propia polaridad, ocurren dos cosas en el tejido.
+27
+00:01:07.886 --> 00:01:10.676
+Sí, pero dentro de mi propia polaridad,
 
-18
-00:01:15.046 --> 00:01:17.856
+28
+00:01:10.716 --> 00:01:12.276
+ocurren dos cosas en
+
+29
+00:01:13.306 --> 00:01:13.956
+el tejido.
+
+30
+00:01:15.046 --> 00:01:17.776
 Pueden ver esto en la velocidad de crecimiento.
 
-19
-00:01:17.856 --> 00:01:22.956
-Es que el tejido ectodérmico siempre ha crecido más rápido que el tejido inferior.
+31
+00:01:17.806 --> 00:01:21.366
+Es que el tejido ectodérmico siempre ha crecido más
 
-20
-00:01:24.220 --> 00:01:28.380
-Es él quien capta la información más rápidamente, desde el principio,
+32
+00:01:21.406 --> 00:01:22.556
+rápido que el tejido
 
-21
-00:01:28.380 --> 00:01:30.300
-simplemente por la anidación.
+33
+00:01:22.866 --> 00:01:23.266
+inferior.
 
-22
-00:01:32.520 --> 00:01:37.120
-Así que las células que están aquí, diremos que son las células endoblásticas que
+34
+00:01:24.220 --> 00:01:26.990
+Es él quien capta la información más rápidamente,
 
-23
-00:01:37.120 --> 00:01:38.680
-seguirán el movimiento,
+35
+00:01:27.030 --> 00:01:29.140
+desde el principio, simplemente por
 
-24
-00:01:40.780 --> 00:01:44.650
-pero no de la misma manera, porque no tienen la misma referencia,
+36
+00:01:29.480 --> 00:01:30.640
+la anidación.
 
-25
-00:01:44.650 --> 00:01:48.570
-ni el mismo desarrollo ni la misma información espacio-temporal.
+37
+00:01:32.520 --> 00:01:34.600
+Así que las células que están aquí,
 
-26
-00:01:48.570 --> 00:01:49.580
+38
+00:01:34.640 --> 00:01:37.130
+diremos que son las células endoblásticas
+
+39
+00:01:37.880 --> 00:01:39.430
+que seguirán el movimiento,
+
+40
+00:01:40.780 --> 00:01:43.840
+pero no de la misma manera, porque no tienen la
+
+41
+00:01:43.880 --> 00:01:44.640
+misma referencia,
+
+42
+00:01:45.580 --> 00:01:48.450
+ni el mismo desarrollo ni la misma información
+
+43
+00:01:48.490 --> 00:01:49.510
+espacio-temporal.
+
+44
+00:01:50.720 --> 00:01:51.730
 y energético.
 
-27
+45
 00:01:52.693 --> 00:01:55.703
 No tienen la misma información de geolocalización.
 
-28
-00:01:59.933 --> 00:02:04.604
-En el SES, observamos que las células que se encuentran aquí se desarrollarán más rápido.
+46
+00:01:59.933 --> 00:02:02.053
+En el SES, observamos que las células que se
 
-29
-00:02:05.953 --> 00:02:08.759
-Por lo tanto, hay un punto que llamamos el punto cero.
+47
+00:02:02.093 --> 00:02:04.604
+encuentran aquí se desarrollarán más rápido.
 
-30
-00:02:08.913 --> 00:02:13.333
-En la onda, ¿ves?, en la ola, tienes este punto casi inmóvil, como lo llamamos.
+48
+00:02:05.953 --> 00:02:08.369
+Por lo tanto, hay un punto que llamamos el punto
 
-31
-00:02:13.333 --> 00:02:18.763
-Lo sitúo en un proceso de crecimiento, es decir, lo dibujo así. Partimos de arriba.
+49
+00:02:08.409 --> 00:02:08.759
+cero.
 
-32
-00:02:20.367 --> 00:02:24.197
-aquí, esto es el tiempo, esto es el crecimiento aquí,
+50
+00:02:08.913 --> 00:02:10.103
+En la onda, ¿ves?
 
-33
-00:02:25.107 --> 00:02:31.227
-y me digo, mira, en el centro, aquí, primero tengo simplemente un tejido epiblástico
+51
+00:02:10.143 --> 00:02:12.503
+, en la ola, tienes este punto casi inmóvil,
 
-34
-00:02:31.227 --> 00:02:32.467
+52
+00:02:12.543 --> 00:02:13.303
+como lo llamamos.
+
+53
+00:02:13.333 --> 00:02:15.613
+Lo sitúo en un proceso de crecimiento,
+
+54
+00:02:15.653 --> 00:02:17.503
+es decir, lo dibujo así.
+
+55
+00:02:17.953 --> 00:02:19.213
+Partimos de arriba.
+
+56
+00:02:20.367 --> 00:02:23.807
+aquí, esto es el tiempo, esto es el crecimiento
+
+57
+00:02:23.847 --> 00:02:24.197
+aquí,
+
+58
+00:02:25.107 --> 00:02:27.967
+y me digo, mira, en el centro, aquí,
+
+59
+00:02:28.007 --> 00:02:31.617
+primero tengo simplemente un tejido epiblástico
+
+60
+00:02:31.647 --> 00:02:32.467
 más o menos plano.
 
-35
-00:02:33.447 --> 00:02:39.072
-Luego, muy rápidamente, observamos que este tejido epiblástico adquiere la forma de una S.
+61
+00:02:33.447 --> 00:02:36.347
+Luego, muy rápidamente, observamos que este tejido
 
-36
-00:02:39.927 --> 00:02:44.957
-Me sitúo justo en el centro aquí, y observo que las células que están justo en el
+62
+00:02:36.387 --> 00:02:39.072
+epiblástico adquiere la forma de una S.
 
-37
-00:02:44.957 --> 00:02:45.927
-eje aquí del centro,
+63
+00:02:39.927 --> 00:02:41.837
+Me sitúo justo en el centro aquí,
 
-38
-00:02:51.440 --> 00:02:52.760
+64
+00:02:41.877 --> 00:02:44.307
+y observo que las células que están justo
+
+65
+00:02:45.087 --> 00:02:46.707
+en el eje aquí del centro,
+
+66
+00:02:51.440 --> 00:02:52.720
 que están aquí, ¿ves?
 
-39
-00:02:52.760 --> 00:02:56.779
-, las células que están ahí, no crecen a la misma velocidad, justo ahí.
+67
+00:02:52.760 --> 00:02:55.590
+, las células que están ahí, no crecen a la misma
 
-40
-00:02:57.800 --> 00:02:59.230
-¿Y qué veo aparecer?
+68
+00:02:55.630 --> 00:02:56.779
+velocidad, justo ahí.
 
-41
-00:02:59.230 --> 00:03:04.270
-Un movimiento como este, que la parte superior crece, crece así, esto,
+69
+00:02:57.800 --> 00:03:00.880
+¿Y qué veo aparecer? Un movimiento como este,
 
-42
+70
+00:03:02.200 --> 00:03:05.340
+que la parte superior crece, crece así,
+
+71
+00:03:07.500 --> 00:03:07.750
+esto,
+
+72
 00:03:09.140 --> 00:03:11.450
 y comienza a crecer y a hacer esto.
 
-43
+73
 00:03:27.314 --> 00:03:28.514
 ¿y esto qué es?
 
-44
-00:03:29.714 --> 00:03:31.954
-porque aquí solo tenemos un corte así
+74
+00:03:29.704 --> 00:03:31.464
+porque aquí solo tenemos
 
-45
-00:03:33.994 --> 00:03:35.904
-entonces aquí es un punto
+75
+00:03:31.494 --> 00:03:31.944
+un corte así
 
-46
+76
+00:03:33.994 --> 00:03:34.704
+entonces aquí
+
+77
+00:03:34.734 --> 00:03:35.904
+es un punto
+
+78
 00:03:37.614 --> 00:03:39.545
 como hemos llamado el punto 0
 
-47
-00:03:40.534 --> 00:03:45.114
-esta es la parte que crece entonces imaginas que es una ola Bueno,
+79
+00:03:40.534 --> 00:03:42.224
+esta es la parte que crece
 
-48
-00:03:45.114 --> 00:03:49.694
-es una multiplicación de células, es una mitosis acelerada que hace así.
+80
+00:03:42.254 --> 00:03:44.524
+entonces imaginas que es una ola
 
-49
-00:03:51.787 --> 00:03:53.017
+81
+00:03:44.587 --> 00:03:47.287
+Bueno, es una multiplicación de células,
+
+82
+00:03:47.327 --> 00:03:48.347
+es una mitosis
+
+83
+00:03:49.817 --> 00:03:51.237
+acelerada que hace así.
+
+84
+00:03:51.787 --> 00:03:52.997
 ¿Y qué va a pasar?
 
-50
-00:03:53.017 --> 00:03:57.597
-Observen bien, va a crear, aquí abajo, un una especie de tubo.
+85
+00:03:53.367 --> 00:03:56.947
+Observen bien, va a crear, aquí abajo, un
 
-51
-00:04:02.167 --> 00:04:06.987
-Y este tubo, que es el proceso de gastrulación, se llama notocorda.
+86
+00:03:59.787 --> 00:04:00.807
+una especie de tubo.
 
-52
-00:04:07.947 --> 00:04:12.107
-En esta etapa, el nódulo de Hensen es la punta de la notocorda.
+87
+00:04:02.167 --> 00:04:05.797
+Y este tubo, que es el proceso de gastrulación,
 
-53
-00:04:12.661 --> 00:04:13.741
-son los mismos.
+88
+00:04:05.837 --> 00:04:06.987
+se llama notocorda.
 
-54
-00:04:13.741 --> 00:04:19.131
-En esta etapa, hay un movimiento hacia atrás aquí que llamamos el nódulo de Hensen
+89
+00:04:07.947 --> 00:04:11.387
+En esta etapa, el nódulo de Hensen es la punta de la
 
-55
-00:04:20.181 --> 00:04:23.661
-que se desplaza hacia atrás, de craneal a caudal.
+90
+00:04:11.427 --> 00:04:12.107
+notocorda.
 
-56
-00:04:23.661 --> 00:04:26.361
-Y aquí, es un punto donde no se mueve.
+91
+00:04:12.661 --> 00:04:16.221
+son los mismos. En esta etapa, hay un movimiento
 
-57
-00:04:28.881 --> 00:04:34.481
-Y bien aquí, en este movimiento, tienen el desarrollo del eje cráneo-sacro primitivo.
+92
+00:04:17.271 --> 00:04:20.151
+hacia atrás aquí que llamamos el nódulo de Hensen
 
-58
-00:04:35.441 --> 00:04:40.421
-Esto significa que este sistema, aún no es neuronal, es neuro- -cordal.
+93
+00:04:20.181 --> 00:04:23.751
+que se desplaza hacia atrás, de craneal a caudal. Y
 
-59
-00:04:41.634 --> 00:04:45.384
-Esto significa que mi notocorda, la punta de mi notocorda,
+94
+00:04:25.765 --> 00:04:28.375
+aquí, es un punto donde no se mueve.
 
-60
-00:04:45.384 --> 00:04:49.184
-si van a ver, veremos en otros esquemas, es mi base del cráneo.
+95
+00:04:28.881 --> 00:04:30.981
+Y bien aquí, en este movimiento,
 
-61
-00:04:49.254 --> 00:04:53.254
-Este será el futuro espacio para el desarrollo de mi base del cráneo.
+96
+00:04:31.021 --> 00:04:34.481
+tienen el desarrollo del eje cráneo-sacro primitivo.
 
-62
-00:04:53.494 --> 00:04:57.724
-Y el nódulo de Hensen aquí atrás, es donde se desarrollará mi sacro.
+97
+00:04:35.441 --> 00:04:37.341
+Esto significa que este sistema,
 
-63
-00:04:57.724 --> 00:04:59.524
+98
+00:04:37.381 --> 00:04:39.641
+aún no es neuronal, es neuro-
+
+99
+00:04:40.319 --> 00:04:41.099
+-cordal.
+
+100
+00:04:41.627 --> 00:04:43.647
+Esto significa que mi notocorda,
+
+101
+00:04:43.687 --> 00:04:46.127
+la punta de mi notocorda, si van a ver,
+
+102
+00:04:46.167 --> 00:04:47.727
+veremos en otros esquemas, es
+
+103
+00:04:47.757 --> 00:04:49.177
+mi base del cráneo.
+
+104
+00:04:49.254 --> 00:04:52.464
+Este será el futuro espacio para el desarrollo de mi
+
+105
+00:04:52.504 --> 00:04:53.254
+base del cráneo.
+
+106
+00:04:53.494 --> 00:04:55.534
+Y el nódulo de Hensen aquí atrás,
+
+107
+00:04:55.574 --> 00:04:57.734
+es donde se desarrollará mi sacro.
+
+108
+00:04:59.164 --> 00:05:00.954
 A nivel del nódulo de Hensen.
 
-64
-00:05:01.174 --> 00:05:06.774
-Sí, porque mucha gente confunde el nódulo de Hensen con el cierre del neuroporo posterior.
+109
+00:05:01.174 --> 00:05:04.444
+Sí, porque mucha gente confunde el nódulo de Hensen
 
-65
+110
+00:05:04.484 --> 00:05:05.664
+con el cierre
+
+111
+00:05:06.354 --> 00:05:07.464
+del neuroporo posterior.
+
+112
 00:05:08.808 --> 00:05:10.888
 ¡Y eso no tiene nada que ver!
 
-66
+113
 00:05:11.268 --> 00:05:13.948
 ¿Pero dónde está el nódulo de Hensen adulto?
 
-67
-00:05:14.408 --> 00:05:18.678
-El remanente, lo encuentras en el sacro. Ves el sacro, así.
+114
+00:05:14.408 --> 00:05:17.138
+El remanente, lo encuentras en el sacro.
 
-68
-00:05:19.828 --> 00:05:25.698
-Tienes el C1, tienes el S1, S2, y tienes la notocorda que viene aquí.
+115
+00:05:17.628 --> 00:05:19.168
+Ves el sacro, así.
 
-69
-00:05:28.948 --> 00:05:31.678
+116
+00:05:19.828 --> 00:05:22.578
+Tienes el C1, tienes el S1, S2,
+
+117
+00:05:22.628 --> 00:05:25.748
+y tienes la notocorda que viene aquí.
+
+118
+00:05:28.290 --> 00:05:31.000
 Entonces sacro, S1, S2, S3, S4.
 
-70
-00:05:31.678 --> 00:05:35.156
+119
+00:05:31.030 --> 00:05:34.498
 Y tienes la notocorda que desciende allí.
 
-71
-00:05:35.448 --> 00:05:37.018
+120
+00:05:35.444 --> 00:05:36.974
 Lo que llamamos el vestigio.
 
-72
-00:05:37.018 --> 00:05:39.098
+121
+00:05:37.004 --> 00:05:39.054
 es una notocorda y aquí ¿qué tengo?
 
-73
-00:05:39.098 --> 00:05:40.835
+122
+00:05:39.094 --> 00:05:40.831
 tengo mi fondo de saco de Douglas
 
-74
-00:05:42.361 --> 00:05:45.781
-el punto cero y el nódulo de Hensen se diferenciaron,
+123
+00:05:42.361 --> 00:05:44.811
+el punto cero y el nódulo de Hensen se
 
-75
-00:05:45.781 --> 00:05:50.311
-al principio están juntos ¿la futura base del cráneo es nuestro sacro?
+124
+00:05:44.851 --> 00:05:47.431
+diferenciaron, al principio están juntos
 
-76
-00:05:52.141 --> 00:05:54.261
-no, yo estoy unido, ¿sabes?
+125
+00:05:47.461 --> 00:05:50.311
+¿la futura base del cráneo es nuestro sacro?
 
-77
-00:05:54.261 --> 00:05:57.901
-y de repente en de hecho no es que estén realmente separados,
+126
+00:05:52.141 --> 00:05:55.731
+no, yo estoy unido, ¿sabes? y de repente en
 
-78
-00:05:57.901 --> 00:06:02.621
-es una ola de crecimiento con un punto fijo que es mi base del cráneo
+127
+00:05:57.441 --> 00:05:57.611
+de hecho no es
 
-79
+128
+00:05:57.776 --> 00:06:00.766
+que estén realmente separados, es una ola de
+
+129
+00:06:00.806 --> 00:06:03.246
+crecimiento con un punto fijo
+
+130
+00:06:03.276 --> 00:06:04.496
+que es mi base del cráneo
+
+131
 00:06:04.955 --> 00:06:06.780
 sistema que desciende por debajo.
 
-80
-00:06:07.615 --> 00:06:11.065
-Y es ahí donde tengo un punto fijo y un punto móvil.
+132
+00:06:07.615 --> 00:06:09.105
+Y es ahí donde tengo
 
-81
-00:06:11.065 --> 00:06:16.505
-Y cuando les hablé esta mañana, les dije que el sacro es un fulcro móvil y mi base
+133
+00:06:09.135 --> 00:06:11.135
+un punto fijo y un punto móvil.
 
-82
-00:06:16.505 --> 00:06:17.695
+134
+00:06:11.195 --> 00:06:13.445
+Y cuando les hablé esta mañana, les dije
+
+135
+00:06:13.475 --> 00:06:14.755
+que el sacro es un
+
+136
+00:06:14.785 --> 00:06:16.555
+fulcro móvil y mi base
+
+137
+00:06:17.015 --> 00:06:18.215
 del cráneo es un fulcro
 
-83
-00:06:19.675 --> 00:06:20.285
-fijo.
+138
+00:06:19.675 --> 00:06:20.475
+fijo. Blechschmidt,
 
-84
-00:06:20.285 --> 00:06:24.895
-Blechschmidt, se habla en embriología clásica de un proceso de gastrulación.
+139
+00:06:21.295 --> 00:06:23.265
+se habla en embriología
 
-85
-00:06:24.895 --> 00:06:28.275
-Pero la eso viene de un término que viene de los anfibios.
+140
+00:06:23.295 --> 00:06:24.945
+clásica de un proceso de
 
-86
-00:06:31.775 --> 00:06:35.035
-Blechschmidt, él dice no, yo No quiero hablar de gastrulación,
+141
+00:06:25.415 --> 00:06:26.375
+gastrulación. Pero la
 
-87
-00:06:35.035 --> 00:06:36.801
+142
+00:06:26.755 --> 00:06:28.075
+eso viene de un término
+
+143
+00:06:28.995 --> 00:06:30.865
+que viene de los anfibios.
+
+144
+00:06:31.554 --> 00:06:33.144
+Blechschmidt, él dice no, yo
+
+145
+00:06:33.174 --> 00:06:34.804
+No quiero hablar de gastrulación,
+
+146
+00:06:34.844 --> 00:06:36.580
 quiero hablar de un proceso axial.
 
-88
-00:06:36.888 --> 00:06:40.118
-Y él explica el establecimiento de este proceso axial.
+147
+00:06:36.888 --> 00:06:39.728
+Y él explica el establecimiento de este proceso
 
-89
-00:06:40.308 --> 00:06:43.998
-Esto es un corte, y lo vemos como un corte así, ¿sabes?
+148
+00:06:39.768 --> 00:06:40.118
+axial.
 
-90
-00:06:45.268 --> 00:06:49.908
-Es la S, ¿sabes? Entonces, ¿dónde se encuentra el punto cero?
+149
+00:06:40.308 --> 00:06:43.228
+Esto es un corte, y lo vemos como un corte así,
 
-91
-00:06:51.588 --> 00:06:56.568
-Vienes por debajo, justo ahí, y eres el punto cero. ¿Cuál es el algoritmo?
+150
+00:06:43.268 --> 00:06:43.998
+¿sabes?
 
-92
+151
+00:06:45.268 --> 00:06:46.818
+Es la S, ¿sabes?
+
+152
+00:06:48.108 --> 00:06:51.198
+Entonces, ¿dónde se encuentra el punto cero?
+
+153
+00:06:51.588 --> 00:06:55.138
+Vienes por debajo, justo ahí, y eres el punto cero.
+
+154
+00:06:57.028 --> 00:06:58.458
+¿Cuál es el algoritmo?
+
+155
 00:06:58.608 --> 00:07:00.838
 Nos dice la parte en la cúpula de ex...
 
-93
-00:07:01.102 --> 00:07:05.535
-expansión en relación con mi cúpula de impensión, va a crecer mucho más rápido.
+156
+00:07:01.102 --> 00:07:03.882
+expansión en relación con mi cúpula de impensión,
 
-94
-00:07:05.535 --> 00:07:10.005
-Pero imaginen que es en un espacio así, donde se encuentra mi pedículo embrionario.
+157
+00:07:03.922 --> 00:07:05.505
+va a crecer mucho más rápido.
 
-95
+158
+00:07:05.535 --> 00:07:07.585
+Pero imaginen que es en un espacio así,
+
+159
+00:07:07.625 --> 00:07:09.075
+donde se encuentra mi pedículo
+
+160
+00:07:10.742 --> 00:07:11.672
+embrionario.
+
+161
 00:07:11.982 --> 00:07:14.892
 Así que la información trófica, llega por aquí.
 
-96
-00:07:25.082 --> 00:07:29.137
-Y hago un movimiento así. Y aquí, en el interior, tengo...
+162
+00:07:25.080 --> 00:07:26.770
+Y hago un movimiento así.
 
-97
+163
+00:07:26.800 --> 00:07:29.135
+Y aquí, en el interior, tengo...
+
+164
 00:07:29.175 --> 00:07:30.935
 un tubo que se forma.
 
-98
-00:07:32.835 --> 00:07:36.435
-Así es como se desarrolla un proceso axial primitivo.
+165
+00:07:32.835 --> 00:07:35.725
+Así es como se desarrolla un proceso axial
 
-99
-00:07:37.035 --> 00:07:41.870
-Así es como, primitivamente, el eje cráneo-sacro comienza a desarrollarse.
+166
+00:07:35.765 --> 00:07:36.435
+primitivo.
 
-100
+167
+00:07:37.035 --> 00:07:40.285
+Así es como, primitivamente, el eje cráneo-sacro
+
+168
+00:07:40.325 --> 00:07:41.870
+comienza a desarrollarse.
+
+169
 00:07:42.055 --> 00:07:45.545
 El punto sacro aún no está ahí, pero llegará aquí.
 
-101
-00:07:47.035 --> 00:07:52.155
-llí. Solo les muestro una dinámica, un eje. Entonces, hace así.
+170
+00:07:47.035 --> 00:07:47.555
+llí.
 
-102
+171
+00:07:48.865 --> 00:07:51.895
+Solo les muestro una dinámica, un eje.
+
+172
+00:07:51.925 --> 00:07:53.465
+Entonces, hace así.
+
+173
 00:07:54.155 --> 00:07:56.315
 El movimiento con el punto cero.
 
-103
+174
 00:07:58.009 --> 00:08:00.164
 con esta cúpula que viene por aquí
 
-104
-00:08:01.549 --> 00:08:06.909
-eso es el punto cero y el punto cero es lo mismo en el momento en que tengo esta onda
+175
+00:08:01.549 --> 00:08:04.059
+eso es el punto cero y el punto cero
 
-105
-00:08:09.649 --> 00:08:14.789
-ya cuando tengo la S es el punto cero, entonces sí, pero no en su finalidad pero en
+176
+00:08:04.089 --> 00:08:04.619
+es lo mismo
 
-106
-00:08:14.789 --> 00:08:19.179
-cambio, esto muestra que el sacro y el occipucio en el futuro de hecho,
+177
+00:08:04.649 --> 00:08:06.909
+en el momento en que tengo esta onda
 
-107
-00:08:19.179 --> 00:08:22.483
-es una unidad funcional están hechos de un movimiento
+178
+00:08:09.649 --> 00:08:10.959
+ya cuando tengo la S
 
-108
-00:08:23.009 --> 00:08:28.059
-entonces, cuando tomamos ese sacro De hecho, estamos directamente conectados por
+179
+00:08:11.009 --> 00:08:13.769
+es el punto cero, entonces sí, pero no en su
 
-109
-00:08:28.059 --> 00:08:30.308
-este proceso a mi base del cráneo.
+180
+00:08:13.809 --> 00:08:14.349
+finalidad
 
-110
-00:08:30.402 --> 00:08:34.632
-Esta especie de movimiento, así, con mi dedo en el interior aquí.
+181
+00:08:14.379 --> 00:08:16.679
+pero en cambio, esto muestra que el sacro
 
-111
-00:08:35.282 --> 00:08:39.002
-Y vemos aquí un vestigio de mi notocorda. viene allí.
+182
+00:08:16.709 --> 00:08:18.059
+y el occipucio en el futuro
 
-112
-00:08:41.322 --> 00:08:43.152
+183
+00:08:18.089 --> 00:08:20.459
+de hecho, es una unidad funcional
+
+184
+00:08:20.489 --> 00:08:20.799
+están hechos
+
+185
+00:08:21.131 --> 00:08:22.481
+de un movimiento
+
+186
+00:08:23.009 --> 00:08:25.409
+entonces, cuando tomamos ese sacro
+
+187
+00:08:25.439 --> 00:08:28.129
+De hecho, estamos directamente conectados por este
+
+188
+00:08:28.169 --> 00:08:30.116
+proceso a mi base del cráneo.
+
+189
+00:08:30.402 --> 00:08:32.602
+Esta especie de movimiento, así,
+
+190
+00:08:32.642 --> 00:08:34.632
+con mi dedo en el interior aquí.
+
+191
+00:08:35.282 --> 00:08:38.102
+Y vemos aquí un vestigio de mi notocorda.
+
+192
+00:08:38.802 --> 00:08:39.702
+viene allí.
+
+193
+00:08:41.322 --> 00:08:43.132
 Va hasta mi base del cráneo.
 
-113
-00:08:43.152 --> 00:08:47.592
-Dibujo solo la notocorda, base del cráneo, todas las vértebras,
+194
+00:08:43.962 --> 00:08:47.222
+Dibujo solo la notocorda, base del cráneo,
 
-114
-00:08:47.592 --> 00:08:50.812
-hasta el nivel de mi parte terminal, a nivel del saco.
+195
+00:08:47.982 --> 00:08:50.572
+todas las vértebras, hasta el nivel de mi parte
 
-115
-00:08:54.336 --> 00:08:57.086
-Pero el peso que no se mueve, no está en la extremidad,
+196
+00:08:50.612 --> 00:08:52.142
+terminal, a nivel del
 
-116
-00:08:57.086 --> 00:08:59.506
-estaba en el centro, allí, en la parte inferior.
+197
+00:08:53.122 --> 00:08:53.382
+saco.
 
-117
-00:08:59.506 --> 00:09:03.276
-Sí, pero verás más tarde en el desarrollo del embrión,
+198
+00:08:54.336 --> 00:08:56.416
+Pero el peso que no se mueve, no está en la
 
-118
-00:09:03.276 --> 00:09:08.616
-en esta etapa, podemos decir que la parte anterior del embrión que hay aquí, ¿ves?
+199
+00:08:56.456 --> 00:08:58.066
+extremidad, estaba en el centro,
 
-119
-00:09:10.816 --> 00:09:15.866
-entonces mi nódulo está ahí, aquí, y todo esto, es tu cabeza,
+200
+00:08:58.106 --> 00:08:59.476
+allí, en la parte inferior.
 
-120
-00:09:15.866 --> 00:09:19.016
+201
+00:08:59.506 --> 00:09:02.776
+Sí, pero verás más tarde en el desarrollo del
+
+202
+00:09:02.816 --> 00:09:03.266
+embrión,
+
+203
+00:09:04.376 --> 00:09:08.106
+en esta etapa, podemos decir que la parte anterior
+
+204
+00:09:08.146 --> 00:09:08.936
+del embrión que
+
+205
+00:09:09.436 --> 00:09:10.226
+hay aquí, ¿ves?
+
+206
+00:09:10.816 --> 00:09:13.786
+entonces mi nódulo está ahí, aquí,
+
+207
+00:09:13.826 --> 00:09:16.086
+y todo esto, es tu cabeza,
+
+208
+00:09:16.503 --> 00:09:19.603
 y solo una pequeña parte, es tu orificio.
 
-121
-00:09:19.016 --> 00:09:21.196
+209
+00:09:19.633 --> 00:09:21.613
 Después, cambiará de forma.
 
-122
+210
 00:09:22.049 --> 00:09:24.762
 Esto se desarrollará mucho, esto menos.
 
-123
-00:09:25.129 --> 00:09:29.119
-Pero en esta etapa, estaba allí, en pleno centro del embrión.
+211
+00:09:25.129 --> 00:09:27.189
+Pero en esta etapa, estaba allí,
 
-124
+212
+00:09:27.229 --> 00:09:29.119
+en pleno centro del embrión.
+
+213
 00:09:29.489 --> 00:09:32.769
 Mi punto que no se mueve, y el enrollamiento detrás.
 
-125
-00:09:33.289 --> 00:09:37.189
-El occipucio se desarrollará aquí, este sacro se desarrolla allí.
+214
+00:09:33.289 --> 00:09:35.309
+El occipucio se desarrollará aquí,
 
-126
-00:09:37.309 --> 00:09:40.626
-Es en el otro sentido, sí, también en relación con el 200.
+215
+00:09:35.349 --> 00:09:37.189
+este sacro se desarrolla allí.
 
-127
+216
+00:09:37.309 --> 00:09:40.236
+Es en el otro sentido, sí, también en relación con
+
+217
+00:09:40.276 --> 00:09:40.596
+el 200.
+
+218
 00:09:40.626 --> 00:09:43.387
 Y la notocorda, es más que a partir de al menos.
 
-128
-00:09:44.469 --> 00:09:49.115
-Mis vértebras, mi tubo neural, y ahí, ¿qué tengo? mi notocorda.
+219
+00:09:44.460 --> 00:09:47.950
+Mis vértebras, mi tubo neural, y ahí, ¿qué tengo?
 
-129
-00:09:49.543 --> 00:09:54.183
-en las vértebras y finalmente, ¿en qué se convertirá en el disco embrionario?
+220
+00:09:47.980 --> 00:09:49.106
+mi notocorda.
 
-130
-00:09:54.183 --> 00:09:58.103
-lo que quedará más que el núcleo pulposo, pero el eje está ahí al
+221
+00:09:49.543 --> 00:09:52.523
+en las vértebras y finalmente, ¿en qué se convertirá
 
-131
-00:10:00.463 --> 00:10:04.343
-principio, por eso les dije si tratamos problemas discales,
+222
+00:09:52.563 --> 00:09:54.113
+en el disco embrionario?
 
-132
-00:10:04.343 --> 00:10:07.183
-hay que ir a ver qué pasa en la boca, ya que la base
+223
+00:09:54.903 --> 00:09:55.073
+lo que
 
-133
-00:10:11.463 --> 00:10:15.063
-del cráneo, que es la punta de mi notocorda primitiva,
+224
+00:09:55.363 --> 00:09:57.593
+quedará más que el núcleo pulposo,
 
-134
-00:10:15.063 --> 00:10:18.283
-será organizada por mi oclusión, mi notocorda.
+225
+00:09:57.633 --> 00:09:59.183
+pero el eje está ahí al
 
-135
+226
+00:10:00.463 --> 00:10:02.333
+principio, por eso les dije
+
+227
+00:10:03.663 --> 00:10:06.283
+si tratamos problemas discales, hay que ir a ver qué
+
+228
+00:10:06.323 --> 00:10:06.673
+pasa en
+
+229
+00:10:08.923 --> 00:10:10.763
+la boca, ya que la base
+
+230
+00:10:11.463 --> 00:10:14.723
+del cráneo, que es la punta de mi notocorda
+
+231
+00:10:14.763 --> 00:10:16.413
+primitiva, será organizada
+
+232
+00:10:17.616 --> 00:10:19.486
+por mi oclusión, mi notocorda.
+
+233
 00:10:22.836 --> 00:10:25.396
 Eso, es mi cartílago hipofisario.
 
-136
-00:10:26.096 --> 00:10:30.646
-¿En qué se convertirá el cartílago hipofisario? n el cuerpo del esfenoides.
+234
+00:10:26.096 --> 00:10:28.906
+¿En qué se convertirá el cartílago hipofisario?
 
-137
-00:10:31.076 --> 00:10:34.516
-¿En qué se convertirá el cartílago paracordal que está ahí?
+235
+00:10:28.936 --> 00:10:30.646
+n el cuerpo del esfenoides.
 
-138
-00:10:35.896 --> 00:10:39.496
-se convertirá en la porción basilar de mi hueso occipital.
+236
+00:10:31.076 --> 00:10:34.076
+¿En qué se convertirá el cartílago paracordal que
 
-139
-00:10:41.016 --> 00:10:44.812
-Y ahí, ¿qué es eso? ¿Cómo se llama eso? La SSB.
+237
+00:10:34.116 --> 00:10:34.516
+está ahí?
 
-140
+238
+00:10:35.896 --> 00:10:38.876
+se convertirá en la porción basilar de mi hueso
+
+239
+00:10:38.916 --> 00:10:39.496
+occipital.
+
+240
+00:10:41.010 --> 00:10:44.580
+Y ahí, ¿qué es eso? ¿Cómo se llama eso?
+
+241
+00:10:44.610 --> 00:10:44.806
+La SSB.
+
+242
 00:10:45.690 --> 00:10:48.480
 ¿Cómo se denomina este conjunto de estructuras aquí?
 
-141
-00:10:48.950 --> 00:10:50.790
+243
+00:10:48.950 --> 00:10:50.820
 Ahí, la base del cráneo.
 
-142
-00:10:50.790 --> 00:10:54.490
-La dificultad radica en visualizar esto en tres dimensiones.
+244
+00:10:51.590 --> 00:10:54.600
+La dificultad radica en visualizar esto en tres
 
-143
-00:10:56.390 --> 00:10:59.640
-En el momento en que este proceso notocordal se establece,
+245
+00:10:54.640 --> 00:10:55.260
+dimensiones.
 
-144
-00:10:59.640 --> 00:11:03.670
-es decir, tengo esta instauración de esta onda de construcción mitótica,
+246
+00:10:56.390 --> 00:10:58.850
+En el momento en que este proceso notocordal se
 
-145
-00:11:07.530 --> 00:11:12.380
-de este desarrollo, aparecerá a nivel de mi pedículo embrionario un poco...
+247
+00:10:58.890 --> 00:10:59.630
+establece,
 
-146
-00:11:13.763 --> 00:11:19.683
-de eje que denominamos la línea primitiva, que es un campo energético de aspiración que aparece
+248
+00:11:01.210 --> 00:11:04.110
+es decir, tengo esta instauración de esta onda de
 
-147
-00:11:20.923 --> 00:11:25.663
-y de este movimiento veremos que mi epiblasto se transformará en ectodermo, pero
+249
+00:11:06.310 --> 00:11:07.450
+construcción mitótica,
 
-148
-00:11:28.943 --> 00:11:34.183
-para ello, mediante este movimiento de aspiración, habrá una tracción lateral,
+250
+00:11:07.530 --> 00:11:10.840
+de este desarrollo, aparecerá a nivel de mi pedículo
 
-149
-00:11:34.183 --> 00:11:35.413
+251
+00:11:10.880 --> 00:11:11.680
+embrionario
+
+252
+00:11:13.023 --> 00:11:13.723
+un poco...
+
+253
+00:11:13.763 --> 00:11:16.453
+de eje que denominamos la línea primitiva,
+
+254
+00:11:16.493 --> 00:11:18.773
+que es un campo energético de aspiración
+
+255
+00:11:19.043 --> 00:11:19.953
+que aparece
+
+256
+00:11:20.923 --> 00:11:23.803
+y de este movimiento veremos que mi epiblasto se
+
+257
+00:11:26.563 --> 00:11:28.423
+transformará en ectodermo, pero
+
+258
+00:11:28.943 --> 00:11:32.103
+para ello, mediante este movimiento de aspiración,
+
+259
+00:11:32.143 --> 00:11:34.183
+habrá una tracción lateral,
+
+260
+00:11:34.743 --> 00:11:35.973
 es este movimiento.
 
-150
-00:11:36.543 --> 00:11:40.513
-Si imaginas, observo el gran crecimiento de mi porción del domo.
+261
+00:11:36.543 --> 00:11:39.333
+Si imaginas, observo el gran crecimiento de mi
 
-151
+262
+00:11:39.373 --> 00:11:40.513
+porción del domo.
+
+263
 00:11:41.837 --> 00:11:44.977
 Aquí, observo una línea primitiva que aparece.
 
-152
-00:11:47.217 --> 00:11:50.567
-Aquí, tengo este domo que formará mi nódulo de Hensen,
+264
+00:11:47.217 --> 00:11:50.187
+Aquí, tengo este domo que formará mi nódulo de
 
-153
-00:11:50.567 --> 00:11:53.497
+265
+00:11:50.227 --> 00:11:50.577
+Hensen,
+
+266
+00:11:51.837 --> 00:11:54.717
 que se desplaza hacia atrás aquí, así, ¿ves?
 
-154
-00:11:53.497 --> 00:11:54.617
+267
+00:11:54.757 --> 00:11:55.877
 , por el crecimiento.
 
-155
-00:11:57.657 --> 00:12:02.837
-En el mismo momento, en esta fase de desarrollo, las células que se encuentran aquí
+268
+00:11:57.657 --> 00:12:00.417
+En el mismo momento, en esta fase de desarrollo,
 
-156
-00:12:02.837 --> 00:12:06.917
-lateralmente serán aspiradas hacia el centro por el proceso de crecimiento.
+269
+00:12:01.017 --> 00:12:03.737
+las células que se encuentran aquí lateralmente
 
-157
-00:12:06.917 --> 00:12:08.467
+270
+00:12:03.777 --> 00:12:05.717
+serán aspiradas hacia el centro
+
+271
+00:12:06.297 --> 00:12:08.097
+por el proceso de crecimiento.
+
+272
+00:12:08.320 --> 00:12:09.870
 Y el epiblasto que está...
 
-158
-00:12:09.910 --> 00:12:14.140
-centro vendrá, formará las células aquí que se encontrarán, ¿ves?
+273
+00:12:09.910 --> 00:12:11.410
+centro vendrá, formará
 
-159
-00:12:14.140 --> 00:12:16.280
-, van a estrecharse así, ¿ves?
+274
+00:12:11.670 --> 00:12:14.300
+las células aquí que se encontrarán,
 
-160
-00:12:16.280 --> 00:12:20.150
-y se convertirán en una célula en botella, denominadas
+275
+00:12:14.330 --> 00:12:15.050
+¿ves?, van a
 
-161
-00:12:21.590 --> 00:12:22.690
-bottle cells, ¿ves?
+276
+00:12:16.170 --> 00:12:18.120
+estrecharse así, ¿ves?
 
-162
-00:12:22.690 --> 00:12:24.090
-, observa arriba.
+277
+00:12:18.180 --> 00:12:19.260
+y se convertirán en
 
-163
-00:12:24.090 --> 00:12:27.973
-está marcado, células en botella y estas van a ser aspiradas
+278
+00:12:19.290 --> 00:12:21.560
+una célula en botella, denominadas
 
-164
-00:12:28.470 --> 00:12:34.100
-entre mi tejido del que hablabas hace un momento, pero ¿qué le sucede a mi tejido de abajo?
+279
+00:12:21.590 --> 00:12:24.070
+bottle cells, ¿ves?, observa arriba.
 
-165
-00:12:34.100 --> 00:12:38.540
-Pues bien, entre los dos hay un espacio que se abre Y en este espacio,
+280
+00:12:24.100 --> 00:12:26.190
+está marcado, células en botella
 
-166
-00:12:38.540 --> 00:12:40.230
-hay un campo de aspiración
+281
+00:12:26.220 --> 00:12:27.973
+y estas van a ser aspiradas
 
-167
-00:12:40.303 --> 00:12:44.403
-donde las células van a llegar y van a formar el mesodermo primitivo.
+282
+00:12:28.470 --> 00:12:29.540
+entre mi tejido
 
-168
-00:12:47.323 --> 00:12:50.883
-Es decir, en el momento en que aparece esta tercera cavidad,
+283
+00:12:29.613 --> 00:12:31.833
+del que hablabas hace un momento, pero ¿qué
 
-169
-00:12:50.883 --> 00:12:53.943
+284
+00:12:31.863 --> 00:12:33.683
+le sucede a mi tejido
+
+285
+00:12:33.713 --> 00:12:35.703
+de abajo? Pues bien, entre los dos
+
+286
+00:12:35.733 --> 00:12:37.343
+hay un espacio que se abre
+
+287
+00:12:37.373 --> 00:12:40.273
+Y en este espacio, hay un campo de aspiración
+
+288
+00:12:40.303 --> 00:12:43.143
+donde las células van a llegar y van a formar el
+
+289
+00:12:43.183 --> 00:12:44.403
+mesodermo primitivo.
+
+290
+00:12:47.323 --> 00:12:50.133
+Es decir, en el momento en que aparece esta tercera
+
+291
+00:12:50.173 --> 00:12:50.843
+cavidad,
+
+292
+00:12:51.203 --> 00:12:54.283
 tengo este proceso notocordal que se pone en marcha,
 
-170
-00:12:53.943 --> 00:12:56.373
+293
+00:12:54.313 --> 00:12:56.733
 que a su vez va a crear el tercer tejido,
 
-171
+294
 00:12:57.123 --> 00:13:00.613
 que llamamos ectodermo, mesodermo, endodermo.
 
-172
-00:13:00.983 --> 00:13:06.013
-Y es ahí donde va a aparecer el mesodermo. Y así es como vemos que en este...
+295
+00:13:00.983 --> 00:13:03.523
+Y es ahí donde va a aparecer el mesodermo.
 
-173
-00:13:06.057 --> 00:13:10.927
-proceso, ves, desde mi línea primitiva y el desplazamiento de mi notocorda,
+296
+00:13:03.553 --> 00:13:05.754
+Y así es como vemos que en este...
 
-174
-00:13:10.927 --> 00:13:15.919
-se ve aparecer células que comienzan a ser aspiradas hacia la sangre para rellenar el
+297
+00:13:06.055 --> 00:13:08.935
+proceso, ves, desde mi línea primitiva y el
 
-175
-00:13:15.919 --> 00:13:20.759
-tejido intermedio que van a formar lo que llamamos el mesoblasto primitivo,
+298
+00:13:08.975 --> 00:13:10.895
+desplazamiento de mi notocorda, se
 
-176
-00:13:20.759 --> 00:13:22.329
-que el mesodermo futuro.
+299
+00:13:10.925 --> 00:13:11.205
+ve
 
-177
-00:13:22.329 --> 00:13:25.579
+300
+00:13:11.235 --> 00:13:14.345
+aparecer células que comienzan a ser aspiradas hacia
+
+301
+00:13:14.385 --> 00:13:15.887
+la sangre para rellenar el
+
+302
+00:13:15.917 --> 00:13:18.737
+tejido intermedio que van a formar lo que llamamos
+
+303
+00:13:18.777 --> 00:13:20.747
+el mesoblasto primitivo, que
+
+304
+00:13:22.477 --> 00:13:23.907
+el mesodermo futuro.
+
+305
+00:13:23.947 --> 00:13:27.307
 Por lo tanto, es el tejido epiblástico el que va a
 
-178
-00:13:27.617 --> 00:13:32.907
-dar origen al mesodermo y es el tejido epiblástico el que va a dar origen a la notocorda.
+306
+00:13:27.599 --> 00:13:29.079
+dar origen al mesodermo y
 
-179
-00:13:32.907 --> 00:13:34.465
+307
+00:13:29.109 --> 00:13:32.639
+es el tejido epiblástico el que va a dar origen a la
+
+308
+00:13:32.679 --> 00:13:32.999
+notocorda.
+
+309
+00:13:33.029 --> 00:13:34.447
 Vemos la ola que llega
 
-180
-00:13:35.510 --> 00:13:38.790
-es realmente una ola, de hecho es como una ola
+310
+00:13:35.510 --> 00:13:37.950
+es realmente una ola, de hecho
 
-181
-00:13:39.310 --> 00:13:44.330
-hay que verlo realmente así el tubo ahí se ha creado esta notocorda y aquí está mi
+311
+00:13:37.980 --> 00:13:38.790
+es como una ola
 
-182
-00:13:44.330 --> 00:13:49.870
-nódulo de Hensen y ahí hay una línea primitiva que Blechmidt no describe en el momento
+312
+00:13:39.310 --> 00:13:40.940
+hay que verlo realmente así
 
-183
-00:13:49.990 --> 00:13:52.550
-en que tengo este proceso que aparece ya
+313
+00:13:40.970 --> 00:13:41.190
+el tubo ahí
 
-184
-00:13:54.270 --> 00:13:58.225
-el mesodermo comienza a formarse y esto ocurre al mismo tiempo
+314
+00:13:41.330 --> 00:13:43.540
+se ha creado esta notocorda
 
-185
-00:13:58.790 --> 00:14:01.690
-pero al mismo tiempo aún en esta historia
+315
+00:13:43.590 --> 00:13:45.710
+y aquí está mi nódulo de Hensen
 
-186
-00:14:02.664 --> 00:14:07.184
-Detrás, aquí, hay una observación magnífica de un flujo nodal que rompe la simetría
+316
+00:13:45.740 --> 00:13:48.130
+y ahí hay una línea primitiva que Blechmidt no
 
-187
-00:14:07.184 --> 00:14:08.770
-del embrión a nivel molecular.
+317
+00:13:48.170 --> 00:13:48.780
+describe
 
-188
+318
+00:13:49.171 --> 00:13:49.960
+en el momento
+
+319
+00:13:49.990 --> 00:13:51.910
+en que tengo este proceso que aparece
+
+320
+00:13:52.310 --> 00:13:52.950
+ya
+
+321
+00:13:54.265 --> 00:13:56.295
+el mesodermo comienza a formarse
+
+322
+00:13:56.325 --> 00:13:58.220
+y esto ocurre al mismo tiempo
+
+323
+00:13:58.790 --> 00:14:00.080
+pero al mismo tiempo
+
+324
+00:14:00.110 --> 00:14:01.690
+aún en esta historia
+
+325
+00:14:02.664 --> 00:14:05.334
+Detrás, aquí, hay una observación magnífica de un
+
+326
+00:14:05.374 --> 00:14:07.864
+flujo nodal que rompe la simetría del embrión a
+
+327
+00:14:07.904 --> 00:14:08.740
+nivel molecular.
+
+328
 00:14:08.770 --> 00:14:10.290
 ¿Entonces qué sucede?
 
-189
-00:14:14.844 --> 00:14:18.674
-Hace muy pocos años, nos preguntábamos, ¿por qué el corazón está a la izquierda,
+329
+00:14:13.326 --> 00:14:15.226
+Hace muy pocos años, nos preguntábamos,
 
-190
-00:14:18.674 --> 00:14:22.124
-por qué está a la derecha, ¿por qué todo esto está invertido, etc.?
+330
+00:14:15.266 --> 00:14:17.046
+¿por qué el corazón está a la izquierda,
 
-191
-00:14:22.124 --> 00:14:25.682
-En el momento de esta ola aquí detrás, si observamos cada vez más abajo,
+331
+00:14:17.086 --> 00:14:18.296
+por qué está a la derecha,
 
-192
-00:14:25.682 --> 00:14:26.662
+332
+00:14:18.326 --> 00:14:20.596
+¿por qué todo esto está invertido, etc.?
+
+333
+00:14:20.626 --> 00:14:22.366
+En el momento de esta ola aquí detrás,
+
+334
+00:14:22.406 --> 00:14:24.164
+si observamos cada vez más abajo,
+
+335
+00:14:24.384 --> 00:14:25.494
 entramos...
 
-193
-00:14:26.662 --> 00:14:30.642
-y vemos que hay pequeños cilios que se mueven, pero que hay un líquido,
+336
+00:14:29.627 --> 00:14:31.917
+y vemos que hay pequeños cilios que se mueven,
 
-194
-00:14:30.642 --> 00:14:32.642
-al que llamamos el líquido nodal,
+337
+00:14:31.957 --> 00:14:33.457
+pero que hay un líquido, al que llamamos
 
-195
-00:14:35.477 --> 00:14:37.407
-que se convierte en un flujo nodal.
+338
+00:14:33.487 --> 00:14:35.447
+el líquido nodal,
 
-196
-00:14:37.407 --> 00:14:38.057
-Veo esa ola.
+339
+00:14:35.477 --> 00:14:37.547
+que se convierte en un flujo nodal. Veo esa ola.
 
-197
-00:14:38.057 --> 00:14:42.207
-Puedo entrar allí arriba y puedo ir a ver lo que sucede, pero bastante cerca.
+340
+00:14:37.577 --> 00:14:40.647
+Puedo entrar allí arriba y puedo ir a ver lo que
 
-198
-00:14:42.207 --> 00:14:46.047
-Y veo que sobre este tejido, hay pequeños cilios que se mueven.
+341
+00:14:40.687 --> 00:14:42.177
+sucede, pero bastante cerca.
 
-199
-00:14:46.877 --> 00:14:51.317
-Y luego, se dieron cuenta de que estos cilios no hacen un movimiento
+342
+00:14:42.207 --> 00:14:45.167
+Y veo que sobre este tejido, hay pequeños cilios que
 
-200
-00:14:51.317 --> 00:14:52.607
-anteroposterior, circular.
+343
+00:14:45.207 --> 00:14:46.047
+se mueven.
 
-201
-00:14:52.607 --> 00:14:55.357
-Así que gira y siempre lleva las cosas
+344
+00:14:46.877 --> 00:14:49.817
+Y luego, se dieron cuenta de que estos cilios no
 
-202
-00:14:58.351 --> 00:15:00.131
-de derecha a izquierda.
+345
+00:14:49.857 --> 00:14:52.587
+hacen un movimiento anteroposterior,
 
-203
-00:15:00.131 --> 00:15:05.151
-Al observar, se daban cuenta de que estaba inclinado a 60 grados, a 23
+346
+00:14:55.089 --> 00:14:57.859
+circular. Así que gira y siempre lleva las cosas
 
-204
-00:15:11.171 --> 00:15:12.631
+347
+00:14:58.351 --> 00:15:00.141
+de derecha a
+
+348
+00:15:03.611 --> 00:15:03.991
+izquierda.
+
+349
+00:15:04.021 --> 00:15:07.111
+Al observar, se daban cuenta de que estaba inclinado
+
+350
+00:15:07.151 --> 00:15:07.821
+a 60 grados,
+
+351
+00:15:07.851 --> 00:15:08.621
+a 23
+
+352
+00:15:11.171 --> 00:15:12.581
 grados o 60 grados.
 
-205
-00:15:12.631 --> 00:15:17.691
-Cuando gira, cuando se aleja aquí, cuando gira, acelera. Hace esto.
+353
+00:15:12.621 --> 00:15:15.661
+Cuando gira, cuando se aleja aquí, cuando gira,
 
-206
-00:15:17.691 --> 00:15:22.560
-Y por lo tanto, esto genera finalmente un flujo preferencial.
+354
+00:15:15.691 --> 00:15:19.531
+acelera. Hace esto. Y por lo tanto, esto genera
 
-207
-00:15:22.560 --> 00:15:27.410
-Y por encima, Sobre las células, de hecho, tienes un poco de nieve que cae,
+355
+00:15:19.561 --> 00:15:22.429
+finalmente un flujo preferencial.
 
-208
-00:15:27.410 --> 00:15:30.760
-Sur les cellules, tu as en fait un peu de neige qui tombe,
+356
+00:15:22.551 --> 00:15:23.471
+Y por encima,
 
-209
+357
+00:15:24.371 --> 00:15:26.651
+Sobre las células, de hecho, tienes un poco de nieve
+
+358
+00:15:26.691 --> 00:15:27.011
+que cae,
+
+359
+00:15:27.041 --> 00:15:30.881
+Sur les cellules, tu as en fait un peu de neige qui
+
+360
+00:15:30.921 --> 00:15:31.651
+tombe,
+
+361
 00:15:31.884 --> 00:15:34.634
 que son pequeñas moléculas morfogenéticas.
 
-210
-00:15:36.964 --> 00:15:40.994
-Así que son pequeñas vesículas que contienen muchas proteínas y que son
+362
+00:15:36.964 --> 00:15:40.024
+Así que son pequeñas vesículas que contienen muchas
 
-211
-00:15:40.994 --> 00:15:45.204
-transportadas en ese momento por el flujo de derecha a izquierda.
+363
+00:15:40.064 --> 00:15:40.984
+proteínas y que son
 
-212
-00:15:46.924 --> 00:15:51.564
-Y estos pequeños flóculos, estamos a nivel microscópico, se chocan.
+364
+00:15:42.104 --> 00:15:45.584
+transportadas en ese momento por el flujo de derecha
 
-213
-00:15:54.498 --> 00:15:59.418
-Liberan todo un tejido, toda una actividad proteica diferente que genera la
+365
+00:15:45.624 --> 00:15:46.324
+a izquierda.
 
-214
-00:15:59.418 --> 00:16:00.718
-asimetría del embrión.
+366
+00:15:46.924 --> 00:15:50.254
+Y estos pequeños flóculos, estamos a nivel
 
-215
-00:16:04.238 --> 00:16:08.428
-Porque son moléculas premorfogenéticas que van a informar en un momento dado al
+367
+00:15:50.294 --> 00:15:51.364
+microscópico, se
 
-216
-00:16:08.428 --> 00:16:11.118
-corazón y que las informaciones se desarrollen.
+368
+00:15:52.744 --> 00:15:52.944
+chocan.
 
-217
-00:16:14.578 --> 00:16:17.768
-Esto significa que en el momento en que tengo el proceso axial,
+369
+00:15:54.498 --> 00:15:58.268
+Liberan todo un tejido, toda una actividad proteica
 
-218
-00:16:17.768 --> 00:16:22.481
-tengo un lado izquierdo, un lado derecho, un lado superior y un lado inferior que aparecen.
+370
+00:16:00.378 --> 00:16:02.828
+diferente que genera la asimetría del embrión.
 
-219
-00:16:22.571 --> 00:16:27.711
-y al mismo tiempo tengo un eje muy específico y a través de estos momentos tengo
+371
+00:16:04.238 --> 00:16:06.648
+Porque son moléculas premorfogenéticas que van a
 
-220
-00:16:27.711 --> 00:16:32.251
-todo el tejido mesodérmico que aparece y además tengo toda una actividad
+372
+00:16:09.358 --> 00:16:11.928
+informar en un momento dado al corazón y que las
 
-221
-00:16:34.211 --> 00:16:38.227
-morfogenética perdón, morfogenética asimétrica que se desarrolla
+373
+00:16:11.968 --> 00:16:13.828
+informaciones se desarrollen.
 
-222
+374
+00:16:14.562 --> 00:16:17.442
+Esto significa que en el momento en que tengo el
+
+375
+00:16:17.482 --> 00:16:19.782
+proceso axial, tengo un lado izquierdo, un lado
+
+376
+00:16:19.812 --> 00:16:22.075
+derecho, un lado superior y un lado inferior que
+
+377
+00:16:22.115 --> 00:16:22.465
+aparecen.
+
+378
+00:16:22.571 --> 00:16:24.761
+y al mismo tiempo tengo un eje
+
+379
+00:16:25.311 --> 00:16:26.021
+muy específico
+
+380
+00:16:26.391 --> 00:16:28.191
+y a través de estos momentos
+
+381
+00:16:28.221 --> 00:16:30.851
+tengo todo el tejido mesodérmico que aparece
+
+382
+00:16:30.881 --> 00:16:33.171
+y además tengo toda una actividad
+
+383
+00:16:33.985 --> 00:16:34.915
+morfogenética
+
+384
+00:16:34.945 --> 00:16:36.415
+perdón, morfogenética asimétrica
+
+385
+00:16:36.445 --> 00:16:38.001
+que se desarrolla
+
+386
 00:16:39.071 --> 00:16:40.831
 y tengo mi eje cráneo-sacro
 
-223
-00:16:42.371 --> 00:16:48.371
-primitivo que aparece y esto comienza entre el 14º y el 21º día de acuerdo
+387
+00:16:42.371 --> 00:16:42.701
+primitivo
+
+388
+00:16:42.891 --> 00:16:44.081
+que aparece
+
+389
+00:16:44.111 --> 00:16:46.271
+y esto comienza entre el 14º
+
+390
+00:16:46.311 --> 00:16:48.081
+y el 21º día
+
+391
+00:16:48.111 --> 00:16:48.601
+de acuerdo
 
