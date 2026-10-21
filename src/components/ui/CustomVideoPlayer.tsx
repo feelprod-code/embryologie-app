@@ -77,7 +77,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
     const [jaAudioError, setJaAudioError] = useState(false);
     const { i18n } = useTranslation();
     const activeLangCode = getCloudflareLangCode(i18n.language || 'fr');
-    const isDubLang = activeLangCode === 'ja' || activeLangCode === 'zh';
+    const isDubLang = ['ja', 'zh', 'en', 'es', 'it', 'de'].includes(activeLangCode);
     const isJaDubActive = isDubLang && !jaAudioError && !!cloudflareId && !localVideoUrl;
 
     // State
@@ -123,9 +123,20 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             }
             if (jaAudioRef.current) {
                 jaAudioRef.current.playbackRate = speed;
+                const targetTime = playerRef.current?.currentTime || currentTime || 0;
+                if (Math.abs((jaAudioRef.current.currentTime || 0) - targetTime) > 0.4) {
+                    try {
+                        jaAudioRef.current.currentTime = targetTime;
+                    } catch {
+                        // Ignore if metadata not loaded yet; onCanPlay will sync
+                    }
+                }
+                if (isPlaying && jaAudioRef.current.paused) {
+                    jaAudioRef.current.play().catch(() => {});
+                }
             }
         }
-    }, [isJaDubActive, speed]);
+    }, [isJaDubActive, activeLangCode, speed, isPlaying]);
 
     // Measure container width for responsive subtitles
     useEffect(() => {
@@ -761,8 +772,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                     }
                     
                     // Si l'API renvoie index.html (fallback SPA en local), vttText ne commence pas par WEBVTT
-                    if (!response.ok || !vttText.trim().startsWith('WEBVTT')) {
-                        const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt`;
+                    if (!response.ok || !vttText.trim().startsWith('WEBVTT') || isDubLang) {
+                        const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt?v=10`;
                         const localVttRes = await fetch(localVttUrl);
                         if (localVttRes.ok) {
                             const buffer = await localVttRes.arrayBuffer();
@@ -845,21 +856,71 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                             i++;
                         }
                         if (textAcc.trim() && !textAcc.includes('WEBVTT')) {
-                            // Heuristic split for gigantic blocks > 10s
-                            if ((end - start) > 10 && /[.!?]/.test(textAcc)) {
-                                const sentences = textAcc.match(/[^.!?]+[.!?]+/g) || [textAcc];
-                                const totalLength = textAcc.length;
-                                let currentStart = start;
+                            const cleanFull = textAcc.trim();
+                            const isCjk = activeLangCode === 'ja' || activeLangCode === 'zh';
+                            const maxCharsPerCue = isCjk ? 34 : 95;
+                            const cueDuration = Math.max(0.1, end - start);
 
-                                sentences.forEach(sentence => {
-                                    const s = sentence.trim();
-                                    if (!s) return;
-                                    const sentenceDuration = (s.length / totalLength) * (end - start);
-                                    parsedCues.push({ start: currentStart, end: currentStart + sentenceDuration, text: s });
-                                    currentStart += sentenceDuration;
+                            if (cueDuration > 5.5 || cleanFull.length > maxCharsPerCue) {
+                                // 1. Non-destructively split into sentences (preserving any trailing text without punctuation)
+                                const rawSentences = cleanFull.match(/[^.!?。！？]+(?:[.!?。！？]+|$)/g) || [cleanFull];
+                                const fineChunks: string[] = [];
+
+                                for (const rawSent of rawSentences) {
+                                    const s = rawSent.trim();
+                                    if (!s) continue;
+                                    if (s.length <= maxCharsPerCue) {
+                                        fineChunks.push(s);
+                                    } else {
+                                        // Further split long sentences at clause boundaries or word boundaries
+                                        if (isCjk) {
+                                            const parts = s.split(/(?<=[、，；：])/);
+                                            let buf = '';
+                                            for (const p of parts) {
+                                                if ((buf + p).length > maxCharsPerCue && buf.length > 0) {
+                                                    fineChunks.push(buf.trim());
+                                                    buf = p;
+                                                } else {
+                                                    buf += p;
+                                                }
+                                            }
+                                            if (buf.trim()) fineChunks.push(buf.trim());
+                                        } else {
+                                            const words = s.split(/\s+/);
+                                            let buf = '';
+                                            for (const w of words) {
+                                                const candidate = buf ? `${buf} ${w}` : w;
+                                                if (candidate.length > maxCharsPerCue && buf.length >= 35) {
+                                                    fineChunks.push(buf.trim());
+                                                    buf = w;
+                                                } else {
+                                                    buf = candidate;
+                                                    if (buf.length >= 60 && /[,;:—]$/.test(w)) {
+                                                        fineChunks.push(buf.trim());
+                                                        buf = '';
+                                                    }
+                                                }
+                                            }
+                                            if (buf.trim()) fineChunks.push(buf.trim());
+                                        }
+                                    }
+                                }
+
+                                const totalLen = fineChunks.reduce((acc, c) => acc + c.length, 0) || 1;
+                                let currentStart = start;
+                                fineChunks.forEach((chunk, idx) => {
+                                    const chunkDur = idx === fineChunks.length - 1
+                                        ? Math.max(0.1, end - currentStart)
+                                        : (chunk.length / totalLen) * cueDuration;
+                                    parsedCues.push({
+                                        start: currentStart,
+                                        end: currentStart + chunkDur,
+                                        text: chunk
+                                    });
+                                    currentStart += chunkDur;
                                 });
                             } else {
-                                parsedCues.push({ start, end, text: textAcc.trim() });
+                                parsedCues.push({ start, end, text: cleanFull });
                             }
                         }
                     } else {
@@ -1023,23 +1084,36 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                         />
                     ) : (
                         <>
-                            {isDubLang && cloudflareId && (
+                            {cloudflareId && (
                                 <audio
-                                    key={`${cloudflareId}_${activeLangCode}_audio`}
+                                    key={`${cloudflareId}_dub_audio`}
                                     ref={jaAudioRef}
-                                    src={`/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=5`}
+                                    src={isDubLang ? `/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=13` : undefined}
                                     preload="auto"
                                     onCanPlay={() => {
+                                        if (!isDubLang) return;
                                         setJaAudioError(false);
                                         if (playerRef.current) {
                                             playerRef.current.muted = true;
                                             playerRef.current.volume = 0;
-                                            if (jaAudioRef.current) {
-                                                jaAudioRef.current.playbackRate = speed;
+                                        }
+                                        if (jaAudioRef.current) {
+                                            jaAudioRef.current.playbackRate = speed;
+                                            const targetTime = playerRef.current?.currentTime || currentTime || 0;
+                                            if (Math.abs((jaAudioRef.current.currentTime || 0) - targetTime) > 0.4) {
+                                                try {
+                                                    jaAudioRef.current.currentTime = targetTime;
+                                                } catch {
+                                                    // Ignore
+                                                }
+                                            }
+                                            if (isPlaying && jaAudioRef.current.paused) {
+                                                jaAudioRef.current.play().catch(() => {});
                                             }
                                         }
                                     }}
                                     onError={() => {
+                                        if (!isDubLang) return;
                                         setJaAudioError(true);
                                         if (playerRef.current) {
                                             playerRef.current.muted = false;
@@ -1049,7 +1123,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 />
                             )}
                             <Stream
-                                key={`${cloudflareId}_${isJaDubActive ? activeLangCode : 'orig'}`}
+                                key={cloudflareId}
                                 streamRef={playerRef}
                                 className="w-full h-full object-cover"
                                 src={cloudflareId!}

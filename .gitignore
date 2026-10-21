@@ -40,3 +40,7 @@ public/audio/podcast_tdt_pt.mp3
 public/audio/podcast_tdt_ru.mp3
 .cache_voix_ja/
 .cache_voix_zh/
+.cache_voix_*/
+public/vtt_*_orig_backup/
+public/audio_raw_lab/
+audio_mixing_presets.json

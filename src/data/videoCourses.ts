@@ -5775,8 +5775,7 @@ Les seuls vestiges finaux sont :
     youtubeId: "",
     cloudflareId: "d982e245367f57387731a3228ce994da",
     duration: "08:22",
-    title:
-      "17- Structuration du systeme veineux 2_Le Systeme Vitellin & Ombidical",
+    title: "16. Structuration du système veineux 2 : Le Système Vitellin & Ombilical",
     shortSummary: "Analyse de la structuration du système veineux vitellin et ombilical, avec le développement du foie à partir de tissus mésodermiques et endodermiques. Examen des dynamiques veineuses et de leur rôle dans la santé métabolique.",
     fullSummary: "Cette vidéo offre une exploration approfondie du système vitellin et ombilical, en mettant l'accent sur le développement du foie à partir de tissus mésodermiques et endodermiques. Elle détaille les différentes étapes de formation du réseau vasculaire hépatique, y compris les veines vitellines et ombilicales, ainsi que leurs interactions complexes. Les concepts clés tels que la céphalisation, la cardialisation, et les deux courants du système portal hépatique sont expliqués, soulignant l'importance de ce réseau pour le drainage sanguin et la santé métabolique globale. Les impacts émotionnels liés aux organes digestifs sont également abordés, enrichissant ainsi la compréhension biodynamique du corps humain.",
     transcriptMarkdown: `
