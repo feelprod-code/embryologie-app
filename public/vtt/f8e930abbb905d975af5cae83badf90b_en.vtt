@@ -1,522 +1,510 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:02.092
+00:00:00.072 --> 00:00:02.622
 Now, we're at a moment when the third chamber is
 
 2
-00:00:02.122 --> 00:00:02.710
+00:00:02.662 --> 00:00:03.424
 about to emerge.
 
 3
-00:00:03.800 --> 00:00:05.330
+00:00:03.734 --> 00:00:05.806
 What was the primitive algorithm?
 
 4
-00:00:06.260 --> 00:00:07.299
+00:00:06.086 --> 00:00:07.466
 The differential growth rate.
 
 5
-00:00:07.329 --> 00:00:08.380
+00:00:07.506 --> 00:00:09.049
 That's the word to remember.
 
 6
-00:00:11.910 --> 00:00:13.054
+00:00:12.158 --> 00:00:13.924
 It doesn't grow at the same rate.
 
 7
-00:00:15.720 --> 00:00:16.627
+00:00:16.156 --> 00:00:17.426
 We're in the blastocoel, okay?
 
 8
-00:00:19.110 --> 00:00:20.480
+00:00:17.466 --> 00:00:19.221
 But we're considering the whole.
 
 9
-00:00:21.060 --> 00:00:23.440
+00:00:21.051 --> 00:00:23.861
 Here I have, it's the same diagram as earlier,
 
 10
-00:00:25.330 --> 00:00:26.703
-but from a book by B. Blechschmidt.
+00:00:23.901 --> 00:00:25.291
+but from a book by B.
 
 11
-00:00:27.230 --> 00:00:29.480
-The small cavity, that's the moment when I entered
+00:00:25.331 --> 00:00:25.922
+Blechschmidt.
 
 12
-00:00:29.510 --> 00:00:29.940
-the mucosa.
+00:00:26.203 --> 00:00:28.363
+The small cavity, that's the moment when I entered
 
 13
-00:00:32.040 --> 00:00:34.101
-Same image, at this stage where I see a cavity.
+00:00:28.403 --> 00:00:28.873
+the mucosa.
 
 14
-00:00:35.060 --> 00:00:37.404
-And so, we can say that the cells that are here,
+00:00:31.997 --> 00:00:34.665
+Same image, at this stage where I see a cavity.
 
 15
-00:00:38.600 --> 00:00:40.084
-facing the cavity, there,
+00:00:35.071 --> 00:00:37.401
+And so, we can say that the cells that are here,
 
 16
-00:00:40.760 --> 00:00:43.347
-are cells that will form, according to Blechschmidt,
+00:00:38.617 --> 00:00:41.837
+facing the cavity, there, are cells that will form,
 
 17
-00:00:43.377 --> 00:00:44.230
-at that stage,
+00:00:41.877 --> 00:00:44.051
+according to Blechschmidt, at that stage,
 
 18
-00:00:44.880 --> 00:00:45.793
+00:00:45.670 --> 00:00:46.740
 simply an endocyst.
 
 19
-00:00:45.823 --> 00:00:48.160
+00:00:46.780 --> 00:00:49.427
 But in this endocyst, some will face this way.
 
 20
-00:00:51.060 --> 00:00:52.964
+00:00:52.103 --> 00:00:54.643
 And that is towards the amniotic cavity here.
 
 21
-00:00:52.994 --> 00:00:54.436
+00:00:54.683 --> 00:00:55.977
 So, it will be called...
 
 22
-00:00:56.090 --> 00:00:57.606
+00:00:56.143 --> 00:00:57.873
 the endocyst or the epiblast.
 
 23
-00:00:59.430 --> 00:01:00.633
-Whereas on the other side,
+00:00:57.913 --> 00:01:00.743
+Whereas on the other side, looking here,
 
 24
-00:01:00.760 --> 00:01:02.518
-looking here, I have another cavity which is here,
+00:01:00.783 --> 00:01:03.053
+I have another cavity which is here,
 
 25
-00:01:02.548 --> 00:01:03.930
+00:01:03.093 --> 00:01:04.993
 which is a large cavity here.
 
 26
-00:01:04.720 --> 00:01:07.161
+00:01:05.033 --> 00:01:07.433
 It's called the endocyst or, for us,
 
 27
-00:01:07.600 --> 00:01:08.643
+00:01:07.783 --> 00:01:08.923
 we could already say
 
 28
-00:01:10.010 --> 00:01:10.838
+00:01:10.303 --> 00:01:11.286
 the endoblast.
 
 29
-00:01:12.290 --> 00:01:13.420
-Epiblast, endoblast.
+00:01:13.025 --> 00:01:16.240
+Epiblast, endoblast. But now, there's the algorithm.
 
 30
-00:01:14.410 --> 00:01:15.913
-But now, there's the algorithm.
+00:01:20.063 --> 00:01:22.523
+Of all these cells, which are the cells that are
 
 31
-00:01:19.600 --> 00:01:20.643
-Of all these cells,
+00:01:22.563 --> 00:01:25.403
+closest to the trophic pole that will eat the
 
 32
-00:01:21.850 --> 00:01:23.870
-which are the cells that are closest to the trophic
+00:01:25.443 --> 00:01:26.683
+fastest here in black.
 
 33
-00:01:23.900 --> 00:01:26.033
-pole that will eat the fastest here in black.
-
-34
-00:01:30.880 --> 00:01:32.079
+00:01:31.294 --> 00:01:32.994
 And actually, what's happening?
 
-35
-00:01:32.109 --> 00:01:34.184
+34
+00:01:33.034 --> 00:01:35.754
 We're going to observe, within the embryo itself,
 
-36
-00:01:37.020 --> 00:01:38.037
+35
+00:01:35.794 --> 00:01:37.374
 of this entire mass of cells,
 
-37
-00:01:40.710 --> 00:01:43.219
+36
+00:01:40.510 --> 00:01:43.730
 a differential growth rate between the cells at the
 
-38
-00:01:43.249 --> 00:01:45.328
+37
+00:01:43.770 --> 00:01:46.430
 center and the cells at the periphery.
 
-39
-00:01:45.358 --> 00:01:46.604
+38
+00:01:46.470 --> 00:01:48.070
 The growth that's here,
 
-40
-00:01:49.740 --> 00:01:51.316
+39
+00:01:49.837 --> 00:01:52.185
 between that, and the cells at the periphery.
 
-41
-00:01:52.590 --> 00:01:54.426
+40
+00:01:52.286 --> 00:01:54.956
 And here, this relatively stays the same, you see.
 
-42
-00:01:57.570 --> 00:01:59.096
+41
+00:01:58.074 --> 00:02:00.295
 But between the two, it's pulling, you see.
 
-43
-00:02:03.420 --> 00:02:05.331
+42
+00:02:03.892 --> 00:02:06.792
 And that means the blastocoel is already a cavity,
 
-44
-00:02:05.361 --> 00:02:05.691
+43
+00:02:06.832 --> 00:02:07.220
 amniotic.
 
-45
-00:02:09.270 --> 00:02:11.537
+44
+00:02:09.176 --> 00:02:11.863
 It's already fluid, it's already the digestive
 
-46
-00:02:11.567 --> 00:02:11.930
+45
+00:02:11.903 --> 00:02:12.253
 system.
 
-47
-00:02:14.040 --> 00:02:15.470
+46
+00:02:13.956 --> 00:02:15.686
 There's a tearing here, you see.
 
-48
-00:02:16.160 --> 00:02:17.411
+47
+00:02:15.726 --> 00:02:17.166
 It's pulling, it's pulling.
 
-49
-00:02:17.441 --> 00:02:18.986
+48
+00:02:17.206 --> 00:02:18.956
 It's like it's separating there.
 
-50
-00:02:19.016 --> 00:02:20.519
+49
+00:02:18.996 --> 00:02:20.146
 Here, you see, it's tearing.
 
+50
+00:02:20.186 --> 00:02:22.286
+and we see that it's pulling. Right.
+
 51
-00:02:20.549 --> 00:02:21.956
-and we see that it's pulling.
-
-52
-00:02:22.770 --> 00:02:23.062
-Right.
-
-53
-00:02:23.092 --> 00:02:24.865
+00:02:22.326 --> 00:02:24.917
 And then it's going to stretch more and more,
 
-54
-00:02:24.895 --> 00:02:25.318
+52
+00:02:24.957 --> 00:02:25.307
 you see.
 
-55
-00:02:26.940 --> 00:02:28.738
+53
+00:02:27.155 --> 00:02:29.045
 Normally, the image that is here,
 
-56
-00:02:28.768 --> 00:02:31.564
+54
+00:02:29.085 --> 00:02:31.972
 if it doesn't grow, it returns to the center here.
 
-57
-00:02:34.250 --> 00:02:36.630
+55
+00:02:33.897 --> 00:02:36.730
 And so, there's a differential growth rate between
 
+56
+00:02:38.808 --> 00:02:41.058
+my center and my periphery of the embryo.
+
+57
+00:02:41.098 --> 00:02:42.251
+And this system
+
 58
-00:02:37.600 --> 00:02:38.374
-my center
-
-59
-00:02:40.290 --> 00:02:42.019
-and my periphery of the embryo. And this system
-
-60
-00:02:43.850 --> 00:02:45.495
+00:02:44.741 --> 00:02:46.591
 is going to create a system here.
 
-61
-00:02:45.525 --> 00:02:47.309
+59
+00:02:46.631 --> 00:02:48.641
 I'm going to have a layer of C. U.
 
-62
-00:02:47.339 --> 00:02:49.650
+60
+00:02:48.681 --> 00:02:51.271
 that maintains my density because of my membrane
 
-63
-00:02:49.680 --> 00:02:51.054
+61
+00:02:51.311 --> 00:02:52.792
 here that holds the system.
 
-64
-00:02:53.480 --> 00:02:55.650
+62
+00:02:53.072 --> 00:02:55.702
 the membrane the blastocoel and at that moment the
 
-65
-00:02:55.680 --> 00:02:57.550
+63
+00:02:55.742 --> 00:02:58.013
 entire blastocoel here will change its name
 
-66
-00:03:04.730 --> 00:03:06.790
+64
+00:03:06.602 --> 00:03:09.372
 the whole structure that's there it's no longer a
 
-67
-00:03:06.820 --> 00:03:08.727
+65
+00:03:09.412 --> 00:03:11.952
 blastocoel in the center it becomes the vitelline
 
-68
-00:03:08.757 --> 00:03:10.952
+66
+00:03:11.992 --> 00:03:14.902
 cavity and at the periphery it becomes the coelom
 
-69
-00:03:10.982 --> 00:03:11.459
+67
+00:03:14.942 --> 00:03:15.558
 external
 
-70
-00:03:16.210 --> 00:03:18.025
+68
+00:03:15.838 --> 00:03:17.878
 So this becomes the vitelline cavity,
 
-71
-00:03:18.055 --> 00:03:20.500
+69
+00:03:17.918 --> 00:03:20.698
 and here, it becomes the external coelom.
 
-72
-00:03:25.670 --> 00:03:27.297
+70
+00:03:20.988 --> 00:03:23.618
 The center here, this specific center,
 
-73
-00:03:27.327 --> 00:03:29.610
+71
+00:03:23.658 --> 00:03:25.859
 we'll say it doesn't grow, relatively.
 
-74
-00:03:34.740 --> 00:03:35.799
+72
+00:03:34.360 --> 00:03:35.981
 And so all around, they grow.
 
-75
-00:03:38.660 --> 00:03:40.789
+73
+00:03:36.431 --> 00:03:39.221
 here, I grow, I grow, and so it's as if this
 
-76
-00:03:40.819 --> 00:03:41.180
+74
+00:03:39.261 --> 00:03:39.789
 center...
 
-77
-00:03:44.572 --> 00:03:46.178
+75
+00:03:40.069 --> 00:03:42.039
 was tearing, you see, and as I grow,
 
-78
-00:03:46.208 --> 00:03:48.362
+76
+00:03:42.079 --> 00:03:44.702
 I grow, here, well, that's where this coelom
 
-79
-00:03:53.160 --> 00:03:55.652
+77
+00:03:44.982 --> 00:03:47.762
 that was here will become the vitelline cavity,
 
-80
-00:03:55.682 --> 00:03:56.730
-and around it,
+78
+00:03:47.802 --> 00:03:50.228
+and around it, another cavity appears,
 
-81
-00:03:58.520 --> 00:03:59.574
-another cavity appears,
-
-82
-00:04:02.000 --> 00:04:04.107
+79
+00:03:50.678 --> 00:03:53.248
 initially, it's like an arachnoid network,
 
-83
-00:04:04.137 --> 00:04:06.046
+80
+00:03:53.288 --> 00:03:55.628
 and then through growth, it clears out,
 
-84
-00:04:06.076 --> 00:04:08.883
+81
+00:03:55.668 --> 00:03:59.068
 it becomes a cavity we call the external coelom.
 
-85
-00:04:08.913 --> 00:04:10.852
+82
+00:03:59.108 --> 00:04:01.290
 It's an arachnoid network, you see,
 
-86
-00:04:12.643 --> 00:04:14.719
+83
+00:04:01.570 --> 00:04:03.630
 it holds, we are like this, it holds,
 
-87
-00:04:14.749 --> 00:04:16.306
+84
+00:04:03.670 --> 00:04:06.330
 it holds, but at some point, I don't know,
 
-88
-00:04:16.336 --> 00:04:18.313
+85
+00:04:06.370 --> 00:04:08.403
 we let go and an exudate remains.
 
-89
-00:04:20.910 --> 00:04:22.546
+86
+00:04:20.805 --> 00:04:23.435
 And this exudate becomes the external coelom,
 
-90
-00:04:23.890 --> 00:04:25.085
+87
+00:04:23.475 --> 00:04:24.708
 which will be the cavity
 
-91
-00:04:26.370 --> 00:04:27.758
+88
+00:04:26.817 --> 00:04:28.847
 peritoneal fluid, intra-peritoneal.
 
-92
-00:04:27.788 --> 00:04:30.193
+89
+00:04:28.887 --> 00:04:31.447
 We end up with two fields, three cavities
 
-93
-00:04:30.223 --> 00:04:30.603
+90
+00:04:31.487 --> 00:04:31.967
 fluid-filled.
 
-94
-00:04:30.633 --> 00:04:32.140
+91
+00:04:32.007 --> 00:04:33.771
 The cavity here, we call it
 
-95
-00:04:37.410 --> 00:04:38.980
+92
+00:04:37.242 --> 00:04:39.117
 Here, in yellow, the cavity
 
-96
-00:04:40.715 --> 00:04:42.897
+93
+00:04:41.221 --> 00:04:44.306
 and here, another cavity we call the external
 
-97
-00:04:42.927 --> 00:04:43.515
+94
+00:04:44.346 --> 00:04:44.696
 coelom.
 
-98
-00:04:47.020 --> 00:04:49.119
+95
+00:04:48.932 --> 00:04:51.942
 And between the two, here, we have what's called the
 
-99
-00:04:49.149 --> 00:04:49.579
+96
+00:04:51.982 --> 00:04:52.663
 embryonic disc.
 
-100
-00:04:54.110 --> 00:04:56.726
+97
+00:04:53.033 --> 00:04:56.413
 The endocyst cells that face the amniotic cavity
 
-101
-00:04:56.756 --> 00:04:58.550
+98
+00:04:56.453 --> 00:04:58.753
 will become, in our terminology,
 
-102
-00:04:58.580 --> 00:04:59.805
+99
+00:04:58.793 --> 00:05:00.357
 we call it epiblast.
 
-103
-00:05:02.060 --> 00:05:04.521
+100
+00:05:02.288 --> 00:05:05.488
 The cells that face the vitelline cavity will be the
 
-104
-00:05:04.551 --> 00:05:05.905
+101
+00:05:05.528 --> 00:05:07.416
 cells that will form the endoblast.
 
-105
-00:05:09.320 --> 00:05:10.989
+102
+00:05:09.734 --> 00:05:11.714
 Every time there's a cell division,
 
-106
-00:05:11.019 --> 00:05:12.989
+103
+00:05:11.754 --> 00:05:14.034
 there's a loss of water and an increase in the
 
-107
-00:05:13.019 --> 00:05:13.506
+104
+00:05:14.074 --> 00:05:14.649
 imprint.
 
-108
-00:05:15.700 --> 00:05:17.870
+105
+00:05:15.722 --> 00:05:18.172
 So either it can be lost completely and become a
 
-109
-00:05:17.900 --> 00:05:19.910
+106
+00:05:18.212 --> 00:05:20.484
 full exudate, or they are small exudates.
 
-110
-00:05:21.560 --> 00:05:23.931
+107
+00:05:21.886 --> 00:05:24.646
 And it's also the exudate in the sense that it's
 
-111
-00:05:23.961 --> 00:05:25.876
+108
+00:05:24.686 --> 00:05:26.952
 growth; imagine the number of cells that appear.
 
-112
-00:05:27.700 --> 00:05:29.907
+109
+00:05:28.326 --> 00:05:30.436
 But each time it comes from another cell;
 
-113
-00:05:29.937 --> 00:05:31.689
+110
+00:05:30.476 --> 00:05:32.186
 they don't just pop up out of nowhere.
 
-114
-00:05:33.030 --> 00:05:34.774
+111
+00:05:32.977 --> 00:05:34.727
 Every time you have a cell division,
 
-115
-00:05:34.804 --> 00:05:35.858
+112
+00:05:34.767 --> 00:05:35.852
 you have a bit of a loss.
 
-116
-00:05:36.980 --> 00:05:39.810
+113
+00:05:37.254 --> 00:05:40.674
 It's such a rapid growth, there's so much fluid that
 
-117
-00:05:39.840 --> 00:05:41.640
+114
+00:05:40.714 --> 00:05:42.864
 will appear, you see, that initially,
 
-118
-00:05:41.670 --> 00:05:44.170
+115
+00:05:42.904 --> 00:05:45.863
 the cells are held by a fibrous network, you see.
 
-119
-00:05:47.270 --> 00:05:49.907
+116
+00:05:47.215 --> 00:05:50.195
 But at some point, this fibrous network gives way,
 
-120
-00:05:49.937 --> 00:05:51.754
+117
+00:05:50.235 --> 00:05:52.223
 and only the cavity remains.
 
-121
-00:05:52.670 --> 00:05:54.587
+118
+00:05:52.418 --> 00:05:55.228
 This is what we call the primitive arachnoid network
 
-122
-00:05:54.617 --> 00:05:55.729
+119
+00:05:55.268 --> 00:05:56.167
 of the external coelom.
 
-123
-00:05:57.070 --> 00:05:58.533
+120
+00:05:57.012 --> 00:05:58.912
 It's not just cells breaking down;
 
-124
-00:05:58.563 --> 00:06:00.624
+121
+00:05:58.952 --> 00:06:01.622
 it's a quantity of liquid absorption that comes so
 
-125
-00:06:00.654 --> 00:06:02.164
+122
+00:06:01.662 --> 00:06:03.572
 much from the outside to the inside,
 
-126
-00:06:02.194 --> 00:06:03.118
+123
+00:06:03.612 --> 00:06:04.792
 in the periphery.
 
-127
-00:06:04.190 --> 00:06:05.009
+124
+00:06:04.929 --> 00:06:05.899
 It's more powerful.
 
-128
-00:06:05.039 --> 00:06:07.526
+125
+00:06:05.939 --> 00:06:08.709
 I enter a great place with lots of grenadine,
 
-129
-00:06:07.556 --> 00:06:08.566
+126
+00:06:08.749 --> 00:06:10.042
 lots of stuff, you see,
 
-130
-00:06:14.409 --> 00:06:15.579
+127
+00:06:14.409 --> 00:06:15.739
 I absorb a lot of fluid.
 
