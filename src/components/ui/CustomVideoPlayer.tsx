@@ -199,11 +199,22 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (isJaDubActive && jaAudioRef.current) {
                 playerRef.current.muted = true;
                 playerRef.current.volume = 0;
-                if (!jaAudioRef.current.paused) {
-                    time = jaAudioRef.current.currentTime;
+                const aTime = jaAudioRef.current.currentTime || 0;
+                const drift = aTime - vTime;
+                if (!jaAudioRef.current.seeking) {
+                    if (Math.abs(drift) > 0.35) {
+                        jaAudioRef.current.currentTime = vTime;
+                        jaAudioRef.current.playbackRate = speed;
+                    } else if (Math.abs(drift) > 0.06) {
+                        // Gentle micro-PLL speed nudge (±4% max) to keep lip/board sync under 60ms without clicks
+                        const nudge = Math.max(-0.04, Math.min(0.04, -drift * 0.25));
+                        jaAudioRef.current.playbackRate = speed * (1 + nudge);
+                    } else if (jaAudioRef.current.playbackRate !== speed) {
+                        jaAudioRef.current.playbackRate = speed;
+                    }
                 }
-                if (vTime > 1.0 && !jaAudioRef.current.seeking && Math.abs(jaAudioRef.current.currentTime - vTime) > 6.0) {
-                    jaAudioRef.current.currentTime = vTime;
+                if (!jaAudioRef.current.paused) {
+                    time = vTime;
                 }
             }
 
@@ -761,8 +772,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 let vttText = '';
                 let resolvedUrl = '';
 
-                // Always prioritize our local v14 precision-synced & 1-2 line mastered VTT first (all 7 languages incl. FR)
-                const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt?v=14`;
+                // Always prioritize our local v15 precision-synced & 1-2 line mastered VTT first (all 7 languages incl. FR)
+                const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt?v=15`;
                 const vttUrl = `/cf-stream/${cloudflareId}/downloads/default.vtt?lang=${langCode}`;
 
                 try {
@@ -1096,7 +1107,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 <audio
                                     key={`${cloudflareId}_dub_audio`}
                                     ref={jaAudioRef}
-                                    src={isDubLang ? `/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=14` : undefined}
+                                    src={isDubLang ? `/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=15` : undefined}
                                     preload="auto"
                                     onCanPlay={() => {
                                         if (!isDubLang) return;
@@ -1155,7 +1166,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                         if (jaAudioRef.current) {
                                             jaAudioRef.current.playbackRate = speed;
                                             const vTime = playerRef.current.currentTime || 0;
-                                            if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.5) {
+                                            if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.15) {
                                                 jaAudioRef.current.currentTime = vTime;
                                             }
                                             jaAudioRef.current.play().catch(() => {});
@@ -1166,6 +1177,15 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                     if (isJaDubActive && playerRef.current) {
                                         playerRef.current.muted = true;
                                         playerRef.current.volume = 0;
+                                        if (jaAudioRef.current) {
+                                            const vTime = playerRef.current.currentTime || 0;
+                                            if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.15) {
+                                                jaAudioRef.current.currentTime = vTime;
+                                            }
+                                            if (jaAudioRef.current.paused) {
+                                                jaAudioRef.current.play().catch(() => {});
+                                            }
+                                        }
                                     }
                                 }}
                                 onPause={() => {
