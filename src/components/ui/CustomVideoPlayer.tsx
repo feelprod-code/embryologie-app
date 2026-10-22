@@ -190,20 +190,33 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
 
     // Smooth time update using requestAnimationFrame
     const requestRef = useRef<number>(0);
+    const lastPlayRetryRef = useRef<number>(0);
 
     const updateTimeSmoothly = React.useCallback(() => {
         if (playerRef.current && isPlaying && localScrubTime === null) {
             const vTime = playerRef.current.currentTime || 0;
-            let time = vTime;
+            const time = vTime;
 
             if (isJaDubActive && jaAudioRef.current) {
-                playerRef.current.muted = true;
-                playerRef.current.volume = 0;
-                if (!jaAudioRef.current.paused) {
-                    time = jaAudioRef.current.currentTime;
-                }
-                if (vTime > 1.0 && !jaAudioRef.current.seeking && Math.abs(jaAudioRef.current.currentTime - vTime) > 6.0) {
-                    jaAudioRef.current.currentTime = vTime;
+                const nowMs = performance.now();
+                if (vTime <= 0.02) {
+                    // Video hasn't started moving yet: retry play() at most once every 900ms and hold audio at 0
+                    if (nowMs - lastPlayRetryRef.current > 900) {
+                        lastPlayRetryRef.current = nowMs;
+                        try {
+                            playerRef.current.muted = true;
+                            playerRef.current.play?.();
+                        } catch {
+                            // Ignore
+                        }
+                    }
+                } else {
+                    if (jaAudioRef.current.paused) {
+                        jaAudioRef.current.currentTime = vTime;
+                        jaAudioRef.current.play().catch(() => {});
+                    } else if (!jaAudioRef.current.seeking && Math.abs(jaAudioRef.current.currentTime - vTime) > 2.5) {
+                        jaAudioRef.current.currentTime = vTime;
+                    }
                 }
             }
 
@@ -761,8 +774,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 let vttText = '';
                 let resolvedUrl = '';
 
-                // Always prioritize our local v17 acoustic-waveform-locked & 1-2 line mastered VTT first (all 7 languages incl. FR)
-                const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt?v=17`;
+                // Always prioritize our local v18 V9+EQ mastered VTT first (all 7 languages incl. FR)
+                const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt?v=18`;
                 const vttUrl = `/cf-stream/${cloudflareId}/downloads/default.vtt?lang=${langCode}`;
 
                 try {
@@ -1096,7 +1109,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 <audio
                                     key={`${cloudflareId}_dub_audio`}
                                     ref={jaAudioRef}
-                                    src={isDubLang ? `/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=17` : undefined}
+                                    src={isDubLang ? `/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=18` : undefined}
                                     preload="auto"
                                     onCanPlay={() => {
                                         if (!isDubLang) return;
@@ -1166,6 +1179,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                     if (isJaDubActive && playerRef.current) {
                                         playerRef.current.muted = true;
                                         playerRef.current.volume = 0;
+                                        if (jaAudioRef.current && jaAudioRef.current.paused) {
+                                            jaAudioRef.current.playbackRate = speed;
+                                            jaAudioRef.current.currentTime = playerRef.current.currentTime || 0;
+                                            jaAudioRef.current.play().catch(() => {});
+                                        }
                                     }
                                 }}
                                 onPause={() => {
@@ -1175,13 +1193,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 onTimeUpdate={() => {
                                     const player = playerRef.current;
                                     if (!player) return;
-                                    if (isJaDubActive) {
-                                        player.muted = true;
-                                        player.volume = 0;
-                                    }
-                                    const time = (isJaDubActive && jaAudioRef.current && jaAudioRef.current.currentTime > 0)
-                                        ? jaAudioRef.current.currentTime
-                                        : (player.currentTime || 0);
+                                    const time = player.currentTime || 0;
                                     
                                     // Initialize duration cleanly
                                     if (player.duration && player.duration > 0 && duration === 0) {
