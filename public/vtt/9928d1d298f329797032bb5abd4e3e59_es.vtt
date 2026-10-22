@@ -1,354 +1,330 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:02.920
+00:00:00.000 --> 00:00:02.480
 La embriología les llevará a buscar la honestidad en
 
 2
-00:00:02.960 --> 00:00:03.692
+00:00:02.520 --> 00:00:03.420
 sus sentimientos.
 
 3
-00:00:04.900 --> 00:00:07.710
+00:00:04.900 --> 00:00:07.670
 Y eso puede ser inquietante porque tendremos que ir
 
 4
-00:00:07.750 --> 00:00:08.390
-a otro contexto
+00:00:07.710 --> 00:00:09.980
+a otro contexto que no es un contexto donde la
 
 5
-00:00:09.340 --> 00:00:11.510
-que no es un contexto donde la voluntad pueda
+00:00:10.020 --> 00:00:11.100
+voluntad pueda intervenir.
 
 6
-00:00:11.550 --> 00:00:12.268
-intervenir.
-
-7
-00:00:13.060 --> 00:00:15.650
+00:00:13.060 --> 00:00:15.600
 Es decir, no puedo tener un acto voluntario puro,
 
-8
-00:00:17.000 --> 00:00:18.770
+7
+00:00:15.640 --> 00:00:17.340
 debo estar en un acto de participación.
 
-9
-00:00:19.300 --> 00:00:21.480
+8
+00:00:19.300 --> 00:00:21.470
 Porque el feto que se desarrolla allí tiene una
 
-10
-00:00:21.520 --> 00:00:22.030
+9
+00:00:21.510 --> 00:00:21.980
 potencia.
 
-11
-00:00:23.340 --> 00:00:25.640
+10
+00:00:23.340 --> 00:00:25.580
 está muy orientado, comete muy pocos errores.
 
-12
-00:00:28.070 --> 00:00:31.140
+11
+00:00:28.070 --> 00:00:30.650
 Y finalmente, nos muestran bastantes interacciones,
 
+12
+00:00:30.690 --> 00:00:33.330
+inducciones y sincronicidad en el desarrollo.
+
 13
-00:00:31.180 --> 00:00:31.800
-inducciones y
-
-14
-00:00:34.050 --> 00:00:35.603
-sincronicidad en el desarrollo.
-
-15
-00:00:36.670 --> 00:00:38.720
+00:00:36.670 --> 00:00:38.710
 Y vamos a estudiar todo esto juntos,
 
-16
-00:00:38.760 --> 00:00:40.680
+14
+00:00:38.750 --> 00:00:40.560
 a través de los primeros movimientos.
 
-17
-00:00:41.630 --> 00:00:44.630
+15
+00:00:41.630 --> 00:00:44.600
 Y vamos a buscar, a través de este desarrollo,
 
-18
-00:00:44.670 --> 00:00:45.910
+16
+00:00:44.640 --> 00:00:45.880
 ciertos algoritmos.
 
-19
-00:00:46.330 --> 00:00:48.920
+17
+00:00:46.330 --> 00:00:49.500
 Eso significa cosas que están presentes y que pueden
 
+18
+00:00:49.540 --> 00:00:52.270
+ser repetitivas, en las que podemos depositarnos y
+
+19
+00:00:52.310 --> 00:00:53.320
+trabajar con ellas.
+
 20
-00:00:48.960 --> 00:00:51.060
-ser repetitivas, en las que podemos
-
-21
-00:00:51.540 --> 00:00:53.820
-depositarnos y trabajar con ellas.
-
-22
-00:00:53.850 --> 00:00:55.243
+00:00:53.850 --> 00:00:55.160
 Y entonces aquí tenemos...
 
-23
-00:00:56.140 --> 00:00:57.410
+21
+00:00:56.140 --> 00:00:57.400
 un pequeño embrión, ¿ves?
 
-24
-00:00:57.450 --> 00:00:59.640
+22
+00:00:57.440 --> 00:00:59.600
 , con un tubo neural y una cavidad cardio-pleuro-
 
-25
-00:01:01.500 --> 00:01:02.100
+23
+00:00:59.640 --> 00:01:00.200
 peritoneal.
 
-26
-00:01:02.320 --> 00:01:04.500
+24
+00:01:02.320 --> 00:01:04.490
 Y que no vemos en los libros, cuando estudiamos
 
-27
-00:01:04.540 --> 00:01:05.610
-anatomía, embriología,
+25
+00:01:04.530 --> 00:01:06.860
+anatomía, embriología, no vemos el crecimiento.
 
-28
-00:01:05.640 --> 00:01:06.910
-no vemos el crecimiento.
-
-29
-00:01:07.780 --> 00:01:09.620
+26
+00:01:07.780 --> 00:01:09.510
 Y eso nos da percepciones erróneas.
 
-30
-00:01:10.580 --> 00:01:13.330
+27
+00:01:10.580 --> 00:01:13.310
 Pero si miramos cómo se construye realmente la
 
-31
-00:01:13.370 --> 00:01:13.780
+28
+00:01:13.350 --> 00:01:13.760
 anatomía,
 
-32
-00:01:14.340 --> 00:01:17.780
+29
+00:01:14.460 --> 00:01:17.360
 el hombre no se construye en absoluto alrededor de
 
-33
-00:01:17.820 --> 00:01:18.830
+30
+00:01:17.400 --> 00:01:18.568
 una estructura ósea.
 
-34
-00:01:19.160 --> 00:01:21.620
+31
+00:01:19.160 --> 00:01:21.610
 Aunque el hueso aparece mucho más tarde en el
 
-35
-00:01:21.660 --> 00:01:22.030
+32
+00:01:21.650 --> 00:01:22.020
 desarrollo.
 
-36
-00:01:22.780 --> 00:01:24.370
+33
+00:01:23.000 --> 00:01:24.143
 Así que no nos construimos.
 
-37
-00:01:24.651 --> 00:01:27.041
+34
+00:01:24.651 --> 00:01:26.951
 a partir de lo denso, sino a partir de lo fluido.
 
-38
-00:01:27.951 --> 00:01:30.141
+35
+00:01:27.951 --> 00:01:30.271
 Y si vamos un poco más allá, nos damos cuenta de que
 
-39
-00:01:30.171 --> 00:01:33.111
+36
+00:01:30.311 --> 00:01:33.101
 ¿de dónde viene el fluido, cómo se construye a sí
 
-40
-00:01:33.151 --> 00:01:33.901
+37
+00:01:33.141 --> 00:01:33.841
 mismo este fluido?
 
-41
+38
 00:01:33.931 --> 00:01:36.351
 Pues bien, vemos que viene de un nivel casi
 
-42
-00:01:36.391 --> 00:01:38.482
+39
+00:01:36.391 --> 00:01:38.361
 eléctrico, casi electromagnético.
 
-43
-00:01:39.431 --> 00:01:41.241
+40
+00:01:39.431 --> 00:01:41.221
 Y si vamos más allá, finalmente,
 
-44
-00:01:41.281 --> 00:01:42.541
+41
+00:01:41.261 --> 00:01:42.521
 es casi un nivel de fotón,
 
-45
-00:01:42.991 --> 00:01:46.671
+42
+00:01:42.991 --> 00:01:46.281
 luminoso, como si la luz pudiera inducir la materia.
 
-46
-00:01:47.597 --> 00:01:49.027
+43
+00:01:46.321 --> 00:01:47.981
 Es un poco filosófico.
 
-47
-00:01:49.291 --> 00:01:51.281
+44
+00:01:49.291 --> 00:01:51.261
 Eso es realmente lo que voy a explicar, de hecho.
 
-48
-00:01:52.281 --> 00:01:54.391
+45
+00:01:52.281 --> 00:01:53.967
 Vamos a empezar desde la primera serie.
 
-49
-00:02:54.422 --> 00:02:55.892
+46
+00:02:54.422 --> 00:02:55.882
 Vemos que lo que se desarrolla aquí,
 
-50
-00:02:55.932 --> 00:02:57.802
+47
+00:02:55.922 --> 00:02:57.752
 se desarrolla al mismo tiempo aquí.
 
-51
-00:03:01.102 --> 00:03:03.552
+48
+00:03:01.102 --> 00:03:03.542
 Y vamos a ver que podemos encontrar incluso
 
-52
-00:03:03.592 --> 00:03:05.532
+49
+00:03:03.582 --> 00:03:05.482
 sincronismos a nivel molecular, celular,
 
-53
-00:03:07.802 --> 00:03:08.522
+50
+00:03:07.802 --> 00:03:08.442
 tisular.
 
-54
+51
 00:03:08.922 --> 00:03:11.912
 En el peritoneo, tienen sincronicidades moleculares
 
-55
-00:03:11.952 --> 00:03:13.832
-que se van a dar en procesos
+52
+00:03:11.952 --> 00:03:13.972
+que se van a dar en procesos cerebrales.
 
-56
-00:03:14.442 --> 00:03:14.612
-cerebrales.
-
-57
-00:03:15.002 --> 00:03:15.882
+53
+00:03:14.012 --> 00:03:14.812
 O incluso...
 
-58
-00:03:16.492 --> 00:03:18.772
+54
+00:03:16.492 --> 00:03:18.792
 Lo que va a pasar, por ejemplo, a nivel de la cresta
 
-59
-00:03:18.812 --> 00:03:20.722
-de gallo, se va a dar al mismo tiempo
+55
+00:03:18.832 --> 00:03:21.512
+de gallo, se va a dar al mismo tiempo a nivel de la
 
-60
-00:03:21.672 --> 00:03:23.479
-a nivel de la hoz del cerebro.
+56
+00:03:21.552 --> 00:03:22.502
+hoz del cerebro.
 
-61
-00:03:24.272 --> 00:03:26.512
+57
+00:03:24.272 --> 00:03:26.262
 Por el momento, lo único que les pido es que vean
 
-62
-00:03:26.552 --> 00:03:27.393
+58
+00:03:26.302 --> 00:03:27.172
 que hay crecimiento.
 
-63
-00:03:28.632 --> 00:03:31.582
+59
+00:03:28.632 --> 00:03:31.572
 Vamos a ver el desarrollo desde la primera célula,
 
-64
-00:03:31.622 --> 00:03:32.692
-desde la fecundación,
+60
+00:03:31.612 --> 00:03:34.132
+desde la fecundación, e incluso lo que ocurre ya
 
-65
-00:03:33.789 --> 00:03:37.049
-e incluso lo que ocurre ya antes de la fecundación,
+61
+00:03:34.172 --> 00:03:36.832
+antes de la fecundación, a nivel eléctrico,
 
-66
-00:03:37.089 --> 00:03:37.948
-a nivel eléctrico,
-
-67
-00:03:38.432 --> 00:03:40.922
+62
+00:03:38.432 --> 00:03:40.912
 hasta la aparición de una primera línea media,
 
-68
-00:03:40.962 --> 00:03:42.732
+63
+00:03:40.952 --> 00:03:42.722
 que llamaremos el eje notocordal,
 
-69
-00:03:43.592 --> 00:03:44.432
+64
+00:03:43.592 --> 00:03:44.392
 con la puesta en marcha.
 
-70
-00:03:44.562 --> 00:03:47.602
-primero de una cavidad fluídica, que será su primera
+65
+00:03:44.562 --> 00:03:46.152
+primero de una cavidad fluídica,
 
-71
-00:03:49.662 --> 00:03:50.616
-cavidad peritoneal,
+66
+00:03:46.192 --> 00:03:48.382
+que será su primera cavidad peritoneal,
 
-72
-00:03:51.022 --> 00:03:53.312
+67
+00:03:51.022 --> 00:03:53.292
 primitiva, de una cavidad amniótica,
 
-73
-00:03:53.352 --> 00:03:56.522
-hasta la formación de una tercera cámara, que
+68
+00:03:53.332 --> 00:03:55.412
+hasta la formación de una tercera cámara,
 
-74
-00:03:57.542 --> 00:04:00.352
-se llama la cavidad vitelina, luego la aparición en
+69
+00:03:55.452 --> 00:03:57.602
+que se llama la cavidad vitelina,
 
-75
-00:04:00.392 --> 00:04:03.082
-el seno de un tejido embrionario de un movimiento,
+70
+00:03:57.642 --> 00:03:59.932
+luego la aparición en el seno de un tejido
 
-76
-00:04:03.322 --> 00:04:05.752
+71
+00:03:59.972 --> 00:04:02.002
+embrionario de un movimiento,
+
+72
+00:04:03.322 --> 00:04:05.742
 de una ola que formará el proceso notocordal,
 
-77
-00:04:05.792 --> 00:04:06.532
-que a su vez
+73
+00:04:05.782 --> 00:04:08.882
+que a su vez inducirá el proceso neurológico y que
 
-78
-00:04:08.382 --> 00:04:10.772
-inducirá el proceso neurológico
+74
+00:04:08.922 --> 00:04:09.992
+vamos a estudiar.
 
-79
-00:04:11.142 --> 00:04:12.262
-y que vamos a estudiar.
-
-80
-00:04:12.633 --> 00:04:14.513
+75
+00:04:12.633 --> 00:04:14.463
 todo el desarrollo dinámico del cerebro.
 
-81
-00:04:16.053 --> 00:04:17.843
-¿Y cuál es la implicación práctica
+76
+00:04:16.053 --> 00:04:18.283
+¿Y cuál es la implicación práctica que vamos a
 
-82
-00:04:18.021 --> 00:04:20.651
-que vamos a encontrar cada vez en la osteopatía?
+77
+00:04:18.323 --> 00:04:20.183
+encontrar cada vez en la osteopatía?
 
-83
-00:04:20.681 --> 00:04:21.901
-¿Entienden lo que quiero decir,
+78
+00:04:20.223 --> 00:04:22.883
+¿Entienden lo que quiero decir, que no hay voluntad?
 
-84
-00:04:21.931 --> 00:04:23.321
-que no hay voluntad?
-
-85
-00:04:23.351 --> 00:04:25.061
+79
+00:04:23.693 --> 00:04:25.393
 Están en el vientre, se está desarrollando,
 
-86
-00:04:25.091 --> 00:04:27.203
+80
+00:04:25.433 --> 00:04:26.779
 no pueden decir "para, detente".
 
-87
-00:04:28.013 --> 00:04:29.423
+81
+00:04:28.013 --> 00:04:29.333
 La cosa crece completamente.
 
-88
-00:04:29.613 --> 00:04:32.413
+82
+00:04:29.373 --> 00:04:32.113
 Así que seremos invitados a participar en ese nivel.
 

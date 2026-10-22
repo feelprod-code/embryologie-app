@@ -1,618 +1,522 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:02.810
+00:00:00.000 --> 00:00:02.790
 Ora siamo in un momento in cui apparirà la terza
 
 2
-00:00:02.850 --> 00:00:03.440
+00:00:02.830 --> 00:00:03.340
 camera.
 
 3
-00:00:03.800 --> 00:00:05.960
+00:00:03.800 --> 00:00:05.620
 Qual era l'algoritmo primitivo?
 
 4
-00:00:06.120 --> 00:00:08.740
+00:00:06.120 --> 00:00:08.520
 La velocità di crescita differenziale.
 
 5
-00:00:09.266 --> 00:00:11.446
+00:00:08.560 --> 00:00:10.630
 Questa è la parola da ricordare.
 
 6
-00:00:11.600 --> 00:00:13.760
+00:00:11.600 --> 00:00:13.440
 Non cresce alla stessa velocità.
 
 7
-00:00:15.500 --> 00:00:17.500
+00:00:15.500 --> 00:00:17.360
 Siamo nel blastocisti, ok?
 
 8
-00:00:18.720 --> 00:00:20.560
+00:00:18.720 --> 00:00:20.370
 Ma siamo in una globalità.
 
 9
-00:00:21.020 --> 00:00:23.340
+00:00:21.020 --> 00:00:23.330
 Ho qui, è lo stesso disegno di prima,
 
 10
-00:00:25.200 --> 00:00:26.770
+00:00:25.200 --> 00:00:26.680
 ma in un libro di B. Schmitt.
 
 11
-00:00:28.071 --> 00:00:30.721
+00:00:28.071 --> 00:00:30.221
 La piccola cavità, è il momento in cui sono entrato
 
 12
-00:00:30.761 --> 00:00:31.308
+00:00:30.261 --> 00:00:30.972
 nella mucosa.
 
 13
-00:00:31.951 --> 00:00:34.519
+00:00:31.951 --> 00:00:34.394
 Stessa immagine, a questo stadio in cui vedo una
 
 14
-00:00:34.559 --> 00:00:34.909
+00:00:34.434 --> 00:00:34.784
 cavità.
 
 15
-00:00:35.071 --> 00:00:37.772
+00:00:35.071 --> 00:00:37.461
 E quindi, possiamo dire che le cellule che sono qui,
 
 16
-00:00:38.531 --> 00:00:40.571
+00:00:38.531 --> 00:00:40.146
 in corrispondenza della cavità, lì,
 
 17
-00:00:40.601 --> 00:00:43.381
+00:00:40.551 --> 00:00:43.111
 sono cellule che formeranno, secondo Blechschmidt,
 
 18
-00:00:43.421 --> 00:00:44.405
+00:00:43.151 --> 00:00:43.989
 a quello stadio,
 
 19
-00:00:45.291 --> 00:00:46.881
+00:00:45.291 --> 00:00:46.801
 semplicemente un endoderma.
 
 20
-00:00:46.933 --> 00:00:49.083
+00:00:46.841 --> 00:00:48.631
 Ma in questo endoderma, ce ne sono alcune che
 
 21
-00:00:49.123 --> 00:00:50.581
+00:00:48.671 --> 00:00:50.253
 guarderanno da questa parte.
 
 22
-00:00:51.571 --> 00:00:54.531
+00:00:51.571 --> 00:00:54.681
 E questo è verso la cavità, qui, amniotica.
 
 23
-00:00:54.667 --> 00:00:56.103
+00:00:54.721 --> 00:00:56.079
 Quindi, si chiamerà...
 
 24
-00:00:56.143 --> 00:00:58.363
+00:00:56.143 --> 00:00:58.273
 l'endoderma o l'epiblasto.
 
 25
-00:00:58.943 --> 00:01:00.383
+00:00:58.943 --> 00:01:00.110
 Mentre dall'altra parte,
 
 26
-00:01:00.635 --> 00:01:03.115
-guarderò qui, ho un'altra cavità
+00:01:00.763 --> 00:01:03.063
+guarderò qui, ho un'altra cavità che è qui,
 
 27
-00:01:03.145 --> 00:01:05.485
-che è qui, che è una grande cavità qui.
+00:01:03.103 --> 00:01:04.380
+che è una grande cavità qui.
 
 28
-00:01:05.515 --> 00:01:07.005
-Si chiama endoderma
+00:01:04.643 --> 00:01:06.977
+Si chiama endoderma o, per noi,
 
 29
-00:01:07.035 --> 00:01:08.013
-o, per noi,
-
-30
-00:01:08.123 --> 00:01:09.153
+00:01:08.123 --> 00:01:09.143
 potremmo già dire
 
-31
-00:01:10.283 --> 00:01:11.433
+30
+00:01:10.283 --> 00:01:11.353
 l'endoblasto.
 
-32
-00:01:12.743 --> 00:01:14.783
+31
+00:01:12.743 --> 00:01:14.071
 Epiblasto, endoblasto.
 
-33
-00:01:14.813 --> 00:01:16.713
+32
+00:01:14.463 --> 00:01:16.110
 Ma ora, c'è l'algoritmo.
 
-34
-00:01:19.163 --> 00:01:20.613
+33
+00:01:19.163 --> 00:01:20.593
 Di tutte queste cellule,
 
+34
+00:01:21.523 --> 00:01:24.313
+quali sono le cellule che sono le più vicine alla
+
 35
-00:01:21.523 --> 00:01:22.883
-quali sono le cellule
+00:01:24.353 --> 00:01:26.903
+porzione trofica che mangeranno più velocemente qui
 
 36
-00:01:22.913 --> 00:01:24.303
-che sono le più vicine
+00:01:26.943 --> 00:01:27.563
+in nero
 
 37
-00:01:24.333 --> 00:01:25.253
-alla porzione trofica
-
-38
-00:01:25.854 --> 00:01:27.494
-che mangeranno più velocemente
-
-39
-00:01:27.524 --> 00:01:28.434
-qui in nero
-
-40
-00:01:30.394 --> 00:01:32.264
+00:01:30.394 --> 00:01:32.204
 e in effetti, cosa succede?
 
+38
+00:01:32.244 --> 00:01:35.324
+constateremo all'interno stesso dell'embrione
+
+39
+00:01:36.734 --> 00:01:38.394
+di tutto questo ammasso di cellule
+
+40
+00:01:40.314 --> 00:01:42.854
+una velocitÀ di crescita differenziata tra le
+
 41
-00:01:32.434 --> 00:01:32.854
-constateremo
+00:01:42.894 --> 00:01:45.864
+cellule che sono al centro e le cellule che sono
 
 42
-00:01:33.794 --> 00:01:36.444
-all'interno stesso dell'embrione
+00:01:45.904 --> 00:01:48.254
+alla periferia la crescita che è qui
 
 43
-00:01:36.734 --> 00:01:37.884
-di tutto questo ammasso
+00:01:49.674 --> 00:01:52.664
+tra lì e le cellule che sono in pace E lì,
 
 44
-00:01:38.454 --> 00:01:39.054
-di cellule
+00:01:52.704 --> 00:01:55.404
+questo relativamente rimane lo stesso, vedi.
 
 45
-00:01:40.314 --> 00:01:42.854
-una velocitÀ di crescita differenziata
-
-46
-00:01:42.884 --> 00:01:44.674
-tra le cellule che sono al centro
-
-47
-00:01:44.704 --> 00:01:46.924
-e le cellule che sono alla periferia
-
-48
-00:01:46.954 --> 00:01:48.414
-la crescita che è qui
-
-49
-00:01:49.674 --> 00:01:50.424
-tra lì
-
-50
-00:01:50.794 --> 00:01:52.574
-e le cellule che sono in pace
-
-51
-00:01:52.604 --> 00:01:55.924
-E lì, questo relativamente rimane lo stesso, vedi.
-
-52
-00:01:57.346 --> 00:01:59.756
+00:01:57.346 --> 00:01:59.516
 Ma tra i due, tira, vedi.
 
-53
-00:02:03.006 --> 00:02:06.026
+46
+00:02:03.006 --> 00:02:05.256
 E questo significa che il blastocele,
 
-54
-00:02:06.066 --> 00:02:06.956
-è giÀ la cavitÀ
+47
+00:02:05.296 --> 00:02:06.896
+è giÀ la cavitÀ amniotica.
 
-55
-00:02:08.286 --> 00:02:08.496
-amniotica.
-
-56
-00:02:09.126 --> 00:02:11.966
+48
+00:02:09.126 --> 00:02:11.826
 È giÀ liquido, è giÀ il sistema digestivo.
 
-57
-00:02:13.606 --> 00:02:15.596
+49
+00:02:13.606 --> 00:02:15.496
 Ho uno strappo qui, vedi.
 
-58
-00:02:16.026 --> 00:02:17.106
+50
+00:02:16.026 --> 00:02:17.006
 Tira, tira.
 
-59
-00:02:17.366 --> 00:02:19.126
+51
+00:02:17.046 --> 00:02:18.936
 È come se si separasse lì.
 
-60
-00:02:19.426 --> 00:02:21.006
+52
+00:02:18.976 --> 00:02:20.546
 Lì, vedi, si strappa.
 
-61
-00:02:21.036 --> 00:02:22.616
+53
+00:02:20.586 --> 00:02:22.176
 e vediamo che tira.
 
-62
-00:02:22.646 --> 00:02:23.526
-Ecco. E poi andrÀ
+54
+00:02:22.557 --> 00:02:25.967
+Ecco. E poi andrÀ a stirarsi sempre di più, vedi.
 
-63
-00:02:23.837 --> 00:02:26.407
-a stirarsi sempre di più, vedi.
+55
+00:02:27.077 --> 00:02:29.227
+Normalmente, l'immagine che è qui,
 
-64
-00:02:27.077 --> 00:02:28.737
-Normalmente, l'immagine
+56
+00:02:29.267 --> 00:02:31.937
+se non cresce, torna verso il centro qui.
 
-65
-00:02:28.767 --> 00:02:30.377
-che è qui, se non cresce,
+57
+00:02:33.897 --> 00:02:36.740
+E quindi ho una velocitÀ di crescita differenziale
 
-66
-00:02:30.477 --> 00:02:32.127
-torna verso il centro qui.
-
-67
-00:02:33.892 --> 00:02:34.462
-E quindi
-
-68
-00:02:34.492 --> 00:02:37.067
-ho una velocitÀ di crescita differenziale
-
-69
+58
 00:02:38.277 --> 00:02:39.227
 il mio centro
 
-70
-00:02:39.937 --> 00:02:42.057
-e la mia periferia dell'embrione.
+59
+00:02:39.937 --> 00:02:43.227
+e la mia periferia dell'embrione. E questo sistema
 
-71
-00:02:42.087 --> 00:02:43.227
-E questo sistema
-
-72
-00:02:44.477 --> 00:02:45.967
+60
+00:02:44.477 --> 00:02:45.907
 creerÀ un sistema qui.
 
-73
-00:02:46.357 --> 00:02:48.387
-Avrò uno strato di C.U. che mantiene
+61
+00:02:45.947 --> 00:02:47.367
+Avrò uno strato di C. U.
 
-74
-00:02:48.429 --> 00:02:51.519
-la mia densitÀ a causa della mia membrana qui
+62
+00:02:47.407 --> 00:02:49.987
+che mantiene la mia densitÀ a causa della mia
 
-75
-00:02:51.549 --> 00:02:52.639
-che tiene il sistema
+63
+00:02:50.027 --> 00:02:53.337
+membrana qui che tiene il sistema che chiamiamo la
 
-76
-00:02:53.529 --> 00:02:55.059
-che chiamiamo la membrana
+64
+00:02:53.377 --> 00:02:53.727
+membrana
 
-77
-00:02:56.349 --> 00:02:57.459
-il blastocele
+65
+00:02:56.349 --> 00:03:00.189
+il blastocele e a quel punto l'intero blastocele qui
 
-78
-00:02:57.749 --> 00:02:59.119
-e a quel punto
-
-79
-00:02:59.329 --> 00:03:00.819
-l'intero blastocele qui
-
-80
-00:03:01.769 --> 00:03:02.839
+66
+00:03:00.229 --> 00:03:01.189
 cambierÀ nome
 
-81
-00:03:03.989 --> 00:03:05.199
-l'insieme che è lì
+67
+00:03:03.989 --> 00:03:07.319
+l'insieme che è lì non diventa più un blastocele al
 
-82
-00:03:05.649 --> 00:03:07.539
-non diventa più un blastocele
+68
+00:03:07.359 --> 00:03:10.279
+centro diventa la cavitÀ vitellina e alla periferia
 
-83
-00:03:07.889 --> 00:03:08.269
-al centro
+69
+00:03:10.319 --> 00:03:11.839
+diventa il celoma esterno
 
-84
-00:03:09.109 --> 00:03:10.889
-diventa la cavitÀ vitellina
+70
+00:03:16.500 --> 00:03:19.310
+Quindi questo diventa la cavità vitellina,
 
-85
-00:03:11.709 --> 00:03:13.159
-e alla periferia
+71
+00:03:19.350 --> 00:03:22.240
+e qui, questo diventa il celoma esterno.
 
-86
-00:03:13.429 --> 00:03:14.139
-diventa il celoma
-
-87
-00:03:15.929 --> 00:03:16.429
-esterno
-
-88
-00:03:16.500 --> 00:03:19.520
-Quindi questo diventa la cavità vitellina, e
-
-89
-00:03:21.520 --> 00:03:24.320
-qui, questo diventa il celoma esterno.
-
-90
-00:03:25.520 --> 00:03:28.840
+72
+00:03:25.520 --> 00:03:28.830
 Il centro qui, che è qui, diremo questo centro,
 
-91
-00:03:28.880 --> 00:03:29.230
-diremo
+73
+00:03:28.870 --> 00:03:31.510
+diremo che non cresce, relativamente.
 
-92
-00:03:30.900 --> 00:03:33.260
-che non cresce, relativamente.
-
-93
-00:03:34.360 --> 00:03:36.920
+74
+00:03:34.360 --> 00:03:36.630
 E quindi tutto intorno, crescono.
 
-94
-00:03:38.460 --> 00:03:41.030
-qui, io cresco, io cresco, e
+75
+00:03:38.460 --> 00:03:42.320
+qui, io cresco, io cresco, e quindi è come se questo
 
-95
-00:03:42.132 --> 00:03:44.532
-quindi è come se questo centro...
+76
+00:03:42.360 --> 00:03:43.300
+centro...
 
-96
+77
 00:03:44.572 --> 00:03:48.092
 si strappasse, vedi, e il fatto che io cresco,
 
-97
-00:03:48.132 --> 00:03:48.872
-cresco,
+78
+00:03:48.132 --> 00:03:51.452
+cresco, qui, e bene è lì che questo celoma
 
-98
-00:03:49.872 --> 00:03:52.452
-qui, e bene è lì che questo celoma
-
-99
-00:03:53.792 --> 00:03:56.712
+79
+00:03:53.792 --> 00:03:56.692
 che era qui diventerà la cavità vitellina,
 
-100
-00:03:56.752 --> 00:03:57.602
+80
+00:03:56.732 --> 00:03:57.582
 e intorno,
 
-101
-00:03:59.232 --> 00:04:01.162
+81
+00:03:59.252 --> 00:04:00.912
 c'è un'altra cavità che appare,
 
-102
-00:04:01.492 --> 00:04:05.082
-all'inizio, è come una rete aracnoidea, e poi per
+82
+00:04:01.492 --> 00:04:04.112
+all'inizio, è come una rete aracnoidea,
 
-103
-00:04:05.714 --> 00:04:07.314
-la crescita, si elimina,
+83
+00:04:04.152 --> 00:04:06.462
+e poi per la crescita, si elimina,
 
-104
-00:04:07.344 --> 00:04:10.564
+84
+00:04:06.502 --> 00:04:09.882
 diventa una cavità che chiamiamo il celoma esterno.
 
-105
-00:04:10.604 --> 00:04:12.604
+85
+00:04:09.922 --> 00:04:11.832
 È una rete aracnoidea, vedi,
 
-106
-00:04:12.643 --> 00:04:14.123
-tiene, siamo così,
+86
+00:04:12.643 --> 00:04:14.723
+tiene, siamo così, tiene, tiene,
 
-107
-00:04:14.714 --> 00:04:17.084
-tiene, tiene, ma ad un certo punto,
+87
+00:04:14.763 --> 00:04:17.143
+ma ad un certo punto, non so più,
 
-108
-00:04:17.114 --> 00:04:19.074
-non so più, ci lasciamo
+88
+00:04:17.183 --> 00:04:19.753
+ci lasciamo e rimane un essudato.
 
-109
-00:04:19.104 --> 00:04:20.424
-e rimane un essudato.
-
-110
-00:04:20.743 --> 00:04:23.753
+89
+00:04:20.743 --> 00:04:22.877
 E questo essudato diventa il celoma esterno,
 
-111
-00:04:23.783 --> 00:04:24.903
+90
+00:04:23.403 --> 00:04:24.368
 che sarà la cavità
 
-112
-00:04:26.283 --> 00:04:27.773
-liquido peritoneale,
+91
+00:04:26.283 --> 00:04:29.313
+liquido peritoneale, intra-peritoneale.
 
-113
-00:04:27.803 --> 00:04:29.333
-intra-peritoneale.
+92
+00:04:29.353 --> 00:04:32.693
+Ci ritroviamo con due campi, tre cavità liquide.
 
-114
-00:04:29.363 --> 00:04:31.473
-Ci ritroviamo con due campi, tre cavità
+93
+00:04:32.733 --> 00:04:34.513
+La cavità qui, chiamiamo
 
-115
-00:04:31.503 --> 00:04:32.873
-liquide. La cavità
-
-116
-00:04:33.063 --> 00:04:34.713
-qui, chiamiamo
-
-117
-00:04:37.163 --> 00:04:39.233
+94
+00:04:37.163 --> 00:04:39.213
 Qui, in giallo, la cavità
 
-118
+95
 00:04:40.715 --> 00:04:43.905
 e qui, un'altra cavità che chiamiamo il celoma
 
-119
-00:04:43.945 --> 00:04:44.635
+96
+00:04:43.945 --> 00:04:44.455
 esterno.
 
-120
-00:04:46.435 --> 00:04:49.965
-E tra i due, qui, ho qui quello che chiamiamo
+97
+00:04:46.435 --> 00:04:49.905
+E tra i due, qui, ho qui quello che chiamiamo il
 
-121
-00:04:51.575 --> 00:04:52.575
-il disco embrionale.
+98
+00:04:49.945 --> 00:04:50.815
+disco embrionale.
 
-122
-00:04:53.715 --> 00:04:56.915
+99
+00:04:53.715 --> 00:04:57.065
 Le cellule dell'endocisto che guarderanno la cavità
 
-123
-00:04:56.955 --> 00:04:57.905
-amniotica verranno,
+100
+00:04:57.105 --> 00:04:59.945
+amniotica verranno, noi, nel nostro linguaggio,
 
-124
-00:04:57.935 --> 00:05:01.378
-noi, nel nostro linguaggio, parliamo di epiblasto.
+101
+00:04:59.985 --> 00:05:01.424
+parliamo di epiblasto.
 
-125
-00:05:01.675 --> 00:05:04.265
+102
+00:05:01.675 --> 00:05:04.245
 Le cellule che guarderanno la cavità vitellina
 
-126
-00:05:04.305 --> 00:05:05.525
-saranno le cellule che
+103
+00:05:04.285 --> 00:05:06.985
+saranno le cellule che formeranno l'endoblasto.
 
-127
-00:05:06.715 --> 00:05:08.275
-formeranno l'endoblasto.
-
-128
-00:05:09.466 --> 00:05:12.136
+104
+00:05:09.466 --> 00:05:11.766
 Ogni volta che ho una divisione cellulare,
 
-129
-00:05:12.176 --> 00:05:14.616
+105
+00:05:11.806 --> 00:05:13.896
 ho una perdita d'acqua e ho un aumento
 
-130
-00:05:14.646 --> 00:05:15.066
+106
+00:05:13.936 --> 00:05:14.816
 dell'impronta.
 
-131
-00:05:15.646 --> 00:05:18.626
+107
+00:05:15.646 --> 00:05:18.356
 Allora o posso perdere completamente e diventa un
 
-132
-00:05:18.666 --> 00:05:21.092
+108
+00:05:18.396 --> 00:05:20.742
 essudato completo, o sono piccoli essudati.
 
-133
-00:05:21.696 --> 00:05:24.966
+109
+00:05:21.706 --> 00:05:24.906
 Poi è anche l'essudato nel senso che è una crescita,
 
-134
-00:05:25.006 --> 00:05:26.936
-ti immagini la quantità di cellule
+110
+00:05:24.946 --> 00:05:27.417
+ti immagini la quantità di cellule che appaiono.
 
-135
-00:05:26.966 --> 00:05:27.736
-che appaiono.
-
-136
-00:05:28.326 --> 00:05:30.836
+111
+00:05:28.326 --> 00:05:30.716
 Ma ogni volta proviene da un'altra cellula,
 
-137
-00:05:30.876 --> 00:05:32.441
+112
+00:05:30.756 --> 00:05:32.152
 non appaiono all'improvviso.
 
-138
-00:05:32.926 --> 00:05:35.186
+113
+00:05:32.926 --> 00:05:34.826
 Ogni volta che hai una divisione cellulare,
 
-139
-00:05:35.226 --> 00:05:36.376
+114
+00:05:34.866 --> 00:05:36.061
 hai una piccola perdita.
 
-140
-00:05:36.787 --> 00:05:38.917
+115
+00:05:36.858 --> 00:05:38.978
 È che è una tale velocità di crescita,
 
-141
-00:05:38.957 --> 00:05:42.087
-ci sono così tanti liquidi che appariranno, vedi,
+116
+00:05:39.018 --> 00:05:41.818
+ci sono così tanti liquidi che appariranno,
 
-142
-00:05:42.117 --> 00:05:45.167
-che all'inizio, le cellule, sono mantenute da una
+117
+00:05:41.858 --> 00:05:44.008
+vedi, che all'inizio, le cellule,
 
-143
-00:05:45.207 --> 00:05:46.787
-rete fibrosa, vedi.
+118
+00:05:44.048 --> 00:05:46.498
+sono mantenute da una rete fibrosa, vedi.
 
-144
-00:05:47.018 --> 00:05:49.648
+119
+00:05:47.018 --> 00:05:49.608
 Ma ad un certo punto, questa rete fibrosa,
 
-145
-00:05:49.688 --> 00:05:52.078
+120
+00:05:49.648 --> 00:05:51.758
 perde e rimane solo la cavità.
 
-146
-00:05:52.418 --> 00:05:54.778
+121
+00:05:52.418 --> 00:05:54.688
 Questo è ciò che chiamiamo la rete aracnoidea
 
-147
-00:05:54.818 --> 00:05:56.408
+122
+00:05:54.728 --> 00:05:56.032
 primitiva del celluloma esterno.
 
-148
-00:05:56.635 --> 00:05:58.885
+123
+00:05:56.638 --> 00:05:58.838
 Non sono solo cellule che si rompono,
 
-149
-00:05:58.925 --> 00:06:01.365
-è una quantità di assorbimento liquido
+124
+00:05:58.878 --> 00:06:01.388
+è una quantità di assorbimento liquido che viene
 
-150
-00:06:01.395 --> 00:06:03.945
-che viene così tanto dall'esterno verso l'interno,
+125
+00:06:01.428 --> 00:06:03.928
+così tanto dall'esterno verso l'interno,
 
-151
-00:06:03.985 --> 00:06:04.890
+126
+00:06:03.968 --> 00:06:04.875
 nella periferia.
 
-152
-00:06:04.929 --> 00:06:08.199
-è più forte. Entro in un posto fantastico con
+127
+00:06:04.929 --> 00:06:05.589
+è più forte.
 
-153
-00:06:10.969 --> 00:06:13.539
-tante granatine, tante cose, vedi,
+128
+00:06:05.629 --> 00:06:09.369
+Entro in un posto fantastico con tante granatine,
 
-154
-00:06:14.409 --> 00:06:16.007
+129
+00:06:09.409 --> 00:06:10.589
+tante cose, vedi,
+
+130
+00:06:14.409 --> 00:06:15.681
 prendo molto dalla squadra.
 
