@@ -199,22 +199,11 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
             if (isJaDubActive && jaAudioRef.current) {
                 playerRef.current.muted = true;
                 playerRef.current.volume = 0;
-                const aTime = jaAudioRef.current.currentTime || 0;
-                const drift = aTime - vTime;
-                if (!jaAudioRef.current.seeking) {
-                    if (Math.abs(drift) > 0.35) {
-                        jaAudioRef.current.currentTime = vTime;
-                        jaAudioRef.current.playbackRate = speed;
-                    } else if (Math.abs(drift) > 0.06) {
-                        // Gentle micro-PLL speed nudge (±4% max) to keep lip/board sync under 60ms without clicks
-                        const nudge = Math.max(-0.04, Math.min(0.04, -drift * 0.25));
-                        jaAudioRef.current.playbackRate = speed * (1 + nudge);
-                    } else if (jaAudioRef.current.playbackRate !== speed) {
-                        jaAudioRef.current.playbackRate = speed;
-                    }
-                }
                 if (!jaAudioRef.current.paused) {
-                    time = vTime;
+                    time = jaAudioRef.current.currentTime;
+                }
+                if (vTime > 1.0 && !jaAudioRef.current.seeking && Math.abs(jaAudioRef.current.currentTime - vTime) > 6.0) {
+                    jaAudioRef.current.currentTime = vTime;
                 }
             }
 
@@ -1166,7 +1155,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                         if (jaAudioRef.current) {
                                             jaAudioRef.current.playbackRate = speed;
                                             const vTime = playerRef.current.currentTime || 0;
-                                            if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.15) {
+                                            if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.5) {
                                                 jaAudioRef.current.currentTime = vTime;
                                             }
                                             jaAudioRef.current.play().catch(() => {});
@@ -1177,15 +1166,6 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                     if (isJaDubActive && playerRef.current) {
                                         playerRef.current.muted = true;
                                         playerRef.current.volume = 0;
-                                        if (jaAudioRef.current) {
-                                            const vTime = playerRef.current.currentTime || 0;
-                                            if (Math.abs(jaAudioRef.current.currentTime - vTime) > 0.15) {
-                                                jaAudioRef.current.currentTime = vTime;
-                                            }
-                                            if (jaAudioRef.current.paused) {
-                                                jaAudioRef.current.play().catch(() => {});
-                                            }
-                                        }
                                     }
                                 }}
                                 onPause={() => {
