@@ -772,8 +772,8 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                 let vttText = '';
                 let resolvedUrl = '';
 
-                // Always prioritize our local v15 precision-synced & 1-2 line mastered VTT first (all 7 languages incl. FR)
-                const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt?v=15`;
+                // Always prioritize our local v16 acoustic-waveform-locked & 1-2 line mastered VTT first (all 7 languages incl. FR)
+                const localVttUrl = `/vtt/${cloudflareId}_${langCode}.vtt?v=16`;
                 const vttUrl = `/cf-stream/${cloudflareId}/downloads/default.vtt?lang=${langCode}`;
 
                 try {
@@ -1107,7 +1107,7 @@ export const CustomVideoPlayer = React.forwardRef<CustomVideoPlayerRef, CustomVi
                                 <audio
                                     key={`${cloudflareId}_dub_audio`}
                                     ref={jaAudioRef}
-                                    src={isDubLang ? `/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=15` : undefined}
+                                    src={isDubLang ? `/audio_${activeLangCode}/${cloudflareId}_${activeLangCode}.mp3?v=16` : undefined}
                                     preload="auto"
                                     onCanPlay={() => {
                                         if (!isDubLang) return;
