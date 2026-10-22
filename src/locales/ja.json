@@ -11,8 +11,23 @@
     "available_in": "対応言語"
   },
   "nav": {
+    "home": "ホーム",
     "timeline": "タイムライン",
-    "videos": "ビデオコース"
+    "videos": "ビデオ",
+    "ai_assistant": "AIアシスタント",
+    "biblio": "文献",
+    "bibliographie": "参考文献",
+    "admin": "管理",
+    "logout": "終了",
+    "invoice": "領収書"
+  },
+  "player": {
+    "summary": "要約",
+    "transcriptFull": "インタラクティブ文字起こし",
+    "transcriptShort": "文字起こし",
+    "autoscroll": "自動スクロール",
+    "auto": "自動",
+    "preparingTranscript": "文字起こしを準備中..."
   },
   "chatbot": {
     "apiKeyMissing": "APIキーがありません。",

@@ -11,8 +11,23 @@
     "available_in": "Disponible en"
   },
   "nav": {
+    "home": "Inicio",
     "timeline": "Cronología",
-    "videos": "Cursos en Video"
+    "videos": "Videos",
+    "ai_assistant": "Asistente IA",
+    "biblio": "Biblio",
+    "bibliographie": "Bibliografía",
+    "admin": "Admin",
+    "logout": "Salir",
+    "invoice": "Mi Factura"
+  },
+  "player": {
+    "summary": "Resumen",
+    "transcriptFull": "Transcripción interactiva",
+    "transcriptShort": "Transcripción",
+    "autoscroll": "Autoscroll",
+    "auto": "Auto",
+    "preparingTranscript": "Preparando transcripción..."
   },
   "chatbot": {
     "apiKeyMissing": "Falta la clave API.",

@@ -134,7 +134,7 @@ export const EXPORTER_TRANSLATIONS: Record<SupportedLang, ExporterDictionary> = 
         popupBlocked: "Si prega di consentire l'apertura delle finestre pop-up."
     },
     ja: {
-        appName: "発生学 APP",
+        appName: "発生学アプリ",
         subtitle: "FEELPROD • マルク・ダモワゾーの教え",
         categories: {
             ectoderme: "外胚葉",

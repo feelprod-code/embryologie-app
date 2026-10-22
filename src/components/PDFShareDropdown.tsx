@@ -28,6 +28,8 @@ interface PDFShareDropdownProps {
 }
 
 const DROPDOWN_TEXTS: Record<string, {
+  btnPdf: string;
+  btnIntegral: string;
   shareBtn: string;
   docTitle: string;
   tabChapter: string;
@@ -54,6 +56,8 @@ const DROPDOWN_TEXTS: Record<string, {
   printSub: string;
 }> = {
   fr: {
+    btnPdf: "PDF",
+    btnIntegral: "RECUEIL PDF",
     shareBtn: "Partager",
     docTitle: "DOCUMENT PDF",
     tabChapter: "Fiche Chapitre",
@@ -80,6 +84,8 @@ const DROPDOWN_TEXTS: Record<string, {
     printSub: "Format A4 standard",
   },
   en: {
+    btnPdf: "PDF",
+    btnIntegral: "FULL PDF",
     shareBtn: "Share",
     docTitle: "PDF DOCUMENT",
     tabChapter: "Chapter Sheet",
@@ -106,6 +112,8 @@ const DROPDOWN_TEXTS: Record<string, {
     printSub: "Standard A4 format",
   },
   de: {
+    btnPdf: "PDF",
+    btnIntegral: "GESAMT-PDF",
     shareBtn: "Teilen",
     docTitle: "PDF DOKUMENT",
     tabChapter: "Kapitelblatt",
@@ -132,6 +140,8 @@ const DROPDOWN_TEXTS: Record<string, {
     printSub: "Standard A4-Format",
   },
   es: {
+    btnPdf: "PDF",
+    btnIntegral: "MANUAL PDF",
     shareBtn: "Compartir",
     docTitle: "DOCUMENTO PDF",
     tabChapter: "Ficha Capítulo",
@@ -154,10 +164,12 @@ const DROPDOWN_TEXTS: Record<string, {
     copySub: "Copiar dirección URL",
     copied: "¡Enlace copiado!",
     copiedSub: "Listo para pegar",
-    print: "Imprimer",
+    print: "Imprimir",
     printSub: "Formato A4 estándar",
   },
   it: {
+    btnPdf: "PDF",
+    btnIntegral: "MANUALE PDF",
     shareBtn: "Condividi",
     docTitle: "DOCUMENTO PDF",
     tabChapter: "Scheda Capitolo",
@@ -184,6 +196,8 @@ const DROPDOWN_TEXTS: Record<string, {
     printSub: "Formato A4 standard",
   },
   ja: {
+    btnPdf: "PDF資料",
+    btnIntegral: "完全版PDF",
     shareBtn: "共有",
     docTitle: "PDFドキュメント",
     tabChapter: "章のシート",
@@ -210,6 +224,8 @@ const DROPDOWN_TEXTS: Record<string, {
     printSub: "標準A4フォーマット",
   },
   zh: {
+    btnPdf: "PDF讲义",
+    btnIntegral: "完整PDF",
     shareBtn: "分享",
     docTitle: "PDF 文档",
     tabChapter: "章节学习单",
@@ -512,7 +528,7 @@ export default function PDFShareDropdown({
             <Share2 className="w-3.5 h-3.5" style={{ color: accentColor }} strokeWidth={2.5} />
           )}
           <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wider">
-            {course?.isGlobalPdf ? 'RECUEIL PDF' : 'PDF'}
+            {course?.isGlobalPdf ? labels.btnIntegral : labels.btnPdf}
           </span>
           <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         </button>
@@ -532,7 +548,7 @@ export default function PDFShareDropdown({
           ) : (
             <Share2 className="w-3 h-3" style={{ color: accentColor }} strokeWidth={2.5} />
           )}
-          <span>PDF</span>
+          <span>{course?.isGlobalPdf ? labels.btnIntegral : labels.btnPdf}</span>
           <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         </button>
       )}
@@ -608,8 +624,8 @@ export default function PDFShareDropdown({
                   <X className="w-4 h-4" />
                 </button>
               </div>
-              <div className="text-sm font-bold text-slate-900 truncate mt-1.5" title={course?.title || title}>
-                {course?.title || title || "Sélectionnez un chapitre"}
+              <div className="text-sm font-bold text-slate-900 truncate mt-1.5" title={(course?.title || title || "").replace(/\s*_\s*/g, " : ")}>
+                {(course?.title || title || "Sélectionnez un chapitre").replace(/\s*_\s*/g, " : ")}
               </div>
             </div>
 

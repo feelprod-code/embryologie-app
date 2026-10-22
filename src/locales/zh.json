@@ -11,8 +11,23 @@
     "available_in": "提供语言"
   },
   "nav": {
+    "home": "首页",
     "timeline": "时间线",
-    "videos": "视频课程"
+    "videos": "视频",
+    "ai_assistant": "AI助手",
+    "biblio": "文献",
+    "bibliographie": "参考文献",
+    "admin": "管理",
+    "logout": "退出",
+    "invoice": "我的发票"
+  },
+  "player": {
+    "summary": "课程总结",
+    "transcriptFull": "互动逐字稿",
+    "transcriptShort": "逐字稿",
+    "autoscroll": "自动滚动",
+    "auto": "自动",
+    "preparingTranscript": "逐字稿准备中..."
   },
   "chatbot": {
     "apiKeyMissing": "缺少API密钥。",

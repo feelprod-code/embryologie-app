@@ -82,8 +82,8 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, isPremium, o
                     )}
                 >
                     <BookOpen size={18} className={currentView === 'bibliographie' ? "text-white" : "text-slate-500"} />
-                    <span className="hidden xl:inline">Bibliographie</span>
-                    <span className="xl:hidden">Biblio</span>
+                    <span className="hidden xl:inline">{t('nav.bibliographie', 'Bibliographie')}</span>
+                    <span className="xl:hidden">{t('nav.biblio', 'Biblio')}</span>
                 </button>
 
                 {isAdmin && (
@@ -96,7 +96,7 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, isPremium, o
                                 : "bg-transparent text-slate-600 hover:bg-[#F5F1E8] hover:text-slate-900"
                         )}
                     >
-                        Admin
+                        {t('nav.admin', 'Admin')}
                     </button>
                 )}
 
@@ -111,7 +111,7 @@ export function DesktopMenu({ currentView, setCurrentView, isAdmin, isPremium, o
                         title="Télécharger ma facture officielle FeelProd"
                     >
                         <FileText size={14} className="text-amber-600" />
-                        <span className="hidden xl:inline">Ma Facture</span>
+                        <span className="hidden xl:inline">{t('nav.invoice', 'Ma Facture')}</span>
                     </button>
                 )}
                 <LanguageSwitcher variant="desktop-nav" />

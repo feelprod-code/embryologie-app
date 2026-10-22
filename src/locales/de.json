@@ -12,8 +12,23 @@
     "available_in": "Verfügbar auf"
   },
   "nav": {
+    "home": "Start",
     "timeline": "Zeitleiste",
-    "videos": "Videokurse"
+    "videos": "Videos",
+    "ai_assistant": "KI-Assistent",
+    "biblio": "Biblio",
+    "bibliographie": "Bibliographie",
+    "admin": "Admin",
+    "logout": "Beenden",
+    "invoice": "Rechnung"
+  },
+  "player": {
+    "summary": "Zusammenfassung",
+    "transcriptFull": "Interaktives Transkript",
+    "transcriptShort": "Transkript",
+    "autoscroll": "Autoscroll",
+    "auto": "Auto",
+    "preparingTranscript": "Transkript wird vorbereitet..."
   },
   "chatbot": {
     "apiKeyMissing": "API-Schlüssel fehlt.",

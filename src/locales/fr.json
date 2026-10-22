@@ -19,7 +19,20 @@
     "videos": "Vidéos",
     "home": "Accueil",
     "ai_assistant": "Assistant IA",
-    "podcasts": "Podcasts"
+    "podcasts": "Podcasts",
+    "biblio": "Biblio",
+    "bibliographie": "Bibliographie",
+    "admin": "Admin",
+    "logout": "Quitter",
+    "invoice": "Ma Facture"
+  },
+  "player": {
+    "summary": "Résumé",
+    "transcriptFull": "Re-transcription interactive",
+    "transcriptShort": "Re-transcript",
+    "autoscroll": "Autoscroll",
+    "auto": "Auto",
+    "preparingTranscript": "Transcription en cours de préparation..."
   },
   "chatbot": {
     "apiKeyMissing": "Clé API manquante.",

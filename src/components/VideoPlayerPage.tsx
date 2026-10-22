@@ -908,7 +908,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
                 contentMode === 'summary' ? "bg-[#FAF6ED] text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-800"
               )}
             >
-              Résumé
+              {t('player.summary', 'Résumé')}
             </button>
             <button
               onClick={() => setContentMode('transcript')}
@@ -917,8 +917,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
                 contentMode === 'transcript' ? "bg-[#FAF6ED] text-slate-800 shadow-[0_1px_3px_rgba(0,0,0,0.1)]" : "text-slate-500 hover:text-slate-800"
               )}
             >
-              <span className="hidden min-[400px]:inline">Re-transcription interactive</span>
-              <span className="inline min-[400px]:hidden">Re-transcript</span>
+              <span className="hidden min-[400px]:inline">{t('player.transcriptFull', 'Re-transcription interactive')}</span>
+              <span className="inline min-[400px]:hidden">{t('player.transcriptShort', 'Re-transcript')}</span>
             </button>
             {contentMode === 'transcript' && (
               <button
@@ -933,8 +933,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
                   "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mr-1.5 transition-all duration-300",
                   isAutoScrollEnabled ? "bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.5)]" : "bg-slate-300"
                 )} />
-                <span className="hidden sm:inline">Autoscroll</span>
-                <span className="sm:hidden">Auto</span>
+                <span className="hidden sm:inline">{t('player.autoscroll', 'Autoscroll')}</span>
+                <span className="sm:hidden">{t('player.auto', 'Auto')}</span>
               </button>
             )}
           </div>

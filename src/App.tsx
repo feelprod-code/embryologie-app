@@ -716,7 +716,7 @@ function App() {
             <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", activeNav === 'bibliographie' ? "scale-105" : "group-hover:scale-105")}>
               <BookOpen size={24} />
             </div>
-            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'bibliographie' ? "font-medium" : "font-normal")}>Biblio</span>
+            <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'bibliographie' ? "font-medium" : "font-normal")}>{t('nav.biblio', 'Biblio')}</span>
           </button>
 
           {isAdmin && (
@@ -731,7 +731,7 @@ function App() {
               <div className={cn("h-[24px] flex items-center justify-center transition-transform duration-200", activeNav === 'admin' ? "scale-105" : "group-hover:scale-105")}>
                 <Shield size={24} />
               </div>
-              <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'admin' ? "font-medium" : "font-normal")}>Admin</span>
+              <span className={cn("mt-auto text-[10px] tracking-wide transition-all whitespace-nowrap truncate w-full text-center px-0.5", activeNav === 'admin' ? "font-medium" : "font-normal")}>{t('nav.admin', 'Admin')}</span>
             </button>
           )}
 
@@ -743,7 +743,7 @@ function App() {
             <div className="h-[24px] flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
               <LogOut size={24} className="text-red-400 group-hover:text-red-500" />
             </div>
-            <span className="mt-auto text-[10px] tracking-wide transition-all font-normal whitespace-nowrap truncate w-full text-center px-0.5 text-red-500">Quitter</span>
+            <span className="mt-auto text-[10px] tracking-wide transition-all font-normal whitespace-nowrap truncate w-full text-center px-0.5 text-red-500">{t('nav.logout', 'Quitter')}</span>
           </button>
 
           {/* Mobile bottom nav Language Switcher */}

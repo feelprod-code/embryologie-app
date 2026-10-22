@@ -13,10 +13,23 @@
   },
   "nav": {
     "timeline": "Timeline",
-    "videos": "Video Courses",
+    "videos": "Videos",
     "home": "Home",
     "ai_assistant": "AI Assistant",
-    "podcasts": "Podcasts"
+    "podcasts": "Podcasts",
+    "biblio": "Biblio",
+    "bibliographie": "Bibliography",
+    "admin": "Admin",
+    "logout": "Log out",
+    "invoice": "My Invoice"
+  },
+  "player": {
+    "summary": "Summary",
+    "transcriptFull": "Interactive Transcript",
+    "transcriptShort": "Transcript",
+    "autoscroll": "Autoscroll",
+    "auto": "Auto",
+    "preparingTranscript": "Preparing transcript..."
   },
   "chatbot": {
     "apiKeyMissing": "Missing API Key.",
