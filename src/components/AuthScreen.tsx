@@ -288,7 +288,7 @@ export const AuthScreen: React.FC = () => {
                                     onClick={() => {
                                         localStorage.setItem('DEV_BYPASS_AUTH', 'true');
                                         localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
-                                        window.location.href = '/?admin=dev';
+                                        window.location.href = '/dev?admin=dev&bypass=true';
                                     }}
                                     className="w-full flex items-center justify-center py-2.5 sm:py-3 px-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-[#8C4E33] to-[#EA580C] hover:brightness-105 transition-all mt-1.5 shadow-sm cursor-pointer border border-amber-400"
                                 >
@@ -329,7 +329,7 @@ export const AuthScreen: React.FC = () => {
                                 if ((window as any).__fpClicks.length >= 3) {
                                     localStorage.setItem('DEV_BYPASS_AUTH', 'true');
                                     localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
-                                    window.location.href = '/?admin=dev';
+                                    window.location.href = '/dev?admin=dev&bypass=true';
                                 }
                             }}
                             className="text-[10px] xs:text-[11px] sm:text-xs md:text-[13px] lg:text-[10px] ipad-13:text-sm text-slate-500/80 font-medium uppercase tracking-[0.25em] text-center relative z-20 cursor-default select-none"

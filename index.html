@@ -49,10 +49,21 @@
     const searchParams = new URLSearchParams(window.location.search);
     if (
       searchParams.get('admin') === 'dev' ||
+      searchParams.get('dev') === 'true' ||
       searchParams.get('bypass') === 'true'
     ) {
       localStorage.setItem('DEV_BYPASS_AUTH', 'true');
       localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
+      const manifestEl = document.querySelector('link[rel="manifest"]');
+      if (manifestEl) manifestEl.setAttribute('href', '/manifest-dev.json?v=10');
+      const touchIconEl = document.querySelector('link[rel="apple-touch-icon"]');
+      if (touchIconEl) touchIconEl.setAttribute('href', '/apple-touch-icon-dev.png?v=10');
+      const iconEl = document.querySelector('link[rel="icon"]');
+      if (iconEl) iconEl.setAttribute('href', '/icon-emb-dev.png?v=10');
+      document.title = 'Embryo Dev';
+      if (!window.location.pathname.startsWith('/dev')) {
+        window.location.replace('/dev?admin=dev&bypass=true');
+      }
     }
   } catch (e) {}
 </script>

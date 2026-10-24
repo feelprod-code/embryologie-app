@@ -108,13 +108,10 @@ function App() {
     if (urlParams.get('client') !== null || urlParams.get('mode') === 'client') {
       return false;
     }
-    // Si l'URL contient ?dev=true (pilule développeur), on ne bypass pas automatiquement
-    // pour afficher l'écran de connexion avec le bouton développeur visible
-    if (urlParams.get('dev') !== null && urlParams.get('admin') !== 'dev') {
-      return false;
-    }
     return (
+      window.location.pathname.startsWith('/dev') ||
       urlParams.get('admin') === 'dev' ||
+      urlParams.get('dev') === 'true' ||
       urlParams.get('bypass') === 'true' ||
       localStorage.getItem('DEV_BYPASS_AUTH') === 'true' ||
       localStorage.getItem('DEV_ADMIN_BYPASS') === 'true'

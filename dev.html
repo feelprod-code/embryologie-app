@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="icon" type="image/png" href="/icon-emb-dev.png" />
-  <link rel="apple-touch-icon" href="/icon-emb-dev.png" />
+  <link rel="icon" type="image/png" href="/icon-emb-dev.png?v=10" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon-dev.png?v=10" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-dev.png?v=10" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Embryo Dev">
@@ -17,20 +18,34 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
-  <link rel="manifest" href="/manifest-dev.json" />
+  <link rel="manifest" href="/manifest-dev.json?v=10" />
 
-  <title>TDT Embryo Dev • Guillaume Philippe</title>
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="TDT Embryo Dev — Accès Développeur Direct (FeelProd)" />
+  <meta property="og:description" content="Accès Développeur Direct sans mot de passe • 4 Séminaires, 24h de cours, 167 vidéos et Assistant IA." />
+  <meta property="og:image" content="https://techniquesdoucestissulaires.fr/images/og-embryo-app-dev.png" />
+  <meta property="og:image:secure_url" content="https://techniquesdoucestissulaires.fr/images/og-embryo-app-dev.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://embryologie-app.vercel.app/dev" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <title>Embryo Dev • Guillaume Philippe</title>
   <meta name="description" content="Version Développeur FeelProd Embryologie Biodynamique avec accès total débloqué.">
 
   <script>
     // AUTO-BYPASS TO BREAK CACHE & UNLOCK ALL SESSIONS FOR GUILLAUME
-    localStorage.setItem('DEV_BYPASS_AUTH', 'true');
-    localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function (registrations) {
-        for (let registration of registrations) { registration.unregister() }
-      });
-    }
+    try {
+      localStorage.setItem('DEV_BYPASS_AUTH', 'true');
+      localStorage.setItem('DEV_ADMIN_BYPASS', 'true');
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+          for (let registration of registrations) { registration.unregister() }
+        });
+      }
+    } catch (e) {}
   </script>
 </head>
 

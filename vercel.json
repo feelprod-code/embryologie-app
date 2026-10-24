@@ -5,6 +5,39 @@
       "destination": "/dev.html"
     },
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "dev",
+          "value": "true"
+        }
+      ],
+      "destination": "/dev.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "admin",
+          "value": "dev"
+        }
+      ],
+      "destination": "/dev.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "bypass",
+          "value": "true"
+        }
+      ],
+      "destination": "/dev.html"
+    },
+    {
       "source": "/cf-stream/:match*",
       "destination": "https://customer-6i2z59dst7q6iswv.cloudflarestream.com/:match*"
     }
